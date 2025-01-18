@@ -30,6 +30,7 @@
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 uint32_t flash_data;
