@@ -159,7 +159,6 @@
 "armclang_engineer\supportfunctionsf16.o"
 "armclang_engineer\transformfunctions.o"
 "armclang_engineer\transformfunctionsf16.o"
-"armclang_engineer\windowfunctions.o"
 --strict --scatter "armclang_engineer\armclang_engineer.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

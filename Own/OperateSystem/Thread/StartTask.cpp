@@ -58,7 +58,7 @@ void StartTask() {
 
 //    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     /* 读取电机的偏移量，来判断offset是否需要减少360 */
-    roboArm.init_offset(interact);
+//    roboArm.init_offset(interact);
 //    xSemaphoreGive(CAN1MutexHandle);
 
     /* 遥控器初始化 */
@@ -75,7 +75,7 @@ void StartTask() {
     buzzer.Start();
 
     /* 判断急停 */
-    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+//    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     /* 判断can线上的设备是否初始化完毕 */
     xEventGroupSetBits(osEventGroup, CAN_RECEIVE_EVENT);
     xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);

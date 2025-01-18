@@ -30,6 +30,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+extern EventGroupHandle_t osEventGroup;
 
 /* USER CODE END PTD */
 
@@ -117,6 +118,7 @@ void vApplicationGetTimerTaskMemory( StaticTask_t **ppxTimerTaskTCBBuffer, Stack
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
+    osEventGroup = xEventGroupCreate();
 
   /* USER CODE END Init */
   /* Create the mutex(es) */
