@@ -1,0 +1,94 @@
+//
+// Created by liaohy on 24-12-11.
+//
+
+#include "Interact.h"
+#include "MyMath/MyMath.h"
+#include "RoboArm/RoboArm.h"
+void Interact::receive_cdc(uint8_t* data) {
+    if (interaction == VISION) {
+        if (data[0] == head && data[sizeof(receive_data_t) - 1] == tail) {
+            memcpy(&receive_data, data, sizeof(receive_data_t));
+        }
+    }
+}
+
+void Interact::receive_rc(RoboArm& Arm) {
+    using namespace my_math;
+    using namespace remote_ctrl;
+    if (interaction == REMOTE_CTRL) {
+        if (remoteControl->rcInfo.left == 1 && remoteControl->rcInfo.right == 3) {
+            receive_data.joint4.angle =
+                limited<int32_t>(static_cast<int32_t>(receive_data.joint4.angle + addSpeed(remoteControl->rcInfo.ch1, 0.005) * Arm.limition.joint4),
+                                 -Arm.limition.joint4, Arm.limition.joint4);
+
+            Arm.target.joint4.angle = (receive_data.joint4.angle * b22d + Arm.offset.joint4) * scale(360, 36000);
+
+            receive_data.joint3.angle =
+                limited<int32_t>(static_cast<int32_t>(receive_data.joint3.angle - addSpeed(remoteControl->rcInfo.ch2, 0.005) * Arm.limition.joint3),
+                                 -Arm.limition.joint3, Arm.limition.joint3);
+
+            Arm.target.joint3.angle = (-receive_data.joint3.angle * b22d + Arm.offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
+
+        } else if (remoteControl->rcInfo.left == 2 && remoteControl->rcInfo.right == 3) {
+            receive_data.joint2.angle =
+                limited<int32_t>(static_cast<int32_t>(receive_data.joint2.angle + addSpeed(remoteControl->rcInfo.ch2, 0.005) * Arm.limition.joint2),
+                                 -Arm.limition.joint2, Arm.limition.joint2);
+
+            Arm.target.joint2.angle = (receive_data.joint2.angle * b22d + Arm.offset.joint2) * scale(360, 36000);
+
+            receive_data.joint1.angle =
+                limited<int32_t>(static_cast<int32_t>(receive_data.joint1.angle + addSpeed(remoteControl->rcInfo.ch1, 0.01) * Arm.limition.joint1),
+                                 -Arm.limition.joint1, Arm.limition.joint1);
+
+            Arm.target.joint1.angle = (receive_data.joint1.angle * b22d + Arm.offset.joint1) * scale(360, 36000);
+
+        } else if (remoteControl->rcInfo.left == 3 && remoteControl->rcInfo.right == 3) {
+            // yaw_base pitch_1
+            receive_data.joint5.angle = limited<int32_t>(receive_data.joint5.angle + addSpeed(remoteControl->rcInfo.ch2, 0.01) * Arm.limition.joint5, -Arm.limition.joint5, Arm.limition.joint5);
+            //                 receive_data.link6.angle = limited<int32_t>(receive_data.link6.angle + remoteControl->rcInfo.ch1 / 660.f * limition.link6.max / 50, -limition.link6.max, limition.link6.max);
+            receive_data.joint6.angle  = addSpeed(remoteControl->rcInfo.ch1, 0.01) * 8192;
+            totalRoll                 += receive_data.joint6.angle;
+            //                pitch =
+            //                roll =
+            //                roll = (5 + 6) / 2; pitch = (5 - 6) / 2
+            Arm.target.joint5.angle = scale_transmit<int64_t, float>(totalRoll + receive_data.joint5.angle, 4096, 180);
+            Arm.target.joint6.angle = scale_transmit<int64_t, float>(totalRoll - receive_data.joint5.angle, 4096, 180);
+            //                interact.receive_data.link1.angle = limited<uint16_t>(interact.receive_data.link1.angle + remote_control.rcInfo.ch1 / 660.f, -limition.link2.max, limition.link1.max);
+            //                interact.receive_data.link2.angle = limited<uint16_t>(interact.receive_data.link2.angle + remote_control.rcInfo.ch2 / 660.f, -limition.link2.max, limition.link2.max);
+        }
+    }
+}
+
+void Interact::receive_xyz(RoboArm& Arm) {
+    using namespace my_math;
+    using namespace remote_ctrl;
+    if (interaction == REMOTE_CTRL_XYZ) {
+        pos[0] += addSpeed(remoteControl->rcInfo.ch1, 1);
+        pos[2] += addSpeed(remoteControl->rcInfo.ch2, 1);
+
+        Arm.fkine();
+        Arm.ikine(interact.pos);
+
+        limited<float>(Arm.q[0], -Arm.limition.joint1 * b22d, Arm.limition.joint1 * d2b2);
+        limited<float>(Arm.q[1], -Arm.limition.joint2 * b22d, Arm.limition.joint2 * d2b2);
+        limited<float>(Arm.q[2], -Arm.limition.joint3 * b22d, Arm.limition.joint3 * d2b2);
+
+        Arm.target.joint3.angle = (-Arm.q[2] + Arm.offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
+
+        Arm.target.joint2.angle = (Arm.q[1] + Arm.offset.joint2) * scale(360, 36000);
+
+        Arm.target.joint1.angle = (Arm.q[0] + Arm.offset.joint1) * scale(360, 36000);
+    }
+}
+
+void Interact::transmit_relative_pos(RoboArm& Arm) {
+    using namespace my_math;
+    transmit_data.joint1.angle = Arm.real_relative_pos.joint1 * d2b2;
+    transmit_data.joint2.angle = Arm.real_relative_pos.joint2 * d2b2;
+    transmit_data.joint3.angle = Arm.real_relative_pos.joint3 * d2b2;
+    transmit_data.joint4.angle = Arm.real_relative_pos.joint4 * d2b2;
+    transmit_data.joint5.angle = 0;
+    transmit_data.joint6.angle = 0;
+    transmit();
+}

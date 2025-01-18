@@ -1,0 +1,37 @@
+//
+// Created by lhy on 2024/9/9.
+//
+
+#ifndef NONE_PRJ_M3508_H
+#define NONE_PRJ_M3508_H
+
+#define USING_M3508 1
+#if USING_M3508 == 1
+
+#include "FeedBack.h"
+
+class M3508 {
+public:
+
+    M3508(uint8_t ctrlId) : ctrlId(ctrlId) {}
+
+    uint16_t ctrlId;
+
+    PID pid;
+
+    void init(uint16_t ctrlId, float p, float i, float d, float maxI, float maxOut, float gain);
+
+    void enable(){};
+
+    void disable(){};
+
+    void readData(const uint8_t *data);
+
+    float gain;
+private:
+    void CalcTotalPos();
+
+};
+
+#endif //USING_M3508
+#endif //NONE_PRJ_M3508_H
