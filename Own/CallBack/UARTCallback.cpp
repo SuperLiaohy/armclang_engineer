@@ -53,12 +53,12 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
         if (cnt++ > 5)
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
     }
-    if (huart == uartPlus10.uart) {
-        for (int i = 0; i < Size; ++i) {
-            xQueueSendFromISR(xRxedChars, &cli_buffer[i], &xHigherPriorityTaskWoken);
-            //            shellHandler(&shell, cli_buffer[i]);
-        }
-    }
+//    if (huart == uartPlus10.uart) {
+//        for (int i = 0; i < Size; ++i) {
+//            xQueueSendFromISR(xRxedChars, &cli_buffer[i], &xHigherPriorityTaskWoken);
+//            //            shellHandler(&shell, cli_buffer[i]);
+//        }
+//    }
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 #endif
 }

@@ -32,6 +32,7 @@
 #include "gpio.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+uint32_t flash_data;
 
 /* USER CODE END Includes */
 
