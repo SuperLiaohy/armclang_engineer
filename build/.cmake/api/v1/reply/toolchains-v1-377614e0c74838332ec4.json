@@ -1,0 +1,85 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "ARMClang",
+				"implicit" : {},
+				"path" : "D:/Keil_v5/ARM/ARMCLANG/bin/armclang.exe",
+				"target" : "arm-arm-none-eabi",
+				"version" : ""
+			},
+			"language" : "ASM",
+			"sourceFileExtensions" : 
+			[
+				"S",
+				"s",
+				"asm",
+				"msa"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "ARMClang",
+				"implicit" : 
+				{
+					"includeDirectories" : [],
+					"linkDirectories" : [],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : []
+				},
+				"path" : "D:/Keil_v5/ARM/ARMCLANG/bin/armclang.exe",
+				"target" : "arm-arm-none-eabi",
+				"version" : "6.21.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "ARMClang",
+				"implicit" : 
+				{
+					"includeDirectories" : [],
+					"linkDirectories" : [],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : []
+				},
+				"path" : "D:/Keil_v5/ARM/ARMCLANG/bin/armclang.exe",
+				"target" : "arm-arm-none-eabi",
+				"version" : "6.21.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm",
+				"ccm",
+				"cxxm",
+				"c++m"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

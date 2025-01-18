@@ -1,0 +1,108 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      The target system is: Generic -  - cortex-m7
+      The host system is: Windows - 10.0.22631 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: D:/Keil_v5/ARM/ARMCLANG/bin/armclang.exe 
+      Build flags: --target=arm-arm-none-eabi;-mcpu=cortex-m7
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is ARMClang, found in:
+        D:/RM/armclang_engineer/build/CMakeFiles/3.29.6/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: D:/Keil_v5/ARM/ARMCLANG/bin/armclang.exe 
+      Build flags: --target=arm-arm-none-eabi;-mcpu=cortex-m7
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is ARMClang, found in:
+        D:/RM/armclang_engineer/build/CMakeFiles/3.29.6/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1178 (message)"
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" did not match "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      Product: MDK Plus 5.39
+      Component: Arm Compiler for Embedded 6.21
+      Tool: armclang [5ec1fd00]
+      
+      Target: unspecified-arm-none-unspecified
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1178 (message)"
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Checking whether the ASM compiler is AppleClang using "--version" did not match "(Apple (clang|LLVM) version)":
+      Product: MDK Plus 5.39
+      Component: Arm Compiler for Embedded 6.21
+      Tool: armclang [5ec1fd00]
+      
+      Target: unspecified-arm-none-unspecified
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1178 (message)"
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Checking whether the ASM compiler is Clang using "--version" did not match "(clang version)":
+      Product: MDK Plus 5.39
+      Component: Arm Compiler for Embedded 6.21
+      Tool: armclang [5ec1fd00]
+      
+      Target: unspecified-arm-none-unspecified
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1165 (message)"
+      - "D:/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Checking whether the ASM compiler is ARMClang using "--version" matched "armclang":
+      Product: MDK Plus 5.39
+      Component: Arm Compiler for Embedded 6.21
+      Tool: armclang [5ec1fd00]
+      
+      Target: unspecified-arm-none-unspecified
+...

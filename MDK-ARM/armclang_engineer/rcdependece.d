@@ -13,12 +13,12 @@ armclang_engineer/rcdependece.o: ..\Own\App\RemoteControl\rcDependece.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
-  D:\RM\armclang_enginner\Drivers\CMSIS\Include\cmsis_version.h \
-  D:\RM\armclang_enginner\Drivers\CMSIS\Include\cmsis_compiler.h \
-  D:\RM\armclang_enginner\Drivers\CMSIS\Include\cmsis_armclang.h \
+  D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_version.h \
+  D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_compiler.h \
+  D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_armclang.h \
   D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h \
   D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h \
-  D:\RM\armclang_enginner\Drivers\CMSIS\Include\mpu_armv7.h \
+  D:\RM\armclang_engineer\Drivers\CMSIS\Include\mpu_armv7.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stddef.h \
