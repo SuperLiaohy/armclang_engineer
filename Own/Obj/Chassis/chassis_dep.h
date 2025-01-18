@@ -91,13 +91,22 @@ namespace chassis_dep {
         LeftRear,
         RightRear,
     };
+
     constexpr struct {
-        float wheel_base;
-        float wheel_track;
         float wheel_radius;
         float offset_x;
         float offset_y;
-    } info = {364, 455, 80, 0, 0};
+    } info = { 76, 0, 0};
+
+    constexpr struct {
+        float wheel_base;
+        float wheel_track;
+    } front_info = {451, 243.74*2};
+
+    constexpr struct {
+        float wheel_base;
+        float wheel_track;
+    } rear_info = {363, 197.5*2};
 
     constexpr struct {
         float vx;
@@ -105,7 +114,8 @@ namespace chassis_dep {
         float w;
     } max = {2090, 2090, 5};
     constexpr float v2rpm = 60 / (2 * PI * info.wheel_radius) * 19.2f;
-    constexpr std::array<slope_cfg, 3> move_default       = {slope_cfg(75, 5), slope_cfg(75, 5), slope_cfg(0.04, 0)};
+
+    constexpr std::array<slope_cfg, 3> move_default       = {slope_cfg(2, 1), slope_cfg(2, 1), slope_cfg(0.04, 0)};
     constexpr std::array<motor_cfg, 4> base_motor_default = {
         motor_cfg(1, 8192),
         motor_cfg(2, 8192),

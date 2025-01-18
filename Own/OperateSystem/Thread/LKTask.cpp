@@ -20,9 +20,8 @@ extern float right_angle;
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "LetterShell/log/log.h"
 extern Shell shell;
-
+#include "LetterShell/log/log.h"
 #ifdef __cplusplus
 }
 #endif

@@ -36,7 +36,16 @@ void StartTask() {
     w25q64.init();
     /* CAN初始化 */
     canPlus1.filter_config(0);
+    canPlus2.filter_config(1);
     canPlus1.can_start();
+    canPlus2.can_start();
+    /* 底盘电机初始化 */
+    chassis.base.left_front.motor.init(1,15,0,4,8000,16000,19.2);
+    chassis.base.right_front.motor.init(2,15,0,4,8000,16000,19.2);
+    chassis.base.left_rear.motor.init(3,15,0,4,8000,16000,19.2);
+    chassis.base.right_rear.motor.init(4,15,0,4,8000,16000,19.2);
+    chassis.extend.right.motor.init(4,15,0,4,8000,16000,19.2);
+    chassis.extend.left.motor.init(4,15,0,4,8000,16000,19.2);
     /* 机械臂电机初始化 */
     roboArm.joint1.motor.init(&canPlus1,10);
     roboArm.joint2.motor.init(&canPlus1,6);
@@ -75,7 +84,7 @@ void StartTask() {
     buzzer.Start();
 
     /* 判断急停 */
-//    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     /* 判断can线上的设备是否初始化完毕 */
     xEventGroupSetBits(osEventGroup, CAN_RECEIVE_EVENT);
     xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);

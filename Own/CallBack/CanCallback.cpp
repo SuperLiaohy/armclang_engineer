@@ -56,6 +56,8 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         xEventGroupSetBitsFromISR(osEventGroup, CAN_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     } else if (hfdcan == chassis.can->hcan){
+        chassis.can->receive();
+
         chassis.UpdateMotor();
 
 

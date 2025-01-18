@@ -32,6 +32,8 @@ void ErrorTask() {
         red = 1 - red;
         canPlus1.write(0, 0, 0, 0);
         canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
+        canPlus2.write(0, 0, 0, 0);
+        canPlus2.send(Motor<M2006>::foc.TX_LOW_ID);
 //        roboArm.disable();
         roboArm.close();
 

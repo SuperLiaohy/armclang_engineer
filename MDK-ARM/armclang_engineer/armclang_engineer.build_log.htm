@@ -22,23 +22,23 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 D:\RM\armclang_enginner\MDK-ARM\armclang_engineer.uvprojx
-Project File Date:  01/18/2025
+Project File Date:  01/19/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.21', folder: 'D:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'armclang_engineer'
-compiling bsp_dwt.c...
 compiling SuperSPI.cpp...
+compiling bsp_dwt.c...
+compiling SuperUart.cpp...
 compiling Buzzer.cpp...
+compiling UARTCallback.cpp...
+compiling SuperGPIO.cpp...
 compiling Imu.cpp...
 compiling SuperCan.cpp...
-compiling SuperUart.cpp...
-compiling SuperGPIO.cpp...
-compiling UARTCallback.cpp...
 compiling Vari.cpp...
 linking...
 armclang_engineer\armclang_engineer.sct(56): warning: L6314W: No section matches pattern *.o(.ITCMRAM).
-Program Size: Code=160812 RO-data=3952 RW-data=33880 ZI-data=71944  
+Program Size: Code=161252 RO-data=3960 RW-data=33880 ZI-data=71944  
 Finished: 0 information, 1 warning and 0 error messages.
 FromELF: creating hex file...
 "armclang_engineer\armclang_engineer.axf" - 0 Error(s), 1 Warning(s).
@@ -75,41 +75,41 @@ Package Vendor: Keil
       Include file:  CMSIS/Core/Include/tz_context.h
 
    * Component: ARM::CMSIS:DSP&Source@1.15.0
-      Source file:   Source/SupportFunctions/SupportFunctions.c
-      Include file:  Include/arm_common_tables_f16.h
+      Source file:   Source/ComplexMathFunctions/ComplexMathFunctions.c
+      Include file:  Include/arm_math_f16.h
+      Source file:   Source/BasicMathFunctions/BasicMathFunctions.c
       Source file:   Source/BayesFunctions/BayesFunctions.c
+      Source file:   Source/ControllerFunctions/ControllerFunctions.c
+      Source file:   Source/CommonTables/CommonTables.c
+      Source file:   Source/DistanceFunctions/DistanceFunctions.c
+      Source file:   Source/FilteringFunctions/FilteringFunctions.c
+      Include file:  Include/arm_common_tables_f16.h
+      Include file:  Include/arm_const_structs.h
+      Source file:   Source/MatrixFunctions/MatrixFunctions.c
+      Include file:  Include/arm_math.h
+      Source file:   Source/QuaternionMathFunctions/QuaternionMathFunctions.c
+      Source file:   Source/StatisticsFunctions/StatisticsFunctions.c
+      Source file:   Source/SVMFunctions/SVMFunctions.c
+      Include file:  Include/arm_common_tables.h
+      Source file:   Source/TransformFunctions/TransformFunctions.c
       Source file:   Source/FastMathFunctions/FastMathFunctions.c
+      Source file:   Source/SupportFunctions/SupportFunctions.c
+      Include file:  Include/arm_const_structs_f16.h
       Source file:   Source/InterpolationFunctions/InterpolationFunctions.c
       Source file:   Source/BasicMathFunctions/BasicMathFunctionsF16.c
-      Source file:   Source/MatrixFunctions/MatrixFunctionsF16.c
-      Include file:  Include/arm_const_structs.h
-      Include file:  Include/arm_math_f16.h
-      Source file:   Source/SVMFunctions/SVMFunctions.c
-      Source file:   Source/SupportFunctions/SupportFunctionsF16.c
-      Source file:   Source/ComplexMathFunctions/ComplexMathFunctions.c
       Source file:   Source/ComplexMathFunctions/ComplexMathFunctionsF16.c
-      Source file:   Source/TransformFunctions/TransformFunctionsF16.c
-      Source file:   Source/ControllerFunctions/ControllerFunctions.c
-      Source file:   Source/FilteringFunctions/FilteringFunctions.c
-      Source file:   Source/DistanceFunctions/DistanceFunctions.c
-      Source file:   Source/MatrixFunctions/MatrixFunctions.c
-      Source file:   Source/BasicMathFunctions/BasicMathFunctions.c
-      Source file:   Source/StatisticsFunctions/StatisticsFunctions.c
-      Include file:  Include/arm_common_tables.h
-      Source file:   Source/FilteringFunctions/FilteringFunctionsF16.c
       Source file:   Source/CommonTables/CommonTablesF16.c
-      Include file:  Include/arm_math.h
-      Source file:   Source/CommonTables/CommonTables.c
+      Source file:   Source/SVMFunctions/SVMFunctionsF16.c
       Source file:   Source/InterpolationFunctions/InterpolationFunctionsF16.c
       Source file:   Source/StatisticsFunctions/StatisticsFunctionsF16.c
-      Include file:  Include/arm_const_structs_f16.h
-      Source file:   Source/QuaternionMathFunctions/QuaternionMathFunctions.c
-      Source file:   Source/TransformFunctions/TransformFunctions.c
+      Source file:   Source/FilteringFunctions/FilteringFunctionsF16.c
       Source file:   Source/FastMathFunctions/FastMathFunctionsF16.c
-      Source file:   Source/SVMFunctions/SVMFunctionsF16.c
+      Source file:   Source/MatrixFunctions/MatrixFunctionsF16.c
+      Source file:   Source/TransformFunctions/TransformFunctionsF16.c
+      Source file:   Source/SupportFunctions/SupportFunctionsF16.c
       Source file:   Source/BayesFunctions/BayesFunctionsF16.c
       Source file:   Source/DistanceFunctions/DistanceFunctionsF16.c
-Build Time Elapsed:  00:00:06
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>
