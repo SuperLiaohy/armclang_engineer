@@ -103,8 +103,8 @@ void Chassis::update_state(float relative_angle) {
                 case status::NORMAL:
                     move.xSlope.target_set(addSpeed(remoteControl->rcInfo.ch3, max.vx));
                     move.ySlope.target_set(addSpeed(remoteControl->rcInfo.ch4, max.vy));
+                    move.extendSlope.target_set(addSpeed(remoteControl->rcInfo.ch2, max.vy));
                     break;
-
             }
             move.wSlope.target_set(-addSpeed(remoteControl->rcInfo.ch1, max.w));
             break;
@@ -135,7 +135,20 @@ void Chassis::update_state(float relative_angle) {
             break;
     }
 }
+void Chassis::update_slope() {
+    move.xSlope.update();
+    move.ySlope.update();
 
+    //    float gimbalAngleSin = arm_sin_f32(relative_angle * d2r);
+    float gimbalAngleSin = 0;
+    //    float gimbalAngleCos = arm_cos_f32(relative_angle * d2r);
+    float gimbalAngleCos = 1;
+    move.vx              = move.xSlope.get() * gimbalAngleCos + move.ySlope.get() * gimbalAngleSin;
+    move.vy              = -move.xSlope.get() * gimbalAngleSin + move.ySlope.get() * gimbalAngleCos;
+    move.w               = move.wSlope.update();
+    move.extend          = move.vy + move.extendSlope.update();
+    load_speed();
+}
 void Chassis::load_speed() {
     using namespace chassis_dep;
     float rotateRatio[4], wheelSpeed[4];
@@ -162,8 +175,9 @@ void Chassis::load_speed() {
     wheelSpeed[RightRear] =
             (-move.vx - move.vy - rotateRatio[RightRear] * move.w) * v2rpm;
 
-    extend.left.motor.pid.target = move.vy * v2rpm;
-    extend.right.motor.pid.target = -move.vy * v2rpm;
+    extend.left.motor.pid.target = move.extend * v2rpm;
+    extend.right.motor.pid.target = -move.extend * v2rpm;
+
     base.left_front.motor.pid.target = wheelSpeed[LeftFront];
     base.right_front.motor.pid.target = wheelSpeed[RightFront];
     base.left_rear.motor.pid.target = wheelSpeed[LeftRear];

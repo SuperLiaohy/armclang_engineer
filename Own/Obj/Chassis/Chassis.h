@@ -13,7 +13,7 @@
 
 class Chassis {
 public:
-    Chassis(SuperCan* can, const std::array<slope_cfg, 3>& move_cfg, const chassis_dep::rotate_cfg& rot, const std::array<motor_cfg, 4>& base_cfg,
+    Chassis(SuperCan* can, const std::array<slope_cfg, 4>& move_cfg, const chassis_dep::rotate_cfg& rot, const std::array<motor_cfg, 4>& base_cfg,
             const std::array<motor_cfg, 2>& extend_cfg, RemoteControl* remoteControl)
         : mode(chassis_dep::Follow)
         , last_mode(chassis_dep::Follow)
@@ -53,8 +53,6 @@ private:
     chassis_dep::move move;
 
     chassis_dep::key key;
-
-
 
     chassis_dep::rotate rotate;
 

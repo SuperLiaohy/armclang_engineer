@@ -21,7 +21,7 @@ UBaseType_t ChassisHeapCnt = 0;
 UBaseType_t RemoteCtrlHeapCnt = 0;
 UBaseType_t IMUHeapCnt = 0;
 #ifdef __cplusplus
-};
+}
 #endif
 
 void StartDefaultTask(void const *argument) {
