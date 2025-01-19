@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//Prefer autovectorizable code to one using C intrinsics
+AUTOVECTORIZE:BOOL=OFF
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=D:/CLion 2024.2.2/bin/mingw/bin/addr2line.exe
 
@@ -225,6 +228,54 @@ CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=arm-none-eabi-toolchain.cmake
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+
+//Value Computed by CMake
+CMSISDSP_BINARY_DIR:STATIC=D:/RM/armclang_engineer/build/CMSIS_DSP_build
+
+//Value Computed by CMake
+CMSISDSP_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+CMSISDSP_SOURCE_DIR:STATIC=D:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Source
+
+//Disable building float16 kernels
+DISABLEFLOAT16:BOOL=OFF
+
+//Helium acceleration (MVEF and MVEI supported)
+HELIUM:BOOL=OFF
+
+//Helium experimental acceleration
+HELIUMEXPERIMENTAL:BOOL=OFF
+
+//Build for host
+HOST:BOOL=OFF
+
+//Lax vector conversions
+LAXVECTORCONVERSIONS:BOOL=ON
+
+//Loop unrolling
+LOOPUNROLL:BOOL=ON
+
+//Matrix Checks
+MATRIXCHECK:BOOL=OFF
+
+//MVEF intrinsics supported
+MVEF:BOOL=OFF
+
+//Float16 MVE intrinsics supported
+MVEFLOAT16:BOOL=OFF
+
+//MVEI intrinsics supported
+MVEI:BOOL=OFF
+
+//Neon acceleration
+NEON:BOOL=OFF
+
+//Neon experimental acceleration
+NEONEXPERIMENTAL:BOOL=OFF
+
+//Rounding
+ROUNDING:BOOL=OFF
 
 //Value Computed by CMake
 armclang_engineer_BINARY_DIR:STATIC=D:/RM/armclang_engineer/build
