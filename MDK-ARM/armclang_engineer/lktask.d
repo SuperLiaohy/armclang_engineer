@@ -304,7 +304,7 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
   ..\Own\App\Interact\Interact.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\rcDependence.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h \
   ..\Own\App\MicroTime\MicroTime.h \
   ..\Own\OperateSystem\LetterShell\cpp_support\shell_cpp.h \
   ..\Own\OperateSystem\LetterShell\cpp_support\..\shell.h \

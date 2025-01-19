@@ -288,4 +288,4 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\rcDependence.h
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h

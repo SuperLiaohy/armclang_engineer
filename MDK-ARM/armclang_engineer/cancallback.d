@@ -295,7 +295,7 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\Obj\Chassis\Chassis.h \
   ..\Own\Obj\Chassis\chassis_dep.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\rcDependence.h ..\Own\Obj\Share\Share.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Obj\Share\Share.h \
   ..\Own\Moudle\Slope\Slope.h ..\Own\App\Interact\Interact.h \
   ..\Own\Bsp\CDC\SuperCDC.h ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \

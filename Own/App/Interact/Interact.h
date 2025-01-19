@@ -41,6 +41,7 @@ public:
 public:
     Interact(uint8_t&& head, uint8_t&& tail, RemoteControl* remoteControl)
         : interaction(REMOTE_CTRL)
+        , last_interaction(REMOTE_CTRL)
         , remoteControl(remoteControl)
         , head(head)
         , tail(tail) {
@@ -77,12 +78,15 @@ public:
     float pos[3] = {-46.475, 0, 252.320};
 
     INTERACTION interaction;
+    INTERACTION last_interaction;
 
     void receive_cdc(uint8_t* data);
 
     void receive_rc(RoboArm& Arm);
 
     void receive_xyz(RoboArm& Arm);
+
+    void receive_reset(RoboArm& Arm);
 
     void receive_custom(uint8_t* data);
 

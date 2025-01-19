@@ -304,5 +304,5 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
   ..\Own\App\Interact\Interact.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\rcDependence.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h \
   ..\Own\App\MicroTime\MicroTime.h

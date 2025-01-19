@@ -314,7 +314,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>3</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -879,11 +879,6 @@
               <FilePath>..\Own\App\Pump\Pump.cpp</FilePath>
             </File>
             <File>
-              <FileName>rcDependece.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\RemoteControl\rcDependece.cpp</FilePath>
-            </File>
-            <File>
               <FileName>RemoteControl.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\RemoteControl\RemoteControl.cpp</FilePath>
@@ -897,6 +892,11 @@
               <FileName>W25Q64.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\W25Q64\W25Q64.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>remote_ctrl_dep.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\RemoteControl\remote_ctrl_dep.cpp</FilePath>
             </File>
           </Files>
         </Group>

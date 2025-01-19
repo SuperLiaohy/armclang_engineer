@@ -29,7 +29,7 @@ void DJITask() {
 
         roboArm.diff.left.motor.doublePid.update(left_angle, roboArm.target.joint5.angle, roboArm.diff.left.feed_back.Data.speed);
         roboArm.diff.right.motor.doublePid.update(right_angle, roboArm.target.joint6.angle, roboArm.diff.right.feed_back.Data.speed);
-        test_motor.motor.doublePid.update(test_motor.feed_back.Data.position, 160, test_motor.feed_back.Data.speed);
+//        test_motor.motor.doublePid.update(test_motor.feed_back.Data.position, 160, test_motor.feed_back.Data.speed);
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
 //        uint8_t data[8] = {static_cast<uint8_t>(static_cast<int16_t>(test_motor.motor.doublePid.output)&0xff), static_cast<uint8_t>(static_cast<int16_t>(test_motor.motor.doublePid.output)>>8), 0x00, 0x00, 0x00, 0x00 ,0x00, 0x00};
 //        canPlus1.send(Motor<lkMotorBoard>::foc.TX_LOW_ID, data);

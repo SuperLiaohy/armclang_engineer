@@ -1288,7 +1288,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 2,
-			"path" : "Own/App/RemoteControl/rcDependece.cpp",
+			"path" : "Own/App/RemoteControl/remote_ctrl_dep.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

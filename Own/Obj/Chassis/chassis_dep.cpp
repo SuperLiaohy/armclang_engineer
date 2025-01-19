@@ -89,13 +89,13 @@ void chassis_q_callback(KeyEventType event) {
 void Chassis::update_slope() {
     move.xSlope.update();
     move.ySlope.update();
-    move.w               = move.wSlope.update();
     //    float gimbalAngleSin = arm_sin_f32(relative_angle * d2r);
     float gimbalAngleSin = 0;
     //    float gimbalAngleCos = arm_cos_f32(relative_angle * d2r);
     float gimbalAngleCos = 1;
     move.vx              = move.xSlope.get() * gimbalAngleCos + move.ySlope.get() * gimbalAngleSin;
     move.vy              = -move.xSlope.get() * gimbalAngleSin + move.ySlope.get() * gimbalAngleCos;
+    move.w               = move.wSlope.update();
 
     load_speed();
 }

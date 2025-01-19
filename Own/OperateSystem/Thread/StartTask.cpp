@@ -24,6 +24,7 @@ extern osThreadId ERROR_TASKHandle;
 }
 #endif
 
+
 void StartTask() {
     /* 使能两个24V 和 5V*/
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);

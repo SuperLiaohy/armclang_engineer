@@ -226,6 +226,6 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\Moudle\Detect\Detect.h ..\Own\Moudle\Detect\DetectManager.h \
   ..\Own\Moudle\CustomList\CustomList.h \
   ..\Own\Moudle\CustomList\CustomList.tpp \
-  ..\Own\App\RemoteControl\rcDependence.h ..\Own\Bsp\Uart\SuperUart.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
   ..\Core\Inc\usart.h ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
   ..\Own\App\W25Q64\W25Q64.h ..\Core\Inc\octospi.h

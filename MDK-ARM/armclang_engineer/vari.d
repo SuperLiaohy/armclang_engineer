@@ -272,7 +272,7 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
   ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\rcDependence.h ..\Own\Bsp\Uart\SuperUart.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
   ..\Core\Inc\usart.h ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
   ..\Own\Obj\Share\Share.h ..\Own\Moudle\Slope\Slope.h \
   ..\Own\App\Interact\Interact.h ..\Own\Obj\RoboArm\RoboArm.h \

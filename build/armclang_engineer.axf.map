@@ -2483,6 +2483,7 @@ Removing Unused input sections from the image.
     Removing Interact.o(.ARM.exidx.text._ZN8Interact10receive_rcER7RoboArm), (8 bytes).
     Removing Interact.o(.ARM.exidx.text._ZN8Interact11receive_xyzER7RoboArm), (8 bytes).
     Removing Interact.o(.ARM.exidx.text._ZN8Interact21transmit_relative_posER7RoboArm), (8 bytes).
+    Removing Interact.o(.ARM.exidx.text._ZN8Interact13receive_resetER7RoboArm), (8 bytes).
     Removing Referee_System.o(.text), (0 bytes).
     Removing Referee_System.o(.text._ZN20Class_Referee_System16Layer_operationsEP26interaction_layer_delete_thh), (6 bytes).
     Removing Referee_System.o(.ARM.exidx.text._ZN20Class_Referee_System16Layer_operationsEP26interaction_layer_delete_thh), (8 bytes).
@@ -2606,7 +2607,7 @@ Removing Unused input sections from the image.
     Removing RemoteControl.o(.ARM.exidx.text._ZN13RemoteControl14KeyBoardUpdateEv), (8 bytes).
     Removing RemoteControl.o(.ARM.exidx.text._ZN13RemoteControl16KeyBoardRegisterEt14KeyCombineTypePFv12KeyEventTypeE), (8 bytes).
     Removing RemoteControl.o(.bss._ZZN13RemoteControl14KeyBoardUpdateEvE14lastUpdateTime), (4 bytes).
-    Removing rcDependece.o(.text), (0 bytes).
+    Removing remote_ctrl_dep.o(.text), (0 bytes).
     Removing W25Q64.o(.text), (0 bytes).
     Removing W25Q64.o(.ARM.exidx.text._ZN6W25Q644initEv), (8 bytes).
     Removing W25Q64.o(.text._ZN6W25Q647read_idEv), (114 bytes).
@@ -2780,7 +2781,7 @@ Removing Unused input sections from the image.
     Removing chassis_dep.o(.ARM.exidx.text._Z18chassis_a_callback12KeyEventType), (8 bytes).
     Removing chassis_dep.o(.ARM.exidx.text._Z18chassis_s_callback12KeyEventType), (8 bytes).
     Removing chassis_dep.o(.ARM.exidx.text._Z18chassis_d_callback12KeyEventType), (8 bytes).
-    Removing chassis_dep.o(.text._Z18chassis_q_callback12KeyEventType), (26 bytes).
+    Removing chassis_dep.o(.text._Z18chassis_q_callback12KeyEventType), (28 bytes).
     Removing chassis_dep.o(.ARM.exidx.text._Z18chassis_q_callback12KeyEventType), (8 bytes).
     Removing chassis_dep.o(.ARM.exidx.text._ZN7Chassis12update_slopeEv), (8 bytes).
     Removing RoboArm.o(.text), (0 bytes).
@@ -3501,7 +3502,7 @@ Removing Unused input sections from the image.
     Removing Vari.o(.ARM.exidx.text._ZN7RoboArmD2Ev), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN11chassis_dep10base_motorC2ERKNSt3__25arrayI9motor_cfgLj4EEE), (8 bytes).
 
-3496 unused section(s) (total 1153710 bytes) removed from the image.
+3497 unused section(s) (total 1153720 bytes) removed from the image.
 
 ==============================================================================
 
@@ -3514,11 +3515,11 @@ Image component sizes
       1246          0         36          8          0       5125   BMI088driver.o
        300         18          0         16          0      13770   Buzzer.o
       1628        318          0          0          0      29491   CanCallback.o
-      1034         52          0          0          0      35934   Chassis.o
+      1266         56          0          0          0      36804   Chassis.o
         50          0          0          0          0      26790   ChassisTask.o
         18          0          0          0          0      18282   CppPort.o
         14          0          0          0          0      14555   CustomHeap.o
-       376          4          0          0         16      19801   DJITask.o
+       340          0          0          0         16      19787   DJITask.o
        120          0          0          0          0      13530   Detect.o
        170          0          0          0          0      14721   DetectManager.o
         38          0          0          0          0      12562   DetectTask.o
@@ -3527,7 +3528,7 @@ Image component sizes
        120         16         12          0          0      14417   GM6020.o
        298          0          0          0          9      12887   IMUTask.o
        468         24          0          0          0      18857   Imu.o
-      1248         56          0          0          0      21672   Interact.o
+      1376         68          0          0          0      22579   Interact.o
        520          0          0          0         16      19033   LKTask.o
        112          0          0          0          0      17988   LedTask.o
         42          0          0          0          0      13422   M2006.o
@@ -3537,22 +3538,22 @@ Image component sizes
       3080         52        144        144        624       9826   QuaternionEKF.o
        760          0          0          0          0      14807   RGBLED.o
         36          0          0          0          0      17891   Redifine.o
-       330          0          0          0          0      21770   RemoteControl.o
-       660         16          0          0         16      28446   RemoteCtrlTask.o
+       330          0          0          0          0      21773   RemoteControl.o
+       652          4          0          0         16      28558   RemoteCtrlTask.o
       1746        108          0          0          8      24941   RoboArm.o
        402         24          0          0          0      24194   RoboArmDep.o
        120          0          0          0          0        631   Slope.o
-       896         64          0          0          0      28856   StartTask.o
+       896         64          0          0          0      28860   StartTask.o
        184         12          0          0          0      15463   SuperCan.o
          6          0          0          0          0      14028   SuperSPI.o
        350          0          0          0          0      26106   SuperUart.o
        506          0          0          0         36      14725   Thread.o
        114          0          0          0          1      17744   UARTCallback.o
-      3014          4        164      33413       2976      75398   Vari.o
+      3010          4        164      33413       2976      74958   Vari.o
        950          0          0          0          0      25094   W25Q64.o
        244          0          0          0        112       8756   adc.o
         52          0          0          0          0       5456   bdma.o
-       198          0         10          0          0      27978   chassis_dep.o
+       198          0         10          0          0      28007   chassis_dep.o
        224          0          0          0          0      24627   cmsis_os.o
        100          0          0          0          0       5459   dma.o
        504          0          0          0          0      10420   event_groups.o
@@ -3611,9 +3612,9 @@ Image component sizes
        132          0          0          0          0       4781   usbd_ioreq.o
 
     ----------------------------------------------------------------------
-    105870       2344       2992      33848      72272    1655400   Object Totals
+    106182       2340       2992      33848      72272    1656871   Object Totals
          0          0         80          0          0          0   (incl. Generated)
-      1824        136          6         11         21          0   (incl. Padding)
+      1824        132          6         11         21          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -3785,15 +3786,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-    127022       3368       5630      33848      72368    1879952   Grand Totals
-    127022       3368       5630        504      72368    1879952   ELF Image Totals (compressed)
-    127022       3368       5630        504          0          0   ROM Totals
+    127334       3364       5630      33848      72368    1881423   Grand Totals
+    127334       3364       5630        504      72368    1881423   ELF Image Totals (compressed)
+    127334       3364       5630        504          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)               132652 ( 129.54kB)
+    Total RO  Size (Code + RO Data)               132964 ( 129.85kB)
     Total RW  Size (RW Data + ZI Data)            106216 ( 103.73kB)
-    Total ROM Size (Code + RO Data + RW Data)     133156 ( 130.04kB)
+    Total ROM Size (Code + RO Data + RW Data)     133468 ( 130.34kB)
 
 ==============================================================================
 

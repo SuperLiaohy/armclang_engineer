@@ -213,7 +213,7 @@ armclang_engineer/remotectrltask.o: \
   ..\Own\Moudle\Detect\DetectManager.h \
   ..\Own\Moudle\CustomList\CustomList.h \
   ..\Own\Moudle\CustomList\CustomList.tpp \
-  ..\Own\App\RemoteControl\rcDependence.h ..\Own\Bsp\Uart\SuperUart.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
   ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \

@@ -16,6 +16,7 @@ public:
     Chassis(SuperCan* can, const std::array<slope_cfg, 3>& move_cfg, const chassis_dep::rotate_cfg& rot, const std::array<motor_cfg, 4>& base_cfg,
             const std::array<motor_cfg, 2>& extend_cfg, RemoteControl* remoteControl)
         : mode(chassis_dep::Follow)
+        , last_mode(chassis_dep::Follow)
         , can(can)
         , base(base_cfg)
         , extend(extend_cfg)
@@ -25,6 +26,8 @@ public:
         , remoteControl(remoteControl) {}
 
     chassis_dep::mode mode;
+    chassis_dep::mode last_mode;
+
     SuperCan* can;
     void send_foc();
 

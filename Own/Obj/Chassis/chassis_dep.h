@@ -52,8 +52,10 @@ namespace chassis_dep {
             : pid(cfg.pid), init_angle(cfg.angle) {}
     };
     enum mode {
+        ALL,
         Follow,
         Work,
+        NONE,
     };
 
     struct move {

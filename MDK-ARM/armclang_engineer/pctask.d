@@ -305,5 +305,5 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
   ..\Own\App\Interact\Interact.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\rcDependence.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h \
   ..\Own\OperateSystem\ThreadConfig.h
