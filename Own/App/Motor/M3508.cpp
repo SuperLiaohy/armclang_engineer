@@ -8,9 +8,9 @@
 
 
 
-void M3508::init(uint16_t ctrlId, float p, float i, float d, float maxI, float maxOut, float gain) {
+
+void M3508::init(float p, float i, float d, float maxI, float maxOut, float gain) {
     this->gain = gain;
-    this->ctrlId = ctrlId;
     this->pid.set(p, i, d, maxI, maxOut);
 }
 

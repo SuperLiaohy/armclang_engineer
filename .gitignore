@@ -1,0 +1,8 @@
+build/
+
+MDK-ARM/*
+
+.mxproject
+
+!MDK-ARM/startup_stm32f407xx.s
+

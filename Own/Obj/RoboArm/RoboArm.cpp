@@ -147,7 +147,7 @@ bool RoboArm::ikine(const float* pos) {
      * 1. 计算q1的解
      */
     if (is_zero(pos[0]) && is_zero(pos[1])) {
-        if (fabs((pos[2])) <= A + B) {
+        if (abs((pos[2])) <= A + B) {
             q1_slove[0] = real_relative_pos.joint1;
             q1_slove[1] = real_relative_pos.joint1;
             //            return false;

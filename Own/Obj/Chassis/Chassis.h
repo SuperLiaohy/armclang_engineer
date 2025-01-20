@@ -9,7 +9,6 @@
 #if USING_CHASSIS == 1
 
     #include "chassis_dep.h"
-    #include <functional>
 
 class Chassis {
 public:

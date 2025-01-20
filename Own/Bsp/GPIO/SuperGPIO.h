@@ -5,6 +5,8 @@
 #ifndef NONE_PRJ_SUPERGPIO_H
 #define NONE_PRJ_SUPERGPIO_H
 
+#include "concepts"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -15,55 +17,84 @@ extern "C" {
 }
 #endif
 
-enum mode {
+enum pin_mode {
     INPUT = 0,
     OUTPUT,
     ALTERNATE,
-    ANALOG,
-    OPEN_DRAIN
+    OPEN_DRAIN,
 };
 
-class SuperGPIO {
-private:
-    GPIO_TypeDef *gpio;
-    uint16_t pin;
-    mode mod;
-public:
-    SuperGPIO(GPIO_TypeDef *_gpio, uint16_t _pin, mode _mod);
+constexpr uint32_t GPIO_BASE = GPIOA_BASE;
 
+constexpr uint32_t gpio_map_offset(uint32_t gpio) {
+    return gpio - GPIO_BASE;
+}
+
+constexpr uint32_t gpio_map(uint32_t gpio) {
+    return GPIO_BASE + (gpio-GPIO_BASE) * sizeof(GPIO_TypeDef);
+}
+
+template<uint32_t gpio, pin_mode mode, uint16_t pin>
+class SuperGPIO {
+public:
+    SuperGPIO()  = default;
     ~SuperGPIO() = default;
 
-    void WriteUp();
+    inline void WriteUp()
+        requires(mode == OUTPUT || mode == OPEN_DRAIN);
 
-    void WriteDown();
+    inline void WriteDown()
+        requires(mode == OUTPUT || mode == OPEN_DRAIN);
 
-    void Write(int32_t value);
+    void Write(int32_t value)
+        requires(mode == OUTPUT || mode == OPEN_DRAIN);
 
-    void Toggle();
+    void Toggle()
+        requires(mode == OUTPUT || mode == OPEN_DRAIN);
 
-    GPIO_PinState Read();
+    GPIO_PinState Read()
+        requires(mode == INPUT);
 
-    friend void::HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
-
+    friend void ::HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 };
 
-inline void SuperGPIO::WriteUp() {
-    HAL_GPIO_WritePin(gpio, pin, GPIO_PIN_SET);
+template<uint32_t gpio, pin_mode mode, uint16_t pin>
+inline void SuperGPIO<gpio, mode, pin>::WriteUp()
+    requires(mode == OUTPUT || mode == OPEN_DRAIN)
+{
+    HAL_GPIO_WritePin(
+        reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin, GPIO_PIN_SET);
 }
 
-inline void SuperGPIO::WriteDown() {
-    HAL_GPIO_WritePin(gpio, pin, GPIO_PIN_RESET);
+template<uint32_t gpio, pin_mode mode, uint16_t pin>
+inline void SuperGPIO<gpio, mode, pin>::WriteDown()
+    requires(mode == OUTPUT || mode == OPEN_DRAIN)
+{
+    HAL_GPIO_WritePin(
+        reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin, GPIO_PIN_RESET);
 }
 
-inline void SuperGPIO::Write(int32_t value) {
+template<uint32_t gpio, pin_mode mode, uint16_t pin>
+void SuperGPIO<gpio, mode, pin>::Write(int32_t value)
+    requires(mode == OUTPUT || mode == OPEN_DRAIN)
+{
     value ? WriteUp() : WriteDown();
 }
 
-inline void SuperGPIO::Toggle() {
-    HAL_GPIO_TogglePin(gpio, pin);
+template<uint32_t gpio, pin_mode mode, uint16_t pin>
+void SuperGPIO<gpio, mode, pin>::Toggle()
+    requires(mode == OUTPUT || mode == OPEN_DRAIN)
+{
+    HAL_GPIO_TogglePin(
+        reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin);
 }
 
-inline GPIO_PinState SuperGPIO::Read() {
-    return HAL_GPIO_ReadPin(gpio, pin);
+template<uint32_t gpio, pin_mode mode, uint16_t pin>
+GPIO_PinState SuperGPIO<gpio, mode, pin>::Read()
+    requires(mode == INPUT)
+{
+    return HAL_GPIO_ReadPin(
+        reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin);
 }
+
 #endif //NONE_PRJ_SUPERGPIO_H

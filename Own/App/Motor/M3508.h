@@ -15,11 +15,11 @@ public:
 
     M3508(uint8_t ctrlId) : ctrlId(ctrlId) {}
 
-    uint16_t ctrlId;
+    const uint16_t ctrlId;
 
     PID pid;
 
-    void init(uint16_t ctrlId, float p, float i, float d, float maxI, float maxOut, float gain);
+    void init(float p, float i, float d, float maxI, float maxOut, float gain);
 
     void enable(){};
 

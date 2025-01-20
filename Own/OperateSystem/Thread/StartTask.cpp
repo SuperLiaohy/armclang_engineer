@@ -41,24 +41,22 @@ void StartTask() {
     canPlus1.can_start();
     canPlus2.can_start();
     /* 底盘电机初始化 */
-    chassis.base.left_front.motor.init(1,15,0,4,8000,16000,19.2);
-    chassis.base.right_front.motor.init(2,15,0,4,8000,16000,19.2);
-    chassis.base.left_rear.motor.init(3,15,0,4,8000,16000,19.2);
-    chassis.base.right_rear.motor.init(4,15,0,4,8000,16000,19.2);
-    chassis.extend.right.motor.init(4,15,0,4,8000,16000,19.2);
-    chassis.extend.left.motor.init(4,15,0,4,8000,16000,19.2);
+    chassis.base.left_front.motor.init(15,0,4,8000,16000,19.2);
+    chassis.base.right_front.motor.init(15,0,4,8000,16000,19.2);
+    chassis.base.left_rear.motor.init(15,0,4,8000,16000,19.2);
+    chassis.base.right_rear.motor.init(15,0,4,8000,16000,19.2);
+    chassis.extend.right.motor.init(15,0,4,8000,16000,19.2);
+    chassis.extend.left.motor.init(15,0,4,8000,16000,19.2);
     /* 机械臂电机初始化 */
     roboArm.joint1.motor.init(&canPlus1,10);
     roboArm.joint2.motor.init(&canPlus1,6);
     roboArm.joint3.motor.init(&canPlus1,6);
     roboArm.joint4.motor.init(&canPlus1,10);
     /* 机械臂末端差分器的初始化 */
-    roboArm.diff.left.motor.init(1,
-                                 20.f, 0.01f, 1.f, 2000.f, 10000.0f,
+    roboArm.diff.left.motor.init(20.f, 0.01f, 1.f, 2000.f, 10000.0f,
                                  60, 0.05, 2, 160, 800, motor_const::M2006Gain);
     roboArm.diff.left.motor.doublePid.extern_pid.dead_zone = 0.0;
-    roboArm.diff.right.motor.init(2,
-                                  20.f, 0.01f, 1.f, 2000.f, 10000.0f,
+    roboArm.diff.right.motor.init(20.f, 0.01f, 1.f, 2000.f, 10000.0f,
                                   60, 0.05, 2, 160, 800, motor_const::M2006Gain);
     roboArm.diff.right.motor.doublePid.extern_pid.dead_zone = 0.0;
     test_motor.motor.init(0.6f, 0.01f, 0.1f, 500.f, 500.0f,

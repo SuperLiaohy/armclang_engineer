@@ -123,7 +123,8 @@ namespace chassis_dep {
             motor_cfg(1, 8192),
             motor_cfg(2, 8192),
             motor_cfg(3, 8192),
-            motor_cfg(4, 8192)};
+            motor_cfg(4, 8192)
+    };
     constexpr std::array<motor_cfg, 2> extend_motor_default = {
             motor_cfg(5, 8192),
             motor_cfg(6, 8192)};

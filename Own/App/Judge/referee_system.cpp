@@ -8,7 +8,7 @@
  */
 
 /* 头文件引用 ----------------------------------------------------------------------------------------------------------*/
-#include "Referee_System.h"
+#include "referee_system.h"
 
 //Class_Referee_System Referee_System;
 
@@ -293,7 +293,7 @@ void Class_Referee_System::Referee_data_processing(uint8_t data[], uint16_t leng
             crc8_check = Verify_CRC8_Check_Sum(data, 5);
             crc16_check = Verify_CRC16_Check_Sum(data, Frame_header.data_length + 9);
             data += 7;
-            if((Frame_header.SOF == 0xA5) && (crc8_check == 1) && (crc16_check == 1))
+            if((Frame_header.sof == 0xA5) && (crc8_check == 1) && (crc16_check == 1))
             {
                 switch (cmd_id)
                 {
@@ -423,10 +423,10 @@ int16_t Referee_data_transmit(uint16_t Child_content_ID,uint16_t Cilent_ID,uint1
     /* 完成帧头打包 */
     frame_header Frame_head_send;//帧头
     frame_point = (uint8_t *)&Frame_head_send;
-    Frame_head_send.SOF = 0xA5;
+    Frame_head_send.sof = 0xA5;
     Frame_head_send.data_length = data_length;
     Frame_head_send.seq = data_seq++;
-    Frame_head_send.CRC8 = Get_CRC8_Check_Sum(frame_point,4,0xFF);
+    Frame_head_send.crc8 = Get_CRC8_Check_Sum(frame_point, 4, 0xFF);
 
     memcpy(data_send_buf,&Frame_head_send,5);
 

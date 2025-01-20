@@ -2,8 +2,8 @@
 // Created by xuejl on 2024/4/23.
 //
 /* Includes ------------------------------------------------------------------*/
-#include "Judge/Referee_UI_Function.h"
-#include "Judge/Referee_System.h"
+#include "Judge/ui.h"
+#include "Judge/referee_system.h"
 
 /* Private macros ------------------------------------------------------------*/
 

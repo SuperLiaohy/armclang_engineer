@@ -83,14 +83,54 @@
 #define UI_DATA_DRAW_7		0X104	//客户端绘制七个图形
 #define UI_DATA_DRAW_CHAR	0X110	//客户端绘制字符串
 
+namespace referee_system {
+    constexpr uint8_t SOF = 0xA5; // 帧头
+
+    enum class game_type : uint8_t {
+        none = 0x00,
+        robomaster_super_match = 0x01,
+        robomaster_single = 0x02,
+        robomaster_icra = 0x03,
+        robomaster_3v3_match = 0x04,
+        robomaster_infantry_match = 0x05,
+    };
+
+    enum class game_progress : uint8_t {
+        no_start = 0x00,
+        ready = 0x01,
+        self_check = 0x02,
+        count_down_5 = 0x03,
+        in_progress = 0x04,
+        game_over = 0x05,
+    };
+
+    enum class game_winner : uint8_t {
+        draw = 0x00,
+        red = 0x01,
+        blue = 0x02,
+    };
+
+    enum class wraning_level : uint8_t {
+        no_warning = 0x00,
+        both_sides_yellow_card = 0x01,
+        yellow_card = 0x02,
+        red_card = 0x03,
+        fail = 0x04,
+    };
+
+
+
+}
+
+
 /* 结构体定义 ----------------------------------------------------------------------------------------------------------*/
 /* 帧头 */
 struct frame_header
 {
-    uint8_t SOF;
+    uint8_t sof;
     uint16_t data_length;
     uint8_t seq;
-    uint8_t CRC8;
+    uint8_t crc8;
 } __attribute__((packed));
 
 /* 比赛状态数据，固定 1Hz 频率发送 0x0001*/
@@ -111,20 +151,20 @@ struct game_result_t
 /* 机器人血量数据，固定 3Hz 频率发送 0x0003 */
 struct game_robot_HP_t
 {
-    uint16_t red_1_robot_HP;
-    uint16_t red_2_robot_HP;
-    uint16_t red_3_robot_HP;
-    uint16_t red_4_robot_HP;
-    uint16_t red_5_robot_HP;
-    uint16_t red_7_robot_HP;
+    uint16_t red_hero_HP;
+    uint16_t red_engineer_HP;
+    uint16_t red_3_infantry_HP;
+    uint16_t red_4_infantry_HP;
+    uint16_t remaining_1;
+    uint16_t red_sentry_HP;
     uint16_t red_outpost_HP;
     uint16_t red_base_HP;
-    uint16_t blue_1_robot_HP;
-    uint16_t blue_2_robot_HP;
-    uint16_t blue_3_robot_HP;
-    uint16_t blue_4_robot_HP;
-    uint16_t blue_5_robot_HP;
-    uint16_t blue_7_robot_HP;
+    uint16_t blue_hero_HP;
+    uint16_t blue_engineer_HP;
+    uint16_t blue_3_infantry_HP;
+    uint16_t blue_4_infantry_HP;
+    uint16_t remaining_2;
+    uint16_t blue_sentry_HP;
     uint16_t blue_outpost_HP;
     uint16_t blue_base_HP;
 } __attribute__((packed));
@@ -133,15 +173,6 @@ struct game_robot_HP_t
 struct event_data_t
 {
     uint32_t event_data;
-} __attribute__((packed));
-
-/* 补给站动作标识数据，补给站弹丸释放时触发发送 0x0102 */
-struct ext_supply_projectile_action_t
-{
-    uint8_t reserved;
-    uint8_t supply_robot_id;
-    uint8_t supply_projectile_step;
-    uint8_t supply_projectile_num;
 } __attribute__((packed));
 
 /* 裁判警告数据，己方判罚/判负时触发发送，其余时间以 1Hz 频率发送 0x0104 */
@@ -177,9 +208,9 @@ struct robot_status_t
 /* 实时功率热量数据，固定 50Hz频率发送 0x0202*/
 struct power_heat_data_t
 {
-    uint16_t chassis_voltage;
-    uint16_t chassis_current;
-    float chassis_power;
+    uint16_t reserved1;
+    uint16_t reserved2;
+    float reserved3;
     uint16_t buffer_energy;
     uint16_t shooter_17mm_1_barrel_heat;
     uint16_t shooter_17mm_2_barrel_heat;
@@ -201,6 +232,15 @@ struct buff_t
     uint8_t cooling_buff;
     uint8_t defence_buff;
     uint16_t attack_buff;
+} __attribute__((packed));
+
+/* 补给站动作标识数据，补给站弹丸释放时触发发送 0x0102 */
+struct ext_supply_projectile_action_t
+{
+    uint8_t reserved;
+    uint8_t supply_robot_id;
+    uint8_t supply_projectile_step;
+    uint8_t supply_projectile_num;
 } __attribute__((packed));
 
 /* 空中支援时间数据，固定 1Hz 频率发送 0x0205*/

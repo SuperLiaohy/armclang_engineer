@@ -16,7 +16,7 @@ public:
 
     GM6020(uint16_t id) : doublePid(PID(), PID()), ctrlId(id) {};
 
-    void init(uint16_t ctrlId, float inter_p, float inter_i, float inter_d, float inter_maxI, float inter_maxOut,
+    void init(float inter_p, float inter_i, float inter_d, float inter_maxI, float inter_maxOut,
         float extern_p, float extern_i, float extern_d, float extern_maxI, float extern_maxOut, float gain);
 
     void readData(const uint8_t *data);
@@ -30,7 +30,7 @@ public:
 
     PID pid;
 
-    uint16_t ctrlId;
+    const uint16_t ctrlId;
 
     float gain;
 private:
