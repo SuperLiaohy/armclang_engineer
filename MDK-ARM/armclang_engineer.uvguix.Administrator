@@ -3608,7 +3608,7 @@
         <Name>../Core/Src/main.c</Name>
         <ColumnNumber>0</ColumnNumber>
         <TopLine>73</TopLine>
-        <CurrentLine>78</CurrentLine>
+        <CurrentLine>90</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3706,7 +3706,7 @@
       <Doc>
         <Name>..\Own\App\RemoteControl\RemoteControl.h</Name>
         <ColumnNumber>22</ColumnNumber>
-        <TopLine>20</TopLine>
+        <TopLine>21</TopLine>
         <CurrentLine>49</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>

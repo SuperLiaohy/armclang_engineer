@@ -37,15 +37,11 @@ DetectManager Detect::detectManager;
 
 W25Q64 w25q64(&hospi2);
 
-SuperUart uartPlus10(&huart10, 10);
-
 __weak SuperCan canPlus1(&hfdcan1, FDCAN_RX_FIFO0, FDCAN_IT_RX_FIFO0_NEW_MESSAGE);
 __weak SuperCan canPlus2(&hfdcan2, FDCAN_RX_FIFO0, FDCAN_IT_RX_FIFO0_NEW_MESSAGE);
 __weak SuperCan canPlus3(&hfdcan3, FDCAN_RX_FIFO0, FDCAN_IT_RX_FIFO0_NEW_MESSAGE);
 
- RemoteControl remote_control(&huart5, 60, 1000);
-__attribute__((section(".RAM_D1"))) __volatile__ uint8_t a_test = 100;
-__attribute__((section(".RAM_D3"))) __volatile__ uint8_t c_test;
+
 #if USING_LKMOTOR == 1
 template<>
 const FOC Motor<lkMotor>::foc = {0x140, 0x140, 0x140};
@@ -83,8 +79,7 @@ Chassis chassis(
     chassis_dep::move_default,
     chassis_dep::rotate_default,
     chassis_dep::base_motor_default,
-    chassis_dep::extend_motor_default,
-    &remote_control);
+    chassis_dep::extend_motor_default);
 #endif
 
 RoboArm roboArm(
@@ -106,7 +101,7 @@ Imu imu(MEASURE_DISABLE);
 
 //ImageTrans image_trans(&huart10);
 
-Interact interact(0xFF, 0xFE, &remote_control, &huart10);
+Interact interact(0xFF, 0xFE, &huart5, &huart10);
 
 Key keyList[KEY_NUM];
 KeyBoard key_board;

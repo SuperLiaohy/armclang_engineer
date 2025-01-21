@@ -30,10 +30,10 @@ void Interact::receive_rc(RoboArm &Arm) {
     using namespace my_math;
     using namespace remote_ctrl_dep;
     if (interaction == REMOTE_CTRL) {
-        if (remoteControl->rcInfo.left == 1 && remoteControl->rcInfo.right == 1) {
+        if (remote_control.rcInfo.left == 1 && remote_control.rcInfo.right == 1) {
             receive_data.joint4.angle =
                     limited<int32_t>(static_cast<int32_t>(receive_data.joint4.angle +
-                                                          addSpeed(remoteControl->rcInfo.ch1, 0.005) *
+                                                          addSpeed(remote_control.rcInfo.ch1, 0.005) *
                                                           Arm.limition.joint4),
                                      -Arm.limition.joint4, Arm.limition.joint4);
 
@@ -41,7 +41,7 @@ void Interact::receive_rc(RoboArm &Arm) {
 
             receive_data.joint3.angle =
                     limited<int32_t>(static_cast<int32_t>(receive_data.joint3.angle -
-                                                          addSpeed(remoteControl->rcInfo.ch2, 0.005) *
+                                                          addSpeed(remote_control.rcInfo.ch2, 0.005) *
                                                           Arm.limition.joint3),
                                      -Arm.limition.joint3, Arm.limition.joint3);
 
@@ -50,26 +50,26 @@ void Interact::receive_rc(RoboArm &Arm) {
 
             receive_data.joint2.angle =
                     limited<int32_t>(static_cast<int32_t>(receive_data.joint2.angle +
-                                                          addSpeed(remoteControl->rcInfo.ch4, 0.005) *
-                                                          Arm.limition.joint2),
+                                             addSpeed(remote_control.rcInfo.ch4, 0.005) *
+                                             Arm.limition.joint2),
                                      -Arm.limition.joint2, Arm.limition.joint2);
 
             Arm.target.joint2.angle = (receive_data.joint2.angle * b22d + Arm.offset.joint2) * scale(360, 36000);
 
             receive_data.joint1.angle =
                     limited<int32_t>(static_cast<int32_t>(receive_data.joint1.angle +
-                                                          addSpeed(remoteControl->rcInfo.ch3, 0.01) *
+                                                          addSpeed(remote_control.rcInfo.ch3, 0.01) *
                                                           Arm.limition.joint1),
                                      -Arm.limition.joint1, Arm.limition.joint1);
 
             Arm.target.joint1.angle = (receive_data.joint1.angle * b22d + Arm.offset.joint1) * scale(360, 36000);
-        } else if (remoteControl->rcInfo.left == 3 && remoteControl->rcInfo.right == 1) {
+        } else if (remote_control.rcInfo.left == 3 && remote_control.rcInfo.right == 1) {
             // yaw_base pitch_1
             receive_data.joint5.angle = limited<int32_t>(
-                    receive_data.joint5.angle + addSpeed(remoteControl->rcInfo.ch2, 0.01) * Arm.limition.joint5,
+                    receive_data.joint5.angle + addSpeed(remote_control.rcInfo.ch2, 0.01) * Arm.limition.joint5,
                     -Arm.limition.joint5, Arm.limition.joint5);
             //                 receive_data.link6.angle = limited<int32_t>(receive_data.link6.angle + remoteControl->rcInfo.ch1 / 660.f * limition.link6.max / 50, -limition.link6.max, limition.link6.max);
-            receive_data.joint6.angle = addSpeed(remoteControl->rcInfo.ch1, 0.01) * 8192;
+            receive_data.joint6.angle = addSpeed(remote_control.rcInfo.ch1, 0.01) * 8192;
             totalRoll += receive_data.joint6.angle;
             //                pitch =
             //                roll =
@@ -86,8 +86,8 @@ void Interact::receive_xyz(RoboArm &Arm) {
     using namespace my_math;
     using namespace remote_ctrl_dep;
     if (interaction == REMOTE_CTRL_XYZ) {
-        pos[0] += addSpeed(remoteControl->rcInfo.ch1, 1);
-        pos[2] += addSpeed(remoteControl->rcInfo.ch2, 1);
+        pos[0] += addSpeed(remote_control.rcInfo.ch1, 1);
+        pos[2] += addSpeed(remote_control.rcInfo.ch2, 1);
 
         Arm.fkine();
         Arm.ikine(interact.pos);
@@ -134,3 +134,11 @@ void Interact::receive_reset(RoboArm &Arm) {
 
 
 }
+
+
+void remote_ctrl_recover() {
+    //    remote_control.clear();
+    buzzer.StartMusic(error_music, 8);
+    interact.remote_control.start();
+}
+

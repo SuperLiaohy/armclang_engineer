@@ -13,7 +13,7 @@
 class Chassis {
 public:
     Chassis(SuperCan* can, const std::array<slope_cfg, 4>& move_cfg, const chassis_dep::rotate_cfg& rot, const std::array<motor_cfg, 4>& base_cfg,
-            const std::array<motor_cfg, 2>& extend_cfg, RemoteControl* remoteControl)
+            const std::array<motor_cfg, 2>& extend_cfg)
         : mode(chassis_dep::Follow)
         , last_mode(chassis_dep::Follow)
         , can(can)
@@ -21,8 +21,7 @@ public:
         , extend(extend_cfg)
         , move(move_cfg)
         , key()
-        , rotate(rot)
-        , remoteControl(remoteControl) {}
+        , rotate(rot) {}
 
     chassis_dep::mode mode;
     chassis_dep::mode last_mode;
@@ -37,7 +36,7 @@ public:
 
     void send_extend_foc(int16_t left, int16_t right);
 
-    void update_state(float relative_angle);
+    void update_state(RemoteControl &remote_control, float relative_angle);
 
     void UpdateMotor();
 
@@ -54,8 +53,6 @@ private:
     chassis_dep::key key;
 
     chassis_dep::rotate rotate;
-
-    RemoteControl* remoteControl;
 
     void load_speed();
 

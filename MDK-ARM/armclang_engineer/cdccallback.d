@@ -223,7 +223,8 @@ armclang_engineer/cdccallback.o: ..\Own\CallBack\CDCCallback.cpp \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\Bsp\Uart\SuperUart.h ..\Core\Inc\usart.h \
   ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
-  ..\Own\Obj\Interact\Interact.h ..\Own\Moudle\CustomList\CustomList.h \
+  ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
+  ..\Own\Moudle\CustomList\CustomList.h \
   ..\Own\Moudle\CustomList\CustomList.tpp \
   ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Moudle\Detect\Detect.h \
   ..\Own\Moudle\Detect\DetectManager.h \

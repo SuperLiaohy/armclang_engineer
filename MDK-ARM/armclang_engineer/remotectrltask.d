@@ -237,8 +237,8 @@ armclang_engineer/remotectrltask.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\Moudle\Key\Key.h ..\Own\OperateSystem\Thread\CppTask.h \
-  ..\Own\Obj\Interact\Interact.h ..\Own\Bsp\CDC\SuperCDC.h \
-  ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
+  ..\Own\Bsp\CDC\SuperCDC.h ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \

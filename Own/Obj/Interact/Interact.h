@@ -5,11 +5,7 @@
 #ifndef INTERACT_H
 #define INTERACT_H
 
-#include "CDC/SuperCDC.h"
-#include "CustomList/CustomList.h"
-#include "RemoteControl/RemoteControl.h"
-#include "RoboArm/RoboArm.h"
-#include "ImageTrans/ImageTrans.h"
+#include "Interact/interact_dep.h"
 //设定交互方式的统一标准为2个字节16bit的形式
 
 
@@ -60,10 +56,10 @@ public:
         uint8_t tail;
     } __attribute__((packed));
 public:
-    Interact(const uint8_t& head,const uint8_t& tail, RemoteControl* remoteControl, UART_HandleTypeDef *uart_im)
+    Interact(const uint8_t& head,const uint8_t& tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef *uart_im)
         : interaction(REMOTE_CTRL)
         , last_interaction(REMOTE_CTRL)
-        , remoteControl(remoteControl)
+        , remote_control(uart_rc)
         , head(head)
         , tail(tail)
         , imageTrans(uart_im) {
@@ -82,6 +78,8 @@ public:
     INTERACTION interaction;
     INTERACTION last_interaction;
 
+    RemoteControl remote_control;
+
     ImageTrans imageTrans;
 
     void receive_cdc(uint8_t* data);
@@ -95,11 +93,9 @@ public:
     void receive_custom(uint8_t* data);
 
     void transmit_relative_pos(RoboArm& Arm);
-
 private:
-    inline void transmit();
 
-    RemoteControl* remoteControl;
+    inline void transmit();
 
     uint8_t head;
     uint8_t tail;
@@ -109,6 +105,6 @@ inline void Interact::transmit()  {
     CDC_Transmit_HS(reinterpret_cast<uint8_t*>(&transmit_data), sizeof(transmit_data));
 }
 
-extern Interact interact;
+
 
 #endif //INTERACT_H

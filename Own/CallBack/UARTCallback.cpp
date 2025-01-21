@@ -2,7 +2,7 @@
 // Created by Administrator on 24-10-3.
 //
 
-#include "RemoteControl/RemoteControl.h"
+#include "Interact/Interact.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -48,8 +48,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     UNUSED(Size);
 #if USING_UART_IDLE
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    if (huart == remote_control.uartPlus.uart) {
-        remote_control.update();
+    if (huart == interact.remote_control.uartPlus.uart) {
+        interact.remote_control.update();
         if (cnt++ > 5)
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
     }

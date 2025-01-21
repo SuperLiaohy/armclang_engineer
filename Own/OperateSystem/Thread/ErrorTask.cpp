@@ -20,12 +20,13 @@ extern osThreadId ERROR_TASKHandle;
 #include "Motor/M2006.h"
 #include "Motor/lkMotor.h"
 #include "RoboArm/RoboArm.h"
+#include "Interact/interact.h"
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
     uint8_t red = 0;
     while (1) {
         // chassiss.stop();
-        if (remote_control.rcInfo.right == 3) {
+        if (interact.remote_control.rcInfo.right == 3) {
             __set_FAULTMASK(1);
             HAL_NVIC_SystemReset();
         }

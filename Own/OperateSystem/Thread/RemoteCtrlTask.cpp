@@ -4,7 +4,6 @@
 
 #include <RemoteControl/RemoteControl.h>
 #include "CppTask.h"
-#include "RemoteControl/remote_ctrl_dep.h"
 #include "Interact/Interact.h"
 #include "ThreadConfig.h"
 #include "MicroTime/MicroTime.h"
@@ -28,19 +27,19 @@ void RemoteCtrlTask() {
 
     while (1) {
         auto now = osKernelSysTick();
-        if (!remote_control.detect.isLost) {
-            if (remote_control.rcInfo.right == 2)
+        if (!interact.remote_control.detect.isLost) {
+            if (interact.remote_control.rcInfo.right == 2)
                 osThreadResume(ERROR_TASKHandle);
 
-            if (remote_control.rcInfo.wheel > 500)
-                remote_control.status = remote_ctrl_dep::status::KEYBOARD;
-            else if (remote_control.rcInfo.wheel < -500)
-                remote_control.status = remote_ctrl_dep::status::NORMAL;
+            if (interact.remote_control.rcInfo.wheel > 500)
+                interact.remote_control.status = remote_ctrl_dep::status::KEYBOARD;
+            else if (interact.remote_control.rcInfo.wheel < -500)
+                interact.remote_control.status = remote_ctrl_dep::status::NORMAL;
 
-            if (remote_control.status == remote_ctrl_dep::status::NORMAL) {
-                switch (remote_control.rcInfo.right) {
+            if (interact.remote_control.status == remote_ctrl_dep::status::NORMAL) {
+                switch (interact.remote_control.rcInfo.right) {
                     case 1:
-                        switch (remote_control.rcInfo.left) {
+                        switch (interact.remote_control.rcInfo.left) {
                             case 1:
                                 chassis.mode = chassis_dep::mode::NONE;
                                 interact.interaction = Interact::INTERACTION::REMOTE_CTRL;
@@ -58,7 +57,7 @@ void RemoteCtrlTask() {
                         }
                         break;
                     case 3:
-                        switch (remote_control.rcInfo.left) {
+                        switch (interact.remote_control.rcInfo.left) {
                             case 1:
                                 chassis.mode = chassis_dep::mode::Work;
                                 interact.interaction = Interact::INTERACTION::REMOTE_CTRL_XYZ;
@@ -87,7 +86,7 @@ void RemoteCtrlTask() {
             xEventGroupSetBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT);
             xEventGroupWaitBits(osEventGroup, LK_RELETIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
 
-            chassis.update_state(roboArm.real_relative_pos.joint1);
+            chassis.update_state(interact.remote_control, roboArm.real_relative_pos.joint1);
 
             switch (interact.interaction) {
                 case Interact::INTERACTION::REMOTE_CTRL:

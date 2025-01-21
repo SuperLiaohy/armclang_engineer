@@ -3,11 +3,6 @@
 //
 
 #include "RemoteControl.h"
-void remote_ctrl_recover() {
-    //    remote_control.clear();
-    buzzer.StartMusic(error_music, 8);
-    remote_control.start();
-}
 
 void RemoteControl::update() {
     auto buff = uartPlus.rx_buffer;

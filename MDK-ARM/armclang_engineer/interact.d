@@ -1,5 +1,6 @@
 armclang_engineer/interact.o: ..\Own\Obj\Interact\Interact.cpp \
-  ..\Own\Obj\Interact\Interact.h ..\Own\Bsp\CDC\SuperCDC.h \
+  ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
+  ..\Own\Bsp\CDC\SuperCDC.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \

@@ -303,7 +303,7 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
   ..\Own\Bsp\Uart\SuperUart.h ..\Core\Inc\usart.h \
   ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
-  ..\Own\Obj\Interact\Interact.h \
+  ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
   ..\Core\Inc\tim.h ..\Own\Moudle\Key\Key.h \

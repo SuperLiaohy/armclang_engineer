@@ -276,8 +276,8 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Core\Inc\usart.h ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
   ..\Own\Moudle\Key\Key.h ..\Own\Obj\Share\Share.h \
   ..\Own\Moudle\Slope\Slope.h ..\Own\Obj\Interact\Interact.h \
-  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\RoboArmDep.h \
-  ..\Own\Moudle\Matrix\Matrix.h \
+  ..\Own\Obj\Interact\interact_dep.h ..\Own\Obj\RoboArm\RoboArm.h \
+  ..\Own\Obj\RoboArm\RoboArmDep.h ..\Own\Moudle\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \

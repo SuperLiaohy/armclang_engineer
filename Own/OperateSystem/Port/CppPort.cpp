@@ -4,7 +4,7 @@
 #include "CDC/SuperCDC.h"
 #include "CppPort.h"
 #include "GPIO/SuperGPIO.h"
-#include "RemoteControl/RemoteControl.h"
+#include "Interact/interact.h"
 #include "W25Q64/W25Q64.h"
 
 #ifdef __cplusplus
@@ -19,7 +19,7 @@ extern uint32_t flash_data;
 
 
 void start() {
-    remote_control.start();
+    interact.remote_control.start();
 }
 
 extern "C" void start_c(void){
@@ -50,9 +50,9 @@ extern "C" void flash_read_c(void){
 
 
 extern "C" void hard_fault_reset() {
-    if (remote_control.rcInfo.right == 2)
+    if (interact.remote_control.rcInfo.right == 2)
         while (1) {
-            if (remote_control.rcInfo.right == 3)
+            if (interact.remote_control.rcInfo.right == 3)
                 HAL_NVIC_SystemReset();
         }
 }
