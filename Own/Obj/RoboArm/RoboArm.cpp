@@ -7,7 +7,7 @@
 
 inline float slove_q2(float q1_slove, float q3_slove, float x, float y, float z) {
     using namespace my_math;
-    using namespace robo_arm;
+    using namespace roboarm_dep;
 
     float TMP_A = A * arm_cos_f32(q3_slove) + B;
     float TMP_B = A * arm_sin_f32(q3_slove);
@@ -24,8 +24,9 @@ inline float slove_q2(float q1_slove, float q3_slove, float x, float y, float z)
     return arm_atan2_f32(tmp_sin, tmp_cos);
 };
 
-float left_angle  = 0;
+float left_angle = 0;
 float right_angle = 0;
+
 void RoboArm::enable() {
     joint1.motor.enable();
     joint2.motor.enable();
@@ -47,8 +48,8 @@ void RoboArm::close() {
     joint4.motor.close();
 }
 
-void RoboArm::init_offset(Interact& interaction) {
-    using namespace robo_arm;
+void RoboArm::init_offset(Interact &interaction) {
+    using namespace roboarm_dep;
     joint4.motor.read_totalposition();
     joint3.motor.read_totalposition();
     joint2.motor.read_totalposition();
@@ -123,18 +124,18 @@ void RoboArm::update_relative_pos() {
 
 void RoboArm::fkine() {
     using namespace my_math;
-    using namespace robo_arm;
+    using namespace roboarm_dep;
     float q1 = real_relative_pos.joint1 * d2r;
     float q2 = real_relative_pos.joint2 * d2r;
     float q3 = real_relative_pos.joint3 * d2r;
-    pos[0]   = arm_cos_f32(q1) * (A * arm_sin_f32(q2 + q3) + B * arm_sin_f32(q2));
-    pos[1]   = arm_sin_f32(q1) * (A * arm_sin_f32(q2 + q3) + B * arm_sin_f32(q2));
-    pos[2]   = A * arm_cos_f32(q2 + q3) + B * arm_cos_f32(q2);
+    pos[0] = arm_cos_f32(q1) * (A * arm_sin_f32(q2 + q3) + B * arm_sin_f32(q2));
+    pos[1] = arm_sin_f32(q1) * (A * arm_sin_f32(q2 + q3) + B * arm_sin_f32(q2));
+    pos[2] = A * arm_cos_f32(q2 + q3) + B * arm_cos_f32(q2);
 }
 
-bool RoboArm::ikine(const float* pos) {
+bool RoboArm::ikine(const float *pos) {
     using namespace my_math;
-    using namespace robo_arm;
+    using namespace roboarm_dep;
     uint8_t select = 0b00001111;
 
     float q1_slove[2];
@@ -169,7 +170,7 @@ bool RoboArm::ikine(const float* pos) {
         if (q1_slove[0] < 0) {
             q1_slove[1] = q1_slove[0] + pi;
         } else {
-            q1_slove[1]  = q1_slove[0];
+            q1_slove[1] = q1_slove[0];
             q1_slove[0] -= pi;
         }
     }
@@ -178,9 +179,11 @@ bool RoboArm::ikine(const float* pos) {
      */
     float delta;
     if (is_zero(pos[0])) {
-        delta = (pos[2] * pos[2] + pos[1] / arm_sin_f32(q1_slove[0]) * pos[1] / arm_sin_f32(q1_slove[0]) - A * A - B * B) / (2 * A * B);
+        delta = (pos[2] * pos[2] + pos[1] / arm_sin_f32(q1_slove[0]) * pos[1] / arm_sin_f32(q1_slove[0]) - A * A -
+                 B * B) / (2 * A * B);
     } else {
-        delta = (pos[2] * pos[2] + pos[0] / arm_cos_f32(q1_slove[0]) * pos[0] / arm_cos_f32(q1_slove[0]) - A * A - B * B) / (2 * A * B);
+        delta = (pos[2] * pos[2] + pos[0] / arm_cos_f32(q1_slove[0]) * pos[0] / arm_cos_f32(q1_slove[0]) - A * A -
+                 B * B) / (2 * A * B);
     }
     if (delta > 1) {
         select = 0;
@@ -201,7 +204,9 @@ bool RoboArm::ikine(const float* pos) {
     /*
      * 4. 组合解,并判断解是否在限制范围内
      */
-    if (arm_abs_f32(q1_slove[0]) < limition.joint1 * b22r + err && arm_abs_f32(q2_slove[0]) < limition.joint2 * b22r + err && arm_abs_f32(q3_slove[0]) < limition.joint3 * b22r + err) {
+    if (arm_abs_f32(q1_slove[0]) < limitation.joint1 * b22r + err &&
+        arm_abs_f32(q2_slove[0]) < limitation.joint2 * b22r + err &&
+        arm_abs_f32(q3_slove[0]) < limitation.joint3 * b22r + err) {
         //        q_sols[0][0] = q1_slove[0];
         //        q_sols[0][2] = q3_slove[0];
         //        q_sols[0][1] = q2_slove[0];
@@ -209,7 +214,9 @@ bool RoboArm::ikine(const float* pos) {
         select &= 0b1110;
     }
 
-    if (arm_abs_f32(q1_slove[0]) < limition.joint1 * b22r + err && arm_abs_f32(q2_slove[1]) < limition.joint2 * b22r + err && arm_abs_f32(q3_slove[1]) < limition.joint3 * b22r + err) {
+    if (arm_abs_f32(q1_slove[0]) < limitation.joint1 * b22r + err &&
+        arm_abs_f32(q2_slove[1]) < limitation.joint2 * b22r + err &&
+        arm_abs_f32(q3_slove[1]) < limitation.joint3 * b22r + err) {
         //        q_sols[1][0] = q1_slove[0];
         //        q_sols[1][2] = q3_slove[1];
         //        q_sols[1][1] = q2_slove[1];
@@ -217,7 +224,9 @@ bool RoboArm::ikine(const float* pos) {
         select &= 0b1101;
     }
 
-    if (arm_abs_f32(q1_slove[1]) < limition.joint1 * b22r + err && arm_abs_f32(q2_slove[2]) < limition.joint2 * b22r + err && arm_abs_f32(q3_slove[0]) < limition.joint3 * b22r + err) {
+    if (arm_abs_f32(q1_slove[1]) < limitation.joint1 * b22r + err &&
+        arm_abs_f32(q2_slove[2]) < limitation.joint2 * b22r + err &&
+        arm_abs_f32(q3_slove[0]) < limitation.joint3 * b22r + err) {
         //        q_sols[2][0] = q1_slove[1];
         //        q_sols[2][2] = q3_slove[0];
         //        q_sols[2][1] = q2_slove[2];
@@ -225,28 +234,38 @@ bool RoboArm::ikine(const float* pos) {
         select &= 0b1011;
     }
 
-    if (arm_abs_f32(q1_slove[1]) < limition.joint1 * b22r + err && arm_abs_f32(q2_slove[3]) < limition.joint2 * b22r + err && arm_abs_f32(q3_slove[1]) < limition.joint3 * b22r + err) {
+    if (arm_abs_f32(q1_slove[1]) < limitation.joint1 * b22r + err &&
+        arm_abs_f32(q2_slove[3]) < limitation.joint2 * b22r + err &&
+        arm_abs_f32(q3_slove[1]) < limitation.joint3 * b22r + err) {
         //        q_sols[3][0] = q1_slove[1];
         //        q_sols[3][2] = q3_slove[1];
         //        q_sols[3][1] = q2_slove[3];
     } else {
         select &= 0b0111;
     }
-    destion[0] = (q1_slove[0] - real_relative_pos.joint1 * d2r) * (q1_slove[0] - real_relative_pos.joint1 * d2r) + (q2_slove[0] - real_relative_pos.joint2 * d2r) * (q2_slove[0] - real_relative_pos.joint2 * d2r) + (q3_slove[0] - real_relative_pos.joint3 * d2r) * (q3_slove[0] - real_relative_pos.joint3 * d2r);
-    destion[1] = (q1_slove[0] - real_relative_pos.joint1 * d2r) * (q1_slove[0] - real_relative_pos.joint1 * d2r) + (q2_slove[1] - real_relative_pos.joint2 * d2r) * (q2_slove[1] - real_relative_pos.joint2 * d2r) + (q3_slove[1] - real_relative_pos.joint3 * d2r) * (q3_slove[1] - real_relative_pos.joint3 * d2r);
-    destion[2] = (q1_slove[1] - real_relative_pos.joint1 * d2r) * (q1_slove[1] - real_relative_pos.joint1 * d2r) + (q2_slove[2] - real_relative_pos.joint2 * d2r) * (q2_slove[2] - real_relative_pos.joint2 * d2r) + (q3_slove[0] - real_relative_pos.joint3 * d2r) * (q3_slove[0] - real_relative_pos.joint3 * d2r);
-    destion[3] = (q1_slove[1] - real_relative_pos.joint1 * d2r) * (q1_slove[1] - real_relative_pos.joint1 * d2r) + (q2_slove[3] - real_relative_pos.joint2 * d2r) * (q2_slove[3] - real_relative_pos.joint2 * d2r) + (q3_slove[1] - real_relative_pos.joint3 * d2r) * (q3_slove[1] - real_relative_pos.joint3 * d2r);
+    destion[0] = (q1_slove[0] - real_relative_pos.joint1 * d2r) * (q1_slove[0] - real_relative_pos.joint1 * d2r) +
+                 (q2_slove[0] - real_relative_pos.joint2 * d2r) * (q2_slove[0] - real_relative_pos.joint2 * d2r) +
+                 (q3_slove[0] - real_relative_pos.joint3 * d2r) * (q3_slove[0] - real_relative_pos.joint3 * d2r);
+    destion[1] = (q1_slove[0] - real_relative_pos.joint1 * d2r) * (q1_slove[0] - real_relative_pos.joint1 * d2r) +
+                 (q2_slove[1] - real_relative_pos.joint2 * d2r) * (q2_slove[1] - real_relative_pos.joint2 * d2r) +
+                 (q3_slove[1] - real_relative_pos.joint3 * d2r) * (q3_slove[1] - real_relative_pos.joint3 * d2r);
+    destion[2] = (q1_slove[1] - real_relative_pos.joint1 * d2r) * (q1_slove[1] - real_relative_pos.joint1 * d2r) +
+                 (q2_slove[2] - real_relative_pos.joint2 * d2r) * (q2_slove[2] - real_relative_pos.joint2 * d2r) +
+                 (q3_slove[0] - real_relative_pos.joint3 * d2r) * (q3_slove[0] - real_relative_pos.joint3 * d2r);
+    destion[3] = (q1_slove[1] - real_relative_pos.joint1 * d2r) * (q1_slove[1] - real_relative_pos.joint1 * d2r) +
+                 (q2_slove[3] - real_relative_pos.joint2 * d2r) * (q2_slove[3] - real_relative_pos.joint2 * d2r) +
+                 (q3_slove[1] - real_relative_pos.joint3 * d2r) * (q3_slove[1] - real_relative_pos.joint3 * d2r);
 
     /*
      * 5. 寻找最近的解
      */
     float min_destion = 1000000000.f;
-    uint8_t num       = 5;  //这样如果没有解则就会保留之前的
+    uint8_t num = 5;  //这样如果没有解则就会保留之前的
     for (int i = 0; i < 4; ++i) {
         if (select & (1 << i)) {
             if (destion[i] < min_destion) {
                 min_destion = destion[i];
-                num         = i;
+                num = i;
             }
         }
     }
@@ -281,4 +300,31 @@ bool RoboArm::ikine(const float* pos) {
     }
 
     return true;
+}
+
+void RoboArm::load_target(Interact &inter) {
+    using namespace roboarm_dep;
+    using namespace my_math;
+    switch (inter.interaction) {
+        case interact_dep::REMOTE_CTRL:
+        case interact_dep::VISION:
+        case interact_dep::CUSTOM:
+        case interact_dep::REMOTE_CTRL_RESET:
+            target.joint1.angle = (inter.receive_data.joint1.angle * b22d + offset.joint1) * scale(360, 36000);
+            target.joint2.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2) * scale(360, 36000);
+            //joint3是左手系 所以将右手系的数据取反
+            target.joint3.angle = (-inter.receive_data.joint3.angle * b22d + offset.joint3) * scale(360, 36000);
+            target.joint4.angle = (inter.receive_data.joint4.angle * b22d + offset.joint4) * scale(360, 36000);
+            break;
+        case interact_dep::REMOTE_CTRL_XYZ:
+            target.joint3.angle = (-q[2] + offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
+            target.joint2.angle = (q[1] + offset.joint2) * scale(360, 36000);
+            target.joint1.angle = (q[0] + offset.joint1) * scale(360, 36000);
+            break;
+    }
+}
+
+void RoboArm::load_diff_target(Interact &inter) {
+    target.joint5.angle = scale_transmit<int64_t, float>(inter.totalRoll + inter.receive_data.joint5.angle, 4096, 180);
+    target.joint6.angle = scale_transmit<int64_t, float>(inter.totalRoll - inter.receive_data.joint5.angle, 4096, 180);
 }

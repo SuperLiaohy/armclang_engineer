@@ -260,7 +260,7 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Motor\dmMotor.h \
   ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Motor\M2006.h \
-  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\RoboArmDep.h \
+  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\roboarm_dep.h \
   ..\Own\Moudle\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \

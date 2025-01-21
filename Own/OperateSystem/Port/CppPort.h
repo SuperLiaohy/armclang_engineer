@@ -12,9 +12,7 @@ extern "C" {
 
 void start_c(void);
 
-void flash_init_c(void);
-void flash_write_c(void);
-void flash_read_c(void);
+
 
 void hard_fault_reset();
 #ifdef __cplusplus

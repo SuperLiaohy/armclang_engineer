@@ -1,5 +1,5 @@
 armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
-  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\RoboArmDep.h \
+  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\roboarm_dep.h \
   ..\Own\Moudle\Matrix\Matrix.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \

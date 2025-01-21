@@ -244,7 +244,7 @@ armclang_engineer/interact.o: ..\Own\Obj\Interact\Interact.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\Moudle\Key\Key.h ..\Own\Obj\RoboArm\RoboArm.h \
-  ..\Own\Obj\RoboArm\RoboArmDep.h ..\Own\Moudle\Matrix\Matrix.h \
+  ..\Own\Obj\RoboArm\roboarm_dep.h ..\Own\Moudle\Matrix\Matrix.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \

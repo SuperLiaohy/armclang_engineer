@@ -4,5 +4,5 @@ MDK-ARM/*
 
 .mxproject
 
-!MDK-ARM/startup_stm32f407xx.s
+!MDK-ARM/startup_stm32h723xx.s
 

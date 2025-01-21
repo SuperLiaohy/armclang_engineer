@@ -21,9 +21,9 @@ MicroTime microTime;
 void DJITask() {
 //    osDelay(1000);
     while (1) {
-
         auto now = osKernelSysTick();
         microTime.start();
+        roboArm.load_diff_target(interact);
         left_angle = roboArm.diff.left.feed_back.totalPosition;
         right_angle = roboArm.diff.right.feed_back.totalPosition;
 

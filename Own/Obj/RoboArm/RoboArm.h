@@ -10,7 +10,7 @@
 #ifndef DM_42_ROBOARM_H
 #define DM_42_ROBOARM_H
 
-#include "RoboArmDep.h"
+#include "roboarm_dep.h"
 
 extern int32_t left_dPos;
 extern int32_t right_dPos;
@@ -27,46 +27,46 @@ public:
             float gain, uint32_t maxInterval,
             uint32_t id5, uint32_t range5,
             uint32_t id6, uint32_t range6,
-            limition_t&& limition, offset_t&& offset)
-        : diff(gain, maxInterval, id5, range5, id6, range6)
-        , joint1(id1, range1)
-        , joint2(id2, range2)
-        , joint3(id3, range3)
-        , joint4(id4, range4)
-        , limition {limition}
-        , offset {offset} {};
+            roboarm_dep::offset &&offset)
+            : diff(gain, maxInterval, id5, range5, id6, range6), joint1(id1, range1), joint2(id2, range2),
+              joint3(id3, range3), joint4(id4, range4), offset{offset} {};
 
     void updateArm();
 
     void enable();
+
     void disable();
+
     void close();
+
     /* 正运动学解 顺序x y z */
     float pos[3] = {0, 0, 0};
     /* 逆运动学解 顺序q1 q2 q3 并且有四种*/
     float q[3] = {};
 
-    void init_offset(Interact& interaction);
+    void init_offset(Interact &interaction);
 
     void fkine();
 
-    bool ikine(const float* pos);
-    Differentiator diff;
+    bool ikine(const float *pos);
+
+    roboarm_dep::Differentiator diff;
 
     Motor<lkMotor> joint1;
     Motor<lkMotor> joint2;
     Motor<lkMotor> joint3;
     Motor<lkMotor> joint4;
 
-    limition_t limition {};
+    roboarm_dep::offset offset{};
 
-    offset_t offset {};
+    roboarm_dep::target target{};
 
-    target_t target {};
-
-    real_relative_pos_t real_relative_pos {};
+    void load_target(Interact &inter);
+    void load_diff_target(Interact &inter);
+    roboarm_dep::real_relative_pos real_relative_pos{};
 
     void update_relative_pos();
+
 private:
 };
 

@@ -35,6 +35,8 @@ void LKTask() {
 
         auto now = osKernelSysTick();
         lkMotorTime.start();
+        roboArm.load_target(interact);
+
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         roboArm.joint4.motor.totalposition2Control(480,roboArm.target.joint4.angle * roboArm.joint4.motor.gain);
         xSemaphoreGive(CAN1MutexHandle);

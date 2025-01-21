@@ -26,27 +26,7 @@ extern "C" void start_c(void){
     start();
 }
 
-void flash_write() {
-    uint32_t data = 4399;
-    w25q64.write_page(0, reinterpret_cast<uint8_t*>(&data), 4);
-}
-extern "C" void flash_write_c(void){
-    flash_write();
-}
 
-void flash_init() {
-    w25q64.init();
-}
-void flash_init_c() {
-    flash_init();
-}
-
-void flash_read() {
-    w25q64.raed_buffer(0, reinterpret_cast<uint8_t*>(&flash_data), 4);
-}
-extern "C" void flash_read_c(void){
-    flash_read();
-}
 
 
 extern "C" void hard_fault_reset() {

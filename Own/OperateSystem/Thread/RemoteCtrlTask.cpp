@@ -23,8 +23,7 @@ MicroTime kineTime;
 
 void RemoteCtrlTask() {
     using namespace my_math;
-    using namespace robo_arm;
-
+    using namespace roboarm_dep;
     while (1) {
         auto now = osKernelSysTick();
         if (!interact.remote_control.detect.isLost) {
@@ -42,15 +41,15 @@ void RemoteCtrlTask() {
                         switch (interact.remote_control.rcInfo.left) {
                             case 1:
                                 chassis.mode = chassis_dep::mode::NONE;
-                                interact.interaction = Interact::INTERACTION::REMOTE_CTRL;
+                                interact.interaction = interact_dep::INTERACTION::REMOTE_CTRL;
                                 break;
                             case 3:
                                 chassis.mode = chassis_dep::mode::NONE;
-                                interact.interaction = Interact::INTERACTION::REMOTE_CTRL;
+                                interact.interaction = interact_dep::INTERACTION::REMOTE_CTRL;
                                 break;
                             case 2:
                                 chassis.mode = chassis_dep::mode::NONE;
-                                interact.interaction = Interact::INTERACTION::REMOTE_CTRL_RESET;
+                                interact.interaction = interact_dep::INTERACTION::REMOTE_CTRL_RESET;
                                 break;
                             default:
                                 break;
@@ -60,15 +59,15 @@ void RemoteCtrlTask() {
                         switch (interact.remote_control.rcInfo.left) {
                             case 1:
                                 chassis.mode = chassis_dep::mode::Work;
-                                interact.interaction = Interact::INTERACTION::REMOTE_CTRL_XYZ;
+                                interact.interaction = interact_dep::INTERACTION::REMOTE_CTRL_XYZ;
                                 break;
                             case 3:
                                 chassis.mode = chassis_dep::mode::Follow;
-                                interact.interaction = Interact::INTERACTION::NONE;
+                                interact.interaction = interact_dep::INTERACTION::NONE;
                                 break;
                             case 2:
                                 chassis.mode = chassis_dep::mode::NONE;
-                                interact.interaction = Interact::INTERACTION::VISION;
+                                interact.interaction = interact_dep::INTERACTION::VISION;
                                 break;
                             default:
                                 break;
@@ -89,8 +88,8 @@ void RemoteCtrlTask() {
             chassis.update_state(interact.remote_control, roboArm.real_relative_pos.joint1);
 
             switch (interact.interaction) {
-                case Interact::INTERACTION::REMOTE_CTRL:
-                    if (interact.last_interaction != Interact::INTERACTION::REMOTE_CTRL) {
+                case interact_dep::INTERACTION::REMOTE_CTRL:
+                    if (interact.last_interaction != interact_dep::INTERACTION::REMOTE_CTRL) {
                         interact.receive_data.joint1.angle = roboArm.real_relative_pos.joint1 * d2b2;
                         interact.receive_data.joint2.angle = roboArm.real_relative_pos.joint2 * d2b2;
                         interact.receive_data.joint3.angle = roboArm.real_relative_pos.joint3 * d2b2;
@@ -98,11 +97,11 @@ void RemoteCtrlTask() {
 
 //                        interact.receive_data.joint5.angle = roboArm.real_relative_pos.joint5 * d2b2;
                     }
-                    interact.receive_rc(roboArm);
+                    interact.receive_rc();
                     break;
-                case Interact::INTERACTION::REMOTE_CTRL_XYZ:
+                case interact_dep::INTERACTION::REMOTE_CTRL_XYZ:
                     kineTime.start();
-                    if (interact.last_interaction != Interact::INTERACTION::REMOTE_CTRL_XYZ) {
+                    if (interact.last_interaction != interact_dep::INTERACTION::REMOTE_CTRL_XYZ) {
                         roboArm.fkine();
                         interact.pos[0] = roboArm.pos[0];
                         interact.pos[1] = roboArm.pos[1];
@@ -111,17 +110,17 @@ void RemoteCtrlTask() {
                     interact.receive_xyz(roboArm);
                     kineTime.end();
                     break;
-                case Interact::INTERACTION::REMOTE_CTRL_RESET:
+                case interact_dep::INTERACTION::REMOTE_CTRL_RESET:
                     interact.receive_reset(roboArm);
                     break;
-                case Interact::INTERACTION::VISION:
+                case interact_dep::INTERACTION::VISION:
                     break;
                 default:
                     break;
             }
         } else {
             chassis.mode = chassis_dep::mode::NONE;
-            interact.interaction = Interact::INTERACTION::NONE;
+            interact.interaction = interact_dep::INTERACTION::NONE;
         }
 
         chassis.last_mode = chassis.mode;

@@ -7,84 +7,38 @@
 
 #include "Interact/interact_dep.h"
 //设定交互方式的统一标准为2个字节16bit的形式
-
-
 class Interact {
-public:
-    typedef struct link_receive {
-        int16_t angle;
-//        int16_t speed;
-    } __attribute__((packed)) link_receive_t;
 
-    typedef struct link_transmit {
-        int16_t angle;
-//        int16_t speed;
-    } __attribute__((packed)) link_transmit_t;
-
-
-
-    enum INTERACTION {
-        NONE,
-        CUSTOM,
-        VISION,
-        REMOTE_CTRL,
-        REMOTE_CTRL_XYZ,
-        IMAGE_TRANSMIT,
-        REMOTE_CTRL_RESET,
-    };
-
-    struct receive_data_t {
-        uint8_t head;
-        link_receive_t joint1;
-        link_receive_t joint2;
-        link_receive_t joint3;
-        link_receive_t joint4;
-        link_receive_t joint5;
-        link_receive_t joint6;
-        uint8_t tail;
-    } __attribute__((packed));
-
-    struct transmit_data_t {
-        uint8_t head;
-        uint16_t cmd;
-        link_transmit_t joint1;
-        link_transmit_t joint2;
-        link_transmit_t joint3;
-        link_transmit_t joint4;
-        link_transmit_t joint5;
-        link_transmit_t joint6;
-        uint8_t tail;
-    } __attribute__((packed));
 public:
     Interact(const uint8_t& head,const uint8_t& tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef *uart_im)
-        : interaction(REMOTE_CTRL)
-        , last_interaction(REMOTE_CTRL)
+        : interaction(interact_dep::REMOTE_CTRL)
+        , last_interaction(interact_dep::REMOTE_CTRL)
         , remote_control(uart_rc)
         , head(head)
         , tail(tail)
-        , imageTrans(uart_im) {
+        , image_trans(uart_im) {
         transmit_data.head = head;
         transmit_data.tail = tail;
-        interaction = INTERACTION::REMOTE_CTRL;
+        interaction = interact_dep::INTERACTION::REMOTE_CTRL;
     };
 
-    receive_data_t receive_data {};
+    interact_dep::receive_data_t receive_data {};
 
     int64_t totalRoll = 0;
-    transmit_data_t transmit_data {};
+    interact_dep::transmit_data_t transmit_data {};
 
     float pos[3] = {-46.475, 0, 252.320};
 
-    INTERACTION interaction;
-    INTERACTION last_interaction;
+    interact_dep::INTERACTION interaction;
+    interact_dep::INTERACTION last_interaction;
 
     RemoteControl remote_control;
 
-    ImageTrans imageTrans;
+    ImageTrans image_trans;
 
     void receive_cdc(uint8_t* data);
 
-    void receive_rc(RoboArm& Arm);
+    void receive_rc();
 
     void receive_xyz(RoboArm& Arm);
 
