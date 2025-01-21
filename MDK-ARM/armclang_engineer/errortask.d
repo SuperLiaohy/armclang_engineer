@@ -219,7 +219,8 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\App\RGBLED\RGBLED.h \
+  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Core\Inc\tim.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   ..\Core\Inc\FreeRTOSConfig.h \
@@ -234,6 +235,7 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\Own\Moudle\Key\Key.h ..\Own\App\RGBLED\RGBLED.h \
   ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h \
   ..\Own\OperateSystem\Thread\CppTask.h ..\Own\Bsp\CAN\SuperCan.h \
   ..\Core\Inc\fdcan.h ..\Own\App\Motor\Motor.h \

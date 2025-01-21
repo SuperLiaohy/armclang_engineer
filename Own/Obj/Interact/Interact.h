@@ -9,8 +9,9 @@
 #include "CustomList/CustomList.h"
 #include "RemoteControl/RemoteControl.h"
 #include "RoboArm/RoboArm.h"
+#include "ImageTrans/ImageTrans.h"
 //设定交互方式的统一标准为2个字节16bit的形式
-class RoboArm;
+
 
 class Interact {
 public:
@@ -36,20 +37,6 @@ public:
         REMOTE_CTRL_RESET,
     };
 
-
-
-public:
-    Interact(uint8_t&& head, uint8_t&& tail, RemoteControl* remoteControl)
-        : interaction(REMOTE_CTRL)
-        , last_interaction(REMOTE_CTRL)
-        , remoteControl(remoteControl)
-        , head(head)
-        , tail(tail) {
-        transmit_data.head = head;
-        transmit_data.tail = tail;
-        interaction = INTERACTION::REMOTE_CTRL;
-    };
-
     struct receive_data_t {
         uint8_t head;
         link_receive_t joint1;
@@ -59,9 +46,7 @@ public:
         link_receive_t joint5;
         link_receive_t joint6;
         uint8_t tail;
-    } __attribute__((packed)) receive_data {};
-
-    int64_t totalRoll = 0;
+    } __attribute__((packed));
 
     struct transmit_data_t {
         uint8_t head;
@@ -73,12 +58,31 @@ public:
         link_transmit_t joint5;
         link_transmit_t joint6;
         uint8_t tail;
-    } __attribute__((packed)) transmit_data {};
+    } __attribute__((packed));
+public:
+    Interact(const uint8_t& head,const uint8_t& tail, RemoteControl* remoteControl, UART_HandleTypeDef *uart_im)
+        : interaction(REMOTE_CTRL)
+        , last_interaction(REMOTE_CTRL)
+        , remoteControl(remoteControl)
+        , head(head)
+        , tail(tail)
+        , imageTrans(uart_im) {
+        transmit_data.head = head;
+        transmit_data.tail = tail;
+        interaction = INTERACTION::REMOTE_CTRL;
+    };
+
+    receive_data_t receive_data {};
+
+    int64_t totalRoll = 0;
+    transmit_data_t transmit_data {};
 
     float pos[3] = {-46.475, 0, 252.320};
 
     INTERACTION interaction;
     INTERACTION last_interaction;
+
+    ImageTrans imageTrans;
 
     void receive_cdc(uint8_t* data);
 

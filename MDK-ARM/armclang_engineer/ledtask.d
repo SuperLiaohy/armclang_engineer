@@ -234,5 +234,6 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\App\RGBLED\RGBLED.h \
+  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Core\Inc\tim.h ..\Own\Moudle\Key\Key.h ..\Own\App\RGBLED\RGBLED.h \
   ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h

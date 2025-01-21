@@ -314,7 +314,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>3</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -824,21 +824,6 @@
               <FilePath>..\Own\App\Imu\Imu.cpp</FilePath>
             </File>
             <File>
-              <FileName>Interact.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Interact\Interact.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Referee_System.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Judge\Referee_System.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Referee_UI_Function.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Judge\Referee_UI_Function.cpp</FilePath>
-            </File>
-            <File>
               <FileName>MicroTime.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\MicroTime\MicroTime.cpp</FilePath>
@@ -897,6 +882,21 @@
               <FileName>remote_ctrl_dep.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\RemoteControl\remote_ctrl_dep.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>referee_system.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\Judge\referee_system.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ui.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\Judge\ui.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ImageTrans.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\ImageTrans\ImageTrans.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1230,6 +1230,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\Moudle\Slope\Slope.cpp</FilePath>
             </File>
+            <File>
+              <FileName>Key.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Moudle\Key\Key.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1329,6 +1334,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\Obj\Share\Share.cpp</FilePath>
             </File>
+            <File>
+              <FileName>Interact.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Obj\Interact\Interact.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1353,6 +1363,57 @@
               <FileName>CppPort.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Port\CppPort.cpp</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>2</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls>-std=gnu++20</MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
           </Files>
         </Group>
@@ -1487,6 +1548,16 @@
               <FileName>Vari.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Vari.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ImageTransTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\ImageTransTask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>JudgeTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\JudgeTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -274,9 +274,10 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\RemoteControl\RemoteControl.h \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
   ..\Core\Inc\usart.h ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
-  ..\Own\Obj\Share\Share.h ..\Own\Moudle\Slope\Slope.h \
-  ..\Own\App\Interact\Interact.h ..\Own\Obj\RoboArm\RoboArm.h \
-  ..\Own\Obj\RoboArm\RoboArmDep.h ..\Own\Moudle\Matrix\Matrix.h \
+  ..\Own\Moudle\Key\Key.h ..\Own\Obj\Share\Share.h \
+  ..\Own\Moudle\Slope\Slope.h ..\Own\Obj\Interact\Interact.h \
+  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\RoboArmDep.h \
+  ..\Own\Moudle\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -305,6 +306,7 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\M2006.h \
   ..\Own\App\Motor\dmMotor.h ..\Own\App\Motor\lkMotor.h \
+  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
@@ -761,4 +763,5 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\OperateSystem\Heap\CustomHeap.h \
   ..\Own\OperateSystem\Heap\rtx_lib.h ..\Own\App\RGBLED\RGBLED.h \
   ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h ..\Own\App\W25Q64\W25Q64.h \
-  ..\Core\Inc\octospi.h ..\Own\App\Imu\Imu.h
+  ..\Core\Inc\octospi.h ..\Own\App\Imu\Imu.h \
+  ..\Own\App\Judge\referee_system.h

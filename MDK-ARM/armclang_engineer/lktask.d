@@ -302,10 +302,11 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\M2006.h ..\Own\App\Motor\M3508.h \
   ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
-  ..\Own\App\Interact\Interact.h \
+  ..\Own\Obj\Interact\Interact.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.h \
-  ..\Own\App\MicroTime\MicroTime.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Own\Moudle\Key\Key.h ..\Own\App\ImageTrans\ImageTrans.h \
+  ..\Own\Moudle\Crc\Crc.h ..\Own\App\MicroTime\MicroTime.h \
   ..\Own\OperateSystem\LetterShell\cpp_support\shell_cpp.h \
   ..\Own\OperateSystem\LetterShell\cpp_support\..\shell.h \
   ..\Own\OperateSystem\LetterShell\cpp_support\..\shell_cfg.h \

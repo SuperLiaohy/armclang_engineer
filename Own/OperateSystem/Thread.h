@@ -19,7 +19,8 @@ void OS_RemoteCtrlTask(void const *argument);
 void OS_IMUTask(void const *argument);
 void OS_LKTask(void const *argument);
 void OS_PCTask(void const *argument);
-
+void OS_ImageTransTask(void const *argument);
+void OS_JudgeTask(void const *argument);
 #ifdef __cplusplus
 }
 #endif

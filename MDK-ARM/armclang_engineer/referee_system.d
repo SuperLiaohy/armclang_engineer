@@ -1,5 +1,5 @@
-armclang_engineer/referee_system.o: ..\Own\App\Judge\Referee_System.cpp \
-  ..\Own\App\Judge\Referee_System.h \
+armclang_engineer/referee_system.o: ..\Own\App\Judge\referee_system.cpp \
+  ..\Own\App\Judge\referee_system.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\Bsp\Uart\SuperUart.h \

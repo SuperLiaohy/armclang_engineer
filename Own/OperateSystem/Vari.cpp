@@ -20,6 +20,8 @@
 #include "RoboArm/RoboArm.h"
 #include "W25Q64/W25Q64.h"
 #include <Imu/Imu.h>
+#include "ImageTrans/ImageTrans.h"
+#include "Judge/referee_system.h"
 
 __attribute__((section(".DTCMRAM"))) uint64_t DTCMUsed[8 * 1024 / 8];
 __attribute__((section(".RAM_D1"))) uint64_t D1Used[8 * 1024 / 8];
@@ -41,7 +43,7 @@ __weak SuperCan canPlus1(&hfdcan1, FDCAN_RX_FIFO0, FDCAN_IT_RX_FIFO0_NEW_MESSAGE
 __weak SuperCan canPlus2(&hfdcan2, FDCAN_RX_FIFO0, FDCAN_IT_RX_FIFO0_NEW_MESSAGE);
 __weak SuperCan canPlus3(&hfdcan3, FDCAN_RX_FIFO0, FDCAN_IT_RX_FIFO0_NEW_MESSAGE);
 
-__attribute__((section(".RAM_D1"))) RemoteControl remote_control(&huart5, 60, 1000);
+ RemoteControl remote_control(&huart5, 60, 1000);
 __attribute__((section(".RAM_D1"))) __volatile__ uint8_t a_test = 100;
 __attribute__((section(".RAM_D3"))) __volatile__ uint8_t c_test;
 #if USING_LKMOTOR == 1
@@ -102,4 +104,9 @@ Buzzer buzzer(&htim12, TIM_CHANNEL_2);
 
 Imu imu(MEASURE_DISABLE);
 
-Interact interact(0xFF, 0xFE, &remote_control);
+//ImageTrans image_trans(&huart10);
+
+Interact interact(0xFF, 0xFE, &remote_control, &huart10);
+
+Key keyList[KEY_NUM];
+KeyBoard key_board;

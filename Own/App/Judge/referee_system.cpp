@@ -9,7 +9,7 @@
 
 /* 头文件引用 ----------------------------------------------------------------------------------------------------------*/
 #include "referee_system.h"
-
+using namespace crc;
 //Class_Referee_System Referee_System;
 
 /* 函数定义 -----------------------------------------------------------------------------------------------------------*/
@@ -290,8 +290,8 @@ void Class_Referee_System::Referee_data_processing(uint8_t data[], uint16_t leng
         {
             memcpy(&Frame_header, data, 5);
             memcpy(&cmd_id, data + 5, 2);
-            crc8_check = Verify_CRC8_Check_Sum(data, 5);
-            crc16_check = Verify_CRC16_Check_Sum(data, Frame_header.data_length + 9);
+            crc8_check = verify_crc8_check_sum(data, 5);
+            crc16_check = verify_crc16_check_sum(data, Frame_header.data_length + 9);
             data += 7;
             if((Frame_header.sof == 0xA5) && (crc8_check == 1) && (crc16_check == 1))
             {
@@ -426,7 +426,7 @@ int16_t Referee_data_transmit(uint16_t Child_content_ID,uint16_t Cilent_ID,uint1
     Frame_head_send.sof = 0xA5;
     Frame_head_send.data_length = data_length;
     Frame_head_send.seq = data_seq++;
-    Frame_head_send.crc8 = Get_CRC8_Check_Sum(frame_point, 4, 0xFF);
+    Frame_head_send.crc8 = get_crc8_check_sum(frame_point, 4, 0xFF);
 
     memcpy(data_send_buf,&Frame_head_send,5);
 
@@ -448,7 +448,7 @@ int16_t Referee_data_transmit(uint16_t Child_content_ID,uint16_t Cilent_ID,uint1
     memcpy(data_send_buf+13,user_tx_data,data_length-6);
 
     /* 整包校验 */
-    frametail = Get_CRC16_Check_Sum(data_send_buf,Frame_head_send.data_length+7,0xFFFF);
+    frametail = get_crc16_check_sum(data_send_buf,Frame_head_send.data_length+7,0xFFFF);
     memcpy(data_send_buf+Frame_head_send.data_length+7,&frametail,2);
 
     /* 数据发送 */

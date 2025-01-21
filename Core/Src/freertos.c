@@ -58,7 +58,10 @@ osThreadId CHASSIS_TASKHandle;
 osThreadId REMOTE_CTRL_TASHandle;
 osThreadId LK_TASKHandle;
 osThreadId PC_TaskHandle;
+osThreadId IMAGEATRANS_TASHandle;
+osThreadId JUDGE_TASKHandle;
 osMutexId CAN1MutexHandle;
+osMutexId CAN2MutexHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -75,6 +78,8 @@ void OS_ChassisTask(void const * argument);
 void OS_RemoteCtrlTask(void const * argument);
 void OS_LKTask(void const * argument);
 void OS_PCTask(void const * argument);
+void OS_ImageTransTask(void const * argument);
+void OS_JudgeTask(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -125,6 +130,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of CAN1Mutex */
   osMutexDef(CAN1Mutex);
   CAN1MutexHandle = osMutexCreate(osMutex(CAN1Mutex));
+
+  /* definition and creation of CAN2Mutex */
+  osMutexDef(CAN2Mutex);
+  CAN2MutexHandle = osMutexCreate(osMutex(CAN2Mutex));
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
@@ -182,6 +191,14 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of PC_Task */
   osThreadDef(PC_Task, OS_PCTask, osPriorityNormal, 0, 384);
   PC_TaskHandle = osThreadCreate(osThread(PC_Task), NULL);
+
+  /* definition and creation of IMAGEATRANS_TAS */
+  osThreadDef(IMAGEATRANS_TAS, OS_ImageTransTask, osPriorityNormal, 0, 512);
+  IMAGEATRANS_TASHandle = osThreadCreate(osThread(IMAGEATRANS_TAS), NULL);
+
+  /* definition and creation of JUDGE_TASK */
+  osThreadDef(JUDGE_TASK, OS_JudgeTask, osPriorityNormal, 0, 512);
+  JUDGE_TASKHandle = osThreadCreate(osThread(JUDGE_TASK), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -369,6 +386,42 @@ __weak void OS_PCTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END OS_PCTask */
+}
+
+/* USER CODE BEGIN Header_OS_ImageTransTask */
+/**
+* @brief Function implementing the IMAGEATRANS_TAS thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_OS_ImageTransTask */
+__weak void OS_ImageTransTask(void const * argument)
+{
+  /* USER CODE BEGIN OS_ImageTransTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END OS_ImageTransTask */
+}
+
+/* USER CODE BEGIN Header_OS_JudgeTask */
+/**
+* @brief Function implementing the JUDGE_TASK thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_OS_JudgeTask */
+__weak void OS_JudgeTask(void const * argument)
+{
+  /* USER CODE BEGIN OS_JudgeTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END OS_JudgeTask */
 }
 
 /* Private application code --------------------------------------------------*/

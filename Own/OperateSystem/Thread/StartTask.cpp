@@ -71,10 +71,10 @@ void StartTask() {
 
     /* 遥控器初始化 */
     remote_control.detect.lostFun = &remote_ctrl_recover;
-    remote_control.KeyBoardRegister(Key_W, CombineKey_None, chassis_w_callback);
-    remote_control.KeyBoardRegister(Key_A, CombineKey_None, chassis_a_callback);
-    remote_control.KeyBoardRegister(Key_S, CombineKey_None, chassis_s_callback);
-    remote_control.KeyBoardRegister(Key_D, CombineKey_None, chassis_d_callback);
+    KeyBoardRegister(Key_W, CombineKey_None, chassis_w_callback);
+    KeyBoardRegister(Key_A, CombineKey_None, chassis_a_callback);
+    KeyBoardRegister(Key_S, CombineKey_None, chassis_s_callback);
+    KeyBoardRegister(Key_D, CombineKey_None, chassis_d_callback);
     remote_control.start();
 
     /* 闪烁灯初始化 (暂无)*/

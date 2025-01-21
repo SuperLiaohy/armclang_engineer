@@ -1,8 +1,6 @@
 armclang_engineer/remote_ctrl_dep.o: \
   ..\Own\App\RemoteControl\remote_ctrl_dep.cpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp ..\Own\Bsp\Uart\SuperUart.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
   ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
@@ -218,4 +216,21 @@ armclang_engineer/remote_ctrl_dep.o: \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h
+  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Core\Inc\tim.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
+  ..\Core\Inc\FreeRTOSConfig.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\Own\Moudle\Key\Key.h ..\Own\Moudle\CustomList\CustomList.h \
+  ..\Own\Moudle\CustomList\CustomList.tpp

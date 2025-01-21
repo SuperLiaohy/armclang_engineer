@@ -23,7 +23,9 @@ SuperUart::SuperUart(UART_HandleTypeDef *_uart, const uint16_t bufferSize, const
 }
 
 SuperUart::~SuperUart() {
-    D1Heap.free(tx_buffer);
+    if (tx_buffer != nullptr) {
+        D1Heap.free(tx_buffer);
+    }
 }
 
 void SuperUart::write(uint8_t *data, uint16_t size) {

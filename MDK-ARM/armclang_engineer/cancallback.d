@@ -295,8 +295,9 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\Obj\Chassis\Chassis.h \
   ..\Own\Obj\Chassis\chassis_dep.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Obj\Share\Share.h \
-  ..\Own\Moudle\Slope\Slope.h ..\Own\App\Interact\Interact.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Core\Inc\tim.h ..\Own\Moudle\Key\Key.h ..\Own\Obj\Share\Share.h \
+  ..\Own\Moudle\Slope\Slope.h ..\Own\Obj\Interact\Interact.h \
   ..\Own\Bsp\CDC\SuperCDC.h ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
@@ -304,6 +305,7 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\USB_DEVICE\Target\usbd_conf.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
+  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \

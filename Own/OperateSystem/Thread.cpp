@@ -112,3 +112,21 @@ void OS_PCTask(void const *argument) {
 
     PCTask();
 }
+
+void OS_ImageTransTask(void const *argument) {
+    UNUSED(argument);
+    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+
+    ImageTransTask();
+}
+
+void OS_JudgeTask(void const *argument) {
+    UNUSED(argument);
+    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+
+//    xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+//    xEventGroupWaitBits(osEventGroup, IMU_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+//    xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+
+    JudgeTask();
+}

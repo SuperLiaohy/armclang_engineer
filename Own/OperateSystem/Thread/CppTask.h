@@ -37,4 +37,6 @@ void RemoteCtrlTask();
 void IMUTask();
 void StartTask();
 void PCTask();
+void ImageTransTask();
+void JudgeTask();
 #endif //OWN_CPPTASK_H
