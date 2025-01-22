@@ -32,6 +32,7 @@ void StartDefaultTask(void const *argument) {
 void OS_LedTask(void const *argument) {
     UNUSED(argument);
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+		
 
     LedTask();
 }
@@ -44,17 +45,21 @@ void OS_DJITask(void const *argument) {
     xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupWaitBits(osEventGroup, IMU_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+		
 
     DJITask();
 }
 
 void OS_ErrorTask(void const *argument) {
     UNUSED(argument);
+
+
     ErrorTask();
 }
 
 void OS_DetectTask(void const *argument) {
     UNUSED(argument);
+
 //    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
 
@@ -67,6 +72,7 @@ void OS_DetectTask(void const *argument) {
 
 void OS_ChassisTask(void const *argument) {
     UNUSED(argument);
+
 //    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
@@ -80,17 +86,21 @@ void OS_RemoteCtrlTask(void const *argument) {
     UNUSED(argument);
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
 
+
     RemoteCtrlTask();
 }
 
 void OS_IMUTask(void const *argument) {
     UNUSED(argument);
+
+
     IMUTask();
 }
 
 
 void OS_LKTask(void const *argument) {
     UNUSED(argument);
+
 //    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
 
@@ -103,6 +113,7 @@ void OS_LKTask(void const *argument) {
 
 void OS_PCTask(void const *argument) {
     UNUSED(argument);
+
 //    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
 
@@ -115,6 +126,7 @@ void OS_PCTask(void const *argument) {
 
 void OS_ImageTransTask(void const *argument) {
     UNUSED(argument);
+
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
 
     ImageTransTask();
@@ -122,6 +134,7 @@ void OS_ImageTransTask(void const *argument) {
 
 void OS_JudgeTask(void const *argument) {
     UNUSED(argument);
+
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
 
 //    xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);

@@ -37,16 +37,16 @@ void Interact::receive_rc() {
             receive_data.joint4.angle =
                     limited<int32_t>(static_cast<int32_t>(receive_data.joint4.angle +
                                                           addSpeed(remote_control.rcInfo.ch1, 0.005) *
-                                                          limitation.joint4),
-                                     -limitation.joint4, limitation.joint4);
+                                                          limitation.joint4.max),
+                                     limitation.joint4.min, limitation.joint4.max);
 
 //            Arm.target.joint4.angle = (receive_data.joint4.angle * b22d + Arm.offset.joint4) * scale(360, 36000);
 
             receive_data.joint3.angle =
                     limited<int32_t>(static_cast<int32_t>(receive_data.joint3.angle -
                                                           addSpeed(remote_control.rcInfo.ch2, 0.005) *
-                                                          limitation.joint3),
-                                     -limitation.joint3, limitation.joint3);
+                                                          limitation.joint3.max),
+                                     limitation.joint3.min, limitation.joint3.max);
 
 //            Arm.target.joint3.angle = (-receive_data.joint3.angle * b22d + Arm.offset.joint3) *
             scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
@@ -54,23 +54,23 @@ void Interact::receive_rc() {
             receive_data.joint2.angle =
                     limited<int32_t>(static_cast<int32_t>(receive_data.joint2.angle +
                                                           addSpeed(remote_control.rcInfo.ch4, 0.005) *
-                                                          limitation.joint2),
-                                     -limitation.joint2, limitation.joint2);
+                                                          limitation.joint2.max),
+                                     limitation.joint2.min, limitation.joint2.max);
 
 //            Arm.target.joint2.angle = (receive_data.joint2.angle * b22d + Arm.offset.joint2) * scale(360, 36000);
 
             receive_data.joint1.angle =
                     limited<int32_t>(static_cast<int32_t>(receive_data.joint1.angle +
                                                           addSpeed(remote_control.rcInfo.ch3, 0.01) *
-                                                          limitation.joint1),
-                                     -limitation.joint1, limitation.joint1);
+                                                          limitation.joint1.max),
+                                     limitation.joint1.min, limitation.joint1.max);
 
 //            Arm.target.joint1.angle = (receive_data.joint1.angle * b22d + Arm.offset.joint1) * scale(360, 36000);
         } else if (remote_control.rcInfo.left == 3 && remote_control.rcInfo.right == 1) {
             // yaw_base pitch_1
             receive_data.joint5.angle = limited<int32_t>(
-                    receive_data.joint5.angle + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5,
-                    -limitation.joint5, limitation.joint5);
+                    receive_data.joint5.angle + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max,
+                    limitation.joint5.min, limitation.joint5.max);
             //                 receive_data.link6.angle = limited<int32_t>(receive_data.link6.angle + remoteControl->rcInfo.ch1 / 660.f * limition.link6.max / 50, -limition.link6.max, limition.link6.max);
             receive_data.joint6.angle = addSpeed(remote_control.rcInfo.ch1, 0.01) * 8192;
             totalRoll += receive_data.joint6.angle;
@@ -101,9 +101,9 @@ void Interact::receive_xyz(RoboArm &Arm) {
             pos[2] = Arm.pos[2];
         }
 
-        limited<float>(Arm.q[0], -limitation.joint1 * b22d, limitation.joint1 * d2b2);
-        limited<float>(Arm.q[1], -limitation.joint2 * b22d, limitation.joint2 * d2b2);
-        limited<float>(Arm.q[2], -limitation.joint3 * b22d, limitation.joint3 * d2b2);
+        limited<float>(Arm.q[0], limitation.joint1.min * b22d, limitation.joint1.max * d2b2);
+        limited<float>(Arm.q[1], limitation.joint2.min * b22d, limitation.joint2.max * d2b2);
+        limited<float>(Arm.q[2], limitation.joint3.min * b22d, limitation.joint3.max * d2b2);
 
 //        Arm.target.joint3.angle = (-Arm.q[2] + Arm.offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
 

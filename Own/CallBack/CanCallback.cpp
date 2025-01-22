@@ -27,9 +27,11 @@ float GM6020pos = 0;
 float lkMotorSpeed = 0;
 float dmMotorSpeed = 0;
 float dmMotorPos = 0;
+float a =0;
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
     UNUSED(RxFifo0ITs);
     if (hfdcan == canPlus1.hcan) {
+			++a;
         canPlus1.receive();
         if (canPlus1.rx_header.Identifier == Motor<lkMotorBoard>::foc.RX_ID + test_motor.feed_back.id-100) {
             test_motor.readData(canPlus1.rx_data);
@@ -40,8 +42,14 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint3.feed_back.id) {
             roboArm.joint3.readData(canPlus1.rx_data);
         }
-        else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.feed_back.id) {
-            roboArm.joint2.readData(canPlus1.rx_data);
+//        else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.feed_back.id) {
+//            roboArm.joint2.readData(canPlus1.rx_data);
+//        }
+        else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.internal.feed_back.id) {
+            roboArm.joint2.internal.readData(canPlus1.rx_data);
+        }
+        else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.external.feed_back.id) {
+            roboArm.joint2.external.readData(canPlus1.rx_data);
         }
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint1.feed_back.id) {
             roboArm.joint1.readData(canPlus1.rx_data);

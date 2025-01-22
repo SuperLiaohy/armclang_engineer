@@ -83,6 +83,7 @@ Chassis chassis(
 #endif
 
 RoboArm roboArm(
+                5, 65536,
                 1, 65536,
                 2, 65536,
                 3, 65536,
@@ -90,7 +91,7 @@ RoboArm roboArm(
                 0.7, 50,
                 1, 8192,
                 2, 8192,
-                {236, 290, 283, 208, -90, 90});
+                {236, 290, 290, 283, 208, -90, 90});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 

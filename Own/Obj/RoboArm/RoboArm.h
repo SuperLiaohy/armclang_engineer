@@ -21,14 +21,16 @@ class RoboArm {
 public:
     RoboArm(
             uint32_t id1, uint32_t range1,
-            uint32_t id2, uint32_t range2,
+            uint32_t id2_internal, uint32_t range2_internal,
+            uint32_t id2_external, uint32_t range2_external,
             uint32_t id3, uint32_t range3,
             uint32_t id4, uint32_t range4,
             float gain, uint32_t maxInterval,
             uint32_t id5, uint32_t range5,
             uint32_t id6, uint32_t range6,
             roboarm_dep::offset &&offset)
-            : diff(gain, maxInterval, id5, range5, id6, range6), joint1(id1, range1), joint2(id2, range2),
+            : diff(gain, maxInterval, id5, range5, id6, range6), joint1(id1, range1),
+            joint2{Motor<lkMotor>(id2_internal, range2_internal), Motor<lkMotor>(id2_external, range2_external)},
               joint3(id3, range3), joint4(id4, range4), offset{offset} {};
 
     void updateArm();
@@ -53,7 +55,11 @@ public:
     roboarm_dep::Differentiator diff;
 
     Motor<lkMotor> joint1;
-    Motor<lkMotor> joint2;
+//    Motor<lkMotor> joint2;
+    struct {
+        Motor<lkMotor> internal;
+        Motor<lkMotor> external;
+    } joint2;
     Motor<lkMotor> joint3;
     Motor<lkMotor> joint4;
 

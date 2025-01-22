@@ -108,7 +108,10 @@ template<typename T>
 bool isInRange(T value, T min, T max){
     return value >= min && value <= max;
 }
-
+template<typename T>
+bool isInRange(T value, T min, T max, T err){
+    return value >= min - err && value <= max + err;
+}
 template<typename T>
 T my_abs(T value) {
     return value > 0 ? value : -value;

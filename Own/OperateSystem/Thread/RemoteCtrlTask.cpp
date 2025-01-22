@@ -83,7 +83,7 @@ void RemoteCtrlTask() {
             }
 
             xEventGroupSetBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT);
-            xEventGroupWaitBits(osEventGroup, LK_RELETIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
+//            xEventGroupWaitBits(osEventGroup, LK_RELETIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
 
             chassis.update_state(interact.remote_control, roboArm.real_relative_pos.joint1);
 

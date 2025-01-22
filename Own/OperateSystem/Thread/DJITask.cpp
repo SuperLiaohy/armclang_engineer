@@ -33,8 +33,8 @@ void DJITask() {
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
 //        uint8_t data[8] = {static_cast<uint8_t>(static_cast<int16_t>(test_motor.motor.doublePid.output)&0xff), static_cast<uint8_t>(static_cast<int16_t>(test_motor.motor.doublePid.output)>>8), 0x00, 0x00, 0x00, 0x00 ,0x00, 0x00};
 //        canPlus1.send(Motor<lkMotorBoard>::foc.TX_LOW_ID, data);
-        canPlus1.write(roboArm.diff.left.motor.doublePid.output, roboArm.diff.right.motor.doublePid.output, 0, 0);
-        canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
+//        canPlus1.write(roboArm.diff.left.motor.doublePid.output, roboArm.diff.right.motor.doublePid.output, 0, 0);
+//        canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
         xSemaphoreGive(CAN1MutexHandle);
         microTime.end();
         CANHeapCnt = uxTaskGetStackHighWaterMark(NULL);

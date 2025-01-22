@@ -49,7 +49,9 @@ void StartTask() {
     chassis.extend.left.motor.init(15,0,4,8000,16000,19.2);
     /* 机械臂电机初始化 */
     roboArm.joint1.motor.init(&canPlus1,10);
-    roboArm.joint2.motor.init(&canPlus1,6);
+//    roboArm.joint2.motor.init(&canPlus1,6);
+    roboArm.joint2.internal.motor.init(&canPlus1,6);
+    roboArm.joint2.external.motor.init(&canPlus1,6);
     roboArm.joint3.motor.init(&canPlus1,6);
     roboArm.joint4.motor.init(&canPlus1,10);
     /* 机械臂末端差分器的初始化 */
@@ -84,11 +86,11 @@ void StartTask() {
 
     /* 判断急停 */
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
-    /* 判断can线上的设备是否初始化完毕 */
+//    /* 判断can线上的设备是否初始化完毕 */
     xEventGroupSetBits(osEventGroup, CAN_RECEIVE_EVENT);
     xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     /* 机械臂的差分器初始化 */
-    roboArm.diff.init();
+//    roboArm.diff.init();
 
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
 

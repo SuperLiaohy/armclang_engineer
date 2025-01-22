@@ -28,7 +28,10 @@ extern "C" {
 #endif
 
 namespace roboarm_dep {
-
+    struct range {
+        float min;
+        float max;
+    };
 
     struct joint_target {
         float angle;
@@ -37,7 +40,13 @@ namespace roboarm_dep {
 
     struct target {
         joint_target joint1;
-        joint_target joint2;
+
+//        joint_target joint2;
+        struct {
+            joint_target internal;
+            joint_target external;
+        } joint2;
+
         joint_target joint3;
         joint_target joint4;
         joint_target joint5;
@@ -46,7 +55,11 @@ namespace roboarm_dep {
 
     struct offset {
         float joint1;
-        float joint2;
+//        float joint2;
+        struct {
+            float internal;
+            float external;
+        } joint2;
         float joint3;
         float joint4;
         float joint5;
@@ -187,13 +200,23 @@ namespace roboarm_dep {
         return is_zero(x - y);
     };
     constexpr struct {
-        uint16_t joint1;
-        uint16_t joint2;
-        uint16_t joint3;
-        uint16_t joint4;
-        uint16_t joint5;
-        uint16_t joint6;
-    } limitation = {32767 / 4, 32767 * 8 / 9 / 2, 24576, 32767, 2048};
+        range joint1;
+        range joint2;
+//        struct {
+//            range internal;
+//            range external;
+//        } joint2;
+
+        range joint3;
+        range joint4;
+        range joint5;
+        range joint6;
+    } limitation = {
+            {joint_scale(-45, 360, 65536), joint_scale(45, 360, 65536)},
+            {joint_scale(-40, 360, 65536), joint_scale(90, 360, 65536)},
+            {joint_scale(-135, 360, 65536),  joint_scale(135, 360, 65536)},
+            {joint_scale(-180, 360, 65536),  joint_scale(179, 360, 65536)},
+            {joint_scale(-90, 360, 65536),  joint_scale(90, 360, 65536)}};
 
 } // namespace robo_arm
 
