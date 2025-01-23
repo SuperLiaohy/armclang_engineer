@@ -27,7 +27,7 @@ public:
     int64_t totalRoll = 0;
     interact_dep::transmit_data_t transmit_data {};
 
-    float pos[3] = {-46.475, 0, 252.320};
+    float pos[3] = {85.912, 0, 241.753};
 
     interact_dep::INTERACTION interaction;
     interact_dep::INTERACTION last_interaction;
