@@ -11,8 +11,8 @@ class Interact {
 
 public:
     Interact(const uint8_t& head,const uint8_t& tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef *uart_im)
-        : interaction(interact_dep::REMOTE_CTRL)
-        , last_interaction(interact_dep::REMOTE_CTRL)
+        : interaction(interact_dep::NONE)
+        , last_interaction(interact_dep::NONE)
         , remote_control(uart_rc)
         , head(head)
         , tail(tail)

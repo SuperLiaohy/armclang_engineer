@@ -213,10 +213,10 @@ namespace roboarm_dep {
         range joint6;
     } limitation = {
             {joint_scale(-45, 360, 65536), joint_scale(45, 360, 65536)},
-            {joint_scale(-40, 360, 65536), joint_scale(90, 360, 65536)},
+            {joint_scale(-53, 360, 65536), joint_scale(90, 360, 65536)},
             {joint_scale(-135, 360, 65536),  joint_scale(135, 360, 65536)},
-            {joint_scale(-180, 360, 65536),  joint_scale(179, 360, 65536)},
-            {joint_scale(-90, 360, 65536),  joint_scale(90, 360, 65536)}};
+            {joint_scale(-180, 360, 65536),  joint_scale(179.9, 360, 65536)},
+            {joint_scale(-90, 360, 8192),  joint_scale(90, 360, 8192)}};
 
 } // namespace robo_arm
 

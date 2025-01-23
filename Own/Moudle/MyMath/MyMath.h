@@ -36,7 +36,7 @@ T limited(T& value, T min, T max) {
 }
 
 template<typename T>
-T limited(T&& value, T min, T max) {
+T limited(const T& value, T min, T max) {
     if (value > max) {
         return  max;
     }

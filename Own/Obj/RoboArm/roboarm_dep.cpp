@@ -11,7 +11,7 @@ namespace roboarm_dep {
         uint32_t cnt = 0;
         while (1) {
 
-            canPlus1.write(-1500, 1500, 0, 0);
+            canPlus1.write(-4000, 4000, 0, 0);
             canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
 
             //            int32_t left_dPos = 0;
@@ -29,8 +29,18 @@ namespace roboarm_dep {
             } else if (right_dPos < -180) {
                 right_dPos += 360;
             }
-
-            if (isInRange<float>(left_dPos, -0.01, 0.01) && isInRange<float>(right_dPos, -0.01, 0.01)) {
+//            ++cnt;
+//            if (cnt > 100) {
+//                canPlus1.write(0, 0, 0, 0);
+//                canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
+//                HAL_Delay(100);
+////                offset.l = left.feed_back.totalPosition - left.motor.firstPosition;
+////                offset.r = right.feed_back.totalPosition - right.motor.firstPosition;
+//                left.feed_back.totalPosition = -90;
+//                right.feed_back.totalPosition = 90;
+//                break;
+//            }
+            if (isInRange<float>(left_dPos, -1, 1) && isInRange<float>(right_dPos, -1, 1)) {
                 ++cnt;
                 if (cnt > 50) {
                     HAL_Delay(10);

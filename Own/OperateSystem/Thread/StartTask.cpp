@@ -40,6 +40,13 @@ void StartTask() {
     canPlus2.filter_config(1);
     canPlus1.can_start();
     canPlus2.can_start();
+    /* 遥控器初始化 */
+    interact.remote_control.detect.lostFun = &remote_ctrl_recover;
+    KeyBoardRegister(Key_W, CombineKey_None, chassis_w_callback);
+    KeyBoardRegister(Key_A, CombineKey_None, chassis_a_callback);
+    KeyBoardRegister(Key_S, CombineKey_None, chassis_s_callback);
+    KeyBoardRegister(Key_D, CombineKey_None, chassis_d_callback);
+    interact.remote_control.start();
     /* 底盘电机初始化 */
     chassis.base.left_front.motor.init(15,0,4,8000,16000,19.2);
     chassis.base.right_front.motor.init(15,0,4,8000,16000,19.2);
@@ -55,12 +62,13 @@ void StartTask() {
     roboArm.joint3.motor.init(&canPlus1,6);
     roboArm.joint4.motor.init(&canPlus1,10);
     /* 机械臂末端差分器的初始化 */
-    roboArm.diff.left.motor.init(20.f, 0.01f, 1.f, 2000.f, 10000.0f,
-                                 60, 0.05, 2, 160, 800, motor_const::M2006Gain);
+    roboArm.diff.left.motor.init(2.f, 0.01f, 0.2f, 2000.f, 10000.0f,
+                                 60*4, 0.05, 5, 1600, 8000, motor_const::M2006Gain);
     roboArm.diff.left.motor.doublePid.extern_pid.dead_zone = 0.0;
-    roboArm.diff.right.motor.init(20.f, 0.01f, 1.f, 2000.f, 10000.0f,
-                                  60, 0.05, 2, 160, 800, motor_const::M2006Gain);
+    roboArm.diff.right.motor.init(2.f, 0.01f, 0.2f, 2000.f, 10000.0f,
+                                  60*4, 0.05, 5, 1600, 8000, motor_const::M2006Gain);
     roboArm.diff.right.motor.doublePid.extern_pid.dead_zone = 0.0;
+
     test_motor.motor.init(0.6f, 0.01f, 0.1f, 500.f, 500.0f,
                           5, 0.05f, 1, 900, 900);
     /* 机械臂电机使能 */
@@ -68,16 +76,10 @@ void StartTask() {
 
 //    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     /* 读取电机的偏移量，来判断offset是否需要减少360 */
-//    roboArm.init_offset(interact);
+    roboArm.init_offset(interact);
 //    xSemaphoreGive(CAN1MutexHandle);
 
-    /* 遥控器初始化 */
-    interact.remote_control.detect.lostFun = &remote_ctrl_recover;
-    KeyBoardRegister(Key_W, CombineKey_None, chassis_w_callback);
-    KeyBoardRegister(Key_A, CombineKey_None, chassis_a_callback);
-    KeyBoardRegister(Key_S, CombineKey_None, chassis_s_callback);
-    KeyBoardRegister(Key_D, CombineKey_None, chassis_d_callback);
-    interact.remote_control.start();
+
 
     /* 闪烁灯初始化 (暂无)*/
 
@@ -90,7 +92,7 @@ void StartTask() {
     xEventGroupSetBits(osEventGroup, CAN_RECEIVE_EVENT);
     xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     /* 机械臂的差分器初始化 */
-//    roboArm.diff.init();
+    roboArm.diff.init();
 
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
 

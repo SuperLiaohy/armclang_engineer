@@ -124,7 +124,7 @@ void RemoteCtrlTask() {
         }
 
         chassis.last_mode = chassis.mode;
-        interact.interaction = interact.last_interaction;
+        interact.last_interaction = interact.interaction;
 
         RemoteCtrlHeapCnt = uxTaskGetStackHighWaterMark(NULL);
         osDelayUntil(&now, 14);

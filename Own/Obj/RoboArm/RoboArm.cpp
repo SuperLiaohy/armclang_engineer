@@ -109,9 +109,9 @@ void RoboArm::init_offset(Interact &interaction) {
 //    }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.internal.motor.offset_flag) {
-            interaction.receive_data.joint2.angle = joint_scale(-80, 360, 65536);
+            interaction.receive_data.joint2.angle = joint_scale(-50, 360, 65536);
             if (joint2.internal.feed_back.totalPosition < 0) { offset.joint2.internal -= 360; }
-            target.joint2.internal.angle = (offset.joint2.internal - 80) * 100;
+            target.joint2.internal.angle = (offset.joint2.internal - 50) * 100;
             break;
         }
         joint2.internal.motor.read_totalposition();
@@ -119,9 +119,9 @@ void RoboArm::init_offset(Interact &interaction) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.motor.offset_flag) {
-            interaction.receive_data.joint2.angle = joint_scale(-80, 360, 65536);
+            interaction.receive_data.joint2.angle = joint_scale(-50, 360, 65536);
             if (joint2.external.feed_back.totalPosition < 0) { offset.joint2.external -= 360; }
-            target.joint2.external.angle = (offset.joint2.external - 80) * 100;
+            target.joint2.external.angle = (offset.joint2.external - 50) * 100;
             break;
         }
         joint2.external.motor.read_totalposition();
@@ -368,6 +368,6 @@ void RoboArm::load_target(Interact &inter) {
 }
 
 void RoboArm::load_diff_target(Interact &inter) {
-    target.joint5.angle = scale_transmit<int64_t, float>(inter.totalRoll + inter.receive_data.joint5.angle, 4096, 180);
+    target.joint5.angle = (scale_transmit<int64_t, float>(inter.totalRoll + inter.receive_data.joint5.angle, 4096, 180));
     target.joint6.angle = scale_transmit<int64_t, float>(inter.totalRoll - inter.receive_data.joint5.angle, 4096, 180);
 }
