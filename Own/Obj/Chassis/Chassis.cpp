@@ -172,9 +172,9 @@ void Chassis::load_speed() {
     wheelSpeed[RightFront] =
             (move.vx - move.vy - rotateRatio[RightFront] * move.w) * v2rpm;
     wheelSpeed[LeftRear] =
-            (-move.vx + move.vy - rotateRatio[LeftRear] * move.w) * v2rpm;
+            (-move.vx + (move.vy+move.extend) - rotateRatio[LeftRear] * move.w) * v2rpm;
     wheelSpeed[RightRear] =
-            (-move.vx - move.vy - rotateRatio[RightRear] * move.w) * v2rpm;
+            (-move.vx - (move.vy+move.extend) - rotateRatio[RightRear] * move.w) * v2rpm;
 
     extend.left.motor.pid.target = move.extend * v2rpm;
     extend.right.motor.pid.target = -move.extend * v2rpm;
