@@ -23,18 +23,17 @@ public:
     };
 
     interact_dep::receive_data_t receive_data {};
-
     int64_t totalRoll = 0;
-    interact_dep::transmit_data_t transmit_data {};
-
     float pos[3] = {85.912, 0, 241.753};
 
-    interact_dep::INTERACTION interaction;
-    interact_dep::INTERACTION last_interaction;
+    interact_dep::transmit_data_t transmit_data {};
 
     RemoteControl remote_control;
 
     ImageTrans image_trans;
+
+    interact_dep::INTERACTION interaction;
+    interact_dep::INTERACTION last_interaction;
 
     void receive_cdc(uint8_t* data);
 

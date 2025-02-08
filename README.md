@@ -1,8 +1,11 @@
-## 这是一个吉大工程机器人的armclang项目  
+## 这是一个吉大工程机器人的armclang项目
+
 > 该项目既可以用于keil的mdk构建，也可以用于cmake构建（故可使用clion进行高效的代码编辑），
+
 - 项目名称：armclang_engineer
-- 工程大目录下有 
-  - 
+- 工程大目录下有
+  --------------
+
   - build build目录时用来存放cmake构建生成的文件
   - Core Core目录是cubemx生成的源文件和头文件(只有少部分用户自己编写的代码)
   - Drivers Drivers目录时cubemx生成的源文件和头文件
@@ -15,21 +18,24 @@
   - arm-none-eabi-toolchain.cmake arm-none-eabi-toolchain.cmake是cmake是用户自己定义的编译器工具链，主要存放一些编译器的选择和路径和一些编译选项mcu架构
   - CMakeLists.txt CMakeLists.txt是用户自己编写的一个用于用cmake构建用armclang下keil的mdk项目的文件。
   - armclang_engineer.ioc armclang_engineer.ioc是cubemx的配置文件
-  - calcelf.exe 是一个可视化看编译后所占用的内存大小的工具(类似于armgcc编译完后生成的图表)  
+  - calcelf.exe 是一个可视化看编译后所占用的内存大小的工具(类似于armgcc编译完后生成的图表)
 - 在Own目录下(即用户编写的代码如下)
-  - 
-> 代码的目录分类逻辑主要依据高内聚低耦合的原则，  
-> 即将代码分为抽象最高层的对象代码Obj，抽象中层的对象代码App，抽象底层的对象代码Bsp，  
-> 然后将依赖相对独立的代码封装为Moudle，这样降低耦合性，提高可移植性。  
-> 最后在CallBack回调函数中实现部分逻辑，在OperationSystem中的Thread中实现大部分逻辑。  
-  - App App目录是用户自己编写的应用层代码，为抽象中层的对象
-  - Bsp Bsp目录是用户自己封装hal库实现的板级支持包，为抽抽象底层的对象
-  - CallBack CallBack是Hal库的一些回调函数
-  - Moudle Moudle是用户自己编写的模块代码
-  - Obj Obj是用户自己编写的物体代码，为抽象最高层的对象代码
-  - OperationSystem OperationSystem主要是用户自己实现的一些和rtos有关的代码，其中的Thread为主体逻辑部分  
+  ---------------------------------
+
+> 代码的目录分类逻辑主要依据高内聚低耦合的原则，
+> 即将代码分为抽象最高层的对象代码Obj，抽象中层的对象代码App，抽象底层的对象代码Bsp，
+> 然后将依赖相对独立的代码封装为Moudle，这样降低耦合性，提高可移植性。
+> 最后在CallBack回调函数中实现部分逻辑，在OperationSystem中的Thread中实现大部分逻辑。
+
+- App App目录是用户自己编写的应用层代码，为抽象中层的对象
+- Bsp Bsp目录是用户自己封装hal库实现的板级支持包，为抽抽象底层的对象
+- CallBack CallBack是Hal库的一些回调函数
+- Moudle Moudle是用户自己编写的模块代码
+- Obj Obj是用户自己编写的物体代码，为抽象最高层的对象代码
+- OperationSystem OperationSystem主要是用户自己实现的一些和rtos有关的代码，其中的Thread为主体逻辑部分
 - 在App目录下(即用户编写的应用层代码如下)
-  -
+  ---------------------------------------
+
   - Buzzer Buzzer是用户自己编写的蜂鸣器代码，可以用来通过改变频率模拟声音，要注意里面用的是默认osdelay延时，故在error_task里要使用他的haldelay版，否则就会出现error_task无法起到作用，其他任务会在osdelay时运行
   - ImageTrans 是用户编写的图传链路的代码 1. 自定义控制器发送和接收 2. 图传链路的键鼠控制
   - Imu Imu是用户自己编写的陀螺仪代码，分为陀螺仪驱动和，解算算法（四元数解算），和滤波算法（ekf）
@@ -41,7 +47,8 @@
   - RGBLED RGBLED是用户自己编写的RGBLED代码，要注意里面用的是默认osdelay延时，故在error_task里要使用他的haldelay版，否则就会出现error_task无法起到作用，其他任务会在osdelay时运行
   - W25Q64 W25Q64是用户自己编写的flash代码，移植官方的W25Q64的代码，用来实现读写flash，可以用于离线存储代码
 - 在Bsp目录下(即用户编写的板级支持包代码如下)
-  -
+  -------------------------------------------
+
   - CAN CAN是用户自己编写的can代码，封装HAL库实现的SuperCan类。
   - CDC CDC是用户自己编写的CDC代码，目前只是是实现了一个printf。因为HAL库的CDC已经很通俗了，所以这里就不太想封装。
   - GPIO GPIO是用户自己编写的gpio代码，通过模板封装HAL库实现的SuperGPIO类。
@@ -49,15 +56,18 @@
   - Uart Uart是用户自己编写的uart代码，封装HAL库实现的SuperUart类。
   - WDG WDG是用户自己编写的wdg代码，封装HAL库实现的SuperWDG类。看门狗。
 - 在CallBack目录下(即用户编写的回调函数代码如下)
-  -
+  ----------------------------------------------
+
 > 除了cdc的回调函数是套了一成函数，其他的回调函数都是直接调用的hal库的回调函数(覆写弱函数)
-  - CanCallback.cpp CanCallback.cpp是用户自己编写的can回调函数代码
-  - CDCCallback.cpp CDCCallback.cpp是用户自己编写的cdc回调函数代码
-  - GPIOCallback.cpp GPIOCallback.cpp是用户自己编写的gpio回调函数代码
-  - SPICallback.cpp SPICallback.cpp是用户自己编写的spi回调函数代码
-  - UartCallback.cpp UartCallback.cpp是用户自己编写的uart回调函数代码
+
+- CanCallback.cpp CanCallback.cpp是用户自己编写的can回调函数代码
+- CDCCallback.cpp CDCCallback.cpp是用户自己编写的cdc回调函数代码
+- GPIOCallback.cpp GPIOCallback.cpp是用户自己编写的gpio回调函数代码
+- SPICallback.cpp SPICallback.cpp是用户自己编写的spi回调函数代码
+- UartCallback.cpp UartCallback.cpp是用户自己编写的uart回调函数代码
 - 在Moudle目录下(即用户编写的模块代码如下)
-  -
+  ----------------------------------------
+
   - Crc Crc是用户自己编写的crc代码，封装大疆的Crc校验。
   - CustomList CustomList是用户自己编写的一个链表的数据结构，可以用来实现动态可边长的数组。
   - Detect Detect是用户自己编写的一个检测离线和恢复的模块，可以用来检测其他各个模块的状态，然后执行对应的回调
@@ -70,12 +80,14 @@
   - Slope Slope是用户自己编写的一个斜率模块，可以用来实现各种斜率控制器。
   - Vofa Vofa是用户自己编写的一个vofa模块，用模板实现的一个很方便就可实现vofa的justfloat协议。
 - 在Obj目录下(即用户编写的物体代码如下)
-  -
+  -------------------------------------
+
   - Chassis Chassis是用户自己编写的一个底盘类，用来实现底盘的运动。
   - RoboArm RoboArm是用户自己编写的一个机械臂类，用来实现机械臂的运动。
   - Interact Interact是用户自己编写的一个交互类，用来实现和各路通道的交互通信的统一。
 - 在OperationSystem目录下(即用户编写的操作系统代码如下)
-  -
+  -----------------------------------------------------
+
   - Heap Heap是用户自己编写的一个堆内存管理器，用于在H7的RAM上实现对各种SRAM。
   - LetterShell LetterShell是移植的一个开源的lettershell模块，用来实现一个简单的shell，可以用来调试程序。
   - Port Port是用户自己编写的一个的接口文件，用于将cpp文件里的方法进行包装用到c文件里，

@@ -4,7 +4,9 @@
 
 #include "SuperCDC.h"
 
-void cdc_printf(const char *fmt, ...){
+
+
+void SuperCDC::printf(const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
     uint8_t buffer[256];
@@ -12,3 +14,5 @@ void cdc_printf(const char *fmt, ...){
     va_end(args);
     CDC_Transmit_HS(buffer, strlen((char *)buffer));
 }
+
+

@@ -21,6 +21,14 @@ extern uint8_t UserTxBufferHS[APP_TX_DATA_SIZE];
 }
 #endif
 
-void cdc_printf(const char *fmt, ...);
+class SuperCDC {
+public:
+    [[gnu::always_inline]]inline void transmit(uint8_t *data, uint16_t len);
+    void printf(const char *fmt, ...);
+};
+
+[[gnu::always_inline]]inline void SuperCDC::transmit(uint8_t *data, uint16_t len) {
+    CDC_Transmit_HS(data, len);
+}
 
 #endif //DM_42_SUPERCDC_H
