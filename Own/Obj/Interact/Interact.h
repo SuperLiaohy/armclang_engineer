@@ -32,6 +32,14 @@ public:
 
     ImageTrans image_trans;
 
+    class PC{
+    public:
+        SuperCDC cdc;
+        interact_dep::receive_data_t receive_data {};
+        interact_dep::transmit_data_t transmit_data {};
+
+    } pc;
+
     interact_dep::INTERACTION interaction;
     interact_dep::INTERACTION last_interaction;
 

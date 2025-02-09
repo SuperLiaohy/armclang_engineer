@@ -21,6 +21,32 @@ namespace interact_dep {
 //        int16_t speed;
     } __attribute__((packed)) link_transmit_t;
 
+    enum class path {
+        REMOTE_CTRL,
+        IMAGE_TRANSMIT,
+        PC,
+    };
+
+    enum class key_board {
+        DISABLE,
+        RC_ENABLE,
+        IM_ENABLE,
+    };
+
+    enum class robo_mode {
+        NONE,
+        NORMAL,
+        XYZ,
+        CUSTOM,
+        VISION,
+        ACTIONS,
+    };
+
+    enum class chassis_mode {
+        NORMAL,
+        CUSTOM,
+        VISION,
+    };
 
 
     enum INTERACTION {
