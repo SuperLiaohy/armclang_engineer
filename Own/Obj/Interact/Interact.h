@@ -11,15 +11,16 @@ class Interact {
 
 public:
     Interact(const uint8_t& head,const uint8_t& tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef *uart_im)
-        : interaction(interact_dep::NONE)
+        : interaction(interact_dep::REMOTE_CTRL)
         , last_interaction(interact_dep::NONE)
+        , robo_mode(interact_dep::robo_mode::NORMAL)
+        , last_robo_mode(interact_dep::robo_mode::NONE)
         , remote_control(uart_rc)
         , head(head)
         , tail(tail)
         , image_trans(uart_im) {
         transmit_data.head = head;
         transmit_data.tail = tail;
-        interaction = interact_dep::INTERACTION::REMOTE_CTRL;
     };
 
     interact_dep::receive_data_t receive_data {};
@@ -42,7 +43,9 @@ public:
     interact_dep::path path;
     interact_dep::key_board key_board;
     interact_dep::robo_mode robo_mode;
+    interact_dep::robo_mode last_robo_mode;
     interact_dep::chassis_mode chassis_mode;
+    interact_dep::chassis_mode last_chassis_mode;
 
     interact_dep::INTERACTION interaction;
     interact_dep::INTERACTION last_interaction;

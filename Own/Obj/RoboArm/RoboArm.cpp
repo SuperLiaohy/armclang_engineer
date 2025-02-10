@@ -28,21 +28,17 @@ float left_angle = 0;
 float right_angle = 0;
 
 void RoboArm::enable() {
+    joint1.motor.disable();
+    joint2.internal.motor.disable();
+    joint2.external.motor.disable();
+    joint3.motor.disable();
+    joint4.motor.disable();
+    HAL_Delay(1);
     joint1.motor.enable();
-//		HAL_Delay(1);
-//    joint2.motor.enable();
     joint2.internal.motor.enable();
-//			HAL_Delay(1);
-
     joint2.external.motor.enable();
-//			HAL_Delay(1);
-
     joint3.motor.enable();
-//			HAL_Delay(1);
-
     joint4.motor.enable();
-//			HAL_Delay(1);
-
 }
 
 void RoboArm::disable() {
@@ -344,11 +340,32 @@ bool RoboArm::ikine(const float *pos) {
 void RoboArm::load_target(Interact &inter) {
     using namespace roboarm_dep;
     using namespace my_math;
-    switch (inter.interaction) {
-        case interact_dep::REMOTE_CTRL:
-        case interact_dep::VISION:
-        case interact_dep::CUSTOM:
-        case interact_dep::REMOTE_CTRL_RESET:
+//    switch (inter.interaction) {
+//        case interact_dep::REMOTE_CTRL:
+//        case interact_dep::VISION:
+//        case interact_dep::CUSTOM:
+//        case interact_dep::REMOTE_CTRL_RESET:
+//            target.joint1.angle = (inter.receive_data.joint1.angle * b22d + offset.joint1) * scale(360, 36000);
+////            target.joint2.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2) * scale(360, 36000);
+//            target.joint2.internal.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2.internal) * scale(360, 36000);
+//            target.joint2.external.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2.external) * scale(360, 36000);
+//            //joint3是左手系 所以将右手系的数据取反
+//            target.joint3.angle = (-inter.receive_data.joint3.angle * b22d + offset.joint3) * scale(360, 36000);
+//            target.joint4.angle = (inter.receive_data.joint4.angle * b22d + offset.joint4) * scale(360, 36000);
+//            break;
+//        case interact_dep::REMOTE_CTRL_XYZ:
+//            target.joint3.angle = (-q[2] + offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
+////            target.joint2.angle = (q[1] + offset.joint2) * scale(360, 36000);
+//            target.joint2.internal.angle = (q[1] + offset.joint2.internal) * scale(360, 36000);
+//            target.joint2.external.angle = (q[1] + offset.joint2.external) * scale(360, 36000);
+//            target.joint1.angle = (q[0] + offset.joint1) * scale(360, 36000);
+//            break;
+//    }
+    switch (inter.robo_mode) {
+        case interact_dep::robo_mode::NORMAL:
+        case interact_dep::robo_mode::VISION:
+        case interact_dep::robo_mode::CUSTOM:
+        case interact_dep::robo_mode::RESET:
             target.joint1.angle = (inter.receive_data.joint1.angle * b22d + offset.joint1) * scale(360, 36000);
 //            target.joint2.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2) * scale(360, 36000);
             target.joint2.internal.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2.internal) * scale(360, 36000);
@@ -357,7 +374,7 @@ void RoboArm::load_target(Interact &inter) {
             target.joint3.angle = (-inter.receive_data.joint3.angle * b22d + offset.joint3) * scale(360, 36000);
             target.joint4.angle = (inter.receive_data.joint4.angle * b22d + offset.joint4) * scale(360, 36000);
             break;
-        case interact_dep::REMOTE_CTRL_XYZ:
+        case interact_dep::robo_mode::XYZ:
             target.joint3.angle = (-q[2] + offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
 //            target.joint2.angle = (q[1] + offset.joint2) * scale(360, 36000);
             target.joint2.internal.angle = (q[1] + offset.joint2.internal) * scale(360, 36000);
