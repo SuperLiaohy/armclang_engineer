@@ -269,46 +269,7 @@ armclang_engineer/chassistask.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\Moudle\Key\Key.h ..\Own\Obj\Share\Share.h \
-  ..\Own\Moudle\Slope\Slope.h ..\Own\Obj\Interact\Interact.h \
-  ..\Own\Obj\Interact\interact_dep.h ..\Own\Bsp\CDC\SuperCDC.h \
-  ..\USB_DEVICE\App\usbd_cdc_if.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
-  ..\USB_DEVICE\Target\usbd_conf.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\roboarm_dep.h \
-  ..\Own\Moudle\Matrix\Matrix.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
-  ..\Drivers\CMSIS\Include\cmsis_compiler.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\float.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\float.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\limits.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\limits.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\none.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\utils.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\basic_math_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\interpolation_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\bayes_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\statistics_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\fast_math_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\matrix_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\complex_math_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\controller_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\support_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\distance_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\svm_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\svm_defines.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\M2006.h \
-  ..\Own\App\Motor\dmMotor.h ..\Own\App\Motor\lkMotor.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
+  ..\Own\Moudle\Slope\Slope.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
@@ -519,6 +480,8 @@ armclang_engineer/chassistask.o: \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__bit\countl.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\ranges_operations.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\climits \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\limits.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\limits.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\partial_sort_copy.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\make_projected.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\partition.h \
@@ -761,4 +724,42 @@ armclang_engineer/chassistask.o: \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Own\OperateSystem\Thread\CppTask.h ..\Own\Moudle\Vofa\vofa.h
+  ..\Own\OperateSystem\Thread\CppTask.h ..\Own\Obj\Interact\Interact.h \
+  ..\Own\Obj\Interact\interact_dep.h ..\Own\Bsp\CDC\SuperCDC.h \
+  ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
+  ..\USB_DEVICE\Target\usbd_conf.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
+  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\roboarm_dep.h \
+  ..\Own\Moudle\Matrix\Matrix.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
+  ..\Drivers\CMSIS\Include\cmsis_compiler.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\float.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\float.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\none.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\utils.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\basic_math_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\interpolation_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\bayes_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\statistics_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\fast_math_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\matrix_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\complex_math_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\controller_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\support_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\distance_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\svm_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\svm_defines.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
+  ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\M2006.h \
+  ..\Own\App\Motor\dmMotor.h ..\Own\App\Motor\lkMotor.h \
+  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
+  ..\Own\Moudle\Vofa\vofa.h

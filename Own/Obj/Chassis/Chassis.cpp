@@ -84,56 +84,7 @@ void Chassis::UpdateMotor() {
     }
 }
 
-void Chassis::update_state(RemoteControl &remote_control, float relative_angle) {
-    UNUSED(relative_angle);
-    using namespace chassis_dep;
-    using namespace remote_ctrl_dep;
-    using namespace my_math;
-    switch (mode) {
-        case Follow:
-            switch (remote_control.status) {
-                case status::LOST:
-                    move.xSlope.target_set(0);
-                    move.ySlope.target_set(0);
-                    break;
-                case status::KEYBOARD:
-                    move.xSlope.target_set(max.vx * static_cast<float>((key.d + key.a)));
-                    move.ySlope.target_set(max.vy * static_cast<float>((key.w + key.s)));
-                    break;
-                case status::NORMAL:
-                    move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
-                    move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
-                    move.extendSlope.target_set(addSpeed(remote_control.rcInfo.ch2, max.vy));
-                    break;
-            }
-            move.wSlope.target_set(-addSpeed(remote_control.rcInfo.ch1, max.w));
-            break;
-        case Work:
-            switch (remote_control.status) {
-                case status::LOST:
-                    move.xSlope.target_set(0);
-                    move.ySlope.target_set(0);
-                    break;
-                case status::KEYBOARD:
-                    move.xSlope.target_set(max.vx * static_cast<float>((key.d + key.a)));
-                    move.ySlope.target_set(max.vy * static_cast<float>((key.w + key.s)));
-                    break;
-                case status::NORMAL:
-                    move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
-                    move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
-                    break;
-            }
-            move.wSlope.target_set(0);
-            break;
-        case NONE:
-            move.xSlope.target_set(0);
-            move.ySlope.target_set(0);
-            move.wSlope.target_set(0);
-            break;
-        default:
-            break;
-    }
-}
+
 
 void Chassis::update_slope() {
     move.xSlope.update();

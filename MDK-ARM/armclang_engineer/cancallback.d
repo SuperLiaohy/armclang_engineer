@@ -297,15 +297,6 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Own\App\RemoteControl\RemoteControl.h \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
   ..\Core\Inc\tim.h ..\Own\Moudle\Key\Key.h ..\Own\Obj\Share\Share.h \
-  ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
-  ..\Own\Bsp\CDC\SuperCDC.h ..\USB_DEVICE\App\usbd_cdc_if.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
-  ..\USB_DEVICE\Target\usbd_conf.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \

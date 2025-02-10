@@ -12,7 +12,6 @@
 #include "RemoteControl/RemoteControl.h"
 #include "Share/Share.h"
 #include "Slope/Slope.h"
-#include "Interact/Interact.h"
 
 
 #include "array"
@@ -112,7 +111,7 @@ namespace chassis_dep {
         float vy;
         float w;
     } max = {3732, 3732, 5};
-    constexpr float v2rpm = 60 / (2 * PI * info.wheel_radius) * 19.2f;
+    constexpr float v2rpm = 60 / (2 * my_math::pi * info.wheel_radius) * 19.2f;
 
     constexpr std::array<slope_cfg, 4> move_default = {
             slope_cfg(2, 1),

@@ -10,6 +10,7 @@
 #include "RoboArm/RoboArm.h"
 #include "ImageTrans/ImageTrans.h"
 
+
 namespace interact_dep {
     typedef struct link_receive {
         int16_t angle;
@@ -21,19 +22,19 @@ namespace interact_dep {
 //        int16_t speed;
     } __attribute__((packed)) link_transmit_t;
 
-    enum class path {
+    enum class path : uint8_t{
         REMOTE_CTRL,
         IMAGE_TRANSMIT,
         PC,
     };
 
-    enum class key_board {
+    enum class key_board : uint8_t {
         DISABLE,
         RC_ENABLE,
         IM_ENABLE,
     };
 
-    enum class robo_mode {
+    enum class robo_mode : uint8_t{
         NONE,
         NORMAL,
         XYZ,
@@ -43,7 +44,7 @@ namespace interact_dep {
         ACTIONS,
     };
 
-    enum class chassis_mode {
+    enum class chassis_mode : uint8_t{
         NONE,
         NORMAL,
         ALL,

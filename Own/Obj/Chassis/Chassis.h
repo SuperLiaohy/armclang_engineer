@@ -14,17 +14,13 @@ class Chassis {
 public:
     Chassis(SuperCan* can, const std::array<slope_cfg, 4>& move_cfg, const chassis_dep::rotate_cfg& rot, const std::array<motor_cfg, 4>& base_cfg,
             const std::array<motor_cfg, 2>& extend_cfg)
-        : mode(chassis_dep::Follow)
-        , last_mode(chassis_dep::Follow)
-        , can(can)
+        : can(can)
         , base(base_cfg)
         , extend(extend_cfg)
         , move(move_cfg)
         , key()
         , rotate(rot) {}
 
-    chassis_dep::mode mode;
-    chassis_dep::mode last_mode;
 
     SuperCan* can;
     void send_foc();
@@ -56,6 +52,7 @@ private:
 
     void load_speed();
 
+    friend class Interact;
     friend void chassis_w_callback(KeyEventType event);
     friend void chassis_a_callback(KeyEventType event);
     friend void chassis_s_callback(KeyEventType event);

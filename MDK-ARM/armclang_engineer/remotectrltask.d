@@ -308,8 +308,7 @@ armclang_engineer/remotectrltask.o: \
   ..\Own\App\Motor\M3508.h ..\Own\App\Motor\dmMotor.h \
   ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Motor\lkMotor.h \
   ..\Own\Moudle\Slope\Slope.h ..\Own\App\ImageTrans\ImageTrans.h \
-  ..\Own\Moudle\Crc\Crc.h ..\Own\OperateSystem\ThreadConfig.h \
-  ..\Own\App\MicroTime\MicroTime.h ..\Own\Obj\Chassis\Chassis.h \
+  ..\Own\Moudle\Crc\Crc.h ..\Own\Obj\Chassis\Chassis.h \
   ..\Own\Obj\Chassis\chassis_dep.h ..\Own\Obj\Share\Share.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
@@ -762,4 +761,5 @@ armclang_engineer/remotectrltask.o: \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\reference_wrapper.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
+  ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\MicroTime\MicroTime.h

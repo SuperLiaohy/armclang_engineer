@@ -75,11 +75,11 @@ void chassis_d_callback(KeyEventType event) {
 void chassis_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            if (chassis.mode == chassis_dep::Follow) {
-                chassis.mode = chassis_dep::Work;
-            } else {
-                chassis.mode = chassis_dep::Follow;
-            }
+//            if (chassis.mode == chassis_dep::Follow) {
+//                chassis.mode = chassis_dep::Work;
+//            } else {
+//                chassis.mode = chassis_dep::Follow;
+//            }
             break;
         default:
             break;
