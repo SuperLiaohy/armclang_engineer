@@ -147,10 +147,15 @@ void Interact::receive_reset(RoboArm &Arm) {
 void Interact::receive_custom(uint8_t *data) {
     using namespace interact_dep;
     if (robo_arm.mode == robo_mode::CUSTOM) {
-        memcpy(reinterpret_cast<uint8_t *>(&receive_data) + sizeof(receive_data.head), data,
-               sizeof(receive_data_t) - sizeof(receive_data.head) - sizeof(receive_data.tail));
+        memcpy(reinterpret_cast<uint8_t *>(&image_trans.custom_frame), data,
+               sizeof(image_trans_dep::custom_frame));
+        receive_data.joint1.angle = image_trans.custom_frame.joint1 * scale(4056, 65536);
+        receive_data.joint2.angle = image_trans.custom_frame.joint2 * scale(4056, 65536);
+        receive_data.joint3.angle = image_trans.custom_frame.joint3 * scale(4056, 65536);
+        receive_data.joint4.angle = image_trans.custom_frame.joint4 * scale(4056, 65536);
+        receive_data.joint5.angle = image_trans.custom_frame.joint5 * scale(4056, 65536);
+        receive_data.joint6.angle = image_trans.custom_frame.joint6 * scale(4056, 65536);
     }
-
 }
 
 void Interact::update_roboArm(RoboArm &Arm) {
@@ -190,39 +195,41 @@ void Interact::update_chassis(Chassis &cha) {
     using namespace my_math;
     switch (chassis.mode) {
         case interact_dep::chassis_mode::ALL:
-            switch (remote_control.status) {
-                case status::LOST:
+            switch (key_board) {
+                case interact_dep::key_board::LOST:
                     cha.move.xSlope.target_set(0);
                     cha.move.ySlope.target_set(0);
                     break;
-                case status::KEYBOARD:
+                case interact_dep::key_board::RC_ENABLE:
+                case interact_dep::key_board::IM_ENABLE:
                     cha.move.xSlope.target_set(max.vx * static_cast<float>((cha.key.d + cha.key.a)));
                     cha.move.ySlope.target_set(max.vy * static_cast<float>((cha.key.w + cha.key.s)));
                     break;
-                case status::NORMAL:
+                case interact_dep::key_board::DISABLE:
                     cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
                     cha.move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
                     cha.move.extendSlope.target_set(addSpeed(remote_control.rcInfo.ch2, max.vy));
+                    cha.move.wSlope.target_set(-addSpeed(remote_control.rcInfo.ch1, max.w));
                     break;
             }
-            cha.move.wSlope.target_set(-addSpeed(remote_control.rcInfo.ch1, max.w));
             break;
         case interact_dep::chassis_mode::NORMAL:
-            switch (remote_control.status) {
-                case status::LOST:
+            switch (key_board) {
+                case interact_dep::key_board::LOST:
                     cha.move.xSlope.target_set(0);
                     cha.move.ySlope.target_set(0);
                     break;
-                case status::KEYBOARD:
+                case interact_dep::key_board::RC_ENABLE:
+                case interact_dep::key_board::IM_ENABLE:
                     cha.move.xSlope.target_set(max.vx * static_cast<float>((cha.key.d + cha.key.a)));
                     cha.move.ySlope.target_set(max.vy * static_cast<float>((cha.key.w + cha.key.s)));
                     break;
-                case status::NORMAL:
+                case interact_dep::key_board::DISABLE:
                     cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
                     cha.move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
+                    cha.move.wSlope.target_set(0);
                     break;
             }
-            cha.move.wSlope.target_set(0);
             break;
         case interact_dep::chassis_mode::NONE:
             cha.move.xSlope.target_set(0);

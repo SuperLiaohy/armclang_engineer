@@ -11,6 +11,15 @@
 namespace image_trans_dep {
     constexpr uint8_t SOF = 0xA5; // 帧头
 
+    struct custom_frame {
+        uint16_t joint1 : 11;
+        uint16_t joint2 : 11;
+        uint16_t joint3 : 11;
+        uint16_t joint4 : 11;
+        uint16_t joint5 : 11;
+        uint16_t joint6 : 11;
+    } __attribute__((packed));
+
     struct frame_header
     {
         uint8_t sof;
@@ -30,13 +39,10 @@ namespace image_trans_dep {
 
 class ImageTrans {
 public:
-    ImageTrans(UART_HandleTypeDef *huart) : uartPlus(huart, 64, 0), custom_rx(), custom_tx() {}
-
-    uint8_t custom_rx[30];
-    uint8_t custom_tx[30];
+    ImageTrans(UART_HandleTypeDef *huart) : uartPlus(huart, 100, 100) {}
 
     void update();
-
+    image_trans_dep::custom_frame custom_frame;
     image_trans_dep::frame_header rx_header;//帧头
     uint16_t rx_cmd_id;//命令ID
 

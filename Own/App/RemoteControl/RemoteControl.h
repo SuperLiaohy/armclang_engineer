@@ -11,7 +11,7 @@
 class RemoteControl {
 public:
     RemoteControl(UART_HandleTypeDef *huart, uint16_t buffer_size = 60, uint32_t maxInterval = 1000)
-            : detect(maxInterval), uartPlus(huart, buffer_size, 0), status(remote_ctrl_dep::NORMAL) {
+            : detect(maxInterval), uartPlus(huart, buffer_size, 0) {
     }
 
     void start();
@@ -26,8 +26,6 @@ public:
 
     RC_TypeDef rcInfo{};
 
-    remote_ctrl_dep::status status;
-
     Detect detect;
 private:
 
@@ -39,7 +37,6 @@ inline void RemoteControl::start() { uartPlus.read_idle(60); }
 inline void RemoteControl::clear() {
     memset(&rcInfo, 0, sizeof(rcInfo));
     memset(uartPlus.rx_buffer, 0, sizeof(uartPlus.rx_size));
-    status = remote_ctrl_dep::NORMAL;
 }
 
 void remote_ctrl_recover();

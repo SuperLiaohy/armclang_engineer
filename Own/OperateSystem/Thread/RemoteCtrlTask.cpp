@@ -24,37 +24,45 @@ MicroTime kineTime;
 void RemoteCtrlTask() {
     using namespace my_math;
     using namespace roboarm_dep;
+    interact_dep::path p = interact_dep::path::PC;
     while (1) {
         auto now = osKernelSysTick();
         if (!interact.remote_control.detect.isLost) {
             if (interact.remote_control.rcInfo.right == 2)
                 osThreadResume(ERROR_TASKHandle);
-
-            if (interact.remote_control.rcInfo.wheel > 500) {
-                interact.remote_control.status = remote_ctrl_dep::status::KEYBOARD;
-                interact.key_board = interact_dep::key_board::RC_ENABLE;
-            } else if (interact.remote_control.rcInfo.wheel < -500) {
-                interact.remote_control.status = remote_ctrl_dep::status::NORMAL;
-                interact.key_board = interact_dep::key_board::DISABLE;
+            if (interact.remote_control.rcInfo.right == 3 && interact.remote_control.rcInfo.left == 2) {
+                if (interact.remote_control.rcInfo.wheel > 500) {
+                    p = interact_dep::path::PC;
+                } else if (interact.remote_control.rcInfo.wheel < -500) {
+                    p = interact_dep::path::IMAGE_TRANSMIT;
+                }
+            } else {
+                if (interact.remote_control.rcInfo.wheel > 500) {
+                    interact.key_board = interact_dep::key_board::RC_ENABLE;
+                } else if (interact.remote_control.rcInfo.wheel < -500) {
+                    interact.key_board = interact_dep::key_board::DISABLE;
+                }
             }
-            if (interact.remote_control.status == remote_ctrl_dep::status::NORMAL) {
+            if (interact.key_board == interact_dep::key_board::DISABLE) {
                 switch (interact.remote_control.rcInfo.right) {
                     case 1:
                         switch (interact.remote_control.rcInfo.left) {
                             case 1:
-
                                 interact.chassis.mode = interact_dep::chassis_mode::NONE;
                                 interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
+                                interact.path = interact_dep::path::REMOTE_CTRL;
                                 break;
                             case 3:
-
                                 interact.chassis.mode = interact_dep::chassis_mode::NONE;
                                 interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
+                                interact.path = interact_dep::path::REMOTE_CTRL;
+
                                 break;
                             case 2:
-
                                 interact.chassis.mode = interact_dep::chassis_mode::NONE;
                                 interact.robo_arm.mode = interact_dep::robo_mode::RESET;
+                                interact.path = interact_dep::path::REMOTE_CTRL;
+
                                 break;
                             default:
                                 break;
@@ -63,20 +71,26 @@ void RemoteCtrlTask() {
                     case 3:
                         switch (interact.remote_control.rcInfo.left) {
                             case 1:
-
                                 interact.chassis.mode = interact_dep::chassis_mode::NORMAL;
                                 interact.robo_arm.mode = interact_dep::robo_mode::XYZ;
+                                interact.path = interact_dep::path::REMOTE_CTRL;
+
                                 break;
                             case 3:
-
-
                                 interact.chassis.mode = interact_dep::chassis_mode::ALL;
                                 interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+                                interact.path = interact_dep::path::REMOTE_CTRL;
+
                                 break;
                             case 2:
-
                                 interact.chassis.mode = interact_dep::chassis_mode::NONE;
-                                interact.robo_arm.mode = interact_dep::robo_mode::VISION;
+                                if (p == interact_dep::path::PC) {
+                                    interact.robo_arm.mode = interact_dep::robo_mode::VISION;
+                                } else if (p == interact_dep::path::IMAGE_TRANSMIT) {
+                                    interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
+                                }
+                                interact.path = p;
+
                                 break;
                             default:
                                 break;
@@ -90,23 +104,17 @@ void RemoteCtrlTask() {
 
                 }
             }
-
             xEventGroupSetBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT);
             xEventGroupWaitBits(osEventGroup, LK_RELETIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
 
             interact.update_chassis(chassis);
             interact.update_roboArm(roboArm);
-
         } else {
-
             interact.chassis.mode = interact_dep::chassis_mode::NONE;
             interact.robo_arm.mode = interact_dep::robo_mode::NONE;
         }
-
-
         interact.chassis.last_mode = interact.chassis.mode;
         interact.robo_arm.last_mode = interact.robo_arm.mode;
-
         RemoteCtrlHeapCnt = uxTaskGetStackHighWaterMark(NULL);
         osDelayUntil(&now, 14);
     }

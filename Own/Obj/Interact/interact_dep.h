@@ -29,6 +29,7 @@ namespace interact_dep {
     };
 
     enum class key_board : uint8_t {
+        LOST,
         DISABLE,
         RC_ENABLE,
         IM_ENABLE,
@@ -51,17 +52,6 @@ namespace interact_dep {
         CUSTOM,
         VISION,
         ACTIONS,
-    };
-
-
-    enum INTERACTION {
-        NONE,
-        CUSTOM,
-        VISION,
-        REMOTE_CTRL,
-        REMOTE_CTRL_XYZ,
-        IMAGE_TRANSMIT,
-        REMOTE_CTRL_RESET,
     };
 
     struct receive_data_t {

@@ -7,12 +7,14 @@
 
 #include "Interact/interact_dep.h"
 #include "Chassis/Chassis.h"
+
 //设定交互方式的统一标准为2个字节16bit的形式
 class Interact {
 
 public:
     Interact(const uint8_t &head, const uint8_t &tail, UART_HandleTypeDef *uart_rc, UART_HandleTypeDef *uart_im)
-            : robo_arm{interact_dep::robo_mode::NORMAL, interact_dep::robo_mode::NONE},
+            : key_board{interact_dep::key_board::DISABLE},
+              robo_arm{interact_dep::robo_mode::NORMAL, interact_dep::robo_mode::NONE},
               chassis{interact_dep::chassis_mode::ALL, interact_dep::chassis_mode::ALL}, remote_control(uart_rc),
               head(head), tail(tail), image_trans(uart_im) {
         transmit_data.head = head;

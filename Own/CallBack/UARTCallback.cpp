@@ -11,6 +11,7 @@ extern "C" {
 #include "cmsis_os.h"
 extern QueueHandle_t xRxedChars;
 extern uint8_t cli_buffer[];
+extern osThreadId IMAGEATRANS_TASHandle;
 
 #include "LetterShell/shell.h"
 #include "LetterShell/shell_port.h"
@@ -50,15 +51,20 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (huart == interact.remote_control.uartPlus.uart) {
         interact.remote_control.update();
-        if (cnt++ > 5)
+        if (cnt++ > 5) {
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
+            portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+        }
+    } else if (huart == interact.image_trans.uartPlus.uart) {
+        interact.image_trans.update();
     }
+
 //    if (huart == uartPlus10.uart) {
 //        for (int i = 0; i < Size; ++i) {
 //            xQueueSendFromISR(xRxedChars, &cli_buffer[i], &xHigherPriorityTaskWoken);
 //            //            shellHandler(&shell, cli_buffer[i]);
 //        }
 //    }
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+
 #endif
 }
