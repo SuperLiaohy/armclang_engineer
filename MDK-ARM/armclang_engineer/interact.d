@@ -305,4 +305,5 @@ armclang_engineer/interact.o: ..\Own\Obj\Interact\Interact.cpp \
   ..\Own\App\Motor\Motor.h ..\Own\App\Motor\M2006.h \
   ..\Own\App\Motor\M3508.h ..\Own\App\Motor\dmMotor.h \
   ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Motor\lkMotor.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h
+  ..\Own\Moudle\Slope\Slope.h ..\Own\App\ImageTrans\ImageTrans.h \
+  ..\Own\Moudle\Crc\Crc.h

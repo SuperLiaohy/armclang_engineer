@@ -23,6 +23,7 @@ extern uint8_t UserTxBufferHS[APP_TX_DATA_SIZE];
 
 class SuperCDC {
 public:
+    SuperCDC() = default;
     [[gnu::always_inline]]inline void transmit(uint8_t *data, uint16_t len);
     void printf(const char *fmt, ...);
 };

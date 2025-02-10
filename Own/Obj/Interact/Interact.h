@@ -37,8 +37,12 @@ public:
         SuperCDC cdc;
         interact_dep::receive_data_t receive_data {};
         interact_dep::transmit_data_t transmit_data {};
-
     } pc;
+
+    interact_dep::path path;
+    interact_dep::key_board key_board;
+    interact_dep::robo_mode robo_mode;
+    interact_dep::chassis_mode chassis_mode;
 
     interact_dep::INTERACTION interaction;
     interact_dep::INTERACTION last_interaction;

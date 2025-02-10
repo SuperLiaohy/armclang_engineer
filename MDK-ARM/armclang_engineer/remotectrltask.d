@@ -307,10 +307,10 @@ armclang_engineer/remotectrltask.o: \
   ..\Own\App\Motor\Motor.h ..\Own\App\Motor\M2006.h \
   ..\Own\App\Motor\M3508.h ..\Own\App\Motor\dmMotor.h \
   ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Motor\lkMotor.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
-  ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\MicroTime\MicroTime.h \
-  ..\Own\Obj\Chassis\Chassis.h ..\Own\Obj\Chassis\chassis_dep.h \
-  ..\Own\Obj\Share\Share.h ..\Own\Moudle\Slope\Slope.h \
+  ..\Own\Moudle\Slope\Slope.h ..\Own\App\ImageTrans\ImageTrans.h \
+  ..\Own\Moudle\Crc\Crc.h ..\Own\OperateSystem\ThreadConfig.h \
+  ..\Own\App\MicroTime\MicroTime.h ..\Own\Obj\Chassis\Chassis.h \
+  ..\Own\Obj\Chassis\chassis_dep.h ..\Own\Obj\Share\Share.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \

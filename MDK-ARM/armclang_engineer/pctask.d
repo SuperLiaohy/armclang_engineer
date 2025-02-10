@@ -302,7 +302,7 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\M3508.h \
   ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
   ..\Own\Bsp\Uart\SuperUart.h ..\Core\Inc\usart.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
+  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\Moudle\Slope\Slope.h \
   ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \

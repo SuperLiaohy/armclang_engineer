@@ -42,14 +42,23 @@ void RemoteCtrlTask() {
                             case 1:
                                 chassis.mode = chassis_dep::mode::NONE;
                                 interact.interaction = interact_dep::INTERACTION::REMOTE_CTRL;
+
+                                interact.chassis_mode = interact_dep::chassis_mode::NONE;
+                                interact.robo_mode = interact_dep::robo_mode::NORMAL;
                                 break;
                             case 3:
                                 chassis.mode = chassis_dep::mode::NONE;
                                 interact.interaction = interact_dep::INTERACTION::REMOTE_CTRL;
+
+                                interact.chassis_mode = interact_dep::chassis_mode::NONE;
+                                interact.robo_mode = interact_dep::robo_mode::NORMAL;
                                 break;
                             case 2:
                                 chassis.mode = chassis_dep::mode::NONE;
                                 interact.interaction = interact_dep::INTERACTION::REMOTE_CTRL_RESET;
+
+                                interact.chassis_mode = interact_dep::chassis_mode::NONE;
+                                interact.robo_mode = interact_dep::robo_mode::RESET;
                                 break;
                             default:
                                 break;
@@ -60,14 +69,23 @@ void RemoteCtrlTask() {
                             case 1:
                                 chassis.mode = chassis_dep::mode::Work;
                                 interact.interaction = interact_dep::INTERACTION::REMOTE_CTRL_XYZ;
+
+                                interact.chassis_mode = interact_dep::chassis_mode::NORMAL;
+                                interact.robo_mode = interact_dep::robo_mode::XYZ;
                                 break;
                             case 3:
                                 chassis.mode = chassis_dep::mode::Follow;
                                 interact.interaction = interact_dep::INTERACTION::NONE;
+
+                                interact.chassis_mode = interact_dep::chassis_mode::ALL;
+                                interact.robo_mode = interact_dep::robo_mode::NONE;
                                 break;
                             case 2:
                                 chassis.mode = chassis_dep::mode::NONE;
                                 interact.interaction = interact_dep::INTERACTION::VISION;
+
+                                interact.chassis_mode = interact_dep::chassis_mode::NONE;
+                                interact.robo_mode = interact_dep::robo_mode::VISION;
                                 break;
                             default:
                                 break;

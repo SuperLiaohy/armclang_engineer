@@ -278,7 +278,7 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Core\Inc\usart.h D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
+  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\Moudle\Slope\Slope.h \
   ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
   ..\Own\Bsp\CDC\SuperCDC.h ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \

@@ -44,21 +44,30 @@
 >
 >    此模式是把机械臂的控制交给上位机PC，mcu给PC发送数据$\rightarrow$vision模式
 >
->  
+> 
 >
 > 总结交互分为3种链路模式
 >
-> 1. remote_control
-> 2. image_trans
-> 3. PC
+> 首先遥控器链路的数据是一直更新的
+>
+> 1. remote_control$\rightarrow$仅更新遥控器链路的数据
+> 2. image_trans$\rightarrow$增加更新图传链路的自定义通道的数据
+> 3. PC$\rightarrow$增加更新PC链路的数据
+>
+> 键鼠的状态可分为
+>
+> 1. DISABLE $\rightarrow$大部分的键鼠回调都无法被触发
+> 2. RC_ENABLE$\rightarrow$所有的键鼠回调都可以被触发$\rightarrow$键鼠的数据更新是在遥控器的链路里
+> 3. IM_ENABLE$\rightarrow$所有的键鼠回调都可以被触发$\rightarrow$键鼠的数据更新是在图传的链路里
 >
 > 在此基础下机械臂的控制模式分为
 >
-> 1. Normal模式
-> 2. XYZ模式
-> 3. Reset模式
-> 4. custom模式
-> 5. vision模式
-> 6. actions模式（按键触发，执行动作组模式）
+> 1. None模式$\rightarrow$在keyboard的enable和disable时都存在
+> 2. Normal模式$\rightarrow$在keyboard的disable时存在
+> 3. XYZ模式$\rightarrow$在keyboard的disable时存在
+> 4. Reset模式$\rightarrow$在keyboard的disble和enable时都存在
+> 5. custom模式$\rightarrow$在keyboard的disable和enable时都存在
+> 6. vision模式$\rightarrow$在keyboard的disable和enable时都存在
+> 7. actions模式（按键触发，执行动作组模式）$\rightarrow$在keyboard的disable和enable时都存在
 >
 > 所有模式的都应该有自己的数据缓冲区，然后将数据缓冲区里的内容在对应到receive_data和transmit_data里面中。做到各自都有自己的私有的备份数据，并且都转换到了统一的结构体中，做到对机械臂提供统一的接口。然后再由机械臂统一根据receive_data里的数据执行对应的动作。

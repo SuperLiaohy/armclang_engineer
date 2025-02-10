@@ -37,15 +37,19 @@ namespace interact_dep {
         NONE,
         NORMAL,
         XYZ,
+        RESET,
         CUSTOM,
         VISION,
         ACTIONS,
     };
 
     enum class chassis_mode {
+        NONE,
         NORMAL,
+        ALL,
         CUSTOM,
         VISION,
+        ACTIONS,
     };
 
 

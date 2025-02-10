@@ -302,7 +302,8 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\M2006.h ..\Own\App\Motor\M3508.h \
   ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
-  ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
+  ..\Own\Moudle\Slope\Slope.h ..\Own\Obj\Interact\Interact.h \
+  ..\Own\Obj\Interact\interact_dep.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
   ..\Own\Moudle\Key\Key.h ..\Own\App\ImageTrans\ImageTrans.h \

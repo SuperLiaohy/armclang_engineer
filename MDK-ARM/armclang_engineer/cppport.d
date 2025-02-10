@@ -307,5 +307,6 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\App\Motor\Motor.h ..\Own\App\Motor\M2006.h \
   ..\Own\App\Motor\M3508.h ..\Own\App\Motor\dmMotor.h \
   ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Motor\lkMotor.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
-  ..\Own\App\W25Q64\W25Q64.h ..\Core\Inc\octospi.h
+  ..\Own\Moudle\Slope\Slope.h ..\Own\App\ImageTrans\ImageTrans.h \
+  ..\Own\Moudle\Crc\Crc.h ..\Own\App\W25Q64\W25Q64.h \
+  ..\Core\Inc\octospi.h
