@@ -91,7 +91,7 @@ RoboArm roboArm(
                 0.7, 50,
                 1, 8192,
                 2, 8192,
-                {79, 360-87, 53,  135 + 27.256, 114, -90, 90});
+                {79, 360-87.445007, 53.24833322,  135 + 27.256, 114, -90, 90});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -101,7 +101,7 @@ Imu imu(MEASURE_DISABLE);
 
 //ImageTrans image_trans(&huart10);
 
-Interact interact(0xFF, 0xFE, &huart5, &huart10);
+Interact interact(0xFF, 0xFE, &huart5, &huart1);
 
 Key keyList[KEY_NUM];
 KeyBoard key_board;

@@ -4,16 +4,21 @@
 #include "CppTask.h"
 #include "Interact/Interact.h"
 
+uint16_t cmd_id = 0;
+uint16_t cmd = 0;
 
 void ImageTransTask() {
     while (1) {
         using namespace crc;
-        interact.image_trans.uartPlus.read_idle(50);
+
+        cmd = 0;
         vTaskSuspend(NULL);
+        cmd = 1;
         auto data = interact.image_trans.uartPlus.rx_buffer;
-        uint16_t len = (data[1]<<8|data[2]);
+        uint16_t len = (data[2] << 8 | data[1]);
+        interact.image_trans.rx_cmd_id = data[6] << 8 | data[5];
         if (verify_crc16_check_sum(data, len + 9)) {
-            switch (data[5]<<8|data[6]) {
+            switch (interact.image_trans.rx_cmd_id) {
                 case 0x302:
                     interact.receive_custom(&data[7]);
                     break;
@@ -28,5 +33,6 @@ void ImageTransTask() {
 
             }
         }
+
     }
 }

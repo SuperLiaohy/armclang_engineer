@@ -306,9 +306,7 @@ armclang_engineer/uartcallback.o: ..\Own\CallBack\UARTCallback.cpp \
   ..\Own\App\Motor\M3508.h ..\Own\App\Motor\dmMotor.h \
   ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Motor\lkMotor.h \
   ..\Own\Moudle\Slope\Slope.h ..\Own\App\ImageTrans\ImageTrans.h \
-  ..\Own\Moudle\Crc\Crc.h ..\Own\Obj\Chassis\Chassis.h \
-  ..\Own\Obj\Chassis\chassis_dep.h ..\Own\Obj\Share\Share.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
+  ..\Own\Moudle\Crc\Crc.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\predicate_traits.h \
@@ -760,7 +758,8 @@ armclang_engineer/uartcallback.o: ..\Own\CallBack\UARTCallback.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Own\OperateSystem\LetterShell\shell.h \
+  ..\Own\Obj\Chassis\Chassis.h ..\Own\Obj\Chassis\chassis_dep.h \
+  ..\Own\Obj\Share\Share.h ..\Own\OperateSystem\LetterShell\shell.h \
   ..\Own\OperateSystem\LetterShell\shell_cfg.h \
   ..\Own\OperateSystem\LetterShell\shell_port.h \
   ..\Own\OperateSystem\ThreadConfig.h

@@ -8,17 +8,33 @@
 #include "Uart/SuperUart.h"
 #include "Key/Key.h"
 #include "Crc/Crc.h"
+#include "array"
 namespace image_trans_dep {
     constexpr uint8_t SOF = 0xA5; // 帧头
 
-    struct custom_frame {
-        uint16_t joint1 : 11;
-        uint16_t joint2 : 11;
-        uint16_t joint3 : 11;
-        uint16_t joint4 : 11;
-        uint16_t joint5 : 11;
-        uint16_t joint6 : 11;
+    struct rx_status {
+        uint8_t map_back_over : 1;
+        uint8_t lock : 1;
+        uint8_t none : 6;
     } __attribute__((packed));
+
+    struct custom_rx_frame {
+        rx_status s;
+        std::array<int16_t, 6> joint;
+    } __attribute__((packed));
+
+    struct tx_status {
+        uint8_t enable_map_back : 1;
+        uint8_t lock : 1;
+        uint8_t none : 6;
+    } __attribute__((packed));
+
+    struct custom_tx_frame {
+        tx_status s;
+        std::array<int16_t, 6> joint;
+    } __attribute__((packed));
+
+
 
     struct frame_header
     {
@@ -28,6 +44,13 @@ namespace image_trans_dep {
         uint8_t crc8;
     } __attribute__((packed));
 
+
+    struct trans_frame {
+        frame_header frame_head {};
+        uint16_t cmd_id {};
+        uint8_t data[30] {};
+        uint16_t crc16 {};
+    } __attribute__((packed));
 //    template<uint32_t len>
 //    struct tx_frame {
 //        frame_header header;
@@ -42,11 +65,16 @@ public:
     ImageTrans(UART_HandleTypeDef *huart) : uartPlus(huart, 100, 100) {}
 
     void update();
-    image_trans_dep::custom_frame custom_frame;
+    image_trans_dep::custom_rx_frame custom_rx_frame;
+    image_trans_dep::trans_frame tx_frame;
+
     image_trans_dep::frame_header rx_header;//帧头
     uint16_t rx_cmd_id;//命令ID
 
     SuperUart uartPlus;
+
+private:
+    image_trans_dep::custom_tx_frame custom_frame_tx;
 
 //    void update_custom();
 //

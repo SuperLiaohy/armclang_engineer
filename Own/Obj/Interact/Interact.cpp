@@ -132,7 +132,7 @@ void Interact::receive_reset(RoboArm &Arm) {
     receive_data.joint3.angle = joint_scale(135, 360, 65536);
     receive_data.joint2.angle = joint_scale(-80, 360, 65536);
     receive_data.joint1.angle = joint_scale(0, 360, 65536);
-    receive_data.joint6.angle = joint_scale(0, 360, 8192);
+    totalRoll = joint_scale(0, 360, 8192);
     receive_data.joint5.angle = joint_scale(-90, 360, 8192);
 
 //    Arm.target.joint4.angle = Arm.offset.joint4 * 100;
@@ -147,14 +147,20 @@ void Interact::receive_reset(RoboArm &Arm) {
 void Interact::receive_custom(uint8_t *data) {
     using namespace interact_dep;
     if (robo_arm.mode == robo_mode::CUSTOM) {
-        memcpy(reinterpret_cast<uint8_t *>(&image_trans.custom_frame), data,
-               sizeof(image_trans_dep::custom_frame));
-        receive_data.joint1.angle = image_trans.custom_frame.joint1 * scale(4056, 65536);
-        receive_data.joint2.angle = image_trans.custom_frame.joint2 * scale(4056, 65536);
-        receive_data.joint3.angle = image_trans.custom_frame.joint3 * scale(4056, 65536);
-        receive_data.joint4.angle = image_trans.custom_frame.joint4 * scale(4056, 65536);
-        receive_data.joint5.angle = image_trans.custom_frame.joint5 * scale(4056, 65536);
-        receive_data.joint6.angle = image_trans.custom_frame.joint6 * scale(4056, 65536);
+        memcpy(reinterpret_cast<uint8_t *>(&image_trans.custom_rx_frame), data,
+               sizeof(image_trans_dep::custom_rx_frame));
+//        image_trans.angle[0] = image_trans.custom_frame.joint1 * scale(4096, 360);
+//        image_trans.angle[1] = image_trans.custom_frame.joint2 * scale(4096, 360);
+//        image_trans.angle[2] = image_trans.custom_frame.joint3 * scale(4096, 360);
+//        image_trans.angle[3] = image_trans.custom_frame.joint4 * scale(4096, 360);
+//        image_trans.angle[4] = image_trans.custom_frame.joint5 * scale(4096, 360);
+//        image_trans.angle[5] = image_trans.custom_frame.joint6 * scale(4096, 360);
+        receive_data.joint1.angle = image_trans.custom_rx_frame.joint[0] * scale(4096, 65536);
+        receive_data.joint2.angle = image_trans.custom_rx_frame.joint[1] * scale(4096, 65536);
+        receive_data.joint3.angle = image_trans.custom_rx_frame.joint[2] * scale(4096, 65536);
+        receive_data.joint4.angle = image_trans.custom_rx_frame.joint[3] * scale(4096, 65536);
+        receive_data.joint5.angle = image_trans.custom_rx_frame.joint[4] * scale(4096, 8192);
+        totalRoll = image_trans.custom_rx_frame.joint[5] * scale(4096, 8192);
     }
 }
 

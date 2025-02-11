@@ -44,7 +44,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
 
 int16_t x, y;
 static uint8_t cnt = 0;
-
+extern uint8_t cmd;
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     UNUSED(Size);
 #if USING_UART_IDLE
@@ -56,7 +56,10 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
     } else if (huart == interact.image_trans.uartPlus.uart) {
+
         interact.image_trans.update();
+			xHigherPriorityTaskWoken = pdTRUE;
+				portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     }
 
 //    if (huart == uartPlus10.uart) {

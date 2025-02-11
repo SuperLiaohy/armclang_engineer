@@ -47,6 +47,8 @@ void StartTask() {
     KeyBoardRegister(Key_S, CombineKey_None, chassis_s_callback);
     KeyBoardRegister(Key_D, CombineKey_None, chassis_d_callback);
     interact.remote_control.start();
+		        interact.image_trans.uartPlus.read_idle(100);
+
     /* 底盘电机初始化 */
     chassis.base.left_front.motor.init(15,0,4,8000,16000,19.2);
     chassis.base.right_front.motor.init(15,0,4,8000,16000,19.2);
