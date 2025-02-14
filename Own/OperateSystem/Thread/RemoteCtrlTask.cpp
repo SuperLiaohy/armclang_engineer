@@ -109,6 +109,12 @@ void RemoteCtrlTask() {
 
             interact.update_chassis(chassis);
             interact.update_roboArm(roboArm);
+            if (interact.path == interact_dep::path::IMAGE_TRANSMIT && interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM && interact.key_board == interact_dep::key_board::DISABLE) {
+                if (interact.remote_control.rcInfo.ch1 > 500)
+                    interact.image_trans.set_map_back(1);
+                else if (interact.remote_control.rcInfo.ch1 < -500)
+                    interact.image_trans.set_map_back(0);
+            }
         } else {
             interact.chassis.mode = interact_dep::chassis_mode::NONE;
             interact.robo_arm.mode = interact_dep::robo_mode::NONE;

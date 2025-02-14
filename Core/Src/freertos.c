@@ -60,6 +60,7 @@ osThreadId LK_TASKHandle;
 osThreadId PC_TaskHandle;
 osThreadId IMAGEATRANS_TASHandle;
 osThreadId JUDGE_TASKHandle;
+osThreadId TRANSMIT_TASKHandle;
 osMutexId CAN1MutexHandle;
 osMutexId CAN2MutexHandle;
 
@@ -80,6 +81,7 @@ void OS_LKTask(void const * argument);
 void OS_PCTask(void const * argument);
 void OS_ImageTransTask(void const * argument);
 void OS_JudgeTask(void const * argument);
+void OS_TransmitTask(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -199,6 +201,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of JUDGE_TASK */
   osThreadDef(JUDGE_TASK, OS_JudgeTask, osPriorityNormal, 0, 512);
   JUDGE_TASKHandle = osThreadCreate(osThread(JUDGE_TASK), NULL);
+
+  /* definition and creation of TRANSMIT_TASK */
+  osThreadDef(TRANSMIT_TASK, OS_TransmitTask, osPriorityNormal, 0, 256);
+  TRANSMIT_TASKHandle = osThreadCreate(osThread(TRANSMIT_TASK), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -422,6 +428,24 @@ __weak void OS_JudgeTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END OS_JudgeTask */
+}
+
+/* USER CODE BEGIN Header_OS_TransmitTask */
+/**
+* @brief Function implementing the TRANSMIT_TASK thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_OS_TransmitTask */
+__weak void OS_TransmitTask(void const * argument)
+{
+  /* USER CODE BEGIN OS_TransmitTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END OS_TransmitTask */
 }
 
 /* Private application code --------------------------------------------------*/

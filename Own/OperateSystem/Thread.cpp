@@ -132,6 +132,14 @@ void OS_ImageTransTask(void const *argument) {
     ImageTransTask();
 }
 
+void OS_TransmitTask(void const *argument){
+    UNUSED(argument);
+
+    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+
+    TransmitTask();
+}
+
 void OS_JudgeTask(void const *argument) {
     UNUSED(argument);
 

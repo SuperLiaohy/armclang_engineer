@@ -26,3 +26,19 @@ void ImageTrans::update() {
     }
 
 }
+
+void ImageTrans::transmit() {
+    memcpy(tx_frame.data, &custom_tx_frame, sizeof(custom_tx_frame));
+    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&tx_frame), sizeof(tx_frame));
+    memcpy(uartPlus.tx_buffer, &tx_frame, sizeof(tx_frame));
+    uartPlus.write_dma(uartPlus.tx_buffer, sizeof(tx_frame));
+}
+
+void ImageTrans::get_angle(roboarm_dep::real_relative_pos &relativePos) {
+    custom_tx_frame.joint[0] = relativePos.joint1 * scale(360, 4096);
+    custom_tx_frame.joint[1] = relativePos.joint2 * scale(360, 4096);
+    custom_tx_frame.joint[2] = relativePos.joint3 * scale(360, 4096);
+    custom_tx_frame.joint[3] = relativePos.joint4 * scale(360, 4096);
+    custom_tx_frame.joint[4] = relativePos.joint5 * scale(360, 4096);
+    custom_tx_frame.joint[5] = relativePos.joint6 * scale(360, 4096);
+}

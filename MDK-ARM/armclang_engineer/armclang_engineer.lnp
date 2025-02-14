@@ -128,6 +128,7 @@
 "armclang_engineer\vari.o"
 "armclang_engineer\imagetranstask.o"
 "armclang_engineer\judgetask.o"
+"armclang_engineer\transmittask.o"
 "armclang_engineer\mahonyahrs.o"
 "armclang_engineer\bmi088driver.o"
 "armclang_engineer\bmi088middleware.o"

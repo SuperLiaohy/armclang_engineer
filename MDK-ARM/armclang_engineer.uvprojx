@@ -1564,6 +1564,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\JudgeTask.cpp</FilePath>
             </File>
+            <File>
+              <FileName>TransmitTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\TransmitTask.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3176,6 +3181,11 @@
               <FileName>JudgeTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\JudgeTask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TransmitTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\TransmitTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

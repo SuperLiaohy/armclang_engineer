@@ -31,7 +31,6 @@ extern "C" {
 class SuperUart {
 private:
     UART_HandleTypeDef *uart;
-    uint8_t *tx_buffer;
     int32_t len;
 
 public:
@@ -84,6 +83,7 @@ public:
 
     friend void::HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size);
 
+    uint8_t *tx_buffer;
 };
 
 extern SuperUart uartPlus10;

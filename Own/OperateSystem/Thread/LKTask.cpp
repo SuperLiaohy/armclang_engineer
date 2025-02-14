@@ -76,9 +76,9 @@ osDelay(1);
         roboArm.joint2.external.motor.read_totalposition();
         xSemaphoreGive(CAN1MutexHandle);
 				
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint2.internal.motor.read_totalposition();
-        xSemaphoreGive(CAN1MutexHandle);
+//        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//        roboArm.joint2.internal.motor.read_totalposition();
+//        xSemaphoreGive(CAN1MutexHandle);
         
 				xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         roboArm.joint1.motor.read_totalposition();

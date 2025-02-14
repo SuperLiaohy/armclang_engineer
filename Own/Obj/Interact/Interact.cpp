@@ -121,8 +121,8 @@ void Interact::transmit_relative_pos(RoboArm &Arm) {
     transmit_data.joint2.angle = Arm.real_relative_pos.joint2 * d2b2;
     transmit_data.joint3.angle = Arm.real_relative_pos.joint3 * d2b2;
     transmit_data.joint4.angle = Arm.real_relative_pos.joint4 * d2b2;
-    transmit_data.joint5.angle = 0;
-    transmit_data.joint6.angle = 0;
+    transmit_data.joint5.angle = Arm.real_relative_pos.joint5 * scale(360, 8192);
+    transmit_data.joint6.angle = static_cast<int>((Arm.real_relative_pos.joint6 * scale(360, 8192))) % 8192;
     transmit();
 }
 
@@ -155,12 +155,14 @@ void Interact::receive_custom(uint8_t *data) {
 //        image_trans.angle[3] = image_trans.custom_frame.joint4 * scale(4096, 360);
 //        image_trans.angle[4] = image_trans.custom_frame.joint5 * scale(4096, 360);
 //        image_trans.angle[5] = image_trans.custom_frame.joint6 * scale(4096, 360);
-        receive_data.joint1.angle = image_trans.custom_rx_frame.joint[0] * scale(4096, 65536);
-        receive_data.joint2.angle = image_trans.custom_rx_frame.joint[1] * scale(4096, 65536);
-        receive_data.joint3.angle = image_trans.custom_rx_frame.joint[2] * scale(4096, 65536);
-        receive_data.joint4.angle = image_trans.custom_rx_frame.joint[3] * scale(4096, 65536);
-        receive_data.joint5.angle = image_trans.custom_rx_frame.joint[4] * scale(4096, 8192);
-        totalRoll = image_trans.custom_rx_frame.joint[5] * scale(4096, 8192);
+        if (!image_trans.read_map_back()) {
+            receive_data.joint1.angle = image_trans.custom_rx_frame.joint[0] * scale(4096, 65536);
+            receive_data.joint2.angle = image_trans.custom_rx_frame.joint[1] * scale(4096, 65536);
+            receive_data.joint3.angle = image_trans.custom_rx_frame.joint[2] * scale(4096, 65536);
+            receive_data.joint4.angle = image_trans.custom_rx_frame.joint[3] * scale(4096, 65536);
+            receive_data.joint5.angle = image_trans.custom_rx_frame.joint[4] * scale(4096, 8192);
+            totalRoll = image_trans.custom_rx_frame.joint[5] * scale(4096, 8192);
+        }
     }
 }
 
