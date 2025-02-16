@@ -151,3 +151,13 @@ void OS_JudgeTask(void const *argument) {
 
     JudgeTask();
 }
+
+void OS_KbTask(void const *argument) {
+    UNUSED(argument);
+
+    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+
+    KbTask();
+}
+
+

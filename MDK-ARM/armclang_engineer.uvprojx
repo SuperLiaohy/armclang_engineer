@@ -1569,6 +1569,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\TransmitTask.cpp</FilePath>
             </File>
+            <File>
+              <FileName>KbTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\KbTask.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3186,6 +3191,11 @@
               <FileName>TransmitTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\TransmitTask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>KbTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\KbTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

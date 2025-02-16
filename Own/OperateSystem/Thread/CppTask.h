@@ -40,4 +40,5 @@ void PCTask();
 void ImageTransTask();
 void JudgeTask();
 void TransmitTask();
+void KbTask();
 #endif //OWN_CPPTASK_H

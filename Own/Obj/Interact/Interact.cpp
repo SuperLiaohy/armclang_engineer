@@ -212,6 +212,7 @@ void Interact::update_chassis(Chassis &cha) {
                 case interact_dep::kb_state::IM_ENABLE:
                     cha.move.xSlope.target_set(max.vx * static_cast<float>((cha.key.d + cha.key.a)));
                     cha.move.ySlope.target_set(max.vy * static_cast<float>((cha.key.w + cha.key.s)));
+                    cha.move.wSlope.target_set(-max.w * static_cast<float>((interact.key_board.mouse.x)) / 32767 * 40);
                     break;
                 case interact_dep::kb_state::DISABLE:
                     cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
@@ -231,6 +232,7 @@ void Interact::update_chassis(Chassis &cha) {
                 case interact_dep::kb_state::IM_ENABLE:
                     cha.move.xSlope.target_set(max.vx * static_cast<float>((cha.key.d + cha.key.a)));
                     cha.move.ySlope.target_set(max.vy * static_cast<float>((cha.key.w + cha.key.s)));
+                    cha.move.wSlope.target_set(-max.w * static_cast<float>((interact.key_board.mouse.x)) / 32767 * 40);
                     break;
                 case interact_dep::kb_state::DISABLE:
                     cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));

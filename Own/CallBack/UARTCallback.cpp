@@ -56,10 +56,9 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
     } else if (huart == interact.image_trans.uartPlus.uart) {
-
         interact.image_trans.update();
-			xHigherPriorityTaskWoken = pdTRUE;
-				portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+        xHigherPriorityTaskWoken = pdTRUE;
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     }
 
 //    if (huart == uartPlus10.uart) {
