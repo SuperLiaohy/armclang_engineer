@@ -108,3 +108,5 @@ SuperGPIO<gpio, mode, pin>::state SuperGPIO<gpio, mode, pin>::Read()
     return HAL_GPIO_ReadPin(
         reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin);
 }
+
+extern SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_13> power_24v_left;

@@ -6,23 +6,22 @@
 #define ARMCLANG_ENGINEER_INTERACT_DEP_H
 #include "CDC/SuperCDC.h"
 #include "CustomList/CustomList.h"
+#include "ImageTrans/ImageTrans.h"
 #include "RemoteControl/RemoteControl.h"
 #include "RoboArm/RoboArm.h"
-#include "ImageTrans/ImageTrans.h"
-
 
 namespace interact_dep {
     typedef struct link_receive {
         int16_t angle;
-//        int16_t speed;
+        //        int16_t speed;
     } __attribute__((packed)) link_receive_t;
 
     typedef struct link_transmit {
         int16_t angle;
-//        int16_t speed;
+        //        int16_t speed;
     } __attribute__((packed)) link_transmit_t;
 
-    enum class path : uint8_t{
+    enum class path : uint8_t {
         REMOTE_CTRL,
         IMAGE_TRANSMIT,
         PC,
@@ -35,7 +34,7 @@ namespace interact_dep {
         IM_ENABLE,
     };
 
-    enum class robo_mode : uint8_t{
+    enum class robo_mode : uint8_t {
         NONE,
         NORMAL,
         XYZ,
@@ -45,7 +44,7 @@ namespace interact_dep {
         ACTIONS,
     };
 
-    enum class chassis_mode : uint8_t{
+    enum class chassis_mode : uint8_t {
         NONE,
         NORMAL,
         ALL,
@@ -76,9 +75,40 @@ namespace interact_dep {
         link_transmit_t joint6;
         uint8_t tail;
     } __attribute__((packed));
-}
 
+    struct Action {
+        link_receive_t* data {};
+        Slope slope;
+        explicit Action(uint8_t num, float step = 3, float dead_zone = 0.1)
+            : slope(step, dead_zone) {
+            data = reinterpret_cast<link_receive_t*>(pvPortMalloc(num * sizeof(link_receive_t)));
+        };
+    };
+
+    struct Actions {
+        uint8_t num;
+        Action joint1;
+        Action joint2;
+        Action joint3;
+        Action joint4;
+        Action joint5;
+        Action joint6;
+        uint8_t now;
+        explicit Actions(uint8_t num = 0)
+            : num(num)
+            , joint1(num)
+            , joint2(num)
+            , joint3(num)
+            , joint4(num)
+            , joint5(num)
+            , joint6(num)
+            , now(0) {};
+    };
+
+} // namespace interact_dep
 
 extern Interact interact;
+extern interact_dep::Actions test_actions;
+
 
 #endif //ARMCLANG_ENGINEER_INTERACT_DEP_H

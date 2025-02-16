@@ -34,6 +34,8 @@ public:
     Key keyList[18];
     KeyBoard key_board;
 
+    interact_dep::Actions *actions;
+
     class PC {
     public:
         SuperCDC cdc;
@@ -67,6 +69,8 @@ public:
     void receive_reset(RoboArm &Arm);
 
     void receive_custom(uint8_t *data);
+
+    void receive_actions(bool is_next);
 
     void transmit_relative_pos(RoboArm &Arm);
 

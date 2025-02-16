@@ -302,11 +302,9 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   ..\Own\App\Motor\M2006.h ..\Own\App\Motor\M3508.h \
   ..\Own\App\Motor\dmMotor.h ..\Own\Mod\MyMath\MyMath.h \
   ..\Own\Mod\Slope\Slope.h ..\Own\Obj\Interact\Interact.h \
-  ..\Own\Obj\Interact\interact_dep.h \
-  ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
-  ..\Own\Mod\Key\Key.h ..\Own\App\ImageTrans\ImageTrans.h \
-  ..\Own\Mod\Crc\Crc.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
+  ..\Own\Obj\Interact\interact_dep.h ..\Own\App\ImageTrans\ImageTrans.h \
+  ..\Own\Mod\Key\Key.h ..\Own\Mod\Crc\Crc.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\predicate_traits.h \
@@ -758,6 +756,8 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
+  ..\Own\App\RemoteControl\RemoteControl.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
   ..\Own\Obj\Chassis\Chassis.h ..\Own\Obj\Chassis\chassis_dep.h \
   ..\Own\Obj\Share\Share.h ..\Own\App\MicroTime\MicroTime.h \
   ..\Own\OperateSystem\LetterShell\cpp_support\shell_cpp.h \

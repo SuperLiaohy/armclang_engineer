@@ -16,7 +16,7 @@ namespace my_math {
 } // namespace my_math
 
 template<typename T>
-T limited(T *value, T min, T max) {
+T limited(T* value, T min, T max) {
     if (*value > max) {
         *value = max;
     } else if (*value < min) {
@@ -38,17 +38,16 @@ T limited(T& value, T min, T max) {
 template<typename T>
 T limited(const T& value, T min, T max) {
     if (value > max) {
-        return  max;
+        return max;
     }
     if (value < min) {
-        return  min;
+        return min;
     }
     return value;
 }
 
-
 template<typename T>
-T whileLimit(T &value, T min, T max) {
+T whileLimit(T& value, T min, T max) {
     float len = max - min;
     if (value > max) {
         value -= len;
@@ -59,18 +58,17 @@ T whileLimit(T &value, T min, T max) {
 }
 
 template<typename T>
-T whileLimit(T &&value, T min, T max) {
+T whileLimit(T&& value, T min, T max) {
     float len = max - min;
     if (value > max) {
         return value - len;
     } else if (*value < min) {
         return value + len;
     }
-
 }
 
 template<typename T>
-T SmoothLimit(T *value, T target, T smooth) {
+T SmoothLimit(T* value, T target, T smooth) {
     if (*value > target) {
         if (*value - smooth < target) {
             *value = target;
@@ -94,34 +92,40 @@ T offset_transmit(T value, T offset, T min, T max) {
     return value;
 }
 //从source转换到head，source_scale是source的最大值，head_scale是head的最大值，最新默认为0
-template<typename source,typename head>
+template<typename source, typename head>
 head scale_transmit(source value, source source_scale, head head_scale) {
     head target = static_cast<float>(value * head_scale) / source_scale;
     return target;
 }
-template<typename source,typename head>
+template<typename source, typename head>
 consteval head static_scale_transmit(source value, source source_scale, head head_scale) {
     head target = static_cast<float>(value * head_scale) / source_scale;
     return target;
 }
 template<typename T>
-bool isInRange(T value, T min, T max){
+bool isInRange(T value, T min, T max) {
     return value >= min && value <= max;
 }
 template<typename T>
-bool isInRange(T value, T min, T max, T err){
+bool isInRange(T value, T min, T max, T err) {
     return value >= min - err && value <= max + err;
 }
+
+template<typename T>
+bool isApproxEqual(T a, T b, T err) {
+    return a <= b + err && a >= b - err;
+}
+
 template<typename T>
 T my_abs(T value) {
     return value > 0 ? value : -value;
 }
 
 consteval float rad2deg(float rad) {
-    return rad*180/my_math::pi;
+    return rad * 180 / my_math::pi;
 }
 consteval float deg2rad(float deg) {
-    return deg*my_math::pi/180;
+    return deg * my_math::pi / 180;
 }
 consteval float scale(float src, float head) {
     return head / src;

@@ -3,9 +3,7 @@
 //
 
 #include "Chassis/Chassis.h"
-#include "RemoteControl/RemoteControl.h"
-
-#if USING_CHASSIS == 1
+#include "Interact/Interact.h"
 
 
 void chassis_w_callback(KeyEventType event) {
@@ -75,17 +73,14 @@ void chassis_d_callback(KeyEventType event) {
 void chassis_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-//            if (chassis.mode == chassis_dep::Follow) {
-//                chassis.mode = chassis_dep::Work;
-//            } else {
-//                chassis.mode = chassis_dep::Follow;
-//            }
+            if (interact.chassis.mode != interact_dep::chassis_mode::ALL) {
+                interact.chassis.mode = interact_dep::chassis_mode::ALL;
+            } else {
+                interact.chassis.mode = interact_dep::chassis_mode::NONE;
+            }
             break;
         default:
             break;
 
     }
 }
-
-
-#endif

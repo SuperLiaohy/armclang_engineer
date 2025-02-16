@@ -38,23 +38,7 @@ namespace roboarm_dep {
         float speed;
     };
 
-    template<uint32_t n>
-    struct Action {
-        joint_target target[n] {};
-        Slope slope;
 
-        explicit Action(float step = 3, float dead_zone = 0.1) : slope(step, dead_zone) {};
-    };
-
-    template<uint32_t n>
-    struct Actions {
-        Action<n> joint1;
-        Action<n> joint2;
-        Action<n> joint3;
-        Action<n> joint4;
-        Action<n> joint5;
-        Action<n> joint6;
-    };
 
     struct target {
         joint_target joint1;

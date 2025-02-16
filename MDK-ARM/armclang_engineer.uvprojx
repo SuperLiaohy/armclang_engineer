@@ -1101,6 +1101,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\CallBack\UARTCallback.cpp</FilePath>
             </File>
+            <File>
+              <FileName>KeyCallback.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\CallBack\KeyCallback.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2723,6 +2728,11 @@
               <FileName>UARTCallback.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\CallBack\UARTCallback.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>KeyCallback.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\CallBack\KeyCallback.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -100,10 +100,10 @@ struct Key {
     uint8_t lastState; //1/0为按下/松开
     uint32_t startPressTime;
 
-    explicit Key(uint32_t clickTime = 100, uint32_t longPressTime = 1000)
+    explicit Key(uint32_t clickTime = 75, uint32_t longPressTime = 1000)
             : clickDelayTime(clickTime), longPressTime(longPressTime), state(), lastState(0), startPressTime(0) {}
 };
-void KeyBoardRegister(Key *keyList, uint16_t key, KeyCombineType combine, KeyCallbackFunc callback);
+void KeyBoardRegister(Key *keyList, uint32_t key, KeyCombineType combine, KeyCallbackFunc callback);
 void KeyBoardUpdate(Key *keyList, KeyBoard& key_board);
 #define KEY_NUM 18
 //extern Key keyList[KEY_NUM];

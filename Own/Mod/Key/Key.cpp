@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
 
-void KeyBoardRegister(Key *keyList, uint16_t key, KeyCombineType combine,
+void KeyBoardRegister(Key *keyList, uint32_t key, KeyCombineType combine,
                       KeyCallbackFunc callback) {
     for (uint8_t index = 0; index < KEY_NUM; index++) {
         if (key & (0x01 << index)) {

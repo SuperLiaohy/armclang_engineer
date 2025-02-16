@@ -26,6 +26,10 @@ public:
         s = state::close;
     };
 
+    void toggle() {
+        s = state (1 - static_cast<uint8_t>(s));
+        pin.Toggle();
+    };
 private:
     io pin;
     state s;

@@ -731,8 +731,8 @@ armclang_engineer/chassistask.o: \
   ..\USB_DEVICE\Target\usbd_conf.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\roboarm_dep.h \
-  ..\Own\Mod\Matrix\Matrix.h \
+  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Mod\Crc\Crc.h \
+  ..\Own\Obj\RoboArm\roboarm_dep.h ..\Own\Mod\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -759,5 +759,4 @@ armclang_engineer/chassistask.o: \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\M2006.h \
   ..\Own\App\Motor\dmMotor.h ..\Own\App\Motor\lkMotor.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Mod\Crc\Crc.h \
-  ..\Own\Mod\Vofa\vofa.h
+  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Mod\Vofa\vofa.h

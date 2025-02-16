@@ -304,11 +304,8 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\Bsp\Uart\SuperUart.h ..\Core\Inc\usart.h \
   ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\Mod\Slope\Slope.h \
   ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
-  ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
-  ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Mod\Crc\Crc.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
+  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Mod\Key\Key.h \
+  ..\Own\Mod\Crc\Crc.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\predicate_traits.h \
@@ -760,5 +757,8 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Own\Obj\Chassis\Chassis.h ..\Own\Obj\Chassis\chassis_dep.h \
-  ..\Own\Obj\Share\Share.h ..\Own\OperateSystem\ThreadConfig.h
+  ..\Own\App\RemoteControl\RemoteControl.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Core\Inc\tim.h ..\Own\Obj\Chassis\Chassis.h \
+  ..\Own\Obj\Chassis\chassis_dep.h ..\Own\Obj\Share\Share.h \
+  ..\Own\OperateSystem\ThreadConfig.h

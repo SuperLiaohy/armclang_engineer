@@ -732,8 +732,9 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\Bsp\GPIO\SuperGPIO.h ..\Core\Inc\gpio.h \
   ..\Own\OperateSystem\Heap\CustomHeap.h \
   ..\Own\OperateSystem\Heap\rtx_lib.h ..\Own\Obj\Interact\Interact.h \
-  ..\Own\Obj\Interact\interact_dep.h ..\Own\Obj\RoboArm\RoboArm.h \
-  ..\Own\Obj\RoboArm\roboarm_dep.h ..\Own\Mod\Matrix\Matrix.h \
+  ..\Own\Obj\Interact\interact_dep.h ..\Own\App\ImageTrans\ImageTrans.h \
+  ..\Own\Mod\Crc\Crc.h ..\Own\Obj\RoboArm\roboarm_dep.h \
+  ..\Own\Mod\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -760,7 +761,7 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\M2006.h \
   ..\Own\App\Motor\dmMotor.h ..\Own\App\Motor\lkMotor.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Mod\Crc\Crc.h \
-  ..\Own\App\RGBLED\RGBLED.h ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h \
-  ..\Own\App\W25Q64\W25Q64.h ..\Core\Inc\octospi.h ..\Own\App\Imu\Imu.h \
+  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\App\RGBLED\RGBLED.h \
+  ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h ..\Own\App\W25Q64\W25Q64.h \
+  ..\Core\Inc\octospi.h ..\Own\App\Imu\Imu.h \
   ..\Own\App\Judge\referee_system.h ..\Own\App\Pump\Pump.h

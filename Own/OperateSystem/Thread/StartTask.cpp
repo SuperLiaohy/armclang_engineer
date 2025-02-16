@@ -17,6 +17,8 @@
 #include "Interact/Interact.h"
 #include "Pump/Pump.h"
 
+void air_left_callback(KeyEventType event);
+void air_right_callback(KeyEventType event);
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -30,10 +32,18 @@ extern osThreadId ERROR_TASKHandle;
 void StartTask() {
     /* 使能两个24V 和 5V*/
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_SET);
+//    power_24v_left.WriteDown();
     /* USB初始化 */
     MX_USB_DEVICE_Init();
+
+    test_actions.joint1.data[0].angle = 0;
+    test_actions.joint2.data[1].angle = 0;
+    test_actions.joint3.data[2].angle = 0;
+    test_actions.joint4.data[3].angle = 0;
+    test_actions.joint5.data[4].angle = 0;
+    test_actions.joint6.data[5].angle = 0;
 
     pump.close();
 
@@ -50,6 +60,11 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_A, CombineKey_None, chassis_a_callback);
     KeyBoardRegister(interact.keyList, Key_S, CombineKey_None, chassis_s_callback);
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_None, chassis_d_callback);
+    KeyBoardRegister(interact.keyList, Key_Q, CombineKey_None, chassis_q_callback);
+    KeyBoardRegister(interact.keyList, Key_Left, CombineKey_None, air_left_callback);
+    interact.keyList[16].longPressTime = 100;
+    KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
+    interact.keyList[17].longPressTime = 5000;
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
 
