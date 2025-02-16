@@ -107,17 +107,18 @@ void RemoteCtrlTask() {
             xEventGroupSetBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT);
             xEventGroupWaitBits(osEventGroup, LK_RELETIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
 
-            bool is_next = true;
-            is_next = isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.receive_data.joint1.angle * scale(65536, 360), 5);
-            is_next = is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.receive_data.joint2.angle * scale(65536, 360), 5);
-            is_next = is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.receive_data.joint3.angle * scale(65536, 360), 5);
-            is_next = is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.receive_data.joint4.angle * scale(65536, 360), 5);
-            is_next = is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.receive_data.joint5.angle * scale(8192, 360), 5);
-            is_next = is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.totalRoll * scale(8192, 360), 5);
+            if (interact.robo_arm.mode == interact_dep::robo_mode::ACTIONS) {
+                bool is_next = true;
+                is_next = isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.actions->joint1.data[interact.actions->now].angle, 1);
+                is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint2, interact.actions->joint2.data[interact.actions->now].angle, 1));
+                is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint3, interact.actions->joint3.data[interact.actions->now].angle, 1));
+                is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint4, interact.actions->joint4.data[interact.actions->now].angle, 1));
+                is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint5, interact.actions->joint5.data[interact.actions->now].angle, 1));
+                is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint6, interact.actions->joint6.data[interact.actions->now].angle, 1));
+                interact.receive_actions(is_next);
+            }
 
 
-
-            interact.receive_actions(is_next);
             interact.update_chassis(chassis);
             interact.update_roboArm(roboArm);
             if (interact.path == interact_dep::path::IMAGE_TRANSMIT && interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM && interact.kb == interact_dep::kb_state::DISABLE) {

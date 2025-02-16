@@ -33,3 +33,31 @@ void air_right_callback(KeyEventType event) {
             break;
     }
 }
+
+void robo_arm_e_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+        case KeyEvent_OnClick:
+            test_actions.now = 0;
+            interact.actions = &test_actions;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            break;
+        default:
+            break;
+    }
+}
+
+void robo_arm_shift_e_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
+            break;
+        default:
+            break;
+    }
+}
+

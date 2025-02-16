@@ -108,12 +108,12 @@ bool isInRange(T value, T min, T max) {
 }
 template<typename T>
 bool isInRange(T value, T min, T max, T err) {
-    return value >= min - err && value <= max + err;
+    return (value >= min - err) && (value <= max + err);
 }
 
 template<typename T>
 bool isApproxEqual(T a, T b, T err) {
-    return a <= b + err && a >= b - err;
+    return (a <= b + err) && (a >= b - err);
 }
 
 template<typename T>

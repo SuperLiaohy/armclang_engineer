@@ -345,6 +345,7 @@ void RoboArm::load_target(Interact &inter) {
         case interact_dep::robo_mode::VISION:
         case interact_dep::robo_mode::CUSTOM:
         case interact_dep::robo_mode::RESET:
+        case interact_dep::robo_mode::ACTIONS:
             target.joint1.angle = (inter.receive_data.joint1.angle * b22d + offset.joint1) * scale(360, 36000);
 //            target.joint2.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2) * scale(360, 36000);
             target.joint2.internal.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2.internal) * scale(360, 36000);

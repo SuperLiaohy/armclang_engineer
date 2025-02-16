@@ -121,7 +121,7 @@ void Interact::receive_reset(RoboArm& Arm) {
     using namespace roboarm_dep;
     receive_data.joint4.angle = joint_scale(0, 360, 65536);
     receive_data.joint3.angle = joint_scale(135, 360, 65536);
-    receive_data.joint2.angle = joint_scale(-80, 360, 65536);
+    receive_data.joint2.angle = joint_scale(-50, 360, 65536);
     receive_data.joint1.angle = joint_scale(0, 360, 65536);
     totalRoll                 = joint_scale(0, 360, 8192);
     receive_data.joint5.angle = joint_scale(-90, 360, 8192);
@@ -249,8 +249,8 @@ void Interact::receive_actions(bool is_next) {
             receive_data.joint2.angle = actions->joint2.data[actions->now].angle * scale(360, 65536);
             receive_data.joint3.angle = actions->joint3.data[actions->now].angle * scale(360, 65536);
             receive_data.joint4.angle = actions->joint4.data[actions->now].angle * scale(360, 65536);
-            receive_data.joint5.angle = actions->joint5.data[actions->now].angle * scale(360, 65536);
-            totalRoll                 = actions->joint1.data[actions->now].angle * scale(360, 65536);
+            receive_data.joint5.angle = actions->joint5.data[actions->now].angle * scale(360, 8192);
+            totalRoll                 = actions->joint6.data[actions->now].angle * scale(360, 8192);
             if (is_next)
                 actions->now += 1;
         }

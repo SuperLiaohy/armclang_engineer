@@ -19,6 +19,10 @@
 
 void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);
+
+void robo_arm_e_callback(KeyEventType event);
+void robo_arm_shift_e_callback(KeyEventType event);
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -39,11 +43,35 @@ void StartTask() {
     MX_USB_DEVICE_Init();
 
     test_actions.joint1.data[0].angle = 0;
-    test_actions.joint2.data[1].angle = 0;
+    test_actions.joint2.data[0].angle = -50;
+    test_actions.joint3.data[0].angle = 135;
+    test_actions.joint4.data[0].angle = 0;
+    test_actions.joint5.data[0].angle = -90;
+    test_actions.joint6.data[0].angle = 0;
+
+
+    test_actions.joint1.data[1].angle = 0;
+    test_actions.joint2.data[1].angle = -25;
+    test_actions.joint3.data[1].angle = 75;
+    test_actions.joint4.data[1].angle = 0;
+    test_actions.joint5.data[1].angle = -70;
+    test_actions.joint6.data[1].angle = 0;
+
+
+    test_actions.joint1.data[2].angle = 0;
+    test_actions.joint2.data[2].angle = -0;
     test_actions.joint3.data[2].angle = 0;
+    test_actions.joint4.data[2].angle = 0;
+    test_actions.joint5.data[2].angle = -30;
+    test_actions.joint6.data[2].angle = 0;
+
+    test_actions.joint1.data[3].angle = 0;
+    test_actions.joint2.data[3].angle = 30;
+    test_actions.joint3.data[3].angle = -30;
     test_actions.joint4.data[3].angle = 0;
-    test_actions.joint5.data[4].angle = 0;
-    test_actions.joint6.data[5].angle = 0;
+    test_actions.joint5.data[3].angle = -0;
+    test_actions.joint6.data[3].angle = 0;
+
 
     pump.close();
 
@@ -65,6 +93,9 @@ void StartTask() {
     interact.keyList[16].longPressTime = 100;
     KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
     interact.keyList[17].longPressTime = 5000;
+    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
+    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
+    interact.keyList[7].longPressTime = 5000;
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
 
