@@ -204,16 +204,16 @@ void Interact::update_chassis(Chassis &cha) {
     switch (chassis.mode) {
         case interact_dep::chassis_mode::ALL:
             switch (kb) {
-                case interact_dep::key_board::LOST:
+                case interact_dep::kb_state::LOST:
                     cha.move.xSlope.target_set(0);
                     cha.move.ySlope.target_set(0);
                     break;
-                case interact_dep::key_board::RC_ENABLE:
-                case interact_dep::key_board::IM_ENABLE:
+                case interact_dep::kb_state::RC_ENABLE:
+                case interact_dep::kb_state::IM_ENABLE:
                     cha.move.xSlope.target_set(max.vx * static_cast<float>((cha.key.d + cha.key.a)));
                     cha.move.ySlope.target_set(max.vy * static_cast<float>((cha.key.w + cha.key.s)));
                     break;
-                case interact_dep::key_board::DISABLE:
+                case interact_dep::kb_state::DISABLE:
                     cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
                     cha.move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
                     cha.move.extendSlope.target_set(addSpeed(remote_control.rcInfo.ch2, max.vy));
@@ -223,16 +223,16 @@ void Interact::update_chassis(Chassis &cha) {
             break;
         case interact_dep::chassis_mode::NORMAL:
             switch (kb) {
-                case interact_dep::key_board::LOST:
+                case interact_dep::kb_state::LOST:
                     cha.move.xSlope.target_set(0);
                     cha.move.ySlope.target_set(0);
                     break;
-                case interact_dep::key_board::RC_ENABLE:
-                case interact_dep::key_board::IM_ENABLE:
+                case interact_dep::kb_state::RC_ENABLE:
+                case interact_dep::kb_state::IM_ENABLE:
                     cha.move.xSlope.target_set(max.vx * static_cast<float>((cha.key.d + cha.key.a)));
                     cha.move.ySlope.target_set(max.vy * static_cast<float>((cha.key.w + cha.key.s)));
                     break;
-                case interact_dep::key_board::DISABLE:
+                case interact_dep::kb_state::DISABLE:
                     cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
                     cha.move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
                     cha.move.wSlope.target_set(0);

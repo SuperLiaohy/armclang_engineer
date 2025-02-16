@@ -38,12 +38,12 @@ void RemoteCtrlTask() {
                 }
             } else {
                 if (interact.remote_control.rcInfo.wheel > 500) {
-                    interact.kb = interact_dep::key_board::RC_ENABLE;
+                    interact.kb = interact_dep::kb_state::RC_ENABLE;
                 } else if (interact.remote_control.rcInfo.wheel < -500) {
-                    interact.kb = interact_dep::key_board::DISABLE;
+                    interact.kb = interact_dep::kb_state::DISABLE;
                 }
             }
-            if (interact.kb == interact_dep::key_board::DISABLE) {
+            if (interact.kb == interact_dep::kb_state::DISABLE) {
                 switch (interact.remote_control.rcInfo.right) {
                     case 1:
                         switch (interact.remote_control.rcInfo.left) {
@@ -109,7 +109,7 @@ void RemoteCtrlTask() {
 
             interact.update_chassis(chassis);
             interact.update_roboArm(roboArm);
-            if (interact.path == interact_dep::path::IMAGE_TRANSMIT && interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM && interact.kb == interact_dep::key_board::DISABLE) {
+            if (interact.path == interact_dep::path::IMAGE_TRANSMIT && interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM && interact.kb == interact_dep::kb_state::DISABLE) {
                 if (interact.remote_control.rcInfo.ch1 > 500)
                     interact.image_trans.set_map_back(1);
                 else if (interact.remote_control.rcInfo.ch1 < -500)

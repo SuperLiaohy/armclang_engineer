@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
 
-void KeyBoardRegister(uint16_t key, KeyCombineType combine,
+void KeyBoardRegister(Key *keyList, uint16_t key, KeyCombineType combine,
                       KeyCallbackFunc callback) {
     for (uint8_t index = 0; index < KEY_NUM; index++) {
         if (key & (0x01 << index)) {
@@ -25,7 +25,7 @@ void KeyBoardRegister(uint16_t key, KeyCombineType combine,
     }
 }
 
-void KeyBoardUpdate() {
+void KeyBoardUpdate(Key *keyList, KeyBoard& key_board) {
     static uint32_t lastUpdateTime;
     uint32_t presentTime = HAL_GetTick();
 

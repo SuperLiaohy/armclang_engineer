@@ -103,9 +103,9 @@ struct Key {
     explicit Key(uint32_t clickTime = 100, uint32_t longPressTime = 1000)
             : clickDelayTime(clickTime), longPressTime(longPressTime), state(), lastState(0), startPressTime(0) {}
 };
-void KeyBoardRegister(uint16_t key, KeyCombineType combine, KeyCallbackFunc callback);
-void KeyBoardUpdate();
+void KeyBoardRegister(Key *keyList, uint16_t key, KeyCombineType combine, KeyCallbackFunc callback);
+void KeyBoardUpdate(Key *keyList, KeyBoard& key_board);
 #define KEY_NUM 18
-extern Key keyList[KEY_NUM];
-extern KeyBoard key_board;
+//extern Key keyList[KEY_NUM];
+//extern KeyBoard key_board;
 #endif //ARMCLANG_ENGINEER_KEY_H

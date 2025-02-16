@@ -13,7 +13,7 @@ class Interact {
 
 public:
     Interact(const uint8_t &head, const uint8_t &tail, UART_HandleTypeDef *uart_rc, UART_HandleTypeDef *uart_im)
-            : kb {interact_dep::key_board::DISABLE},
+            : kb {interact_dep::kb_state::DISABLE},
               robo_arm{interact_dep::robo_mode::NORMAL, interact_dep::robo_mode::NONE},
               chassis{interact_dep::chassis_mode::ALL, interact_dep::chassis_mode::ALL}, remote_control(uart_rc),
               head(head), tail(tail), image_trans(uart_im) {
@@ -31,7 +31,8 @@ public:
 
     ImageTrans image_trans;
 
-
+    Key keyList[18];
+    KeyBoard key_board;
 
     class PC {
     public:
@@ -41,7 +42,7 @@ public:
     } pc;
 
     interact_dep::path path;
-    interact_dep::key_board kb;
+    interact_dep::kb_state kb;
 
     struct {
         interact_dep::robo_mode mode;

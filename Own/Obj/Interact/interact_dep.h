@@ -28,7 +28,7 @@ namespace interact_dep {
         PC,
     };
 
-    enum class key_board : uint8_t {
+    enum class kb_state : uint8_t {
         LOST,
         DISABLE,
         RC_ENABLE,

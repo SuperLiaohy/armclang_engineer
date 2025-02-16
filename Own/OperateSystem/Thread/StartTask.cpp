@@ -46,10 +46,10 @@ void StartTask() {
     canPlus2.can_start();
     /* 遥控器初始化 */
     interact.remote_control.detect.lostFun = &remote_ctrl_recover;
-    KeyBoardRegister(Key_W, CombineKey_None, chassis_w_callback);
-    KeyBoardRegister(Key_A, CombineKey_None, chassis_a_callback);
-    KeyBoardRegister(Key_S, CombineKey_None, chassis_s_callback);
-    KeyBoardRegister(Key_D, CombineKey_None, chassis_d_callback);
+    KeyBoardRegister(interact.keyList, Key_W, CombineKey_None, chassis_w_callback);
+    KeyBoardRegister(interact.keyList, Key_A, CombineKey_None, chassis_a_callback);
+    KeyBoardRegister(interact.keyList, Key_S, CombineKey_None, chassis_s_callback);
+    KeyBoardRegister(interact.keyList, Key_D, CombineKey_None, chassis_d_callback);
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
 

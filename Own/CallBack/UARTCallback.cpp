@@ -50,7 +50,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
 #if USING_UART_IDLE
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (huart == interact.remote_control.uartPlus.uart) {
-        interact.remote_control.update();
+        interact.remote_control.update(interact.key_board);
         if (cnt++ > 5) {
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);

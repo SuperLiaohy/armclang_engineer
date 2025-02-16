@@ -104,7 +104,7 @@ Imu imu(MEASURE_DISABLE);
 
 Interact interact(0xFF, 0xFE, &huart5, &huart10);
 
-Key keyList[KEY_NUM];
-KeyBoard key_board;
+//Key keyList[KEY_NUM];
+//KeyBoard key_board;
 
 Pump<SuperGPIO<GPIOA_BASE,OUTPUT,GPIO_PIN_0>> pump;

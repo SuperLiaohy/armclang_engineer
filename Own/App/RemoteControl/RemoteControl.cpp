@@ -4,7 +4,7 @@
 
 #include "RemoteControl.h"
 
-void RemoteControl::update() {
+void RemoteControl::update(KeyBoard& key_board) {
     auto buff = uartPlus.rx_buffer;
 
     rcInfo.ch1 = static_cast<int16_t>(((buff[0] | buff[1] << 8) & 0x07FF) - 1024);
