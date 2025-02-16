@@ -1,6 +1,6 @@
 armclang_engineer/doublebuffer.o: \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.cpp \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.cpp \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \

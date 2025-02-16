@@ -1,5 +1,5 @@
-armclang_engineer/crc.o: ..\Own\Moudle\Crc\Crc.cpp \
-  ..\Own\Moudle\Crc\Crc.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\cstdint \
+armclang_engineer/crc.o: ..\Own\Mod\Crc\Crc.cpp ..\Own\Mod\Crc\Crc.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\cstdint \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__verbose_abort \

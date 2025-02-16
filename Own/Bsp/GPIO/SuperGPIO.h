@@ -1,21 +1,30 @@
 //
 // Created by liaohy on 8/30/24.
 //
-
-#ifndef NONE_PRJ_SUPERGPIO_H
-#define NONE_PRJ_SUPERGPIO_H
+#pragma once
 
 #include "concepts"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include "gpio.h"
-
 #ifdef __cplusplus
 }
 #endif
+
+template<typename T>
+concept is_io = requires(T t, int32_t value) {
+    typename T::state;
+    requires requires {
+        t.WriteUp();
+        t.WriteDown();
+        t.Write(value);
+        t.Toggle();
+    } || requires {
+        { t.Read() } -> std::same_as<typename T::state>;
+    };
+};
 
 enum pin_mode {
     INPUT = 0,
@@ -31,13 +40,16 @@ constexpr uint32_t gpio_map_offset(uint32_t gpio) {
 }
 
 constexpr uint32_t gpio_map(uint32_t gpio) {
-    return GPIO_BASE + (gpio-GPIO_BASE) * sizeof(GPIO_TypeDef);
+    return GPIO_BASE + (gpio - GPIO_BASE) * sizeof(GPIO_TypeDef);
 }
 
 template<uint32_t gpio, pin_mode mode, uint16_t pin>
 class SuperGPIO {
 public:
-    SuperGPIO()  = default;
+    using state = GPIO_PinState;
+public:
+    SuperGPIO() = default;
+
     ~SuperGPIO() = default;
 
     inline void WriteUp()
@@ -52,7 +64,7 @@ public:
     void Toggle()
         requires(mode == OUTPUT || mode == OPEN_DRAIN);
 
-    GPIO_PinState Read()
+    state Read()
         requires(mode == INPUT);
 
     friend void ::HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
@@ -90,11 +102,9 @@ void SuperGPIO<gpio, mode, pin>::Toggle()
 }
 
 template<uint32_t gpio, pin_mode mode, uint16_t pin>
-GPIO_PinState SuperGPIO<gpio, mode, pin>::Read()
+SuperGPIO<gpio, mode, pin>::state SuperGPIO<gpio, mode, pin>::Read()
     requires(mode == INPUT)
 {
     return HAL_GPIO_ReadPin(
         reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin);
 }
-
-#endif //NONE_PRJ_SUPERGPIO_H

@@ -1,2 +1,2 @@
-armclang_engineer/slope.o: ..\Own\Moudle\Slope\Slope.cpp \
-  ..\Own\Moudle\Slope\Slope.h
+armclang_engineer/slope.o: ..\Own\Mod\Slope\Slope.cpp \
+  ..\Own\Mod\Slope\Slope.h

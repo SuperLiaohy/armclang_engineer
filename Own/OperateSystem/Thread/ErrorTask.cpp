@@ -38,7 +38,7 @@ void ErrorTask() {
 //        roboArm.disable();
         roboArm.close();
 
-        Led.SetColor_Hal(red * 255,0,0);
+        Led.SetColor(red * 255,0,0);
 //        HAL_UART_Transmit(&huart10,(uint8_t*)"hello world\n", 12, 0xffff);
         HAL_Delay(50);
         ErrorHeapCnt = uxTaskGetStackHighWaterMark(NULL);

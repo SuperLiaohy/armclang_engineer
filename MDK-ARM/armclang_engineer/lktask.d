@@ -223,13 +223,12 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Moudle\Vofa\vofa.h ..\Own\App\Motor\lkMotor.h \
+  ..\Own\Mod\Vofa\vofa.h ..\Own\App\Motor\lkMotor.h \
   ..\Own\App\Motor\FeedBack.h ..\Own\Bsp\CAN\SuperCan.h \
-  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Moudle\Pid\DoublePid.h \
-  ..\Own\Moudle\Pid\pid.h ..\Own\Moudle\Detect\Detect.h \
-  ..\Own\Moudle\Detect\DetectManager.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp \
+  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\Pid\DoublePid.h \
+  ..\Own\Mod\Pid\pid.h ..\Own\Mod\Detect\Detect.h \
+  ..\Own\Mod\Detect\DetectManager.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Motor\Motor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
@@ -264,7 +263,7 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   ..\Core\Inc\usart.h D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\Bsp\CDC\SuperCDC.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\Bsp\CDC\SuperCDC.h \
   ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
@@ -273,7 +272,7 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\App\Imu\Imu.h ..\Core\Inc\tim.h ..\Own\Obj\RoboArm\RoboArm.h \
-  ..\Own\Obj\RoboArm\roboarm_dep.h ..\Own\Moudle\Matrix\Matrix.h \
+  ..\Own\Obj\RoboArm\roboarm_dep.h ..\Own\Mod\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -301,13 +300,13 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\M2006.h ..\Own\App\Motor\M3508.h \
-  ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
-  ..\Own\Moudle\Slope\Slope.h ..\Own\Obj\Interact\Interact.h \
+  ..\Own\App\Motor\dmMotor.h ..\Own\Mod\MyMath\MyMath.h \
+  ..\Own\Mod\Slope\Slope.h ..\Own\Obj\Interact\Interact.h \
   ..\Own\Obj\Interact\interact_dep.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
-  ..\Own\Moudle\Key\Key.h ..\Own\App\ImageTrans\ImageTrans.h \
-  ..\Own\Moudle\Crc\Crc.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
+  ..\Own\Mod\Key\Key.h ..\Own\App\ImageTrans\ImageTrans.h \
+  ..\Own\Mod\Crc\Crc.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\predicate_traits.h \

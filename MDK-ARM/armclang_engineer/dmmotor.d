@@ -210,12 +210,11 @@ armclang_engineer/dmmotor.o: ..\Own\App\Motor\dmMotor.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Motor\Motor.h \
-  ..\Own\App\Motor\FeedBack.h ..\Own\Moudle\Pid\DoublePid.h \
-  ..\Own\Moudle\Pid\pid.h ..\Own\Moudle\Detect\Detect.h \
-  ..\Own\Moudle\Detect\DetectManager.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp \
+  ..\Own\Mod\MyMath\MyMath.h ..\Own\App\Motor\Motor.h \
+  ..\Own\App\Motor\FeedBack.h ..\Own\Mod\Pid\DoublePid.h \
+  ..\Own\Mod\Pid\pid.h ..\Own\Mod\Detect\Detect.h \
+  ..\Own\Mod\Detect\DetectManager.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
@@ -244,4 +243,4 @@ armclang_engineer/dmmotor.o: ..\Own\App\Motor\dmMotor.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
-  ..\Own\Moudle\MyMath\\MyMath.h
+  ..\Own\Mod\MyMath\\MyMath.h

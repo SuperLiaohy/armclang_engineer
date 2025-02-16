@@ -1,6 +1,6 @@
 armclang_engineer/remotecontrol.o: \
   ..\Own\App\RemoteControl\RemoteControl.cpp \
-  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Moudle\Detect\Detect.h \
+  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Mod\Detect\Detect.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
@@ -210,9 +210,8 @@ armclang_engineer/remotecontrol.o: \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Moudle\Detect\DetectManager.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp \
+  ..\Own\Mod\Detect\DetectManager.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
   ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
@@ -220,7 +219,7 @@ armclang_engineer/remotecontrol.o: \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
   ..\Core\Inc\tim.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
@@ -236,4 +235,4 @@ armclang_engineer/remotecontrol.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Moudle\Key\Key.h
+  ..\Own\Mod\Key\Key.h

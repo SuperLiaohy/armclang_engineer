@@ -224,5 +224,5 @@ armclang_engineer/imutask.o: ..\Own\OperateSystem\Thread\IMUTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\App\Imu\Imu.h ..\Core\Inc\tim.h ..\Core\Inc\main.h \
-  ..\Own\Moudle\Pid\pid.h ..\Own\App\W25Q64\W25Q64.h \
-  ..\Core\Inc\octospi.h ..\Own\OperateSystem\ThreadConfig.h
+  ..\Own\Mod\Pid\pid.h ..\Own\App\W25Q64\W25Q64.h ..\Core\Inc\octospi.h \
+  ..\Own\OperateSystem\ThreadConfig.h

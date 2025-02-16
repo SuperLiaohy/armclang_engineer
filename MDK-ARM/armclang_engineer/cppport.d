@@ -251,13 +251,12 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
   ..\Core\Inc\gpio.h ..\Own\Obj\Interact\interact.h \
-  ..\Own\Obj\Interact\interact_dep.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp \
-  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Moudle\Detect\Detect.h \
-  ..\Own\Moudle\Detect\DetectManager.h \
+  ..\Own\Obj\Interact\interact_dep.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\CustomList\CustomList.tpp \
+  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Mod\Detect\Detect.h \
+  ..\Own\Mod\Detect\DetectManager.h \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
-  ..\Core\Inc\usart.h ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
+  ..\Core\Inc\usart.h ..\Own\Mod\DoubleBuffer\DoubleBuffer.h \
   ..\Own\App\Buzzer\Buzzer.h ..\Core\Inc\tim.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
@@ -273,8 +272,8 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Moudle\Key\Key.h ..\Own\Obj\RoboArm\RoboArm.h \
-  ..\Own\Obj\RoboArm\roboarm_dep.h ..\Own\Moudle\Matrix\Matrix.h \
+  ..\Own\Mod\Key\Key.h ..\Own\Obj\RoboArm\RoboArm.h \
+  ..\Own\Obj\RoboArm\roboarm_dep.h ..\Own\Mod\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -303,12 +302,12 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\FeedBack.h \
   ..\Own\Bsp\CAN\SuperCan.h ..\Core\Inc\fdcan.h \
-  ..\Own\Moudle\Pid\DoublePid.h ..\Own\Moudle\Pid\pid.h \
+  ..\Own\Mod\Pid\DoublePid.h ..\Own\Mod\Pid\pid.h \
   ..\Own\App\Motor\Motor.h ..\Own\App\Motor\M2006.h \
   ..\Own\App\Motor\M3508.h ..\Own\App\Motor\dmMotor.h \
-  ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Motor\lkMotor.h \
-  ..\Own\Moudle\Slope\Slope.h ..\Own\App\ImageTrans\ImageTrans.h \
-  ..\Own\Moudle\Crc\Crc.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
+  ..\Own\Mod\MyMath\MyMath.h ..\Own\App\Motor\lkMotor.h \
+  ..\Own\Mod\Slope\Slope.h ..\Own\App\ImageTrans\ImageTrans.h \
+  ..\Own\Mod\Crc\Crc.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\predicate_traits.h \

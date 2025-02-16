@@ -153,7 +153,24 @@
           <Name>-U-O142 -O2254 -S0 -C0 -N00("ARM CoreSight SW-DP") -D00(5BA02477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC1000 -FN1 -FF0STM32H72x-73x_1024.FLM -FS08000000 -FL0100000 -FP0($$Device:STM32H723VGTx$CMSIS\Flash\STM32H72x-73x_1024.FLM)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>60</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134282626</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Own\CallBack\UARTCallback.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\armclang_engineer\../Own/CallBack/UARTCallback.cpp\60</Expression>
+        </Bp>
+      </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -179,6 +196,11 @@
           <count>4</count>
           <WinNumber>1</WinNumber>
           <ItemText>cmd_id</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Led</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -468,7 +490,7 @@
 
   <Group>
     <GroupName>Application/MDK-ARM</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -488,7 +510,7 @@
 
   <Group>
     <GroupName>Application/User/Core</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -676,7 +698,7 @@
 
   <Group>
     <GroupName>Application/User/USB_DEVICE/App</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1244,7 +1266,7 @@
 
   <Group>
     <GroupName>Middlewares/USB_Device_Library</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1592,7 +1614,7 @@
 
   <Group>
     <GroupName>Own/Callback</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1659,7 +1681,7 @@
   </Group>
 
   <Group>
-    <GroupName>Own/Moudle</GroupName>
+    <GroupName>Own/Mod</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -1671,7 +1693,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Crc\Crc.cpp</PathWithFileName>
+      <PathWithFileName>..\Own\Mod\Crc\Crc.cpp</PathWithFileName>
       <FilenameWithoutPath>Crc.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1683,7 +1705,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Detect\Detect.cpp</PathWithFileName>
+      <PathWithFileName>..\Own\Mod\Detect\Detect.cpp</PathWithFileName>
       <FilenameWithoutPath>Detect.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1695,7 +1717,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Detect\DetectManager.cpp</PathWithFileName>
+      <PathWithFileName>..\Own\Mod\Detect\DetectManager.cpp</PathWithFileName>
       <FilenameWithoutPath>DetectManager.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1707,7 +1729,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\DoubleBuffer\DoubleBuffer.cpp</PathWithFileName>
+      <PathWithFileName>..\Own\Mod\DoubleBuffer\DoubleBuffer.cpp</PathWithFileName>
       <FilenameWithoutPath>DoubleBuffer.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1719,7 +1741,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Filter\Filter.cpp</PathWithFileName>
+      <PathWithFileName>..\Own\Mod\Filter\Filter.cpp</PathWithFileName>
       <FilenameWithoutPath>Filter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1731,7 +1753,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Filter\RoundQueue.cpp</PathWithFileName>
+      <PathWithFileName>..\Own\Mod\Filter\RoundQueue.cpp</PathWithFileName>
       <FilenameWithoutPath>RoundQueue.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1743,8 +1765,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Matrix\Matrix.cpp</PathWithFileName>
-      <FilenameWithoutPath>Matrix.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\Mod\Key\Key.cpp</PathWithFileName>
+      <FilenameWithoutPath>Key.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1755,8 +1777,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\MyMath\MyMath.cpp</PathWithFileName>
-      <FilenameWithoutPath>MyMath.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\Mod\Matrix\Matrix.cpp</PathWithFileName>
+      <FilenameWithoutPath>Matrix.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1767,8 +1789,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Pid\DoublePid.cpp</PathWithFileName>
-      <FilenameWithoutPath>DoublePid.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\Mod\MyMath\MyMath.cpp</PathWithFileName>
+      <FilenameWithoutPath>MyMath.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1779,8 +1801,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Pid\pid.cpp</PathWithFileName>
-      <FilenameWithoutPath>pid.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\Mod\Pid\DoublePid.cpp</PathWithFileName>
+      <FilenameWithoutPath>DoublePid.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1791,8 +1813,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Slope\Slope.cpp</PathWithFileName>
-      <FilenameWithoutPath>Slope.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\Mod\Pid\pid.cpp</PathWithFileName>
+      <FilenameWithoutPath>pid.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1803,8 +1825,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\Moudle\Key\Key.cpp</PathWithFileName>
-      <FilenameWithoutPath>Key.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\Mod\Slope\Slope.cpp</PathWithFileName>
+      <FilenameWithoutPath>Slope.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1812,7 +1834,7 @@
 
   <Group>
     <GroupName>Own/Obj</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1960,7 +1982,7 @@
 
   <Group>
     <GroupName>Own/OperateSystem/Task</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

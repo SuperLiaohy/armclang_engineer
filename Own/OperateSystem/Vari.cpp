@@ -22,6 +22,7 @@
 #include <Imu/Imu.h>
 #include "ImageTrans/ImageTrans.h"
 #include "Judge/referee_system.h"
+#include "Pump/Pump.h"
 
 __attribute__((section(".DTCMRAM"))) uint64_t DTCMUsed[8 * 1024 / 8];
 __attribute__((section(".RAM_D1"))) uint64_t D1Used[8 * 1024 / 8];
@@ -101,7 +102,9 @@ Imu imu(MEASURE_DISABLE);
 
 //ImageTrans image_trans(&huart10);
 
-Interact interact(0xFF, 0xFE, &huart5, &huart1);
+Interact interact(0xFF, 0xFE, &huart5, &huart10);
 
 Key keyList[KEY_NUM];
 KeyBoard key_board;
+
+Pump<SuperGPIO<GPIOA_BASE,OUTPUT,GPIO_PIN_0>> pump;

@@ -238,10 +238,10 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\App\Motor\Motor.h ..\Own\App\Motor\FeedBack.h \
   ..\Own\Bsp\CAN\SuperCan.h ..\Core\Inc\fdcan.h \
-  ..\Own\Moudle\Pid\DoublePid.h ..\Own\Moudle\Pid\pid.h \
-  ..\Own\Moudle\Detect\Detect.h ..\Own\Moudle\Detect\DetectManager.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp \
+  ..\Own\Mod\Pid\DoublePid.h ..\Own\Mod\Pid\pid.h \
+  ..\Own\Mod\Detect\Detect.h ..\Own\Mod\Detect\DetectManager.h \
+  ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
@@ -272,7 +272,7 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
   ..\Own\App\Motor\lkMotor.h ..\Own\App\Motor\M2006.h \
   ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\roboarm_dep.h \
-  ..\Own\Moudle\Matrix\Matrix.h \
+  ..\Own\Mod\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -300,14 +300,14 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\M3508.h \
-  ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
+  ..\Own\App\Motor\dmMotor.h ..\Own\Mod\MyMath\MyMath.h \
   ..\Own\Bsp\Uart\SuperUart.h ..\Core\Inc\usart.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\Moudle\Slope\Slope.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\Mod\Slope\Slope.h \
   ..\Own\Obj\Interact\Interact.h ..\Own\Obj\Interact\interact_dep.h \
   ..\Own\App\RemoteControl\RemoteControl.h \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
-  ..\Core\Inc\tim.h ..\Own\Moudle\Key\Key.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
+  ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.h \
+  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Mod\Crc\Crc.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \

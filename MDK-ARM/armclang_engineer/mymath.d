@@ -1,2 +1,2 @@
-armclang_engineer/mymath.o: ..\Own\Moudle\MyMath\MyMath.cpp \
-  ..\Own\Moudle\MyMath\MyMath.h
+armclang_engineer/mymath.o: ..\Own\Mod\MyMath\MyMath.cpp \
+  ..\Own\Mod\MyMath\MyMath.h

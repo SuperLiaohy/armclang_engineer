@@ -1,2 +1,1 @@
-armclang_engineer/pid.o: ..\Own\Moudle\Pid\pid.cpp \
-  ..\Own\Moudle\Pid\pid.h
+armclang_engineer/pid.o: ..\Own\Mod\Pid\pid.cpp ..\Own\Mod\Pid\pid.h

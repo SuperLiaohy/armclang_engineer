@@ -29,30 +29,23 @@ public:
               red(0), green(0), blue(0) {}
 
     void SetColor(uint8_t _red, uint8_t _green, uint8_t _blue);
-    void SetColor_Hal(uint8_t _red, uint8_t _green, uint8_t _blue);
 
     void SetColor(uint32_t color);
-    void SetColor_Hal(uint32_t color);
 
     void SetColor();
-    void SetColor_Hal();
 
     void update();
 
 private:
-    uint8_t res = 0;
+    void delay(uint32_t ms) {
+        osDelay(ms);
+    }
 
     uint8_t txbuf[24]{};
 
     SuperSPI spiPlus;
 
     void load();
-
-    void load_hal();
-
-    static void delay(uint32_t time) {
-        osDelay(time);
-    }
 
     uint8_t red;
     uint8_t green;
@@ -61,19 +54,12 @@ private:
 inline void RGBLED::SetColor() {
     load();
 }
-inline void RGBLED::SetColor_Hal() {
-    load_hal();
-}
 
 inline void RGBLED::update() {
     SetColor();
     red++;
     green += 5;
     blue += 10;
-    delay(1);
-    red++;
-    green++;
-    blue++;
     delay(100);
 }
 

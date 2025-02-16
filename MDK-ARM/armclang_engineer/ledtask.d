@@ -223,10 +223,9 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Moudle\Detect\Detect.h \
-  ..\Own\Moudle\Detect\DetectManager.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp \
+  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Mod\Detect\Detect.h \
+  ..\Own\Mod\Detect\DetectManager.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
   ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
@@ -234,6 +233,6 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
-  ..\Core\Inc\tim.h ..\Own\Moudle\Key\Key.h ..\Own\App\RGBLED\RGBLED.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.h ..\Own\App\RGBLED\RGBLED.h \
   ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h

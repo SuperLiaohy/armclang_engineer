@@ -21,7 +21,7 @@ public:
 
     void Write(uint8_t *pData, uint16_t Size);
     void WriteIT(uint8_t *pData, uint16_t Size);
-    void WriteDMA(uint8_t *pData, uint16_t Size);
+    void WriteDMA(const uint8_t *pData, uint16_t Size);
 
     void Read(uint8_t *pData, uint16_t Size);
     void ReadIT(uint8_t *pData, uint16_t Size);

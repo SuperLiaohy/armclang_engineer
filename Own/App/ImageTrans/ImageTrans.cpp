@@ -18,7 +18,7 @@ extern osThreadId IMAGEATRANS_TASHandle;
 using namespace crc;
 
 void ImageTrans::update() {
-//    key_board.mouse = 0;
+//    kb.mouse = 0;
     auto buff = uartPlus.rx_buffer;
 
     if (buff[0] == image_trans_dep::SOF && verify_crc8_check_sum(buff, 5)) {

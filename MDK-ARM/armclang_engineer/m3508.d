@@ -210,7 +210,7 @@ armclang_engineer/m3508.o: ..\Own\App\Motor\M3508.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Moudle\Pid\DoublePid.h ..\Own\Moudle\Pid\pid.h \
-  ..\Own\Moudle\Detect\Detect.h ..\Own\Moudle\Detect\DetectManager.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp
+  ..\Own\Mod\Pid\DoublePid.h ..\Own\Mod\Pid\pid.h \
+  ..\Own\Mod\Detect\Detect.h ..\Own\Mod\Detect\DetectManager.h \
+  ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\CustomList\CustomList.tpp

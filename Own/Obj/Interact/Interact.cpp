@@ -203,7 +203,7 @@ void Interact::update_chassis(Chassis &cha) {
     using namespace my_math;
     switch (chassis.mode) {
         case interact_dep::chassis_mode::ALL:
-            switch (key_board) {
+            switch (kb) {
                 case interact_dep::key_board::LOST:
                     cha.move.xSlope.target_set(0);
                     cha.move.ySlope.target_set(0);
@@ -222,7 +222,7 @@ void Interact::update_chassis(Chassis &cha) {
             }
             break;
         case interact_dep::chassis_mode::NORMAL:
-            switch (key_board) {
+            switch (kb) {
                 case interact_dep::key_board::LOST:
                     cha.move.xSlope.target_set(0);
                     cha.move.ySlope.target_set(0);

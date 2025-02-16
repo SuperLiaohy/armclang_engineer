@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32H723xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../USB_DEVICE/App;../USB_DEVICE/Target;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../Own/App;../Own/App/Imu/BMI088/inc;../Own/Bsp;../Own/Moudle;../Own/Obj;../Own/OperateSystem</IncludePath>
+              <IncludePath>../Core/Inc;../USB_DEVICE/App;../USB_DEVICE/Target;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../Own/App;../Own/App/Imu/BMI088/inc;../Own/Bsp;../Own/Mod;../Own/Obj;../Own/OperateSystem</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1104,7 +1104,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Own/Moudle</GroupName>
+          <GroupName>Own/Mod</GroupName>
           <GroupOption>
             <CommonProperty>
               <UseCPPCompiler>0</UseCPPCompiler>
@@ -1178,62 +1178,62 @@
             <File>
               <FileName>Crc.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Crc\Crc.cpp</FilePath>
+              <FilePath>..\Own\Mod\Crc\Crc.cpp</FilePath>
             </File>
             <File>
               <FileName>Detect.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Detect\Detect.cpp</FilePath>
+              <FilePath>..\Own\Mod\Detect\Detect.cpp</FilePath>
             </File>
             <File>
               <FileName>DetectManager.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Detect\DetectManager.cpp</FilePath>
+              <FilePath>..\Own\Mod\Detect\DetectManager.cpp</FilePath>
             </File>
             <File>
               <FileName>DoubleBuffer.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\DoubleBuffer\DoubleBuffer.cpp</FilePath>
+              <FilePath>..\Own\Mod\DoubleBuffer\DoubleBuffer.cpp</FilePath>
             </File>
             <File>
               <FileName>Filter.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Filter\Filter.cpp</FilePath>
+              <FilePath>..\Own\Mod\Filter\Filter.cpp</FilePath>
             </File>
             <File>
               <FileName>RoundQueue.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Filter\RoundQueue.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Matrix.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Matrix\Matrix.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MyMath.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\MyMath\MyMath.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>DoublePid.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Pid\DoublePid.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>pid.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Pid\pid.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Slope.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Slope\Slope.cpp</FilePath>
+              <FilePath>..\Own\Mod\Filter\RoundQueue.cpp</FilePath>
             </File>
             <File>
               <FileName>Key.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Key\Key.cpp</FilePath>
+              <FilePath>..\Own\Mod\Key\Key.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Matrix.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Matrix\Matrix.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MyMath.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\MyMath\MyMath.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DoublePid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Pid\DoublePid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>pid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Pid\pid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Slope.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Slope\Slope.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2722,7 +2722,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Own/Moudle</GroupName>
+          <GroupName>Own/Mod</GroupName>
           <GroupOption>
             <CommonProperty>
               <UseCPPCompiler>0</UseCPPCompiler>
@@ -2796,62 +2796,62 @@
             <File>
               <FileName>Crc.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Crc\Crc.cpp</FilePath>
+              <FilePath>..\Own\Mod\Crc\Crc.cpp</FilePath>
             </File>
             <File>
               <FileName>Detect.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Detect\Detect.cpp</FilePath>
+              <FilePath>..\Own\Mod\Detect\Detect.cpp</FilePath>
             </File>
             <File>
               <FileName>DetectManager.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Detect\DetectManager.cpp</FilePath>
+              <FilePath>..\Own\Mod\Detect\DetectManager.cpp</FilePath>
             </File>
             <File>
               <FileName>DoubleBuffer.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\DoubleBuffer\DoubleBuffer.cpp</FilePath>
+              <FilePath>..\Own\Mod\DoubleBuffer\DoubleBuffer.cpp</FilePath>
             </File>
             <File>
               <FileName>Filter.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Filter\Filter.cpp</FilePath>
+              <FilePath>..\Own\Mod\Filter\Filter.cpp</FilePath>
             </File>
             <File>
               <FileName>RoundQueue.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Filter\RoundQueue.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Matrix.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Matrix\Matrix.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MyMath.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\MyMath\MyMath.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>DoublePid.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Pid\DoublePid.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>pid.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Pid\pid.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Slope.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Slope\Slope.cpp</FilePath>
+              <FilePath>..\Own\Mod\Filter\RoundQueue.cpp</FilePath>
             </File>
             <File>
               <FileName>Key.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\Moudle\Key\Key.cpp</FilePath>
+              <FilePath>..\Own\Mod\Key\Key.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Matrix.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Matrix\Matrix.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MyMath.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\MyMath\MyMath.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DoublePid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Pid\DoublePid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>pid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Pid\pid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Slope.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Slope\Slope.cpp</FilePath>
             </File>
           </Files>
         </Group>

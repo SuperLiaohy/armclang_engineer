@@ -69,7 +69,7 @@ include_directories(
         "Own/App"
         "Own/App/Imu/BMI088/inc"
         "Own/Bsp"
-        "Own/Moudle"
+        "Own/Mod"
         "Own/Obj"
         "Own/OperateSystem")
 
@@ -83,7 +83,7 @@ file(GLOB_RECURSE SOURCES
         "USB_DEVICE/Target/*.c"
         "Middlewares/Third_Party/FreeRTOS/Source/*.c"
         "Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/*.c"
-        "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/*.c"
+        "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c"
         "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/*.c"
         "Middlewares/ST/STM32_USB_Device_Library/Core/Src/*.c"
         "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/*.c"
@@ -93,7 +93,7 @@ file(GLOB_RECURSE OWN_SOURCES
         "Own/CallBack/*.c" "Own/CallBack/*.cpp"
         "Own/App/*.c" "Own/App/*.cpp"
         "Own/Bsp/*.c" "Own/Bsp/*.cpp"
-        "Own/Moudle/*.c" "Own/Moudle/*.cpp"
+        "Own/Mod/*.c" "Own/Mod/*.cpp"
         "Own/Obj/*.c" "Own/Obj/*.cpp"
         "Own/OperateSystem/*.c" "Own/OperateSystem/*.cpp"
 )

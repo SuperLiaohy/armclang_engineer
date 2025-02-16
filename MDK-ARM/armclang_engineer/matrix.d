@@ -1,5 +1,5 @@
-armclang_engineer/matrix.o: ..\Own\Moudle\Matrix\Matrix.cpp \
-  ..\Own\Moudle\Matrix\Matrix.h \
+armclang_engineer/matrix.o: ..\Own\Mod\Matrix\Matrix.cpp \
+  ..\Own\Mod\Matrix\Matrix.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \

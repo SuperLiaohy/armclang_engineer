@@ -15,6 +15,7 @@
 #include "RGBLED/RGBLED.h"
 #include "ThreadConfig.h"
 #include "Interact/Interact.h"
+#include "Pump/Pump.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,6 +34,8 @@ void StartTask() {
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_SET);
     /* USB初始化 */
     MX_USB_DEVICE_Init();
+
+    pump.close();
 
     /* W25Q64初始化 */
     w25q64.init();

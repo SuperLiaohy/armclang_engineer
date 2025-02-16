@@ -214,6 +214,6 @@ armclang_engineer/superuart.o: ..\Own\Bsp\Uart\SuperUart.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h \
   ..\Own\OperateSystem\Heap\CustomHeap.h \
   ..\Own\OperateSystem\Heap\rtx_lib.h

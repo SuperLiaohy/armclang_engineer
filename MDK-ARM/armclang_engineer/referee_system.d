@@ -215,4 +215,4 @@ armclang_engineer/referee_system.o: ..\Own\App\Judge\referee_system.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\Moudle\Crc\Crc.h
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\Mod\Crc\Crc.h

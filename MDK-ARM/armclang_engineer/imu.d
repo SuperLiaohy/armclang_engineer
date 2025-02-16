@@ -1,5 +1,5 @@
 armclang_engineer/imu.o: ..\Own\App\Imu\Imu.cpp \
-  ..\Own\Moudle\MyMath\MyMath.h ..\Own\App\Imu\BMI088\inc\BMI088driver.h \
+  ..\Own\Mod\MyMath\MyMath.h ..\Own\App\Imu\BMI088\inc\BMI088driver.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\stdint.h ..\Core\Inc\main.h \
@@ -240,4 +240,4 @@ armclang_engineer/imu.o: ..\Own\App\Imu\Imu.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Imu\Mahony\MahonyAHRS.h ..\Core\Inc\tim.h ..\Core\Inc\adc.h \
-  ..\Own\App\Imu\Imu.h ..\Own\Moudle\Pid\pid.h
+  ..\Own\App\Imu\Imu.h ..\Own\Mod\Pid\pid.h

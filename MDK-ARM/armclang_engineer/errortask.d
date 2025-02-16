@@ -1,5 +1,5 @@
 armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
-  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Moudle\Detect\Detect.h \
+  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Mod\Detect\Detect.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
@@ -209,9 +209,8 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Moudle\Detect\DetectManager.h \
-  ..\Own\Moudle\CustomList\CustomList.h \
-  ..\Own\Moudle\CustomList\CustomList.tpp \
+  ..\Own\Mod\Detect\DetectManager.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
   ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
@@ -219,7 +218,7 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Moudle\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
   ..\Core\Inc\tim.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
@@ -235,13 +234,12 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Moudle\Key\Key.h ..\Own\App\RGBLED\RGBLED.h \
+  ..\Own\Mod\Key\Key.h ..\Own\App\RGBLED\RGBLED.h \
   ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h \
   ..\Own\OperateSystem\Thread\CppTask.h ..\Own\Bsp\CAN\SuperCan.h \
   ..\Core\Inc\fdcan.h ..\Own\App\Motor\Motor.h \
-  ..\Own\App\Motor\FeedBack.h ..\Own\Moudle\Pid\DoublePid.h \
-  ..\Own\Moudle\Pid\pid.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
+  ..\Own\App\Motor\FeedBack.h ..\Own\Mod\Pid\DoublePid.h \
+  ..\Own\Mod\Pid\pid.h D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_unsigned_integer.h \
@@ -271,7 +269,7 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
   ..\Own\App\Motor\M2006.h ..\Own\App\Motor\lkMotor.h \
   ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\RoboArm\roboarm_dep.h \
-  ..\Own\Moudle\Matrix\Matrix.h \
+  ..\Own\Mod\Matrix\Matrix.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -299,8 +297,8 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\GM6020.h ..\Own\App\Motor\M3508.h \
-  ..\Own\App\Motor\dmMotor.h ..\Own\Moudle\MyMath\MyMath.h \
-  ..\Own\Moudle\Slope\Slope.h ..\Own\Obj\Interact\interact.h \
+  ..\Own\App\Motor\dmMotor.h ..\Own\Mod\MyMath\MyMath.h \
+  ..\Own\Mod\Slope\Slope.h ..\Own\Obj\Interact\interact.h \
   ..\Own\Obj\Interact\interact_dep.h ..\Own\Bsp\CDC\SuperCDC.h \
   ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
@@ -309,7 +307,7 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\USB_DEVICE\Target\usbd_conf.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Moudle\Crc\Crc.h \
+  ..\Own\App\ImageTrans\ImageTrans.h ..\Own\Mod\Crc\Crc.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
