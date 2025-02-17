@@ -118,8 +118,9 @@ void RemoteCtrlTask() {
                 interact.receive_actions(is_next);
             }
 
-
+            // 判断了kb
             interact.update_chassis(chassis);
+            // 还无判断kb
             interact.update_roboArm(roboArm);
             if (interact.path == interact_dep::path::IMAGE_TRANSMIT && interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM && interact.kb == interact_dep::kb_state::DISABLE) {
                 if (interact.remote_control.rcInfo.ch1 > 500)

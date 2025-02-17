@@ -22,7 +22,8 @@ void air_right_callback(KeyEventType event);
 
 void robo_arm_e_callback(KeyEventType event);
 void robo_arm_shift_e_callback(KeyEventType event);
-
+void robo_arm_shift_q_callback(KeyEventType event);
+void robo_arm_shift_c_callback(KeyEventType event);
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -82,13 +83,15 @@ void StartTask() {
     canPlus2.filter_config(1);
     canPlus1.can_start();
     canPlus2.can_start();
-    /* 遥控器初始化 */
+    /* 遥控器和键鼠初始化 */
+    // 键鼠默认配置uint32_t clickTime = 75, uint32_t longPressTime = 1000
     interact.remote_control.detect.lostFun = &remote_ctrl_recover;
     KeyBoardRegister(interact.keyList, Key_W, CombineKey_None, chassis_w_callback);
     KeyBoardRegister(interact.keyList, Key_A, CombineKey_None, chassis_a_callback);
     KeyBoardRegister(interact.keyList, Key_S, CombineKey_None, chassis_s_callback);
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_None, chassis_d_callback);
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_None, chassis_q_callback);
+    KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Shift, robo_arm_shift_q_callback);
     KeyBoardRegister(interact.keyList, Key_Left, CombineKey_None, air_left_callback);
     interact.keyList[16].longPressTime = 100;
     KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
@@ -96,6 +99,7 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
     interact.keyList[7].longPressTime = 5000;
+    KeyBoardRegister(interact.keyList, Key_C, CombineKey_Shift, robo_arm_shift_c_callback);
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
 
@@ -130,8 +134,6 @@ void StartTask() {
     /* 读取电机的偏移量，来判断offset是否需要减少360 */
     roboArm.init_offset(interact);
 //    xSemaphoreGive(CAN1MutexHandle);
-
-
 
     /* 闪烁灯初始化 (暂无)*/
 

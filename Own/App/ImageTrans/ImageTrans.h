@@ -69,8 +69,8 @@ public:
     }
 
     void set_map_back(uint8_t is_able) { custom_tx_frame.s.enable_map_back = is_able; };
-
-    uint8_t read_map_back() { return custom_tx_frame.s.enable_map_back; };
+    void toggle_map_back() { custom_tx_frame.s.enable_map_back = 1 - custom_tx_frame.s.enable_map_back; };
+    [[nodiscard]] uint8_t read_map_back() const { return custom_tx_frame.s.enable_map_back; };
 
     void transmit();
 

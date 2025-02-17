@@ -54,7 +54,34 @@ void robo_arm_shift_e_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
-            interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
+            interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+            break;
+        default:
+            break;
+    }
+}
+
+void robo_arm_shift_q_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnClick:
+            if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
+                interact.path = interact_dep::path::IMAGE_TRANSMIT;
+                interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
+            } else {
+                interact.path = interact_dep::path::REMOTE_CTRL;
+                interact.chassis.mode = interact_dep::chassis_mode::NONE;
+            }
+            break;
+        default:
+            break;
+
+    }
+}
+
+void robo_arm_shift_c_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnClick:
+            interact.image_trans.toggle_map_back();
             break;
         default:
             break;
