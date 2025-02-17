@@ -2,20 +2,20 @@
 // Created by liaohy on 24-11-15.
 //
 
-#include "CppTask.h"
-#include "RoboArm/RoboArm.h"
-#include <Motor/lkMotor.h>
-#include <Motor/GM6020.h>
 #include "Buzzer/Buzzer.h"
-#include "Detect/Detect.h"
 #include "CAN/SuperCan.h"
 #include "Chassis/Chassis.h"
-#include "RemoteControl/RemoteControl.h"
-#include "W25Q64/W25Q64.h"
-#include "RGBLED/RGBLED.h"
-#include "ThreadConfig.h"
+#include "CppTask.h"
+#include "Detect/Detect.h"
 #include "Interact/Interact.h"
 #include "Pump/Pump.h"
+#include "RGBLED/RGBLED.h"
+#include "RemoteControl/RemoteControl.h"
+#include "RoboArm/RoboArm.h"
+#include "ThreadConfig.h"
+#include "W25Q64/W25Q64.h"
+#include <Motor/GM6020.h>
+#include <Motor/lkMotor.h>
 
 void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);
@@ -33,13 +33,12 @@ extern osThreadId ERROR_TASKHandle;
 }
 #endif
 
-
 void StartTask() {
     /* 使能两个24V 和 5V*/
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_SET);
-//    power_24v_left.WriteDown();
+    //    power_24v_left.WriteDown();
     /* USB初始化 */
     MX_USB_DEVICE_Init();
 
@@ -50,14 +49,12 @@ void StartTask() {
     test_actions.joint5.data[0].angle = -90;
     test_actions.joint6.data[0].angle = 0;
 
-
     test_actions.joint1.data[1].angle = 0;
     test_actions.joint2.data[1].angle = -25;
     test_actions.joint3.data[1].angle = 75;
     test_actions.joint4.data[1].angle = 0;
     test_actions.joint5.data[1].angle = -70;
     test_actions.joint6.data[1].angle = 0;
-
 
     test_actions.joint1.data[2].angle = 0;
     test_actions.joint2.data[2].angle = -0;
@@ -72,7 +69,6 @@ void StartTask() {
     test_actions.joint4.data[3].angle = 0;
     test_actions.joint5.data[3].angle = -0;
     test_actions.joint6.data[3].angle = 0;
-
 
     pump.close();
 
@@ -112,7 +108,7 @@ void StartTask() {
     chassis.extend.left.motor.init(15, 0, 4, 8000, 16000, 19.2);
     /* 机械臂电机初始化 */
     roboArm.joint1.motor.init(&canPlus1, 10);
-//    roboArm.joint2.motor.init(&canPlus1,6);
+    //    roboArm.joint2.motor.init(&canPlus1,6);
     roboArm.joint2.internal.motor.init(&canPlus1, 6);
     roboArm.joint2.external.motor.init(&canPlus1, 6);
     roboArm.joint3.motor.init(&canPlus1, 6);
@@ -127,22 +123,22 @@ void StartTask() {
 
     test_motor.motor.init(0.6f, 0.01f, 0.1f, 500.f, 500.0f,
                           5, 0.05f, 1, 900, 900);
-    /* 机械臂电机使能 */
-    roboArm.enable();
-
-//    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    /* 读取电机的偏移量，来判断offset是否需要减少360 */
-    roboArm.init_offset(interact);
-//    xSemaphoreGive(CAN1MutexHandle);
-
-    /* 闪烁灯初始化 (暂无)*/
 
     /* 蜂鸣器初始化 */
     buzzer.Start();
-
     /* 判断急停 */
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
-//    /* 判断can线上的设备是否初始化完毕 */
+
+    /* 机械臂电机使能 */
+    // enable 内部是先失能再使能
+    roboArm.enable();
+
+    /* 读取电机的偏移量，来判断offset是否需要减少360 */
+    roboArm.init_offset(interact);
+
+    /* 闪烁灯初始化 (暂无)*/
+
+    /* 判断can线上的设备是否初始化完毕 */
     xEventGroupSetBits(osEventGroup, CAN_RECEIVE_EVENT);
     xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     /* 机械臂的差分器初始化 */

@@ -33,8 +33,6 @@ public:
             joint2{Motor<lkMotor>(id2_internal, range2_internal), Motor<lkMotor>(id2_external, range2_external)},
               joint3(id3, range3), joint4(id4, range4), offset{offset} {};
 
-    void updateArm();
-
     void enable();
 
     void disable();

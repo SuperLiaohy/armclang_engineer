@@ -9,12 +9,15 @@ namespace roboarm_dep {
         float left_dPos = 0;
         float right_dPos = 0;
         uint32_t cnt = 0;
+        float left_target = 0;
+        float right_target = 0;
         while (1) {
+            left.motor.doublePid.update(left.feed_back.totalPosition, roboArm.target.joint5.angle, left.feed_back.Data.speed);
+            right.motor.doublePid.update(right.feed_back.totalPosition, roboArm.target.joint6.angle, right.feed_back.Data.speed);
 
             canPlus1.write(-4000, 4000, 0, 0);
             canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
 
-            //            int32_t left_dPos = 0;
             HAL_Delay(1);
             left_dPos = left.feed_back.Data.position - left.feed_back.Data.lastPosition;
             if (left_dPos > 180) {
