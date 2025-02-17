@@ -126,10 +126,6 @@ void Interact::receive_reset(RoboArm& Arm) {
     totalRoll                 = joint_scale(0, 360, 8192);
     receive_data.joint5.angle = joint_scale(-90, 360, 8192);
 
-    //    Arm.target.joint4.angle = Arm.offset.joint4 * 100;
-    //    Arm.target.joint3.angle = (Arm.offset.joint3 - 135) * 100;
-    //    Arm.target.joint2.angle = (Arm.offset.joint2 - 80) * 100;
-    //    Arm.target.joint1.angle = Arm.offset.joint1 * 100;
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     Arm.diff.init();
     xSemaphoreGive(CAN1MutexHandle);
@@ -179,7 +175,9 @@ void Interact::update_roboArm(RoboArm& Arm) {
             receive_xyz(Arm);
             break;
         case interact_dep::robo_mode::RESET:
-            receive_reset(Arm);
+            if (robo_arm.last_mode != interact_dep::robo_mode::RESET) {
+                receive_reset(Arm);
+            }
             break;
         case interact_dep::robo_mode::VISION:
             break;

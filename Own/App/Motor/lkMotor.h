@@ -45,7 +45,7 @@ public:
     lkMotor(uint16_t id)
         : id(id) {
         };
-    uint8_t voltage = 0;
+    uint16_t voltage = 0;
     uint8_t error   = 0;
 
     foc_pid_t foc_pid {};
@@ -102,6 +102,8 @@ public:
     void writeROMPid();
 
     void read_error();
+
+    void clear_error();
 
 private:
     uint8_t id;
@@ -198,6 +200,7 @@ void Motor<MOTOR>::readData(uint8_t* data)
             motor.offset_flag       = 1;
         } break;
         case 0x9a:
+        case 0x9b:
             feed_back.RawData.temperature = data[1];
             feed_back.Data.temperature    = data[1];
             motor.voltage                 = *(uint16_t*)(&data[3]) * 0.1;

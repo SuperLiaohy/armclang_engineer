@@ -88,3 +88,14 @@ void robo_arm_shift_c_callback(KeyEventType event) {
     }
 }
 
+void robo_arm_shift_f_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            interact.robo_arm.mode = interact_dep::robo_mode::RESET;
+            break;
+        default:
+            break;
+    }
+}

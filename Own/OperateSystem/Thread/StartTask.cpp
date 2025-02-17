@@ -24,6 +24,7 @@ void robo_arm_e_callback(KeyEventType event);
 void robo_arm_shift_e_callback(KeyEventType event);
 void robo_arm_shift_q_callback(KeyEventType event);
 void robo_arm_shift_c_callback(KeyEventType event);
+void robo_arm_shift_f_callback(KeyEventType event);
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -96,6 +97,7 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
     interact.keyList[7].longPressTime = 5000;
     KeyBoardRegister(interact.keyList, Key_C, CombineKey_Shift, robo_arm_shift_c_callback);
+    KeyBoardRegister(interact.keyList, Key_R, CombineKey_Shift, robo_arm_shift_f_callback);
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
 

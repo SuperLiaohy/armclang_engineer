@@ -106,6 +106,11 @@ void lkMotor::read_error() {
     superCan->send(id + Motor<lkMotor>::foc.TX_LOW_ID, data);
 }
 
+void lkMotor::clear_error() {
+    uint8_t data[8] = {0x9b, 0, 0, 0, 0, 0, 0, 0};
+    superCan->send(id + Motor<lkMotor>::foc.TX_LOW_ID, data);
+}
+
 void lkMotor::read_totalposition() {
     uint8_t data[8] = {0x92, 0, 0, 0, 0, 0, 0, 0};
     superCan->send(id + Motor<lkMotor>::foc.TX_LOW_ID, data);

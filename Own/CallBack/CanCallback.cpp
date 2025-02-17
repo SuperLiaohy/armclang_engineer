@@ -42,9 +42,6 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint3.feed_back.id) {
             roboArm.joint3.readData(canPlus1.rx_data);
         }
-//        else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.feed_back.id) {
-//            roboArm.joint2.readData(canPlus1.rx_data);
-//        }
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.internal.feed_back.id) {
             roboArm.joint2.internal.readData(canPlus1.rx_data);
         }
@@ -65,10 +62,6 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     } else if (hfdcan == chassis.can->hcan){
         chassis.can->receive();
-
         chassis.UpdateMotor();
-
-
-
     }
 }

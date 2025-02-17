@@ -30,6 +30,11 @@ float right_angle = 0;
 void RoboArm::enable() {
     using namespace roboarm_dep;
     // 先关闭再开启
+    joint1.motor.clear_error();
+    joint2.internal.motor.clear_error();
+    joint2.external.motor.clear_error();
+    joint3.motor.clear_error();
+    joint4.motor.clear_error();
     // 关闭是为了清除多圈状态
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint1.motor.close_flag) {
@@ -70,6 +75,9 @@ void RoboArm::enable() {
 
 
     HAL_Delay(1);
+
+
+
 
     // 以下为开启电机状态
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
@@ -162,16 +170,6 @@ void RoboArm::init_offset(Interact &interaction) {
         joint3.motor.read_totalposition();
         HAL_Delay(1);
     }
-//    for (uint32_t i = 0; i < MaxTimeOut; i++) {
-//        if (joint2.motor.start_flag) {
-//            interaction.receive_data.joint2.angle = joint_scale(-80, 360, 65536);
-//            if (joint2.feed_back.totalPosition < 0) { offset.joint2 -= 360; }
-//            target.joint2.angle = (offset.joint2 - 80) * 100;
-//            break;
-//        }
-//        joint2.motor.read_totalposition();
-//        HAL_Delay(1);
-//    }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.internal.motor.offset_flag) {
             interaction.receive_data.joint2.angle = joint_scale(-50, 360, 65536);
