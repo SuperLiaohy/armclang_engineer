@@ -23,6 +23,7 @@ void OS_ImageTransTask(void const *argument);
 void OS_JudgeTask(void const *argument);
 void OS_TransmitTask(void const *argument);
 void OS_KbTask(void const *argument);
+void OS_UITask(void const *argument);
 #ifdef __cplusplus
 }
 #endif

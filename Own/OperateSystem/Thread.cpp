@@ -160,4 +160,10 @@ void OS_KbTask(void const *argument) {
     KbTask();
 }
 
+void OS_UITask(void const *argument) {
+    UNUSED(argument);
 
+    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+
+    UITask();
+}

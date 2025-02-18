@@ -41,4 +41,5 @@ void ImageTransTask();
 void JudgeTask();
 void TransmitTask();
 void KbTask();
+void UITask();
 #endif //OWN_CPPTASK_H

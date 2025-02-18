@@ -23,6 +23,7 @@
 #include "ImageTrans/ImageTrans.h"
 #include "Judge/referee_system.h"
 #include "Pump/Pump.h"
+#include "Judge/ui.h"
 
 __attribute__((section(".DTCMRAM"))) uint64_t DTCMUsed[8 * 1024 / 8];
 __attribute__((section(".RAM_D1"))) uint64_t D1Used[8 * 1024 / 8];
@@ -111,3 +112,5 @@ Pump<SuperGPIO<GPIOA_BASE,OUTPUT,GPIO_PIN_0>> pump;
 SuperGPIO<GPIOC_BASE,OUTPUT,GPIO_PIN_13> power_24v_left;
 
 interact_dep::Actions test_actions(4);
+
+UI ui(102, 0x0166);

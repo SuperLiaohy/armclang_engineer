@@ -61,11 +61,6 @@ private:
 
 };
 
-void chassis_w_callback(KeyEventType event);
-void chassis_a_callback(KeyEventType event);
-void chassis_s_callback(KeyEventType event);
-void chassis_d_callback(KeyEventType event);
-void chassis_q_callback(KeyEventType event);
 
 extern Chassis chassis;
 

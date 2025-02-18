@@ -1,18 +1,127 @@
-//
-// Created by xuejl on 2024/4/23.
-//
-/* Includes ------------------------------------------------------------------*/
-#include "Judge/ui.h"
+#include "ui.h"
+
+void UI::delete_layer(ui_dep::operate_delete_layer delete_layer, uint8_t layer_id) {
+    interaction_layer_delete_t layer_delete {.delete_type = static_cast<uint8_t>(delete_layer), .layer = layer_id};
+    lock();
+    type = UI::types::DELETE;
+    memcpy(frame.data_frame.user_data, &layer_delete, sizeof(interaction_layer_delete_t));
+    num  = 0;
+    len  = sizeof(interaction_layer_delete_t);
+    sum += len + 15; // 6 + 9
+    unlock();
+}
+
+void UI::operate_str(const uint8_t* name, operation op, uint8_t layer_id, color col, uint16_t font, uint16_t str_len, uint16_t width, uint16_t start_x, uint16_t start_y,const uint8_t* str) {
+    interaction_figure_t string = {
+        .figure_name  = {name[0], name[1], name[2]},
+        .operate_type = static_cast<uint8_t>(op),
+        .figure_type  = static_cast<uint8_t>(UI::graphic::STR),
+        .layer        = layer_id,
+        .color        = static_cast<uint8_t>(col),
+        .details_a    = font,
+        .details_b    = str_len,
+        .width        = width,
+        .start_x      = start_x,
+        .start_y      = start_y,
+    };
+    lock();
+    if (type != UI::types::DELETE) {
+        type = UI::types::STRING;
+        memcpy(&frame.data_frame.user_data[0], &string, sizeof(interaction_figure_t));
+        memcpy(&frame.data_frame.user_data[sizeof(interaction_figure_t)], str, str_len);
+        num  = 0;
+        len  = 45;
+        sum += len + 15;
+    }
+    unlock();
+}
+
+void UI::operate_fig(uint8_t* name, operation op, graphic graph, uint8_t layer_id, color col, uint16_t detail_a, uint16_t detail_b, uint16_t width, uint16_t start_x, uint16_t start_y, uint16_t detail_c, uint16_t detail_d, uint16_t detail_e) {
+    interaction_figure_t fig = {
+        .figure_name  = {name[0], name[1], name[2]},
+        .operate_type = static_cast<uint8_t>(op),
+        .figure_type  = static_cast<uint8_t>(graph),
+        .layer        = layer_id,
+        .color        = static_cast<uint8_t>(col),
+        .details_a    = detail_a,
+        .details_b    = detail_b,
+        .width        = width,
+        .start_x      = start_x,
+        .start_y      = start_y,
+        .details_c    = detail_c,
+        .details_d    = detail_d,
+        .details_e    = detail_e,
+    };
+    lock();
+    if (type == UI::types::FIGURE || type == UI::types::NONE) {
+        type = UI::types::FIGURE;
+        memcpy(&frame.data_frame.user_data[len], &fig, sizeof(interaction_figure_t));
+        ++num;
+        len += sizeof(interaction_figure_t);
+        sum += len + 15;
+    }
+    unlock();
+}
+void UI::add_frame_header() {
+    switch (type) {
+        case UI::types::DELETE:
+            frame.data_frame.data_cmd_id = 0x100;
+            break;
+        case UI::types::STRING:
+            frame.data_frame.data_cmd_id = 0x110;
+            break;
+        case UI::types::FIGURE:
+            switch (num) {
+                case 1:
+                    frame.data_frame.data_cmd_id = 0x101;
+                    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&frame), len + 15);
+                    break;
+                case 2:
+                    frame.data_frame.data_cmd_id = 0x102;
+                    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&frame), len + 15);
+                    break;
+                case 3:
+                    memset(&frame.data_frame.user_data[len], 0, 30);
+                    len+=30;
+                    frame.data_frame.data_cmd_id = 0x103;
+                    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&frame), len + 15);
+                    break;
+                case 4:
+                    memset(&frame.data_frame.user_data[len], 0, 15);
+                    len+=15;
+                    frame.data_frame.data_cmd_id = 0x103;
+                    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&frame), len + 15);
+                    break;
+                case 5:
+                    frame.data_frame.data_cmd_id = 0x103;
+                    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&frame), len + 15);
+                    break;
+                case 6:
+                    memset(&frame.data_frame.user_data[len], 0, 15);
+                    len+=15;
+                    frame.data_frame.data_cmd_id = 0x104;
+                    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&frame), len + 15);
+                    break;
+                case 7:
+                    frame.data_frame.data_cmd_id = 0x104;
+                    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&frame), len + 15);
+                    break;
+            }
+            break;
+    }
+}
+
 #include "Judge/referee_system.h"
+#include "Judge/ui.h"
 
 /* Private macros ------------------------------------------------------------*/
 
 /* Private types -------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
-uint8_t UI_reset_flag = 1;//UI刷新标志
+uint8_t UI_reset_flag = 1; //UI刷新标志
 
-uint8_t UI_tx_buf[300];//UI发送缓冲
+uint8_t UI_tx_buf[300]; //UI发送缓冲
 /* Private function declarations ---------------------------------------------*/
 
 /* Function prototypes -------------------------------------------------------*/
@@ -25,22 +134,21 @@ uint8_t UI_tx_buf[300];//UI发送缓冲
  * @return
  */
 interaction_figure_4_t UI_layer_9;
-void UI_draw_layer_9(void)
-{
-//    uint8_t name1[] = "091";//图片名称，用于标识更改
-//    uint8_t name2[] = "092";
-//    uint8_t name3[] = "093";
-//    uint8_t name4[] = "094";
-//    uint16_t middle_x = 970;
-//
-//    Referee_System.Draw_line(&UI_layer_9.interaction_figure[0],name1,UI_GRAPHIC_ADD,9,UI_COLOR_WHITE,1,middle_x,240,middle_x,560);
-//    Referee_System.Draw_line(&UI_layer_9.interaction_figure[1],name2,UI_GRAPHIC_ADD,9,UI_COLOR_WHITE,1,middle_x-14,512,middle_x+14,512);
-//    Referee_System.Draw_line(&UI_layer_9.interaction_figure[2],name3,UI_GRAPHIC_ADD,9,UI_COLOR_WHITE,1,middle_x-10,500,middle_x+10,500);
-//    Referee_System.Draw_line(&UI_layer_9.interaction_figure[3],name4,UI_GRAPHIC_ADD,9,UI_COLOR_WHITE,1,middle_x-80,461,middle_x+80,461);
-//
-//    memcpy(UI_tx_buf,&UI_layer_9,15*7);
-//    Referee_data_transmit(UI_DATA_DRAW_7, Referee_System.robot_status.robot_id + 256, Referee_System.robot_status.robot_id, UI_tx_buf);
-//    memset(UI_tx_buf,0,sizeof(UI_tx_buf));
+void UI_draw_layer_9(void) {
+    //    uint8_t name1[] = "091";//图片名称，用于标识更改
+    //    uint8_t name2[] = "092";
+    //    uint8_t name3[] = "093";
+    //    uint8_t name4[] = "094";
+    //    uint16_t middle_x = 970;
+    //
+    //    Referee_System.Draw_line(&UI_layer_9.interaction_figure[0],name1,UI_GRAPHIC_ADD,9,UI_COLOR_WHITE,1,middle_x,240,middle_x,560);
+    //    Referee_System.Draw_line(&UI_layer_9.interaction_figure[1],name2,UI_GRAPHIC_ADD,9,UI_COLOR_WHITE,1,middle_x-14,512,middle_x+14,512);
+    //    Referee_System.Draw_line(&UI_layer_9.interaction_figure[2],name3,UI_GRAPHIC_ADD,9,UI_COLOR_WHITE,1,middle_x-10,500,middle_x+10,500);
+    //    Referee_System.Draw_line(&UI_layer_9.interaction_figure[3],name4,UI_GRAPHIC_ADD,9,UI_COLOR_WHITE,1,middle_x-80,461,middle_x+80,461);
+    //
+    //    memcpy(UI_tx_buf,&UI_layer_9,15*7);
+    //    Referee_data_transmit(UI_DATA_DRAW_7, Referee_System.robot_status.robot_id + 256, Referee_System.robot_status.robot_id, UI_tx_buf);
+    //    memset(UI_tx_buf,0,sizeof(UI_tx_buf));
 }
 
 /**

@@ -347,8 +347,8 @@ struct interaction_layer_delete_t
 struct interaction_figure_t
 {
     uint8_t figure_name[3];
-    uint32_t operate_tpye:3;
-    uint32_t figure_tpye:3;
+    uint32_t operate_type:3;
+    uint32_t figure_type:3;
     uint32_t layer:4;
     uint32_t color:4;
     uint32_t details_a:9;

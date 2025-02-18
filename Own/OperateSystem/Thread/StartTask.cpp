@@ -25,6 +25,14 @@ void robo_arm_shift_e_callback(KeyEventType event);
 void robo_arm_shift_q_callback(KeyEventType event);
 void robo_arm_shift_c_callback(KeyEventType event);
 void robo_arm_shift_f_callback(KeyEventType event);
+
+void chassis_w_callback(KeyEventType event);
+void chassis_a_callback(KeyEventType event);
+void chassis_s_callback(KeyEventType event);
+void chassis_d_callback(KeyEventType event);
+void chassis_q_callback(KeyEventType event);
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
