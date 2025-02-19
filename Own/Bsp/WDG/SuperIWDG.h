@@ -1,9 +1,7 @@
 //
 // Created by Administrator on 25-1-15.
 //
-
-#ifndef DM_42_SUPERIWDG_H
-#define DM_42_SUPERIWDG_H
+#pragma once
 
 #define USING_IWDG 0
 #if USING_IWDG == 1
@@ -34,4 +32,3 @@ private:
 }
 #endif
 
-#endif //DM_42_SUPERIWDG_H

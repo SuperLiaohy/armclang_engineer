@@ -1,9 +1,7 @@
 //
 // Created by Administrator on 24-12-6.
 //
-
-#ifndef DM_42_SUPERCDC_H
-#define DM_42_SUPERCDC_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,5 +29,3 @@ public:
 [[gnu::always_inline]]inline void SuperCDC::transmit(uint8_t *data, uint16_t len) {
     CDC_Transmit_HS(data, len);
 }
-
-#endif //DM_42_SUPERCDC_H

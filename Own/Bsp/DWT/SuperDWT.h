@@ -21,10 +21,6 @@ private:
         DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
     }
 
-
-
-
-
 };
 
 

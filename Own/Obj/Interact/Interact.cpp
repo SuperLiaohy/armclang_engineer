@@ -132,7 +132,7 @@ void Interact::receive_reset(RoboArm& Arm) {
 //    xSemaphoreGive(CAN1MutexHandle);
 
 //    interact.path = interact_dep::path::PC;
-    interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
+//    interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
 }
 
 void Interact::receive_custom(uint8_t* data) {
@@ -179,9 +179,9 @@ void Interact::update_roboArm(RoboArm& Arm) {
             receive_xyz(Arm);
             break;
         case interact_dep::robo_mode::RESET:
-            if (robo_arm.last_mode != interact_dep::robo_mode::RESET) {
+//            if (robo_arm.last_mode != interact_dep::robo_mode::RESET) {
                 receive_reset(Arm);
-            }
+//            }
             break;
         case interact_dep::robo_mode::VISION:
             break;

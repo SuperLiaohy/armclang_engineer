@@ -1,9 +1,7 @@
 //
 // Created by Administrator on 24-10-1.
 //
-
-#ifndef DM_42_SUPERSPI_H
-#define DM_42_SUPERSPI_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,4 +29,3 @@ private:
 
 };
 
-#endif //DM_42_SUPERSPI_H

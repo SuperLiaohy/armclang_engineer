@@ -1,10 +1,7 @@
 //
 // Created by liaohy on 9/5/24.
 //
-
-#ifndef NONE_PRJ_SUPERCAN_H
-#define NONE_PRJ_SUPERCAN_H
-
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,7 +12,6 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
 
 enum filter_mode {
     RANGE,
@@ -114,5 +110,3 @@ inline uint8_t* SuperCan::read()  {
 extern SuperCan canPlus1;
 extern SuperCan canPlus2;
 extern SuperCan canPlus3;
-
-#endif //NONE_PRJ_SUPERCAN_H
