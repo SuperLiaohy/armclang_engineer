@@ -742,9 +742,7 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\App\Motor\Motor.h ..\Own\App\Motor\M2006.h \
   ..\Own\App\Motor\M3508.h ..\Own\App\Motor\dmMotor.h \
   ..\Own\Mod\MyMath\MyMath.h ..\Own\App\Motor\lkMotor.h \
-  ..\Own\Mod\Slope\Slope.h ..\Own\App\RemoteControl\RemoteControl.h \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
-  ..\Core\Inc\tim.h \
+  ..\Own\Mod\Slope\Slope.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   ..\Core\Inc\FreeRTOSConfig.h \
@@ -759,6 +757,9 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Obj\RoboArm\RoboArm.h ..\Own\Obj\Chassis\Chassis.h \
-  ..\Own\Obj\Chassis\chassis_dep.h ..\Own\Obj\Share\Share.h \
-  ..\Own\App\W25Q64\W25Q64.h ..\Core\Inc\octospi.h
+  ..\Own\App\RemoteControl\RemoteControl.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\App\Buzzer\Buzzer.h \
+  ..\Core\Inc\tim.h ..\Own\Obj\RoboArm\RoboArm.h \
+  ..\Own\Obj\Chassis\Chassis.h ..\Own\Obj\Chassis\chassis_dep.h \
+  ..\Own\Obj\Share\Share.h ..\Own\App\W25Q64\W25Q64.h \
+  ..\Core\Inc\octospi.h

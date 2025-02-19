@@ -123,12 +123,16 @@ void Interact::receive_reset(RoboArm& Arm) {
     receive_data.joint3.angle = joint_scale(135, 360, 65536);
     receive_data.joint2.angle = joint_scale(-50, 360, 65536);
     receive_data.joint1.angle = joint_scale(0, 360, 65536);
+
     totalRoll                 = joint_scale(0, 360, 8192);
     receive_data.joint5.angle = joint_scale(-90, 360, 8192);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    Arm.diff.init();
-    xSemaphoreGive(CAN1MutexHandle);
+//    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//    Arm.diff.init();
+//    xSemaphoreGive(CAN1MutexHandle);
+
+//    interact.path = interact_dep::path::PC;
+    interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
 }
 
 void Interact::receive_custom(uint8_t* data) {

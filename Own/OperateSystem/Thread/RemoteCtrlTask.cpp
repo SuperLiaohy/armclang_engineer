@@ -20,7 +20,7 @@ extern osThreadId ERROR_TASKHandle;
 #endif
 
 MicroTime kineTime;
-
+extern uint8_t re_flag;
 void RemoteCtrlTask() {
     using namespace my_math;
     using namespace roboarm_dep;
@@ -30,6 +30,7 @@ void RemoteCtrlTask() {
         if (!interact.remote_control.detect.isLost) {
             if (interact.remote_control.rcInfo.right == 2)
                 osThreadResume(ERROR_TASKHandle);
+
             if (interact.remote_control.rcInfo.right == 3 && interact.remote_control.rcInfo.left == 2) {
                 if (interact.remote_control.rcInfo.wheel > 500) {
                     p = interact_dep::path::PC;
@@ -104,7 +105,11 @@ void RemoteCtrlTask() {
 
                 }
             }
+
             xEventGroupSetBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT);
+            if (!re_flag)
+                continue;
+
             xEventGroupWaitBits(osEventGroup, LK_RELETIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
 
             if (interact.robo_arm.mode == interact_dep::robo_mode::ACTIONS) {

@@ -35,7 +35,7 @@ void RoboArm::enable() {
             break;
         }
         joint1.motor.clear_error();
-        HAL_Delay(1);
+        osDelay(1);
     }
 
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
@@ -43,7 +43,7 @@ void RoboArm::enable() {
             break;
         }
         joint2.internal.motor.clear_error();
-        HAL_Delay(1);
+        osDelay(1);
     }
 
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
@@ -51,7 +51,7 @@ void RoboArm::enable() {
             break;
         }
         joint2.external.motor.clear_error();
-        HAL_Delay(1);
+        osDelay(1);
     }
 
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
@@ -59,7 +59,7 @@ void RoboArm::enable() {
             break;
         }
         joint3.motor.clear_error();
-        HAL_Delay(1);
+        osDelay(1);
     }
 
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
@@ -67,7 +67,7 @@ void RoboArm::enable() {
             break;
         }
         joint4.motor.clear_error();
-        HAL_Delay(1);
+        osDelay(1);
     }
 
     // 关闭是为了清除多圈状态
@@ -76,38 +76,38 @@ void RoboArm::enable() {
             break;
         }
         joint1.motor.close();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.internal.motor.close_flag) {
             break;
         }
         joint2.internal.motor.close();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.motor.close_flag) {
             break;
         }
         joint2.external.motor.close();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint3.motor.close_flag) {
             break;
         }
         joint3.motor.close();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint4.motor.close_flag) {
             break;
         }
         joint4.motor.close();
-        HAL_Delay(1);
+        osDelay(1);
     }
 
-    HAL_Delay(1);
+    osDelay(1);
 
     // 以下为开启电机状态
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
@@ -115,35 +115,35 @@ void RoboArm::enable() {
             break;
         }
         joint1.motor.enable();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.internal.motor.start_flag) {
             break;
         }
         joint2.internal.motor.enable();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.motor.start_flag) {
             break;
         }
         joint2.external.motor.enable();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint3.motor.start_flag) {
             break;
         }
         joint3.motor.enable();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint4.motor.start_flag) {
             break;
         }
         joint4.motor.enable();
-        HAL_Delay(1);
+        osDelay(1);
     }
 }
 
@@ -186,7 +186,7 @@ void RoboArm::init_offset(Interact& interaction) {
             break;
         }
         joint4.motor.read_totalposition();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint3.motor.offset_flag) {
@@ -196,7 +196,7 @@ void RoboArm::init_offset(Interact& interaction) {
             break;
         }
         joint3.motor.read_totalposition();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.internal.motor.offset_flag) {
@@ -206,7 +206,7 @@ void RoboArm::init_offset(Interact& interaction) {
             break;
         }
         joint2.internal.motor.read_totalposition();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.motor.offset_flag) {
@@ -216,7 +216,7 @@ void RoboArm::init_offset(Interact& interaction) {
             break;
         }
         joint2.external.motor.read_totalposition();
-        HAL_Delay(1);
+        osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint1.motor.offset_flag) {
@@ -226,7 +226,7 @@ void RoboArm::init_offset(Interact& interaction) {
             break;
         }
         joint1.motor.read_totalposition();
-        HAL_Delay(1);
+        osDelay(1);
     }
 }
 
@@ -441,6 +441,6 @@ void RoboArm::load_target(Interact& inter) {
 }
 
 void RoboArm::load_diff_target(Interact& inter) {
-    target.joint5.angle = (scale_transmit<int64_t, float>(inter.totalRoll + inter.receive_data.joint5.angle, 4096, 180));
-    target.joint6.angle = scale_transmit<int64_t, float>(inter.totalRoll - inter.receive_data.joint5.angle, 4096, 180);
+    target.joint5.angle = (scale_transmit<int64_t, float>(29/17.f*inter.totalRoll + inter.receive_data.joint5.angle, 4096, 180));
+    target.joint6.angle = scale_transmit<int64_t, float>(29/17.f*inter.totalRoll - inter.receive_data.joint5.angle, 4096, 180);
 }

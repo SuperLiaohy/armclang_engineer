@@ -42,7 +42,7 @@ extern osThreadId ERROR_TASKHandle;
 #ifdef __cplusplus
 }
 #endif
-
+uint8_t re_flag = 0;
 void StartTask() {
     /* 使能两个24V 和 5V*/
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
@@ -101,20 +101,6 @@ void StartTask() {
     turn_up.joint5.data[0] = -8.0725; // -90 -> -30
     turn_up.joint6.data[0] = 139.86;  // 0 -> 120
 
-//    turn_up.joint1.data[1] = 0;   // 0 -> 0
-//    turn_up.joint2.data[1] = 56.158;  // 0 -> 57
-//    turn_up.joint3.data[1] = 24.174;  // 70 -> 24
-//    turn_up.joint4.data[1] = 0;   //  0 -> 0
-//    turn_up.joint5.data[1] = 8.460;   //-30 -> 3
-//    turn_up.joint6.data[1] = 139.86; // 120 -> 139.86
-
-//    stretch.joint1.data[2] = 0;
-//    stretch.joint2.data[2] = -0;
-//    stretch.joint3.data[2] = 50;
-//    stretch.joint4.data[2] = 0;
-//    stretch.joint5.data[2] = -45;
-//    stretch.joint6.data[2] = 120;
-
     pump.close();
 
     /* W25Q64初始化 */
@@ -138,12 +124,12 @@ void StartTask() {
     interact.keyList[16].longPressTime = 100;
     KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
     interact.keyList[17].longPressTime = 5000;
-    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
-    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
+//    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
+//    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
     interact.keyList[7].longPressTime = 5000;
     KeyBoardRegister(interact.keyList, Key_C, CombineKey_Shift, robo_arm_shift_c_callback);
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_Shift, robo_arm_shift_r_callback);
-    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
+//    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
 
@@ -192,8 +178,8 @@ void StartTask() {
     /* 机械臂的差分器初始化 */
     roboArm.diff.init();
 
+    re_flag = 1;
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
-
     StartHeapCnt = uxTaskGetStackHighWaterMark(NULL);
     vTaskDelete(NULL);
     while (1) {};

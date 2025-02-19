@@ -201,8 +201,8 @@ void Motor<MOTOR>::readData(uint8_t* data)
             motor.offset_flag       = 1;
         } break;
         case 0x9b:
-            motor.clear_flag = 1;
         case 0x9a:
+            motor.clear_flag = 1;
             feed_back.RawData.temperature = data[1];
             feed_back.Data.temperature    = data[1];
             motor.voltage                 = *(uint16_t*)(&data[3]) * 0.1;

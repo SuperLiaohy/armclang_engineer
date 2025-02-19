@@ -14,6 +14,8 @@ namespace roboarm_dep {
         float limit_time   = 150;
         float left_target  = -0;
         float right_target = 0;
+        left.feed_back.totalPosition = 0;
+        right.feed_back.totalPosition = 0;
         while (1) {
             ++time;
             left_target  -= 1.2;
@@ -63,7 +65,7 @@ namespace roboarm_dep {
             } else {
                 cnt = 0;
             }
-            HAL_Delay(1);
+            osDelay(1);
         }
     }
 

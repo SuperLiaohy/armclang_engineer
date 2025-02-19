@@ -21,8 +21,8 @@ extern "C" {
 #endif
 
 #include "stm32h7xx_hal.h"
+#include "cmsis_os.h"
 #include "arm_math.h"
-//#include "fast_math_functions.h"
 #ifdef __cplusplus
 }
 #endif
@@ -37,8 +37,6 @@ namespace roboarm_dep {
         float angle;
         float speed;
     };
-
-
 
     struct target {
         joint_target joint1;
@@ -146,10 +144,6 @@ namespace roboarm_dep {
         Motor<M2006> right;
         Detect detect;
 
-//    struct offset_t {
-//        uint32_t l;
-//        uint32_t r;
-//    } offset {};
         Differentiator(float gain, uint16_t maxInterval,
                        uint32_t left_id, uint32_t left_range,
                        uint32_t right_id, uint32_t right_range)
