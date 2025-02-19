@@ -113,4 +113,8 @@ SuperGPIO<GPIOC_BASE,OUTPUT,GPIO_PIN_13> power_24v_left;
 
 interact_dep::Actions test_actions(4);
 
+interact_dep::Actions stretch(2);
+interact_dep::Actions turn_up(1);
+
+
 UI ui(102, 0x0166);

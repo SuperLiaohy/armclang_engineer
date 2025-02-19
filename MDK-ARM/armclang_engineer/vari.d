@@ -764,4 +764,5 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\Obj\RoboArm\RoboArm.h ..\Own\App\RGBLED\RGBLED.h \
   ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h ..\Own\App\W25Q64\W25Q64.h \
   ..\Core\Inc\octospi.h ..\Own\App\Imu\Imu.h \
-  ..\Own\App\Judge\referee_system.h ..\Own\App\Pump\Pump.h
+  ..\Own\App\Judge\referee_system.h ..\Own\App\Pump\Pump.h \
+  ..\Own\App\Judge\ui.h

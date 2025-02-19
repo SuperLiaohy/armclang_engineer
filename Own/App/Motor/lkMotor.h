@@ -46,7 +46,7 @@ public:
         : id(id) {
         };
     uint16_t voltage = 0;
-    uint8_t error   = 0;
+    uint8_t error    = 0;
 
     foc_pid_t foc_pid {};
 
@@ -55,6 +55,7 @@ public:
     uint8_t close_flag  = 0;
     uint8_t start_flag  = 0;
     uint8_t offset_flag = 0;
+    uint8_t clear_flag  = 0;
 
     float gain;
 
@@ -199,8 +200,9 @@ void Motor<MOTOR>::readData(uint8_t* data)
             feed_back.totalPosition = static_cast<double>(total) / 100.f / motor.gain; // 0.01°/LSB
             motor.offset_flag       = 1;
         } break;
-        case 0x9a:
         case 0x9b:
+            motor.clear_flag = 1;
+        case 0x9a:
             feed_back.RawData.temperature = data[1];
             feed_back.Data.temperature    = data[1];
             motor.voltage                 = *(uint16_t*)(&data[3]) * 0.1;

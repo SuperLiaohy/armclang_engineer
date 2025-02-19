@@ -27,7 +27,7 @@ void air_right_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
             pump.toggle();
-						++cnt_right;
+            ++cnt_right;
             break;
         default:
             break;
@@ -40,8 +40,8 @@ void robo_arm_e_callback(KeyEventType event) {
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
         case KeyEvent_OnClick:
-            test_actions.now = 0;
-            interact.actions = &test_actions;
+            stretch.now = 0;
+            interact.actions = &stretch;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;
         default:
@@ -64,12 +64,29 @@ void robo_arm_shift_e_callback(KeyEventType event) {
 void robo_arm_shift_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
+            interact.path = interact_dep::path::IMAGE_TRANSMIT;
             if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
-                interact.path = interact_dep::path::IMAGE_TRANSMIT;
                 interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
             } else {
                 interact.path = interact_dep::path::REMOTE_CTRL;
-                interact.chassis.mode = interact_dep::chassis_mode::NONE;
+                interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+            }
+            break;
+        default:
+            break;
+
+    }
+}
+
+void robo_arm_ctrl_q_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnClick:
+            interact.path = interact_dep::path::PC;
+            if (interact.robo_arm.mode != interact_dep::robo_mode::VISION) {
+                interact.robo_arm.mode = interact_dep::robo_mode::VISION;
+            } else {
+                interact.path = interact_dep::path::REMOTE_CTRL;
+                interact.robo_arm.mode = interact_dep::robo_mode::NONE;
             }
             break;
         default:
@@ -88,7 +105,22 @@ void robo_arm_shift_c_callback(KeyEventType event) {
     }
 }
 
-void robo_arm_shift_f_callback(KeyEventType event) {
+void robo_arm_r_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+        case KeyEvent_OnClick:
+            turn_up.now = 0;
+            interact.actions = &turn_up;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            break;
+        default:
+            break;
+    }
+}
+
+void robo_arm_shift_r_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:

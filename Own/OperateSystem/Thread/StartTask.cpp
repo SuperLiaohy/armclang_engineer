@@ -23,15 +23,16 @@ void air_right_callback(KeyEventType event);
 void robo_arm_e_callback(KeyEventType event);
 void robo_arm_shift_e_callback(KeyEventType event);
 void robo_arm_shift_q_callback(KeyEventType event);
+void robo_arm_ctrl_q_callback(KeyEventType event);
 void robo_arm_shift_c_callback(KeyEventType event);
-void robo_arm_shift_f_callback(KeyEventType event);
+void robo_arm_r_callback(KeyEventType event);
+void robo_arm_shift_r_callback(KeyEventType event);
 
 void chassis_w_callback(KeyEventType event);
 void chassis_a_callback(KeyEventType event);
 void chassis_s_callback(KeyEventType event);
 void chassis_d_callback(KeyEventType event);
 void chassis_q_callback(KeyEventType event);
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -51,33 +52,68 @@ void StartTask() {
     /* USB初始化 */
     MX_USB_DEVICE_Init();
 
-    test_actions.joint1.data[0].angle = 0;
-    test_actions.joint2.data[0].angle = -50;
-    test_actions.joint3.data[0].angle = 135;
-    test_actions.joint4.data[0].angle = 0;
-    test_actions.joint5.data[0].angle = -90;
-    test_actions.joint6.data[0].angle = 0;
+    test_actions.joint1.data[0] = 0;
+    test_actions.joint2.data[0] = -50;
+    test_actions.joint3.data[0] = 135;
+    test_actions.joint4.data[0] = 0;
+    test_actions.joint5.data[0] = -90;
+    test_actions.joint6.data[0] = 0;
 
-    test_actions.joint1.data[1].angle = 0;
-    test_actions.joint2.data[1].angle = -25;
-    test_actions.joint3.data[1].angle = 75;
-    test_actions.joint4.data[1].angle = 0;
-    test_actions.joint5.data[1].angle = -70;
-    test_actions.joint6.data[1].angle = 0;
+    test_actions.joint1.data[1] = 0;
+    test_actions.joint2.data[1] = -25;
+    test_actions.joint3.data[1] = 75;
+    test_actions.joint4.data[1] = 0;
+    test_actions.joint5.data[1] = -70;
+    test_actions.joint6.data[1] = 0;
 
-    test_actions.joint1.data[2].angle = 0;
-    test_actions.joint2.data[2].angle = -0;
-    test_actions.joint3.data[2].angle = 0;
-    test_actions.joint4.data[2].angle = 0;
-    test_actions.joint5.data[2].angle = -30;
-    test_actions.joint6.data[2].angle = 0;
+    test_actions.joint1.data[2] = 0;
+    test_actions.joint2.data[2] = -0;
+    test_actions.joint3.data[2] = 0;
+    test_actions.joint4.data[2] = 0;
+    test_actions.joint5.data[2] = -30;
+    test_actions.joint6.data[2] = 0;
 
-    test_actions.joint1.data[3].angle = 0;
-    test_actions.joint2.data[3].angle = 30;
-    test_actions.joint3.data[3].angle = -30;
-    test_actions.joint4.data[3].angle = 0;
-    test_actions.joint5.data[3].angle = -0;
-    test_actions.joint6.data[3].angle = 0;
+    test_actions.joint1.data[3] = 0;
+    test_actions.joint2.data[3] = 30;
+    test_actions.joint3.data[3] = -30;
+    test_actions.joint4.data[3] = 0;
+    test_actions.joint5.data[3] = -0;
+    test_actions.joint6.data[3] = 0;
+
+    stretch.joint1.data[0] = 0;
+    stretch.joint2.data[0] = -0;  // -50 -> 0
+    stretch.joint3.data[0] = 90;  // 135 -> 70
+    stretch.joint4.data[0] = 0;   // 0 -> 0
+    stretch.joint5.data[0] = -30; // -90 -> -30
+    stretch.joint6.data[0] = 120;  // 0 -> 120
+
+    stretch.joint1.data[1] = 0;   // 0 -> 0
+    stretch.joint2.data[1] = 54.158;  // 0 -> 57
+    stretch.joint3.data[1] = 24.174;  // 70 -> 24
+    stretch.joint4.data[1] = 0;   //  0 -> 0
+    stretch.joint5.data[1] = 13.460;   //-30 -> 3
+    stretch.joint6.data[1] = 139.86; // 120 -> 139.86
+
+    turn_up.joint1.data[0] = 0;
+    turn_up.joint2.data[0] = 55.063;  // -50 -> 0
+    turn_up.joint3.data[0] = 15.207;  // 135 -> 70
+    turn_up.joint4.data[0] = 0;   // 0 -> 0
+    turn_up.joint5.data[0] = -8.0725; // -90 -> -30
+    turn_up.joint6.data[0] = 139.86;  // 0 -> 120
+
+//    turn_up.joint1.data[1] = 0;   // 0 -> 0
+//    turn_up.joint2.data[1] = 56.158;  // 0 -> 57
+//    turn_up.joint3.data[1] = 24.174;  // 70 -> 24
+//    turn_up.joint4.data[1] = 0;   //  0 -> 0
+//    turn_up.joint5.data[1] = 8.460;   //-30 -> 3
+//    turn_up.joint6.data[1] = 139.86; // 120 -> 139.86
+
+//    stretch.joint1.data[2] = 0;
+//    stretch.joint2.data[2] = -0;
+//    stretch.joint3.data[2] = 50;
+//    stretch.joint4.data[2] = 0;
+//    stretch.joint5.data[2] = -45;
+//    stretch.joint6.data[2] = 120;
 
     pump.close();
 
@@ -97,6 +133,7 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_None, chassis_d_callback);
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_None, chassis_q_callback);
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Shift, robo_arm_shift_q_callback);
+    KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Ctrl, robo_arm_ctrl_q_callback);
     KeyBoardRegister(interact.keyList, Key_Left, CombineKey_None, air_left_callback);
     interact.keyList[16].longPressTime = 100;
     KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
@@ -105,7 +142,8 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
     interact.keyList[7].longPressTime = 5000;
     KeyBoardRegister(interact.keyList, Key_C, CombineKey_Shift, robo_arm_shift_c_callback);
-    KeyBoardRegister(interact.keyList, Key_R, CombineKey_Shift, robo_arm_shift_f_callback);
+    KeyBoardRegister(interact.keyList, Key_R, CombineKey_Shift, robo_arm_shift_r_callback);
+    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
 

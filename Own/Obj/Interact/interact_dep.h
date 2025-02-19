@@ -77,11 +77,11 @@ namespace interact_dep {
     } __attribute__((packed));
 
     struct Action {
-        link_receive_t* data {};
+        float* data {};
         Slope slope;
         explicit Action(uint8_t num, float step = 3, float dead_zone = 0.1)
             : slope(step, dead_zone) {
-            data = reinterpret_cast<link_receive_t*>(pvPortMalloc(num * sizeof(link_receive_t)));
+            data = reinterpret_cast<float *>(pvPortMalloc(num * sizeof(float )));
         };
     };
 
@@ -109,6 +109,8 @@ namespace interact_dep {
 
 extern Interact interact;
 extern interact_dep::Actions test_actions;
+extern interact_dep::Actions stretch;
+extern interact_dep::Actions turn_up;
 
 
 #endif //ARMCLANG_ENGINEER_INTERACT_DEP_H
