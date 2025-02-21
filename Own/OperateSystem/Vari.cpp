@@ -109,7 +109,7 @@ Interact interact(0xFF, 0xFE, &huart5, &huart10);
 //KeyBoard key_board;
 
 Pump<SuperGPIO<GPIOA_BASE,OUTPUT,GPIO_PIN_0>> pump;
-SuperGPIO<GPIOC_BASE,OUTPUT,GPIO_PIN_13> power_24v_left;
+SuperGPIO<GPIOC_BASE,OUTPUT,GPIO_PIN_13> power_5v_left;
 
 interact_dep::Actions test_actions(4);
 

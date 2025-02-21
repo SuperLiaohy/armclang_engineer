@@ -48,7 +48,7 @@ void StartTask() {
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_SET);
-    //    power_24v_left.WriteDown();
+        power_5v_left.WriteDown();
     /* USB初始化 */
     MX_USB_DEVICE_Init();
 
