@@ -43,7 +43,7 @@ void OS_LedTask(void const *argument) {
 
 void OS_DJITask(void const *argument) {
     UNUSED(argument);
-    xEventGroupWaitBits(osEventGroup, START_END_EVENT&ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(osEventGroup, ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     DJITask();
 }
 
@@ -54,7 +54,7 @@ void OS_ErrorTask(void const *argument) {
 
 void OS_DetectTask(void const *argument) {
     UNUSED(argument);
-    xEventGroupWaitBits(osEventGroup, START_END_EVENT&ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     DetectTask();
 }
 
@@ -78,13 +78,13 @@ void OS_IMUTask(void const *argument) {
 
 void OS_LKTask(void const *argument) {
     UNUSED(argument);
-    xEventGroupWaitBits(osEventGroup, START_END_EVENT&ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(osEventGroup, ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     LKTask();
 }
 
 void OS_PCTask(void const *argument) {
     UNUSED(argument);
-    xEventGroupWaitBits(osEventGroup, START_END_EVENT&ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(osEventGroup, ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     PCTask();
 }
 
@@ -96,7 +96,7 @@ void OS_ImageTransTask(void const *argument) {
 
 void OS_TransmitTask(void const *argument){
     UNUSED(argument);
-    xEventGroupWaitBits(osEventGroup, START_END_EVENT&ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(osEventGroup, ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     TransmitTask();
 }
 

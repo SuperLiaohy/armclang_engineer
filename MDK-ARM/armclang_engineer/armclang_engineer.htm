@@ -3,7 +3,7 @@
 <title>Static Call Graph - [armclang_engineer\armclang_engineer.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image armclang_engineer\armclang_engineer.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Sat Feb 22 15:53:24 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Sat Feb 22 16:52:03 2025
 <BR><P>
 <H3>Maximum Stack Usage =        764 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -3110,7 +3110,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.rodata..L__const.MX_FREERTOS_Init.os_thread_def_DETECT_TASK)
 </UL>
 <P><STRONG><a name="[d4]"></a>OS_ErrorTask</STRONG> (Thumb, 14 bytes, Stack size 16 bytes, thread.o(.text.OS_ErrorTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 212<LI>Call Chain = OS_ErrorTask &rArr; ErrorTask() &rArr; RGBLED::SetColor(unsigned char, unsigned char, unsigned char) &rArr; RGBLED::load() &rArr; SuperSPI::WriteDMA(unsigned char const*, unsigned short) &rArr; HAL_SPI_Transmit_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 220<LI>Call Chain = OS_ErrorTask &rArr; ErrorTask() &rArr; RGBLED::SetColor(unsigned char, unsigned char, unsigned char) &rArr; RGBLED::load() &rArr; SuperSPI::WriteDMA(unsigned char const*, unsigned short) &rArr; HAL_SPI_Transmit_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ErrorTask()
 </UL>
@@ -4389,14 +4389,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
 </UL>
 
-<P><STRONG><a name="[25d]"></a>ErrorTask()</STRONG> (Thumb, 214 bytes, Stack size 32 bytes, errortask.o(.text._Z9ErrorTaskv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 196<LI>Call Chain = ErrorTask() &rArr; RGBLED::SetColor(unsigned char, unsigned char, unsigned char) &rArr; RGBLED::load() &rArr; SuperSPI::WriteDMA(unsigned char const*, unsigned short) &rArr; HAL_SPI_Transmit_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
+<P><STRONG><a name="[25d]"></a>ErrorTask()</STRONG> (Thumb, 272 bytes, Stack size 40 bytes, errortask.o(.text._Z9ErrorTaskv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 204<LI>Call Chain = ErrorTask() &rArr; RGBLED::SetColor(unsigned char, unsigned char, unsigned char) &rArr; RGBLED::load() &rArr; SuperSPI::WriteDMA(unsigned char const*, unsigned short) &rArr; HAL_SPI_Transmit_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SystemReset
 <LI><a href="#[306]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RGBLED::SetColor(unsigned char, unsigned char, unsigned char)
 <LI><a href="#[304]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadSuspend
 <LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxTaskGetStackHighWaterMark
+<LI><a href="#[2c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[305]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::close()
 <LI><a href="#[2f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::send(unsigned int)
 <LI><a href="#[2f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::write(short, short, short, short)
@@ -4412,7 +4413,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_JudgeTask
 </UL>
 
-<P><STRONG><a name="[26c]"></a>StartTask()</STRONG> (Thumb, 1348 bytes, Stack size 136 bytes, starttask.o(.text._Z9StartTaskv))
+<P><STRONG><a name="[26c]"></a>StartTask()</STRONG> (Thumb, 1376 bytes, Stack size 136 bytes, starttask.o(.text._Z9StartTaskv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 600 + Unknown Stack Size
 <LI>Call Chain = StartTask() &rArr; MX_USB_DEVICE_Init &rArr; USBD_Init &rArr; USBD_LL_Init &rArr; HAL_PCD_Init &rArr; HAL_PCD_MspInit &rArr; HAL_RCCEx_PeriphCLKConfig &rArr; RCCEx_PLL3_Config
 </UL>
@@ -4423,6 +4424,7 @@ Global Symbols
 <LI><a href="#[311]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotorBoard::init(float, float, float, float, float, float, float, float, float, float)
 <LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxTaskGetStackHighWaterMark
 <LI><a href="#[2c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
+<LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xEventGroupWaitBits
 <LI><a href="#[2c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xEventGroupSetBits
 <LI><a href="#[312]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buzzer::Start()
 <LI><a href="#[30f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::init(SuperCan*, float)
@@ -6806,7 +6808,8 @@ Global Symbols
 <LI><a href="#[3cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
 <LI><a href="#[3c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 </UL>
-<BR>[Called By]<UL><LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ArmInitTask()
+<BR>[Called By]<UL><LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ErrorTask()
+<LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ArmInitTask()
 <LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask()
 </UL>
 
@@ -6988,6 +6991,7 @@ Global Symbols
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_LedTask
 <LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ArmInitTask()
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_ArmInitTask
+<LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask()
 </UL>
 
 <P><STRONG><a name="[3f9]"></a>xPortStartScheduler</STRONG> (Thumb, 342 bytes, Stack size 40 bytes, port.o(.text.xPortStartScheduler))

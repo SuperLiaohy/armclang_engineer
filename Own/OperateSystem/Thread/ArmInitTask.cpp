@@ -16,7 +16,7 @@ void ArmInitTask() {
     /* 读取电机的偏移量，来判断offset是否需要减少360 */
     roboArm.init_offset(interact);
 
-    xEventGroupWaitBits(osEventGroup, DIFF_LEFT_RECEIVE_EVENT&DIFF_RIGHT_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(osEventGroup, DIFF_LEFT_RECEIVE_EVENT|DIFF_RIGHT_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     /* 机械臂的差分器初始化 */
     roboArm.diff.init();
     re_flag = 1;

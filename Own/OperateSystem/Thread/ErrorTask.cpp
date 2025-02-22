@@ -24,9 +24,10 @@ extern osThreadId ERROR_TASKHandle;
 extern uint8_t re_flag;
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
-//    if (re_flag == 0) {
-//        vTaskDelete(ARM_INIT_TASKHandle);
-//    }
+    if (re_flag == 0) {
+        vTaskDelete(ARM_INIT_TASKHandle);
+    }
+    uint32_t time;
     uint8_t red = 0;
     while (1) {
 
@@ -36,9 +37,12 @@ void ErrorTask() {
         canPlus2.write(0, 0, 0, 0);
         canPlus2.send(Motor<M3508>::foc.TX_LOW_ID);
         Led.SetColor(red * 255, 0, 0);
-        red = 1 - red;
+        ++time;
+        if (time % 3 == 0) {
+            red = 1 - red;
+        }
 
-//        chassiss.stop();
+        //        chassiss.stop();
         if (interact.remote_control.rcInfo.right == 3) {
             __set_FAULTMASK(1);
             HAL_NVIC_SystemReset();
