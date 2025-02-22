@@ -1,9 +1,9 @@
 //
 // Created by liaohy on 24-11-15.
 //
-#include "RemoteControl/RemoteControl.h"
-#include "RGBLED/RGBLED.h"
 #include "CppTask.h"
+#include "RGBLED/RGBLED.h"
+#include "RemoteControl/RemoteControl.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,31 +16,34 @@ extern osThreadId ERROR_TASKHandle;
 #endif
 
 #include "CAN/SuperCan.h"
-#include "Motor/Motor.h"
+#include "Interact/interact.h"
 #include "Motor/M2006.h"
+#include "Motor/Motor.h"
 #include "Motor/lkMotor.h"
 #include "RoboArm/RoboArm.h"
-#include "Interact/interact.h"
+extern uint8_t re_flag;
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
+//    if (re_flag == 0) {
+//        vTaskDelete(ARM_INIT_TASKHandle);
+//    }
     uint8_t red = 0;
     while (1) {
-        // chassiss.stop();
+
+        roboArm.close();
+        canPlus1.write(0, 0, 0, 0);
+        canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
+        canPlus2.write(0, 0, 0, 0);
+        canPlus2.send(Motor<M3508>::foc.TX_LOW_ID);
+        Led.SetColor(red * 255, 0, 0);
+        red = 1 - red;
+
+//        chassiss.stop();
         if (interact.remote_control.rcInfo.right == 3) {
             __set_FAULTMASK(1);
             HAL_NVIC_SystemReset();
         }
-        red = 1 - red;
-        canPlus1.write(0, 0, 0, 0);
-        canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
-        canPlus2.write(0, 0, 0, 0);
-        canPlus2.send(Motor<M2006>::foc.TX_LOW_ID);
-//        roboArm.disable();
-        roboArm.close();
-
-        Led.SetColor(red * 255,0,0);
-//        HAL_UART_Transmit(&huart10,(uint8_t*)"hello world\n", 12, 0xffff);
-        HAL_Delay(50);
+        HAL_Delay(14);
         ErrorHeapCnt = uxTaskGetStackHighWaterMark(NULL);
     }
 }

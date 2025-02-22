@@ -1584,6 +1584,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\UITask.cpp</FilePath>
             </File>
+            <File>
+              <FileName>ArmInitTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\ArmInitTask.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3216,6 +3221,11 @@
               <FileName>UITask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\UITask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ArmInitTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\ArmInitTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

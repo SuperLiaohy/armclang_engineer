@@ -26,6 +26,7 @@ extern float yaw;
 float a =0;
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
     UNUSED(RxFifo0ITs);
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (hfdcan == canPlus1.hcan) {
 			++a;
         canPlus1.receive();
@@ -49,12 +50,12 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         }
         else if (canPlus1.rx_header.Identifier == Motor<M2006>::foc.RX_ID + roboArm.diff.left.feed_back.id) {
             roboArm.diff.left.readData(canPlus1.rx_data);
+            xEventGroupSetBitsFromISR(osEventGroup, DIFF_LEFT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         }
         else if (canPlus1.rx_header.Identifier == Motor<M2006>::foc.RX_ID + roboArm.diff.right.feed_back.id) {
             roboArm.diff.right.readData(canPlus1.rx_data);
+            xEventGroupSetBitsFromISR(osEventGroup, DIFF_RIGHT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         }
-        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-        xEventGroupSetBitsFromISR(osEventGroup, CAN_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     } else if (hfdcan == chassis.can->hcan){
         chassis.can->receive();

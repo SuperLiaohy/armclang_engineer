@@ -31,7 +31,7 @@ void RemoteCtrlTask() {
             if (interact.remote_control.rcInfo.right == 2)
                 osThreadResume(ERROR_TASKHandle);
 
-            if (interact.remote_control.rcInfo.right == 3 && interact.remote_control.rcInfo.left == 2) {
+            if (interact.remote_control.rcInfo.right == 3 && interact.remote_control.rcInfo.left == 2 && interact.kb == interact_dep::kb_state::DISABLE) {
                 if (interact.remote_control.rcInfo.wheel > 500) {
                     p = interact_dep::path::PC;
                 } else if (interact.remote_control.rcInfo.wheel < -500) {
@@ -102,15 +102,21 @@ void RemoteCtrlTask() {
                         break;
                     default:
                         break;
-
                 }
             }
 
-            xEventGroupSetBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT);
-            if (!re_flag)
-                continue;
+            // 判断了kb    更新chassis的目标
+            interact.update_chassis(chassis);
 
-            xEventGroupWaitBits(osEventGroup, LK_RELETIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
+            xEventGroupSetBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT);
+            if (!re_flag) {
+                interact.chassis.last_mode = interact.chassis.mode;
+                interact.robo_arm.last_mode = interact.robo_arm.mode;
+                osDelayUntil(&now, 14);
+                continue;
+            }
+
+            xEventGroupWaitBits(osEventGroup, LK_RECEIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
 
             if (interact.robo_arm.mode == interact_dep::robo_mode::ACTIONS) {
                 bool is_next = true;
@@ -123,8 +129,7 @@ void RemoteCtrlTask() {
                 interact.receive_actions(is_next);
             }
 
-            // 判断了kb
-            interact.update_chassis(chassis);
+
             // 还无判断kb
             interact.update_roboArm(roboArm);
             if (interact.path == interact_dep::path::IMAGE_TRANSMIT && interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM && interact.kb == interact_dep::kb_state::DISABLE) {

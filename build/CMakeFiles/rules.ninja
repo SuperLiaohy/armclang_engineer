@@ -45,7 +45,7 @@ rule CXX_COMPILER__armclang_engineer_unscanned_Debug
 # Rule for linking CXX executable.
 
 rule CXX_EXECUTABLE_LINKER__armclang_engineer_Debug
-  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && D:\Keil_v5\ARM\ARMCLANG\bin\armlink.exe $LINK_FLAGS  --via=$RSP_FILE -o $TARGET_FILE  --list=$TARGET_FILE.map && $POST_BUILD"
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && D:\Keil_v5\ARM\ARMCLANG\bin\armlink.exe $LINK_FLAGS  --via=$RSP_FILE -o $TARGET_FILE  --list=$TARGET_FILE.map && $POST_BUILD"
   description = Linking CXX executable $TARGET_FILE
   rspfile = $RSP_FILE
   rspfile_content = $in $LINK_PATH $LINK_LIBRARIES

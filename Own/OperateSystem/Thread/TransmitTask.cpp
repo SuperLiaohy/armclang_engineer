@@ -13,6 +13,6 @@ void TransmitTask() {
             interact.image_trans.get_angle(roboArm.real_relative_pos);
             interact.image_trans.transmit();
         }
-        osDelayUntil(&now, 33);
+        osDelayUntil(&now, 100);
     }
 }

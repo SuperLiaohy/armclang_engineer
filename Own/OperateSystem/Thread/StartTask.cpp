@@ -165,27 +165,10 @@ void StartTask() {
 
     /* 蜂鸣器初始化 */
     buzzer.Start();
-    /* 判断急停 */
-    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
-
-    /* 机械臂电机使能 */
-    // enable 内部是先失能再使能
-    roboArm.enable();
-
-    /* 读取电机的偏移量，来判断offset是否需要减少360 */
-    roboArm.init_offset(interact);
 
     /* 闪烁灯初始化 (暂无)*/
-
-    /* 判断can线上的设备是否初始化完毕 */
-    xEventGroupSetBits(osEventGroup, CAN_RECEIVE_EVENT);
-    xEventGroupWaitBits(osEventGroup, CAN_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
-    /* 机械臂的差分器初始化 */
-    roboArm.diff.init();
-
-    re_flag = 1;
+//    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
     StartHeapCnt = uxTaskGetStackHighWaterMark(NULL);
     vTaskDelete(NULL);
-    while (1) {};
 }

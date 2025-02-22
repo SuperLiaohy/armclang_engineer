@@ -17,7 +17,7 @@ void PCTask() {
             interact.image_trans.uartPlus.read_idle(100);
         }
         roboArm.update_relative_pos();
-        xEventGroupSetBits(osEventGroup, LK_RELETIVE_GET);
+        xEventGroupSetBits(osEventGroup, LK_RECEIVE_GET);
         interact.transmit_relative_pos(roboArm);
         osDelay(1);
     }

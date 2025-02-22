@@ -63,6 +63,7 @@ osThreadId JUDGE_TASKHandle;
 osThreadId TRANSMIT_TASKHandle;
 osThreadId KB_TASKHandle;
 osThreadId UI_TASKHandle;
+osThreadId ARM_INIT_TASKHandle;
 osMutexId CAN1MutexHandle;
 osMutexId CAN2MutexHandle;
 
@@ -86,6 +87,7 @@ void OS_JudgeTask(void const * argument);
 void OS_TransmitTask(void const * argument);
 void OS_KbTask(void const * argument);
 void OS_UITask(void const * argument);
+void OS_ArmInitTask(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -217,6 +219,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of UI_TASK */
   osThreadDef(UI_TASK, OS_UITask, osPriorityNormal, 0, 512);
   UI_TASKHandle = osThreadCreate(osThread(UI_TASK), NULL);
+
+  /* definition and creation of ARM_INIT_TASK */
+  osThreadDef(ARM_INIT_TASK, OS_ArmInitTask, osPriorityHigh, 0, 256);
+  ARM_INIT_TASKHandle = osThreadCreate(osThread(ARM_INIT_TASK), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -494,6 +500,24 @@ __weak void OS_UITask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END OS_UITask */
+}
+
+/* USER CODE BEGIN Header_OS_ArmInitTask */
+/**
+* @brief Function implementing the ARM_INIT_TASK thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_OS_ArmInitTask */
+__weak void OS_ArmInitTask(void const * argument)
+{
+  /* USER CODE BEGIN OS_ArmInitTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END OS_ArmInitTask */
 }
 
 /* Private application code --------------------------------------------------*/

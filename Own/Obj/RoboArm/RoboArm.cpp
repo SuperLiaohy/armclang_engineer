@@ -231,22 +231,13 @@ void RoboArm::init_offset(Interact& interaction) {
 }
 
 void RoboArm::update_relative_pos() {
-    //    real_relative_pos.joint1 = static_cast<int16_t>(scale_transmit<float, int32_t>(joint1.feed_back.Data.position - offset.joint1, 45, limition.joint1));
-    //    real_relative_pos.joint1 = offset_transmit<float>(joint1.feed_back.Data.position - offset.joint1, 0, -180, 180);
+
     real_relative_pos.joint1 = joint1.feed_back.totalPosition - offset.joint1;
 
-    //    real_relative_pos.joint2 = static_cast<int16_t>(scale_transmit<float, int32_t>(joint2.feed_back.Data.position - offset.joint2, 80, limition.joint2));
-    //    real_relative_pos.joint2 = offset_transmit<float>(joint2.feed_back.Data.position - offset.joint2, 0, -180, 180);
-    //    real_relative_pos.joint2 = joint2.feed_back.totalPosition - offset.joint2;
-    // 相对旋转角度只需要一个电机就可以确定，所以只需要一个电机的反馈数据，这里选择外侧电机
     real_relative_pos.joint2 = joint2.external.feed_back.totalPosition - offset.joint2.external;
 
-    //    real_relative_pos.joint3 = static_cast<int16_t>(scale_transmit<float, int32_t>(- (joint3.feed_back.Data.position - offset.joint3), 135, limition.joint3));
-    //    real_relative_pos.joint3 = -offset_transmit<float>((joint3.feed_back.Data.position - offset.joint3), 0, -180, 180);
     real_relative_pos.joint3 = -(joint3.feed_back.totalPosition - offset.joint3);
 
-    //    real_relative_pos.joint4 = static_cast<int16_t>(scale_transmit<float, int32_t>(joint4.feed_back.Data.position - offset.joint4, 180, limition.joint4));
-    //    real_relative_pos.joint4 = offset_transmit<float>(joint4.feed_back.Data.position - offset.joint4, 0, -180, 180);
     real_relative_pos.joint4 = joint4.feed_back.totalPosition - offset.joint4;
 
     diff.update_relative_pos(real_relative_pos.joint5, real_relative_pos.joint6);
@@ -422,6 +413,7 @@ void RoboArm::load_target(Interact& inter) {
         case interact_dep::robo_mode::CUSTOM:
         case interact_dep::robo_mode::RESET:
         case interact_dep::robo_mode::ACTIONS:
+        case interact_dep::robo_mode::NONE:
             target.joint1.angle = (inter.receive_data.joint1.angle * b22d + offset.joint1) * scale(360, 36000);
             //            target.joint2.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2) * scale(360, 36000);
             target.joint2.internal.angle = (inter.receive_data.joint2.angle * b22d + offset.joint2.internal) * scale(360, 36000);
@@ -437,6 +429,7 @@ void RoboArm::load_target(Interact& inter) {
             target.joint2.external.angle = (q[1] + offset.joint2.external) * scale(360, 36000);
             target.joint1.angle          = (q[0] + offset.joint1) * scale(360, 36000);
             break;
+
     }
 }
 

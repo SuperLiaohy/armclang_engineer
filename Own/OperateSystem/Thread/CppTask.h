@@ -21,7 +21,7 @@ extern UBaseType_t ChassisHeapCnt;
 extern UBaseType_t RemoteCtrlHeapCnt;
 extern UBaseType_t IMUHeapCnt;
 extern osMutexId CAN1MutexHandle;
-
+extern osThreadId ARM_INIT_TASKHandle;
 #ifdef __cplusplus
 }
 #endif
@@ -42,4 +42,5 @@ void JudgeTask();
 void TransmitTask();
 void KbTask();
 void UITask();
+void ArmInitTask();
 #endif //OWN_CPPTASK_H
