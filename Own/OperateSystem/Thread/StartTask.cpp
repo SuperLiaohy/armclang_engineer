@@ -44,13 +44,18 @@ extern osThreadId ERROR_TASKHandle;
 #endif
 uint8_t re_flag = 0;
 void StartTask() {
-    /* 使能两个24V 和 5V*/
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_SET);
-        power_5v_left.WriteDown();
-    /* USB初始化 */
+	    /* USB初始化 */
     MX_USB_DEVICE_Init();
+	
+    /* 使能两个24V 和 5V*/
+//        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_RESET);
+
+    power_24v_right.WriteUp();
+    power_5v.WriteUp();
+    power_24v_left.WriteDown();
+
+
 
     test_actions.joint1.data[0] = 0;
     test_actions.joint2.data[0] = -50;
@@ -85,19 +90,19 @@ void StartTask() {
     stretch.joint3.data[0] = 90;  // 135 -> 70
     stretch.joint4.data[0] = 0;   // 0 -> 0
     stretch.joint5.data[0] = -30; // -90 -> -30
-    stretch.joint6.data[0] = 120;  // 0 -> 120
+    stretch.joint6.data[0] = 120; // 0 -> 120
 
-    stretch.joint1.data[1] = 0;   // 0 -> 0
-    stretch.joint2.data[1] = 54.158;  // 0 -> 57
-    stretch.joint3.data[1] = 24.174;  // 70 -> 24
-    stretch.joint4.data[1] = 0;   //  0 -> 0
-    stretch.joint5.data[1] = 13.460;   //-30 -> 3
+    stretch.joint1.data[1] = 0;      // 0 -> 0
+    stretch.joint2.data[1] = 54.158; // 0 -> 57
+    stretch.joint3.data[1] = 24.174; // 70 -> 24
+    stretch.joint4.data[1] = 0;      //  0 -> 0
+    stretch.joint5.data[1] = 13.460; //-30 -> 3
     stretch.joint6.data[1] = 139.86; // 120 -> 139.86
 
     turn_up.joint1.data[0] = 0;
     turn_up.joint2.data[0] = 55.063;  // -50 -> 0
     turn_up.joint3.data[0] = 15.207;  // 135 -> 70
-    turn_up.joint4.data[0] = 0;   // 0 -> 0
+    turn_up.joint4.data[0] = 0;       // 0 -> 0
     turn_up.joint5.data[0] = -8.0725; // -90 -> -30
     turn_up.joint6.data[0] = 139.86;  // 0 -> 120
 
@@ -124,12 +129,12 @@ void StartTask() {
     interact.keyList[16].longPressTime = 100;
     KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
     interact.keyList[17].longPressTime = 5000;
-//    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
-//    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
+    //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
+    //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
     interact.keyList[7].longPressTime = 5000;
     KeyBoardRegister(interact.keyList, Key_C, CombineKey_Shift, robo_arm_shift_c_callback);
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_Shift, robo_arm_shift_r_callback);
-//    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
+    //    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
 

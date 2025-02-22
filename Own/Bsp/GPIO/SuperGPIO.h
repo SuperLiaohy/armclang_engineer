@@ -35,9 +35,9 @@ enum pin_mode {
 
 constexpr uint32_t GPIO_BASE = GPIOA_BASE;
 
-constexpr uint32_t gpio_map_offset(uint32_t gpio) {
-    return gpio - GPIO_BASE;
-}
+//constexpr uint32_t gpio_map_offset(uint32_t gpio) {
+//    return gpio - GPIO_BASE;
+//}
 
 constexpr uint32_t gpio_map(uint32_t gpio) {
     return GPIO_BASE + (gpio - GPIO_BASE) * sizeof(GPIO_TypeDef);
@@ -75,7 +75,7 @@ inline void SuperGPIO<gpio, mode, pin>::WriteUp()
     requires(mode == OUTPUT || mode == OPEN_DRAIN)
 {
     HAL_GPIO_WritePin(
-        reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin, GPIO_PIN_SET);
+        reinterpret_cast<GPIO_TypeDef*>(gpio), pin, GPIO_PIN_SET);
 }
 
 template<uint32_t gpio, pin_mode mode, uint16_t pin>
@@ -83,7 +83,7 @@ inline void SuperGPIO<gpio, mode, pin>::WriteDown()
     requires(mode == OUTPUT || mode == OPEN_DRAIN)
 {
     HAL_GPIO_WritePin(
-        reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin, GPIO_PIN_RESET);
+        reinterpret_cast<GPIO_TypeDef*>(gpio), pin, GPIO_PIN_RESET);
 }
 
 template<uint32_t gpio, pin_mode mode, uint16_t pin>
@@ -98,7 +98,7 @@ void SuperGPIO<gpio, mode, pin>::Toggle()
     requires(mode == OUTPUT || mode == OPEN_DRAIN)
 {
     HAL_GPIO_TogglePin(
-        reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin);
+        reinterpret_cast<GPIO_TypeDef*>(gpio), pin);
 }
 
 template<uint32_t gpio, pin_mode mode, uint16_t pin>
@@ -106,7 +106,10 @@ SuperGPIO<gpio, mode, pin>::state SuperGPIO<gpio, mode, pin>::Read()
     requires(mode == INPUT)
 {
     return HAL_GPIO_ReadPin(
-        reinterpret_cast<GPIO_TypeDef*>(GPIO_BASE) + gpio_map_offset(gpio), pin);
+        reinterpret_cast<GPIO_TypeDef*>(gpio), pin);
 }
 
-extern SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_15> power_5v_left;
+extern SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_15> power_5v;
+extern SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_14> power_24v_right;
+extern SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_13> power_24v_left;
+
