@@ -1,9 +1,7 @@
 //
 // Created by lhy on 2024/9/9.
 //
-
-#ifndef NONE_PRJ_GM6020_H
-#define NONE_PRJ_GM6020_H
+#pragma once
 
 #define USING_GM6020 1
 #if USING_GM6020 == 1
@@ -42,4 +40,3 @@ extern Motor<GM6020> gm6020;
 
 
 #endif //USING_GM6020
-#endif //NONE_PRJ_GM6020_H

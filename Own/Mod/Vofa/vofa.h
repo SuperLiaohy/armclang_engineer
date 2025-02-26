@@ -1,9 +1,8 @@
 //
 // Created by Administrator on 24-12-6.
 //
+#pragma once
 
-#ifndef DM_42_VOFA_H
-#define DM_42_VOFA_H
 #include "cstdint"
 
 template <uint8_t n>
@@ -30,4 +29,3 @@ private:
 };
 
 
-#endif //DM_42_VOFA_H

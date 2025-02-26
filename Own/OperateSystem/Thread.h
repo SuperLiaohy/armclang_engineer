@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/17.
 //
+#pragma once
 
-#ifndef NEW_PRJ_THREAD_H
-#define NEW_PRJ_THREAD_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,4 +30,3 @@ void OS_ArmInitTask(void const *argument);
 #endif
 
 
-#endif //NEW_PRJ_THREAD_H

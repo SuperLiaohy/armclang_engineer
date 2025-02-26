@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/15.
 //
+#pragma once
 
-#ifndef NEW_PRJ_SLOPE_H
-#define NEW_PRJ_SLOPE_H
 
 struct slope_cfg {
     float step;
@@ -43,4 +42,3 @@ private:
 [[gnu::always_inline]] inline void Slope::step_set(float input) { step = input; }
 [[gnu::always_inline]] [[nodiscard]] inline float Slope::get() const { return value; }
 
-#endif //NEW_PRJ_SLOPE_H

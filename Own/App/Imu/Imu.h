@@ -1,9 +1,7 @@
 //
 // Created by liaohy on 24-11-17.
 //
-
-#ifndef IMU_H
-#define IMU_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,4 +70,3 @@ private:
 };
 
 extern Imu imu;
-#endif //IMU_H

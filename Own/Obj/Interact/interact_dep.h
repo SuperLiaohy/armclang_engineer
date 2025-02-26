@@ -1,9 +1,8 @@
 //
 // Created by Administrator on 25-1-21.
 //
+#pragma once
 
-#ifndef ARMCLANG_ENGINEER_INTERACT_DEP_H
-#define ARMCLANG_ENGINEER_INTERACT_DEP_H
 #include "CDC/SuperCDC.h"
 #include "CustomList/CustomList.h"
 #include "ImageTrans/ImageTrans.h"
@@ -113,4 +112,3 @@ extern interact_dep::Actions stretch;
 extern interact_dep::Actions turn_up;
 
 
-#endif //ARMCLANG_ENGINEER_INTERACT_DEP_H

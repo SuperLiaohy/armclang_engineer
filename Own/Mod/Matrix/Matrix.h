@@ -7,9 +7,8 @@
  * 通过Matrix类封装arm_math库和数组，用时为B=1.18A左右
  * 通过Matrix类封装直接用数组进行矩阵运算，用时为C=1.2B~1.3B左右
  */
+#pragma once
 
-#ifndef DM_42_MATRIX_H
-#define DM_42_MATRIX_H
 
 #include <concepts>
 
@@ -239,4 +238,3 @@ inline arm_status Matrix<ROWS, COLS>::inv(Matrix& result)
     return ret;
 }
 
-#endif //DM_42_MATRIX_H

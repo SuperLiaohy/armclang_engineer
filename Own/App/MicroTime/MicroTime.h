@@ -1,9 +1,8 @@
 //
 // Created by Administrator on 25-1-15.
 //
+#pragma once
 
-#ifndef DM_42_MICROTIME_H
-#define DM_42_MICROTIME_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -60,4 +59,3 @@ private:
         end_time = SysTick->VAL;
     } while((end_time - start_time) * 1000000 / SystemCoreClock + (osKernelSysTick()-count) * 1000 < us);
 }
-#endif //DM_42_MICROTIME_H

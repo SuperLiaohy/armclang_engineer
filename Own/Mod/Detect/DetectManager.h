@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/17.
 //
+#pragma once
 
-#ifndef NEW_PRJ_DETECTMANAGER_H
-#define NEW_PRJ_DETECTMANAGER_H
 
 #define USE_HAL_SELF_LIST 1
 
@@ -39,4 +38,3 @@ private:
 };
 
 
-#endif //NEW_PRJ_DETECTMANAGER_H

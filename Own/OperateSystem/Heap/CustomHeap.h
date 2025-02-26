@@ -1,9 +1,7 @@
 //
 // Created by Administrator on 24-10-3.
 //
-
-#ifndef DM_42_CUSTOMHEAP_H
-#define DM_42_CUSTOMHEAP_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +41,3 @@ extern CustomHeap D1Heap;
 extern CustomHeap D2Heap;
 extern CustomHeap D3Heap;
 
-#endif //DM_42_CUSTOMHEAP_H

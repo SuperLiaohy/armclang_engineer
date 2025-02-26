@@ -1,9 +1,8 @@
 //
 // Created by liaohy on 24-12-11.
 //
+#pragma once
 
-#ifndef INTERACT_H
-#define INTERACT_H
 
 #include "Interact/interact_dep.h"
 #include "Chassis/Chassis.h"
@@ -87,4 +86,3 @@ inline void Interact::transmit() {
 }
 
 
-#endif //INTERACT_H

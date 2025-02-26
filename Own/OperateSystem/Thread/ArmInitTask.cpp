@@ -11,7 +11,7 @@ extern uint8_t re_flag;
 void ArmInitTask() {
     /* 机械臂电机使能 */
     // enable 内部是先失能再使能
-    roboArm.enable();
+		roboArm.enable();
 
     /* 读取电机的偏移量，来判断offset是否需要减少360 */
     roboArm.init_offset(interact);

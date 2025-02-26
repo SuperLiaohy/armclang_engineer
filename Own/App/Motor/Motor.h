@@ -1,9 +1,8 @@
 //
 // Created by liaohy on 24-11-25.
 //
+#pragma once
 
-#ifndef MOTOR_H
-#define MOTOR_H
 #include "FeedBack.h"
 
 #include <concepts>
@@ -78,4 +77,3 @@ void Motor<MOTOR>::readData(uint8_t *data)  {
 
 
 
-#endif //MOTOR_H

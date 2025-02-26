@@ -1,14 +1,4 @@
-/**
- * @file    Crc.h
- * @brief   Crc校验
- *
- * @author  Tang-yucheng
- * @date    2024-4-6 （创建）
- *
- */
-
-#ifndef __MWL_CRC_H
-#define __MWL_CRC_H
+#pragma once
 
 /* 头文件引用 ----------------------------------------------------------------------------------------------------------*/
 #include "cstdint"
@@ -27,4 +17,3 @@ namespace crc {
 
     void append_crc16_check_sum(uint8_t *pchMessage, uint32_t dwLength);
 }
-#endif /* MWL_Crc */

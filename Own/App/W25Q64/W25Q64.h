@@ -1,9 +1,8 @@
 //
 // Created by Administrator on 24-10-12.
 //
+#pragma once
 
-#ifndef DM_42_W25Q64_H
-#define DM_42_W25Q64_H
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -92,4 +91,3 @@ private:
 
 extern W25Q64 w25q64;
 
-#endif //DM_42_W25Q64_H

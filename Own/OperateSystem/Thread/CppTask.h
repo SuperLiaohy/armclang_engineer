@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/20.
 //
+#pragma once
 
-#ifndef OWN_CPPTASK_H
-#define OWN_CPPTASK_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +42,3 @@ void TransmitTask();
 void KbTask();
 void UITask();
 void ArmInitTask();
-#endif //OWN_CPPTASK_H

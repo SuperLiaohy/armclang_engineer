@@ -1,9 +1,9 @@
 //
 // Created by Administrator on 24-11-2.
 //
+#pragma once
 
-#ifndef DM_42_BUZZER_H
-#define DM_42_BUZZER_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -58,4 +58,3 @@ inline void Buzzer::Stop() {
 extern uint16_t Romance[];
 extern uint16_t error_music[];
 extern Buzzer buzzer;
-#endif //DM_42_BUZZER_H

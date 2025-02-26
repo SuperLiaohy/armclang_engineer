@@ -1,9 +1,7 @@
 //
 // Created by Administrator on 24-10-3.
 //
-
-#ifndef OWN_CUSTOMLIST_H
-#define OWN_CUSTOMLIST_H
+#pragma once
 
 template <typename T>
 class CustomList {
@@ -56,4 +54,3 @@ public:
 
 #include "CustomList/CustomList.tpp"
 
-#endif //OWN_CUSTOMLIST_H

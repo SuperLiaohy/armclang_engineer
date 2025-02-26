@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/9.
 //
+#pragma once
 
-#ifndef NONE_PRJ_DOUBLEPID_H
-#define NONE_PRJ_DOUBLEPID_H
 
 #include "pid.h"
 
@@ -22,4 +21,3 @@ protected:
 };
 
 
-#endif //NONE_PRJ_DOUBLEPID_H

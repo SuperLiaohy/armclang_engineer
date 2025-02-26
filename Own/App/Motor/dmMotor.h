@@ -8,9 +8,7 @@
 //
 // Created by Administrator on 24-10-16.
 //
-
-#ifndef DM_42_DMMOTOR_H
-#define DM_42_DMMOTOR_H
+#pragma once
 
 #define USING_DMMOTOR 1
 #if USING_DMMOTOR == 1
@@ -69,4 +67,4 @@ extern Motor<dmMotor> link1;
 
 
 #endif //USING_DMMOTOR
-#endif //DM_42_DMMOTOR_H
+

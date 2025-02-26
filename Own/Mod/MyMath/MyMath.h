@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/9.
 //
+#pragma once
 
-#ifndef NONE_PRJ_MYMATH_H
-#define NONE_PRJ_MYMATH_H
 
 namespace my_math {
     constexpr float pi   = 3.14159265358979323846f;
@@ -134,4 +133,3 @@ consteval float scale(float src, float head) {
 int float_to_uint(float x_float, float x_min, float x_max, int bits);
 
 float uint_to_float(int x_int, float x_min, float x_max, int bits);
-#endif //NONE_PRJ_MYMATH_H

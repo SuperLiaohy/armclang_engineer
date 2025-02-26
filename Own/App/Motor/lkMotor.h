@@ -6,9 +6,7 @@
  * @Description: 
  * Copyright (c) 2024 by ${git_name} email: ${git_email}, All Rights Reserved.
  */
-
-#ifndef DM_42_LKMOTOR_H
-#define DM_42_LKMOTOR_H
+#pragma once
 
 #define USING_LKMOTOR 1
 #if USING_LKMOTOR == 1
@@ -259,4 +257,3 @@ void Motor<MOTOR>::readData(uint8_t* data)
 extern Motor<lkMotorBoard> test_motor;
 
 #endif //USING_LKMOTOR
-#endif //DM_42_LKMOTOR_H

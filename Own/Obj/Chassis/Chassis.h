@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/9.
 //
+#pragma once
 
-#ifndef NONE_PRJ_CHASSIS_H
-#define NONE_PRJ_CHASSIS_H
 
 #define USING_CHASSIS 1
 #if USING_CHASSIS == 1
@@ -66,4 +65,3 @@ extern Chassis chassis;
 
 #endif
 
-#endif //NONE_PRJ_CHASSIS_H

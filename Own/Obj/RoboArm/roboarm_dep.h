@@ -1,9 +1,8 @@
 //
 // Created by Administrator on 25-1-6.
 //
+#pragma once
 
-#ifndef DM_42_ROBOARMDEP_H
-#define DM_42_ROBOARMDEP_H
 
 #include "Matrix/Matrix.h"
 #include "Motor/GM6020.h"
@@ -216,4 +215,3 @@ namespace roboarm_dep {
 
 } // namespace robo_arm
 
-#endif //DM_42_ROBOARMDEP_H

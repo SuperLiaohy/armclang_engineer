@@ -1,9 +1,7 @@
 //
 // Created by lhy on 2024/9/9.
 //
-
-#ifndef NONE_PRJ_M3508_H
-#define NONE_PRJ_M3508_H
+#pragma once
 
 #define USING_M3508 1
 #if USING_M3508 == 1
@@ -34,4 +32,3 @@ private:
 };
 
 #endif //USING_M3508
-#endif //NONE_PRJ_M3508_H

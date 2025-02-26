@@ -1,9 +1,7 @@
 //
 // Created by Administrator on 25-1-20.
 //
-
-#ifndef ARMCLANG_ENGINEER_IMAGETRANS_H
-#define ARMCLANG_ENGINEER_IMAGETRANS_H
+#pragma once
 
 #include "Uart/SuperUart.h"
 #include "Key/Key.h"
@@ -98,4 +96,3 @@ private:
 };
 
 
-#endif //ARMCLANG_ENGINEER_IMAGETRANS_H

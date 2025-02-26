@@ -5,8 +5,8 @@
  * @FilePath: /DM/Own/App/Motor/M2006.h
  * @Description: DJI 2006电机 使用的C610的FOC
  */
-#ifndef DM_42_M2006_H
-#define DM_42_M2006_H
+#pragma once
+
 
 #define USING_M2006 1
 #if USING_M2006 == 1
@@ -39,4 +39,3 @@ private:
 };
 
 #endif //USING_M2006
-#endif

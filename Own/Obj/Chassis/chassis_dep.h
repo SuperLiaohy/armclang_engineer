@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/15.
 //
+#pragma once
 
-#ifndef NEW_PRJ_CHASSIS_DEP_H
-#define NEW_PRJ_CHASSIS_DEP_H
 
 #include "Detect/Detect.h"
 #include "Motor/M3508.h"
@@ -130,4 +129,3 @@ namespace chassis_dep {
     constexpr pid_cfg rotate_pid_default(0.15, 0, 0.1, 2, 4);
     constexpr rotate_cfg rotate_default(rotate_pid_default, 0);
 } // namespace chassis_dep
-#endif //NEW_PRJ_CHASSIS_DEP_H

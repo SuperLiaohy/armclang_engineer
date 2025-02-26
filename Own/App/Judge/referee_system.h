@@ -7,8 +7,7 @@
  *
  */
 
-#ifndef __HDL_REFEREE_SYSTEM_H
-#define __HDL_REFEREE_SYSTEM_H
+#pragma once
 
 /* 头文件引用 ----------------------------------------------------------------------------------------------------------*/
 #include <string.h>
@@ -546,4 +545,3 @@ int16_t Referee_data_transmit(uint16_t Child_content_ID, uint16_t Cilent_ID, uin
 /* 变量声明 ------------------------------------------------------------------------------------------------------------*/
 extern Class_Referee_System Referee_System;
 
-#endif /* HDL_Referee_System */

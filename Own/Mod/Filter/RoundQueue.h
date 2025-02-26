@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/15.
 //
+#pragma once
 
-#ifndef NEW_PRJ_ROUNDQUEUE_H
-#define NEW_PRJ_ROUNDQUEUE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,4 +43,3 @@ private:
 };
 
 
-#endif //NEW_PRJ_ROUNDQUEUE_H

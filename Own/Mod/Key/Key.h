@@ -1,9 +1,8 @@
 //
 // Created by Administrator on 25-1-20.
 //
+#pragma once
 
-#ifndef ARMCLANG_ENGINEER_KEY_H
-#define ARMCLANG_ENGINEER_KEY_H
 
 #include "CustomList/CustomList.h"
 #include "cstdint"
@@ -108,4 +107,3 @@ void KeyBoardUpdate(Key *keyList, KeyBoard& key_board);
 #define KEY_NUM 18
 //extern Key keyList[KEY_NUM];
 //extern KeyBoard key_board;
-#endif //ARMCLANG_ENGINEER_KEY_H

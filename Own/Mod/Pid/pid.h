@@ -1,9 +1,7 @@
 //
 // Created by liaohy on 9/5/24.
 //
-
-#ifndef NONE_PRJ_PID_H
-#define NONE_PRJ_PID_H
+#pragma once
 
 struct pid_cfg {
     float p;
@@ -84,4 +82,3 @@ public:
 };
 
 
-#endif //NONE_PRJ_PID_H

@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/20.
 //
+#pragma once
 
-#ifndef OWN_THREADCONFIG_H
-#define OWN_THREADCONFIG_H
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -28,4 +27,3 @@ extern EventGroupHandle_t osEventGroup;
 #ifdef __cplusplus
 };
 #endif
-#endif //OWN_THREADCONFIG_H

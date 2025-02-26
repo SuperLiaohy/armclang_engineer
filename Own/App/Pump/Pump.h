@@ -1,9 +1,8 @@
 //
 // Created by Administrator on 24-10-26.
 //
+#pragma once
 
-#ifndef DM_42_PUMP_H
-#define DM_42_PUMP_H
 #include "GPIO/SuperGPIO.h"
 namespace pump_dep {
     enum class state : uint8_t {
@@ -37,4 +36,3 @@ private:
 
 
 extern Pump<SuperGPIO<GPIOA_BASE,OUTPUT,GPIO_PIN_0>> pump;
-#endif //DM_42_PUMP_H

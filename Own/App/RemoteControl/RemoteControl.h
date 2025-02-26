@@ -1,9 +1,7 @@
 //
 // Created by lhy on 2024/9/10.
 //
-
-#ifndef NONE_PRJ_REMOTECONTROL_H
-#define NONE_PRJ_REMOTECONTROL_H
+#pragma once
 
 #include "Detect/Detect.h"
 #include "RemoteControl/remote_ctrl_dep.h"
@@ -43,4 +41,3 @@ void remote_ctrl_recover();
 
 //extern RemoteControl remote_control;
 
-#endif //NONE_PRJ_REMOTECONTROL_H

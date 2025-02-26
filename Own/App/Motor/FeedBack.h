@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/9.
 //
+#pragma once
 
-#ifndef NONE_PRJ_MOTOR_H
-#define NONE_PRJ_MOTOR_H
 
 #include "CAN/SuperCan.h"
 #include "Pid/DoublePid.h"
@@ -43,4 +42,3 @@ public:
 };
 
 
-#endif //NONE_PRJ_MOTOR_H

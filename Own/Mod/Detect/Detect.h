@@ -1,9 +1,7 @@
 //
 // Created by lhy on 2024/9/17.
 //
-
-#ifndef NEW_PRJ_DETECT_H
-#define NEW_PRJ_DETECT_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -56,4 +54,3 @@ protected:
 
 };
 
-#endif //NEW_PRJ_DETECT_H

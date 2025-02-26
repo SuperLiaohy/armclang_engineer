@@ -1,9 +1,8 @@
 //
 // Created by lhy on 2024/9/15.
 //
+#pragma once
 
-#ifndef NEW_PRJ_RC_DEP_H
-#define NEW_PRJ_RC_DEP_H
 
 #include "Uart/SuperUart.h"
 #include "Buzzer/Buzzer.h"
@@ -35,4 +34,3 @@ struct RC_TypeDef {
 
 
 
-#endif //NEW_PRJ_RC_DEP_H

@@ -1,9 +1,7 @@
 //
 // Created by Administrator on 24-10-1.
 //
-
-#ifndef DM_42_RGBLED_H
-#define DM_42_RGBLED_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,4 +63,3 @@ inline void RGBLED::update() {
 
 extern RGBLED Led;
 
-#endif //DM_42_RGBLED_H

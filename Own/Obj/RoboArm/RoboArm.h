@@ -6,9 +6,8 @@
  * @FilePath: /DM/Own/Obj/RoboArm/RoboArm.h
  * @Description: 机械臂类 瓴控和大疆的电机: (5010 8016 8016)三个关节  (4005 2006 2006)末端机构
  */
+#pragma once
 
-#ifndef DM_42_ROBOARM_H
-#define DM_42_ROBOARM_H
 
 #include "roboarm_dep.h"
 
@@ -76,4 +75,3 @@ private:
 
 extern RoboArm roboArm;
 
-#endif //DM_42_ROBOARM_H

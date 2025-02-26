@@ -1,9 +1,8 @@
 //
 // Created by liaohy on 8/26/24.
 //
+#pragma once
 
-#ifndef NONE_PRJ_DOUBLEBUFFER_H
-#define NONE_PRJ_DOUBLEBUFFER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -42,4 +41,3 @@ public:
 };
 
 
-#endif //NONE_PRJ_DOUBLEBUFFER_H
