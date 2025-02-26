@@ -2,7 +2,7 @@ armclang_engineer/referee_system.o: ..\Own\App\Judge\referee_system.cpp \
   ..\Own\App\Judge\referee_system.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\Bsp\Uart\SuperUart.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\Bsp\Uart\SuperUart.hpp \
   ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
@@ -215,4 +215,4 @@ armclang_engineer/referee_system.o: ..\Own\App\Judge\referee_system.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\Mod\Crc\Crc.h
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp ..\Own\Mod\Crc\Crc.hpp

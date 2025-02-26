@@ -1,5 +1,5 @@
 armclang_engineer/rgbled.o: ..\Own\App\RGBLED\RGBLED.cpp \
-  ..\Own\App\RGBLED\RGBLED.h \
+  ..\Own\App\RGBLED\RGBLED.hpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stddef.h \
@@ -18,7 +18,7 @@ armclang_engineer/rgbled.o: ..\Own\App\RGBLED\RGBLED.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h ..\Core\Inc\main.h \
+  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \

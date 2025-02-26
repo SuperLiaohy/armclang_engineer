@@ -1,6 +1,6 @@
 armclang_engineer/m3508.o: ..\Own\App\Motor\M3508.cpp \
-  ..\Own\App\Motor\M3508.h ..\Own\App\Motor\FeedBack.h \
-  ..\Own\Bsp\CAN\SuperCan.h ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
+  ..\Own\App\Motor\M3508.hpp ..\Own\App\Motor\FeedBack.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
@@ -210,7 +210,7 @@ armclang_engineer/m3508.o: ..\Own\App\Motor\M3508.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Mod\Pid\DoublePid.h ..\Own\Mod\Pid\pid.h \
-  ..\Own\Mod\Detect\Detect.h ..\Own\Mod\Detect\DetectManager.h \
-  ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\Pid\DoublePid.hpp ..\Own\Mod\Pid\pid.hpp \
+  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp

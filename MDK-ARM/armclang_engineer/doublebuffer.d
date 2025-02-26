@@ -1,10 +1,10 @@
 armclang_engineer/doublebuffer.o: \
   ..\Own\Mod\DoubleBuffer\DoubleBuffer.cpp \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
-  ..\Own\OperateSystem\Heap\CustomHeap.h \
+  ..\Own\OperateSystem\Heap\CustomHeap.hpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \

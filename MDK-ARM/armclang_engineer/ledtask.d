@@ -1,5 +1,5 @@
 armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
-  ..\Own\OperateSystem\Thread\CppTask.h \
+  ..\Own\OperateSystem\Thread\CppTask.hpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
@@ -223,16 +223,17 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\App\RemoteControl\RemoteControl.h ..\Own\Mod\Detect\Detect.h \
-  ..\Own\Mod\Detect\DetectManager.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\App\RemoteControl\RemoteControl.hpp \
+  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.h ..\Own\Bsp\Uart\SuperUart.h \
-  ..\Core\Inc\usart.h ..\Core\Inc\main.h \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h ..\Own\App\Buzzer\Buzzer.h \
-  ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.h ..\Own\App\RGBLED\RGBLED.h \
-  ..\Own\Bsp\SPI\SuperSPI.h ..\Core\Inc\spi.h
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp ..\Own\App\Buzzer\Buzzer.hpp \
+  ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.hpp ..\Own\App\RGBLED\RGBLED.hpp \
+  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h

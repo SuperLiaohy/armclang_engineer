@@ -1,5 +1,5 @@
 armclang_engineer/supercdc.o: ..\Own\Bsp\CDC\SuperCDC.cpp \
-  ..\Own\Bsp\CDC\SuperCDC.h \
+  ..\Own\Bsp\CDC\SuperCDC.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \

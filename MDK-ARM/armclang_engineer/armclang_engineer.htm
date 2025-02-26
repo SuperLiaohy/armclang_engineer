@@ -3,7 +3,7 @@
 <title>Static Call Graph - [armclang_engineer\armclang_engineer.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image armclang_engineer\armclang_engineer.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Sat Feb 22 21:47:57 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Wed Feb 26 22:02:00 2025
 <BR><P>
 <H3>Maximum Stack Usage =        764 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -3086,7 +3086,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.rodata..L__const.MX_FREERTOS_Init.os_thread_def_ARM_INIT_TASK)
 </UL>
 <P><STRONG><a name="[d1]"></a>OS_ChassisTask</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, thread.o(.text.OS_ChassisTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 228<LI>Call Chain = OS_ChassisTask &rArr; ChassisTask() &rArr; Chassis::update_slope() &rArr; Chassis::load_speed() &rArr; abs[abi:v180000](float)
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = OS_ChassisTask &rArr; ChassisTask() &rArr; Chassis::update_slope() &rArr; Chassis::load_speed() &rArr; float my_abs&lang;float&rang;(float)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xEventGroupWaitBits
 <LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChassisTask()
@@ -4092,7 +4092,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[25a]"></a>ChassisTask()</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, chassistask.o(.text._Z11ChassisTaskv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 212<LI>Call Chain = ChassisTask() &rArr; Chassis::update_slope() &rArr; Chassis::load_speed() &rArr; abs[abi:v180000](float)
+<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = ChassisTask() &rArr; Chassis::update_slope() &rArr; Chassis::load_speed() &rArr; float my_abs&lang;float&rang;(float)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxTaskGetStackHighWaterMark
@@ -4248,11 +4248,10 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> starttask.o(.text._Z9StartTaskv)
 </UL>
-<P><STRONG><a name="[38f]"></a>abs[abi:v180000](float)</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, chassis.o(.text._Z3absB7v180000f))
+<P><STRONG><a name="[39a]"></a>abs[abi:v180000](float)</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, roboarm.o(.text._Z3absB7v180000f))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = abs[abi:v180000](float)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
-<LI><a href="#[38e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::load_speed()
+<BR>[Called By]<UL><LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
 </UL>
 
 <P><STRONG><a name="[2e6]"></a>start()</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, cppport.o(.text._Z5startv))
@@ -4316,6 +4315,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = float my_abs&lang;float&rang;(float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Imu::is_temp_dead_condition(float)
+<LI><a href="#[38e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::load_speed()
 </UL>
 
 <P><STRONG><a name="[25b]"></a>DJITask()</STRONG> (Thumb, 432 bytes, Stack size 72 bytes, djitask.o(.text._Z7DJITaskv))
@@ -4386,7 +4386,7 @@ Global Symbols
 <LI><a href="#[301]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_sin_f32
 <LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_cos_f32
 </UL>
-<BR>[Called By]<UL><LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
+<BR>[Called By]<UL><LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
 </UL>
 
 <P><STRONG><a name="[25d]"></a>ErrorTask()</STRONG> (Thumb, 272 bytes, Stack size 40 bytes, errortask.o(.text._Z9ErrorTaskv))
@@ -4451,7 +4451,7 @@ Global Symbols
 <P><STRONG><a name="[39b]"></a>bool isInRange&lang;float&rang;(float, float, float, float)</STRONG> (Thumb, 94 bytes, Stack size 20 bytes, roboarm.o(.text._Z9isInRangeIfEbT_S0_S0_S0_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = bool isInRange&lang;float&rang;(float, float, float, float)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
+<BR>[Called By]<UL><LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
 </UL>
 
 <P><STRONG><a name="[313]"></a>CustomHeap::free(void*)</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, customheap.o(.text._ZN10CustomHeap4freeEPv))
@@ -4684,7 +4684,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[334]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor&lang;M3508&rang;::Motor__sub_object(motor_cfg const&)
 <LI><a href="#[333]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std::__2::array&lang;motor_cfg, 4u&rang;::operator[][abi:v180000](unsigned int) const
 </UL>
-<BR>[Called By]<UL><LI><a href="#[394]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
+<BR>[Called By]<UL><LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
 </UL>
 
 <P><STRONG><a name="[335]"></a>chassis_dep::base_motor::~base_motor__sub_object()</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, vari.o(.text._ZN11chassis_dep10base_motorD2Ev))
@@ -4701,7 +4701,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[338]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std::__2::array&lang;motor_cfg, 2u&rang;::operator[][abi:v180000](unsigned int) const
 <LI><a href="#[334]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor&lang;M3508&rang;::Motor__sub_object(motor_cfg const&)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[394]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
+<BR>[Called By]<UL><LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
 </UL>
 
 <P><STRONG><a name="[339]"></a>chassis_dep::extend_motor::~extend_motor__sub_object()</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, vari.o(.text._ZN11chassis_dep12extend_motorD2Ev))
@@ -4712,10 +4712,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::~Chassis__sub_object()
 </UL>
 
-<P><STRONG><a name="[395]"></a>chassis_dep::key::key__sub_object()</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, vari.o(.text._ZN11chassis_dep3keyC2Ev))
+<P><STRONG><a name="[394]"></a>chassis_dep::key::key__sub_object()</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, vari.o(.text._ZN11chassis_dep3keyC2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = chassis_dep::key::key__sub_object()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[394]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
+<BR>[Called By]<UL><LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
 </UL>
 
 <P><STRONG><a name="[33a]"></a>chassis_dep::move::move__sub_object(std::__2::array&lang;slope_cfg, 4u&rang; const&)</STRONG> (Thumb, 112 bytes, Stack size 40 bytes, vari.o(.text._ZN11chassis_dep4moveC2ERKNSt3__25arrayI9slope_cfgLj4EEE))
@@ -4724,7 +4724,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[33c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Slope::Slope__sub_object(slope_cfg const&)
 <LI><a href="#[33b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std::__2::array&lang;slope_cfg, 4u&rang;::operator[][abi:v180000](unsigned int) const
 </UL>
-<BR>[Called By]<UL><LI><a href="#[394]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
+<BR>[Called By]<UL><LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
 </UL>
 
 <P><STRONG><a name="[33d]"></a>chassis_dep::rotate::rotate__sub_object(chassis_dep::rotate_cfg const&)</STRONG> (Thumb, 30 bytes, Stack size 24 bytes, vari.o(.text._ZN11chassis_dep6rotateC2ERKNS_10rotate_cfgE))
@@ -4732,7 +4732,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[33e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID::PID__sub_object(pid_cfg const&)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[394]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
+<BR>[Called By]<UL><LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
 </UL>
 
 <P><STRONG><a name="[33f]"></a>roboarm_dep::arm_acos_f32(float)</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, roboarm.o(.text._ZN11roboarm_dep12arm_acos_f32Ef))
@@ -4740,7 +4740,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_acosf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
+<BR>[Called By]<UL><LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
 </UL>
 
 <P><STRONG><a name="[341]"></a>roboarm_dep::arm_atan_f32(float, float)</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, roboarm.o(.text._ZN11roboarm_dep12arm_atan_f32Eff))
@@ -4748,7 +4748,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[342]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_atanf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
+<BR>[Called By]<UL><LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
 </UL>
 
 <P><STRONG><a name="[303]"></a>roboarm_dep::arm_atan2_f32(float, float)</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, roboarm.o(.text._ZN11roboarm_dep13arm_atan2_f32Eff))
@@ -4759,7 +4759,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[300]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slove_q2(float, float, float, float, float)
 </UL>
 
-<P><STRONG><a name="[397]"></a>roboarm_dep::Differentiator::update_relative_pos(float&, float&)</STRONG> (Thumb, 62 bytes, Stack size 12 bytes, roboarm_dep.o(.text._ZN11roboarm_dep14Differentiator19update_relative_posERfS1_))
+<P><STRONG><a name="[396]"></a>roboarm_dep::Differentiator::update_relative_pos(float&, float&)</STRONG> (Thumb, 62 bytes, Stack size 12 bytes, roboarm_dep.o(.text._ZN11roboarm_dep14Differentiator19update_relative_posERfS1_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = roboarm_dep::Differentiator::update_relative_pos(float&, float&)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::update_relative_pos()
@@ -4803,7 +4803,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = roboarm_dep::is_zero(float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[302]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::is_equal(float, float)
-<LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
+<LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
 </UL>
 
 <P><STRONG><a name="[302]"></a>roboarm_dep::is_equal(float, float)</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, roboarm.o(.text._ZN11roboarm_dep8is_equalEff))
@@ -5106,7 +5106,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::Differentiator::init()
 </UL>
 
-<P><STRONG><a name="[393]"></a>PID::update(float)</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, chassis.o(.text._ZN3PID6updateEf))
+<P><STRONG><a name="[392]"></a>PID::update(float)</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, chassis.o(.text._ZN3PID6updateEf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = PID::update(float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::UpdatePid()
@@ -5400,7 +5400,7 @@ Global Symbols
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::~RoboArm__sub_object()
 </UL>
 
-<P><STRONG><a name="[392]"></a>Slope::update()</STRONG> (Thumb, 236 bytes, Stack size 12 bytes, slope.o(.text._ZN5Slope6updateEv))
+<P><STRONG><a name="[391]"></a>Slope::update()</STRONG> (Thumb, 236 bytes, Stack size 12 bytes, slope.o(.text._ZN5Slope6updateEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Slope::update()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::update_slope()
@@ -5672,9 +5672,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[38e]"></a>Chassis::load_speed()</STRONG> (Thumb, 780 bytes, Stack size 136 bytes, chassis.o(.text._ZN7Chassis10load_speedEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = Chassis::load_speed() &rArr; abs[abi:v180000](float)
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Chassis::load_speed() &rArr; float my_abs&lang;float&rang;(float)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[38f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;abs[abi:v180000](float)
+<BR>[Calls]<UL><LI><a href="#[365]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;float my_abs&lang;float&rang;(float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::update_slope()
 </UL>
@@ -5683,17 +5683,17 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = Chassis::UpdateMotor() &rArr; Motor&lang;M3508&rang;::readData(unsigned char*) &rArr; Detect::update() &rArr; Detect::getSysTime()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor&lang;M3508&rang;::readData(unsigned char*)
-<LI><a href="#[391]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::read()
-<LI><a href="#[390]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::read_header()
+<LI><a href="#[390]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::read()
+<LI><a href="#[38f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::read_header()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_FDCAN_RxFifo0Callback
 </UL>
 
 <P><STRONG><a name="[2c6]"></a>Chassis::update_slope()</STRONG> (Thumb, 176 bytes, Stack size 56 bytes, chassis.o(.text._ZN7Chassis12update_slopeEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 196<LI>Call Chain = Chassis::update_slope() &rArr; Chassis::load_speed() &rArr; abs[abi:v180000](float)
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = Chassis::update_slope() &rArr; Chassis::load_speed() &rArr; float my_abs&lang;float&rang;(float)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[38e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::load_speed()
-<LI><a href="#[392]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Slope::update()
+<LI><a href="#[391]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Slope::update()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChassisTask()
 </UL>
@@ -5710,16 +5710,16 @@ Global Symbols
 <P><STRONG><a name="[2c7]"></a>Chassis::UpdatePid()</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, chassis.o(.text._ZN7Chassis9UpdatePidEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Chassis::UpdatePid() &rArr; PID::update(float)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID::update(float)
+<BR>[Calls]<UL><LI><a href="#[392]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID::update(float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChassisTask()
 </UL>
 
-<P><STRONG><a name="[394]"></a>Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)</STRONG> (Thumb, 88 bytes, Stack size 32 bytes, vari.o(.text._ZN7ChassisC2EP8SuperCanRKNSt3__25arrayI9slope_cfgLj4EEERKN11chassis_dep10rotate_cfgERKNS3_I9motor_cfgLj4EEERKNS3_ISC_Lj2EEE))
+<P><STRONG><a name="[393]"></a>Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)</STRONG> (Thumb, 88 bytes, Stack size 32 bytes, vari.o(.text._ZN7ChassisC2EP8SuperCanRKNSt3__25arrayI9slope_cfgLj4EEERKN11chassis_dep10rotate_cfgERKNS3_I9motor_cfgLj4EEERKNS3_ISC_Lj2EEE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&) &rArr; chassis_dep::base_motor::base_motor__sub_object(std::__2::array&lang;motor_cfg, 4u&rang; const&) &rArr; Motor&lang;M3508&rang;::Motor__sub_object(motor_cfg const&) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[33d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::rotate::rotate__sub_object(chassis_dep::rotate_cfg const&)
-<LI><a href="#[395]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::key::key__sub_object()
+<LI><a href="#[394]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::key::key__sub_object()
 <LI><a href="#[33a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::move::move__sub_object(std::__2::array&lang;slope_cfg, 4u&rang; const&)
 <LI><a href="#[337]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::extend_motor::extend_motor__sub_object(std::__2::array&lang;motor_cfg, 2u&rang; const&)
 <LI><a href="#[332]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::base_motor::base_motor__sub_object(std::__2::array&lang;motor_cfg, 4u&rang; const&)
@@ -5755,7 +5755,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;float scale_transmit&lang;long long, float&rang;(long long, long long, float)
 <LI><a href="#[2df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_l2f
-<LI><a href="#[396]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2lz
+<LI><a href="#[395]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2lz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DJITask()
 </UL>
@@ -5763,7 +5763,7 @@ Global Symbols
 <P><STRONG><a name="[2ed]"></a>RoboArm::update_relative_pos()</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, roboarm.o(.text._ZN7RoboArm19update_relative_posEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = RoboArm::update_relative_pos() &rArr; roboarm_dep::Differentiator::update_relative_pos(float&, float&)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[397]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::Differentiator::update_relative_pos(float&, float&)
+<BR>[Calls]<UL><LI><a href="#[396]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::Differentiator::update_relative_pos(float&, float&)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PCTask()
 </UL>
@@ -5771,12 +5771,12 @@ Global Symbols
 <P><STRONG><a name="[305]"></a>RoboArm::close()</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, roboarm.o(.text._ZN7RoboArm5closeEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = RoboArm::close() &rArr; lkMotor::close() &rArr; SuperCan::send(unsigned int, unsigned char*) &rArr; HAL_FDCAN_AddMessageToTxFifoQ &rArr; FDCAN_CopyMessageToRAM
 </UL>
-<BR>[Calls]<UL><LI><a href="#[398]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::close()
+<BR>[Calls]<UL><LI><a href="#[397]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::close()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ErrorTask()
 </UL>
 
-<P><STRONG><a name="[399]"></a>RoboArm::fkine()</STRONG> (Thumb, 276 bytes, Stack size 56 bytes, roboarm.o(.text._ZN7RoboArm5fkineEv))
+<P><STRONG><a name="[398]"></a>RoboArm::fkine()</STRONG> (Thumb, 276 bytes, Stack size 56 bytes, roboarm.o(.text._ZN7RoboArm5fkineEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = RoboArm::fkine() &rArr; arm_sin_f32
 </UL>
 <BR>[Calls]<UL><LI><a href="#[301]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_sin_f32
@@ -5786,17 +5786,17 @@ Global Symbols
 <LI><a href="#[3a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_xyz(RoboArm&)
 </UL>
 
-<P><STRONG><a name="[39a]"></a>RoboArm::ikine(float const*)</STRONG> (Thumb, 1856 bytes, Stack size 128 bytes, roboarm.o(.text._ZN7RoboArm5ikineEPKf))
+<P><STRONG><a name="[399]"></a>RoboArm::ikine(float const*)</STRONG> (Thumb, 1856 bytes, Stack size 128 bytes, roboarm.o(.text._ZN7RoboArm5ikineEPKf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[39b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bool isInRange&lang;float&rang;(float, float, float, float)
 <LI><a href="#[300]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slove_q2(float, float, float, float, float)
 <LI><a href="#[33f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::arm_acos_f32(float)
 <LI><a href="#[341]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::arm_atan_f32(float, float)
+<LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;abs[abi:v180000](float)
 <LI><a href="#[34c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::is_zero(float)
 <LI><a href="#[301]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_sin_f32
 <LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_cos_f32
-<LI><a href="#[38f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;abs[abi:v180000](float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_xyz(RoboArm&)
 </UL>
@@ -5806,7 +5806,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[39c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::clear_error()
-<LI><a href="#[398]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::close()
+<LI><a href="#[397]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::close()
 <LI><a href="#[39d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::enable()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ArmInitTask()
@@ -5876,7 +5876,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask()
 </UL>
 
-<P><STRONG><a name="[398]"></a>lkMotor::close()</STRONG> (Thumb, 44 bytes, Stack size 24 bytes, lkmotor.o(.text._ZN7lkMotor5closeEv))
+<P><STRONG><a name="[397]"></a>lkMotor::close()</STRONG> (Thumb, 44 bytes, Stack size 24 bytes, lkmotor.o(.text._ZN7lkMotor5closeEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = lkMotor::close() &rArr; SuperCan::send(unsigned int, unsigned char*) &rArr; HAL_FDCAN_AddMessageToTxFifoQ &rArr; FDCAN_CopyMessageToRAM
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::send(unsigned int, unsigned char*)
@@ -5928,8 +5928,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[343]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;float limited&lang;float&rang;(float&, float, float)
-<LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
-<LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine()
+<LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
+<LI><a href="#[398]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::update_roboArm(RoboArm&)
 </UL>
@@ -5945,7 +5945,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ImageTrans::read_map_back() const
 <LI><a href="#[32b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std::__2::array&lang;short, 6u&rang;::operator[][abi:v180000](unsigned int)
-<LI><a href="#[396]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2lz
+<LI><a href="#[395]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2lz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ImageTransTask()
 </UL>
@@ -5962,7 +5962,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[3a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_reset(RoboArm&)
 <LI><a href="#[3a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_xyz(RoboArm&)
 <LI><a href="#[3a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_rc()
-<LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine()
+<LI><a href="#[398]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCtrlTask()
 </UL>
@@ -5970,7 +5970,7 @@ Global Symbols
 <P><STRONG><a name="[2dc]"></a>Interact::receive_actions(bool)</STRONG> (Thumb, 300 bytes, Stack size 24 bytes, interact.o(.text._ZN8Interact15receive_actionsEb))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Interact::receive_actions(bool) &rArr; __aeabi_f2lz
 </UL>
-<BR>[Calls]<UL><LI><a href="#[396]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2lz
+<BR>[Calls]<UL><LI><a href="#[395]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2lz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCtrlTask()
 </UL>
@@ -6017,7 +6017,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> vari.o(.text.__cxx_global_var_init.17)
 </UL>
-<P><STRONG><a name="[390]"></a>SuperCan::read_header()</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, chassis.o(.text._ZN8SuperCan11read_headerEv))
+<P><STRONG><a name="[38f]"></a>SuperCan::read_header()</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, chassis.o(.text._ZN8SuperCan11read_headerEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = SuperCan::read_header()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::UpdateMotor()
@@ -6034,7 +6034,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask()
 </UL>
 
-<P><STRONG><a name="[391]"></a>SuperCan::read()</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, chassis.o(.text._ZN8SuperCan4readEv))
+<P><STRONG><a name="[390]"></a>SuperCan::read()</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, chassis.o(.text._ZN8SuperCan4readEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = SuperCan::read()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::UpdateMotor()
@@ -6059,7 +6059,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::read_totalposition()
 <LI><a href="#[39c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::clear_error()
 <LI><a href="#[2e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::totalposition2Control(unsigned short, int)
-<LI><a href="#[398]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::close()
+<LI><a href="#[397]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::close()
 <LI><a href="#[39d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lkMotor::enable()
 </UL>
 
@@ -6277,9 +6277,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;operator delete(void*)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[322]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CustomList&lang;Detect*&rang;::remove(Detect* const&)
+<BR>[Called By]<UL><LI><a href="#[325]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CustomList&lang;Detect*&rang;::~CustomList__sub_object()
+<LI><a href="#[322]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CustomList&lang;Detect*&rang;::remove(Detect* const&)
 <LI><a href="#[31d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CustomList&lang;Key::key_callback&rang;::~CustomList__sub_object()
-<LI><a href="#[325]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CustomList&lang;Detect*&rang;::~CustomList__sub_object()
 </UL>
 
 <P><STRONG><a name="[31b]"></a>operator new(unsigned int)</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, redifine.o(.text._Znwj))
@@ -6305,8 +6305,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = arm_cos_f32
 </UL>
 <BR>[Called By]<UL><LI><a href="#[300]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slove_q2(float, float, float, float, float)
-<LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
-<LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine()
+<LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
+<LI><a href="#[398]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine()
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IMU_QuaternionEKF_xhatUpdate
 </UL>
 
@@ -6365,8 +6365,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = arm_sin_f32
 </UL>
 <BR>[Called By]<UL><LI><a href="#[300]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slove_q2(float, float, float, float, float)
-<LI><a href="#[39a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
-<LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine()
+<LI><a href="#[399]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(float const*)
+<LI><a href="#[398]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine()
 </UL>
 
 <P><STRONG><a name="[123]"></a>bmi088_accel_init</STRONG> (Thumb, 398 bytes, Stack size 40 bytes, bmi088driver.o(.text.bmi088_accel_init))
@@ -7454,7 +7454,7 @@ Global Symbols
 
 <P><STRONG><a name="[45b]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 
-<P><STRONG><a name="[396]"></a>__aeabi_f2lz</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, ffixll.o(x$fpl$llsfromf))
+<P><STRONG><a name="[395]"></a>__aeabi_f2lz</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, ffixll.o(x$fpl$llsfromf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_f2lz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_actions(bool)
@@ -8521,7 +8521,7 @@ Local Symbols
 <P><STRONG><a name="[2b4]"></a>__cxx_global_var_init.12</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, vari.o(.text.__cxx_global_var_init.12))
 <BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = __cxx_global_var_init.12 &rArr; Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&) &rArr; chassis_dep::base_motor::base_motor__sub_object(std::__2::array&lang;motor_cfg, 4u&rang; const&) &rArr; Motor&lang;M3508&rang;::Motor__sub_object(motor_cfg const&) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[394]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
+<BR>[Calls]<UL><LI><a href="#[393]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, chassis_dep::rotate_cfg const&, std::__2::array&lang;motor_cfg, 4u&rang; const&, std::__2::array&lang;motor_cfg, 2u&rang; const&)
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxa_atexit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GLOBAL__sub_I_Vari.cpp

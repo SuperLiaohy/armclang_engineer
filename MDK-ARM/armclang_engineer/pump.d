@@ -1,5 +1,5 @@
-armclang_engineer/pump.o: ..\Own\App\Pump\Pump.cpp ..\Own\App\Pump\Pump.h \
-  ..\Own\Bsp\GPIO\SuperGPIO.h \
+armclang_engineer/pump.o: ..\Own\App\Pump\Pump.cpp \
+  ..\Own\App\Pump\Pump.hpp ..\Own\Bsp\GPIO\SuperGPIO.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \

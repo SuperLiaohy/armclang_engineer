@@ -1,5 +1,5 @@
 armclang_engineer/supergpio.o: ..\Own\Bsp\GPIO\SuperGPIO.cpp \
-  ..\Own\Bsp\GPIO\SuperGPIO.h \
+  ..\Own\Bsp\GPIO\SuperGPIO.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \

@@ -3,7 +3,7 @@
 //
 
 #include "Chassis.hpp"
-
+#include "MyMath/MyMath.hpp"
 #if USING_CHASSIS == 1
 
 #ifdef __cplusplus
@@ -99,17 +99,17 @@ void Chassis::load_speed() {
     float rotateRatio[4], wheelSpeed[4];
 
     rotateRatio[LeftFront] =
-            (front_info.wheel_base + front_info.wheel_track) / 2.f - info.offset_y * abs(move.w) / max.w + info.offset_x
-            * abs(move.w) / max.w;
+            (front_info.wheel_base + front_info.wheel_track) / 2.f - info.offset_y * my_abs(move.w) / max.w + info.offset_x
+            * my_abs(move.w) / max.w;
     rotateRatio[RightFront] =
-            (front_info.wheel_base + front_info.wheel_track) / 2.f - info.offset_y * abs(move.w) / max.w - info.offset_x
-            * abs(move.w) / max.w;
+            (front_info.wheel_base + front_info.wheel_track) / 2.f - info.offset_y * my_abs(move.w) / max.w - info.offset_x
+            * my_abs(move.w) / max.w;
     rotateRatio[LeftRear] =
-            (rear_info.wheel_base + rear_info.wheel_track) / 2.f + info.offset_y * abs(move.w) / max.w + info.offset_x *
-            abs(move.w) / max.w;
+            (rear_info.wheel_base + rear_info.wheel_track) / 2.f + info.offset_y * my_abs(move.w) / max.w + info.offset_x *
+            my_abs(move.w) / max.w;
     rotateRatio[RightRear] =
-            (rear_info.wheel_base + rear_info.wheel_track) / 2.f + info.offset_y * abs(move.w) / max.w - info.offset_x *
-            abs(move.w) / max.w;
+            (rear_info.wheel_base + rear_info.wheel_track) / 2.f + info.offset_y * my_abs(move.w) / max.w - info.offset_x *
+            my_abs(move.w) / max.w;
 
     wheelSpeed[LeftFront] =
             (move.vx + move.vy - rotateRatio[LeftFront] * move.w) * v2rpm;

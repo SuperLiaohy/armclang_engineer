@@ -1,5 +1,5 @@
 armclang_engineer/customheap.o: ..\Own\OperateSystem\Heap\CustomHeap.cpp \
-  ..\Own\OperateSystem\Heap\CustomHeap.h \
+  ..\Own\OperateSystem\Heap\CustomHeap.hpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \

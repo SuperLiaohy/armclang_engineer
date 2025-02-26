@@ -1330,11 +1330,6 @@
               <FilePath>..\Own\Obj\RoboArm\RoboArm.cpp</FilePath>
             </File>
             <File>
-              <FileName>Share.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Obj\Share\Share.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Interact.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Obj\Interact\Interact.cpp</FilePath>
@@ -2966,11 +2961,6 @@
               <FileName>RoboArm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Obj\RoboArm\RoboArm.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Share.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Obj\Share\Share.cpp</FilePath>
             </File>
             <File>
               <FileName>Interact.cpp</FileName>

@@ -1,5 +1,5 @@
 armclang_engineer/superuart.o: ..\Own\Bsp\Uart\SuperUart.cpp \
-  ..\Own\Bsp\Uart\SuperUart.h ..\Core\Inc\usart.h ..\Core\Inc\main.h \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
@@ -214,6 +214,6 @@ armclang_engineer/superuart.o: ..\Own\Bsp\Uart\SuperUart.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.h \
-  ..\Own\OperateSystem\Heap\CustomHeap.h \
+  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp \
+  ..\Own\OperateSystem\Heap\CustomHeap.hpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h

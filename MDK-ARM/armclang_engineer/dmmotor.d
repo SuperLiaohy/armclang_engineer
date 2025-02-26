@@ -1,5 +1,5 @@
 armclang_engineer/dmmotor.o: ..\Own\App\Motor\dmMotor.cpp \
-  ..\Own\App\Motor\dmMotor.h ..\Own\Bsp\CAN\SuperCan.h \
+  ..\Own\App\Motor\dmMotor.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
@@ -210,10 +210,11 @@ armclang_engineer/dmmotor.o: ..\Own\App\Motor\dmMotor.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Mod\MyMath\MyMath.h ..\Own\App\Motor\Motor.h \
-  ..\Own\App\Motor\FeedBack.h ..\Own\Mod\Pid\DoublePid.h \
-  ..\Own\Mod\Pid\pid.h ..\Own\Mod\Detect\Detect.h \
-  ..\Own\Mod\Detect\DetectManager.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Motor.hpp \
+  ..\Own\App\Motor\FeedBack.hpp ..\Own\Mod\Pid\DoublePid.hpp \
+  ..\Own\Mod\Pid\pid.hpp ..\Own\Mod\Detect\Detect.hpp \
+  ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
@@ -243,4 +244,4 @@ armclang_engineer/dmmotor.o: ..\Own\App\Motor\dmMotor.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
-  ..\Own\Mod\MyMath\\MyMath.h
+  ..\Own\Mod\MyMath\\MyMath.hpp

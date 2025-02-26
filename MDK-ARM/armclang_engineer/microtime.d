@@ -1,5 +1,5 @@
 armclang_engineer/microtime.o: ..\Own\App\MicroTime\MicroTime.cpp \
-  ..\Own\App\MicroTime\MicroTime.h \
+  ..\Own\App\MicroTime\MicroTime.hpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \

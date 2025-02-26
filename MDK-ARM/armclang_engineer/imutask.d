@@ -1,5 +1,5 @@
 armclang_engineer/imutask.o: ..\Own\OperateSystem\Thread\IMUTask.cpp \
-  ..\Own\OperateSystem\Thread\CppTask.h \
+  ..\Own\OperateSystem\Thread\CppTask.hpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
@@ -223,6 +223,6 @@ armclang_engineer/imutask.o: ..\Own\OperateSystem\Thread\IMUTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\App\Imu\Imu.h ..\Core\Inc\tim.h ..\Core\Inc\main.h \
-  ..\Own\Mod\Pid\pid.h ..\Own\App\W25Q64\W25Q64.h ..\Core\Inc\octospi.h \
-  ..\Own\OperateSystem\ThreadConfig.h
+  ..\Own\App\Imu\Imu.hpp ..\Core\Inc\tim.h ..\Core\Inc\main.h \
+  ..\Own\Mod\Pid\pid.hpp ..\Own\App\W25Q64\W25Q64.hpp \
+  ..\Core\Inc\octospi.h ..\Own\OperateSystem\ThreadConfig.h

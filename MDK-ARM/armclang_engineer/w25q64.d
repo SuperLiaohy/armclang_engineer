@@ -1,5 +1,5 @@
 armclang_engineer/w25q64.o: ..\Own\App\W25Q64\W25Q64.cpp \
-  ..\Own\App\W25Q64\W25Q64.h \
+  ..\Own\App\W25Q64\W25Q64.hpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \

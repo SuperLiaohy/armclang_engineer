@@ -158,7 +158,7 @@ armclang_engineer/redifine.o: ..\Own\OperateSystem\Heap\Redifine.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
-  ..\Own\OperateSystem\Heap\CustomHeap.h \
+  ..\Own\OperateSystem\Heap\CustomHeap.hpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \

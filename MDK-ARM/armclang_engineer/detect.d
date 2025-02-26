@@ -1,5 +1,5 @@
 armclang_engineer/detect.o: ..\Own\Mod\Detect\Detect.cpp \
-  ..\Own\Mod\Detect\Detect.h \
+  ..\Own\Mod\Detect\Detect.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
@@ -209,5 +209,6 @@ armclang_engineer/detect.o: ..\Own\Mod\Detect\Detect.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Mod\Detect\DetectManager.h ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp

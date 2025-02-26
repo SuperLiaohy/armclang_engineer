@@ -9,10 +9,7 @@
 #include "Motor/Motor.hpp"
 #include "MyMath/MyMath.hpp"
 #include "RemoteControl/RemoteControl.hpp"
-#include "Share/Share.h"
 #include "Slope/Slope.hpp"
-
-
 #include "array"
 
 namespace chassis_dep {

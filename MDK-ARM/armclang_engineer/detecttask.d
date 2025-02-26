@@ -1,6 +1,6 @@
 armclang_engineer/detecttask.o: \
   ..\Own\OperateSystem\Thread\DetectTask.cpp \
-  ..\Own\OperateSystem\Thread\CppTask.h \
+  ..\Own\OperateSystem\Thread\CppTask.hpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
@@ -224,6 +224,6 @@ armclang_engineer/detecttask.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Mod\Detect\Detect.h ..\Own\Mod\Detect\DetectManager.h \
-  ..\Own\Mod\CustomList\CustomList.h \
+  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp
