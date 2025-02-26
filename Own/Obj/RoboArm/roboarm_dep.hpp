@@ -4,16 +4,16 @@
 #pragma once
 
 
-#include "Matrix/Matrix.h"
-#include "Motor/GM6020.h"
-#include "Motor/M2006.h"
-#include "Motor/M3508.h"
-#include "Motor/Motor.h"
-#include "Motor/dmMotor.h"
-#include "Motor/lkMotor.h"
-#include "MyMath/MyMath.h"
-#include "Uart/SuperUart.h"
-#include "Slope/Slope.h"
+#include "Matrix/Matrix.hpp"
+#include "Motor/GM6020.hpp"
+#include "Motor/M2006.hpp"
+#include "Motor/M3508.hpp"
+#include "Motor/Motor.hpp"
+#include "Motor/dmMotor.hpp"
+#include "Motor/lkMotor.hpp"
+#include "MyMath/MyMath.hpp"
+#include "Uart/SuperUart.hpp"
+#include "Slope/Slope.hpp"
 
 #ifdef __cplusplus
 extern "C" {

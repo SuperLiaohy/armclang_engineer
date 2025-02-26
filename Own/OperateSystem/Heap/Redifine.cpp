@@ -11,7 +11,7 @@ extern "C" {
 }
 #endif
 
-#include "CustomHeap.h"
+#include "CustomHeap.hpp"
 
 #define USING_CUSTOM_D1_HEAP 1
 #define USING_FREERTOS_HEAP 0

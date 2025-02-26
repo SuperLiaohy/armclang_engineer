@@ -4,8 +4,8 @@
 #pragma once
 
 
-#include "Interact/interact_dep.h"
-#include "Chassis/Chassis.h"
+#include "Interact/interact_dep.hpp"
+#include "Chassis/Chassis.hpp"
 
 //设定交互方式的统一标准为2个字节16bit的形式
 class Interact {

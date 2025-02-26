@@ -11,7 +11,7 @@ extern "C" {
 }
 #endif
 
-#include "RoundQueue.h"
+#include "RoundQueue.hpp"
 
 
 class Filter {

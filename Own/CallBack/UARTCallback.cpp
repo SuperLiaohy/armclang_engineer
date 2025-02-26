@@ -2,7 +2,7 @@
 // Created by Administrator on 24-10-3.
 //
 
-#include "Interact/Interact.h"
+#include "Interact/Interact.hpp"
 
 #ifdef __cplusplus
 extern "C" {

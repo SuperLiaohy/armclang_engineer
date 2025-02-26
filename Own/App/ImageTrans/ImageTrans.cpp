@@ -2,7 +2,7 @@
 // Created by Administrator on 25-1-20.
 //
 
-#include "ImageTrans.h"
+#include "ImageTrans.hpp"
 
 #ifdef __cplusplus
 extern "C" {

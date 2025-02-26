@@ -7,7 +7,7 @@
 #define USING_CHASSIS 1
 #if USING_CHASSIS == 1
 
-    #include "chassis_dep.h"
+    #include "chassis_dep.hpp"
 
 class Chassis {
 public:

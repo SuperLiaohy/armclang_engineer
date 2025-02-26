@@ -18,7 +18,7 @@ extern "C" {
 }
 #endif
 
-#include "DoubleBuffer/DoubleBuffer.h"
+#include "DoubleBuffer/DoubleBuffer.hpp"
 
 
 #define USING_UART_RAW 0

@@ -2,7 +2,7 @@
 // Created by lhy on 2024/9/10.
 //
 
-#include "RemoteControl.h"
+#include "RemoteControl.hpp"
 
 void RemoteControl::update(KeyBoard& key_board) {
     auto buff = uartPlus.rx_buffer;

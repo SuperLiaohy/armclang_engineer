@@ -2,7 +2,7 @@
 // Created by lhy on 2024/9/9.
 //
 
-#include "DoublePid.h"
+#include "DoublePid.hpp"
 
 
 float DoublePid::update(float extern_input, float extern_target, float inter_input) {

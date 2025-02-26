@@ -6,8 +6,8 @@
 #define USING_GM6020 1
 #if USING_GM6020 == 1
 
-#include "FeedBack.h"
-#include "Motor.h"
+#include "FeedBack.hpp"
+#include "Motor.hpp"
 
 class GM6020 {
 public:

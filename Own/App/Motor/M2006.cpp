@@ -5,7 +5,7 @@
  * @FilePath: /DM/Own/App/Motor/M2006.cpp
  * @Description: DJI 2006电机 使用的C610的FOC
  */
-#include "M2006.h"
+#include "M2006.hpp"
 
 #if USING_M2006 == 1
 

@@ -2,8 +2,8 @@
 // Created by liaohy on 8/26/24.
 //
 
-#include "DoubleBuffer.h"
-#include "Heap/CustomHeap.h"
+#include "DoubleBuffer.hpp"
+#include "Heap/CustomHeap.hpp"
 
 DoubleBuffer::DoubleBuffer(const uint16_t bufferSize) {
     for (auto &[data, size, count]: buffers) {

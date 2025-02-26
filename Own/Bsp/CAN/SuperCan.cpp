@@ -2,7 +2,7 @@
 // Created by liaohy on 9/5/24.
 //
 
-#include "SuperCan.h"
+#include "SuperCan.hpp"
 
 
 SuperCan::SuperCan(FDCAN_HandleTypeDef *_hcan, uint32_t _fifo, uint32_t _fifo_start) {

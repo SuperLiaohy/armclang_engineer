@@ -2,12 +2,12 @@
 // Created by liaohy on 24-11-15.
 //
 
-#include <RemoteControl/RemoteControl.h>
-#include "CppTask.h"
-#include "Interact/Interact.h"
+#include <RemoteControl/RemoteControl.hpp>
+#include "CppTask.hpp"
+#include "Interact/Interact.hpp"
 #include "ThreadConfig.h"
-#include "MicroTime/MicroTime.h"
-#include "Chassis/Chassis.h"
+#include "MicroTime/MicroTime.hpp"
+#include "Chassis/Chassis.hpp"
 
 #ifdef __cplusplus
 extern "C" {

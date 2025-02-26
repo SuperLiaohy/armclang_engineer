@@ -2,7 +2,7 @@
  * @Author: SuperLiaohy liaohy123@outlook.com
  * @LastEditors: SuperLiaohy liaohy123@outlook.com
  * @LastEditTime: 2024-11-24 17:30:31
- * @FilePath: /DM/Own/App/Motor/M2006.h
+ * @FilePath: /DM/Own/App/Motor/M2006.hpp
  * @Description: DJI 2006电机 使用的C610的FOC
  */
 #pragma once
@@ -11,7 +11,7 @@
 #define USING_M2006 1
 #if USING_M2006 == 1
 
-#include "FeedBack.h"
+#include "FeedBack.hpp"
 
 class M2006 {
 public:

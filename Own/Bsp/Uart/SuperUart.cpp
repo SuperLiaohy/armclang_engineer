@@ -2,8 +2,8 @@
 // Created by liaohy on 8/26/24.
 //
 
-#include "SuperUart.h"
-#include "Heap/CustomHeap.h"
+#include "SuperUart.hpp"
+#include "Heap/CustomHeap.hpp"
 
 SuperUart::SuperUart(UART_HandleTypeDef *_uart, const uint16_t bufferSize, const uint16_t tx_buffer_size) {
     if (bufferSize == 0) {

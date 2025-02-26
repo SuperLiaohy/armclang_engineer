@@ -2,7 +2,7 @@
 // Created by lhy on 2024/9/17.
 //
 
-#include "DetectManager.h"
+#include "DetectManager.hpp"
 
 
 void DetectManager::Register(Detect *detect) {

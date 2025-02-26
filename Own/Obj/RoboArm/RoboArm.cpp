@@ -2,8 +2,8 @@
 // Created by Administrator on 24-10-23.
 //
 
-#include "RoboArm.h"
-#include "Interact/Interact.h"
+#include "RoboArm.hpp"
+#include "Interact/Interact.hpp"
 
 inline float slove_q2(float q1_slove, float q3_slove, float x, float y, float z) {
     using namespace my_math;

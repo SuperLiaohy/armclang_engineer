@@ -1,10 +1,10 @@
 //
 // Created by liaohy on 24-11-16.
 //
-#include "CppTask.h"
+#include "CppTask.hpp"
 
-#include "Imu/Imu.h"
-#include "W25Q64/W25Q64.h"
+#include "Imu/Imu.hpp"
+#include "W25Q64/W25Q64.hpp"
 #include "ThreadConfig.h"
 #define TEMP_CTRL_ENABLE 0
 static uint8_t imu_flag = 0;

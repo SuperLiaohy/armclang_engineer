@@ -2,7 +2,7 @@
  * @Author: SuperLiaohy liaohy123@outlook.com
  * @LastEditors: SuperLiaohy liaohy123@outlook.com
  * @LastEditTime: 2024-11-24 15:21:52
- * @FilePath: /DM/Own/App/Motor/lkMotor.h
+ * @FilePath: /DM/Own/App/Motor/lkMotor.hpp
  * @Description: 
  * Copyright (c) 2024 by ${git_name} email: ${git_email}, All Rights Reserved.
  */
@@ -11,7 +11,7 @@
 #define USING_LKMOTOR 1
 #if USING_LKMOTOR == 1
 
-    #include "FeedBack.h"
+   #include "FeedBack.hpp"
     #ifdef __cplusplus
 extern "C" {
     #endif
@@ -136,7 +136,7 @@ private:
     void CalcTotalPos();
 };
 
-    #include "Motor.h"
+    #include "Motor.hpp"
 
 template<typename MOTOR>
 void Motor<MOTOR>::readData(uint8_t* data)

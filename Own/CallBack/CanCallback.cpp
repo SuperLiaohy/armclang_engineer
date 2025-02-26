@@ -2,13 +2,13 @@
 // Created by Administrator on 24-10-3.
 //
 #include "ThreadConfig.h"
-#include "CAN/SuperCan.h"
-#include "Motor/GM6020.h"
-#include "Motor/lkMotor.h"
-#include "Motor/dmMotor.h"
-#include "Motor/M2006.h"
-#include "RoboArm/RoboArm.h"
-#include "Chassis/Chassis.h"
+#include "CAN/SuperCan.hpp"
+#include "Motor/GM6020.hpp"
+#include "Motor/lkMotor.hpp"
+#include "Motor/dmMotor.hpp"
+#include "Motor/M2006.hpp"
+#include "RoboArm/RoboArm.hpp"
+#include "Chassis/Chassis.hpp"
 
 #ifdef __cplusplus
 extern "C" {

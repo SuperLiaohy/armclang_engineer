@@ -1,8 +1,8 @@
 //
 // Created by Administrator on 25-2-18.
 //
-#include "CppTask.h"
-#include "Judge/ui.h"
+#include "CppTask.hpp"
+#include "Judge/ui.hpp"
 void UITask() {
     uint32_t time = 0;
     for (;;) {

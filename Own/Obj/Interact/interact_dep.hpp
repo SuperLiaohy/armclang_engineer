@@ -3,11 +3,11 @@
 //
 #pragma once
 
-#include "CDC/SuperCDC.h"
-#include "CustomList/CustomList.h"
-#include "ImageTrans/ImageTrans.h"
-#include "RemoteControl/RemoteControl.h"
-#include "RoboArm/RoboArm.h"
+#include "CDC/SuperCDC.hpp"
+#include "CustomList/CustomList.hpp"
+#include "ImageTrans/ImageTrans.hpp"
+#include "RemoteControl/RemoteControl.hpp"
+#include "RoboArm/RoboArm.hpp"
 
 namespace interact_dep {
     typedef struct link_receive {

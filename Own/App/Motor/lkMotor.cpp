@@ -2,7 +2,7 @@
 // Created by Administrator on 24-10-22.
 //
 
-#include "lkMotor.h"
+#include "lkMotor.hpp"
 
 #if USING_LKMOTOR == 1
 

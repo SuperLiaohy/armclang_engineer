@@ -2,20 +2,20 @@
 // Created by liaohy on 24-11-15.
 //
 
-#include "Buzzer/Buzzer.h"
-#include "CAN/SuperCan.h"
-#include "Chassis/Chassis.h"
-#include "CppTask.h"
-#include "Detect/Detect.h"
-#include "Interact/Interact.h"
-#include "Pump/Pump.h"
-#include "RGBLED/RGBLED.h"
-#include "RemoteControl/RemoteControl.h"
-#include "RoboArm/RoboArm.h"
+#include "Buzzer/Buzzer.hpp"
+#include "CAN/SuperCan.hpp"
+#include "Chassis/Chassis.hpp"
+#include "CppTask.hpp"
+#include "Detect/Detect.hpp"
+#include "Interact/Interact.hpp"
+#include "Pump/Pump.hpp"
+#include "RGBLED/RGBLED.hpp"
+#include "RemoteControl/RemoteControl.hpp"
+#include "RoboArm/RoboArm.hpp"
 #include "ThreadConfig.h"
-#include "W25Q64/W25Q64.h"
-#include <Motor/GM6020.h>
-#include <Motor/lkMotor.h>
+#include "W25Q64/W25Q64.hpp"
+#include <Motor/GM6020.hpp>
+#include <Motor/lkMotor.hpp>
 
 void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);

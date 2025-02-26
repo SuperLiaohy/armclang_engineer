@@ -1,8 +1,8 @@
 //
 // Created by Administrator on 25-2-12.
 //
-#include "CppTask.h"
-#include "Interact/Interact.h"
+#include "CppTask.hpp"
+#include "Interact/Interact.hpp"
 void TransmitTask() {
         interact.image_trans.set_map_back(1);
 

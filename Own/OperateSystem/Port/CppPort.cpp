@@ -1,11 +1,11 @@
 //
 // Created by lhy on 2024/9/19.
 //
-#include "CDC/SuperCDC.h"
+#include "CDC/SuperCDC.hpp"
 #include "CppPort.h"
-#include "GPIO/SuperGPIO.h"
-#include "Interact/interact.h"
-#include "W25Q64/W25Q64.h"
+#include "GPIO/SuperGPIO.hpp"
+#include "Interact/interact.hpp"
+#include "W25Q64/W25Q64.hpp"
 
 #ifdef __cplusplus
 extern "C" {

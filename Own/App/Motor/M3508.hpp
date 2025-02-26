@@ -6,7 +6,7 @@
 #define USING_M3508 1
 #if USING_M3508 == 1
 
-#include "FeedBack.h"
+#include "FeedBack.hpp"
 
 class M3508 {
 public:

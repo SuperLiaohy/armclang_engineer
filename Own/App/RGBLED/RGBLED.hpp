@@ -13,7 +13,7 @@ extern "C" {
 }
 #endif
 
-#include "SPI/SuperSPI.h"
+#include "SPI/SuperSPI.hpp"
 /*
  * RGBLED使用的时SPI6
  * 而SPI6使用的是DMA2_Stream5

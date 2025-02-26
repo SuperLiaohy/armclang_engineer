@@ -2,7 +2,7 @@
 // Created by lhy on 2024/9/15.
 //
 
-#include "Slope.h"
+#include "Slope.hpp"
 
 float Slope::update() {
     if (target - value < dead_zone && target - value > -dead_zone) { return value; }

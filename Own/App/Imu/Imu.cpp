@@ -1,7 +1,7 @@
 //
 // Created by liaohy on 24-11-17.
 //
-#include <MyMath/MyMath.h>
+#include <MyMath/MyMath.hpp>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -15,7 +15,7 @@ extern "C" {
 }
 #endif
 
-#include "Imu.h"
+#include "Imu.hpp"
 float H723_Temperature;
 void Imu::init() {
     IMU_QuaternionEKF_Init(10, 0.001, 10000000, 1, 0.001f, 0); //ekf初始化

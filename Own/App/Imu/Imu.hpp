@@ -13,7 +13,7 @@ extern "C" {
 }
 #endif
 
-#include "Pid/pid.h"
+#include "Pid/pid.hpp"
 enum MEASURE_ABLE {
     MEASURE_ENABLE,
     MEASURE_DISABLE,

@@ -2,7 +2,7 @@
 // Created by Administrator on 24-10-1.
 //
 
-#include "SuperSPI.h"
+#include "SuperSPI.hpp"
 
 void SuperSPI::Write(uint8_t *pData, uint16_t Size) {
     HAL_SPI_Transmit(hspi, pData, Size, 1000);

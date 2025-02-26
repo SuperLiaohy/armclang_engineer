@@ -2,7 +2,7 @@
 // Created by lhy on 2024/9/9.
 //
 
-#include "GM6020.h"
+#include "GM6020.hpp"
 
 #if USING_GM6020 == 1
 

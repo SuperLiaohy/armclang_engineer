@@ -1,16 +1,16 @@
 //
 // Created by liaohy on 24-11-15.
 //
-#include "CppTask.h"
-#include "Vofa/vofa.h"
-#include "Motor/lkMotor.h"
-#include "Motor/GM6020.h"
-#include "Uart/SuperUart.h"
-#include "CDC/SuperCDC.h"
-#include "Imu/Imu.h"
-#include "RoboArm/RoboArm.h"
-#include "Interact/Interact.h"
-#include "MicroTime/MicroTime.h"
+#include "CppTask.hpp"
+#include "Vofa/vofa.hpp"
+#include "Motor/lkMotor.hpp"
+#include "Motor/GM6020.hpp"
+#include "Uart/SuperUart.hpp"
+#include "CDC/SuperCDC.hpp"
+#include "Imu/Imu.hpp"
+#include "RoboArm/RoboArm.hpp"
+#include "Interact/Interact.hpp"
+#include "MicroTime/MicroTime.hpp"
 
 extern float left_angle;
 extern float right_angle;

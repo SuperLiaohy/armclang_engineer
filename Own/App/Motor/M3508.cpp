@@ -2,7 +2,7 @@
 // Created by lhy on 2024/9/9.
 //
 
-#include "M3508.h"
+#include "M3508.hpp"
 
 #if USING_M3508 == 1
 

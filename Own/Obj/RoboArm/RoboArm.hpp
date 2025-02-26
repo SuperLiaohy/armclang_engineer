@@ -3,13 +3,13 @@
  * @Date: 2024-11-24 12:48:55
  * @LastEditors: SuperLiaohy liaohy123@outlook.com
  * @LastEditTime: 2024-11-25 21:17:01
- * @FilePath: /DM/Own/Obj/RoboArm/RoboArm.h
+ * @FilePath: /DM/Own/Obj/RoboArm/RoboArm.hpp
  * @Description: 机械臂类 瓴控和大疆的电机: (5010 8016 8016)三个关节  (4005 2006 2006)末端机构
  */
 #pragma once
 
 
-#include "roboarm_dep.h"
+#include "roboarm_dep.hpp"
 
 extern int32_t left_dPos;
 extern int32_t right_dPos;

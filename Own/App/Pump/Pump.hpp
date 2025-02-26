@@ -3,7 +3,7 @@
 //
 #pragma once
 
-#include "GPIO/SuperGPIO.h"
+#include "GPIO/SuperGPIO.hpp"
 namespace pump_dep {
     enum class state : uint8_t {
         close = 0,

@@ -4,13 +4,13 @@
 #pragma once
 
 
-#include "Detect/Detect.h"
-#include "Motor/M3508.h"
-#include "Motor/Motor.h"
-#include "MyMath/MyMath.h"
-#include "RemoteControl/RemoteControl.h"
+#include "Detect/Detect.hpp"
+#include "Motor/M3508.hpp"
+#include "Motor/Motor.hpp"
+#include "MyMath/MyMath.hpp"
+#include "RemoteControl/RemoteControl.hpp"
 #include "Share/Share.h"
-#include "Slope/Slope.h"
+#include "Slope/Slope.hpp"
 
 
 #include "array"

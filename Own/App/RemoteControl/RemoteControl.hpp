@@ -3,8 +3,8 @@
 //
 #pragma once
 
-#include "Detect/Detect.h"
-#include "RemoteControl/remote_ctrl_dep.h"
+#include "Detect/Detect.hpp"
+#include "RemoteControl/remote_ctrl_dep.hpp"
 
 class RemoteControl {
 public:

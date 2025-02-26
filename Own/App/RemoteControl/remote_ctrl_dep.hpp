@@ -4,9 +4,9 @@
 #pragma once
 
 
-#include "Uart/SuperUart.h"
-#include "Buzzer/Buzzer.h"
-#include "Key/Key.h"
+#include "Uart/SuperUart.hpp"
+#include "Buzzer/Buzzer.hpp"
+#include "Key/Key.hpp"
 
 namespace remote_ctrl_dep {
     [[gnu::always_inline]] inline float addSpeed(float rc_ch, float max_speed) {

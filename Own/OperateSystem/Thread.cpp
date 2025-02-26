@@ -3,7 +3,7 @@
 //
 
 #include "Thread.h"
-#include "Thread/CppTask.h"
+#include "Thread/CppTask.hpp"
 #include "ThreadConfig.h"
 
 #ifdef __cplusplus

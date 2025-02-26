@@ -4,9 +4,9 @@
 #pragma once
 
 
-#include "CAN/SuperCan.h"
-#include "Pid/DoublePid.h"
-#include "Detect/Detect.h"
+#include "CAN/SuperCan.hpp"
+#include "Pid/DoublePid.hpp"
+#include "Detect/Detect.hpp"
 
 struct FOC {
     uint16_t RX_ID;

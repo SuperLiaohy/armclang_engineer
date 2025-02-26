@@ -1,10 +1,10 @@
 //
 // Created by liaohy on 24-11-15.
 //
-#include "CppTask.h"
+#include "CppTask.hpp"
 
-#include "RemoteControl/RemoteControl.h"
-#include "RGBLED/RGBLED.h"
+#include "RemoteControl/RemoteControl.hpp"
+#include "RGBLED/RGBLED.hpp"
 
 void LedTask() {
     while (1) {

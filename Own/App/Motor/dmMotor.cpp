@@ -2,8 +2,8 @@
 // Created by Administrator on 24-10-16.
 //
 
-#include "dmMotor.h"
-#include "MyMath//MyMath.h"
+#include "dmMotor.hpp"
+#include "MyMath//MyMath.hpp"
 
 #if USING_DMMOTOR == 1
 

@@ -17,7 +17,7 @@ extern "C" {
  * 所以我在这里用了stm32的HAL库，直接调用HAL_GetTick()函数，这样就不用通过虚函数调用了
  * 但是这样耦合了stm32的库很不好，所以我打算在后面的版本中，想办法改进
  */
-#include "DetectManager.h"
+#include "DetectManager.hpp"
 
 class DetectManager;
 

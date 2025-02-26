@@ -2,7 +2,7 @@
 // Created by Administrator on 24-11-2.
 //
 
-#include "Buzzer.h"
+#include "Buzzer.hpp"
 
 
 #define  LC 		262

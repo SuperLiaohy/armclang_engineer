@@ -1,9 +1,9 @@
 //
 // Created by liaohy on 24-11-15.
 //
-#include "CppTask.h"
-#include "RGBLED/RGBLED.h"
-#include "RemoteControl/RemoteControl.h"
+#include "CppTask.hpp"
+#include "RGBLED/RGBLED.hpp"
+#include "RemoteControl/RemoteControl.hpp"
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,12 +15,12 @@ extern osThreadId ERROR_TASKHandle;
 }
 #endif
 
-#include "CAN/SuperCan.h"
-#include "Interact/interact.h"
-#include "Motor/M2006.h"
-#include "Motor/Motor.h"
-#include "Motor/lkMotor.h"
-#include "RoboArm/RoboArm.h"
+#include "CAN/SuperCan.hpp"
+#include "Interact/interact.hpp"
+#include "Motor/M2006.hpp"
+#include "Motor/Motor.hpp"
+#include "Motor/lkMotor.hpp"
+#include "RoboArm/RoboArm.hpp"
 extern uint8_t re_flag;
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);

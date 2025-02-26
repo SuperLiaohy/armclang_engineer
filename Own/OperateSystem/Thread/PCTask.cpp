@@ -1,13 +1,13 @@
 //
 // Created by Administrator on 25-1-10.
 //
-#include "CDC/SuperCDC.h"
-#include "CppTask.h"
-#include "Motor/Motor.h"
-#include "Motor/lkMotor.h"
-#include "Motor/M2006.h"
-#include "RoboArm/RoboArm.h"
-#include "Interact/Interact.h"
+#include "CDC/SuperCDC.hpp"
+#include "CppTask.hpp"
+#include "Motor/Motor.hpp"
+#include "Motor/lkMotor.hpp"
+#include "Motor/M2006.hpp"
+#include "RoboArm/RoboArm.hpp"
+#include "Interact/Interact.hpp"
 #include "ThreadConfig.h"
 
 extern uint8_t cmd;

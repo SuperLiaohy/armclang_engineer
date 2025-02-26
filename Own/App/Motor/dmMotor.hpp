@@ -2,7 +2,7 @@
  * @Author: SuperLiaohy liaohy123@outlook.com
  * @LastEditors: SuperLiaohy liaohy123@outlook.com
  * @LastEditTime: 2024-11-25 21:02:39
- * @FilePath: /DM/Own/App/Motor/dmMotor.h
+ * @FilePath: /DM/Own/App/Motor/dmMotor.hpp
  * @Description: 
  */
 //
@@ -13,8 +13,8 @@
 #define USING_DMMOTOR 1
 #if USING_DMMOTOR == 1
 
-#include "CAN/SuperCan.h"
-#include "MyMath/MyMath.h"
+#include "CAN/SuperCan.hpp"
+#include "MyMath/MyMath.hpp"
 
 class dmMotor {
 public:
@@ -45,7 +45,7 @@ private:
 
 };
 
-#include "Motor.h"
+#include "Motor.hpp"
 template<typename MOTOR>
 void Motor<MOTOR>::readData(uint8_t *data) requires std::same_as<MOTOR, dmMotor>{
     motor.state = data[0]>>4;

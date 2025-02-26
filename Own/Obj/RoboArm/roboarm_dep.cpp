@@ -2,7 +2,7 @@
 // Created by Administrator on 25-1-6.
 //
 
-#include "roboarm_dep.h"
+#include "roboarm_dep.hpp"
 namespace roboarm_dep {
     void Differentiator::init() {
         float left_dPos    = 0;

@@ -1,4 +1,4 @@
-#include "ui.h"
+#include "ui.hpp"
 
 void UI::delete_layer(ui_dep::operate_delete_layer delete_layer, uint8_t layer_id) {
     interaction_layer_delete_t layer_delete {.delete_type = static_cast<uint8_t>(delete_layer), .layer = layer_id};
@@ -112,7 +112,7 @@ void UI::add_frame_header() {
 }
 
 #include "Judge/referee_system.h"
-#include "Judge/ui.h"
+#include "Judge/ui.hpp"
 
 /* Private macros ------------------------------------------------------------*/
 

@@ -1,9 +1,9 @@
 //
 // Created by liaohy on 24-11-15.
 //
-#include "CppTask.h"
+#include "CppTask.hpp"
 
-#include "Detect/Detect.h"
+#include "Detect/Detect.hpp"
 
 
 void DetectTask() {

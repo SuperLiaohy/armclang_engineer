@@ -2,10 +2,10 @@
 // Created by Administrator on 25-2-22.
 //
 
-#include "CppTask.h"
+#include "CppTask.hpp"
 #include "ThreadConfig.h"
-#include "RoboArm/RoboArm.h"
-#include "Interact/Interact.h"
+#include "RoboArm/RoboArm.hpp"
+#include "Interact/Interact.hpp"
 extern uint8_t re_flag;
 
 void ArmInitTask() {

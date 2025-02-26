@@ -6,10 +6,10 @@
 
 #define USE_HAL_SELF_LIST 1
 
-#include "Detect.h"
+#include "Detect.hpp"
 
 #if USE_HAL_SELF_LIST
-#include "CustomList/CustomList.h"
+#include "CustomList/CustomList.hpp"
 #else
 #include <algorithm>
 #include "vector"
