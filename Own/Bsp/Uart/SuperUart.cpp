@@ -68,6 +68,11 @@ void SuperUart::print(float value, uint8_t precision) {
     print("%.*f", precision, value);
 }
 
+void SuperUart::transmit(std::uint16_t size) {
+    HAL_UART_Transmit_DMA(uart, tx_buffer, size);
+}
+
+
 /*
  * @note: send tx_buffer data(the member of SuperUart) to uart
  */

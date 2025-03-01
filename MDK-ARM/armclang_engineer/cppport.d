@@ -255,8 +255,7 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
-  ..\Core\Inc\usart.h ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp \
-  ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
+  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
@@ -762,5 +761,5 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\W25Q64\W25Q64.hpp \
-  ..\Core\Inc\octospi.h
+  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h

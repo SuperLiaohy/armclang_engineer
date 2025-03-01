@@ -137,6 +137,7 @@ void StartTask() {
     //    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
     interact.remote_control.start();
     interact.image_trans.uartPlus.read_idle(100);
+		interact.sub_board.start_receive();
 
     /* 底盘电机初始化 */
     chassis.base.left_front.motor.init(15, 0, 4, 8000, 16000, 19.2);
@@ -167,7 +168,7 @@ void StartTask() {
     buzzer.Start();
 
     /* 闪烁灯初始化 (暂无)*/
-    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+//    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
     StartHeapCnt = uxTaskGetStackHighWaterMark(NULL);
     vTaskDelete(NULL);

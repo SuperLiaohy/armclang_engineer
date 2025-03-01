@@ -14,7 +14,7 @@ public:
 
     void start();
 
-    void update(KeyBoard& key_board);
+    void update(KeyBoard &key_board);
 
     inline void clear();
 

@@ -214,5 +214,4 @@ armclang_engineer/referee_system.o: ..\Own\App\Judge\referee_system.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp ..\Own\Mod\Crc\Crc.hpp
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\Mod\Crc\Crc.hpp

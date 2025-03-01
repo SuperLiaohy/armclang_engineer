@@ -18,9 +18,6 @@ extern "C" {
 }
 #endif
 
-#include "DoubleBuffer/DoubleBuffer.hpp"
-
-
 #define USING_UART_RAW 0
 #define USING_UART_IT 0
 #define USING_UART_IDLE 1
@@ -62,6 +59,7 @@ public:
     //store hex data to tx_buffer
     void set_hex(void *data, uint16_t size);
 
+    void transmit(uint16_t size);
     //use read api to read data from rx_buffer (mode : BLOCK)
     uint8_t* read(uint16_t size);
 
@@ -80,6 +78,10 @@ public:
     friend void::HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 
     friend void::HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size);
+
+    friend void::HAL_UART_ErrorCallback(UART_HandleTypeDef *huart);
+
+    friend void::HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef *huart);
 
     uint8_t *tx_buffer;
 };

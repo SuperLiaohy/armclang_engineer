@@ -223,13 +223,7 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
-  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\FeedBack.hpp ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\pid.hpp ..\Own\App\Motor\Motor.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
@@ -258,6 +252,13 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
+  ..\Core\Inc\fdcan.h ..\Own\Obj\Chassis\Chassis.hpp \
+  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\Mod\Detect\Detect.hpp \
+  ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\App\Motor\FeedBack.hpp ..\Own\Mod\Pid\DoublePid.hpp \
+  ..\Own\Mod\Pid\pid.hpp ..\Own\App\Motor\Motor.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
@@ -266,8 +267,7 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp ..\Own\Mod\Key\Key.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\Mod\Key\Key.hpp \
   ..\Own\Mod\Slope\Slope.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
@@ -760,9 +760,9 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\GM6020.hpp ..\Own\App\Motor\M2006.hpp \
   ..\Own\App\Motor\dmMotor.hpp ..\Own\App\Motor\lkMotor.hpp \
-  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\Pump\Pump.hpp \
-  ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
-  ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
-  ..\Core\Inc\spi.h ..\Own\OperateSystem\ThreadConfig.h \
-  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
-  ..\USB_DEVICE\App\usb_device.h
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\App\Pump\Pump.hpp ..\Own\Bsp\GPIO\SuperGPIO.hpp \
+  ..\Core\Inc\gpio.h ..\Own\App\RGBLED\RGBLED.hpp \
+  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h \
+  ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\W25Q64\W25Q64.hpp \
+  ..\Core\Inc\octospi.h ..\USB_DEVICE\App\usb_device.h

@@ -898,6 +898,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\App\ImageTrans\ImageTrans.cpp</FilePath>
             </File>
+            <File>
+              <FileName>SubBoard.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\SubBoard\SubBoard.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2530,6 +2535,11 @@
               <FileName>ImageTrans.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\ImageTrans\ImageTrans.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SubBoard.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\SubBoard\SubBoard.cpp</FilePath>
             </File>
           </Files>
         </Group>

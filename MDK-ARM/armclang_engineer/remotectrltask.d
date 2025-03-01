@@ -220,8 +220,7 @@ armclang_engineer/remotectrltask.o: \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp ..\Own\App\Buzzer\Buzzer.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Buzzer\Buzzer.hpp \
   ..\Core\Inc\tim.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
@@ -762,4 +761,5 @@ armclang_engineer/remotectrltask.o: \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\lkMotor.hpp \
   ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
   ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\MicroTime\MicroTime.hpp
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\OperateSystem\ThreadConfig.h \
+  ..\Own\App\MicroTime\MicroTime.hpp

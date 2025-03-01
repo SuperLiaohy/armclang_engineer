@@ -6,16 +6,16 @@
 
 #include "Interact/interact_dep.hpp"
 #include "Chassis/Chassis.hpp"
-
+#include "SubBoard/SubBoard.hpp"
 //设定交互方式的统一标准为2个字节16bit的形式
 class Interact {
 
 public:
-    Interact(const uint8_t &head, const uint8_t &tail, UART_HandleTypeDef *uart_rc, UART_HandleTypeDef *uart_im)
+    Interact(const uint8_t &head, const uint8_t &tail, UART_HandleTypeDef *uart_rc, UART_HandleTypeDef *uart_im, UART_HandleTypeDef *uart_sub_board)
             : kb {interact_dep::kb_state::RC_ENABLE},
               robo_arm{interact_dep::robo_mode::NORMAL, interact_dep::robo_mode::NORMAL},
               chassis{interact_dep::chassis_mode::ALL, interact_dep::chassis_mode::ALL}, remote_control(uart_rc),
-              head(head), tail(tail), image_trans(uart_im) {
+              head(head), tail(tail), image_trans(uart_im), sub_board(uart_sub_board) {
         transmit_data.head = head;
         transmit_data.tail = tail;
     };
@@ -41,6 +41,8 @@ public:
         interact_dep::receive_data_t receive_data{};
         interact_dep::transmit_data_t transmit_data{};
     } pc;
+
+    SubBoard sub_board;
 
     interact_dep::path path;
     interact_dep::kb_state kb;

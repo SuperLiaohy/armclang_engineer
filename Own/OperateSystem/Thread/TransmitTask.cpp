@@ -3,8 +3,9 @@
 //
 #include "CppTask.hpp"
 #include "Interact/Interact.hpp"
+
 void TransmitTask() {
-        interact.image_trans.set_map_back(1);
+    interact.image_trans.set_map_back(1);
 
     while (1) {
         auto now = xTaskGetTickCount();

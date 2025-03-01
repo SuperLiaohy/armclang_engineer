@@ -222,7 +222,6 @@ armclang_engineer/cdccallback.o: ..\Own\CallBack\CDCCallback.cpp \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp \
   ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\interact_dep.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp \
@@ -760,4 +759,4 @@ armclang_engineer/cdccallback.o: ..\Own\CallBack\CDCCallback.cpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp
+  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\SubBoard\SubBoard.hpp

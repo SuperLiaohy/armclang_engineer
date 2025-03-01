@@ -225,13 +225,6 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\Mod\Vofa\vofa.hpp ..\Own\App\Motor\lkMotor.hpp \
   ..\Own\App\Motor\FeedBack.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
-  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\pid.hpp ..\Own\Mod\Detect\Detect.hpp \
-  ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Motor\Motor.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
@@ -260,11 +253,17 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
+  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\Pid\DoublePid.hpp \
+  ..\Own\Mod\Pid\pid.hpp ..\Own\Mod\Detect\Detect.hpp \
+  ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Motor\Motor.hpp \
   ..\Own\App\Motor\GM6020.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
   ..\Core\Inc\usart.h D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
-  ..\Own\Mod\DoubleBuffer\DoubleBuffer.hpp ..\Own\Bsp\CDC\SuperCDC.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\Bsp\CDC\SuperCDC.hpp \
   ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
@@ -761,4 +760,5 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\MicroTime\MicroTime.hpp
+  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\App\MicroTime\MicroTime.hpp

@@ -16,13 +16,13 @@ void SuperCan::filter_config(uint16_t filter_number, filter_mode filterMode, uin
     sFilterConfig.IdType = FDCAN_STANDARD_ID;
     sFilterConfig.FilterIndex = filter_number;
     switch (filterMode) {
-        case RANGE:
+        case filter_mode::RANGE:
             sFilterConfig.FilterType = FDCAN_FILTER_RANGE;
             break;
-        case MASK:
+        case filter_mode::MASK:
             sFilterConfig.FilterType = FDCAN_FILTER_MASK;
             break;
-        case LIST:
+        case filter_mode::LIST:
             sFilterConfig.FilterType = FDCAN_FILTER_DUAL;
             break;
         default:

@@ -103,7 +103,7 @@ Imu imu(MEASURE_DISABLE);
 
 //ImageTrans image_trans(&huart10);
 
-Interact interact(0xFF, 0xFE, &huart5, &huart10);
+Interact interact(0xFF, 0xFE, &huart5, &huart10, &huart3);
 
 //Key keyList[KEY_NUM];
 //KeyBoard key_board;
