@@ -5,8 +5,7 @@
 
 
 #include "Detect/Detect.hpp"
-#include "Motor/M3508.hpp"
-#include "Motor/Motor.hpp"
+#include "Motor/Motor.tpp"
 #include "MyMath/MyMath.hpp"
 #include "RemoteControl/RemoteControl.hpp"
 #include "Slope/Slope.hpp"
@@ -14,18 +13,18 @@
 
 namespace chassis_dep {
     struct base_motor {
-        Motor<M3508> left_front;
-        Motor<M3508> right_front;
-        Motor<M3508> left_rear;
-        Motor<M3508> right_rear;
+        Motor<SpeedPidControl<M3508>> left_front;
+        Motor<SpeedPidControl<M3508>> right_front;
+        Motor<SpeedPidControl<M3508>> left_rear;
+        Motor<SpeedPidControl<M3508>> right_rear;
 
         explicit base_motor(const std::array<motor_cfg, 4> &cfg)
                 : left_front(cfg[0]), right_front(cfg[1]), left_rear(cfg[2]), right_rear(cfg[3]) {}
     };
 
     struct extend_motor {
-        Motor<M3508> left;
-        Motor<M3508> right;
+        Motor<SpeedPidControl<M3508>> left;
+        Motor<SpeedPidControl<M3508>> right;
 
         explicit extend_motor(const std::array<motor_cfg, 2> &cfg)
                 : left(cfg[0]), right(cfg[1]) {}

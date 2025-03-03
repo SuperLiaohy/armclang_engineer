@@ -8,18 +8,12 @@
 
 
 
-
-void M3508::init(float p, float i, float d, float maxI, float maxOut, float gain) {
-    this->gain = gain;
-    this->pid.set(p, i, d, maxI, maxOut);
+template<motor_param motor>
+void SpeedPidControl<motor>::init(float p, float i, float d, float maxI, float maxOut, float gain) {
+    this->m.reduction_ratio = gain;
+    this->speed.set(p, i, d, maxI, maxOut);
 }
 
-void M3508::readData(const uint8_t *data) {
 
-}
-
-void M3508::CalcTotalPos() {
-
-}
 
 #endif //USING_M3508

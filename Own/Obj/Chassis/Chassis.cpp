@@ -53,29 +53,31 @@ void Chassis::send_base_foc() {
 }
 
 void Chassis::UpdatePid() {
-    base.left_front.motor.pid.update(base.left_front.feed_back.Data.speed);
-    base.right_front.motor.pid.update(base.right_front.feed_back.Data.speed);
-    base.left_rear.motor.pid.update(base.left_rear.feed_back.Data.speed);
-    base.right_rear.motor.pid.update(base.right_rear.feed_back.Data.speed);
+    // base.left_front.motor.set_speed(base.left_front.feed_back.data.speed);
 
-    extend.left.motor.pid.update(extend.left.feed_back.Data.speed);
-    extend.right.motor.pid.update(extend.right.feed_back.Data.speed);
+    base.left_front.motor.pid.update(base.left_front.feed_back.data.speed);
+    base.right_front.motor.pid.update(base.right_front.feed_back.data.speed);
+    base.left_rear.motor.pid.update(base.left_rear.feed_back.data.speed);
+    base.right_rear.motor.pid.update(base.right_rear.feed_back.data.speed);
+
+    extend.left.motor.pid.update(extend.left.feed_back.data.speed);
+    extend.right.motor.pid.update(extend.right.feed_back.data.speed);
 }
 
 void Chassis::UpdateMotor() {
     uint16_t id = can->read_header()->Identifier - Motor<M3508>::foc.RX_ID;
     if (id == base.left_front.feed_back.id) {
-        base.left_front.readData(can->read());
+        base.left_front.get_feedback(can->read());
     } else if (id == base.right_front.feed_back.id) {
-        base.right_front.readData(can->read());
+        base.right_front.get_feedback(can->read());
     } else if (id == base.left_rear.feed_back.id) {
-        base.left_rear.readData(can->read());
+        base.left_rear.get_feedback(can->read());
     } else if (id == base.right_rear.feed_back.id) {
-        base.right_rear.readData(can->read());
+        base.right_rear.get_feedback(can->read());
     } else if (id == extend.left.feed_back.id) {
-        extend.left.readData(can->read());
+        extend.left.get_feedback(can->read());
     } else if (id == extend.right.feed_back.id) {
-        extend.right.readData(can->read());
+        extend.right.get_feedback(can->read());
     }
 }
 

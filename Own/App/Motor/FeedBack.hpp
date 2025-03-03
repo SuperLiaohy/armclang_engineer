@@ -25,7 +25,7 @@ public:
         int16_t speed;
         int16_t current;
         int16_t temperature;
-    } RawData{};
+    } raw_data{};
 
     struct {
         float position;
@@ -33,7 +33,7 @@ public:
         float current;
         float temperature;
         float lastPosition;
-    } Data{};
+    } data{};
 
     float totalPosition;
 

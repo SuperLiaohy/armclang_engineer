@@ -3,7 +3,7 @@
 //
 #pragma once
 
-#define USING_GM6020 1
+#define USING_GM6020 0
 #if USING_GM6020 == 1
 
 #include "FeedBack.hpp"

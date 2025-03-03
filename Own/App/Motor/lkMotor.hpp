@@ -139,7 +139,7 @@ private:
     #include "Motor.hpp"
 
 template<typename MOTOR>
-void Motor<MOTOR>::readData(uint8_t* data)
+void Motor<MOTOR>::get_feedback(uint8_t* data)
     requires std::same_as<MOTOR, lkMotor>
 {
     switch (data[0]) {
@@ -160,16 +160,16 @@ void Motor<MOTOR>::readData(uint8_t* data)
         case 0xa6:
         case 0xa7:
         case 0xa8: {
-            feed_back.Data.lastPosition   = feed_back.Data.position;
-            feed_back.RawData.temperature = data[1];
-            feed_back.RawData.current     = *(int16_t*)(&data[2]);
-            feed_back.RawData.speed       = *(int16_t*)(&data[4]);
-            feed_back.RawData.position    = *(int16_t*)(&data[6]);
+            feed_back.data.lastPosition   = feed_back.data.position;
+            feed_back.raw_data.temperature = data[1];
+            feed_back.raw_data.current     = *(int16_t*)(&data[2]);
+            feed_back.raw_data.speed       = *(int16_t*)(&data[4]);
+            feed_back.raw_data.position    = *(int16_t*)(&data[6]);
 
-            feed_back.Data.position    = feed_back.RawData.position * 360.0 / feed_back.precision_range;
-            feed_back.Data.speed       = feed_back.RawData.speed;
-            feed_back.Data.current     = feed_back.RawData.current * 32.f / 2000.f;
-            feed_back.Data.temperature = feed_back.RawData.temperature;
+            feed_back.data.position    = feed_back.raw_data.position * 360.0 / feed_back.precision_range;
+            feed_back.data.speed       = feed_back.raw_data.speed;
+            feed_back.data.current     = feed_back.raw_data.current * 32.f / 2000.f;
+            feed_back.data.temperature = feed_back.raw_data.temperature;
 
             //            int32_t dPos = feed_back.Data.position - feed_back.Data.lastPosition;
             //            if (dPos > (static_cast<int32_t>(feed_back.precision_range) / 2)) {
@@ -201,22 +201,22 @@ void Motor<MOTOR>::readData(uint8_t* data)
         case 0x9b:
         case 0x9a:
             motor.clear_flag = 1;
-            feed_back.RawData.temperature = data[1];
-            feed_back.Data.temperature    = data[1];
+            feed_back.raw_data.temperature = data[1];
+            feed_back.data.temperature    = data[1];
             motor.voltage                 = *(uint16_t*)(&data[3]) * 0.1;
             motor.error                   = data[7];
             break;
         case 0x9c:
 
-            feed_back.RawData.temperature = data[1];
-            feed_back.RawData.current     = *(int16_t*)(&data[2]);
-            feed_back.RawData.speed       = *(int16_t*)(&data[4]);
-            feed_back.RawData.position    = *(int16_t*)(&data[6]);
+            feed_back.raw_data.temperature = data[1];
+            feed_back.raw_data.current     = *(int16_t*)(&data[2]);
+            feed_back.raw_data.speed       = *(int16_t*)(&data[4]);
+            feed_back.raw_data.position    = *(int16_t*)(&data[6]);
 
-            feed_back.Data.position    = feed_back.RawData.position * 360.0 / feed_back.precision_range;
-            feed_back.Data.speed       = feed_back.RawData.speed;
-            feed_back.Data.current     = feed_back.RawData.current * 32.f / 2000.f;
-            feed_back.Data.temperature = feed_back.RawData.temperature;
+            feed_back.data.position    = feed_back.raw_data.position * 360.0 / feed_back.precision_range;
+            feed_back.data.speed       = feed_back.raw_data.speed;
+            feed_back.data.current     = feed_back.raw_data.current * 32.f / 2000.f;
+            feed_back.data.temperature = feed_back.raw_data.temperature;
             break;
 
         case 0x30:
@@ -231,21 +231,21 @@ void Motor<MOTOR>::readData(uint8_t* data)
 }
 
 template<typename MOTOR>
-void Motor<MOTOR>::readData(uint8_t* data)
+void Motor<MOTOR>::get_feedback(uint8_t* data)
     requires std::same_as<MOTOR, lkMotorBoard>
 {
-    feed_back.Data.lastPosition   = feed_back.Data.position;
-    feed_back.RawData.temperature = data[1];
-    feed_back.RawData.current     = *(int16_t*)(&data[2]);
-    feed_back.RawData.speed       = *(int16_t*)(&data[4]);
-    feed_back.RawData.position    = *(int16_t*)(&data[6]);
+    feed_back.data.lastPosition   = feed_back.data.position;
+    feed_back.raw_data.temperature = data[1];
+    feed_back.raw_data.current     = *(int16_t*)(&data[2]);
+    feed_back.raw_data.speed       = *(int16_t*)(&data[4]);
+    feed_back.raw_data.position    = *(int16_t*)(&data[6]);
 
-    feed_back.Data.position    = feed_back.RawData.position * 360.0 / feed_back.precision_range;
-    feed_back.Data.speed       = feed_back.RawData.speed;
-    feed_back.Data.current     = feed_back.RawData.current * 32.f / 2000.f;
-    feed_back.Data.temperature = feed_back.RawData.temperature;
+    feed_back.data.position    = feed_back.raw_data.position * 360.0 / feed_back.precision_range;
+    feed_back.data.speed       = feed_back.raw_data.speed;
+    feed_back.data.current     = feed_back.raw_data.current * 32.f / 2000.f;
+    feed_back.data.temperature = feed_back.raw_data.temperature;
 
-    int32_t dPos = feed_back.Data.position - feed_back.Data.lastPosition;
+    int32_t dPos = feed_back.data.position - feed_back.data.lastPosition;
     if (dPos > 180) {
         dPos = dPos - 360;
     } else if (dPos < -180) {

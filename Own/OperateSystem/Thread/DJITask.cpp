@@ -27,8 +27,8 @@ void DJITask() {
         left_angle = roboArm.diff.left.feed_back.totalPosition;
         right_angle = roboArm.diff.right.feed_back.totalPosition;
 
-        roboArm.diff.left.motor.doublePid.update(left_angle, roboArm.target.joint5.angle, roboArm.diff.left.feed_back.Data.speed);
-        roboArm.diff.right.motor.doublePid.update(right_angle, roboArm.target.joint6.angle, roboArm.diff.right.feed_back.Data.speed);
+        roboArm.diff.left.motor.doublePid.update(left_angle, roboArm.target.joint5.angle, roboArm.diff.left.feed_back.data.speed);
+        roboArm.diff.right.motor.doublePid.update(right_angle, roboArm.target.joint6.angle, roboArm.diff.right.feed_back.data.speed);
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         canPlus1.write(roboArm.diff.left.motor.doublePid.output, roboArm.diff.right.motor.doublePid.output, 0, 0);

@@ -31,29 +31,29 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 			++a;
         canPlus1.receive();
         if (canPlus1.rx_header.Identifier == Motor<lkMotorBoard>::foc.RX_ID + test_motor.feed_back.id-100) {
-            test_motor.readData(canPlus1.rx_data);
+            test_motor.get_feedback(canPlus1.rx_data);
         }
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint4.feed_back.id) {
-            roboArm.joint4.readData(canPlus1.rx_data);
+            roboArm.joint4.get_feedback(canPlus1.rx_data);
         }
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint3.feed_back.id) {
-            roboArm.joint3.readData(canPlus1.rx_data);
+            roboArm.joint3.get_feedback(canPlus1.rx_data);
         }
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.internal.feed_back.id) {
-            roboArm.joint2.internal.readData(canPlus1.rx_data);
+            roboArm.joint2.internal.get_feedback(canPlus1.rx_data);
         }
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.external.feed_back.id) {
-            roboArm.joint2.external.readData(canPlus1.rx_data);
+            roboArm.joint2.external.get_feedback(canPlus1.rx_data);
         }
         else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint1.feed_back.id) {
-            roboArm.joint1.readData(canPlus1.rx_data);
+            roboArm.joint1.get_feedback(canPlus1.rx_data);
         }
         else if (canPlus1.rx_header.Identifier == Motor<M2006>::foc.RX_ID + roboArm.diff.left.feed_back.id) {
-            roboArm.diff.left.readData(canPlus1.rx_data);
+            roboArm.diff.left.get_feedback(canPlus1.rx_data);
             xEventGroupSetBitsFromISR(osEventGroup, DIFF_LEFT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         }
         else if (canPlus1.rx_header.Identifier == Motor<M2006>::foc.RX_ID + roboArm.diff.right.feed_back.id) {
-            roboArm.diff.right.readData(canPlus1.rx_data);
+            roboArm.diff.right.get_feedback(canPlus1.rx_data);
             xEventGroupSetBitsFromISR(osEventGroup, DIFF_RIGHT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         }
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
