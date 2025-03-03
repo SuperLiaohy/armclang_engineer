@@ -254,7 +254,7 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
   ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\pid.hpp ..\Own\Mod\Detect\Detect.hpp \
+  ..\Own\Mod\Pid\Pid.hpp ..\Own\Mod\Detect\Detect.hpp \
   ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp \

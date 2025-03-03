@@ -40,7 +40,7 @@ namespace chassis_dep {
     };
 
     struct rotate {
-        PID pid;
+        Pid pid;
         const float init_angle;
 
         explicit rotate(const rotate_cfg &cfg)

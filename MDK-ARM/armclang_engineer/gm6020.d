@@ -239,7 +239,7 @@ armclang_engineer/gm6020.o: ..\Own\App\Motor\GM6020.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Mod\Pid\DoublePid.hpp ..\Own\Mod\Pid\pid.hpp \
+  ..\Own\Mod\Pid\DoublePid.hpp ..\Own\Mod\Pid\Pid.hpp \
   ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\Motor.hpp

@@ -1236,14 +1236,14 @@
               <FilePath>..\Own\Mod\Pid\DoublePid.cpp</FilePath>
             </File>
             <File>
-              <FileName>pid.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Mod\Pid\pid.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Slope.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Mod\Slope\Slope.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Pid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Pid\Pid.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2874,14 +2874,14 @@
               <FilePath>..\Own\Mod\Pid\DoublePid.cpp</FilePath>
             </File>
             <File>
-              <FileName>pid.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Mod\Pid\pid.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Slope.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Mod\Slope\Slope.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Pid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Pid\Pid.cpp</FilePath>
             </File>
           </Files>
         </Group>

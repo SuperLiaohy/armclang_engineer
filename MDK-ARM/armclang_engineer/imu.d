@@ -240,4 +240,4 @@ armclang_engineer/imu.o: ..\Own\App\Imu\Imu.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Imu\Mahony\MahonyAHRS.h ..\Core\Inc\tim.h ..\Core\Inc\adc.h \
-  ..\Own\App\Imu\Imu.hpp ..\Own\Mod\Pid\pid.hpp
+  ..\Own\App\Imu\Imu.hpp ..\Own\Mod\Pid\Pid.hpp

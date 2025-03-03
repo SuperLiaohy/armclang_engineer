@@ -112,7 +112,7 @@ private:
 class lkMotorBoard {
 public:
     lkMotorBoard(uint16_t id)
-        : doublePid(PID(), PID())
+        : doublePid(Pid(), Pid())
         , ctrlId(id) {};
 
     void init(float inter_p, float inter_i, float inter_d, float inter_maxI, float inter_maxOut,
@@ -122,13 +122,13 @@ public:
 
     class SelfDoublePid : public DoublePid {
     public:
-        SelfDoublePid(PID inter_pid, PID extern_pid)
+        SelfDoublePid(Pid inter_pid, Pid extern_pid)
             : DoublePid(inter_pid, extern_pid) {}
 
         float update(float extern_input, float extern_target, float inter_input) override;
     } doublePid;
 
-    PID pid;
+    Pid pid;
 
     const uint16_t ctrlId;
 

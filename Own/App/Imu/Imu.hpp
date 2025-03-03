@@ -13,7 +13,7 @@ extern "C" {
 }
 #endif
 
-#include "Pid/pid.hpp"
+#include "Pid/Pid.hpp"
 enum MEASURE_ABLE {
     MEASURE_ENABLE,
     MEASURE_DISABLE,
@@ -62,7 +62,7 @@ private:
     float gyro[3];
     float accel[3];
 
-    PID temprature_pid;
+    Pid temprature_pid;
     float temp_work;
     uint32_t temp_ticks;
     TIM_HandleTypeDef *pwm;

@@ -258,7 +258,7 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\App\Motor\FeedBack.hpp ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\pid.hpp ..\Own\App\Motor\Motor.hpp \
+  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\Motor.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \

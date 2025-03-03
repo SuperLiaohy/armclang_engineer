@@ -15,7 +15,7 @@ public:
 
     const uint16_t ctrlId;
 
-    PID pid;
+    Pid pid;
 
     void init(float p, float i, float d, float maxI, float maxOut, float gain);
 

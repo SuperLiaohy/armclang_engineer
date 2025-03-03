@@ -755,7 +755,7 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\GM6020.hpp ..\Own\App\Motor\FeedBack.hpp \
-  ..\Own\Mod\Pid\DoublePid.hpp ..\Own\Mod\Pid\pid.hpp \
+  ..\Own\Mod\Pid\DoublePid.hpp ..\Own\Mod\Pid\Pid.hpp \
   ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006.hpp \
   ..\Own\App\Motor\M3508.hpp ..\Own\App\Motor\dmMotor.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\lkMotor.hpp \
