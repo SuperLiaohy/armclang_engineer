@@ -6,6 +6,8 @@
 #include "FeedBack.hpp"
 // #include "M3508.hpp"
 
+#include "M3508.hpp"
+
 #include <concepts>
 
 namespace motor_const {
@@ -28,14 +30,12 @@ concept motor_param = requires(T t, uint8_t* data) {
 
     t.detect;
     t.rx_id;
-    t.reduction_ratio;
     t.get_feedback(data);
 };
 
 template<typename T>
 concept motor_control = requires(T t, uint8_t* data) {
     requires requires { t.set_position(0.f); } || requires { t.set_speed(0.f); } || requires { t.set_current(0.f); };
-
 };
 
 struct DefaultFeedback {
@@ -54,10 +54,10 @@ struct DefaultFeedback {
         float last_position;
     } data;
 
-    float precision_range;
     float total_position;
 };
 
+template<uint32_t precision_range, float reduction_ratio>
 class default_motor {
 public:
     using Feedback = DefaultFeedback;
@@ -66,27 +66,23 @@ public:
     Feedback feedback;
     uint16_t rx_id;
     Detect detect;
-    float reduction_ratio;
 
-    default_motor(const uint16_t rx_id, const float reduction_ratio) : feedback()
+    default_motor(const uint16_t rx_id)
+        : feedback()
         , rx_id(rx_id)
-        , detect(1000)
-        , reduction_ratio(reduction_ratio) {}
+        , detect(1000) {}
 
-    void init(uint16_t id, float reduction_ratio) {
-        this->rx_id = id;
-        this->reduction_ratio = reduction_ratio;
-    };
     inline void get_feedback(uint8_t* data);
 };
 
-inline void default_motor::get_feedback(uint8_t* data) {
+template<uint32_t precision_range, float reduction_ratio>
+inline void default_motor<precision_range, reduction_ratio>::get_feedback(uint8_t* data) {
     feedback.raw_data.position    = static_cast<int16_t>(((data[0] << 8) | data[1]));
     feedback.raw_data.speed       = static_cast<int16_t>((data[2] << 8) | data[3]);
     feedback.raw_data.current     = static_cast<int16_t>((data[4] << 8) | data[5]);
     feedback.raw_data.temperature = (data[6]);
 
-    feedback.data.position    = static_cast<float>(feedback.raw_data.position) * 360.0f / feedback.precision_range;
+    feedback.data.position    = static_cast<float>(feedback.raw_data.position) * 360.0f / precision_range;
     feedback.data.speed       = feedback.raw_data.speed;
     feedback.data.current     = feedback.raw_data.current;
     feedback.data.temperature = feedback.raw_data.temperature;
@@ -103,9 +99,6 @@ inline void default_motor::get_feedback(uint8_t* data) {
 
     detect.update();
 };
-
-
-
 
 // struct motor_cfg {
 //     uint16_t id;

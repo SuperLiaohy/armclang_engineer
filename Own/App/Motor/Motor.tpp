@@ -9,10 +9,10 @@
 template<motor_control MOTOR>
 class Motor {
 public:
-    Motor(const uint16_t rx_id, const float reduction_ratio) requires std::same_as<MOTOR, SpeedPidControl<M3508>> : motor(rx_id, reduction_ratio) {};
+    Motor(const uint16_t rx_id) requires std::same_as<MOTOR, SpeedPidControl<M3508>> : motor(rx_id) {};
     MOTOR motor;
 };
 
 
 
-Motor<SpeedPidControl<M3508>> das(1 , 2);
+Motor<SpeedPidControl<M3508>> dsa(1);

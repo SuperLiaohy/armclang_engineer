@@ -9,12 +9,12 @@
 #include "GPIO/SuperGPIO.hpp"
 #include "Heap/CustomHeap.hpp"
 #include "Interact/Interact.hpp"
-#include "Motor/GM6020.hpp"
-#include "Motor/M2006.hpp"
-#include "Motor/M3508.hpp"
-#include "Motor/Motor.hpp"
-#include "Motor/dmMotor.hpp"
-#include "Motor/lkMotor.hpp"
+// #include "Motor/GM6020.hpp"
+// #include "Motor/M2006.hpp"
+// #include "Motor/M3508.hpp"
+// #include "Motor/Motor.hpp"
+// #include "Motor/dmMotor.hpp"
+// #include "Motor/lkMotor.hpp"
 #include "RGBLED/RGBLED.hpp"
 #include "RemoteControl/RemoteControl.hpp"
 #include "RoboArm/RoboArm.hpp"
@@ -24,7 +24,7 @@
 #include "Judge/referee_system.h"
 #include "Pump/Pump.hpp"
 #include "Judge/ui.hpp"
-// #include "Motor/Motor.tpp"
+#include "Motor/Motor.tpp"
 
 
 __attribute__((section(".DTCMRAM"))) uint64_t DTCMUsed[8 * 1024 / 8];
@@ -47,17 +47,17 @@ __weak SuperCan canPlus3(&hfdcan3, FDCAN_RX_FIFO0, FDCAN_IT_RX_FIFO0_NEW_MESSAGE
 
 
 #if USING_LKMOTOR == 1
-template<>
-const FOC Motor<lkMotor>::foc = {0x140, 0x140, 0x140};
-template<>
-const FOC Motor<lkMotorBoard>::foc = {0x140, 0x280, 0x280};
-Motor<lkMotorBoard> test_motor(1, 65536);
+// template<>
+// const FOC Motor<lkMotor>::foc = {0x140, 0x140, 0x140};
+// template<>
+// const FOC Motor<lkMotorBoard>::foc = {0x140, 0x280, 0x280};
+// Motor<lkMotorBoard> test_motor(1, 65536);
 #endif
 
 #if USING_DMMOTOR == 1
-template<>
-const FOC Motor<dmMotor>::foc = {0, 0x140, 0x140};
-Motor<dmMotor> link1(1, 8192, 1000);
+// template<>
+// const FOC Motor<dmMotor>::foc = {0, 0x140, 0x140};
+// Motor<dmMotor> link1(1, 8192, 1000);
 #endif
 
 #if USING_GM6020 == 1
@@ -67,14 +67,13 @@ Motor<GM6020> gm6020(1, 8192, 1000);
 #endif
 
 #if USING_M3508 == 1
-template<>
-const FOC Motor<M3508>::foc = {0x200, 0x200, 0x1FF};
+// template<>
+// const FOC Motor<M3508>::foc = {0x200, 0x200, 0x1FF};
 
 #endif
 
 #if USING_M2006 == 1
-template<>
-const FOC Motor<M2006>::foc = {0x200, 0x200, 0x1FF};
+// template<>
 
 #endif
 #if USING_CHASSIS == 1

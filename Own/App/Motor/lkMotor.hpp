@@ -36,6 +36,27 @@ struct encoder_t {
     float encoderRaw;
     float encoderOffset;
 };
+
+
+template<uint32_t precision_range, float reduction_ratio>
+class default_motor {
+public:
+    using Feedback = DefaultFeedback;
+
+public:
+    Feedback feedback;
+    uint16_t rx_id;
+    Detect detect;
+
+    default_motor(const uint16_t rx_id)
+        : feedback()
+        , rx_id(rx_id)
+        , detect(1000) {}
+
+    inline void get_feedback(uint8_t* data);
+};
+
+
 class lkMotor {
 public:
     //    lkMotor(PID inter_pid, PID extern_pid, SuperCan *superCan)

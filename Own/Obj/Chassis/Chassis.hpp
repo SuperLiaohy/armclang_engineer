@@ -11,8 +11,8 @@
 
 class Chassis {
 public:
-    Chassis(SuperCan* can, const std::array<slope_cfg, 4>& move_cfg, const chassis_dep::rotate_cfg& rot, const std::array<motor_cfg, 4>& base_cfg,
-            const std::array<motor_cfg, 2>& extend_cfg)
+    Chassis(SuperCan* can, const std::array<slope_cfg, 4>& move_cfg, const chassis_dep::rotate_cfg& rot, const std::array<uint16_t, 4>& base_cfg,
+            const std::array<uint16_t, 2>& extend_cfg)
         : can(can)
         , base(base_cfg)
         , extend(extend_cfg)
@@ -39,6 +39,7 @@ public:
 
     void update_slope();
 
+    float wheelSpeed[6]{};
     chassis_dep::base_motor base;
     chassis_dep::extend_motor extend;
 private:

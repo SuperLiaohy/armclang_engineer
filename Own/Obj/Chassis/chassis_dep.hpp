@@ -18,7 +18,7 @@ namespace chassis_dep {
         Motor<SpeedPidControl<M3508>> left_rear;
         Motor<SpeedPidControl<M3508>> right_rear;
 
-        explicit base_motor(const std::array<motor_cfg, 4> &cfg)
+        explicit base_motor(const std::array<uint16_t , 4> &cfg)
                 : left_front(cfg[0]), right_front(cfg[1]), left_rear(cfg[2]), right_rear(cfg[3]) {}
     };
 
@@ -26,7 +26,7 @@ namespace chassis_dep {
         Motor<SpeedPidControl<M3508>> left;
         Motor<SpeedPidControl<M3508>> right;
 
-        explicit extend_motor(const std::array<motor_cfg, 2> &cfg)
+        explicit extend_motor(const std::array<uint16_t, 2> &cfg)
                 : left(cfg[0]), right(cfg[1]) {}
     };
 
@@ -83,6 +83,8 @@ namespace chassis_dep {
         RightFront,
         LeftRear,
         RightRear,
+        ExtendLeft,
+        ExtendRight,
     };
 
     constexpr struct {
@@ -113,15 +115,16 @@ namespace chassis_dep {
             slope_cfg(2, 1),
             slope_cfg(0.04, 0),
             slope_cfg(5.00, 1)};
-    constexpr std::array<motor_cfg, 4> base_motor_default = {
-            motor_cfg(1, 8192),
-            motor_cfg(2, 8192),
-            motor_cfg(3, 8192),
-            motor_cfg(4, 8192)
+    constexpr std::array<uint16_t, 4> base_motor_default = {
+            1,
+            2,
+            3,
+            4,
     };
-    constexpr std::array<motor_cfg, 2> extend_motor_default = {
-            motor_cfg(5, 8192),
-            motor_cfg(6, 8192)};
+    constexpr std::array<uint16_t, 2> extend_motor_default = {
+            5,
+            6
+    };
     constexpr pid_cfg rotate_pid_default(0.15, 0, 0.1, 2, 4);
     constexpr rotate_cfg rotate_default(rotate_pid_default, 0);
 } // namespace chassis_dep

@@ -8,43 +8,43 @@
 
 #include "Motor.hpp"
 
-class M3508 : public default_motor {
+class M3508 : public default_motor<8192, 19.2> {
 public:
-    M3508(const uint16_t rx_id, const float reduction_ratio)
-        : default_motor(rx_id, reduction_ratio) {};
+    M3508(const uint16_t rx_id)
+        : default_motor(rx_id) {};
 
-    static const FOC foc;
+    static constexpr FOC foc = {0x200, 0x200, 0x1FF};;
 };
 
-const FOC M3508::foc = {0x200, 0x200, 0x1FF};
+// const FOC M3508::foc = {0x200, 0x200, 0x1FF};
+
 
 template<motor_param motor>
 class SpeedPidControl {
 public:
-    SpeedPidControl()
-        : speed(Pid()) {};
+    SpeedPidControl(uint16_t rx_id)
+        : m(rx_id)
+        , speed(Pid()) {};
 
     void init(float p, float i, float d, float maxI, float maxOut, float gain);
-
-    void set_position(float target) {};
 
     void set_speed(float target) {
         speed.update(target, m.feedback.data.speed);
     }
-    void set_current(float target) {};
 
-    void get_feedback(uint16_t id, uint8_t* data) {
+    [[nodiscard]] float output() const { return speed.output; }
+
+    bool get_feedback(uint16_t id, uint8_t* data) {
         if (id == m.rx_id) {
             m.get_feedback(data);
+            return true;
         }
+        return false;
     };
 
 private:
     motor m;
     Pid speed;
 };
-
-
-
 
 #endif //USING_M3508
