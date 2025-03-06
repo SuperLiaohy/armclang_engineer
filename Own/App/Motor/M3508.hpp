@@ -3,20 +3,18 @@
 //
 #pragma once
 
+#include "Motor.hpp"
 #define USING_M3508 1
 #if USING_M3508 == 1
 
-#include "Motor.hpp"
 
-class M3508 : public default_motor<8192, 19.2> {
+class M3508 : public default_motor<8192, 19> {
 public:
     M3508(const uint16_t rx_id)
         : default_motor(rx_id) {};
 
     static constexpr FOC foc = {0x200, 0x200, 0x1FF};;
 };
-
-// const FOC M3508::foc = {0x200, 0x200, 0x1FF};
 
 
 template<motor_param motor>

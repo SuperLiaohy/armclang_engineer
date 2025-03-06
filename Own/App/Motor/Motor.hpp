@@ -4,10 +4,6 @@
 #pragma once
 
 #include "FeedBack.hpp"
-// #include "M3508.hpp"
-
-#include "M3508.hpp"
-
 #include <concepts>
 
 namespace motor_const {
@@ -57,7 +53,7 @@ struct DefaultFeedback {
     float total_position;
 };
 
-template<uint32_t precision_range, float reduction_ratio>
+template<uint32_t precision_range, uint32_t reduction_ratio>
 class default_motor {
 public:
     using Feedback = DefaultFeedback;
@@ -72,11 +68,11 @@ public:
         , rx_id(rx_id)
         , detect(1000) {}
 
-    inline void get_feedback(uint8_t* data);
+    inline void get_feedback(const uint8_t* data);
 };
 
-template<uint32_t precision_range, float reduction_ratio>
-inline void default_motor<precision_range, reduction_ratio>::get_feedback(uint8_t* data) {
+template<uint32_t precision_range, uint32_t reduction_ratio>
+inline void default_motor<precision_range, reduction_ratio>::get_feedback(const uint8_t* data) {
     feedback.raw_data.position    = static_cast<int16_t>(((data[0] << 8) | data[1]));
     feedback.raw_data.speed       = static_cast<int16_t>((data[2] << 8) | data[3]);
     feedback.raw_data.current     = static_cast<int16_t>((data[4] << 8) | data[5]);

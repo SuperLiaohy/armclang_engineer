@@ -3,25 +3,17 @@
 //
 #pragma once
 
-
 #include "Matrix/Matrix.hpp"
-#include "Motor/GM6020.hpp"
-#include "Motor/M2006.hpp"
-#include "Motor/M3508.hpp"
-#include "Motor/Motor.hpp"
-#include "Motor/dmMotor.hpp"
-#include "Motor/lkMotor.hpp"
+#include "Motor/Motor.tpp"
 #include "MyMath/MyMath.hpp"
-#include "Uart/SuperUart.hpp"
-#include "Slope/Slope.hpp"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "stm32h7xx_hal.h"
-#include "cmsis_os.h"
 #include "arm_math.h"
+#include "cmsis_os.h"
+#include "stm32h7xx_hal.h"
 #ifdef __cplusplus
 }
 #endif
@@ -40,7 +32,7 @@ namespace roboarm_dep {
     struct target {
         joint_target joint1;
 
-//        joint_target joint2;
+        //        joint_target joint2;
         struct {
             joint_target internal;
             joint_target external;
@@ -54,7 +46,7 @@ namespace roboarm_dep {
 
     struct offset {
         float joint1;
-//        float joint2;
+        //        float joint2;
         struct {
             float internal;
             float external;
@@ -79,20 +71,18 @@ namespace roboarm_dep {
         MDH() = default;
 
         MDH(float a, float alpha, float d, float theta = 0) {
-            this->a = a;
+            this->a     = a;
             this->alpha = alpha;
-            this->d = d;
+            this->d     = d;
             this->theta = theta;
-            rota = {
-                    {arm_cos_f32(theta),                      -arm_sin_f32(theta),                     0},
-                    {arm_sin_f32(theta) * arm_cos_f32(alpha), arm_cos_f32(theta) * arm_cos_f32(alpha), -arm_sin_f32(
-                            alpha)},
-                    {arm_sin_f32(theta) * arm_sin_f32(alpha), arm_cos_f32(theta) * arm_sin_f32(alpha), arm_cos_f32(
-                            alpha)}};
+            rota        = {
+                {arm_cos_f32(theta), -arm_sin_f32(theta), 0},
+                {arm_sin_f32(theta) * arm_cos_f32(alpha), arm_cos_f32(theta) * arm_cos_f32(alpha), -arm_sin_f32(alpha)},
+                {arm_sin_f32(theta) * arm_sin_f32(alpha), arm_cos_f32(theta) * arm_sin_f32(alpha), arm_cos_f32(alpha)}};
             trans = {
-                    {a},
-                    {-arm_sin_f32(alpha) * d},
-                    {arm_cos_f32(alpha) * d}};
+                {a},
+                {-arm_sin_f32(alpha) * d},
+                {arm_cos_f32(alpha) * d}};
         }
 
         float a;
@@ -124,7 +114,7 @@ namespace roboarm_dep {
     inline void MDH::change_d(float d) {
         trans.data[1][0] = d * arm_sin_f32(alpha);
         trans.data[2][0] = d * arm_sin_f32(alpha);
-        this->d = d;
+        this->d          = d;
     }
 
     class link {
@@ -134,30 +124,33 @@ namespace roboarm_dep {
 
     class Differentiator {
     public:
-        float common = 0;
+        float common     = 0;
         float difference = 0;
-        float lAngle = 0;
-        float rAngle = 0;
+        float lAngle     = 0;
+        float rAngle     = 0;
         float gain;
-        Motor<M2006> left;
-        Motor<M2006> right;
+        Motor<PosPidControl<M2006>> left;
+        Motor<PosPidControl<M2006>> right;
         Detect detect;
 
         Differentiator(float gain, uint16_t maxInterval,
-                       uint32_t left_id, uint32_t left_range,
-                       uint32_t right_id, uint32_t right_range)
-                : gain(gain), left(left_id, left_range), right(right_id, right_range), detect(maxInterval) {};
+                       uint32_t left_id,
+                       uint32_t right_id)
+            : gain(gain)
+            , left(left_id)
+            , right(right_id)
+            , detect(maxInterval) {};
 
         void init();
 
-        void update_relative_pos(float &pitch, float &roll);
+        void update_relative_pos(float& pitch, float& roll);
     };
 
-    constexpr float err = deg2rad(5);
-    constexpr float A = 340.0;
-    constexpr float B = 330.0;
+    constexpr float err           = deg2rad(5);
+    constexpr float A             = 340.0;
+    constexpr float B             = 330.0;
     constexpr uint32_t MaxTimeOut = 3000;
-    constexpr float M2006Scale = 8192.0 * 36;
+    constexpr float M2006Scale    = 8192.0 * 36;
 
     consteval int16_t joint_scale(float angle, float scr, float head) {
         return static_cast<int16_t>(angle * head / scr);
@@ -197,21 +190,20 @@ namespace roboarm_dep {
     constexpr struct {
         range joint1;
         range joint2;
-//        struct {
-//            range internal;
-//            range external;
-//        } joint2;
+        //        struct {
+        //            range internal;
+        //            range external;
+        //        } joint2;
 
         range joint3;
         range joint4;
         range joint5;
         range joint6;
     } limitation = {
-            {joint_scale(-45, 360, 65536), joint_scale(45, 360, 65536)},
-            {joint_scale(-50, 360, 65536), joint_scale(90, 360, 65536)},
-            {joint_scale(-135, 360, 65536),  joint_scale(135, 360, 65536)},
-            {joint_scale(-180, 360, 65536),  joint_scale(179.9, 360, 65536)},
-            {joint_scale(-90, 360, 8192),  joint_scale(90, 360, 8192)}};
+        {joint_scale(-45, 360, 65536), joint_scale(45, 360, 65536)},
+        {joint_scale(-50, 360, 65536), joint_scale(90, 360, 65536)},
+        {joint_scale(-135, 360, 65536), joint_scale(135, 360, 65536)},
+        {joint_scale(-180, 360, 65536), joint_scale(179.9, 360, 65536)},
+        {joint_scale(-90, 360, 8192), joint_scale(90, 360, 8192)}};
 
-} // namespace robo_arm
-
+} // namespace roboarm_dep

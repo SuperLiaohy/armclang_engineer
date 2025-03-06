@@ -10,7 +10,7 @@
 //
 #pragma once
 
-#define USING_DMMOTOR 1
+#define USING_DMMOTOR 0
 #if USING_DMMOTOR == 1
 
 #include "CAN/SuperCan.hpp"

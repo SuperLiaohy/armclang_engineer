@@ -140,29 +140,28 @@ void StartTask() {
 		interact.sub_board.start_receive();
 
     /* 底盘电机初始化 */
-    chassis.base.left_front.motor.init(15, 0, 4, 8000, 16000, 19.2);
-    chassis.base.right_front.motor.init(15, 0, 4, 8000, 16000, 19.2);
-    chassis.base.left_rear.motor.init(15, 0, 4, 8000, 16000, 19.2);
-    chassis.base.right_rear.motor.init(15, 0, 4, 8000, 16000, 19.2);
-    chassis.extend.right.motor.init(15, 0, 4, 8000, 16000, 19.2);
-    chassis.extend.left.motor.init(15, 0, 4, 8000, 16000, 19.2);
+    // chassis.base.left_front.motor.init(15, 0, 4, 8000, 16000, 19.2);
+    // chassis.base.right_front.motor.init(15, 0, 4, 8000, 16000, 19.2);
+    // chassis.base.left_rear.motor.init(15, 0, 4, 8000, 16000, 19.2);
+    // chassis.base.right_rear.motor.init(15, 0, 4, 8000, 16000, 19.2);
+    // chassis.extend.right.motor.init(15, 0, 4, 8000, 16000, 19.2);
+    // chassis.extend.left.motor.init(15, 0, 4, 8000, 16000, 19.2);
     /* 机械臂电机初始化 */
-    roboArm.joint1.motor.init(&canPlus1, 10);
-    //    roboArm.joint2.motor.init(&canPlus1,6);
-    roboArm.joint2.internal.motor.init(&canPlus1, 6);
-    roboArm.joint2.external.motor.init(&canPlus1, 6);
-    roboArm.joint3.motor.init(&canPlus1, 6);
-    roboArm.joint4.motor.init(&canPlus1, 10);
+    // roboArm.joint1.motor.init(&canPlus1, 10);
+    // roboArm.joint2.internal.motor.init(&canPlus1, 6);
+    // roboArm.joint2.external.motor.init(&canPlus1, 6);
+    // roboArm.joint3.motor.init(&canPlus1, 6);
+    // roboArm.joint4.motor.init(&canPlus1, 10);
     /* 机械臂末端差分器的初始化 */
-    roboArm.diff.left.motor.init(2.f, 0.01f, 0.2f, 2000.f, 10000.0f,
-                                 60 * 4, 0.05, 5, 1600, 8000, motor_const::M2006Gain);
-    roboArm.diff.left.motor.doublePid.extern_pid.dead_zone = 0.0;
-    roboArm.diff.right.motor.init(2.f, 0.01f, 0.2f, 2000.f, 10000.0f,
-                                  60 * 4, 0.05, 5, 1600, 8000, motor_const::M2006Gain);
-    roboArm.diff.right.motor.doublePid.extern_pid.dead_zone = 0.0;
+    // roboArm.diff.left.motor.init(2.f, 0.01f, 0.2f, 2000.f, 10000.0f,
+                                 // 60 * 4, 0.05, 5, 1600, 8000, motor_const::M2006Gain);
+    // roboArm.diff.left.motor.doublePid.extern_pid.dead_zone = 0.0;
+    // roboArm.diff.right.motor.init(2.f, 0.01f, 0.2f, 2000.f, 10000.0f,
+                                  // 60 * 4, 0.05, 5, 1600, 8000, motor_const::M2006Gain);
+    // roboArm.diff.right.motor.doublePid.extern_pid.dead_zone = 0.0;
 
-    test_motor.motor.init(0.6f, 0.01f, 0.1f, 500.f, 500.0f,
-                          5, 0.05f, 1, 900, 900);
+    // test_motor.motor.init(0.6f, 0.01f, 0.1f, 500.f, 500.0f,
+                          // 5, 0.05f, 1, 900, 900);
 
     /* 蜂鸣器初始化 */
     buzzer.Start();

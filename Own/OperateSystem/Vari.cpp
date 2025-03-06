@@ -85,7 +85,7 @@ Chassis chassis(
     chassis_dep::extend_motor_default);
 #endif
 
-RoboArm roboArm(
+RoboArm roboArm(&canPlus1,
                 5, 65536,
                 1, 65536,
                 2, 65536,

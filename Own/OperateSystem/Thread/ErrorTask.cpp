@@ -33,9 +33,9 @@ void ErrorTask() {
 
         roboArm.close();
         canPlus1.write(0, 0, 0, 0);
-        canPlus1.send(Motor<M2006>::foc.TX_LOW_ID);
+        canPlus1.send(M2006::foc.TX_LOW_ID);
         canPlus2.write(0, 0, 0, 0);
-        canPlus2.send(Motor<M3508>::foc.TX_LOW_ID);
+        canPlus2.send(M3508::foc.TX_LOW_ID);
         Led.SetColor(red * 255, 0, 0);
         ++time;
         if (time % 3 == 0) {

@@ -8,6 +8,11 @@
 #include "Crc/Crc.hpp"
 #include "array"
 #include "RoboArm/roboarm_dep.hpp"
+#include "MyMath/MyMath.hpp"
+
+// #include <RoboArm/roboarm_dep.hpp>
+
+
 
 namespace image_trans_dep {
     constexpr uint8_t SOF = 0xA5; // 帧头

@@ -7,36 +7,53 @@
  */
 #pragma once
 
-
+#include "Motor.hpp"
 #define USING_M2006 1
 #if USING_M2006 == 1
 
-#include "Motor.hpp"
-
-class M2006 : public default_motor<8192, 19.2> {
+class M2006 : public default_motor<8192, 19> {
 public:
     M2006(const uint16_t rx_id)
         : default_motor(rx_id) {};
 
     static constexpr FOC foc = {0x200, 0x200, 0x1FF};
-;
+    [[nodiscard]] float dpos() const {
+        float dPos = feedback.data.position - feedback.data.last_position;
+        if (dPos > 180) {
+            dPos = dPos - 360;
+        } else if (dPos < -180) {
+            dPos = dPos + 360;
+        }
+        return dPos / 19.2f;
+    }
 };
-
 
 template<motor_param motor>
 class PosPidControl {
 public:
     PosPidControl(uint16_t rx_id)
         : m(rx_id)
+        , position(Pid())
         , speed(Pid()) {};
 
     void init(float p, float i, float d, float maxI, float maxOut, float gain);
 
-    void set_position(const float target) {
-        speed.update(position.update(target, m.feedback.data.position), m.feedback.data.speed);
+    float set_position(const float target) {
+        return speed.update(position.update(target, m.feedback.total_position), m.feedback.data.speed);
     }
 
-    [[nodiscard]] float output() const { return position.output; }
+    void clear() {
+        position.clear();
+        speed.clear();
+    }
+
+    // void set_total_position(float input) {
+    //     m.feedback.total_position = input;
+    // }
+
+    [[nodiscard]] float& output() { return position.output; }
+    [[nodiscard]] float& total_position() { return m.feedback.total_position; }
+    [[nodiscard]] float dpos() { return m.dpos(); }
 
     bool get_feedback(uint16_t id, uint8_t* data) {
         if (id == m.rx_id) {

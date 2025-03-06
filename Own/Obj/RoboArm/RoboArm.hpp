@@ -10,7 +10,7 @@
 
 
 #include "roboarm_dep.hpp"
-
+// #include "ImageTrans/ImageTrans.hpp"
 extern int32_t left_dPos;
 extern int32_t right_dPos;
 
@@ -18,7 +18,7 @@ class Interact;
 
 class RoboArm {
 public:
-    RoboArm(
+    RoboArm(SuperCan* canPlus,
             uint32_t id1, uint32_t range1,
             uint32_t id2_internal, uint32_t range2_internal,
             uint32_t id2_external, uint32_t range2_external,
@@ -28,9 +28,9 @@ public:
             uint32_t id5, uint32_t range5,
             uint32_t id6, uint32_t range6,
             roboarm_dep::offset &&offset)
-            : diff(gain, maxInterval, id5, range5, id6, range6), joint1(id1, range1),
-            joint2{Motor<lkMotor>(id2_internal, range2_internal), Motor<lkMotor>(id2_external, range2_external)},
-              joint3(id3, range3), joint4(id4, range4), offset{offset} {};
+            : diff(gain, maxInterval, id5, id6), joint1(id1, range1, 10, canPlus),
+            joint2{Motor<LKControl<LKMotor>>(id2_internal, range2_internal, 6, canPlus), Motor<LKControl<LKMotor>>(id2_external, range2_external, 6, canPlus)},
+              joint3(id3, range3, 6, canPlus), joint4(id4, range4, 10, canPlus), offset{offset} {};
 
     void enable();
 
@@ -51,14 +51,14 @@ public:
 
     roboarm_dep::Differentiator diff;
 
-    Motor<lkMotor> joint1;
+    Motor<LKControl<LKMotor>> joint1;
 //    Motor<lkMotor> joint2;
     struct {
-        Motor<lkMotor> internal;
-        Motor<lkMotor> external;
+        Motor<LKControl<LKMotor>> internal;
+        Motor<LKControl<LKMotor>> external;
     } joint2;
-    Motor<lkMotor> joint3;
-    Motor<lkMotor> joint4;
+    Motor<LKControl<LKMotor>> joint3;
+    Motor<LKControl<LKMotor>> joint4;
 
     roboarm_dep::offset offset{};
 

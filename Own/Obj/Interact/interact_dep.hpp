@@ -8,6 +8,7 @@
 #include "ImageTrans/ImageTrans.hpp"
 #include "RemoteControl/RemoteControl.hpp"
 #include "RoboArm/RoboArm.hpp"
+#include "Slope/Slope.hpp"
 
 namespace interact_dep {
     typedef struct link_receive {
