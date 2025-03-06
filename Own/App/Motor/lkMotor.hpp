@@ -7,7 +7,8 @@
  * Copyright (c) 2024 by ${git_name} email: ${git_email}, All Rights Reserved.
  */
 #pragma once
-#include "Motor.hpp"
+#include "Motor.tpp"
+#include "CAN/SuperCan.hpp"
 #define USING_LKMOTOR 1
 #if USING_LKMOTOR == 1
 
@@ -354,80 +355,6 @@ void LKControl<motor>::read_totalposition() {
     canPlus->send(tx_id + motor::foc.TX_LOW_ID, data);
 }
 
-
-
-// class lkMotor {
-// public:
-//     //    lkMotor(PID inter_pid, PID extern_pid, SuperCan *superCan)
-//     //            : doublePid(inter_pid, extern_pid), superCan(superCan) {pid = inter_pid;}
-//     lkMotor(uint16_t id)
-//         : id(id) {
-//         };
-//     uint16_t voltage = 0;
-//     uint8_t error    = 0;
-//
-//     foc_pid_t foc_pid {};
-//
-//     encoder_t encoder_data {};
-//
-//     uint8_t close_flag  = 0;
-//     uint8_t start_flag  = 0;
-//     uint8_t offset_flag = 0;
-//     uint8_t clear_flag  = 0;
-//
-//     float gain;
-//
-//     void enable();
-//
-//     void disable();
-//
-//     void close();
-//
-//     void init(SuperCan* canPlus, float gain) {
-//         superCan   = canPlus;
-//         this->gain = gain;
-//     };
-//
-//     void voltageControl(int16_t target);
-//
-//     void torqueControl(int16_t target);
-//
-//     void speedControl(int32_t target);
-//
-//     void totalposition1Control(int32_t target);
-//
-//     void totalposition2Control(uint16_t speed, int32_t totalposition);
-//
-//     void position1Control(uint8_t spin, uint32_t target);
-//
-//     void position2Control(uint8_t spin, uint16_t speed, uint32_t target);
-//
-//     //    void position2Feedback(const uint8_t* data);
-//
-//     void addposition1Control(int32_t target);
-//
-//     void addposition2Control(uint16_t speed, int32_t target);
-//
-//     void read_feedback();
-//
-//     void read_encoder();
-//
-//     void read_totalposition();
-//
-//     void readPid();
-//
-//     void writeRAMPid();
-//
-//     void writeROMPid();
-//
-//     void read_error();
-//
-//     void clear_error();
-//
-// private:
-//     uint8_t id;
-//     SuperCan* superCan;
-// };
 
 // class lkMotorBoard {
 // public:

@@ -7,11 +7,12 @@
  */
 #pragma once
 
-#include "Motor.hpp"
+#include "Motor.tpp"
+#include "Pid/Pid.hpp"
 #define USING_M2006 1
 #if USING_M2006 == 1
 
-class M2006 : public default_motor<8192, 19> {
+class M2006 : public default_motor<8192, 36, 1> {
 public:
     M2006(const uint16_t rx_id)
         : default_motor(rx_id) {};
@@ -24,7 +25,7 @@ public:
         } else if (dPos < -180) {
             dPos = dPos + 360;
         }
-        return dPos / 19.2f;
+        return dPos / reduction_ratio;
     }
 };
 
@@ -47,10 +48,6 @@ public:
         speed.clear();
     }
 
-    // void set_total_position(float input) {
-    //     m.feedback.total_position = input;
-    // }
-
     [[nodiscard]] float& output() { return position.output; }
     [[nodiscard]] float& total_position() { return m.feedback.total_position; }
     [[nodiscard]] float dpos() { return m.dpos(); }
@@ -68,30 +65,5 @@ private:
     Pid position;
     Pid speed;
 };
-
-// class M2006 {
-// public:
-//
-//     M2006(uint16_t id) : doublePid(Pid(), Pid()), ctrlId(id) {};
-//
-//     void init(float inter_p, float inter_i, float inter_d, float inter_maxI, float inter_maxOut,
-//               float extern_p, float extern_i, float extern_d, float extern_maxI, float extern_maxOut, float gain);
-//
-//     void readData(const uint8_t *data);
-//
-//     class SelfDoublePid : public DoublePid {
-//     public:
-//         SelfDoublePid(Pid inter_pid, Pid extern_pid) : DoublePid(inter_pid, extern_pid) {}
-//
-// //        float update(float extern_input, float extern_target, float inter_input) override;
-//     } doublePid;
-//
-//     Pid pid;
-//
-//     const uint16_t ctrlId;
-//     float gain;
-// private:
-//     void CalcTotalPos();
-// };
 
 #endif //USING_M2006

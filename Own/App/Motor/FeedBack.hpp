@@ -8,11 +8,7 @@
 #include "Pid/DoublePid.hpp"
 #include "Detect/Detect.hpp"
 
-struct FOC {
-    uint16_t RX_ID;
-    uint16_t TX_LOW_ID;
-    uint16_t TX_HIGH_ID;
-};
+
 
 class FeedBack {
 public:

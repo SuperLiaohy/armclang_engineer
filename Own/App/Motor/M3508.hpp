@@ -3,12 +3,13 @@
 //
 #pragma once
 
-#include "Motor.hpp"
+#include "Motor.tpp"
+#include "Pid/Pid.hpp"
 #define USING_M3508 1
 #if USING_M3508 == 1
 
 
-class M3508 : public default_motor<8192, 19> {
+class M3508 : public default_motor<8192, 3591, 187> {
 public:
     M3508(const uint16_t rx_id)
         : default_motor(rx_id) {};

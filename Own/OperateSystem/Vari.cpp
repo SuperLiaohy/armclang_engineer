@@ -24,7 +24,7 @@
 #include "Judge/referee_system.h"
 #include "Pump/Pump.hpp"
 #include "Judge/ui.hpp"
-#include "Motor/Motor.tpp"
+#include "Motor/Motor.hpp"
 
 
 __attribute__((section(".DTCMRAM"))) uint64_t DTCMUsed[8 * 1024 / 8];

@@ -29,9 +29,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(COMMON_FLAGS "--target=arm-arm-none-eabi -mcpu=cortex-m7  -mfpu=fpv5-sp-d16 -mfloat-abi=hard ${COMMON_OPTIMIZATION_FLAGS}")
 
 # 设置编译器标志
-set(CMAKE_C_FLAGS "${COMMON_FLAGS} -c -xc -std=c99 -fno-rtti -funsigned-char -fshort-enums -fshort-wchar")
+set(CMAKE_C_FLAGS "${COMMON_FLAGS} -c -xc -std=c99 -fno-rtti -funsigned-char -fshort-enums -fshort-wchar -Wno-everything")
 #set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
-set(CMAKE_CXX_FLAGS "${COMMON_FLAGS} -xc++ -std=c++20 -fno-rtti -fno-exceptions -funsigned-char -fshort-enums -fshort-wchar")
+set(CMAKE_CXX_FLAGS "${COMMON_FLAGS} -xc++ -std=c++20 -fno-rtti -fno-exceptions -funsigned-char -fshort-enums -fshort-wchar -Wno-everything")
 set(CMAKE_ASM_FLAGS "${COMMON_FLAGS} -masm=auto -Wa,--diag_suppress=A1950W")
 
 # 链接器标志

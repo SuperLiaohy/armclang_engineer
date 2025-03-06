@@ -5,7 +5,7 @@
 
 
 #include "Detect/Detect.hpp"
-#include "Motor/Motor.tpp"
+#include "Motor/Motor.hpp"
 #include "MyMath/MyMath.hpp"
 #include "RemoteControl/RemoteControl.hpp"
 #include "Slope/Slope.hpp"

@@ -4,7 +4,7 @@
 #pragma once
 
 #include "Matrix/Matrix.hpp"
-#include "Motor/Motor.tpp"
+#include "Motor/Motor.hpp"
 #include "MyMath/MyMath.hpp"
 
 #ifdef __cplusplus

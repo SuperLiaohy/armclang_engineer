@@ -1,9 +1,8 @@
 //
 // Created by Administrator on 2025/2/28.
 //
+#pragma once
 
-#ifndef ARMCLANG_ENGINEER_SUBBOARD_HPP
-#define ARMCLANG_ENGINEER_SUBBOARD_HPP
 
 #include "Uart/SuperUart.hpp"
 
@@ -112,4 +111,3 @@ private:
 };
 
 
-#endif //ARMCLANG_ENGINEER_SUBBOARD_HPP
