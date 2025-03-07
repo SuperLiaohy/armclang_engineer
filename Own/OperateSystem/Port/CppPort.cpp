@@ -26,7 +26,7 @@ extern "C" void start_c(void){
     start();
 }
 extern "C" void im_start_c(void){
-    interact.image_trans.uartPlus.read_idle(100);
+    interact.image_trans.uartPlus.receive_dma_idle(100);
 }
 
 

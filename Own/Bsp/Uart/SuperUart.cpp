@@ -28,15 +28,15 @@ SuperUart::~SuperUart() {
     }
 }
 
-void SuperUart::write(uint8_t *data, uint16_t size) {
+void SuperUart::transmit_pdata(uint8_t *data, uint16_t size) {
     HAL_UART_Transmit(uart, data, size, HAL_MAX_DELAY);
 }
 
-void SuperUart::write_it(uint8_t *data, uint16_t size) {
+void SuperUart::transmit_it_pdata(uint8_t *data, uint16_t size) {
     HAL_UART_Transmit_IT(uart, data, size);
 }
 
-void SuperUart::write_dma(uint8_t *data, uint16_t size) {
+void SuperUart::transmit_dma_pdata(uint8_t *data, uint16_t size) {
     HAL_UART_Transmit_DMA(uart, data, size);
 }
 
@@ -112,7 +112,7 @@ void SuperUart::set_hex(void *data, uint16_t size) {
  * @note: rx_buffer is the class member of SuperUart, it is a DoubleBuffer object, don't need to another Buffer
  * @note: use interrupt to read data
  */
-uint8_t* SuperUart::read_it(uint16_t size) {
+uint8_t* SuperUart::receive_it(uint16_t size) {
     auto pData = rx_buffer;
     HAL_UART_Receive_IT(uart, pData, size);
     return pData;
@@ -125,7 +125,7 @@ uint8_t* SuperUart::read_it(uint16_t size) {
  * @note: the rx_buffer is provided by you, you can choose to use which buffer to store the data
  * @note: use interrupt to read data
  */
-uint8_t* SuperUart::read_it(uint8_t *pData, uint16_t size) {
+uint8_t* SuperUart::receive_it(uint8_t *pData, uint16_t size) {
     HAL_UART_Receive_IT(uart, pData, size);
     return pData;
 }
@@ -137,7 +137,7 @@ uint8_t* SuperUart::read_it(uint8_t *pData, uint16_t size) {
  * @note: the rx_buffer is provided by you, you can choose to use which buffer to store the data
  * @note: use DMA_IDLE to read data
  */
-uint8_t* SuperUart::read_idle(uint16_t size) {
+uint8_t* SuperUart::receive_dma_idle(uint16_t size) {
     auto pData = rx_buffer;
     HAL_UARTEx_ReceiveToIdle_DMA(uart, pData, size);
 //        HAL_UARTEx_ReceiveToIdle_IT(uart, pData, size);
@@ -152,7 +152,7 @@ uint8_t* SuperUart::read_idle(uint16_t size) {
  * @note: the rx_buffer is provided by you, you can choose to use which buffer to store the data
  * @note: use DMA_IDLE to read data
  */
-uint8_t *SuperUart::read_idle(uint8_t *pData, uint16_t size) {
+uint8_t *SuperUart::receive_dma_idle(uint8_t *pData, uint16_t size) {
     HAL_UARTEx_ReceiveToIdle_DMA(uart, pData, size);
     __HAL_DMA_DISABLE_IT(uart->hdmarx, DMA_IT_HT);
     return pData;
@@ -163,7 +163,7 @@ uint8_t *SuperUart::read_idle(uint8_t *pData, uint16_t size) {
  * @return: the pointer to the data
  * @note: rx_buffer is the class member of SuperUart, it is a DoubleBuffer object, don't need to another Buffer
  */
-uint8_t* SuperUart::read(uint16_t size) {
+uint8_t* SuperUart::receive(uint16_t size) {
     auto pData = rx_buffer;
     HAL_UART_Receive(uart, pData, size, HAL_MAX_DELAY);
     return pData;
@@ -175,7 +175,7 @@ uint8_t* SuperUart::read(uint16_t size) {
  * @return: the pointer to the data
  * @note: the rx_buffer is provided by you, you can choose to use which buffer to store the data
  */
-uint8_t* SuperUart::read(uint8_t *pData, uint16_t size) {
+uint8_t* SuperUart::receive(uint8_t *pData, uint16_t size) {
     HAL_UART_Receive(uart, pData, size, HAL_MAX_DELAY);
     return pData;
 }

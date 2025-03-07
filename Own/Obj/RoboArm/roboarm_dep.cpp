@@ -35,13 +35,11 @@ namespace roboarm_dep {
                 limited(right.motor.output(), -limit_max, limit_max);
             }
 
-            canPlus1.write(static_cast<int16_t>(left.motor.output()), static_cast<int16_t>(right.motor.output()), 0, 0);
-            canPlus1.send(M2006::foc.TX_LOW_ID);
+            canPlus1.transmit(M2006::foc.TX_LOW_ID, static_cast<int16_t>(left.motor.output()), static_cast<int16_t>(right.motor.output()), 0, 0);
             left_dPos  = left.motor.dpos();
             right_dPos = right.motor.dpos();
             if (time > limit_time * 2) {
-                canPlus1.write(0, 0, 0, 0);
-                canPlus1.send(M2006::foc.TX_LOW_ID);
+                canPlus1.transmit(M2006::foc.TX_LOW_ID, 0, 0, 0, 0);
                 HAL_Delay(50);
                 left.motor.clear();
                 right.motor.clear();
@@ -52,9 +50,7 @@ namespace roboarm_dep {
             if ((isInRange<float>(left_dPos, -limit_min, limit_min) && isInRange<float>(right_dPos, limit_min, limit_min))) {
                 ++cnt;
                 if (cnt > 10) {
-
-                    canPlus1.write(0, 0, 0, 0);
-                    canPlus1.send(M2006::foc.TX_LOW_ID);
+                    canPlus1.transmit(M2006::foc.TX_LOW_ID, 0, 0, 0, 0);
                     HAL_Delay(50);
                     left.motor.clear();
                     right.motor.clear();

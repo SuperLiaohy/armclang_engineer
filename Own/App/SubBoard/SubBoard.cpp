@@ -14,7 +14,7 @@ void SubBoard::transmit() {
 }
 
 void SubBoard::start_receive() {
-    uartPlus.read_idle(sizeof(receive_frame));
+    uartPlus.receive_dma_idle(sizeof(receive_frame));
 }
 
 void SubBoard::write() {

@@ -16,8 +16,8 @@ void RGBLED::load() {
         txbuf[23 - i] = (((blue >> i) & 0x01) ? WS2812_HighLevel : WS2812_LowLevel) >> 1;
     }
 
-    spiPlus.WriteDMA(txbuf, 24);
-    spiPlus.WriteDMA(res, 100);
+    spiPlus.transmit_dma(txbuf, 24);
+    spiPlus.transmit_dma(res, 100);
 }
 
 void RGBLED::SetColor(uint32_t color) {

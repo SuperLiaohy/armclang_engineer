@@ -113,8 +113,8 @@ void StartTask() {
     /* CAN初始化 */
     canPlus1.filter_config(0);
     canPlus2.filter_config(1);
-    canPlus1.can_start();
-    canPlus2.can_start();
+    canPlus1.start();
+    canPlus2.start();
     /* 遥控器和键鼠初始化 */
     // 键鼠默认配置uint32_t clickTime = 75, uint32_t longPressTime = 1000
     interact.remote_control.detect.lostFun = &remote_ctrl_recover;
@@ -136,7 +136,7 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_Shift, robo_arm_shift_r_callback);
     //    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
     interact.remote_control.start();
-    interact.image_trans.uartPlus.read_idle(100);
+    interact.image_trans.uartPlus.receive_dma_idle(100);
 		interact.sub_board.start_receive();
 
     /* 底盘电机初始化 */

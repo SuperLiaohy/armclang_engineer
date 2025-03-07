@@ -15,7 +15,7 @@ void PCTask() {
     uint32_t cnt = 0;
     while (1) {
         if (cmd==0){
-            interact.image_trans.uartPlus.read_idle(100);
+            interact.image_trans.uartPlus.receive_dma_idle(100);
         }
         if (cnt++%100==0) {
             roboArm.update_relative_pos();

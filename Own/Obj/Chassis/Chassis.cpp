@@ -19,30 +19,24 @@ extern "C" {
 #include "MicroTime/MicroTime.hpp"
 
 void Chassis::send_foc() {
-    can->write(base.left_front.motor.output(), base.right_front.motor.output(),
+    can->transmit(M3508::foc.TX_LOW_ID, base.left_front.motor.output(), base.right_front.motor.output(),
                base.left_rear.motor.output(), base.right_rear.motor.output());
-    can->send(M3508::foc.TX_LOW_ID);
     //    MicroTime::us_delay(100);
-    can->write((int16_t)extend.left.motor.output(), (int16_t)extend.right.motor.output(), 0, 0);
-    can->send(M3508::foc.TX_HIGH_ID);
+    can->transmit(M3508::foc.TX_HIGH_ID, (int16_t)extend.left.motor.output(), (int16_t)extend.right.motor.output(), 0, 0);
 }
 
 void Chassis::send_foc(int16_t left_front, int16_t right_front, int16_t left_rear, int16_t right_rear, int16_t left,
                        int16_t right) {
-    can->write(left_front, right_front, left_rear, right_rear);
-    can->send(M3508::foc.TX_LOW_ID);
-    can->write(left, right, 0, 0);
-    can->send(M3508::foc.TX_HIGH_ID);
+    can->transmit(M3508::foc.TX_HIGH_ID, left_front, right_front, left_rear, right_rear);
+    can->transmit(M3508::foc.TX_HIGH_ID, left, right, 0, 0);
 }
 
 void Chassis::send_base_foc(int16_t left_front, int16_t right_front, int16_t left_rear, int16_t right_rear) {
-    can->write(left_front, right_front, left_rear, right_rear);
-    can->send(M3508::foc.TX_LOW_ID);
+    can->transmit(M3508::foc.TX_LOW_ID, left_front, right_front, left_rear, right_rear);
 }
 
 void Chassis::send_extend_foc(int16_t left, int16_t right) {
-    can->write(left, right, 0, 0);
-    can->send(M3508::foc.TX_HIGH_ID);
+    can->transmit(M3508::foc.TX_HIGH_ID, left, right, 0, 0);
 }
 
 void Chassis::send_base_foc() {

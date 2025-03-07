@@ -31,8 +31,7 @@ void DJITask() {
         roboArm.diff.right.motor.set_position(roboArm.target.joint6.angle);
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        canPlus1.write(roboArm.diff.left.motor.output(), roboArm.diff.right.motor.output(), 0, 0);
-        canPlus1.send(M2006::foc.TX_LOW_ID);
+        canPlus1.transmit(M2006::foc.TX_LOW_ID, roboArm.diff.left.motor.output(), roboArm.diff.right.motor.output(), 0, 0);
         xSemaphoreGive(CAN1MutexHandle);
 
         microTime.end();

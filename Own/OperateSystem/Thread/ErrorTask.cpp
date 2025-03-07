@@ -30,12 +30,9 @@ void ErrorTask() {
     uint32_t time;
     uint8_t red = 0;
     while (1) {
-
         roboArm.close();
-        canPlus1.write(0, 0, 0, 0);
-        canPlus1.send(M2006::foc.TX_LOW_ID);
-        canPlus2.write(0, 0, 0, 0);
-        canPlus2.send(M3508::foc.TX_LOW_ID);
+        canPlus1.transmit(M2006::foc.TX_LOW_ID, 0, 0, 0, 0);
+        canPlus2.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         Led.SetColor(red * 255, 0, 0);
         ++time;
         if (time % 3 == 0) {

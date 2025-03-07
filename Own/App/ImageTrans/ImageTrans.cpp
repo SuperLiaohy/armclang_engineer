@@ -31,7 +31,7 @@ void ImageTrans::transmit() {
     memcpy(tx_frame.data, &custom_tx_frame, sizeof(custom_tx_frame));
     crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(&tx_frame), sizeof(tx_frame));
     memcpy(uartPlus.tx_buffer, &tx_frame, sizeof(tx_frame));
-    uartPlus.write_dma(uartPlus.tx_buffer, sizeof(tx_frame));
+    uartPlus.transmit_dma_pdata(uartPlus.tx_buffer, sizeof(tx_frame));
 }
 
 void ImageTrans::get_angle(roboarm_dep::real_relative_pos &relativePos) {

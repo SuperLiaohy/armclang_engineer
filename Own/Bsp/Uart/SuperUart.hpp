@@ -7,13 +7,10 @@
 extern "C" {
 #endif
 
-
 #include "usart.h"
-
 #include "stdarg.h"
-#include "stdio.h"
 #include "string.h"
-
+#include "stdio.h"
 #ifdef __cplusplus
 }
 #endif
@@ -39,11 +36,11 @@ public:
 
     ~SuperUart();
 
-    void write(uint8_t *data, uint16_t size);
+    void transmit_pdata(uint8_t *data, uint16_t size);
 
-    void write_it(uint8_t *data, uint16_t size);
+    void transmit_it_pdata(uint8_t *data, uint16_t size);
 
-    void write_dma(uint8_t *data, uint16_t size);
+    void transmit_dma_pdata(uint8_t *data, uint16_t size);
 
     void print(const char *format, ...);
 
@@ -61,19 +58,19 @@ public:
 
     void transmit(uint16_t size);
     //use read api to read data from rx_buffer (mode : BLOCK)
-    uint8_t* read(uint16_t size);
+    uint8_t* receive(uint16_t size);
 
-    uint8_t* read(uint8_t *pData, uint16_t size);
+    uint8_t* receive(uint8_t *pData, uint16_t size);
 
     //use read_it api to read data from rx_buffer (mode : INTERRUPT)
-    uint8_t* read_it(uint16_t size);
+    uint8_t* receive_it(uint16_t size);
 
-    uint8_t* read_it(uint8_t *pData, uint16_t size);
+    uint8_t* receive_it(uint8_t *pData, uint16_t size);
 
     //use read_idle api to read data from rx_buffer (mode : DMA_IDLE)
-    uint8_t* read_idle(uint16_t size);
+    uint8_t* receive_dma_idle(uint16_t size);
 
-    uint8_t* read_idle(uint8_t *pData, uint16_t size);
+    uint8_t* receive_dma_idle(uint8_t *pData, uint16_t size);
 
     friend void::HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 

@@ -39,12 +39,12 @@ void SuperCan::filter_config(uint16_t filter_number, filter_mode filterMode, uin
     HAL_FDCAN_ConfigFifoWatermark(hcan, FDCAN_CFG_RX_FIFO0, 1);
 }
 
-void SuperCan::can_start() {
+void SuperCan::start() {
     HAL_FDCAN_Start(hcan);
     HAL_FDCAN_ActivateNotification(hcan, fifo_start, 0);
 }
 
-void SuperCan::send(uint32_t id, uint8_t *data) {
+void SuperCan::transmit_pdata(uint32_t id, uint8_t *data) {
     tx_header.Identifier = id;
     tx_header.IdType = FDCAN_STANDARD_ID;
     tx_header.TxFrameType = FDCAN_DATA_FRAME;
@@ -58,3 +58,23 @@ void SuperCan::send(uint32_t id, uint8_t *data) {
 }
 
 
+void SuperCan::transmit(uint32_t id, int16_t data1, int16_t data2, int16_t data3, int16_t data4) {
+    tx_header.Identifier          = id;
+    tx_header.IdType              = FDCAN_STANDARD_ID;
+    tx_header.DataLength          = 8;
+    tx_header.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+    tx_header.BitRateSwitch       = FDCAN_BRS_OFF;
+    tx_header.FDFormat            = FDCAN_CLASSIC_CAN;
+    tx_header.TxEventFifoControl  = FDCAN_NO_TX_EVENTS;
+    tx_header.MessageMarker       = 0;
+    tx_data[0] = (data1 >> 8) & 0xff;
+    tx_data[1] = (data1) & 0xff;
+    tx_data[2] = (data2 >> 8) & 0xff;
+    tx_data[3] = (data2) & 0xff;
+    tx_data[4] = (data3 >> 8) & 0xff;
+    tx_data[5] = (data3) & 0xff;
+    tx_data[6] = (data4 >> 8) & 0xff;
+    tx_data[7] = (data4) & 0xff;    if (HAL_FDCAN_AddMessageToTxFifoQ(hcan, &tx_header, tx_data) != HAL_OK) {
+        return;
+    }
+}

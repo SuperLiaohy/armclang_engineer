@@ -17,13 +17,13 @@ class SuperSPI {
 public:
     explicit SuperSPI(SPI_HandleTypeDef *hspi) : hspi(hspi) {}
 
-    void Write(uint8_t *pData, uint16_t Size);
-    void WriteIT(uint8_t *pData, uint16_t Size);
-    void WriteDMA(const uint8_t *pData, uint16_t Size);
+    void transmit(uint8_t *pData, uint16_t Size);
+    void transmit_it(uint8_t *pData, uint16_t Size);
+    void transmit_dma(const uint8_t *pData, uint16_t Size);
 
-    void Read(uint8_t *pData, uint16_t Size);
-    void ReadIT(uint8_t *pData, uint16_t Size);
-    void ReadDMA(uint8_t *pData, uint16_t Size);
+    void receive(uint8_t *pData, uint16_t Size);
+    void receive_it(uint8_t *pData, uint16_t Size);
+    void receive_dma(uint8_t *pData, uint16_t Size);
 private:
     SPI_HandleTypeDef *hspi;
 

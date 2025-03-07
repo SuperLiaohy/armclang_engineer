@@ -30,7 +30,7 @@ private:
     SuperUart uartPlus;
 };
 
-inline void RemoteControl::start() { uartPlus.read_idle(60); }
+inline void RemoteControl::start() { uartPlus.receive_dma_idle(60); }
 
 inline void RemoteControl::clear() {
     memset(&rcInfo, 0, sizeof(rcInfo));
