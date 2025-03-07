@@ -3,23 +3,20 @@
 //
 #pragma once
 
-
 #define USING_CHASSIS 1
 #if USING_CHASSIS == 1
 
-    #include "chassis_dep.hpp"
+#include "chassis_dep.hpp"
 
 class Chassis {
 public:
-    Chassis(SuperCan* can, const std::array<slope_cfg, 4>& move_cfg, const chassis_dep::rotate_cfg& rot, const std::array<uint16_t, 4>& base_cfg,
-            const std::array<uint16_t, 2>& extend_cfg)
+    Chassis(SuperCan* can, const std::array<slope_cfg, 4>& move_cfg, const std::array<chassis_dep::ChassisMotorCfg, 4>& base_cfg,
+            const std::array<chassis_dep::ChassisMotorCfg, 2>& extend_cfg)
         : can(can)
         , base(base_cfg)
         , extend(extend_cfg)
         , move(move_cfg)
-        , key()
-        , rotate(rot) {}
-
+        , key() {}
 
     SuperCan* can;
     void send_foc();
@@ -31,7 +28,7 @@ public:
 
     void send_extend_foc(int16_t left, int16_t right);
 
-    void update_state(RemoteControl &remote_control, float relative_angle);
+    void update_state(RemoteControl& remote_control, float relative_angle);
 
     void UpdateMotor();
 
@@ -39,16 +36,14 @@ public:
 
     void update_slope();
 
-    float wheelSpeed[6]{};
+    float wheelSpeed[6] {};
     chassis_dep::base_motor base;
     chassis_dep::extend_motor extend;
-private:
 
+private:
     chassis_dep::move move;
 
     chassis_dep::key key;
-
-    chassis_dep::rotate rotate;
 
     void load_speed();
 
@@ -58,11 +53,8 @@ private:
     friend void chassis_s_callback(KeyEventType event);
     friend void chassis_d_callback(KeyEventType event);
     friend void chassis_q_callback(KeyEventType event);
-
 };
-
 
 extern Chassis chassis;
 
 #endif
-

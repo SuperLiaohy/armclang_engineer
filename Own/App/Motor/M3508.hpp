@@ -11,7 +11,7 @@
 
 class M3508 : public default_motor<8192, 3591, 187> {
 public:
-    M3508(const uint16_t rx_id)
+    explicit M3508(const uint16_t rx_id)
         : default_motor(rx_id) {};
 
     static constexpr FOC foc = {0x200, 0x200, 0x1FF};;
@@ -21,11 +21,11 @@ public:
 template<motor_param motor>
 class SpeedPidControl {
 public:
-    SpeedPidControl(uint16_t rx_id)
+    explicit SpeedPidControl(uint16_t rx_id, const Pid& cfg)
         : m(rx_id)
-        , speed(Pid()) {};
+        , speed(cfg) {};
 
-    void init(float p, float i, float d, float maxI, float maxOut, float gain);
+    // void init(float p, float i, float d, float maxI, float maxOut, float gain);
 
     void set_speed(float target) {
         speed.update(target, m.feedback.data.speed);

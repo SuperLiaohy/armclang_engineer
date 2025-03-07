@@ -32,10 +32,10 @@ public:
 template<motor_param motor>
 class PosPidControl {
 public:
-    PosPidControl(uint16_t rx_id)
+    PosPidControl(uint16_t rx_id,const Pid& pos_cfg,const Pid& speed_cfg)
         : m(rx_id)
-        , position(Pid())
-        , speed(Pid()) {};
+        , position(pos_cfg)
+        , speed(speed_cfg) {};
 
     void init(float p, float i, float d, float maxI, float maxOut, float gain);
 

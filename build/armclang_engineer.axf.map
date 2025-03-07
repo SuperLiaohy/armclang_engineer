@@ -3444,15 +3444,14 @@ Removing Unused input sections from the image.
     Removing CanCallback.o(.ARM.exidx.text._ZN7LKMotor12get_feedbackEPh), (8 bytes).
     Removing RoboArm.o(.ARM.exidx.text._Z8slove_q2fffff), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN13DetectManagerD2Ev), (8 bytes).
-    Removing Vari.o(.ARM.exidx.text._ZN7ChassisC2EP8SuperCanRKNSt3__25arrayI9slope_cfgLj4EEERKN11chassis_dep10rotate_cfgERKNS3_ItLj4EEERKNS3_ItLj2EEE), (8 bytes).
+    Removing Vari.o(.ARM.exidx.text._ZN7ChassisC2EP8SuperCanRKNSt3__25arrayI9slope_cfgLj4EEERKNS3_IN11chassis_dep15ChassisMotorCfgELj4EEERKNS3_IS9_Lj2EEE), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN7ChassisD2Ev), (8 bytes).
-    Removing Vari.o(.ARM.exidx.text._ZN7RoboArmC2EP8SuperCanjjjjjjjjjjfjjjjjON11roboarm_dep6offsetE), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN7RoboArmD2Ev), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN8InteractC2ERKhS1_P20__UART_HandleTypeDefS3_S3_), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN8InteractD2Ev), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN12interact_dep7ActionsC2Eh), (8 bytes).
 
-3447 unused section(s) (total 1149403 bytes) removed from the image.
+3446 unused section(s) (total 1149395 bytes) removed from the image.
 
 ==============================================================================
 
@@ -3472,7 +3471,7 @@ Image component sizes
         32          0          0          0          0      25210   CppPort.o
        770          0        768          0          0       6913   Crc.o
         14          0          0          0          0      14557   CustomHeap.o
-       374          0          0          0         16      27862   DJITask.o
+       374          0          0          0         16      27865   DJITask.o
        120          0          0          0          0      13526   Detect.o
        170          0          0          0          0      14714   DetectManager.o
         38          0          0          0          0      12562   DetectTask.o
@@ -3480,7 +3479,7 @@ Image component sizes
        298          0          0          0          9      12887   IMUTask.o
        236          4          0          0          0      26154   ImageTrans.o
         88          0          0          0          2      24896   ImageTransTask.o
-       484         24          0          0          0      19471   Imu.o
+       484         24          0          0          0      19307   Imu.o
       1930        104          0          0          0      32758   Interact.o
         26          0          0          0          0      25072   JudgeTask.o
         44          0          0          0          0      25244   KbTask.o
@@ -3490,13 +3489,13 @@ Image component sizes
         64          0          0          0          0      17969   LedTask.o
       2402         16          0          0         49      11290   MahonyAHRS.o
        126          0          0          0          0      25179   PCTask.o
-       126          0          0          0          0       2302   Pid.o
+       126          0          0          0          0       2118   Pid.o
       3080         52        144        144        624       9826   QuaternionEKF.o
        372          0          0        100          0      13237   RGBLED.o
         36          0          0          0          0      17891   Redifine.o
        190          0          0          0          0      18061   RemoteControl.o
        890          0          0          0          0      27934   RemoteCtrlTask.o
-      3874        160          0          0          8      39535   RoboArm.o
+      3874        160          0          0          8      39537   RoboArm.o
        120          0          0          0          0        627   Slope.o
        754          0          0          0          1      30783   StartTask.o
         40          0          0          0          0      17746   SubBoard.o
@@ -3507,7 +3506,7 @@ Image component sizes
         82          0          0          0          0      25785   TransmitTask.o
        210          0          0          0          1      25807   UARTCallback.o
        128         16          0          0          0      18328   UITask.o
-      2726          4         76      32832       3684      83418   Vari.o
+      3068          0        420      32832       3600      85384   Vari.o
        950          0          0          0          0      25096   W25Q64.o
        244          0          0          0        112       8756   adc.o
         52          0          0          0          0       5456   bdma.o
@@ -3525,7 +3524,7 @@ Image component sizes
        476          0          0          0         92       9377   octospi.o
       1016         16          0          4          5       4354   port.o
       3008          0          0          0         64      25291   queue.o
-       914         68          0          0          0      25142   roboarm_dep.o
+       914         68          0          0          0      24949   roboarm_dep.o
        370          0          0          0          0       2996   rtx_memory.o
       7728        234        996          2         29      54658   shell.o
        892         90          0          0          0       7837   shell_ext.o
@@ -3569,9 +3568,9 @@ Image component sizes
        132          0          0          0          0       4781   usbd_ioreq.o
 
     ----------------------------------------------------------------------
-    113262       2380       3876      33368      62128    1927490   Object Totals
+    113598       2372       4220      33368      62048    1928920   Object Totals
          0          0         80          0          0          0   (incl. Generated)
-      1972        140          7         12         38          0   (incl. Padding)
+      1966        136          7         12         42          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -3744,15 +3743,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-    134594       3408       6514      33368      62224    2151950   Grand Totals
-    134594       3408       6514        500      62224    2151950   ELF Image Totals (compressed)
-    134594       3408       6514        500          0          0   ROM Totals
+    134930       3400       6858      33368      62144    2153380   Grand Totals
+    134930       3400       6858        500      62144    2153380   ELF Image Totals (compressed)
+    134930       3400       6858        500          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)               141108 ( 137.80kB)
-    Total RW  Size (RW Data + ZI Data)             95592 (  93.35kB)
-    Total ROM Size (Code + RO Data + RW Data)     141608 ( 138.29kB)
+    Total RO  Size (Code + RO Data)               141788 ( 138.46kB)
+    Total RW  Size (RW Data + ZI Data)             95512 (  93.27kB)
+    Total ROM Size (Code + RO Data + RW Data)     142288 ( 138.95kB)
 
 ==============================================================================
 

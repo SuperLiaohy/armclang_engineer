@@ -54,7 +54,7 @@ public:
 
     static constexpr FOC foc = {0x140, 0x140, 0x140};
 
-    LKMotor(const uint16_t rx_id, uint32_t range, float ratio)
+    LKMotor(const uint16_t rx_id, const uint32_t range, const float ratio)
         : feedback()
         , rx_id(rx_id)
         , detect(1000)

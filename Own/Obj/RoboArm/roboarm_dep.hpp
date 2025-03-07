@@ -131,15 +131,13 @@ namespace roboarm_dep {
         float gain;
         Motor<PosPidControl<M2006>> left;
         Motor<PosPidControl<M2006>> right;
-        Detect detect;
 
-        Differentiator(float gain, uint16_t maxInterval,
-                       uint32_t left_id,
-                       uint32_t right_id)
+        Differentiator(float gain,
+                       uint32_t left_id, const Pid& left_pos_pid, const Pid& left_speed_pid,
+                       uint32_t right_id, const Pid& right_pos_pid, const Pid& right_speed_pid)
             : gain(gain)
-            , left(left_id)
-            , right(right_id)
-            , detect(maxInterval) {};
+            , left(left_id, left_pos_pid, left_speed_pid)
+            , right(right_id, right_pos_pid, right_speed_pid) {};
 
         void init();
 
