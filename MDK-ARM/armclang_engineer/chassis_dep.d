@@ -213,7 +213,8 @@ armclang_engineer/chassis_dep.o: ..\Own\Obj\Chassis\chassis_dep.cpp \
   ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\Motor.hpp \
-  ..\Own\App\Motor\Motor.tpp \
+  ..\Own\App\Motor\Motor.tpp ..\Own\Mod\Count\Count.hpp \
+  ..\Own\Mod\Count\CountManager.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \

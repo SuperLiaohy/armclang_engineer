@@ -3,6 +3,7 @@
 //
 #pragma once
 #include "Detect/Detect.hpp"
+#include "Count/Count.hpp"
 #include <concepts>
 
 namespace motor_const {
@@ -77,6 +78,8 @@ public:
         , detect(1000) {}
     constexpr static float reduction_ratio = static_cast<float>(reduction_head) / reduction_src;
     inline void get_feedback(const uint8_t* data);
+private:
+    Count rx_cnt{};
 };
 
 template<uint32_t precision_range, uint32_t reduction_head, uint32_t reduction_src>
@@ -100,6 +103,6 @@ inline void default_motor<precision_range, reduction_head, reduction_src>::get_f
 
     feedback.total_position     += (dPos / reduction_ratio);
     feedback.data.last_position  = feedback.data.position;
-
+    ++rx_cnt;
     detect.update();
 };

@@ -226,4 +226,5 @@ armclang_engineer/detecttask.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp
+  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\Mod\Count\Count.hpp \
+  ..\Own\Mod\Count\CountManager.hpp

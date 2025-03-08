@@ -223,7 +223,9 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Own\Mod\Count\Count.hpp \
+  ..\Own\Mod\Count\CountManager.hpp ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
@@ -254,9 +256,7 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
   ..\Core\Inc\fdcan.h ..\Own\Obj\Chassis\Chassis.hpp \
   ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\Mod\Detect\Detect.hpp \
-  ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\Motor.hpp \
+  ..\Own\Mod\Detect\DetectManager.hpp ..\Own\App\Motor\Motor.hpp \
   ..\Own\App\Motor\Motor.tpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\M2006.hpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\Mod\MyMath\MyMath.hpp \

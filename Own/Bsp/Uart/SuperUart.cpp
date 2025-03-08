@@ -29,14 +29,17 @@ SuperUart::~SuperUart() {
 }
 
 void SuperUart::transmit_pdata(uint8_t *data, uint16_t size) {
+    ++tx_cnt;
     HAL_UART_Transmit(uart, data, size, HAL_MAX_DELAY);
 }
 
 void SuperUart::transmit_it_pdata(uint8_t *data, uint16_t size) {
+    ++tx_cnt;
     HAL_UART_Transmit_IT(uart, data, size);
 }
 
 void SuperUart::transmit_dma_pdata(uint8_t *data, uint16_t size) {
+    ++tx_cnt;
     HAL_UART_Transmit_DMA(uart, data, size);
 }
 
@@ -69,6 +72,7 @@ void SuperUart::print(float value, uint8_t precision) {
 }
 
 void SuperUart::transmit(std::uint16_t size) {
+    ++tx_cnt;
     HAL_UART_Transmit_DMA(uart, tx_buffer, size);
 }
 
@@ -76,11 +80,11 @@ void SuperUart::transmit(std::uint16_t size) {
 /*
  * @note: send tx_buffer data(the member of SuperUart) to uart
  */
-void SuperUart::print() {
-//        HAL_UART_Transmit(uart, (uint8_t *) tx_buffer, len, HAL_MAX_DELAY);
-    HAL_UART_Transmit_DMA(uart, tx_buffer, len);
-    len = 0;
-}
+// void SuperUart::print() {
+// //        HAL_UART_Transmit(uart, (uint8_t *) tx_buffer, len, HAL_MAX_DELAY);
+//     HAL_UART_Transmit_DMA(uart, tx_buffer, len);
+//     len = 0;
+// }
 
 /*
  * @param data: the pointer to the data which you want to store in tx_buffer

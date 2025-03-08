@@ -255,6 +255,7 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
+  ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
   ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \

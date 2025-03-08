@@ -2531,7 +2531,7 @@ Removing Unused input sections from the image.
     Removing remote_ctrl_dep.o(.text), (0 bytes).
     Removing SubBoard.o(.text), (0 bytes).
     Removing SubBoard.o(.ARM.exidx.text._ZN8SubBoard8transmitEv), (8 bytes).
-    Removing SubBoard.o(.text._ZN8SubBoard5writeEv), (8 bytes).
+    Removing SubBoard.o(.text._ZN8SubBoard5writeEv), (10 bytes).
     Removing SubBoard.o(.ARM.exidx.text._ZN8SubBoard5writeEv), (8 bytes).
     Removing SubBoard.o(.ARM.exidx.text._ZN8SubBoard13start_receiveEv), (8 bytes).
     Removing SubBoard.o(.ARM.exidx.text._ZN8SubBoard12get_feedbackEv), (8 bytes).
@@ -2580,9 +2580,9 @@ Removing Unused input sections from the image.
     Removing SuperUart.o(.text), (0 bytes).
     Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUartC2EP20__UART_HandleTypeDeftt), (8 bytes).
     Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUartD2Ev), (8 bytes).
-    Removing SuperUart.o(.text._ZN9SuperUart14transmit_pdataEPht), (10 bytes).
+    Removing SuperUart.o(.text._ZN9SuperUart14transmit_pdataEPht), (32 bytes).
     Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUart14transmit_pdataEPht), (8 bytes).
-    Removing SuperUart.o(.text._ZN9SuperUart17transmit_it_pdataEPht), (6 bytes).
+    Removing SuperUart.o(.text._ZN9SuperUart17transmit_it_pdataEPht), (16 bytes).
     Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUart17transmit_it_pdataEPht), (8 bytes).
     Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUart18transmit_dma_pdataEPht), (8 bytes).
     Removing SuperUart.o(.text._ZN9SuperUart5printEPKcz), (58 bytes).
@@ -2594,8 +2594,6 @@ Removing Unused input sections from the image.
     Removing SuperUart.o(.text._ZN9SuperUart5printEfh), (48 bytes).
     Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUart5printEfh), (8 bytes).
     Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUart8transmitEt), (8 bytes).
-    Removing SuperUart.o(.text._ZN9SuperUart5printEv), (20 bytes).
-    Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUart5printEv), (8 bytes).
     Removing SuperUart.o(.text._ZN9SuperUart7set_hexEPvt), (60 bytes).
     Removing SuperUart.o(.ARM.exidx.text._ZN9SuperUart7set_hexEPvt), (8 bytes).
     Removing SuperUart.o(.text._ZN9SuperUart10receive_itEt), (20 bytes).
@@ -2703,6 +2701,7 @@ Removing Unused input sections from the image.
     Removing Slope.o(.text), (0 bytes).
     Removing Slope.o(.ARM.exidx.text._ZN5Slope6updateEv), (8 bytes).
     Removing Chassis.o(.text), (0 bytes).
+    Removing Chassis.o(.text._ZN7Chassis8send_focEv), (112 bytes).
     Removing Chassis.o(.ARM.exidx.text._ZN7Chassis8send_focEv), (8 bytes).
     Removing Chassis.o(.text._ZN7Chassis8send_focEssssss), (56 bytes).
     Removing Chassis.o(.ARM.exidx.text._ZN7Chassis8send_focEssssss), (8 bytes).
@@ -2734,7 +2733,7 @@ Removing Unused input sections from the image.
     Removing interact_dep.o(.text), (0 bytes).
     Removing RoboArm.o(.text), (0 bytes).
     Removing RoboArm.o(.ARM.exidx.text._ZN7RoboArm6enableEv), (8 bytes).
-    Removing RoboArm.o(.text._ZN7RoboArm7disableEv), (124 bytes).
+    Removing RoboArm.o(.text._ZN7RoboArm7disableEv), (174 bytes).
     Removing RoboArm.o(.ARM.exidx.text._ZN7RoboArm7disableEv), (8 bytes).
     Removing RoboArm.o(.ARM.exidx.text._ZN7RoboArm5closeEv), (8 bytes).
     Removing RoboArm.o(.ARM.exidx.text._ZN7RoboArm11init_offsetER8Interact), (8 bytes).
@@ -3416,6 +3415,13 @@ Removing Unused input sections from the image.
     Removing new.cpp.o(.ARM.exidx.text._ZdaPvSt11align_val_tRKSt9nothrow_t), (8 bytes).
     Removing new.cpp.o(.text._ZdaPvjSt11align_val_t), (6 bytes).
     Removing new.cpp.o(.ARM.exidx.text._ZdaPvjSt11align_val_t), (8 bytes).
+    Removing cxa_guard.cpp.o(.text), (0 bytes).
+    Removing cxa_guard.cpp.o(.ARM.exidx.text.unlikely.__cxa_guard_acquire), (8 bytes).
+    Removing cxa_guard.cpp.o(.ARM.exidx.text.unlikely.__cxa_guard_release), (8 bytes).
+    Removing cxa_guard.cpp.o(.text.unlikely.__cxa_guard_abort), (6 bytes).
+    Removing cxa_guard.cpp.o(.ARM.exidx.text.unlikely.__cxa_guard_abort), (8 bytes).
+    Removing abort_message.cpp.o(.text), (0 bytes).
+    Removing abort_message.cpp.o(.ARM.exidx.text.abort_message), (8 bytes).
     Removing cxa_handlers.cpp.o(.text), (0 bytes).
     Removing cxa_handlers.cpp.o(.text._ZSt14get_unexpectedv), (12 bytes).
     Removing cxa_handlers.cpp.o(.ARM.exidx.text._ZSt14get_unexpectedv), (8 bytes).
@@ -3431,9 +3437,6 @@ Removing Unused input sections from the image.
     Removing cxa_handlers.cpp.o(.ARM.exidx.text._ZSt9terminatev), (8 bytes).
     Removing cxa_handlers.cpp.o(.text._ZSt15get_new_handlerv), (12 bytes).
     Removing cxa_handlers.cpp.o(.ARM.exidx.text._ZSt15get_new_handlerv), (8 bytes).
-    Removing abort_message.cpp.o(.text), (0 bytes).
-    Removing abort_message.cpp.o(.text.abort_message), (4 bytes).
-    Removing abort_message.cpp.o(.ARM.exidx.text.abort_message), (8 bytes).
     Removing cxa_default_handlers.cpp.o(.text), (0 bytes).
     Removing cxa_default_handlers.cpp.o(.text._ZSt14set_unexpectedPFvvE), (30 bytes).
     Removing cxa_default_handlers.cpp.o(.ARM.exidx.text._ZSt14set_unexpectedPFvvE), (8 bytes).
@@ -3444,17 +3447,24 @@ Removing Unused input sections from the image.
     Removing cxa_default_handlers.cpp.o(.data.__cxa_terminate_handler), (4 bytes).
     Removing cxa_default_handlers.cpp.o(.data.__cxa_unexpected_handler), (4 bytes).
     Removing cxa_default_handlers.cpp.o(.bss.__cxa_new_handler), (4 bytes).
+    Removing SuperCan.o(.ARM.exidx.text._ZN12CountManagerD2Ev), (8 bytes).
+    Removing SuperUart.o(.ARM.exidx.text._ZN5CountD2Ev), (8 bytes).
     Removing CanCallback.o(.ARM.exidx.text._ZN7LKMotor12get_feedbackEPh), (8 bytes).
     Removing RoboArm.o(.ARM.exidx.text._Z8slove_q2fffff), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN13DetectManagerD2Ev), (8 bytes).
+    Removing Vari.o(.ARM.exidx.text._ZN8SuperCanD2Ev), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN7ChassisC2EP8SuperCanRKNSt3__25arrayI9slope_cfgLj4EEERKNS3_IN11chassis_dep15ChassisMotorCfgELj4EEERKNS3_IS9_Lj2EEE), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN7ChassisD2Ev), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN7RoboArmD2Ev), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN8InteractC2ERKhS1_P20__UART_HandleTypeDefS3_S3_), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN8InteractD2Ev), (8 bytes).
     Removing Vari.o(.ARM.exidx.text._ZN12interact_dep7ActionsC2Eh), (8 bytes).
+    Removing Vari.o(.ARM.exidx.text._ZN13default_motorILj8192ELj3591ELj187EEC2Et), (8 bytes).
+    Removing Vari.o(.ARM.exidx.text._ZN13default_motorILj8192ELj36ELj1EEC2Et), (8 bytes).
+    Removing Vari.o(.ARM.exidx.text._ZN9LKControlI7LKMotorEC2EtjfP8SuperCan), (8 bytes).
+    Removing Vari.o(.ARM.exidx.text._ZN7LKMotorC2Etjf), (8 bytes).
 
-3449 unused section(s) (total 1149147 bytes) removed from the image.
+3459 unused section(s) (total 1149397 bytes) removed from the image.
 
 ==============================================================================
 
@@ -3468,27 +3478,27 @@ Image component sizes
       1246          0         36          8          0       5125   BMI088driver.o
        300         18          0         16          0      13772   Buzzer.o
          2          0          0          0          0      17002   CDCCallback.o
-      1590        298          0          0          4      29176   CanCallback.o
-      1674         56          0          0          0      34156   Chassis.o
-        50          0          0          0          0      25480   ChassisTask.o
+      1666        298          0          0          4      29828   CanCallback.o
+      1626         64          0          0          0      34899   Chassis.o
+        44          0          0          0          0      25479   ChassisTask.o
         32          0          0          0          0      25210   CppPort.o
        770          0        768          0          0       6913   Crc.o
         14          0          0          0          0      14557   CustomHeap.o
-       340          0          0          0         16      27070   DJITask.o
+       340          0          0          0         16      27052   DJITask.o
        120          0          0          0          0      13526   Detect.o
        170          0          0          0          0      14714   DetectManager.o
-        38          0          0          0          0      12562   DetectTask.o
+       220          0          0          0          0      15912   DetectTask.o
        228          0          0          0          0      25749   ErrorTask.o
        298          0          0          0          9      12887   IMUTask.o
        236          4          0          0          0      26154   ImageTrans.o
         88          0          0          0          2      24896   ImageTransTask.o
        484         24          0          0          0      19307   Imu.o
-      1930        104          0          0          0      32758   Interact.o
+      1942        104          0          0          0      32769   Interact.o
         26          0          0          0          0      25072   JudgeTask.o
         44          0          0          0          0      25244   KbTask.o
        388          0          0          0          4      15950   Key.o
        408          0         10          0          4      30427   KeyCallback.o
-       716          0          0          0          0      28984   LKTask.o
+       800          0          0          0          0      29451   LKTask.o
         64          0          0          0          0      17969   LedTask.o
       2402         16          0          0         49      11290   MahonyAHRS.o
        126          0          0          0          0      25179   PCTask.o
@@ -3497,19 +3507,19 @@ Image component sizes
        372          0          0        100          0      13237   RGBLED.o
         36          0          0          0          0      17891   Redifine.o
        190          0          0          0          0      18061   RemoteControl.o
-       890          0          0          0          0      27934   RemoteCtrlTask.o
-      3874        160          0          0          8      39537   RoboArm.o
+       916          0          0          0          0      27894   RemoteCtrlTask.o
+      4258        160          0          0          8      42243   RoboArm.o
        120          0          0          0          0        627   Slope.o
        772          0          0          0          1      30943   StartTask.o
-        40          0          0          0          0      17746   SubBoard.o
-       264         12          0          0          0      15977   SuperCan.o
+        44          0          0          0          0      17746   SubBoard.o
+       652         12          0          0          0      20258   SuperCan.o
          6          0          0          0          0      14079   SuperSPI.o
-       374          0          0          0          0      26479   SuperUart.o
+       962          0          0          0          0      31368   SuperUart.o
        558          0          0          0         36      15848   Thread.o
         82          0          0          0          0      25785   TransmitTask.o
-       210          0          0          0          1      25807   UARTCallback.o
+       270          0          0          0          1      26293   UARTCallback.o
        128         16          0          0          0      18328   UITask.o
-      3068          0        420      32832       3600      85344   Vari.o
+      3692          0        420      32832       3904      89104   Vari.o
        950          0          0          0          0      25096   W25Q64.o
        244          0          0          0        112       8756   adc.o
         52          0          0          0          0       5456   bdma.o
@@ -3571,9 +3581,9 @@ Image component sizes
        132          0          0          0          0       4781   usbd_ioreq.o
 
     ----------------------------------------------------------------------
-    113870       2388       4220      33368      62048    1925416   Object Totals
+    116224       2384       4221      33368      62352    1946702   Object Totals
          0          0         80          0          0          0   (incl. Generated)
-      1966        136          7         12         42          0   (incl. Padding)
+      1946        124          8         12         42          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -3634,12 +3644,15 @@ Image component sizes
         22          0          0          0          0        100   _rserrno.o
         16          0          0          0          0         68   _snputc.o
         10          0          0          0          0         68   _sputc.o
+        22          0          0          0          0         80   abort.o
         46          0          0          0          0         84   aeabi_atexit.o
         16          0          0          0          0         68   aeabi_memset4.o
        228          4        148          0          0         96   bigflt0.o
       1936        128          0          0          0        668   btod.o
         10          0          0          0          0         68   cxa_atexit.o
         66          0          0          0          0         84   cxa_finalize.o
+        48         34          0          0          0         76   defsig_abrt_inner.o
+        14          0          0          0          0         80   defsig_abrt_outer.o
         10          0          0          0          0         68   defsig_exit.o
         50          0          0          0          0         88   defsig_general.o
         80         58          0          0          0         76   defsig_rtmem_inner.o
@@ -3710,6 +3723,8 @@ Image component sizes
       1084         76          0          0          0      35536   FastMathFunctions.o
       5326          4          0          0          0     175408   MatrixFunctions.o
          4          0          0          0          0        364   new.cpp.o
+         4          0          0          0          0         36   abort_message.cpp.o
+        52          0        147          0          0         76   cxa_guard.cpp.o
        280         46          0          0          0        176   acosf.o
        300         42          0          0          0        176   asinf.o
        684         90          0          0          0        208   atan2f.o
@@ -3723,21 +3738,22 @@ Image component sizes
         62          0          0          0          0        136   sqrtf.o
 
     ----------------------------------------------------------------------
-     21332       1028       2638          0         96     233772   Library Totals
-        38          8          3          0          0          0   (incl. Padding)
+     21482       1062       2785          0         96     234120   Library Totals
+        48          8          3          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-      8578        354        551          0         96       6328   c_w.l
+      8662        388        551          0         96       6564   c_w.l
       3418        204          0          0          0       3480   fz_wm.l
       6410         80       2052          0          0     221520   libCMSISDSP.a
          4          0          0          0          0        364   libcpp_w.l
+        56          0        147          0          0        112   libcppabi_w.l
       2884        382         32          0          0       2080   m_wm.l
 
     ----------------------------------------------------------------------
-     21332       1028       2638          0         96     233772   Library Totals
+     21482       1062       2785          0         96     234120   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -3746,15 +3762,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-    135202       3416       6858      33368      62144    2149876   Grand Totals
-    135202       3416       6858        500      62144    2149876   ELF Image Totals (compressed)
-    135202       3416       6858        500          0          0   ROM Totals
+    137706       3446       7006      33368      62448    2171314   Grand Totals
+    137706       3446       7006        500      62448    2171314   ELF Image Totals (compressed)
+    137706       3446       7006        500          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)               142060 ( 138.73kB)
-    Total RW  Size (RW Data + ZI Data)             95512 (  93.27kB)
-    Total ROM Size (Code + RO Data + RW Data)     142560 ( 139.22kB)
+    Total RO  Size (Code + RO Data)               144712 ( 141.32kB)
+    Total RW  Size (RW Data + ZI Data)             95816 (  93.57kB)
+    Total ROM Size (Code + RO Data + RW Data)     145212 ( 141.81kB)
 
 ==============================================================================
 

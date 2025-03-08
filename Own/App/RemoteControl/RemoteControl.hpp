@@ -19,7 +19,8 @@ public:
     inline void clear();
 
     friend void::HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size);
-
+    friend void::HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef *huart);
+    friend void::HAL_UART_ErrorCallback(UART_HandleTypeDef *huart);
     friend void::HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 
     RC_TypeDef rcInfo{};

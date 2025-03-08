@@ -45,6 +45,7 @@ void SuperCan::start() {
 }
 
 void SuperCan::transmit_pdata(uint32_t id, uint8_t *data) {
+    ++tx_cnt;
     tx_header.Identifier = id;
     tx_header.IdType = FDCAN_STANDARD_ID;
     tx_header.TxFrameType = FDCAN_DATA_FRAME;
@@ -59,6 +60,9 @@ void SuperCan::transmit_pdata(uint32_t id, uint8_t *data) {
 
 
 void SuperCan::transmit(uint32_t id, int16_t data1, int16_t data2, int16_t data3, int16_t data4) {
+
+    ++tx_cnt;
+
     tx_header.Identifier          = id;
     tx_header.IdType              = FDCAN_STANDARD_ID;
     tx_header.DataLength          = 8;

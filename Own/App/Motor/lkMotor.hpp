@@ -62,80 +62,11 @@ public:
         , reduction_ratio(ratio) {}
 
     inline void get_feedback(uint8_t* data);
-};
-
-template<motor_param motor>
-class LKControl {
-public:
-    LKControl(const uint16_t rx_id, uint32_t range, float ratio, SuperCan* canPlus)
-        : m(rx_id, range, ratio)
-        , tx_id(rx_id)
-        , canPlus(canPlus) {}
-
-    void set_position(float position, float speed = 100) {
-        totalposition2Control(speed, position * m.reduction_ratio);
-    };
-
-    void read_totalposition();
-
-    bool get_feedback(uint16_t id, uint8_t* data) {
-        if (id == m.rx_id) {
-            m.get_feedback(data);
-            return true;
-        }
-        return false;
-    };
-
-    void enable();
-
-    void disable();
-
-    void close();
-
-    friend class RoboArm;
 private:
-    motor m;
-
-    uint16_t tx_id;
-
-    SuperCan* canPlus;
-
-    void voltageControl(int16_t target);
-
-    void torqueControl(int16_t target);
-
-    void speedControl(int32_t target);
-
-    void totalposition1Control(int32_t target);
-
-    void totalposition2Control(uint16_t speed, int32_t totalposition);
-
-    void position1Control(uint8_t spin, uint32_t target);
-
-    void position2Control(uint8_t spin, uint16_t speed, uint32_t target);
-
-    void addposition1Control(int32_t target);
-
-    void addposition2Control(uint16_t speed, int32_t target);
-
-    void read_feedback();
-
-    void read_encoder();
-
-    // void read_totalposition();
-
-    void readPid();
-
-    void writeRAMPid();
-
-    void writeROMPid();
-
-    void read_error();
-
-    void clear_error();
+    Count rx_cnt;
 };
-
 inline void LKMotor::get_feedback(uint8_t* data) {
+    ++rx_cnt;
     switch (data[0]) {
         case 0x80:
             // 关闭判断
@@ -223,22 +154,98 @@ inline void LKMotor::get_feedback(uint8_t* data) {
             break;
     }
 }
+template<motor_param motor>
+class LKControl {
+public:
+    LKControl(const uint16_t rx_id, uint32_t range, float ratio, SuperCan* canPlus)
+        : m(rx_id, range, ratio)
+        , tx_id(rx_id)
+        , canPlus(canPlus) {}
+
+    void set_position(float position, float speed = 100) {
+        ++tx_cnt;
+        totalposition2Control(speed, position * m.reduction_ratio);
+    };
+
+    void read_totalposition();
+
+    bool get_feedback(uint16_t id, uint8_t* data) {
+        if (id == m.rx_id) {
+            m.get_feedback(data);
+            return true;
+        }
+        return false;
+    };
+
+    void enable();
+
+    void disable();
+
+    void close();
+
+    friend class RoboArm;
+private:
+    motor m;
+    Count tx_cnt;
+    uint16_t tx_id;
+
+    SuperCan* canPlus;
+
+    void voltageControl(int16_t target);
+
+    void torqueControl(int16_t target);
+
+    void speedControl(int32_t target);
+
+    void totalposition1Control(int32_t target);
+
+    void totalposition2Control(uint16_t speed, int32_t totalposition);
+
+    void position1Control(uint8_t spin, uint32_t target);
+
+    void position2Control(uint8_t spin, uint16_t speed, uint32_t target);
+
+    void addposition1Control(int32_t target);
+
+    void addposition2Control(uint16_t speed, int32_t target);
+
+    void read_feedback();
+
+    void read_encoder();
+
+    // void read_totalposition();
+
+    void readPid();
+
+    void writeRAMPid();
+
+    void writeROMPid();
+
+    void read_error();
+
+    void clear_error();
+};
+
+
 
 
 template<motor_param motor>
 void LKControl<motor>::enable() {
+    ++tx_cnt;
     uint8_t data[8] = {0x88, 0, 0, 0, 0, 0, 0, 0};
     canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
 }
 
 template<motor_param motor>
 void LKControl<motor>::disable() {
+    ++tx_cnt;
     uint8_t data[8] = {0x81, 0, 0, 0, 0, 0, 0, 0};
     canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
 }
 
 template<motor_param motor>
 void LKControl<motor>::close() {
+    ++tx_cnt;
     uint8_t data[8] = {0x80, 0, 0, 0, 0, 0, 0, 0};
     canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
 }
@@ -345,12 +352,14 @@ void LKControl<motor>::read_error() {
 
 template<motor_param motor>
 void LKControl<motor>::clear_error() {
+    ++tx_cnt;
     uint8_t data[8] = {0x9b, 0, 0, 0, 0, 0, 0, 0};
     canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
 }
 
 template<motor_param motor>
 void LKControl<motor>::read_totalposition() {
+    ++tx_cnt;
     uint8_t data[8] = {0x92, 0, 0, 0, 0, 0, 0, 0};
     canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
 }

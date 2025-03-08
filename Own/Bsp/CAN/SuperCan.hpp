@@ -2,7 +2,7 @@
 // Created by liaohy on 9/5/24.
 //
 #pragma once
-
+#include "Count/Count.hpp"
 #include <concepts>
 template<typename T>
 concept is_can = requires(T t, uint16_t filter_number, uint32_t reg1, uint32_t reg2, typename T::filter_mode mode, const uint16_t id, const uint8_t* data, int16_t data1, int16_t data2, int16_t data3, int16_t data4) {
@@ -64,6 +64,9 @@ public:
     friend void ::HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef* hfdcan, uint32_t RxFifo1ITs);
     friend void ::HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorStatusITs);
 private:
+    Count err_cnt{};
+    Count rx_cnt{};
+    Count tx_cnt{};
 
     uint32_t fifo;
     uint32_t fifo_start;
@@ -81,6 +84,7 @@ private:
 
 
 inline void SuperCan::receive() {
+    ++rx_cnt;
     HAL_FDCAN_GetRxMessage(hcan, fifo, &rx_header, rx_data);
 }
 

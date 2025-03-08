@@ -215,8 +215,9 @@ armclang_engineer/remotectrltask.o: \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h ..\Core\Inc\main.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
+  ..\Own\Mod\Count\CountManager.hpp ..\Core\Inc\usart.h \
+  ..\Core\Inc\main.h D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \

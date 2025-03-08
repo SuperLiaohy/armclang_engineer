@@ -49,16 +49,19 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
 #if USING_UART_IDLE
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (huart == interact.remote_control.uartPlus.uart) {
+        ++interact.remote_control.uartPlus.rx_cnt;
         interact.remote_control.update(interact.key_board);
         if (cnt++ > 5) {
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
     } else if (huart == interact.image_trans.uartPlus.uart) {
+        ++interact.image_trans.uartPlus.rx_cnt;
         interact.image_trans.update();
         xHigherPriorityTaskWoken = pdTRUE;
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     } else if (huart == interact.sub_board.uartPlus.uart) {
+        ++interact.sub_board.uartPlus.rx_cnt;
         interact.sub_board.get_feedback();
         interact.sub_board.start_receive();
     }
@@ -77,10 +80,18 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart){
     if (huart == interact.sub_board.uartPlus.uart) {
         interact.sub_board.start_receive();
+    } else if (huart == interact.image_trans.uartPlus.uart) {
+        ++interact.image_trans.uartPlus.err_cnt;
+    } else if (huart == interact.remote_control.uartPlus.uart) {
+        ++interact.remote_control.uartPlus.rx_cnt;
     }
 };
 void HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef *huart){
     if (huart == interact.sub_board.uartPlus.uart){
         interact.sub_board.start_receive();
+    } else if (huart == interact.image_trans.uartPlus.uart) {
+
+    } else if (huart == interact.remote_control.uartPlus.uart) {
+
     }
 };

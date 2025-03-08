@@ -3,6 +3,8 @@
 //
 #pragma once
 
+#include "Count/Count.hpp"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -25,6 +27,9 @@ private:
     UART_HandleTypeDef *uart;
     int32_t len;
 
+    Count err_cnt{};
+    Count rx_cnt{};
+    Count tx_cnt{};
 public:
 
     uint16_t tx_size;
@@ -51,7 +56,7 @@ public:
     void print(float value, uint8_t precision = 2);
 
     //print hex data,send tx_buffer data(the member of SuperUart)
-    void print();
+    // void print();
 
     //store hex data to tx_buffer
     void set_hex(void *data, uint16_t size);

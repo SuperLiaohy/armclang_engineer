@@ -270,7 +270,8 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
   ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\Mod\Count\Count.hpp \
+  ..\Own\Mod\Count\CountManager.hpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\M2006.hpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\MyMath\MyMath.hpp \
