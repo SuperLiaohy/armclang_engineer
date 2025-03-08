@@ -20,15 +20,11 @@ public:
 
     SuperCan* can;
     void send_foc();
-
     void send_foc(int16_t left_front, int16_t right_front, int16_t left_rear, int16_t right_rear, int16_t left, int16_t right);
-
     void send_base_foc(int16_t left_front, int16_t right_front, int16_t left_rear, int16_t right_rear);
     void send_base_foc();
 
     void send_extend_foc(int16_t left, int16_t right);
-
-    void update_state(RemoteControl& remote_control, float relative_angle);
 
     void UpdateMotor();
 

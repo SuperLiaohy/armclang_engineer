@@ -3469,7 +3469,7 @@ Image component sizes
        300         18          0         16          0      13772   Buzzer.o
          2          0          0          0          0      17002   CDCCallback.o
       1590        298          0          0          4      29176   CanCallback.o
-      1258         40          0          0          0      32957   Chassis.o
+      1674         56          0          0          0      34156   Chassis.o
         50          0          0          0          0      25480   ChassisTask.o
         32          0          0          0          0      25210   CppPort.o
        770          0        768          0          0       6913   Crc.o
@@ -3509,7 +3509,7 @@ Image component sizes
         82          0          0          0          0      25785   TransmitTask.o
        210          0          0          0          1      25807   UARTCallback.o
        128         16          0          0          0      18328   UITask.o
-      3068          0        420      32832       3600      85434   Vari.o
+      3068          0        420      32832       3600      85344   Vari.o
        950          0          0          0          0      25096   W25Q64.o
        244          0          0          0        112       8756   adc.o
         52          0          0          0          0       5456   bdma.o
@@ -3571,7 +3571,7 @@ Image component sizes
        132          0          0          0          0       4781   usbd_ioreq.o
 
     ----------------------------------------------------------------------
-    113454       2372       4220      33368      62048    1924307   Object Totals
+    113870       2388       4220      33368      62048    1925416   Object Totals
          0          0         80          0          0          0   (incl. Generated)
       1966        136          7         12         42          0   (incl. Padding)
 
@@ -3746,15 +3746,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-    134786       3400       6858      33368      62144    2148767   Grand Totals
-    134786       3400       6858        500      62144    2148767   ELF Image Totals (compressed)
-    134786       3400       6858        500          0          0   ROM Totals
+    135202       3416       6858      33368      62144    2149876   Grand Totals
+    135202       3416       6858        500      62144    2149876   ELF Image Totals (compressed)
+    135202       3416       6858        500          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)               141644 ( 138.32kB)
+    Total RO  Size (Code + RO Data)               142060 ( 138.73kB)
     Total RW  Size (RW Data + ZI Data)             95512 (  93.27kB)
-    Total ROM Size (Code + RO Data + RW Data)     142144 ( 138.81kB)
+    Total ROM Size (Code + RO Data + RW Data)     142560 ( 139.22kB)
 
 ==============================================================================
 

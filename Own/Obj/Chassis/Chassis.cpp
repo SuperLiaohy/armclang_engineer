@@ -56,13 +56,6 @@ void Chassis::UpdatePid() {
     extend.left.motor.set_speed(wheelSpeed[chassis_dep::ExtendLeft]);
     extend.right.motor.set_speed(wheelSpeed[chassis_dep::ExtendRight]);
 
-    // base.left_front.motor.pid.update(base.left_front.feed_back.data.speed);
-    // base.right_front.motor.pid.update(base.right_front.feed_back.data.speed);
-    // base.left_rear.motor.pid.update(base.left_rear.feed_back.data.speed);
-    // base.right_rear.motor.pid.update(base.right_rear.feed_back.data.speed);
-    //
-    // extend.left.motor.pid.update(extend.left.feed_back.data.speed);
-    // extend.right.motor.pid.update(extend.right.feed_back.data.speed);
 }
 
 void Chassis::UpdateMotor() {
@@ -115,13 +108,6 @@ void Chassis::load_speed() {
     wheelSpeed[ExtendLeft]  = (move.vy + move.extend) * v2rpm;
     wheelSpeed[ExtendRight] = -(move.vy + move.extend) * v2rpm;
 
-    // extend.left.motor.pid.target = move.extend * v2rpm;
-    // extend.right.motor.pid.target = -move.extend * v2rpm;
-    //
-    // base.left_front.motor.pid.target = wheelSpeed[LeftFront];
-    // base.right_front.motor.pid.target = wheelSpeed[RightFront];
-    // base.left_rear.motor.pid.target = wheelSpeed[LeftRear];
-    // base.right_rear.motor.pid.target = wheelSpeed[RightRear];
 }
 
 #endif

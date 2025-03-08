@@ -62,8 +62,9 @@ public:
     friend void ::HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef* hfdcan, uint32_t RxFifo0ITs);
 
     friend void ::HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef* hfdcan, uint32_t RxFifo1ITs);
-
+    friend void ::HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorStatusITs);
 private:
+
     uint32_t fifo;
     uint32_t fifo_start;
 
