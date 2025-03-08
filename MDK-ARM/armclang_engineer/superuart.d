@@ -210,9 +210,9 @@ armclang_engineer/superuart.o: ..\Own\Bsp\Uart\SuperUart.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   ..\Own\OperateSystem\Heap\CustomHeap.hpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h

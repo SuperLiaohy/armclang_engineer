@@ -230,9 +230,9 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h ..\Core\Inc\main.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Buzzer\Buzzer.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
   ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.hpp ..\Own\App\RGBLED\RGBLED.hpp \
   ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h

@@ -27,7 +27,7 @@ void Chassis::send_foc() {
 
 void Chassis::send_foc(int16_t left_front, int16_t right_front, int16_t left_rear, int16_t right_rear, int16_t left,
                        int16_t right) {
-    can->transmit(M3508::foc.TX_HIGH_ID, left_front, right_front, left_rear, right_rear);
+    can->transmit(M3508::foc.TX_LOW_ID, left_front, right_front, left_rear, right_rear);
     can->transmit(M3508::foc.TX_HIGH_ID, left, right, 0, 0);
 }
 
@@ -71,6 +71,8 @@ void Chassis::UpdateMotor() {
     if (base.right_front.motor.get_feedback(id, can->read())) { return; }
     if (base.left_rear.motor.get_feedback(id, can->read())) { return; }
     if (base.right_rear.motor.get_feedback(id, can->read())) { return; }
+    if (extend.left.motor.get_feedback(id, can->read())) { return; }
+    if (extend.right.motor.get_feedback(id, can->read())) { return; }
 }
 
 void Chassis::update_slope() {
@@ -84,7 +86,7 @@ void Chassis::update_slope() {
     move.vx              = move.xSlope.get() * gimbalAngleCos + move.ySlope.get() * gimbalAngleSin;
     move.vy              = -move.xSlope.get() * gimbalAngleSin + move.ySlope.get() * gimbalAngleCos;
     move.w               = move.wSlope.update();
-    move.extend          = move.vy + move.extendSlope.update();
+    move.extend          = move.extendSlope.update();
     load_speed();
 }
 
@@ -110,8 +112,8 @@ void Chassis::load_speed() {
     wheelSpeed[RightRear] =
         (-move.vx - (move.vy + move.extend) - rotateRatio[RightRear] * move.w) * v2rpm;
 
-    wheelSpeed[ExtendLeft]  = move.extend * v2rpm;
-    wheelSpeed[ExtendRight] = -move.extend * v2rpm;
+    wheelSpeed[ExtendLeft]  = (move.vy + move.extend) * v2rpm;
+    wheelSpeed[ExtendRight] = -(move.vy + move.extend) * v2rpm;
 
     // extend.left.motor.pid.target = move.extend * v2rpm;
     // extend.right.motor.pid.target = -move.extend * v2rpm;

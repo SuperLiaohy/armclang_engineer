@@ -735,14 +735,12 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\GM6020.hpp ..\Own\App\Motor\FeedBack.hpp \
-  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
-  ..\Own\Mod\Pid\DoublePid.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006.hpp \
-  ..\Own\App\Motor\M3508.hpp ..\Own\App\Motor\dmMotor.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\lkMotor.hpp \
-  ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\App\Motor\M3508.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
+  ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   ..\Core\Inc\FreeRTOSConfig.h \
@@ -760,6 +758,7 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\W25Q64\W25Q64.hpp \
+  ..\Core\Inc\octospi.h

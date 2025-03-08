@@ -18,7 +18,8 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\RoboArm\roboarm_dep.hpp \
+  ..\Own\Mod\Matrix\Matrix.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__verbose_abort \
@@ -182,22 +183,14 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\result_of.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\type_identity.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\unwrap_ref.h \
-  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
-  ..\Core\Inc\stm32h7xx_hal_conf.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
-  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
-  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h723xx.h \
-  ..\Drivers\CMSIS\Include\core_cm7.h \
-  D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_version.h \
-  D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_compiler.h \
-  D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_armclang.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
+  ..\Drivers\CMSIS\Include\cmsis_compiler.h \
+  ..\Drivers\CMSIS\Include\cmsis_armclang.h \
   D:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h \
   D:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h \
-  D:\RM\armclang_engineer\Drivers\CMSIS\Include\mpu_armv7.h \
-  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\math.h \
   D:\Keil_v5\ARM\ARMCLANG\include\math.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__math\abs.h \
@@ -223,6 +216,43 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__math\trigonometric_functions.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdlib.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdlib.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\float.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\float.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\limits.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\limits.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\none.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\utils.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\basic_math_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\interpolation_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\bayes_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\statistics_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\fast_math_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\matrix_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\complex_math_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\controller_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\support_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\distance_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\svm_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\svm_defines.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
+  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\Motor.tpp \
+  ..\Own\Mod\Detect\Detect.hpp \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
+  ..\Core\Inc\stm32h7xx_hal_conf.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
+  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
+  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h723xx.h \
+  ..\Drivers\CMSIS\Include\core_cm7.h \
+  D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_version.h \
+  D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_compiler.h \
+  D:\RM\armclang_engineer\Drivers\CMSIS\Include\mpu_armv7.h \
+  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h \
@@ -252,51 +282,20 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\App\Motor\GM6020.hpp ..\Own\App\Motor\FeedBack.hpp \
-  ..\Own\Mod\Pid\DoublePid.hpp ..\Own\Mod\Pid\Pid.hpp \
-  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\Motor.hpp \
-  ..\Own\App\Motor\lkMotor.hpp \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Motor\dmMotor.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\M2006.hpp \
-  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\RoboArm\roboarm_dep.hpp \
-  ..\Own\Mod\Matrix\Matrix.hpp \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
-  ..\Drivers\CMSIS\Include\cmsis_compiler.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\float.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\float.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\limits.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\limits.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\none.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\utils.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\basic_math_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\interpolation_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\bayes_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\statistics_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\fast_math_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\matrix_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\complex_math_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\controller_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\support_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\distance_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\svm_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\svm_defines.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
-  D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\M3508.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
-  ..\Core\Inc\usart.h D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\M2006.hpp \
+  ..\Own\App\Motor\lkMotor.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.hpp \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
+  ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Slope\Slope.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \

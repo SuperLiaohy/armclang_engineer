@@ -212,8 +212,8 @@ armclang_engineer/chassis.o: ..\Own\Obj\Chassis\Chassis.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
   ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\FeedBack.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\Motor.hpp \
+  ..\Own\App\Motor\Motor.tpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
@@ -242,17 +242,18 @@ armclang_engineer/chassis.o: ..\Own\Obj\Chassis\Chassis.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
-  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\Motor.hpp \
+  ..\Own\App\Motor\M3508.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
   ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Buzzer\Buzzer.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
   ..\Core\Inc\tim.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \

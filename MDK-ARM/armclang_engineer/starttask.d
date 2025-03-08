@@ -256,18 +256,18 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\Mod\Detect\Detect.hpp \
   ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\FeedBack.hpp ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\Motor.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\Motor.hpp \
+  ..\Own\App\Motor\Motor.tpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\M2006.hpp \
+  ..\Own\App\Motor\lkMotor.hpp ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\Mod\Key\Key.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\Mod\Key\Key.hpp \
   ..\Own\Mod\Slope\Slope.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
@@ -758,11 +758,10 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\GM6020.hpp ..\Own\App\Motor\M2006.hpp \
-  ..\Own\App\Motor\dmMotor.hpp ..\Own\App\Motor\lkMotor.hpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\Pump\Pump.hpp ..\Own\Bsp\GPIO\SuperGPIO.hpp \
   ..\Core\Inc\gpio.h ..\Own\App\RGBLED\RGBLED.hpp \
   ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h \
   ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\W25Q64\W25Q64.hpp \
-  ..\Core\Inc\octospi.h ..\USB_DEVICE\App\usb_device.h
+  ..\Core\Inc\octospi.h ..\Own\App\Motor\GM6020.hpp \
+  ..\USB_DEVICE\App\usb_device.h

@@ -224,7 +224,10 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\Mod\Vofa\vofa.hpp ..\Own\App\Motor\lkMotor.hpp \
-  ..\Own\App\Motor\FeedBack.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Own\App\Motor\Motor.tpp ..\Own\Mod\Detect\Detect.hpp \
+  ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
@@ -253,15 +256,11 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
-  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\Pid.hpp ..\Own\Mod\Detect\Detect.hpp \
-  ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Motor\Motor.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
   ..\Own\App\Motor\GM6020.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
   ..\Core\Inc\usart.h D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\Bsp\CDC\SuperCDC.hpp \
   ..\USB_DEVICE\App\usbd_cdc_if.h \
@@ -271,7 +270,7 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   ..\USB_DEVICE\Target\usbd_conf.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Own\App\Imu\Imu.hpp ..\Core\Inc\tim.h \
+  ..\Own\App\Imu\Imu.hpp ..\Core\Inc\tim.h ..\Own\Mod\Pid\Pid.hpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\RoboArm\roboarm_dep.hpp \
   ..\Own\Mod\Matrix\Matrix.hpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
@@ -300,10 +299,9 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\M2006.hpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\dmMotor.hpp ..\Own\Mod\MyMath\MyMath.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Interact\Interact.hpp \
-  ..\Own\Obj\Interact\interact_dep.hpp \
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\App\Motor\M2006.hpp ..\Own\Mod\MyMath\MyMath.hpp \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\interact_dep.hpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Key\Key.hpp \
   ..\Own\Mod\Crc\Crc.hpp D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
@@ -759,6 +757,6 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\App\MicroTime\MicroTime.hpp
+  ..\Own\App\Buzzer\Buzzer.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\MicroTime\MicroTime.hpp

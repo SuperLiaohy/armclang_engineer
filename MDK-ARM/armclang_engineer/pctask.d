@@ -236,8 +236,10 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\FeedBack.hpp \
-  ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\Motor.tpp \
+  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed_integer.h \
@@ -266,13 +268,11 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
-  ..\Core\Inc\fdcan.h ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\Pid.hpp ..\Own\Mod\Detect\Detect.hpp \
-  ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\lkMotor.hpp \
-  ..\Own\App\Motor\M2006.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\Mod\Matrix\Matrix.hpp \
+  ..\Own\App\Motor\M3508.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\RoboArm\roboarm_dep.hpp \
+  ..\Own\Mod\Matrix\Matrix.hpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -299,13 +299,11 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\GM6020.hpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\dmMotor.hpp ..\Own\Mod\MyMath\MyMath.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Interact\Interact.hpp \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Obj\Interact\Interact.hpp \
   ..\Own\Obj\Interact\interact_dep.hpp \
-  ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Key\Key.hpp \
-  ..\Own\Mod\Crc\Crc.hpp D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
+  ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
+  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\predicate_traits.h \
@@ -760,5 +758,6 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\OperateSystem\ThreadConfig.h
+  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Chassis\Chassis.hpp \
+  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\OperateSystem\ThreadConfig.h

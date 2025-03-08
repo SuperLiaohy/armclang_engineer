@@ -232,10 +232,10 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\App\Buzzer\Buzzer.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
   ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\arithmetic.h \
@@ -754,11 +754,9 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\GM6020.hpp ..\Own\App\Motor\FeedBack.hpp \
-  ..\Own\Mod\Pid\DoublePid.hpp ..\Own\Mod\Pid\Pid.hpp \
-  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006.hpp \
-  ..\Own\App\Motor\M3508.hpp ..\Own\App\Motor\dmMotor.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\lkMotor.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\Motor.tpp \
+  ..\Own\App\Motor\M3508.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
+  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Chassis\Chassis.hpp \
+  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\SubBoard\SubBoard.hpp

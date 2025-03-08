@@ -839,26 +839,6 @@
               <FilePath>..\Own\App\Motor\GM6020.cpp</FilePath>
             </File>
             <File>
-              <FileName>lkMotor.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\lkMotor.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>M2006.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\M2006.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>M3508.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\M3508.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Motor.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\Motor.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Pump.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\Pump\Pump.cpp</FilePath>
@@ -2475,26 +2455,6 @@
               <FileName>GM6020.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\Motor\GM6020.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>lkMotor.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\lkMotor.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>M2006.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\M2006.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>M3508.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\M3508.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Motor.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\Motor.cpp</FilePath>
             </File>
             <File>
               <FileName>Pump.cpp</FileName>

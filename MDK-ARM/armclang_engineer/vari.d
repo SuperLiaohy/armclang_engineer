@@ -268,10 +268,10 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\FeedBack.hpp ..\Own\Mod\Pid\DoublePid.hpp \
-  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\Motor.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp ..\Own\App\Motor\Motor.hpp \
+  ..\Own\App\Motor\Motor.tpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\M2006.hpp \
+  ..\Own\App\Motor\lkMotor.hpp ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
@@ -760,10 +760,9 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\GM6020.hpp ..\Own\App\Motor\M2006.hpp \
-  ..\Own\App\Motor\dmMotor.hpp ..\Own\App\Motor\lkMotor.hpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
-  ..\Core\Inc\spi.h ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
-  ..\Own\App\Imu\Imu.hpp ..\Own\App\Judge\referee_system.h \
-  ..\Own\App\Pump\Pump.hpp ..\Own\App\Judge\ui.hpp
+  ..\Own\App\Judge\referee_system.h ..\Own\App\Judge\ui.hpp \
+  ..\Own\App\Pump\Pump.hpp ..\Own\App\RGBLED\RGBLED.hpp \
+  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h \
+  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
+  ..\Own\App\Imu\Imu.hpp
