@@ -101,7 +101,7 @@ file(GLOB_RECURSE OWN_SOURCES
 # 创建可执行文件
 add_executable(${PROJECT_NAME} ${SOURCES} ${OWN_SOURCES})
 # 设置CMSIS-DSP的根目录
-set(CMSIS_DSP_ROOT "D:/Keil_Pack/ARM/CMSIS-DSP/1.15.0")
+set(CMSIS_DSP_ROOT "/home/liaohy/.arm/packs/ARM/CMSIS-DSP/1.15.0")
 
 # 设置静态库的输出路径
 set(CMSIS_DSP_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs")
@@ -238,12 +238,12 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 # 生成hex和bin文件
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${TOOLCHAIN_PATH}/fromelf.exe --i32combined --output="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.hex" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.axf"
-        COMMAND ${TOOLCHAIN_PATH}/fromelf.exe --bin --output="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.axf"
+        COMMAND ${TOOLCHAIN_PATH}/fromelf --i32combined --output="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.hex" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.axf"
+        COMMAND ${TOOLCHAIN_PATH}/fromelf --bin --output="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.axf"
         COMMENT "Building ${PROJECT_NAME}.hex and ${PROJECT_NAME}.bin"
 )
 # 可视化内存占用
-set(ARMCC_CALCELF "${CMAKE_SOURCE_DIR}/calcelf.exe")
+set(ARMCC_CALCELF "${CMAKE_SOURCE_DIR}/calcelf")
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${ARMCC_CALCELF} -m "${CMAKE_SOURCE_DIR}/MDK-ARM/${PROJECT_NAME}/${PROJECT_NAME}.map" -s "${CMAKE_SOURCE_DIR}/MDK-ARM/${PROJECT_NAME}/${PROJECT_NAME}.sct"
         COMMAND ${ARMCC_CALCELF} --format=progbar --map="${CMAKE_SOURCE_DIR}/MDK-ARM/${PROJECT_NAME}/${PROJECT_NAME}.map"

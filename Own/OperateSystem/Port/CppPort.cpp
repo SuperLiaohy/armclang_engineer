@@ -4,7 +4,7 @@
 #include "CDC/SuperCDC.hpp"
 #include "CppPort.h"
 #include "GPIO/SuperGPIO.hpp"
-#include "Interact/interact.hpp"
+#include "Interact/Interact.hpp"
 #include "W25Q64/W25Q64.hpp"
 
 #ifdef __cplusplus

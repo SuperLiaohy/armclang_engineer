@@ -16,7 +16,7 @@ extern osThreadId ERROR_TASKHandle;
 #endif
 
 #include "CAN/SuperCan.hpp"
-#include "Interact/interact.hpp"
+#include "Interact/Interact.hpp"
 #include "Motor/M2006.hpp"
 #include "Motor/Motor.hpp"
 #include "Motor/lkMotor.hpp"

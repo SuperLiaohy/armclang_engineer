@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "Interact/interact_dep.hpp"
+#include "Interact/Interact_dep.hpp"
 #include "Chassis/Chassis.hpp"
 #include "SubBoard/SubBoard.hpp"
 //设定交互方式的统一标准为2个字节16bit的形式
