@@ -1,0 +1,14 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=/home/liaohy/robomaster/armclang_enginner/MDK-ARM/out/armclang_engineer/armclang_engineer"
+    ],
+    "cmsis-csolution.actions": [
+        {
+            "path": "MDK-ARM/armclang_engineer.csolution.yml",
+            "target": "armclang_engineer",
+            "config": {
+                "debug": "Arm Debugger"
+            }
+        }
+    ]
+}

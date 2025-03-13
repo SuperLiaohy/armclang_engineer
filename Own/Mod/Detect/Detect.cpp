@@ -4,10 +4,8 @@
 
 #include "Detect.hpp"
 
-
-
 Detect::~Detect() {
-    detectManager.Unregister(this);
+    DetectManagerInstance().Unregister(this);
 }
 
 Detect::Detect(const uint32_t maxInterval)
@@ -16,7 +14,7 @@ Detect::Detect(const uint32_t maxInterval)
           isLost(false) {
     lostFun = nullptr;
     recoverFun = nullptr;
-    detectManager.Register(this);
+    DetectManagerInstance().Register(this);
 }
 
 void Detect::update() {

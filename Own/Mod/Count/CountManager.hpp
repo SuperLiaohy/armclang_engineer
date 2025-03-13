@@ -19,7 +19,7 @@ public:
     }
 
     void mark();
+
 private:
     CustomList<Count*> list;
-
 };

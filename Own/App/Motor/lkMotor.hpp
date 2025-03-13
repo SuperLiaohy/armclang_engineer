@@ -46,6 +46,8 @@ public:
     Detect detect;
     uint32_t precision_range;
     float reduction_ratio;
+    float total_position;
+
 
     uint8_t clear_flag;
     uint8_t close_flag;
@@ -96,13 +98,13 @@ inline void LKMotor::get_feedback(uint8_t* data) {
             feedback.data.current     = feedback.raw_data.current * 32.f / 2000.f;
             feedback.data.temperature = feedback.raw_data.temperature;
 
-            //            int32_t dPos = feed_back.Data.position - feed_back.Data.lastPosition;
-            //            if (dPos > (static_cast<int32_t>(feed_back.precision_range) / 2)) {
-            //                dPos = dPos - feed_back.precision_range;
-            //            } else if (dPos < -(static_cast<int32_t>(feed_back.precision_range) / 2)) {
-            //                dPos = dPos + feed_back.precision_range;
-            //            }
-            //            feed_back.totalPosition += dPos;
+            int32_t dPos = feedback.data.position - feedback.data.last_position;
+            if (dPos > 180) {
+                dPos = dPos - 360;
+            } else if (dPos < -180) {
+                dPos = dPos + 360;
+            }
+            total_position += dPos;
         } break;
         case 0x90:
             feedback.encoder.encoder       = *(uint16_t*)(&data[2]) * 360.0 / precision_range;

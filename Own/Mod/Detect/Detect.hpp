@@ -19,7 +19,7 @@ extern "C" {
  */
 #include "DetectManager.hpp"
 
-class DetectManager;
+DetectManager& DetectManagerInstance();
 
 typedef void (*Fun)();
 
@@ -29,7 +29,7 @@ public:
 
     ~Detect();
 
-    static DetectManager detectManager;
+    // static DetectManager detectManager;
 
     void init(Fun lostFun, Fun recoverFun) {
         this->lostFun = lostFun;

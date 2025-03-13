@@ -6,8 +6,6 @@
 
 #define USE_HAL_SELF_LIST 1
 
-#include "Detect.hpp"
-
 #if USE_HAL_SELF_LIST
 #include "CustomList/CustomList.hpp"
 #else

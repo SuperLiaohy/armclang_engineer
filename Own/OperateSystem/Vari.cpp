@@ -36,7 +36,7 @@ __attribute__((section(".RAM_D1"))) CustomHeap D1Heap(D1Used, sizeof(D1Used));
 __attribute__((section(".RAM_D2"))) CustomHeap D2Heap(D2Used, sizeof(D2Used));
 __attribute__((section(".RAM_D3"))) CustomHeap D3Heap(D3Used, sizeof(D3Used));
 
-DetectManager Detect::detectManager;
+// DetectManager Detect::detectManager;
 
 W25Q64 w25q64(&hospi2);
 

@@ -3,7 +3,12 @@
 //
 
 #include "DetectManager.hpp"
+#include "Detect.hpp"
 
+DetectManager& DetectManagerInstance() {
+    static DetectManager instance;
+    return instance;
+}
 
 void DetectManager::Register(Detect *detect) {
     detects.push_back(detect);

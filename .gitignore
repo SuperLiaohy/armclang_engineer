@@ -1,8 +1,19 @@
 build/
 
-MDK-ARM/*
+MDK-ARM
 
 .mxproject
 
 !MDK-ARM/startup_stm32h723xx.s
+
+!MDK-ARM/out
+
+!MDK-ARM/tmp
+
+libs
+
+arm-none-eabi-toolchain.cmake
+
+CMakeLists.txt
+
 

@@ -9,13 +9,14 @@
 
 void DetectTask() {
     uint32_t time = 0;
+    CountManager& it = CountManagerInstance();
     while (1) {
         auto now = xTaskGetTickCount();
         ++time;
-        Detect::detectManager.JudgeLost();
-        DetectHeapCnt = uxTaskGetStackHighWaterMark(NULL);
+        DetectManagerInstance().JudgeLost();
+        DetectHeapCnt    = uxTaskGetStackHighWaterMark(NULL);
         if (time > 99) {
-            CountManagerInstance().mark();
+            it.mark();
             time = 0;
         }
         osDelayUntil(&now,10);

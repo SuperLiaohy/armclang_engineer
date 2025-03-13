@@ -5,10 +5,7 @@
 #pragma once
 #include "CountManager.hpp"
 #include <cstdint>
-inline CountManager& CountManagerInstance() {
-    static CountManager instance;
-    return instance;
-}
+CountManager& CountManagerInstance();
 class Count {
 public:
     Count() {
