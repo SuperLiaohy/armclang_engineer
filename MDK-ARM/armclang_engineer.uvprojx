@@ -1225,6 +1225,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\Mod\Pid\Pid.cpp</FilePath>
             </File>
+            <File>
+              <FileName>Count.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\Count\Count.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

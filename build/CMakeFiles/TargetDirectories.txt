@@ -1,3 +1,0 @@
-/home/liaohy/robomaster/armclang_enginner/build/CMakeFiles/armclang_engineer.dir
-/home/liaohy/robomaster/armclang_enginner/build/CMakeFiles/edit_cache.dir
-/home/liaohy/robomaster/armclang_enginner/build/CMakeFiles/rebuild_cache.dir

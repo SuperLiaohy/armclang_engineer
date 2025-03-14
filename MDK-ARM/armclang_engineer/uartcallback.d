@@ -1,5 +1,5 @@
 armclang_engineer/uartcallback.o: ..\Own\CallBack\UARTCallback.cpp \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\interact_dep.hpp \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\Bsp\CDC\SuperCDC.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \

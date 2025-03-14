@@ -289,7 +289,7 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\interact_dep.hpp \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\Bsp\CDC\SuperCDC.hpp D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
   ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \

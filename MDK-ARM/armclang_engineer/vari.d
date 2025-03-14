@@ -734,7 +734,7 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
   ..\Own\OperateSystem\Heap\CustomHeap.hpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h ..\Own\Obj\Interact\Interact.hpp \
-  ..\Own\Obj\Interact\interact_dep.hpp \
+  ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
   ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\Mod\Matrix\Matrix.hpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \

@@ -101,6 +101,7 @@
 "armclang_engineer\doublepid.o"
 "armclang_engineer\slope.o"
 "armclang_engineer\pid.o"
+"armclang_engineer\count.o"
 "armclang_engineer\chassis.o"
 "armclang_engineer\chassis_dep.o"
 "armclang_engineer\roboarm.o"

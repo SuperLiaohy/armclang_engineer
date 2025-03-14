@@ -302,7 +302,7 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\App\Motor\M2006.hpp ..\Own\Mod\MyMath\MyMath.hpp \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\interact_dep.hpp \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Key\Key.hpp \
   ..\Own\Mod\Crc\Crc.hpp D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
