@@ -93,12 +93,12 @@ inline void LKMotor::get_feedback(uint8_t* data) {
             feedback.raw_data.speed       = *(int16_t*)(&data[4]);
             feedback.raw_data.position    = *(int16_t*)(&data[6]);
 
-            feedback.data.position    = feedback.raw_data.position * 360.0 / precision_range;
+            feedback.data.position    = feedback.raw_data.position * 360.f / precision_range;
             feedback.data.speed       = feedback.raw_data.speed;
             feedback.data.current     = feedback.raw_data.current * 32.f / 2000.f;
             feedback.data.temperature = feedback.raw_data.temperature;
 
-            int32_t dPos = feedback.data.position - feedback.data.last_position;
+            float dPos = feedback.data.position - feedback.data.last_position;
             if (dPos > 180) {
                 dPos = dPos - 360;
             } else if (dPos < -180) {

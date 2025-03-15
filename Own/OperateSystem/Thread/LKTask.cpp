@@ -38,11 +38,11 @@ void LKTask() {
         roboArm.load_target(interact);
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint3.motor.set_position(roboArm.target.joint3.angle, 360);
+        roboArm.joint3.motor.set_position(roboArm.target.joint3.angle, 600);
         xSemaphoreGive(CAN1MutexHandle);
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint4.motor.set_position(roboArm.target.joint4.angle, 480);
+        roboArm.joint4.motor.set_position(roboArm.target.joint4.angle, 720);
         xSemaphoreGive(CAN1MutexHandle);
 
         osDelay(1);
@@ -55,7 +55,7 @@ void LKTask() {
         osDelay(1);
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint1.motor.set_position(roboArm.target.joint1.angle, 540);
+        roboArm.joint1.motor.set_position(roboArm.target.joint1.angle, 600);
         xSemaphoreGive(CAN1MutexHandle);
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
