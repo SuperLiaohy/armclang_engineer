@@ -53,16 +53,15 @@ osThreadId LED_TASKHandle;
 osThreadId DJI_TASKHandle;
 osThreadId IMU_TASKHandle;
 osThreadId ERROR_TASKHandle;
-osThreadId DETECT_TASKHandle;
+osThreadId DEBUG_TASKHandle;
 osThreadId CHASSIS_TASKHandle;
 osThreadId REMOTE_CTRL_TASHandle;
 osThreadId LK_TASKHandle;
 osThreadId PC_TaskHandle;
 osThreadId IMAGEATRANS_TASHandle;
 osThreadId JUDGE_TASKHandle;
-osThreadId TRANSMIT_TASKHandle;
 osThreadId KB_TASKHandle;
-osThreadId UI_TASKHandle;
+osThreadId SUB_TASKHandle;
 osThreadId ARM_INIT_TASKHandle;
 osMutexId CAN1MutexHandle;
 osMutexId CAN2MutexHandle;
@@ -77,16 +76,15 @@ void OS_LedTask(void const * argument);
 void OS_DJITask(void const * argument);
 void OS_IMUTask(void const * argument);
 void OS_ErrorTask(void const * argument);
-void OS_DetectTask(void const * argument);
+void OS_DebugTask(void const * argument);
 void OS_ChassisTask(void const * argument);
 void OS_RemoteCtrlTask(void const * argument);
 void OS_LKTask(void const * argument);
 void OS_PCTask(void const * argument);
 void OS_ImageTransTask(void const * argument);
 void OS_JudgeTask(void const * argument);
-void OS_TransmitTask(void const * argument);
 void OS_KbTask(void const * argument);
-void OS_UITask(void const * argument);
+void OS_SubBoardTask(void const * argument);
 void OS_ArmInitTask(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
@@ -180,9 +178,9 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(ERROR_TASK, OS_ErrorTask, osPriorityHigh, 0, 256);
   ERROR_TASKHandle = osThreadCreate(osThread(ERROR_TASK), NULL);
 
-  /* definition and creation of DETECT_TASK */
-  osThreadDef(DETECT_TASK, OS_DetectTask, osPriorityBelowNormal, 0, 256);
-  DETECT_TASKHandle = osThreadCreate(osThread(DETECT_TASK), NULL);
+  /* definition and creation of DEBUG_TASK */
+  osThreadDef(DEBUG_TASK, OS_DebugTask, osPriorityBelowNormal, 0, 256);
+  DEBUG_TASKHandle = osThreadCreate(osThread(DEBUG_TASK), NULL);
 
   /* definition and creation of CHASSIS_TASK */
   osThreadDef(CHASSIS_TASK, OS_ChassisTask, osPriorityNormal, 0, 256);
@@ -208,17 +206,13 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(JUDGE_TASK, OS_JudgeTask, osPriorityNormal, 0, 512);
   JUDGE_TASKHandle = osThreadCreate(osThread(JUDGE_TASK), NULL);
 
-  /* definition and creation of TRANSMIT_TASK */
-  osThreadDef(TRANSMIT_TASK, OS_TransmitTask, osPriorityNormal, 0, 256);
-  TRANSMIT_TASKHandle = osThreadCreate(osThread(TRANSMIT_TASK), NULL);
-
   /* definition and creation of KB_TASK */
   osThreadDef(KB_TASK, OS_KbTask, osPriorityNormal, 0, 348);
   KB_TASKHandle = osThreadCreate(osThread(KB_TASK), NULL);
 
-  /* definition and creation of UI_TASK */
-  osThreadDef(UI_TASK, OS_UITask, osPriorityNormal, 0, 512);
-  UI_TASKHandle = osThreadCreate(osThread(UI_TASK), NULL);
+  /* definition and creation of SUB_TASK */
+  osThreadDef(SUB_TASK, OS_SubBoardTask, osPriorityNormal, 0, 384);
+  SUB_TASKHandle = osThreadCreate(osThread(SUB_TASK), NULL);
 
   /* definition and creation of ARM_INIT_TASK */
   osThreadDef(ARM_INIT_TASK, OS_ArmInitTask, osPriorityHigh, 0, 256);
@@ -322,22 +316,22 @@ __weak void OS_ErrorTask(void const * argument)
   /* USER CODE END OS_ErrorTask */
 }
 
-/* USER CODE BEGIN Header_OS_DetectTask */
+/* USER CODE BEGIN Header_OS_DebugTask */
 /**
-* @brief Function implementing the DETECT_TASK thread.
+* @brief Function implementing the DEBUG_TASK thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_OS_DetectTask */
-__weak void OS_DetectTask(void const * argument)
+/* USER CODE END Header_OS_DebugTask */
+__weak void OS_DebugTask(void const * argument)
 {
-  /* USER CODE BEGIN OS_DetectTask */
+  /* USER CODE BEGIN OS_DebugTask */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END OS_DetectTask */
+  /* USER CODE END OS_DebugTask */
 }
 
 /* USER CODE BEGIN Header_OS_ChassisTask */
@@ -448,24 +442,6 @@ __weak void OS_JudgeTask(void const * argument)
   /* USER CODE END OS_JudgeTask */
 }
 
-/* USER CODE BEGIN Header_OS_TransmitTask */
-/**
-* @brief Function implementing the TRANSMIT_TASK thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_OS_TransmitTask */
-__weak void OS_TransmitTask(void const * argument)
-{
-  /* USER CODE BEGIN OS_TransmitTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END OS_TransmitTask */
-}
-
 /* USER CODE BEGIN Header_OS_KbTask */
 /**
 * @brief Function implementing the KB_TASK thread.
@@ -484,22 +460,22 @@ __weak void OS_KbTask(void const * argument)
   /* USER CODE END OS_KbTask */
 }
 
-/* USER CODE BEGIN Header_OS_UITask */
+/* USER CODE BEGIN Header_OS_SubBoardTask */
 /**
-* @brief Function implementing the UI_TASK thread.
+* @brief Function implementing the SUB_TASK thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_OS_UITask */
-__weak void OS_UITask(void const * argument)
+/* USER CODE END Header_OS_SubBoardTask */
+__weak void OS_SubBoardTask(void const * argument)
 {
-  /* USER CODE BEGIN OS_UITask */
+  /* USER CODE BEGIN OS_SubBoardTask */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END OS_UITask */
+  /* USER CODE END OS_SubBoardTask */
 }
 
 /* USER CODE BEGIN Header_OS_ArmInitTask */

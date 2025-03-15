@@ -1555,24 +1555,19 @@
               <FilePath>..\Own\OperateSystem\Thread\JudgeTask.cpp</FilePath>
             </File>
             <File>
-              <FileName>TransmitTask.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\OperateSystem\Thread\TransmitTask.cpp</FilePath>
-            </File>
-            <File>
               <FileName>KbTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\KbTask.cpp</FilePath>
             </File>
             <File>
-              <FileName>UITask.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\OperateSystem\Thread\UITask.cpp</FilePath>
-            </File>
-            <File>
               <FileName>ArmInitTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\ArmInitTask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SubBoardTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\SubBoardTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

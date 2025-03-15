@@ -8,31 +8,16 @@ uint16_t cmd_id = 0;
 uint16_t cmd = 0;
 
 void ImageTransTask() {
+
+    interact.image_trans.set_map_back(1);
+
     while (1) {
-        using namespace crc;
-
-        cmd = 0;
-        vTaskSuspend(NULL);
-        cmd = 1;
-        auto data = interact.image_trans.uartPlus.rx_buffer;
-        uint16_t len = (data[2] << 8 | data[1]);
-        interact.image_trans.rx_cmd_id = data[6] << 8 | data[5];
-        if (verify_crc16_check_sum(data, len + 9)) {
-            switch (interact.image_trans.rx_cmd_id) {
-                case 0x302:
-                    interact.receive_custom(&data[7]);
-                    break;
-                case 0x304:
-                    break;
-                case 0x306:
-                    break;
-                case 0x309:
-                    break;
-                default:
-                    break;
-
-            }
+        auto now = xTaskGetTickCount();
+        //        interact.image_trans.set_map_back(1);
+        if (interact.path == interact_dep::path::IMAGE_TRANSMIT) {
+            interact.image_trans.get_angle(roboArm.real_relative_pos);
+            interact.image_trans.transmit();
         }
-
+        osDelayUntil(&now, 100);
     }
 }

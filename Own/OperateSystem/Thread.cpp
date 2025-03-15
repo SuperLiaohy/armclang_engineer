@@ -52,7 +52,7 @@ void OS_ErrorTask(void const *argument) {
     ErrorTask();
 }
 
-void OS_DetectTask(void const *argument) {
+void OS_DebugTask(void const *argument) {
     UNUSED(argument);
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     DetectTask();
@@ -94,12 +94,6 @@ void OS_ImageTransTask(void const *argument) {
     ImageTransTask();
 }
 
-void OS_TransmitTask(void const *argument){
-    UNUSED(argument);
-    xEventGroupWaitBits(osEventGroup, ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
-    TransmitTask();
-}
-
 void OS_JudgeTask(void const *argument) {
     UNUSED(argument);
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
@@ -112,7 +106,7 @@ void OS_KbTask(void const *argument) {
     KbTask();
 }
 
-void OS_UITask(void const *argument) {
+void OS_SubBoardTask(void const *argument) {
     UNUSED(argument);
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     UITask();

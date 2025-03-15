@@ -79,7 +79,7 @@ public:
 
     void get_angle(roboarm_dep::real_relative_pos &relativePos);
 
-    void update();
+    bool update();
 
     image_trans_dep::custom_rx_frame custom_rx_frame;
     image_trans_dep::trans_frame tx_frame;

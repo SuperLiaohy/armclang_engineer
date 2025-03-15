@@ -2173,8 +2173,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\OperateSystem\Thread\TransmitTask.cpp</PathWithFileName>
-      <FilenameWithoutPath>TransmitTask.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\OperateSystem\Thread\KbTask.cpp</PathWithFileName>
+      <FilenameWithoutPath>KbTask.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2185,8 +2185,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\OperateSystem\Thread\KbTask.cpp</PathWithFileName>
-      <FilenameWithoutPath>KbTask.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\OperateSystem\Thread\ArmInitTask.cpp</PathWithFileName>
+      <FilenameWithoutPath>ArmInitTask.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2197,20 +2197,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\OperateSystem\Thread\UITask.cpp</PathWithFileName>
-      <FilenameWithoutPath>UITask.cpp</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>15</GroupNumber>
-      <FileNumber>131</FileNumber>
-      <FileType>8</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\OperateSystem\Thread\ArmInitTask.cpp</PathWithFileName>
-      <FilenameWithoutPath>ArmInitTask.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\Own\OperateSystem\Thread\SubBoardTask.cpp</PathWithFileName>
+      <FilenameWithoutPath>SubBoardTask.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2232,7 +2220,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>132</FileNumber>
+      <FileNumber>131</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2244,7 +2232,7 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>133</FileNumber>
+      <FileNumber>132</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2256,7 +2244,7 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>134</FileNumber>
+      <FileNumber>133</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2268,7 +2256,7 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>135</FileNumber>
+      <FileNumber>134</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2280,7 +2268,7 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>136</FileNumber>
+      <FileNumber>135</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2292,7 +2280,7 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>137</FileNumber>
+      <FileNumber>136</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2304,7 +2292,7 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>138</FileNumber>
+      <FileNumber>137</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2316,7 +2304,7 @@
     </File>
     <File>
       <GroupNumber>17</GroupNumber>
-      <FileNumber>139</FileNumber>
+      <FileNumber>138</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>

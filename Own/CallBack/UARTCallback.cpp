@@ -56,8 +56,29 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
     } else if (huart == interact.image_trans.uartPlus.uart) {
+        using namespace crc;
         ++interact.image_trans.uartPlus.rx_cnt;
-        interact.image_trans.update();
+        if (interact.image_trans.update()) {
+            auto data                      = interact.image_trans.uartPlus.rx_buffer;
+            uint16_t len                   = (data[2] << 8 | data[1]);
+            interact.image_trans.rx_cmd_id = data[6] << 8 | data[5];
+            if (verify_crc16_check_sum(data, len + 9)) {
+                switch (interact.image_trans.rx_cmd_id) {
+                    case 0x302:
+                        interact.receive_custom(&data[7]);
+                        break;
+                    case 0x304:
+                        break;
+                    case 0x306:
+                        break;
+                    case 0x309:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        interact.image_trans.uartPlus.receive_dma_idle(100);
         xHigherPriorityTaskWoken = pdTRUE;
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     } else if (huart == interact.sub_board.uartPlus.uart) {
@@ -66,18 +87,17 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
         interact.sub_board.start_receive();
     }
 
-//    if (huart == uartPlus10.uart) {
-//        for (int i = 0; i < Size; ++i) {
-//            xQueueSendFromISR(xRxedChars, &cli_buffer[i], &xHigherPriorityTaskWoken);
-//            //            shellHandler(&shell, cli_buffer[i]);
-//        }
-//    }
+    //    if (huart == uartPlus10.uart) {
+    //        for (int i = 0; i < Size; ++i) {
+    //            xQueueSendFromISR(xRxedChars, &cli_buffer[i], &xHigherPriorityTaskWoken);
+    //            //            shellHandler(&shell, cli_buffer[i]);
+    //        }
+    //    }
 
 #endif
 }
 
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart){
+void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
     if (huart == interact.sub_board.uartPlus.uart) {
         interact.sub_board.start_receive();
     } else if (huart == interact.image_trans.uartPlus.uart) {
@@ -86,12 +106,10 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart){
         ++interact.remote_control.uartPlus.rx_cnt;
     }
 };
-void HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef *huart){
-    if (huart == interact.sub_board.uartPlus.uart){
+void HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef* huart) {
+    if (huart == interact.sub_board.uartPlus.uart) {
         interact.sub_board.start_receive();
     } else if (huart == interact.image_trans.uartPlus.uart) {
-
     } else if (huart == interact.remote_control.uartPlus.uart) {
-
     }
 };

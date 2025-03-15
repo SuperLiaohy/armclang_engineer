@@ -17,14 +17,10 @@ extern osThreadId IMAGEATRANS_TASHandle;
 
 using namespace crc;
 
-void ImageTrans::update() {
+bool ImageTrans::update() {
 //    kb.mouse = 0;
     auto buff = uartPlus.rx_buffer;
-
-    if (buff[0] == image_trans_dep::SOF && verify_crc8_check_sum(buff, 5)) {
-        xTaskResumeFromISR(IMAGEATRANS_TASHandle);
-    }
-
+    return  (buff[0] == image_trans_dep::SOF && verify_crc8_check_sum(buff, 5));
 }
 
 void ImageTrans::transmit() {
