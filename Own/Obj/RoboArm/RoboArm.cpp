@@ -232,13 +232,20 @@ void RoboArm::init_offset(Interact& interaction) {
 
 void RoboArm::update_relative_pos() {
 
-    real_relative_pos.joint1 = joint1.motor.m.feedback.total_position - offset.joint1;
+    // real_relative_pos.joint1 = joint1.motor.m.feedback.total_position - offset.joint1;
+    //
+    // real_relative_pos.joint2 = joint2.external.motor.m.feedback.total_position - offset.joint2.external;
+    //
+    // real_relative_pos.joint3 = -(joint3.motor.m.feedback.total_position - offset.joint3);
+    //
+    // real_relative_pos.joint4 = joint4.motor.m.feedback.total_position - offset.joint4;
+    real_relative_pos.joint1 = joint1.motor.m.total_position - offset.joint1;
 
-    real_relative_pos.joint2 = joint2.external.motor.m.feedback.total_position - offset.joint2.external;
+    real_relative_pos.joint2 = joint2.external.motor.m.total_position - offset.joint2.external;
 
-    real_relative_pos.joint3 = -(joint3.motor.m.feedback.total_position - offset.joint3);
+    real_relative_pos.joint3 = -(joint3.motor.m.total_position - offset.joint3);
 
-    real_relative_pos.joint4 = joint4.motor.m.feedback.total_position - offset.joint4;
+    real_relative_pos.joint4 = joint4.motor.m.total_position - offset.joint4;
 
     diff.update_relative_pos(real_relative_pos.joint5, real_relative_pos.joint6);
 }

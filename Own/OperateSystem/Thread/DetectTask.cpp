@@ -8,17 +8,17 @@
 #include <Count/Count.hpp>
 
 void DetectTask() {
-    uint32_t time = 0;
+    uint32_t time    = 0;
     CountManager& it = CountManagerInstance();
     while (1) {
         auto now = xTaskGetTickCount();
         ++time;
         DetectManagerInstance().JudgeLost();
-        DetectHeapCnt    = uxTaskGetStackHighWaterMark(NULL);
+        DetectHeapCnt = uxTaskGetStackHighWaterMark(NULL);
         if (time > 99) {
             it.mark();
             time = 0;
         }
-        osDelayUntil(&now,10);
+        osDelayUntil(&now, 10);
     }
 }
