@@ -7,7 +7,7 @@
 
 #include <Count/Count.hpp>
 
-void DetectTask() {
+void DebugTask() {
     uint32_t time    = 0;
     CountManager& it = CountManagerInstance();
     while (1) {

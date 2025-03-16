@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>51</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134358142</Address>
+          <Address>134357486</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +175,7 @@
           <Type>0</Type>
           <LineNumber>67</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134358254</Address>
+          <Address>134357598</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -191,7 +191,7 @@
           <Type>0</Type>
           <LineNumber>76</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134358310</Address>
+          <Address>134357654</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -207,7 +207,7 @@
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134358366</Address>
+          <Address>134357710</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -223,7 +223,7 @@
           <Type>0</Type>
           <LineNumber>90</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134358422</Address>
+          <Address>134357766</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -239,7 +239,7 @@
           <Type>0</Type>
           <LineNumber>111</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134333592</Address>
+          <Address>134333384</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -255,7 +255,7 @@
           <Type>0</Type>
           <LineNumber>52</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134305422</Address>
+          <Address>134305480</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -271,7 +271,7 @@
           <Type>0</Type>
           <LineNumber>21</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134336996</Address>
+          <Address>134336148</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -287,7 +287,7 @@
           <Type>0</Type>
           <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134337210</Address>
+          <Address>134336362</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -302,7 +302,7 @@
           <Number>9</Number>
           <Type>0</Type>
           <LineNumber>53</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
+          <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -318,7 +318,7 @@
           <Number>10</Number>
           <Type>0</Type>
           <LineNumber>58</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
+          <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -334,7 +334,7 @@
           <Number>11</Number>
           <Type>0</Type>
           <LineNumber>61</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
+          <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -350,22 +350,6 @@
           <Number>12</Number>
           <Type>0</Type>
           <LineNumber>79</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>startup_stm32h723xx.s</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>13</Number>
-          <Type>0</Type>
-          <LineNumber>53</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -375,54 +359,6 @@
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
           <Filename>startup_stm32h723xx.s</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>14</Number>
-          <Type>0</Type>
-          <LineNumber>58</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>startup_stm32h723xx.s</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>15</Number>
-          <Type>0</Type>
-          <LineNumber>61</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>startup_stm32h723xx.s</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>16</Number>
-          <Type>0</Type>
-          <LineNumber>79</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\Own\CallBack\UARTCallback.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -2029,18 +1965,6 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\OperateSystem\Thread\DetectTask.cpp</PathWithFileName>
-      <FilenameWithoutPath>DetectTask.cpp</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>15</GroupNumber>
-      <FileNumber>117</FileNumber>
-      <FileType>8</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>..\Own\OperateSystem\Thread\DJITask.cpp</PathWithFileName>
       <FilenameWithoutPath>DJITask.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -2048,7 +1972,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>118</FileNumber>
+      <FileNumber>117</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2060,7 +1984,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>119</FileNumber>
+      <FileNumber>118</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2072,7 +1996,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>120</FileNumber>
+      <FileNumber>119</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2084,7 +2008,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>121</FileNumber>
+      <FileNumber>120</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2096,7 +2020,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>122</FileNumber>
+      <FileNumber>121</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2108,7 +2032,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>123</FileNumber>
+      <FileNumber>122</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2120,7 +2044,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>124</FileNumber>
+      <FileNumber>123</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2132,7 +2056,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>125</FileNumber>
+      <FileNumber>124</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2144,7 +2068,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>126</FileNumber>
+      <FileNumber>125</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2156,7 +2080,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>127</FileNumber>
+      <FileNumber>126</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2168,7 +2092,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>128</FileNumber>
+      <FileNumber>127</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2180,7 +2104,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>129</FileNumber>
+      <FileNumber>128</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2192,13 +2116,25 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>130</FileNumber>
+      <FileNumber>129</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Own\OperateSystem\Thread\SubBoardTask.cpp</PathWithFileName>
       <FilenameWithoutPath>SubBoardTask.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>15</GroupNumber>
+      <FileNumber>130</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Own\OperateSystem\Thread\DebugTask.cpp</PathWithFileName>
+      <FilenameWithoutPath>DebugTask.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

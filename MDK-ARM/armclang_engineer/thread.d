@@ -223,4 +223,12 @@ armclang_engineer/thread.o: ..\Own\OperateSystem\Thread.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\OperateSystem\ThreadConfig.h
+  ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
+  ..\Own\Mod\Count\CountManager.hpp ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\CustomList.tpp ..\Core\Inc\usart.h \
+  ..\Core\Inc\main.h D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h

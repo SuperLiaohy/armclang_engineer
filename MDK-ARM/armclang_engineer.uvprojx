@@ -1495,11 +1495,6 @@
               <FilePath>..\Own\OperateSystem\Thread\ChassisTask.cpp</FilePath>
             </File>
             <File>
-              <FileName>DetectTask.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\OperateSystem\Thread\DetectTask.cpp</FilePath>
-            </File>
-            <File>
               <FileName>DJITask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\DJITask.cpp</FilePath>
@@ -1568,6 +1563,11 @@
               <FileName>SubBoardTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\SubBoardTask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DebugTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\DebugTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

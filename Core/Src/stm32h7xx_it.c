@@ -499,7 +499,7 @@ void USART10_IRQHandler(void)
   /* USER CODE END USART10_IRQn 0 */
   HAL_UART_IRQHandler(&huart10);
   /* USER CODE BEGIN USART10_IRQn 1 */
-  im_start_c();
+  // im_start_c();
 
   /* USER CODE END USART10_IRQn 1 */
 }

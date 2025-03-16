@@ -3,9 +3,7 @@
   <component name="CMakePythonSetting">
     <option name="pythonIntegrationState" value="YES" />
   </component>
-  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$/MDK-ARM/tmp/armclang_engineer+armclang_engineer">
-    <contentRoot DIR="$PROJECT_DIR$" />
-  </component>
+  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <libraryRoots>
       <file path="$USER_HOME$/.arm/packs/ARM/CMSIS-DSP/1.16.2/Source/BasicMathFunctions" />

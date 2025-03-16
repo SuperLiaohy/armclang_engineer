@@ -15,7 +15,7 @@ void PCTask() {
     uint32_t cnt = 0;
     while (1) {
 
-        if (cnt++%100==0) {
+        if (cnt++%10==0) {
             roboArm.update_relative_pos();
             xEventGroupSetBits(osEventGroup, LK_RECEIVE_GET);
             interact.transmit_relative_pos(roboArm);

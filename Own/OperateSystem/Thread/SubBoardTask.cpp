@@ -4,7 +4,7 @@
 #include "CppTask.hpp"
 #include "Interact/Interact.hpp"
 
-void UITask() {
+void SubBoardTask() {
     for (;;) {
         interact.sub_board.transmit();
         osDelay(100);

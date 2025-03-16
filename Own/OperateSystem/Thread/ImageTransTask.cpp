@@ -9,7 +9,7 @@ uint16_t cmd = 0;
 
 void ImageTransTask() {
 
-    interact.image_trans.set_map_back(1);
+    interact.image_trans.set_map_back(0);
 
     while (1) {
         auto now = xTaskGetTickCount();

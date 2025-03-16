@@ -6,6 +6,8 @@
 #include "Thread/CppTask.hpp"
 #include "ThreadConfig.h"
 
+#include <SubBoard/SubBoard.hpp>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -55,7 +57,7 @@ void OS_ErrorTask(void const *argument) {
 void OS_DebugTask(void const *argument) {
     UNUSED(argument);
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
-    DetectTask();
+    DebugTask();
 }
 
 void OS_ChassisTask(void const *argument) {
@@ -109,5 +111,5 @@ void OS_KbTask(void const *argument) {
 void OS_SubBoardTask(void const *argument) {
     UNUSED(argument);
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
-    UITask();
+    SubBoardTask();
 }
