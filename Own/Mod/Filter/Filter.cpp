@@ -4,8 +4,14 @@
 
 #include "Filter.hpp"
 
-
-float Filter::update(const float value) {
-    sum += queue.push(value);
-    return sum / static_cast<float>(queue.len());
+template<uint32_t n>
+float Filter<n>::update(const float value) {
+    if (queue.len() == n) {
+        float front;
+        queue.pop(front);
+        sum -= front;
+    }
+    queue.push(value);
+    sum += value;
+    return sum  / static_cast<float>(queue.len());
 }

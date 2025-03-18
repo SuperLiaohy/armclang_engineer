@@ -4,22 +4,26 @@
 
 #include "RoundQueue.hpp"
 
-
-float RoundQueue::pop() {
-    if (head == tail) {
-        return 0;
+template<typename T, uint32_t n>
+bool RoundQueue<T, n>::pop(T& value) {
+    if (length > 0) {
+        value = buffer[head];
+        head       = (head + 1) % n;
+        --length;
+        return true;
     }
-    const auto value = buffer[tail];
-    tail = static_cast<int8_t>(((tail + 1) % size));
-    return value;
+    return false;
 }
 
-float RoundQueue::push(float value) {
-    buffer[head] = value;
-    head = static_cast<int8_t>(((head + 1) % size));
-    if (head == tail) {
-        value -= buffer[tail];
-        tail = static_cast<int8_t>(((tail + 1) % size));
+template<typename T, uint32_t n>
+void RoundQueue<T, n>::push(const T&value) {
+    if (length < n) {
+        buffer[tail] = value;
+        tail         = (tail + 1) % n;
+        ++length;
+    } else {
+        head = (head + 1) % n;
+        buffer[tail] = value;
+        tail         = (tail + 1) % n;
     }
-    return value;
 }

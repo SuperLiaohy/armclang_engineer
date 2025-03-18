@@ -1,10 +1,7 @@
 //
 // Created by Administrator on 24-10-3.
 //
-
-#include "CustomList.hpp"
-
-
+#pragma once
 template <typename T>
 CustomList<T>::CustomList() : head(nullptr), tail(nullptr), length(0) {}
 

@@ -14,31 +14,31 @@ extern "C" {
 }
 #endif
 
-static constexpr uint8_t max = 10;
-
+template<typename T, uint32_t n>
 class RoundQueue {
 public:
-    explicit RoundQueue(const int8_t size) : head(0), tail(0), size(size) {}
+    explicit RoundQueue() : head(0), tail(0), length(0) {}
 
-    float pop();
+    bool pop(T& value);
 
-    float push(float value);
+    void push(const T&value);
 
     void clear() {
         head = 0;
         tail = 0;
+        length = 0;
     }
 
     [[nodiscard]] int32_t len() const {
-        return (head - tail + size) % size;
+        return (tail - head + n) % n;
     }
 
 private:
-    float buffer[max]{};
+    float buffer[n]{};
 
     int8_t head;
     int8_t tail;
-    int8_t size;
+    int8_t length;
 
 };
 

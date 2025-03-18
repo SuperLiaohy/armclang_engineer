@@ -6,11 +6,11 @@ MDK-ARM
 
 !MDK-ARM/startup_stm32h723xx.s
 
-!MDK-ARM/out
+#!MDK-ARM/out
+#
+#!MDK-ARM/tmp
 
-!MDK-ARM/tmp
-
-libs
+#libs
 
 #arm-none-eabi-toolchain.cmake
 

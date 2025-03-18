@@ -13,15 +13,15 @@ extern "C" {
 
 #include "RoundQueue.hpp"
 
-
+template<uint32_t n>
 class Filter {
 public:
-    explicit Filter(const uint32_t size) : queue(RoundQueue(static_cast<int8_t>(size))), sum(0) {};
+    explicit Filter() : queue(), sum(0) {};
 
     float update(float value);
 
 private:
-    RoundQueue queue;
+    RoundQueue<float, n> queue;
     float sum;
 };
 
