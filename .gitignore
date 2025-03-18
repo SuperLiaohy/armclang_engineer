@@ -12,8 +12,8 @@ MDK-ARM
 
 libs
 
-arm-none-eabi-toolchain.cmake
+#arm-none-eabi-toolchain.cmake
 
-CMakeLists.txt
+#CMakeLists.txt
 
 
