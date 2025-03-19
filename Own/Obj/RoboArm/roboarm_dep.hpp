@@ -150,8 +150,9 @@ namespace roboarm_dep {
     constexpr uint32_t MaxTimeOut = 3000;
     constexpr float M2006Scale    = 8192.0 * 36;
 
-    consteval int16_t joint_scale(float angle, float scr, float head) {
-        return static_cast<int16_t>(angle * head / scr);
+    template<typename T = int16_t>
+    consteval T joint_scale(float angle, float scr, float head) {
+        return static_cast<T>(angle * head / scr);
     }
 
     consteval float joint_scale(float angle, float scale) {
@@ -198,10 +199,10 @@ namespace roboarm_dep {
         range joint5;
         range joint6;
     } limitation = {
-        {joint_scale(-45, 360, 65536), joint_scale(45, 360, 65536)},
-        {joint_scale(-50, 360, 65536), joint_scale(90, 360, 65536)},
-        {joint_scale(-135, 360, 65536), joint_scale(135, 360, 65536)},
-        {joint_scale(-180, 360, 65536), joint_scale(179.9, 360, 65536)},
-        {joint_scale(-90, 360, 8192), joint_scale(90, 360, 8192)}};
+        {-45, 45},
+        {-50 , 90},
+        {-135, 135},
+        {-180, 179.9},
+        {-90 , 90}};
 
 } // namespace roboarm_dep

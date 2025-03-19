@@ -5,6 +5,7 @@
 
 #include "Detect/Detect.hpp"
 #include "RemoteControl/remote_ctrl_dep.hpp"
+#include "array"
 
 class RemoteControl {
 public:
@@ -24,6 +25,8 @@ public:
     friend void::HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 
     RC_TypeDef rcInfo{};
+
+    std::array<float, 3> pos = {85.912, 0, 241.753};
 
     Detect detect;
 private:
