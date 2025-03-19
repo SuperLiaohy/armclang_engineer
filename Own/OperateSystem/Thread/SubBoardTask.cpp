@@ -8,6 +8,5 @@ void SubBoardTask() {
     for (;;) {
         interact.sub_board.transmit();
         osDelay(100);
-
     }
 }

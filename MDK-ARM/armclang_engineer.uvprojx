@@ -883,6 +883,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\App\SubBoard\SubBoard.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\PC\PC.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

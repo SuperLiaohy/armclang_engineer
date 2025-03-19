@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 3.22)
 
+# 设置策略
+if (POLICY CMP0123)
+    cmake_policy(SET CMP0123 NEW)
+endif ()
+
 # 在project命令之前设置工具链
 set(CMAKE_TOOLCHAIN_FILE arm-none-eabi-toolchain.cmake)
-set(COMMON_OPTIMIZATION_FLAGS "-O0")
+set(COMMON_OPTIMIZATION_FLAGS "-O2")
 # 项目名称
 project(armclang_engineer
         VERSION 1.0.0
@@ -11,9 +16,9 @@ project(armclang_engineer
 )
 
 # 确保使用正确的处理器设置
-#if (NOT CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m7")
-#    message(FATAL_ERROR "CMAKE_SYSTEM_PROCESSOR must be set to cortex-m7")
-#endif ()
+if (NOT CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m7")
+    message(FATAL_ERROR "CMAKE_SYSTEM_PROCESSOR must be set to cortex-m7")
+endif ()
 
 # 编译器标准
 set(CMAKE_C_STANDARD 99)
@@ -24,15 +29,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(COMMON_FLAGS "--target=arm-arm-none-eabi -mcpu=cortex-m7  -mfpu=fpv5-sp-d16 -mfloat-abi=hard ${COMMON_OPTIMIZATION_FLAGS}")
 
 # 设置编译器标志
-set(CMAKE_C_FLAGS "${COMMON_FLAGS} -c -xc -std=c99 -fno-rtti -funsigned-char -fshort-enums -fshort-wchar -Wno-everything")
+set(CMAKE_C_FLAGS "${COMMON_FLAGS} -c -xc -std=c99 -fno-rtti -funsigned-char -fshort-enums -fshort-wchar")
 #set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
-set(CMAKE_CXX_FLAGS "${COMMON_FLAGS} -xc++ -std=c++20 -fno-rtti -fno-exceptions -funsigned-char -fshort-enums -fshort-wchar -Wno-everything")
+set(CMAKE_CXX_FLAGS "${COMMON_FLAGS} -xc++ -std=c++20 -fno-rtti -fno-exceptions -funsigned-char -fshort-enums -fshort-wchar")
 set(CMAKE_ASM_FLAGS "${COMMON_FLAGS} -masm=auto -Wa,--diag_suppress=A1950W")
 
 # 链接器标志
 set(CMAKE_EXE_LINKER_FLAGS
         "--cpu=Cortex-M7.fp.sp \
-
     --strict \
     --scatter \"${CMAKE_SOURCE_DIR}/MDK-ARM/${PROJECT_NAME}/${PROJECT_NAME}.sct\" \
     --summary_stderr --info summarysizes \
@@ -97,10 +101,10 @@ file(GLOB_RECURSE OWN_SOURCES
 # 创建可执行文件
 add_executable(${PROJECT_NAME} ${SOURCES} ${OWN_SOURCES})
 # 设置CMSIS-DSP的根目录
-set(CMSIS_DSP_ROOT "/home/liaohy/.arm/packs/ARM/CMSIS-DSP/1.15.0")
+set(CMSIS_DSP_ROOT "D:/Keil_Pack/ARM/CMSIS-DSP/1.15.0")
 
 # 设置静态库的输出路径
-set(CMSIS_DSP_LIB_DIR "libs")
+set(CMSIS_DSP_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs")
 file(MAKE_DIRECTORY ${CMSIS_DSP_LIB_DIR})
 
 # 检查静态库是否已经存在
@@ -158,10 +162,9 @@ if (NOT EXISTS ${CMSIS_DSP_STATIC_LIB})
 
     # 设置CMSIS-DSP的编译选项
     target_compile_options(CMSISDSP PRIVATE
-            "--target=arm-arm-none-eabi"
-#            -mcpu=cortex-m7
-#                        -mfloat-abi=hard
-#                        -mfpu=fpv5-sp-d16
+            ${COMMON_FLAGS}
+            -mfloat-abi=hard
+            -mfpu=fpv5-sp-d16
     )
 
     # 设置CMSIS-DSP的编译定义
@@ -235,12 +238,12 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 # 生成hex和bin文件
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${TOOLCHAIN_PATH}/fromelf --i32combined --output="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.hex" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.axf"
-        COMMAND ${TOOLCHAIN_PATH}/fromelf --bin --output="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.axf"
+        COMMAND ${TOOLCHAIN_PATH}/fromelf.exe --i32combined --output="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.hex" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.axf"
+        COMMAND ${TOOLCHAIN_PATH}/fromelf.exe --bin --output="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.axf"
         COMMENT "Building ${PROJECT_NAME}.hex and ${PROJECT_NAME}.bin"
 )
 # 可视化内存占用
-set(ARMCC_CALCELF "${CMAKE_SOURCE_DIR}/calcelf")
+set(ARMCC_CALCELF "${CMAKE_SOURCE_DIR}/calcelf.exe")
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${ARMCC_CALCELF} -m "${CMAKE_SOURCE_DIR}/MDK-ARM/${PROJECT_NAME}/${PROJECT_NAME}.map" -s "${CMAKE_SOURCE_DIR}/MDK-ARM/${PROJECT_NAME}/${PROJECT_NAME}.sct"
         COMMAND ${ARMCC_CALCELF} --format=progbar --map="${CMAKE_SOURCE_DIR}/MDK-ARM/${PROJECT_NAME}/${PROJECT_NAME}.map"

@@ -77,6 +77,7 @@
 "armclang_engineer\ui.o"
 "armclang_engineer\imagetrans.o"
 "armclang_engineer\subboard.o"
+"armclang_engineer\pc.o"
 "armclang_engineer\supercan.o"
 "armclang_engineer\supercdc.o"
 "armclang_engineer\supergpio.o"

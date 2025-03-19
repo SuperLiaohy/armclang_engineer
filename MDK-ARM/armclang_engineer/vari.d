@@ -276,8 +276,7 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
-  ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Slope\Slope.hpp \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
+  ..\Own\Mod\Key\Key.hpp D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\predicate_traits.h \
@@ -731,8 +730,8 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
-  ..\Own\OperateSystem\Heap\CustomHeap.hpp \
+  ..\Own\Mod\Slope\Slope.hpp ..\Own\Bsp\GPIO\SuperGPIO.hpp \
+  ..\Core\Inc\gpio.h ..\Own\OperateSystem\Heap\CustomHeap.hpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h ..\Own\Obj\Interact\Interact.hpp \
   ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
@@ -761,9 +760,9 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\App\Judge\referee_system.h ..\Own\App\Judge\ui.hpp \
-  ..\Own\App\Pump\Pump.hpp ..\Own\App\RGBLED\RGBLED.hpp \
-  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h \
-  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\PC\PC.hpp \
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\Judge\referee_system.h \
+  ..\Own\App\Judge\ui.hpp ..\Own\App\Pump\Pump.hpp \
+  ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
+  ..\Core\Inc\spi.h ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
   ..\Own\App\Imu\Imu.hpp

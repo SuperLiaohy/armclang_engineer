@@ -47,18 +47,18 @@ set(CMAKE_EXE_LINKER_FLAGS
 
 # 添加头文件路径
 include_directories(
-        ../Core/Inc
-        ../USB_DEVICE/App
-        ../USB_DEVICE/Target
-        ../Drivers/STM32H7xx_HAL_Driver/Inc
-        ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
-        ../Middlewares/Third_Party/FreeRTOS/Source/include
-        ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS
-        ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F
-        ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc
-        ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
-        ../Drivers/CMSIS/Device/ST/STM32H7xx/Include
-        ../Drivers/CMSIS/Include
+        Core/Inc
+        USB_DEVICE/App
+        USB_DEVICE/Target
+        Drivers/STM32H7xx_HAL_Driver/Inc
+        Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
+        Middlewares/Third_Party/FreeRTOS/Source/include
+        Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+        Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F
+        Middlewares/ST/STM32_USB_Device_Library/Core/Inc
+        Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+        Drivers/CMSIS/Device/ST/STM32H7xx/Include
+        Drivers/CMSIS/Include
 
 
         #        "D:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Include/dsp"
@@ -66,12 +66,12 @@ include_directories(
 
         #        "D:/Keil_541_pack/ARM/CMSIS/6.1.0/CMSIS/Core/Include"
         #        "D:/Keil_541_pack/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
-        "../Own/App"
-        "../Own/App/Imu/BMI088/inc"
-        "../Own/Bsp"
-        "../Own/Mod"
-        "../Own/Obj"
-        "../Own/OperateSystem")
+        "Own/App"
+        "Own/App/Imu/BMI088/inc"
+        "Own/Bsp"
+        "Own/Mod"
+        "Own/Obj"
+        "Own/OperateSystem")
 
 
 # 获取源文件
@@ -83,7 +83,7 @@ file(GLOB_RECURSE SOURCES
         "USB_DEVICE/Target/*.c"
         "Middlewares/Third_Party/FreeRTOS/Source/*.c"
         "Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/*.c"
-        "../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c"
+        "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c"
         "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/*.c"
         "Middlewares/ST/STM32_USB_Device_Library/Core/Src/*.c"
         "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/*.c"

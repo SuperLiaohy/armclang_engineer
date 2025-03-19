@@ -302,9 +302,12 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\App\Motor\M2006.hpp ..\Own\Mod\MyMath\MyMath.hpp \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
-  ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Key\Key.hpp \
-  ..\Own\Mod\Crc\Crc.hpp D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Chassis\Chassis.hpp \
+  ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\RemoteControl\RemoteControl.hpp \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
+  ..\Own\App\Buzzer\Buzzer.hpp ..\Own\Mod\Key\Key.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\predicate_traits.h \
@@ -756,8 +759,7 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Own\Mod\Slope\Slope.hpp \
-  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\MicroTime\MicroTime.hpp
+  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
+  ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
+  ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\App\MicroTime\MicroTime.hpp

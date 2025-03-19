@@ -26,7 +26,7 @@ public:
     std::array<float, 6> joint;
 
 //    interact_dep::receive_data_t receive_data {};
-    int64_t totalRoll = 0;
+    // int64_t totalRoll = 0;
 //    float pos[3]      = {85.912, 0, 241.753};
 
 //    interact_dep::transmit_data_t transmit_data {};

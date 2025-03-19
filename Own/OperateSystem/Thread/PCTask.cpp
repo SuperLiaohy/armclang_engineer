@@ -14,7 +14,6 @@ extern uint8_t cmd;
 void PCTask() {
     uint32_t cnt = 0;
     while (1) {
-
         if (cnt++%10==0) {
             roboArm.update_relative_pos();
             xEventGroupSetBits(osEventGroup, LK_RECEIVE_GET);
