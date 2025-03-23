@@ -763,4 +763,5 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
   ..\Core\Inc\spi.h ..\Own\OperateSystem\ThreadConfig.h \
   ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
-  ..\Own\App\Motor\GM6020.hpp ..\USB_DEVICE\App\usb_device.h
+  ..\Own\App\Motor\GM6020.hpp ..\Own\Bsp\DWT\SuperDWT.hpp \
+  ..\USB_DEVICE\App\usb_device.h

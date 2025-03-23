@@ -16,7 +16,7 @@
 #include "W25Q64/W25Q64.hpp"
 #include <Motor/GM6020.hpp>
 #include <Motor/lkMotor.hpp>
-
+#include <DWT/SuperDWT.hpp>
 void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);
 
@@ -43,7 +43,9 @@ extern osThreadId ERROR_TASKHandle;
 }
 #endif
 uint8_t re_flag = 0;
+volatile uint32_t ada = 0;
 void StartTask() {
+     ada =  SuperDWT::get_tick();
 	    /* USB初始化 */
     MX_USB_DEVICE_Init();
 	
@@ -145,7 +147,7 @@ void StartTask() {
 
     /* 蜂鸣器初始化 */
     buzzer.Start();
-
+    ada = SuperDWT::get_tick() - ada;
     /* 闪烁灯初始化 (暂无)*/
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupSetBits(osEventGroup, START_END_EVENT);

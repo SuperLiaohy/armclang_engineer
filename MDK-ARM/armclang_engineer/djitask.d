@@ -762,4 +762,4 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\App\MicroTime\MicroTime.hpp
+  ..\Own\App\MicroTime\MicroTime.hpp ..\Own\Bsp\SysTick\SysTick.hpp

@@ -762,7 +762,7 @@ armclang_engineer/lktask.o: ..\Own\OperateSystem\Thread\LKTask.cpp \
   ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\App\MicroTime\MicroTime.hpp \
+  ..\Own\App\MicroTime\MicroTime.hpp ..\Own\Bsp\SysTick\SysTick.hpp \
   ..\Own\OperateSystem\LetterShell\cpp_support\shell_cpp.h \
   ..\Own\OperateSystem\LetterShell\cpp_support\..\shell.h \
   ..\Own\OperateSystem\LetterShell\cpp_support\..\shell_cfg.h \

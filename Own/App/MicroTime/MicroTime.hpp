@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include "SysTick/SysTick.hpp"
 
 #ifdef __cplusplus
 extern "C" {

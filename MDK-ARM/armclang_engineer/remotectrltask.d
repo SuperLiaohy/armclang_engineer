@@ -762,4 +762,4 @@ armclang_engineer/remotectrltask.o: \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\PC\PC.hpp \
   ..\Own\App\SubBoard\SubBoard.hpp ..\Own\OperateSystem\ThreadConfig.h \
-  ..\Own\App\MicroTime\MicroTime.hpp
+  ..\Own\App\MicroTime\MicroTime.hpp ..\Own\Bsp\SysTick\SysTick.hpp
