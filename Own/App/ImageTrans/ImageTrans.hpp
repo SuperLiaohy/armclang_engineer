@@ -20,7 +20,9 @@ namespace image_trans_dep {
     struct rx_status {
         uint8_t map_back_over: 1;
         uint8_t lock: 1;
-        uint8_t none: 6;
+        uint8_t pump: 1;
+        uint8_t valve: 1;
+        uint8_t none: 4;
     } __attribute__((packed));
 
     struct custom_rx_frame {

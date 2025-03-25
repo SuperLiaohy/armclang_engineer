@@ -134,11 +134,11 @@ void Interact::transmit_relative_pos(RoboArm& Arm) {
 void Interact::receive_reset(RoboArm& Arm) {
     using namespace roboarm_dep;
     joint[0] = 0;
-    joint[1] = -50;
+    joint[1] = -45;
     joint[2] = 135;
     joint[3] = 0;
 
-    joint[4] = -90;
+    joint[4] = 0;
     joint[5] = 0;
 
 
@@ -163,6 +163,9 @@ void Interact::receive_custom(uint8_t* data) {
     if (robo_arm.mode == robo_mode::CUSTOM) {
         memcpy(reinterpret_cast<uint8_t*>(&image_trans.custom_rx_frame), data,
                sizeof(image_trans_dep::custom_rx_frame));
+        sub_board.set_pump(image_trans.custom_rx_frame.s.pump);
+        sub_board.set_valve5(image_trans.custom_rx_frame.s.valve);
+
 //                image_trans.angle[0] = image_trans.custom_frame.joint1 * scale(4096, 360);
 //                image_trans.angle[1] = image_trans.custom_frame.joint2 * scale(4096, 360);
 //                image_trans.angle[2] = image_trans.custom_frame.joint3 * scale(4096, 360);

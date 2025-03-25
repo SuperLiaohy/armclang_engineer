@@ -37,26 +37,26 @@ void LKTask() {
 
         roboArm.load_target(interact);
 
-        // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        // roboArm.joint3.motor.set_position(roboArm.target.joint3.angle, 600);
-        // xSemaphoreGive(CAN1MutexHandle);
-        //
-        // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        // roboArm.joint4.motor.set_position(roboArm.target.joint4.angle, 720);
-        // xSemaphoreGive(CAN1MutexHandle);
-        //
-        // osDelay(1);
-        //
-        // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        // roboArm.joint2.internal.motor.set_position(roboArm.target.joint2.internal.angle, 360);
-        // roboArm.joint2.external.motor.set_position(roboArm.target.joint2.external.angle, 360);
-        // xSemaphoreGive(CAN1MutexHandle);
-        //
-        // osDelay(1);
-        //
-        // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        // roboArm.joint1.motor.set_position(roboArm.target.joint1.angle, 600);
-        // xSemaphoreGive(CAN1MutexHandle);
+        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+        roboArm.joint3.motor.set_position(roboArm.target.joint3.angle, 180);
+        xSemaphoreGive(CAN1MutexHandle);
+
+        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+        roboArm.joint4.motor.set_position(roboArm.target.joint4.angle, 360);
+        xSemaphoreGive(CAN1MutexHandle);
+
+        osDelay(1);
+
+        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+        roboArm.joint2.internal.motor.set_position(roboArm.target.joint2.internal.angle, 180);
+        roboArm.joint2.external.motor.set_position(roboArm.target.joint2.external.angle, 180);
+        xSemaphoreGive(CAN1MutexHandle);
+
+        osDelay(1);
+
+        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+        roboArm.joint1.motor.set_position(roboArm.target.joint1.angle, 180);
+        xSemaphoreGive(CAN1MutexHandle);
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         roboArm.joint4.motor.read_totalposition();

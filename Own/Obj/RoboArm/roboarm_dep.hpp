@@ -200,7 +200,7 @@ namespace roboarm_dep {
         range joint6;
     } limitation = {
         {-45, 45},
-        {-50 , 90},
+        {-45 , 45},
         {-135, 135},
         {-180, 179.9},
         {-90 , 90}};

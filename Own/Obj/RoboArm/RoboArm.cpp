@@ -174,7 +174,7 @@ void RoboArm::init_offset(Interact& interaction) {
     joint1.motor.read_totalposition();
 
     interaction.joint[5] = 0;
-    interaction.joint[4] = -90;
+    interaction.joint[4] = 0;
 
     target.joint6.angle = offset.joint6;
     target.joint5.angle = offset.joint5;
@@ -201,9 +201,10 @@ void RoboArm::init_offset(Interact& interaction) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.internal.motor.m.offset_flag) {
-            interaction.joint[1] = -50;
+            interaction.joint[1] = -45;
             if (joint2.internal.motor.m.feedback.total_position < 0) { offset.joint2.internal -= 360; }
-            target.joint2.internal.angle = (offset.joint2.internal - 50) * 100;
+            // joint2左手系
+            target.joint2.internal.angle = (offset.joint2.internal + 45) * 100;
             break;
         }
         joint2.internal.motor.read_totalposition();
@@ -211,9 +212,10 @@ void RoboArm::init_offset(Interact& interaction) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.motor.m.offset_flag) {
-            interaction.joint[1] = -50;
+            interaction.joint[1] = -45;
             if (joint2.external.motor.m.feedback.total_position < 0) { offset.joint2.external -= 360; }
-            target.joint2.external.angle = (offset.joint2.external - 50) * 100;
+            // joint2左手系
+            target.joint2.external.angle = (offset.joint2.external + 45) * 100;
             break;
         }
         joint2.external.motor.read_totalposition();
@@ -232,17 +234,16 @@ void RoboArm::init_offset(Interact& interaction) {
 }
 
 void RoboArm::update_relative_pos() {
-
     // real_relative_pos.joint1 = joint1.motor.m.feedback.total_position - offset.joint1;
     //
-    // real_relative_pos.joint2 = joint2.external.motor.m.feedback.total_position - offset.joint2.external;
+    // real_relative_pos.joint2 = -(joint2.external.motor.m.feedback.total_position - offset.joint2.external);
     //
     // real_relative_pos.joint3 = -(joint3.motor.m.feedback.total_position - offset.joint3);
     //
     // real_relative_pos.joint4 = joint4.motor.m.feedback.total_position - offset.joint4;
     real_relative_pos.joint1 = joint1.motor.m.total_position - offset.joint1;
 
-    real_relative_pos.joint2 = joint2.external.motor.m.total_position - offset.joint2.external;
+    real_relative_pos.joint2 = -(joint2.external.motor.m.total_position - offset.joint2.external);
 
     real_relative_pos.joint3 = -(joint3.motor.m.total_position - offset.joint3);
 
@@ -330,9 +331,7 @@ bool RoboArm::ikine(const float* pos) {
     /*
      * 4. 组合解,并判断解是否在限制范围内
      */
-    if (isInRange(q1_slove[0], joint_scale<float>(limitation.joint1.min, 180, pi), joint_scale<float>(limitation.joint1.max, 180, pi), err) &&
-        isInRange(q2_slove[0], joint_scale<float>(limitation.joint2.min, 180, pi), joint_scale<float>(limitation.joint2.max, 180, pi), err) &&
-        isInRange(q3_slove[0], joint_scale<float>(limitation.joint3.min, 180, pi), joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
+    if (isInRange(q1_slove[0], joint_scale<float>(limitation.joint1.min, 180, pi), joint_scale<float>(limitation.joint1.max, 180, pi), err) && isInRange(q2_slove[0], joint_scale<float>(limitation.joint2.min, 180, pi), joint_scale<float>(limitation.joint2.max, 180, pi), err) && isInRange(q3_slove[0], joint_scale<float>(limitation.joint3.min, 180, pi), joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
         //        q_sols[0][0] = q1_slove[0];
         //        q_sols[0][2] = q3_slove[0];
         //        q_sols[0][1] = q2_slove[0];
@@ -340,9 +339,7 @@ bool RoboArm::ikine(const float* pos) {
         select &= 0b1110;
     }
 
-    if (isInRange(q1_slove[0], joint_scale<float>(limitation.joint1.min, 180, pi), joint_scale<float>(limitation.joint1.max, 180, pi), err) &&
-        isInRange(q2_slove[1], joint_scale<float>(limitation.joint2.min, 180, pi), joint_scale<float>(limitation.joint2.max, 180, pi), err) &&
-        isInRange(q3_slove[1], joint_scale<float>(limitation.joint3.min, 180, pi), joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
+    if (isInRange(q1_slove[0], joint_scale<float>(limitation.joint1.min, 180, pi), joint_scale<float>(limitation.joint1.max, 180, pi), err) && isInRange(q2_slove[1], joint_scale<float>(limitation.joint2.min, 180, pi), joint_scale<float>(limitation.joint2.max, 180, pi), err) && isInRange(q3_slove[1], joint_scale<float>(limitation.joint3.min, 180, pi), joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
         //        q_sols[1][0] = q1_slove[0];
         //        q_sols[1][2] = q3_slove[1];
         //        q_sols[1][1] = q2_slove[1];
@@ -350,9 +347,7 @@ bool RoboArm::ikine(const float* pos) {
         select &= 0b1101;
     }
 
-    if (isInRange(q1_slove[1], joint_scale<float>(limitation.joint1.min, 180, pi), joint_scale<float>(limitation.joint1.max, 180, pi), err) &&
-        isInRange(q2_slove[2], joint_scale<float>(limitation.joint2.min, 180, pi), joint_scale<float>(limitation.joint2.max, 180, pi), err) &&
-        isInRange(q3_slove[0], joint_scale<float>(limitation.joint3.min, 180, pi), joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
+    if (isInRange(q1_slove[1], joint_scale<float>(limitation.joint1.min, 180, pi), joint_scale<float>(limitation.joint1.max, 180, pi), err) && isInRange(q2_slove[2], joint_scale<float>(limitation.joint2.min, 180, pi), joint_scale<float>(limitation.joint2.max, 180, pi), err) && isInRange(q3_slove[0], joint_scale<float>(limitation.joint3.min, 180, pi), joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
         //        q_sols[2][0] = q1_slove[1];
         //        q_sols[2][2] = q3_slove[0];
         //        q_sols[2][1] = q2_slove[2];
@@ -360,9 +355,7 @@ bool RoboArm::ikine(const float* pos) {
         select &= 0b1011;
     }
 
-    if (isInRange(q1_slove[1], joint_scale<float>(limitation.joint1.min, 180, pi), joint_scale<float>(limitation.joint1.max, 180, pi), err) &&
-        isInRange(q2_slove[3], joint_scale<float>(limitation.joint2.min, 180, pi), joint_scale<float>(limitation.joint2.max, 180, pi), err) &&
-        isInRange(q3_slove[1], joint_scale<float>(limitation.joint3.min, 180, pi), joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
+    if (isInRange(q1_slove[1], joint_scale<float>(limitation.joint1.min, 180, pi), joint_scale<float>(limitation.joint1.max, 180, pi), err) && isInRange(q2_slove[3], joint_scale<float>(limitation.joint2.min, 180, pi), joint_scale<float>(limitation.joint2.max, 180, pi), err) && isInRange(q3_slove[1], joint_scale<float>(limitation.joint3.min, 180, pi), joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
         //        q_sols[3][0] = q1_slove[1];
         //        q_sols[3][2] = q3_slove[1];
         //        q_sols[3][1] = q2_slove[3];
@@ -432,24 +425,24 @@ void RoboArm::load_target(Interact& inter) {
         case interact_dep::robo_mode::NONE:
         case interact_dep::robo_mode::XYZ:
             target.joint1.angle = (inter.joint[0] + offset.joint1) * scale(360, 36000);
-            target.joint2.internal.angle = (inter.joint[1] + offset.joint2.internal) * scale(360, 36000);
-            target.joint2.external.angle = (inter.joint[1] + offset.joint2.external) * scale(360, 36000);
+            //joint2是左手系，将右手系的数据取反
+            target.joint2.internal.angle = (-inter.joint[1] + offset.joint2.internal) * scale(360, 36000);
+            target.joint2.external.angle = (-inter.joint[1] + offset.joint2.external) * scale(360, 36000);
             //joint3是左手系 所以将右手系的数据取反
             target.joint3.angle = (-inter.joint[2] + offset.joint3) * scale(360, 36000);
             target.joint4.angle = (inter.joint[3] + offset.joint4) * scale(360, 36000);
             break;
 
-//            target.joint3.angle = (-q[2] + offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
-//                                                                               //            target.joint2.angle = (q[1] + offset.joint2) * scale(360, 36000);
-//            target.joint2.internal.angle = (q[1] + offset.joint2.internal) * scale(360, 36000);
-//            target.joint2.external.angle = (q[1] + offset.joint2.external) * scale(360, 36000);
-//            target.joint1.angle          = (q[0] + offset.joint1) * scale(360, 36000);
-//            break;
-
+            //            target.joint3.angle = (-q[2] + offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
+            //                                                                               //            target.joint2.angle = (q[1] + offset.joint2) * scale(360, 36000);
+            //            target.joint2.internal.angle = (q[1] + offset.joint2.internal) * scale(360, 36000);
+            //            target.joint2.external.angle = (q[1] + offset.joint2.external) * scale(360, 36000);
+            //            target.joint1.angle          = (q[0] + offset.joint1) * scale(360, 36000);
+            //            break;
     }
 }
 
 void RoboArm::load_diff_target(Interact& inter) {
-    target.joint5.angle = 29/17.f*inter.joint[5] + inter.joint[4];
-    target.joint6.angle = 29/17.f*inter.joint[5] - inter.joint[4];
+    target.joint5.angle = inter.joint[5] + inter.joint[4];
+    target.joint6.angle = - inter.joint[5] + inter.joint[4];
 }
