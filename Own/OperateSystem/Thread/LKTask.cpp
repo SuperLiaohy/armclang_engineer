@@ -40,7 +40,7 @@ void LKTask() {
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         roboArm.joint3.motor.set_position(roboArm.target.joint3.angle, 180);
         xSemaphoreGive(CAN1MutexHandle);
-
+        //
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         roboArm.joint4.motor.set_position(roboArm.target.joint4.angle, 360);
         xSemaphoreGive(CAN1MutexHandle);

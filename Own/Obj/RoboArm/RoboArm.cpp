@@ -176,13 +176,12 @@ void RoboArm::init_offset(Interact& interaction) {
     interaction.joint[5] = 0;
     interaction.joint[4] = 0;
 
-    target.joint6.angle = offset.joint6;
-    target.joint5.angle = offset.joint5;
+    target.joint6.angle = 0;
+    target.joint5.angle = 0;
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint4.motor.m.offset_flag) {
             interaction.joint[3] = 0;
             if (joint4.motor.m.feedback.total_position < 0) { offset.joint4 -= 360; }
-            target.joint4.angle = offset.joint4 * 100;
             break;
         }
         joint4.motor.read_totalposition();
@@ -192,8 +191,6 @@ void RoboArm::init_offset(Interact& interaction) {
         if (joint3.motor.m.offset_flag) {
             interaction.joint[2] = 135;
             if (joint3.motor.m.feedback.total_position < 0) { offset.joint3 -= 360; }
-            //左手系
-            target.joint3.angle = (offset.joint3 - 135) * 100;
             break;
         }
         joint3.motor.read_totalposition();
@@ -203,8 +200,6 @@ void RoboArm::init_offset(Interact& interaction) {
         if (joint2.internal.motor.m.offset_flag) {
             interaction.joint[1] = -45;
             if (joint2.internal.motor.m.feedback.total_position < 0) { offset.joint2.internal -= 360; }
-            // joint2左手系
-            target.joint2.internal.angle = (offset.joint2.internal + 45) * 100;
             break;
         }
         joint2.internal.motor.read_totalposition();
@@ -213,9 +208,7 @@ void RoboArm::init_offset(Interact& interaction) {
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.motor.m.offset_flag) {
             interaction.joint[1] = -45;
-            if (joint2.external.motor.m.feedback.total_position < 0) { offset.joint2.external -= 360; }
-            // joint2左手系
-            target.joint2.external.angle = (offset.joint2.external + 45) * 100;
+            // if (joint2.external.motor.m.feedback.total_position < 0) { offset.joint2.external -= 360; }
             break;
         }
         joint2.external.motor.read_totalposition();
@@ -231,23 +224,25 @@ void RoboArm::init_offset(Interact& interaction) {
         joint1.motor.read_totalposition();
         osDelay(1);
     }
+    load_target(interaction);
+    load_diff_target(interaction);
 }
 
 void RoboArm::update_relative_pos() {
-    // real_relative_pos.joint1 = joint1.motor.m.feedback.total_position - offset.joint1;
-    //
-    // real_relative_pos.joint2 = -(joint2.external.motor.m.feedback.total_position - offset.joint2.external);
-    //
-    // real_relative_pos.joint3 = -(joint3.motor.m.feedback.total_position - offset.joint3);
-    //
-    // real_relative_pos.joint4 = joint4.motor.m.feedback.total_position - offset.joint4;
-    real_relative_pos.joint1 = joint1.motor.m.total_position - offset.joint1;
+    real_relative_pos.joint1 = joint1.motor.m.feedback.total_position - offset.joint1;
 
-    real_relative_pos.joint2 = -(joint2.external.motor.m.total_position - offset.joint2.external);
+    real_relative_pos.joint2 = -(joint2.external.motor.m.feedback.total_position - offset.joint2.external);
 
-    real_relative_pos.joint3 = -(joint3.motor.m.total_position - offset.joint3);
+    real_relative_pos.joint3 = -(joint3.motor.m.feedback.total_position - offset.joint3);
 
-    real_relative_pos.joint4 = joint4.motor.m.total_position - offset.joint4;
+    real_relative_pos.joint4 = joint4.motor.m.feedback.total_position - offset.joint4;
+    // real_relative_pos.joint1 = joint1.motor.m.total_position - offset.joint1;
+    //
+    // real_relative_pos.joint2 = -(joint2.external.motor.m.total_position - offset.joint2.external);
+    //
+    // real_relative_pos.joint3 = -(joint3.motor.m.total_position - offset.joint3);
+    //
+    // real_relative_pos.joint4 = joint4.motor.m.total_position - offset.joint4;
 
     diff.update_relative_pos(real_relative_pos.joint5, real_relative_pos.joint6);
 }
@@ -424,21 +419,13 @@ void RoboArm::load_target(Interact& inter) {
         case interact_dep::robo_mode::ACTIONS:
         case interact_dep::robo_mode::NONE:
         case interact_dep::robo_mode::XYZ:
-            target.joint1.angle = (inter.joint[0] + offset.joint1) * scale(360, 36000);
-            //joint2是左手系，将右手系的数据取反
+            //电机的转向和人为规定的全部反了,故加上了负号.
+            target.joint1.angle = (-inter.joint[0] + offset.joint1) * scale(360, 36000);
             target.joint2.internal.angle = (-inter.joint[1] + offset.joint2.internal) * scale(360, 36000);
             target.joint2.external.angle = (-inter.joint[1] + offset.joint2.external) * scale(360, 36000);
-            //joint3是左手系 所以将右手系的数据取反
             target.joint3.angle = (-inter.joint[2] + offset.joint3) * scale(360, 36000);
-            target.joint4.angle = (inter.joint[3] + offset.joint4) * scale(360, 36000);
+            target.joint4.angle = (-inter.joint[3] + offset.joint4) * scale(360, 36000);
             break;
-
-            //            target.joint3.angle = (-q[2] + offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
-            //                                                                               //            target.joint2.angle = (q[1] + offset.joint2) * scale(360, 36000);
-            //            target.joint2.internal.angle = (q[1] + offset.joint2.internal) * scale(360, 36000);
-            //            target.joint2.external.angle = (q[1] + offset.joint2.external) * scale(360, 36000);
-            //            target.joint1.angle          = (q[0] + offset.joint1) * scale(360, 36000);
-            //            break;
     }
 }
 

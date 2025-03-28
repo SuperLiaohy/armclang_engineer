@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>51</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134356902</Address>
+          <Address>134356134</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +175,7 @@
           <Type>0</Type>
           <LineNumber>67</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134357014</Address>
+          <Address>134356246</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -191,7 +191,7 @@
           <Type>0</Type>
           <LineNumber>76</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134357070</Address>
+          <Address>134356302</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -207,7 +207,7 @@
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134357126</Address>
+          <Address>134356358</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -223,7 +223,7 @@
           <Type>0</Type>
           <LineNumber>90</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134357182</Address>
+          <Address>134356414</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -271,7 +271,7 @@
           <Type>0</Type>
           <LineNumber>21</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134335764</Address>
+          <Address>134335956</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -287,7 +287,7 @@
           <Type>0</Type>
           <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134335978</Address>
+          <Address>134336170</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -409,7 +409,24 @@
           <WinNumber>1</WinNumber>
           <ItemText>ada,0x0A</ItemText>
         </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>\\armclang_engineer\../Own/OperateSystem/Vari.cpp\roboArm.joint2.external.motor.m.reduction_ratio</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>\\armclang_engineer\../Own/OperateSystem/Vari.cpp\roboArm.joint2.external.motor.m.clear_flag</ItemText>
+        </Ww>
       </WatchWindow1>
+      <WatchWindow2>
+        <Ww>
+          <count>0</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>\\armclang_engineer\../Own/OperateSystem/Vari.cpp\roboArm</ItemText>
+        </Ww>
+      </WatchWindow2>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
