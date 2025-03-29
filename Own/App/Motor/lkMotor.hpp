@@ -7,8 +7,10 @@
  * Copyright (c) 2024 by ${git_name} email: ${git_email}, All Rights Reserved.
  */
 #pragma once
-#include "Motor.tpp"
 #include "CAN/SuperCan.hpp"
+#include "Motor.tpp"
+
+#include <MyMath/MyMath.hpp>
 #define USING_LKMOTOR 1
 #if USING_LKMOTOR == 1
 
@@ -174,7 +176,7 @@ public:
             err += 36000;
         }
         position = m.feedback.total_position * 100 + err;
-        totalposition2Control(speed, position * m.reduction_ratio);
+        totalposition2Control(limited<float>(speed * my_abs(err) / 1000, 0, 2 * speed), position * m.reduction_ratio);
     };
 
     void read_totalposition();

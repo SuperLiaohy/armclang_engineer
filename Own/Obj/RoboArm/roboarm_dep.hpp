@@ -189,11 +189,6 @@ namespace roboarm_dep {
     constexpr struct {
         range joint1;
         range joint2;
-        //        struct {
-        //            range internal;
-        //            range external;
-        //        } joint2;
-
         range joint3;
         range joint4;
         range joint5;
@@ -203,6 +198,7 @@ namespace roboarm_dep {
         {-45 , 45},
         {-135, 135},
         {-180, 179.9},
+        {-90 , 90},
         {-90 , 90}};
 
 } // namespace roboarm_dep

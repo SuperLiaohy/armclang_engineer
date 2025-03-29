@@ -30,9 +30,9 @@ void DJITask() {
         roboArm.diff.left.motor.set_position(roboArm.target.joint5.angle);
         roboArm.diff.right.motor.set_position(roboArm.target.joint6.angle);
 
-        // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        // canPlus1.transmit(M2006::foc.TX_LOW_ID, roboArm.diff.left.motor.output(), roboArm.diff.right.motor.output(), 0, 0);
-        // xSemaphoreGive(CAN1MutexHandle);
+        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+        canPlus1.transmit(M2006::foc.TX_LOW_ID, roboArm.diff.left.motor.output(), roboArm.diff.right.motor.output(), 0, 0);
+        xSemaphoreGive(CAN1MutexHandle);
 
         microTime.end();
         CANHeapCnt = uxTaskGetStackHighWaterMark(NULL);

@@ -72,13 +72,13 @@ void Interact::receive_rc() {
             //            Arm.target.joint1.angle = (receive_data.joint1.angle * b22d + Arm.offset.joint1) * scale(360, 36000);
         } else if (remote_control.rcInfo.left == 3 && remote_control.rcInfo.right == 1) {
             // yaw_base pitch_1
-            joint[4] = limited<float>(joint[4] + addSpeed(remote_control.rcInfo.ch1, 0.01) * limitation.joint5.max, limitation.joint5.min, limitation.joint5.max);
+            joint[4] = limited<float>(joint[4] + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max, limitation.joint5.min, limitation.joint5.max);
 
 //            receive_data.joint5.angle = limited<int32_t>(
 //                receive_data.joint5.angle + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max,
 //                limitation.joint5.min, limitation.joint5.max);
             //                 receive_data.link6.angle = limited<int32_t>(receive_data.link6.angle + remoteControl->rcInfo.ch1 / 660.f * limition.link6.max / 50, -limition.link6.max, limition.link6.max);
-            joint[5] = joint[5] + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint6.max;
+            joint[5] = joint[5] + addSpeed(remote_control.rcInfo.ch1, 0.01) * limitation.joint6.max;
 //            receive_data.joint6.angle  = addSpeed(remote_control.rcInfo.ch1, 0.01) * 8192;
 //            totalRoll                 += receive_data.joint6.angle;
             //                pitch =
