@@ -23,6 +23,7 @@ void OS_JudgeTask(void const *argument);
 void OS_KbTask(void const *argument);
 void OS_SubBoardTask(void const *argument);
 void OS_ArmInitTask(void const *argument);
+void OS_BuzzerTask(void const *argument);
 
 #ifdef __cplusplus
 }

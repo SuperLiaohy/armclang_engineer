@@ -63,6 +63,7 @@ osThreadId JUDGE_TASKHandle;
 osThreadId KB_TASKHandle;
 osThreadId SUB_TASKHandle;
 osThreadId ARM_INIT_TASKHandle;
+osThreadId BUZZER_TASKHandle;
 osMutexId CAN1MutexHandle;
 osMutexId CAN2MutexHandle;
 
@@ -86,6 +87,7 @@ void OS_JudgeTask(void const * argument);
 void OS_KbTask(void const * argument);
 void OS_SubBoardTask(void const * argument);
 void OS_ArmInitTask(void const * argument);
+void OS_BuzzerTask(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -217,6 +219,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of ARM_INIT_TASK */
   osThreadDef(ARM_INIT_TASK, OS_ArmInitTask, osPriorityHigh, 0, 256);
   ARM_INIT_TASKHandle = osThreadCreate(osThread(ARM_INIT_TASK), NULL);
+
+  /* definition and creation of BUZZER_TASK */
+  osThreadDef(BUZZER_TASK, OS_BuzzerTask, osPriorityNormal, 0, 256);
+  BUZZER_TASKHandle = osThreadCreate(osThread(BUZZER_TASK), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -494,6 +500,24 @@ __weak void OS_ArmInitTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END OS_ArmInitTask */
+}
+
+/* USER CODE BEGIN Header_OS_BuzzerTask */
+/**
+* @brief Function implementing the BUZZER_TASK thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_OS_BuzzerTask */
+__weak void OS_BuzzerTask(void const * argument)
+{
+  /* USER CODE BEGIN OS_BuzzerTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END OS_BuzzerTask */
 }
 
 /* Private application code --------------------------------------------------*/

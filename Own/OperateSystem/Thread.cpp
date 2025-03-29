@@ -113,3 +113,9 @@ void OS_SubBoardTask(void const *argument) {
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     SubBoardTask();
 }
+
+void OS_BuzzerTask(void const *argument) {
+    UNUSED(argument);
+    xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    BuzzerTask();
+}

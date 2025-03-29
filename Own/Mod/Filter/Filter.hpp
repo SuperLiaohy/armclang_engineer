@@ -11,7 +11,7 @@ extern "C" {
 }
 #endif
 
-#include "RoundQueue.hpp"
+#include "RoundQueue/RoundQueue.hpp"
 
 template<uint32_t n>
 class Filter {

@@ -305,7 +305,7 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h ..\Own\Mod\Key\Key.hpp \
+  ..\Own\App\Buzzer\Buzzer.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
@@ -758,7 +758,9 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
+  ..\Core\Inc\tim.h ..\Own\Mod\RoundQueue\RoundQueue.hpp \
+  ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\OperateSystem\ThreadConfig.h

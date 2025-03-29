@@ -23,13 +23,14 @@ extern osThreadId ERROR_TASKHandle;
 extern uint8_t re_flag;
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
-    if (re_flag == 0) {
-        vTaskDelete(ARM_INIT_TASKHandle);
-    }
+    // if (re_flag == 0) {
+    //     vTaskDelete(ARM_INIT_TASKHandle);
+    // }
     uint32_t time;
     uint8_t red = 0;
     while (1) {
         roboArm.close();
+        buzzer.StartMusic<8, Buzzer::delay_pl::HAL>(Buzzer::error_music);
         canPlus1.transmit(M2006::foc.TX_LOW_ID, 0, 0, 0, 0);
         canPlus2.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         Led.SetColor(red * 255, 0, 0);

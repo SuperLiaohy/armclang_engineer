@@ -6,10 +6,9 @@
 
 template<typename T, uint32_t n>
 bool RoundQueue<T, n>::pop(T& value) {
-    if (length > 0) {
+    if (len() > 0) {
         value = buffer[head];
         head       = (head + 1) % n;
-        --length;
         return true;
     }
     return false;
@@ -17,10 +16,9 @@ bool RoundQueue<T, n>::pop(T& value) {
 
 template<typename T, uint32_t n>
 void RoundQueue<T, n>::push(const T&value) {
-    if (length < n) {
+    if (len() < n - 1) {
         buffer[tail] = value;
         tail         = (tail + 1) % n;
-        ++length;
     } else {
         head = (head + 1) % n;
         buffer[tail] = value;

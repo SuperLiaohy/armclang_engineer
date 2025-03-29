@@ -41,53 +41,15 @@ void Interact::receive_rc() {
 
     if (robo_arm.mode == robo_mode::NORMAL) {
         if (remote_control.rcInfo.left == 1 && remote_control.rcInfo.right == 1) {
-
             joint[3] = limited<float>(joint[3] + addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max, limitation.joint4.min, limitation.joint4.max);
-//            receive_data.joint4.angle =
-//                limited<int32_t>(static_cast<int32_t>(receive_data.joint4.angle + addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max),
-//                                 limitation.joint4.min, limitation.joint4.max);
-
-            //            Arm.target.joint4.angle = (receive_data.joint4.angle * b22d + Arm.offset.joint4) * scale(360, 36000);
-
             joint[2] = limited<float>(joint[2] + addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max, limitation.joint3.min, limitation.joint3.max);
-//            receive_data.joint3.angle =
-//                limited<int32_t>(static_cast<int32_t>(receive_data.joint3.angle - addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max),
-//                                 limitation.joint3.min, limitation.joint3.max);
-
-            //            Arm.target.joint3.angle = (-receive_data.joint3.angle * b22d + Arm.offset.joint3) *
-//            scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
-
             joint[1] = limited<float>(joint[1] + addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max, limitation.joint2.min, limitation.joint2.max);
-//            receive_data.joint2.angle =
-//                limited<int32_t>(static_cast<int32_t>(receive_data.joint2.angle + addSpeed(remote_control.rcInfo.ch4, 0.005) * limitation.joint2.max),
-//                                 limitation.joint2.min, limitation.joint2.max);
-
-            //            Arm.target.joint2.angle = (receive_data.joint2.angle * b22d + Arm.offset.joint2) * scale(360, 36000);
-
             joint[0] = limited<float>(joint[0] + addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max, limitation.joint1.min, limitation.joint1.max);
-//            receive_data.joint1.angle =
-//                limited<int32_t>(static_cast<int32_t>(receive_data.joint1.angle + addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max),
-//                                 limitation.joint1.min, limitation.joint1.max);
-
-            //            Arm.target.joint1.angle = (receive_data.joint1.angle * b22d + Arm.offset.joint1) * scale(360, 36000);
         } else if (remote_control.rcInfo.left == 3 && remote_control.rcInfo.right == 1) {
-            // yaw_base pitch_1
+            // pitch
             joint[4] = limited<float>(joint[4] + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max, limitation.joint5.min, limitation.joint5.max);
-
-//            receive_data.joint5.angle = limited<int32_t>(
-//                receive_data.joint5.angle + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max,
-//                limitation.joint5.min, limitation.joint5.max);
-            //                 receive_data.link6.angle = limited<int32_t>(receive_data.link6.angle + remoteControl->rcInfo.ch1 / 660.f * limition.link6.max / 50, -limition.link6.max, limition.link6.max);
+            // yaw
             joint[5] = joint[5] + addSpeed(remote_control.rcInfo.ch1, 0.01) * limitation.joint6.max;
-//            receive_data.joint6.angle  = addSpeed(remote_control.rcInfo.ch1, 0.01) * 8192;
-//            totalRoll                 += receive_data.joint6.angle;
-            //                pitch =
-            //                roll =
-            //                roll = (5 + 6) / 2; pitch = (5 - 6) / 2
-            //            Arm.target.joint5.angle = scale_transmit<int64_t, float>(totalRoll + receive_data.joint5.angle, 4096, 180);
-            //            Arm.target.joint6.angle = scale_transmit<int64_t, float>(totalRoll - receive_data.joint5.angle, 4096, 180);
-            //                interact.receive_data.link1.angle = limited<uint16_t>(interact.receive_data.link1.angle + remote_control.rcInfo.ch1 / 660.f, -limition.link2.max, limition.link1.max);
-            //                interact.receive_data.link2.angle = limited<uint16_t>(interact.receive_data.link2.angle + remote_control.rcInfo.ch2 / 660.f, -limition.link2.max, limition.link2.max);
         }
     }
 }
@@ -107,16 +69,9 @@ void Interact::receive_xyz(RoboArm& Arm) {
             remote_control.pos[1] = Arm.pos[1];
             remote_control.pos[2] = Arm.pos[2];
         }
-
         joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
         joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
         joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-
-        //        Arm.target.joint3.angle = (-Arm.q[2] + Arm.offset.joint3) * scale(360, 36000); //joint3是左手系 所以将右手系的数据取反
-
-        //        Arm.target.joint2.angle = (Arm.q[1] + Arm.offset.joint2) * scale(360, 36000);
-
-        //        Arm.target.joint1.angle = (Arm.q[0] + Arm.offset.joint1) * scale(360, 36000);
     }
 }
 
@@ -137,25 +92,8 @@ void Interact::receive_reset(RoboArm& Arm) {
     joint[1] = -45;
     joint[2] = 135;
     joint[3] = 0;
-
     joint[4] = 0;
     joint[5] = 0;
-
-
-//    receive_data.joint4.angle = joint_scale(0, 360, 65536);
-//    receive_data.joint3.angle = joint_scale(135, 360, 65536);
-//    receive_data.joint2.angle = joint_scale(-50, 360, 65536);
-//    receive_data.joint1.angle = joint_scale(0, 360, 65536);
-//
-//    totalRoll                 = joint_scale(0, 360, 8192);
-//    receive_data.joint5.angle = joint_scale(-90, 360, 8192);
-
-//    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-//    Arm.diff.init();
-//    xSemaphoreGive(CAN1MutexHandle);
-
-//    interact.path = interact_dep::path::PC;
-//    interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
 }
 
 void Interact::receive_custom(uint8_t* data) {
@@ -165,13 +103,6 @@ void Interact::receive_custom(uint8_t* data) {
                sizeof(image_trans_dep::custom_rx_frame));
         sub_board.set_pump(image_trans.custom_rx_frame.s.pump);
         sub_board.set_valve5(image_trans.custom_rx_frame.s.valve);
-
-//                image_trans.angle[0] = image_trans.custom_frame.joint1 * scale(4096, 360);
-//                image_trans.angle[1] = image_trans.custom_frame.joint2 * scale(4096, 360);
-//                image_trans.angle[2] = image_trans.custom_frame.joint3 * scale(4096, 360);
-//                image_trans.angle[3] = image_trans.custom_frame.joint4 * scale(4096, 360);
-//                image_trans.angle[4] = image_trans.custom_frame.joint5 * scale(4096, 360);
-//                image_trans.angle[5] = image_trans.custom_frame.joint6 * scale(4096, 360);
         if (!image_trans.read_map_back()) {
             joint[0] = image_trans.custom_rx_frame.joint[0] * scale(4096, 360);
             joint[1] = image_trans.custom_rx_frame.joint[1] * scale(4096, 360);
@@ -205,18 +136,15 @@ void Interact::update_roboArm(RoboArm& Arm) {
             receive_xyz(Arm);
             break;
         case interact_dep::robo_mode::RESET:
-//            if (robo_arm.last_mode != interact_dep::robo_mode::RESET) {
-                receive_reset(Arm);
-//            }
+            receive_reset(Arm);
             break;
         case interact_dep::robo_mode::ACTIONS: {
-            bool is_next = true;
-            is_next = isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.actions->joint1.data[interact.actions->now], 2);
-            is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint2, interact.actions->joint2.data[interact.actions->now], 2));
-            is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint3, interact.actions->joint3.data[interact.actions->now], 2));
-            is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint4, interact.actions->joint4.data[interact.actions->now], 2));
-            is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint5, interact.actions->joint5.data[interact.actions->now], 2));
-            is_next = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint6, interact.actions->joint6.data[interact.actions->now], 2));
+            bool is_next = isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.actions->joint1.data[interact.actions->now], 2);
+            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint2, interact.actions->joint2.data[interact.actions->now], 2));
+            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint3, interact.actions->joint3.data[interact.actions->now], 2));
+            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint4, interact.actions->joint4.data[interact.actions->now], 2));
+            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint5, interact.actions->joint5.data[interact.actions->now], 2));
+            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint6, interact.actions->joint6.data[interact.actions->now], 2));
             interact.receive_actions(is_next);
             break;
         }
@@ -295,7 +223,6 @@ void Interact::receive_actions(bool is_next) {
 }
 
 void remote_ctrl_recover() {
-    //    remote_control.clear();
-    buzzer.StartMusic(error_music, 2);
+    buzzer.PushMusic<8>(Buzzer::error_music);
     interact.remote_control.start();
 }

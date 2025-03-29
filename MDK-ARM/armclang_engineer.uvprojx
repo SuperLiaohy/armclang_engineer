@@ -1196,11 +1196,6 @@
               <FilePath>..\Own\Mod\Filter\Filter.cpp</FilePath>
             </File>
             <File>
-              <FileName>RoundQueue.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Mod\Filter\RoundQueue.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Key.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Mod\Key\Key.cpp</FilePath>
@@ -1234,6 +1229,11 @@
               <FileName>Count.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Mod\Count\Count.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>RoundQueue.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Mod\RoundQueue\RoundQueue.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1573,6 +1573,11 @@
               <FileName>DebugTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\DebugTask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>BuzzerTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\BuzzerTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -41,3 +41,4 @@ void JudgeTask();
 void KbTask();
 void SubBoardTask();
 void ArmInitTask();
+void BuzzerTask();
