@@ -57,15 +57,6 @@ namespace roboarm_dep {
         float joint6;
     };
 
-    struct real_relative_pos {
-        float joint1;
-        float joint2;
-        float joint3;
-        float joint4;
-        float joint5;
-        float joint6;
-    };
-
     class MDH {
     public:
         MDH() = default;

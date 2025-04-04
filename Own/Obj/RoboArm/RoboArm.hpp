@@ -63,9 +63,8 @@ public:
     roboarm_dep::target target {};
 
     void load_target(const std::array<float, 6>& joint);
-    void load_diff_target(const std::array<float, 6>& joint);
-    std::array<float, 6> relative_pos;
 
+    std::array<float, 6> relative_pos;
     void update_relative_pos();
 
 private:

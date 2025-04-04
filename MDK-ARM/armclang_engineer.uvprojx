@@ -1505,11 +1505,6 @@
               <FilePath>..\Own\OperateSystem\Thread\ChassisTask.cpp</FilePath>
             </File>
             <File>
-              <FileName>DJITask.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\OperateSystem\Thread\DJITask.cpp</FilePath>
-            </File>
-            <File>
               <FileName>ErrorTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\ErrorTask.cpp</FilePath>
@@ -1523,11 +1518,6 @@
               <FileName>LedTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\LedTask.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>LKTask.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\OperateSystem\Thread\LKTask.cpp</FilePath>
             </File>
             <File>
               <FileName>PCTask.cpp</FileName>

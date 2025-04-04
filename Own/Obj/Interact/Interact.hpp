@@ -10,26 +10,19 @@
 //设定交互方式的统一标准为2个字节16bit的形式
 class Interact {
 public:
-    Interact(const uint8_t& head, const uint8_t& tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef* uart_im, UART_HandleTypeDef* uart_sub_board)
+    Interact(const uint8_t& head, const uint8_t& tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef* uart_im,
+             UART_HandleTypeDef* uart_sub_board)
         : kb {interact_dep::kb_state::RC_ENABLE}
         , robo_arm {interact_dep::robo_mode::NORMAL, interact_dep::robo_mode::NORMAL}
         , chassis {interact_dep::chassis_mode::ALL, interact_dep::chassis_mode::ALL}
         , remote_control(uart_rc)
-        , head(head)
-        , tail(tail)
         , image_trans(uart_im)
+        , pc(head, tail)
         , sub_board(uart_sub_board) {
-//        transmit_data.head = head;
-//        transmit_data.tail = tail;
-    };
+
+        };
 
     std::array<float, 6> joint;
-
-//    interact_dep::receive_data_t receive_data {};
-    // int64_t totalRoll = 0;
-//    float pos[3]      = {85.912, 0, 241.753};
-
-//    interact_dep::transmit_data_t transmit_data {};
 
     RemoteControl remote_control;
 
@@ -74,10 +67,4 @@ public:
     void receive_actions(bool is_next);
 
     void transmit_relative_pos(const std::array<float, 6>& pos);
-
-private:
-    uint8_t head;
-    uint8_t tail;
 };
-
-

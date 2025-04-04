@@ -10,9 +10,11 @@
 #include "Interact/Interact.hpp"
 #include "ThreadConfig.h"
 
-extern uint8_t cmd;
 void PCTask() {
     uint32_t cnt = 0;
+    interact.pc.transmit_data.head = interact.pc.head;
+    interact.pc.transmit_data.tail = interact.pc.tail;
+    interact.pc.transmit_data.cmd = 0xA5;
     while (1) {
         if (cnt++%10==0) {
             roboArm.update_relative_pos();

@@ -12,7 +12,6 @@ void ArmTask() {
         ++cnt;
 
         roboArm.load_target(interact.joint);
-        roboArm.load_diff_target(interact.joint);
 
         roboArm.diff.left.motor.set_position(roboArm.target.joint5.angle);
         roboArm.diff.right.motor.set_position(roboArm.target.joint6.angle);

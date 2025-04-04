@@ -50,13 +50,11 @@ extern EventGroupHandle_t osEventGroup;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId LED_TASKHandle;
-osThreadId DJI_TASKHandle;
 osThreadId IMU_TASKHandle;
 osThreadId ERROR_TASKHandle;
 osThreadId DEBUG_TASKHandle;
 osThreadId CHASSIS_TASKHandle;
 osThreadId REMOTE_CTRL_TASHandle;
-osThreadId LK_TASKHandle;
 osThreadId PC_TaskHandle;
 osThreadId IMAGEATRANS_TASHandle;
 osThreadId JUDGE_TASKHandle;
@@ -75,13 +73,11 @@ osMutexId CAN2MutexHandle;
 
 void StartDefaultTask(void const * argument);
 void OS_LedTask(void const * argument);
-void OS_DJITask(void const * argument);
 void OS_IMUTask(void const * argument);
 void OS_ErrorTask(void const * argument);
 void OS_DebugTask(void const * argument);
 void OS_ChassisTask(void const * argument);
 void OS_RemoteCtrlTask(void const * argument);
-void OS_LKTask(void const * argument);
 void OS_PCTask(void const * argument);
 void OS_ImageTransTask(void const * argument);
 void OS_JudgeTask(void const * argument);
@@ -170,10 +166,6 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(LED_TASK, OS_LedTask, osPriorityBelowNormal, 0, 256);
   LED_TASKHandle = osThreadCreate(osThread(LED_TASK), NULL);
 
-  /* definition and creation of DJI_TASK */
-  osThreadDef(DJI_TASK, OS_DJITask, osPriorityNormal, 0, 512);
-  DJI_TASKHandle = osThreadCreate(osThread(DJI_TASK), NULL);
-
   /* definition and creation of IMU_TASK */
   osThreadDef(IMU_TASK, OS_IMUTask, osPriorityHigh, 0, 528);
   IMU_TASKHandle = osThreadCreate(osThread(IMU_TASK), NULL);
@@ -193,10 +185,6 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of REMOTE_CTRL_TAS */
   osThreadDef(REMOTE_CTRL_TAS, OS_RemoteCtrlTask, osPriorityBelowNormal, 0, 256);
   REMOTE_CTRL_TASHandle = osThreadCreate(osThread(REMOTE_CTRL_TAS), NULL);
-
-  /* definition and creation of LK_TASK */
-  osThreadDef(LK_TASK, OS_LKTask, osPriorityNormal, 0, 384);
-  LK_TASKHandle = osThreadCreate(osThread(LK_TASK), NULL);
 
   /* definition and creation of PC_Task */
   osThreadDef(PC_Task, OS_PCTask, osPriorityNormal, 0, 384);
@@ -272,24 +260,6 @@ __weak void OS_LedTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END OS_LedTask */
-}
-
-/* USER CODE BEGIN Header_OS_DJITask */
-/**
-* @brief Function implementing the DJI_TASK thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_OS_DJITask */
-__weak void OS_DJITask(void const * argument)
-{
-  /* USER CODE BEGIN OS_DJITask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END OS_DJITask */
 }
 
 /* USER CODE BEGIN Header_OS_IMUTask */
@@ -380,24 +350,6 @@ __weak void OS_RemoteCtrlTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END OS_RemoteCtrlTask */
-}
-
-/* USER CODE BEGIN Header_OS_LKTask */
-/**
-* @brief Function implementing the LK_TASK thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_OS_LKTask */
-__weak void OS_LKTask(void const * argument)
-{
-  /* USER CODE BEGIN OS_LKTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END OS_LKTask */
 }
 
 /* USER CODE BEGIN Header_OS_PCTask */

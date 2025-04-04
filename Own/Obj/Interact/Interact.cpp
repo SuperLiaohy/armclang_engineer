@@ -21,7 +21,7 @@ extern osMutexId CAN1MutexHandle;
 void Interact::receive_cdc(uint8_t* data) {
     using namespace interact_dep;
     if (robo_arm.mode == robo_mode::VISION) {
-        if (data[0] == head && data[sizeof(receive_data_t) - 1] == tail) {
+        if (data[0] == pc.head && data[sizeof(receive_data_t) - 1] == pc.tail) {
             memcpy(&pc.receive_data, data, sizeof(receive_data_t));
             joint[0] = pc.receive_data.joint1.angle * scale(65536, 360);
             joint[1] = pc.receive_data.joint2.angle * scale(65536, 360);
@@ -60,14 +60,15 @@ void Interact::receive_xyz(RoboArm& Arm) {
     using namespace roboarm_dep;
     using namespace my_math;
     if (robo_arm.mode == robo_mode::XYZ) {
-        remote_control.pos[0] += addSpeed(remote_control.rcInfo.ch1, 1);
-        remote_control.pos[2] += addSpeed(remote_control.rcInfo.ch2, 1);
-        if (Arm.ikine(remote_control.pos)) {
+        remote_control.pos[0] += addSpeed(remote_control.rcInfo.ch1, 2.5);
+        remote_control.pos[2] += addSpeed(remote_control.rcInfo.ch2, 2.5);
+        if (!Arm.ikine(remote_control.pos)) {
             Arm.fkine(remote_control.pos);
+        } else {
+            joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
+            joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
+            joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
         }
-        joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
-        joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
-        joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
     }
 }
 

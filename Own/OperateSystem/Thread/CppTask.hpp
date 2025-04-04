@@ -25,9 +25,6 @@ extern osThreadId ARM_INIT_TASKHandle;
 }
 #endif
 
-
-void DJITask();
-void LKTask();
 void LedTask();
 void ErrorTask();
 void DebugTask();
