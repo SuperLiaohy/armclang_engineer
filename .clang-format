@@ -39,7 +39,7 @@ BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
 #BreakTemplateDeclarations: Yes
-ColumnLimit: 0
+ColumnLimit: 120
 CompactNamespaces: false
 ContinuationIndentWidth: 4
 IndentCaseLabels: true

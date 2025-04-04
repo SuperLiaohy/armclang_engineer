@@ -12,7 +12,7 @@
 #define USING_M2006 1
 #if USING_M2006 == 1
 
-class M2006 : public default_motor<8192, 36, 1> {
+class M2006 : public default_motor<8192, 36 * 20, 1> {
 public:
     M2006(const uint16_t rx_id)
         : default_motor(rx_id) {};

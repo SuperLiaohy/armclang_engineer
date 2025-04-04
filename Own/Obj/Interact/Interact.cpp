@@ -104,10 +104,10 @@ void Interact::receive_custom(uint8_t* data) {
         sub_board.set_pump(image_trans.custom_rx_frame.s.pump);
         sub_board.set_valve5(image_trans.custom_rx_frame.s.valve);
         if (!image_trans.read_map_back()) {
-            joint[0] = image_trans.custom_rx_frame.joint[0] * scale(4096, 360);
+            joint[0] = -image_trans.custom_rx_frame.joint[0] * scale(4096, 360);
             joint[1] = image_trans.custom_rx_frame.joint[1] * scale(4096, 360);
             joint[2] = image_trans.custom_rx_frame.joint[2] * scale(4096, 360);
-            joint[3] = image_trans.custom_rx_frame.joint[3] * scale(4096, 360);
+            joint[3] = -image_trans.custom_rx_frame.joint[3] * scale(4096, 360);
             joint[4] = image_trans.custom_rx_frame.joint[4] * scale(4096, 360);
             joint[5] = image_trans.custom_rx_frame.joint[5] * scale(4096, 360);
         }

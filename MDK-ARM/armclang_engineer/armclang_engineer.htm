@@ -3,11 +3,11 @@
 <title>Static Call Graph - [armclang_engineer\armclang_engineer.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image armclang_engineer\armclang_engineer.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Sat Mar 29 17:18:02 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Fri Apr  4 16:56:53 2025
 <BR><P>
 <H3>Maximum Stack Usage =        824 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-_GLOBAL__sub_I_Vari.cpp &rArr; __cxx_global_var_init.9 &rArr; RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+_GLOBAL__sub_I_Vari.cpp &rArr; __cxx_global_var_init.9 &rArr; RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 <P>
 <H3>
 Functions with no stack information
@@ -3259,7 +3259,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.rodata..L__const.MX_FREERTOS_Init.os_thread_def_PC_Task)
 </UL>
 <P><STRONG><a name="[dc]"></a>OS_RemoteCtrlTask</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, thread.o(.text.OS_RemoteCtrlTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 480<LI>Call Chain = OS_RemoteCtrlTask &rArr; RemoteCtrlTask() &rArr; Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<BR><BR>[Stack]<UL><LI>Max Depth = 472<LI>Call Chain = OS_RemoteCtrlTask &rArr; RemoteCtrlTask() &rArr; Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xEventGroupWaitBits
 <LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCtrlTask()
@@ -4232,7 +4232,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[26b]"></a>RemoteCtrlTask()</STRONG> (Thumb, 978 bytes, Stack size 40 bytes, remotectrltask.o(.text._Z14RemoteCtrlTaskv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 464<LI>Call Chain = RemoteCtrlTask() &rArr; Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = RemoteCtrlTask() &rArr; Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelayUntil
 <LI><a href="#[2d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadResume
@@ -4987,7 +4987,7 @@ Global Symbols
 
 <P><STRONG><a name="[352]"></a>roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&)</STRONG> (Thumb, 78 bytes, Stack size 32 bytes, vari.o(.text._ZN11roboarm_dep14DifferentiatorC2EfjRK3PidS3_jS3_S3_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 328 + Unknown Stack Size
-<LI>Call Chain = roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<LI>Call Chain = roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[353]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&)
 </UL>
@@ -4996,7 +4996,7 @@ Global Symbols
 
 <P><STRONG><a name="[354]"></a>roboarm_dep::Differentiator::~Differentiator__sub_object()</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, vari.o(.text._ZN11roboarm_dep14DifferentiatorD2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248 + Unknown Stack Size
-<LI>Call Chain = roboarm_dep::Differentiator::~Differentiator__sub_object() &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::~Motor__sub_object() &rArr; PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object() &rArr; M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+<LI>Call Chain = roboarm_dep::Differentiator::~Differentiator__sub_object() &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::~Motor__sub_object() &rArr; PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object() &rArr; M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[355]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor&lang;PosPidControl&lang;M2006&rang;&rang;::~Motor__sub_object()
 </UL>
@@ -5126,9 +5126,9 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> detectmanager.o(.text._Z21DetectManagerInstancev)
 </UL>
 <P><STRONG><a name="[174]"></a>PosPidControl&lang;M2006&rang;::get_feedback(unsigned short, unsigned char*)</STRONG> (Thumb, 60 bytes, Stack size 32 bytes, cancallback.o(.text._ZN13PosPidControlI5M2006E12get_feedbackEtPh))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = PosPidControl&lang;M2006&rang;::get_feedback(unsigned short, unsigned char*) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::get_feedback(unsigned char const*) &rArr; Detect::update() &rArr; Detect::getSysTime()
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = PosPidControl&lang;M2006&rang;::get_feedback(unsigned short, unsigned char*) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::get_feedback(unsigned char const*) &rArr; Detect::update() &rArr; Detect::getSysTime()
 </UL>
-<BR>[Calls]<UL><LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::get_feedback(unsigned char const*)
+<BR>[Calls]<UL><LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::get_feedback(unsigned char const*)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_FDCAN_RxFifo0Callback
 </UL>
@@ -5165,7 +5165,7 @@ Global Symbols
 
 <P><STRONG><a name="[36c]"></a>PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&)</STRONG> (Thumb, 208 bytes, Stack size 40 bytes, vari.o(.text._ZN13PosPidControlI5M2006EC2EtRK3PidS4_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
-<LI>Call Chain = PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<LI>Call Chain = PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M2006::M2006__sub_object(unsigned short)
 </UL>
@@ -5174,7 +5174,7 @@ Global Symbols
 
 <P><STRONG><a name="[36e]"></a>PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object()</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, vari.o(.text._ZN13PosPidControlI5M2006ED2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
-<LI>Call Chain = PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object() &rArr; M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+<LI>Call Chain = PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object() &rArr; M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M2006::~M2006__sub_object()
 </UL>
@@ -5248,8 +5248,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[381]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508::~M3508__sub_object()
 </UL>
 
-<P><STRONG><a name="[369]"></a>default_motor&lang;8192u, 36u, 1u&rang;::get_feedback(unsigned char const*)</STRONG> (Thumb, 276 bytes, Stack size 24 bytes, cancallback.o(.text._ZN13default_motorILj8192ELj36ELj1EE12get_feedbackEPKh))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = default_motor&lang;8192u, 36u, 1u&rang;::get_feedback(unsigned char const*) &rArr; Detect::update() &rArr; Detect::getSysTime()
+<P><STRONG><a name="[369]"></a>default_motor&lang;8192u, 720u, 1u&rang;::get_feedback(unsigned char const*)</STRONG> (Thumb, 276 bytes, Stack size 24 bytes, cancallback.o(.text._ZN13default_motorILj8192ELj720ELj1EE12get_feedbackEPKh))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = default_motor&lang;8192u, 720u, 1u&rang;::get_feedback(unsigned char const*) &rArr; Detect::update() &rArr; Detect::getSysTime()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[370]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Detect::update()
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Count::operator++()
@@ -5257,9 +5257,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PosPidControl&lang;M2006&rang;::get_feedback(unsigned short, unsigned char*)
 </UL>
 
-<P><STRONG><a name="[37a]"></a>default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short)</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, vari.o(.text._ZN13default_motorILj8192ELj36ELj1EEC2Et))
+<P><STRONG><a name="[37a]"></a>default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short)</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, vari.o(.text._ZN13default_motorILj8192ELj720ELj1EEC2Et))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
-<LI>Call Chain = default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<LI>Call Chain = default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[377]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Count::Count__sub_object()
 <LI><a href="#[372]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Detect::Detect(unsigned int)
@@ -5267,9 +5267,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M2006::M2006__sub_object(unsigned short)
 </UL>
 
-<P><STRONG><a name="[37b]"></a>default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object()</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, vari.o(.text._ZN13default_motorILj8192ELj36ELj1EED2Ev))
+<P><STRONG><a name="[37b]"></a>default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object()</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, vari.o(.text._ZN13default_motorILj8192ELj720ELj1EED2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+<LI>Call Chain = default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[374]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Detect::~Detect()
 <LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Count::~Count__sub_object()
@@ -5568,7 +5568,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[336]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperUart::SuperUart(__UART_HandleTypeDef*, unsigned short, unsigned short)
 <LI><a href="#[3d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::SuperCan(FDCAN_HandleTypeDef*, unsigned int, unsigned int)
 <LI><a href="#[3b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKMotor::LKMotor__sub_object(unsigned short, unsigned int, float)
-<LI><a href="#[37a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short)
+<LI><a href="#[37a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short)
 <LI><a href="#[396]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKControl&lang;LKMotor&rang;::LKControl__sub_object(unsigned short, unsigned int, float, SuperCan*)
 <LI><a href="#[376]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 3591u, 187u&rang;::default_motor__sub_object(unsigned short)
 </UL>
@@ -5582,7 +5582,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::~SuperCan__sub_object()
 <LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperUart::~SuperUart()
-<LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object()
+<LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object()
 <LI><a href="#[3b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKMotor::~LKMotor__sub_object()
 <LI><a href="#[398]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKControl&lang;LKMotor&rang;::~LKControl__sub_object()
 <LI><a href="#[378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 3591u, 187u&rang;::~default_motor__sub_object()
@@ -5602,7 +5602,7 @@ Global Symbols
 <LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_ErrorCallback
 <LI><a href="#[20c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_RxEventCallback
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_FDCAN_ErrorStatusCallback
-<LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::get_feedback(unsigned char const*)
+<LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::get_feedback(unsigned char const*)
 <LI><a href="#[3b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKMotor::get_feedback(unsigned char*)
 <LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::receive()
 <LI><a href="#[2f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::transmit(unsigned int, short, short, short, short)
@@ -5611,18 +5611,18 @@ Global Symbols
 
 <P><STRONG><a name="[36d]"></a>M2006::M2006__sub_object(unsigned short)</STRONG> (Thumb, 28 bytes, Stack size 24 bytes, vari.o(.text._ZN5M2006C2Et))
 <BR><BR>[Stack]<UL><LI>Max Depth = 224 + Unknown Stack Size
-<LI>Call Chain = M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<LI>Call Chain = M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[37a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short)
+<BR>[Calls]<UL><LI><a href="#[37a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&)
 </UL>
 
 <P><STRONG><a name="[36f]"></a>M2006::~M2006__sub_object()</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, vari.o(.text._ZN5M2006D2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
-<LI>Call Chain = M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+<LI>Call Chain = M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object()
+<BR>[Calls]<UL><LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object()
 </UL>
@@ -5647,7 +5647,7 @@ Global Symbols
 
 <P><STRONG><a name="[353]"></a>Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&)</STRONG> (Thumb, 34 bytes, Stack size 32 bytes, vari.o(.text._ZN5MotorI13PosPidControlI5M2006EEC2IJRjRK3PidS8_EEEDpOT_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 296 + Unknown Stack Size
-<LI>Call Chain = Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<LI>Call Chain = Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&)
 </UL>
@@ -5656,7 +5656,7 @@ Global Symbols
 
 <P><STRONG><a name="[355]"></a>Motor&lang;PosPidControl&lang;M2006&rang;&rang;::~Motor__sub_object()</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, vari.o(.text._ZN5MotorI13PosPidControlI5M2006EED2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232 + Unknown Stack Size
-<LI>Call Chain = Motor&lang;PosPidControl&lang;M2006&rang;&rang;::~Motor__sub_object() &rArr; PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object() &rArr; M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+<LI>Call Chain = Motor&lang;PosPidControl&lang;M2006&rang;&rang;::~Motor__sub_object() &rArr; PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object() &rArr; M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object()
 </UL>
@@ -5814,7 +5814,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteControl::update(KeyBoard&)
 <LI><a href="#[375]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 3591u, 187u&rang;::get_feedback(unsigned char const*)
-<LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::get_feedback(unsigned char const*)
+<LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::get_feedback(unsigned char const*)
 </UL>
 
 <P><STRONG><a name="[366]"></a>Detect::JudgeLost()</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, detect.o(.text._ZN6Detect9JudgeLostEv))
@@ -5833,7 +5833,7 @@ Global Symbols
 <LI><a href="#[2e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DetectManagerInstance()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKMotor::LKMotor__sub_object(unsigned short, unsigned int, float)
-<LI><a href="#[37a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short)
+<LI><a href="#[37a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short)
 <LI><a href="#[376]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 3591u, 187u&rang;::default_motor__sub_object(unsigned short)
 <LI><a href="#[371]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteControl::RemoteControl__sub_object(__UART_HandleTypeDef*, unsigned short, unsigned int)
 </UL>
@@ -5847,7 +5847,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[362]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DetectManager::Unregister(Detect*)
 <LI><a href="#[2e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DetectManagerInstance()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object()
+<BR>[Called By]<UL><LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object()
 <LI><a href="#[3b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKMotor::~LKMotor__sub_object()
 <LI><a href="#[378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 3591u, 187u&rang;::~default_motor__sub_object()
 <LI><a href="#[373]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteControl::~RemoteControl__sub_object()
@@ -6142,8 +6142,8 @@ Global Symbols
 <LI><a href="#[3bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_xyz(RoboArm&)
 </UL>
 
-<P><STRONG><a name="[3b8]"></a>RoboArm::ikine(float const*)</STRONG> (Thumb, 1624 bytes, Stack size 128 bytes, roboarm.o(.text._ZN7RoboArm5ikineEPKf))
-<BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<P><STRONG><a name="[3b8]"></a>RoboArm::ikine(float const*)</STRONG> (Thumb, 1656 bytes, Stack size 120 bytes, roboarm.o(.text._ZN7RoboArm5ikineEPKf))
+<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[385]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;float my_abs&lang;float&rang;(float)
 <LI><a href="#[3b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bool isInRange&lang;float&rang;(float, float, float, float)
@@ -6170,7 +6170,7 @@ Global Symbols
 
 <P><STRONG><a name="[3bc]"></a>RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&)</STRONG> (Thumb, 432 bytes, Stack size 88 bytes, vari.o(.text._ZN7RoboArmC2EP8SuperCanjjfjjfjjfjjfjjffjRK3PidS4_jS4_S4_ON11roboarm_dep6offsetE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
-<LI>Call Chain = RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<LI>Call Chain = RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[395]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor&lang;LKControl&lang;LKMotor&rang;&rang;::Motor__sub_object&lang;unsigned int&, unsigned int&, float const&, SuperCan*&&rang;(unsigned int&, unsigned int&, float const&, SuperCan*&)
 <LI><a href="#[352]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&)
@@ -6180,7 +6180,7 @@ Global Symbols
 
 <P><STRONG><a name="[ca]"></a>RoboArm::~RoboArm__sub_object()</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, vari.o(.text._ZN7RoboArmD2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
-<LI>Call Chain = RoboArm::~RoboArm__sub_object() &rArr; roboarm_dep::Differentiator::~Differentiator__sub_object() &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::~Motor__sub_object() &rArr; PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object() &rArr; M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 36u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+<LI>Call Chain = RoboArm::~RoboArm__sub_object() &rArr; roboarm_dep::Differentiator::~Differentiator__sub_object() &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::~Motor__sub_object() &rArr; PosPidControl&lang;M2006&rang;::~PosPidControl__sub_object() &rArr; M2006::~M2006__sub_object() &rArr; default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object() &rArr; Detect::~Detect() &rArr; DetectManager::Unregister(Detect*) &rArr; CustomList&lang;Detect*&rang;::remove(Detect* const&) &rArr; operator delete(void*, unsigned int) &rArr; operator delete(void*) &rArr; CustomHeap::free(void*) &rArr; osRtxMemoryFree &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[354]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;roboarm_dep::Differentiator::~Differentiator__sub_object()
 <LI><a href="#[3bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::'unnamed'::~__sub_object()
@@ -6215,7 +6215,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3bf]"></a>Interact::receive_xyz(RoboArm&)</STRONG> (Thumb, 408 bytes, Stack size 96 bytes, interact.o(.text._ZN8Interact11receive_xyzER7RoboArm))
-<BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;float limited&lang;float&rang;(float&, float, float)
 <LI><a href="#[3c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std::__2::array&lang;float, 3u&rang;::data[abi:v180000]()
@@ -6235,7 +6235,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::update_roboArm(RoboArm&)
 </UL>
 
-<P><STRONG><a name="[210]"></a>Interact::receive_custom(unsigned char*)</STRONG> (Thumb, 432 bytes, Stack size 88 bytes, interact.o(.text._ZN8Interact14receive_customEPh))
+<P><STRONG><a name="[210]"></a>Interact::receive_custom(unsigned char*)</STRONG> (Thumb, 436 bytes, Stack size 88 bytes, interact.o(.text._ZN8Interact14receive_customEPh))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = Interact::receive_custom(unsigned char*) &rArr; std::__2::array&lang;short, 6u&rang;::operator[][abi:v180000](unsigned int)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[333]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std::__2::array&lang;short, 6u&rang;::operator[][abi:v180000](unsigned int)
@@ -6254,7 +6254,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2da]"></a>Interact::update_roboArm(RoboArm&)</STRONG> (Thumb, 734 bytes, Stack size 80 bytes, interact.o(.text._ZN8Interact14update_roboArmER7RoboArm))
-<BR><BR>[Stack]<UL><LI>Max Depth = 424<LI>Call Chain = Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<BR><BR>[Stack]<UL><LI>Max Depth = 416<LI>Call Chain = Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(float const*) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_actions(bool)
 <LI><a href="#[3c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bool isApproxEqual&lang;float&rang;(float, float, float)
@@ -9018,9 +9018,9 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GLOBAL__sub_I_Vari.cpp
 </UL>
 
-<P><STRONG><a name="[2b5]"></a>__cxx_global_var_init.9</STRONG> (Thumb, 376 bytes, Stack size 400 bytes, vari.o(.text.__cxx_global_var_init.9))
+<P><STRONG><a name="[2b5]"></a>__cxx_global_var_init.9</STRONG> (Thumb, 372 bytes, Stack size 400 bytes, vari.o(.text.__cxx_global_var_init.9))
 <BR><BR>[Stack]<UL><LI>Max Depth = 816 + Unknown Stack Size
-<LI>Call Chain = __cxx_global_var_init.9 &rArr; RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<LI>Call Chain = __cxx_global_var_init.9 &rArr; RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&)
 <LI><a href="#[38c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid::Pid__sub_object(float, float, float, float, float, float)
@@ -9098,7 +9098,7 @@ Local Symbols
 
 <P><STRONG><a name="[df]"></a>_GLOBAL__sub_I_Vari.cpp</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, vari.o(.text._GLOBAL__sub_I_Vari.cpp))
 <BR><BR>[Stack]<UL><LI>Max Depth = 824 + Unknown Stack Size
-<LI>Call Chain = _GLOBAL__sub_I_Vari.cpp &rArr; __cxx_global_var_init.9 &rArr; RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 36u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<LI>Call Chain = _GLOBAL__sub_I_Vari.cpp &rArr; __cxx_global_var_init.9 &rArr; RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&) &rArr; Motor&lang;PosPidControl&lang;M2006&rang;&rang;::Motor__sub_object&lang;unsigned int&, Pid const&, Pid const&&rang;(unsigned int&, Pid const&, Pid const&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object(unsigned short, Pid const&, Pid const&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxx_global_var_init.17
 <LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxx_global_var_init.16
