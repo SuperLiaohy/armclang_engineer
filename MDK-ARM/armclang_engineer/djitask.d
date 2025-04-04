@@ -301,11 +301,7 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\M2006.hpp ..\Own\Obj\Interact\Interact.hpp \
-  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp \
+  ..\Own\App\Motor\M2006.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
@@ -758,8 +754,13 @@ armclang_engineer/djitask.o: ..\Own\OperateSystem\Thread\DJITask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Mod\Key\Key.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Chassis\Chassis.hpp \
+  ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\RemoteControl\RemoteControl.hpp \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
+  ..\Own\App\Buzzer\Buzzer.hpp ..\Own\Mod\RoundQueue\RoundQueue.hpp \
+  ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\MicroTime\MicroTime.hpp ..\Own\Bsp\SysTick\SysTick.hpp

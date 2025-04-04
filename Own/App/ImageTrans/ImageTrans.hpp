@@ -79,7 +79,7 @@ public:
 
     void transmit();
 
-    void get_angle(roboarm_dep::real_relative_pos &relativePos);
+    void get_angle(const std::array<float, 6>& pos);
 
     bool update();
 

@@ -35,56 +35,56 @@ void LKTask() {
 
         auto now = osKernelSysTick();
 
-        roboArm.load_target(interact);
-
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint3.motor.set_position(roboArm.target.joint3.angle, 180);
-        xSemaphoreGive(CAN1MutexHandle);
-
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint4.motor.set_position(roboArm.target.joint4.angle, 360);
-        xSemaphoreGive(CAN1MutexHandle);
-
-        osDelay(1);
-
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint2.internal.motor.set_position(roboArm.target.joint2.internal.angle, 180);
-        roboArm.joint2.external.motor.set_position(roboArm.target.joint2.external.angle, 180);
-        xSemaphoreGive(CAN1MutexHandle);
-
-        osDelay(1);
-
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint1.motor.set_position(roboArm.target.joint1.angle, 180);
-        xSemaphoreGive(CAN1MutexHandle);
-
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint4.motor.read_totalposition();
-        xSemaphoreGive(CAN1MutexHandle);
-
-        osDelay(1);
-
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint3.motor.read_totalposition();
-        xSemaphoreGive(CAN1MutexHandle);
-
-//        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-//        roboArm.joint2.motor.read_totalposition();
-//        xSemaphoreGive(CAN1MutexHandle);
-        // 相对旋转角度只需要一个电机就可以确定，所以只需要一个电机的反馈数据，这里选择外侧电机
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint2.external.motor.read_totalposition();
-        xSemaphoreGive(CAN1MutexHandle);
-        osDelay(1);
-//        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-//        roboArm.joint2.internal.motor.read_totalposition();
-//        xSemaphoreGive(CAN1MutexHandle);
-        
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        roboArm.joint1.motor.read_totalposition();
-        xSemaphoreGive(CAN1MutexHandle);
-
-        CANHeapCnt = uxTaskGetStackHighWaterMark(NULL);
+//         roboArm.load_target(interact.joint);
+//
+//         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//         roboArm.joint3.motor.set_position(roboArm.target.joint3.angle, 180);
+//         xSemaphoreGive(CAN1MutexHandle);
+//
+//         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//         roboArm.joint4.motor.set_position(roboArm.target.joint4.angle, 360);
+//         xSemaphoreGive(CAN1MutexHandle);
+//
+//         osDelay(1);
+//
+//         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//         roboArm.joint2.internal.motor.set_position(roboArm.target.joint2.internal.angle, 180);
+//         roboArm.joint2.external.motor.set_position(roboArm.target.joint2.external.angle, 180);
+//         xSemaphoreGive(CAN1MutexHandle);
+//
+//         osDelay(1);
+//
+//         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//         roboArm.joint1.motor.set_position(roboArm.target.joint1.angle, 180);
+//         xSemaphoreGive(CAN1MutexHandle);
+//
+//         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//         roboArm.joint4.motor.read_totalposition();
+//         xSemaphoreGive(CAN1MutexHandle);
+//
+//         osDelay(1);
+//
+//         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//         roboArm.joint3.motor.read_totalposition();
+//         xSemaphoreGive(CAN1MutexHandle);
+//
+// //        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+// //        roboArm.joint2.motor.read_totalposition();
+// //        xSemaphoreGive(CAN1MutexHandle);
+//         // 相对旋转角度只需要一个电机就可以确定，所以只需要一个电机的反馈数据，这里选择外侧电机
+//         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//         roboArm.joint2.external.motor.read_totalposition();
+//         xSemaphoreGive(CAN1MutexHandle);
+//         osDelay(1);
+// //        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+// //        roboArm.joint2.internal.motor.read_totalposition();
+// //        xSemaphoreGive(CAN1MutexHandle);
+//
+//         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+//         roboArm.joint1.motor.read_totalposition();
+//         xSemaphoreGive(CAN1MutexHandle);
+//
+//         CANHeapCnt = uxTaskGetStackHighWaterMark(NULL);
 
         osDelayUntil(&now, 10);
 

@@ -67,13 +67,13 @@ public:
 
     void receive_xyz(RoboArm& Arm);
 
-    void receive_reset(RoboArm& Arm);
+    void receive_reset();
 
     void receive_custom(uint8_t* data);
 
     void receive_actions(bool is_next);
 
-    void transmit_relative_pos(RoboArm& Arm);
+    void transmit_relative_pos(const std::array<float, 6>& pos);
 
 private:
     uint8_t head;

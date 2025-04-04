@@ -50,7 +50,7 @@ T whileLimit(T& value, T min, T max) {
     float len = max - min;
     if (value > max) {
         value -= len;
-    } else if (*value < min) {
+    } else if (value < min) {
         value += len;
     }
     return value;
@@ -61,23 +61,23 @@ T whileLimit(T&& value, T min, T max) {
     float len = max - min;
     if (value > max) {
         return value - len;
-    } else if (*value < min) {
+    } else if (value < min) {
         return value + len;
     }
 }
 
 template<typename T>
-T SmoothLimit(T* value, T target, T smooth) {
-    if (*value > target) {
-        if (*value - smooth < target) {
-            *value = target;
+T SmoothLimit(T& value, T target, T smooth) {
+    if (value > target) {
+        if (value - smooth < target) {
+            value = target;
         }
-    } else if (*value < target) {
-        if (*value + smooth > target) {
-            *value = target;
+    } else if (value < target) {
+        if (value + smooth > target) {
+            value = target;
         }
     }
-    return *value;
+    return value;
 }
 
 template<typename T>

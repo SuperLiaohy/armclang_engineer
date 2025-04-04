@@ -9,7 +9,7 @@
 #pragma once
 
 #include "roboarm_dep.hpp"
-// #include "ImageTrans/ImageTrans.hpp"
+#include <array>
 extern int32_t left_dPos;
 extern int32_t right_dPos;
 
@@ -17,19 +17,16 @@ class Interact;
 
 class RoboArm {
 public:
-    RoboArm(SuperCan* canPlus,
-            uint32_t id1, uint32_t range1, const float ratio1,
-            uint32_t id2_internal, uint32_t range2_internal, const float ratio2_internal,
-            uint32_t id2_external, uint32_t range2_external, const float ratio2_external,
-            uint32_t id3, uint32_t range3, const float ratio3,
-            uint32_t id4, uint32_t range4, const float ratio4,
-            float gain,
-            uint32_t id5, const Pid& left_pos_pid, const Pid& left_speed_pid,
-            uint32_t id6, const Pid& right_pos_pid, const Pid& right_speed_pid,
+    RoboArm(SuperCan* canPlus, uint32_t id1, uint32_t range1, const float ratio1, uint32_t id2_internal,
+            uint32_t range2_internal, const float ratio2_internal, uint32_t id2_external, uint32_t range2_external,
+            const float ratio2_external, uint32_t id3, uint32_t range3, const float ratio3, uint32_t id4,
+            uint32_t range4, const float ratio4, float gain, uint32_t id5, const Pid& left_pos_pid,
+            const Pid& left_speed_pid, uint32_t id6, const Pid& right_pos_pid, const Pid& right_speed_pid,
             roboarm_dep::offset&& offset)
         : diff(gain, id5, left_pos_pid, left_speed_pid, id6, right_pos_pid, right_speed_pid)
         , joint1(id1, range1, ratio1, canPlus)
-        , joint2 {Motor<LKControl<LKMotor>>(id2_internal, range2_internal, ratio2_internal, canPlus), Motor<LKControl<LKMotor>>(id2_external, range2_external, ratio2_external, canPlus)}
+        , joint2 {Motor<LKControl<LKMotor>>(id2_internal, range2_internal, ratio2_internal, canPlus),
+                  Motor<LKControl<LKMotor>>(id2_external, range2_external, ratio2_external, canPlus)}
         , joint3(id3, range3, ratio3, canPlus)
         , joint4(id4, range4, ratio4, canPlus)
         , offset {offset} {};
@@ -45,11 +42,11 @@ public:
     /* 逆运动学解 顺序q1 q2 q3 并且有四种*/
     float q[3] = {};
 
-    void init_offset(Interact& interaction);
+    void init_offset(std::array<float, 6>& joint);
 
-    void fkine();
+    void fkine(std::array<float, 3>& xyz);
 
-    bool ikine(const float* pos);
+    bool ikine(const std::array<float, 3>& pos);
 
     roboarm_dep::Differentiator diff;
 
@@ -63,12 +60,11 @@ public:
     Motor<LKControl<LKMotor>> joint4;
 
     roboarm_dep::offset offset {};
-
     roboarm_dep::target target {};
 
-    void load_target(Interact& inter);
-    void load_diff_target(Interact& inter);
-    roboarm_dep::real_relative_pos real_relative_pos {};
+    void load_target(const std::array<float, 6>& joint);
+    void load_diff_target(const std::array<float, 6>& joint);
+    std::array<float, 6> relative_pos;
 
     void update_relative_pos();
 

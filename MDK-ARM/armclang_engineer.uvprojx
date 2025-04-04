@@ -888,6 +888,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\App\PC\PC.cpp</FilePath>
             </File>
+            <File>
+              <FileName>lkMotor.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\Motor\lkMotor.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1578,6 +1583,11 @@
               <FileName>BuzzerTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\BuzzerTask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ArmTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\ArmTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

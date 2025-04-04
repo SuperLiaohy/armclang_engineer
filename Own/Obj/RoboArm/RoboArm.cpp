@@ -24,9 +24,6 @@ inline float slove_q2(float q1_slove, float q3_slove, float x, float y, float z)
     return arm_atan2_f32(tmp_sin, tmp_cos);
 };
 
-float left_angle  = 0;
-float right_angle = 0;
-
 void RoboArm::enable() {
     using namespace roboarm_dep;
     // 先清除错误状态再关闭再开启
@@ -135,7 +132,7 @@ void RoboArm::close() {
     joint4.motor.close();
 }
 
-void RoboArm::init_offset(Interact& interaction) {
+void RoboArm::init_offset(std::array<float, 6>& joint) {
     using namespace roboarm_dep;
     joint4.motor.read_totalposition();
     joint3.motor.read_totalposition();
@@ -143,14 +140,14 @@ void RoboArm::init_offset(Interact& interaction) {
     joint2.external.motor.read_totalposition();
     joint1.motor.read_totalposition();
 
-    interaction.joint[5] = 0;
-    interaction.joint[4] = 0;
+    joint[5] = 0;
+    joint[4] = 0;
 
     target.joint6.angle = 0;
     target.joint5.angle = 0;
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint4.motor.m.offset_flag) {
-            interaction.joint[3] = 0;
+            joint[3] = 0;
             if (joint4.motor.m.feedback.total_position < 0) { offset.joint4 -= 360; }
             break;
         }
@@ -159,7 +156,7 @@ void RoboArm::init_offset(Interact& interaction) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint3.motor.m.offset_flag) {
-            interaction.joint[2] = 135;
+            joint[2] = 135;
             if (joint3.motor.m.feedback.total_position < 0) { offset.joint3 -= 360; }
             break;
         }
@@ -168,7 +165,7 @@ void RoboArm::init_offset(Interact& interaction) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.internal.motor.m.offset_flag) {
-            interaction.joint[1] = -45;
+            joint[1] = -45;
             if (joint2.internal.motor.m.feedback.total_position < 0) { offset.joint2.internal -= 360; }
             break;
         }
@@ -177,7 +174,7 @@ void RoboArm::init_offset(Interact& interaction) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.motor.m.offset_flag) {
-            interaction.joint[1] = -45;
+            joint[1] = -45;
             // if (joint2.external.motor.m.feedback.total_position < 0) { offset.joint2.external -= 360; }
             break;
         }
@@ -186,7 +183,7 @@ void RoboArm::init_offset(Interact& interaction) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint1.motor.m.offset_flag) {
-            interaction.joint[0] = 0;
+            joint[0] = 0;
             if (joint1.motor.m.feedback.total_position < 0) { offset.joint1 -= 360; }
             target.joint1.angle = offset.joint1 * 100;
             break;
@@ -194,18 +191,18 @@ void RoboArm::init_offset(Interact& interaction) {
         joint1.motor.read_totalposition();
         osDelay(1);
     }
-    load_target(interaction);
-    load_diff_target(interaction);
+    load_target(joint);
+    load_diff_target(joint);
 }
 
 void RoboArm::update_relative_pos() {
-    real_relative_pos.joint1 = joint1.motor.m.feedback.total_position - offset.joint1;
+    relative_pos[0] = joint1.motor.m.feedback.total_position - offset.joint1;
 
-    real_relative_pos.joint2 = -(joint2.external.motor.m.feedback.total_position - offset.joint2.external);
+    relative_pos[1] = -(joint2.external.motor.m.feedback.total_position - offset.joint2.external);
 
-    real_relative_pos.joint3 = -(joint3.motor.m.feedback.total_position - offset.joint3);
+    relative_pos[2] = -(joint3.motor.m.feedback.total_position - offset.joint3);
 
-    real_relative_pos.joint4 = joint4.motor.m.feedback.total_position - offset.joint4;
+    relative_pos[3] = joint4.motor.m.feedback.total_position - offset.joint4;
     // real_relative_pos.joint1 = joint1.motor.m.total_position - offset.joint1;
     //
     // real_relative_pos.joint2 = -(joint2.external.motor.m.total_position - offset.joint2.external);
@@ -214,21 +211,24 @@ void RoboArm::update_relative_pos() {
     //
     // real_relative_pos.joint4 = joint4.motor.m.total_position - offset.joint4;
 
-    diff.update_relative_pos(real_relative_pos.joint5, real_relative_pos.joint6);
+    diff.update_relative_pos(relative_pos[4], relative_pos[5]);
 }
 
-void RoboArm::fkine() {
+void RoboArm::fkine(std::array<float, 3>& xyz) {
     using namespace my_math;
     using namespace roboarm_dep;
-    float q1 = real_relative_pos.joint1 * d2r;
-    float q2 = real_relative_pos.joint2 * d2r;
-    float q3 = real_relative_pos.joint3 * d2r;
+    float q1 = relative_pos[0] * d2r;
+    float q2 = relative_pos[1] * d2r;
+    float q3 = relative_pos[2] * d2r;
     pos[0]   = arm_cos_f32(q1) * (A * arm_sin_f32(q2 + q3) + B * arm_sin_f32(q2));
     pos[1]   = arm_sin_f32(q1) * (A * arm_sin_f32(q2 + q3) + B * arm_sin_f32(q2));
     pos[2]   = A * arm_cos_f32(q2 + q3) + B * arm_cos_f32(q2);
+    xyz[0] = pos[0];
+    xyz[1] = pos[1];
+    xyz[2] = pos[2];
 }
 
-bool RoboArm::ikine(const float* pos) {
+bool RoboArm::ikine(const std::array<float, 3>& pos) {
     using namespace my_math;
     using namespace roboarm_dep;
     uint8_t select = 0b00001111;
@@ -244,8 +244,8 @@ bool RoboArm::ikine(const float* pos) {
      */
     if (is_zero(pos[0]) && is_zero(pos[1])) {
         if (my_abs((pos[2])) <= A + B) {
-            q1_slove[0] = real_relative_pos.joint1;
-            q1_slove[1] = real_relative_pos.joint1;
+            q1_slove[0] = relative_pos[0];
+            q1_slove[1] = relative_pos[0];
             //            return false;
         } else {
             select = 0;
@@ -306,9 +306,9 @@ bool RoboArm::ikine(const float* pos) {
                      joint_scale<float>(limitation.joint2.max, 180, pi), err)
         && isInRange(q3_slove[0], joint_scale<float>(limitation.joint3.min, 180, pi),
                      joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
-        destion[0] = (q1_slove[0] - real_relative_pos.joint1 * d2r) * (q1_slove[0] - real_relative_pos.joint1 * d2r)
-                     + (q2_slove[0] - real_relative_pos.joint2 * d2r) * (q2_slove[0] - real_relative_pos.joint2 * d2r)
-                     + (q3_slove[0] - real_relative_pos.joint3 * d2r) * (q3_slove[0] - real_relative_pos.joint3 * d2r);
+        destion[0] = (q1_slove[0] - relative_pos[0] * d2r) * (q1_slove[0] - relative_pos[0] * d2r)
+                     + (q2_slove[0] - relative_pos[1] * d2r) * (q2_slove[0] - relative_pos[1] * d2r)
+                     + (q3_slove[0] - relative_pos[2] * d2r) * (q3_slove[0] - relative_pos[2] * d2r);
     } else {
         select &= 0b1110;
     }
@@ -319,9 +319,9 @@ bool RoboArm::ikine(const float* pos) {
                      joint_scale<float>(limitation.joint2.max, 180, pi), err)
         && isInRange(q3_slove[1], joint_scale<float>(limitation.joint3.min, 180, pi),
                      joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
-        destion[1] = (q1_slove[0] - real_relative_pos.joint1 * d2r) * (q1_slove[0] - real_relative_pos.joint1 * d2r)
-                     + (q2_slove[1] - real_relative_pos.joint2 * d2r) * (q2_slove[1] - real_relative_pos.joint2 * d2r)
-                     + (q3_slove[1] - real_relative_pos.joint3 * d2r) * (q3_slove[1] - real_relative_pos.joint3 * d2r);
+        destion[1] = (q1_slove[0] - relative_pos[0] * d2r) * (q1_slove[0] - relative_pos[0] * d2r)
+                     + (q2_slove[1] - relative_pos[1] * d2r) * (q2_slove[1] - relative_pos[1] * d2r)
+                     + (q3_slove[1] - relative_pos[2] * d2r) * (q3_slove[1] - relative_pos[2] * d2r);
 
     } else {
         select &= 0b1101;
@@ -333,9 +333,9 @@ bool RoboArm::ikine(const float* pos) {
                      joint_scale<float>(limitation.joint2.max, 180, pi), err)
         && isInRange(q3_slove[0], joint_scale<float>(limitation.joint3.min, 180, pi),
                      joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
-        destion[2] = (q1_slove[1] - real_relative_pos.joint1 * d2r) * (q1_slove[1] - real_relative_pos.joint1 * d2r)
-                     + (q2_slove[2] - real_relative_pos.joint2 * d2r) * (q2_slove[2] - real_relative_pos.joint2 * d2r)
-                     + (q3_slove[0] - real_relative_pos.joint3 * d2r) * (q3_slove[0] - real_relative_pos.joint3 * d2r);
+        destion[2] = (q1_slove[1] - relative_pos[0] * d2r) * (q1_slove[1] - relative_pos[0] * d2r)
+                     + (q2_slove[2] - relative_pos[1] * d2r) * (q2_slove[2] - relative_pos[1] * d2r)
+                     + (q3_slove[0] - relative_pos[2] * d2r) * (q3_slove[0] - relative_pos[2] * d2r);
 
     } else {
         select &= 0b1011;
@@ -347,9 +347,9 @@ bool RoboArm::ikine(const float* pos) {
                      joint_scale<float>(limitation.joint2.max, 180, pi), err)
         && isInRange(q3_slove[1], joint_scale<float>(limitation.joint3.min, 180, pi),
                      joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
-        destion[3] = (q1_slove[1] - real_relative_pos.joint1 * d2r) * (q1_slove[1] - real_relative_pos.joint1 * d2r)
-                     + (q2_slove[3] - real_relative_pos.joint2 * d2r) * (q2_slove[3] - real_relative_pos.joint2 * d2r)
-                     + (q3_slove[1] - real_relative_pos.joint3 * d2r) * (q3_slove[1] - real_relative_pos.joint3 * d2r);
+        destion[3] = (q1_slove[1] - relative_pos[0] * d2r) * (q1_slove[1] - relative_pos[0] * d2r)
+                     + (q2_slove[3] - relative_pos[1] * d2r) * (q2_slove[3] - relative_pos[1] * d2r)
+                     + (q3_slove[1] - relative_pos[2] * d2r) * (q3_slove[1] - relative_pos[2] * d2r);
     } else {
         select &= 0b0111;
     }
@@ -399,28 +399,19 @@ bool RoboArm::ikine(const float* pos) {
     return true;
 }
 
-void RoboArm::load_target(Interact& inter) {
+void RoboArm::load_target(const std::array<float, 6>& joint) {
     using namespace roboarm_dep;
     using namespace my_math;
-    switch (inter.robo_arm.mode) {
-        case interact_dep::robo_mode::NORMAL:
-        case interact_dep::robo_mode::VISION:
-        case interact_dep::robo_mode::CUSTOM:
-        case interact_dep::robo_mode::RESET:
-        case interact_dep::robo_mode::ACTIONS:
-        case interact_dep::robo_mode::NONE:
-        case interact_dep::robo_mode::XYZ:
-            //电机的转向和人为规定的全部反了,故加上了负号.
-            target.joint1.angle          = (-inter.joint[0] + offset.joint1) * scale(360, 36000);
-            target.joint2.internal.angle = (-inter.joint[1] + offset.joint2.internal) * scale(360, 36000);
-            target.joint2.external.angle = (-inter.joint[1] + offset.joint2.external) * scale(360, 36000);
-            target.joint3.angle          = (-inter.joint[2] + offset.joint3) * scale(360, 36000);
-            target.joint4.angle          = (-inter.joint[3] + offset.joint4) * scale(360, 36000);
-            break;
-    }
+
+    //电机的转向和人为规定的全部反了,故加上了负号.
+    target.joint1.angle          = (-joint[0] + offset.joint1) * scale(360, 36000);
+    target.joint2.internal.angle = (-joint[1] + offset.joint2.internal) * scale(360, 36000);
+    target.joint2.external.angle = (-joint[1] + offset.joint2.external) * scale(360, 36000);
+    target.joint3.angle          = (-joint[2] + offset.joint3) * scale(360, 36000);
+    target.joint4.angle          = (-joint[3] + offset.joint4) * scale(360, 36000);
 }
 
-void RoboArm::load_diff_target(Interact& inter) {
-    target.joint5.angle = inter.joint[5] + inter.joint[4];
-    target.joint6.angle = -inter.joint[5] + inter.joint[4];
+void RoboArm::load_diff_target(const std::array<float, 6>& joint) {
+    target.joint5.angle = joint[5] + joint[4];
+    target.joint6.angle = -joint[5] + joint[4];
 }

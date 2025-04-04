@@ -17,7 +17,7 @@ void PCTask() {
         if (cnt++%10==0) {
             roboArm.update_relative_pos();
             xEventGroupSetBits(osEventGroup, LK_RECEIVE_GET);
-            interact.transmit_relative_pos(roboArm);
+            interact.transmit_relative_pos(roboArm.relative_pos);
         }
         osDelay(1);
     }

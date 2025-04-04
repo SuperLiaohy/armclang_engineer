@@ -41,10 +41,10 @@ void Interact::receive_rc() {
 
     if (robo_arm.mode == robo_mode::NORMAL) {
         if (remote_control.rcInfo.left == 1 && remote_control.rcInfo.right == 1) {
-            joint[3] = limited<float>(joint[3] + addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max, limitation.joint4.min, limitation.joint4.max);
-            joint[2] = limited<float>(joint[2] + addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max, limitation.joint3.min, limitation.joint3.max);
+            joint[3] = limited<float>(joint[3] - addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max, limitation.joint4.min, limitation.joint4.max);
+            joint[2] = limited<float>(joint[2] - addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max, limitation.joint3.min, limitation.joint3.max);
             joint[1] = limited<float>(joint[1] + addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max, limitation.joint2.min, limitation.joint2.max);
-            joint[0] = limited<float>(joint[0] + addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max, limitation.joint1.min, limitation.joint1.max);
+            joint[0] = limited<float>(joint[0] - addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max, limitation.joint1.min, limitation.joint1.max);
         } else if (remote_control.rcInfo.left == 3 && remote_control.rcInfo.right == 1) {
             // pitch
             joint[4] = limited<float>(joint[4] + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max, limitation.joint5.min, limitation.joint5.max);
@@ -62,12 +62,8 @@ void Interact::receive_xyz(RoboArm& Arm) {
     if (robo_arm.mode == robo_mode::XYZ) {
         remote_control.pos[0] += addSpeed(remote_control.rcInfo.ch1, 1);
         remote_control.pos[2] += addSpeed(remote_control.rcInfo.ch2, 1);
-
-        Arm.fkine();
-        if (Arm.ikine(interact.remote_control.pos.data())) {
-            remote_control.pos[0] = Arm.pos[0];
-            remote_control.pos[1] = Arm.pos[1];
-            remote_control.pos[2] = Arm.pos[2];
+        if (Arm.ikine(remote_control.pos)) {
+            Arm.fkine(remote_control.pos);
         }
         joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
         joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
@@ -75,19 +71,18 @@ void Interact::receive_xyz(RoboArm& Arm) {
     }
 }
 
-void Interact::transmit_relative_pos(RoboArm& Arm) {
+void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
     using namespace my_math;
-    pc.transmit_data.joint1.angle = Arm.real_relative_pos.joint1 * d2b2;
-    pc.transmit_data.joint2.angle = Arm.real_relative_pos.joint2 * d2b2;
-    pc.transmit_data.joint3.angle = Arm.real_relative_pos.joint3 * d2b2;
-    pc.transmit_data.joint4.angle = Arm.real_relative_pos.joint4 * d2b2;
-    pc.transmit_data.joint5.angle = Arm.real_relative_pos.joint5 * scale(360, 8192);
-    pc.transmit_data.joint6.angle = static_cast<int>((Arm.real_relative_pos.joint6 * scale(360, 8192))) % 8192;
+    pc.transmit_data.joint1.angle = pos[0] * d2b2;
+    pc.transmit_data.joint2.angle = pos[1] * d2b2;
+    pc.transmit_data.joint3.angle = pos[2] * d2b2;
+    pc.transmit_data.joint4.angle = pos[3] * d2b2;
+    pc.transmit_data.joint5.angle = pos[4] * scale(360, 8192);
+    pc.transmit_data.joint6.angle = static_cast<int>((pos[5] * scale(360, 8192))) % 8192;
     pc.transmit(reinterpret_cast<uint8_t*>(&pc.transmit_data), sizeof(pc.transmit_data));
 }
 
-void Interact::receive_reset(RoboArm& Arm) {
-    using namespace roboarm_dep;
+void Interact::receive_reset() {
     joint[0] = 0;
     joint[1] = -45;
     joint[2] = 135;
@@ -119,32 +114,29 @@ void Interact::update_roboArm(RoboArm& Arm) {
     switch (robo_arm.mode) {
         case interact_dep::robo_mode::NORMAL:
             if (robo_arm.last_mode != interact_dep::robo_mode::NORMAL) {
-                joint[0] = Arm.real_relative_pos.joint1;
-                joint[1] = Arm.real_relative_pos.joint2;
-                joint[2] = Arm.real_relative_pos.joint3;
-                joint[3] = Arm.real_relative_pos.joint4;
+                joint[0] = Arm.relative_pos[0];
+                joint[1] = Arm.relative_pos[1];
+                joint[2] = Arm.relative_pos[2];
+                joint[3] = Arm.relative_pos[3];
             }
             receive_rc();
             break;
         case interact_dep::robo_mode::XYZ:
             if (robo_arm.last_mode != interact_dep::robo_mode::XYZ) {
-                Arm.fkine();
-                remote_control.pos[0] = Arm.pos[0];
-                remote_control.pos[1] = Arm.pos[1];
-                remote_control.pos[2] = Arm.pos[2];
+                Arm.fkine(remote_control.pos);
             }
             receive_xyz(Arm);
             break;
         case interact_dep::robo_mode::RESET:
-            receive_reset(Arm);
+            receive_reset();
             break;
         case interact_dep::robo_mode::ACTIONS: {
-            bool is_next = isApproxEqual<float>(roboArm.real_relative_pos.joint1, interact.actions->joint1.data[interact.actions->now], 2);
-            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint2, interact.actions->joint2.data[interact.actions->now], 2));
-            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint3, interact.actions->joint3.data[interact.actions->now], 2));
-            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint4, interact.actions->joint4.data[interact.actions->now], 2));
-            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint5, interact.actions->joint5.data[interact.actions->now], 2));
-            is_next      = (is_next && isApproxEqual<float>(roboArm.real_relative_pos.joint6, interact.actions->joint6.data[interact.actions->now], 2));
+            bool is_next = isApproxEqual<float>(Arm.relative_pos[0], actions->joint1.data[actions->now], 2);
+            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[1], actions->joint2.data[actions->now], 2));
+            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[2], actions->joint3.data[actions->now], 2));
+            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[3], actions->joint4.data[actions->now], 2));
+            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[4], actions->joint5.data[actions->now], 2));
+            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[5], actions->joint6.data[actions->now], 2));
             interact.receive_actions(is_next);
             break;
         }

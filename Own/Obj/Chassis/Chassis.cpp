@@ -20,7 +20,7 @@ extern "C" {
 
 void Chassis::send_foc() {
     can->transmit(M3508::foc.TX_LOW_ID, base.left_front.motor.output(), base.right_front.motor.output(),
-               base.left_rear.motor.output(), base.right_rear.motor.output());
+               base.right_rear.motor.output(), base.left_rear.motor.output());
     //    MicroTime::us_delay(100);
     can->transmit(M3508::foc.TX_HIGH_ID, (int16_t)extend.left.motor.output(), (int16_t)extend.right.motor.output(), 0, 0);
 }

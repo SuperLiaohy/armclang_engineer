@@ -37,8 +37,6 @@ public:
         , position(pos_cfg)
         , speed(speed_cfg) {};
 
-    void init(float p, float i, float d, float maxI, float maxOut, float gain);
-
     float set_position(const float target) {
         return speed.update(position.update(target, m.feedback.total_position), m.feedback.data.speed);
     }

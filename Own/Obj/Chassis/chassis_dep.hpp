@@ -120,8 +120,8 @@ namespace chassis_dep {
     constexpr std::array<ChassisMotorCfg, 4> base_motor_default = {
         ChassisMotorCfg {1, Pid(15, 0, 4, 8000, 16000, 19.2)},
         ChassisMotorCfg {2, Pid(15, 0, 4, 8000, 16000, 19.2)},
-        ChassisMotorCfg {3, Pid(15, 0, 4, 8000, 16000, 19.2)},
         ChassisMotorCfg {4, Pid(15, 0, 4, 8000, 16000, 19.2)},
+        ChassisMotorCfg {3, Pid(15, 0, 4, 8000, 16000, 19.2)},
     };
     constexpr std::array<ChassisMotorCfg, 2> extend_motor_default = {
         ChassisMotorCfg {5, Pid(15, 0, 4, 8000, 16000, 19.2)},

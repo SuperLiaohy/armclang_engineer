@@ -119,3 +119,10 @@ void OS_BuzzerTask(void const *argument) {
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     BuzzerTask();
 }
+
+void OS_ArmTask(void const *argument) {
+    UNUSED(argument);
+    xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    ArmTask();
+
+}

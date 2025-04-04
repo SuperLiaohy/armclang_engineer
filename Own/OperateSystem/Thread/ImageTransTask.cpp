@@ -15,7 +15,7 @@ void ImageTransTask() {
         auto now = xTaskGetTickCount();
         //        interact.image_trans.set_map_back(1);
         if (interact.path == interact_dep::path::IMAGE_TRANSMIT) {
-            interact.image_trans.get_angle(roboArm.real_relative_pos);
+            interact.image_trans.get_angle(roboArm.relative_pos);
             interact.image_trans.transmit();
         }
         osDelayUntil(&now, 100);

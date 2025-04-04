@@ -289,13 +289,6 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\M2006.hpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\MyMath\MyMath.hpp \
-  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
@@ -748,5 +741,12 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
+  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\RemoteControl\RemoteControl.hpp \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
   ..\Core\Inc\tim.h ..\Own\Mod\RoundQueue\RoundQueue.hpp \
   ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Slope\Slope.hpp
