@@ -25,11 +25,11 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
     if (hfdcan == canPlus1.hcan) {
 			++a;
         canPlus1.receive();
-        roboArm.joint4.motor.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint3.motor.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint2.external.motor.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint2.internal.motor.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint1.motor.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint4.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint3.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint2.external.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint2.internal.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint1.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
 
 
         // if (canPlus1.rx_header.Identifier == LKMotor::foc.RX_ID + roboArm.joint4.feed_back.id) {
@@ -48,11 +48,11 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
             // roboArm.joint1.get_feedback(canPlus1.rx_data);
         // }
         // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.left.feed_back.id) {
-            roboArm.diff.left.motor.get_feedback(canPlus1.rx_header.Identifier - M2006::foc.RX_ID, canPlus1.rx_data);
+            roboArm.diff.left.get_feedback(canPlus1.rx_header.Identifier - M2006::foc.RX_ID, canPlus1.rx_data);
             xEventGroupSetBitsFromISR(osEventGroup, DIFF_LEFT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         // }
         // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.right.feed_back.id) {
-            roboArm.diff.right.motor.get_feedback(canPlus1.rx_header.Identifier - M2006::foc.RX_ID,canPlus1.rx_data);
+            roboArm.diff.right.get_feedback(canPlus1.rx_header.Identifier - M2006::foc.RX_ID,canPlus1.rx_data);
             xEventGroupSetBitsFromISR(osEventGroup, DIFF_RIGHT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         // }
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);

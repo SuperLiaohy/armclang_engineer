@@ -5,15 +5,15 @@
 #include "roboarm_dep.hpp"
 namespace roboarm_dep {
     void Differentiator::init() {
-        left.motor.clear();
-        right.motor.clear();
-        left.motor.total_position() = 0;
-        right.motor.total_position() = 0;
+        left.clear();
+        right.clear();
+        left.total_position() = 0;
+        right.total_position() = 0;
     }
 
     void Differentiator::update_relative_pos(float& pitch, float& roll) {
-        pitch = (left.motor.total_position() + right.motor.total_position()) / 2;
-        roll  = (left.motor.total_position() - right.motor.total_position()) / 2;
+        pitch = (left.total_position() + right.total_position()) / 2;
+        roll  = (left.total_position() - right.total_position()) / 2;
     }
 
     MDH MDH::inv() {

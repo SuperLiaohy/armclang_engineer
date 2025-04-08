@@ -19,10 +19,10 @@ extern "C" {
 #include "MicroTime/MicroTime.hpp"
 
 void Chassis::send_foc() {
-    can->transmit(M3508::foc.TX_LOW_ID, base.left_front.motor.output(), base.right_front.motor.output(),
-               base.right_rear.motor.output(), base.left_rear.motor.output());
+    can->transmit(M3508::foc.TX_LOW_ID, base.left_front.output(), base.right_front.output(),
+               base.right_rear.output(), base.left_rear.output());
     //    MicroTime::us_delay(100);
-    can->transmit(M3508::foc.TX_HIGH_ID, (int16_t)extend.left.motor.output(), (int16_t)extend.right.motor.output(), 0, 0);
+    can->transmit(M3508::foc.TX_HIGH_ID, (int16_t)extend.left.output(), (int16_t)extend.right.output(), 0, 0);
 }
 
 void Chassis::send_foc(int16_t left_front, int16_t right_front, int16_t left_rear, int16_t right_rear, int16_t left,
@@ -40,32 +40,32 @@ void Chassis::send_extend_foc(int16_t left, int16_t right) {
 }
 
 void Chassis::send_base_foc() {
-    send_base_foc(base.left_front.motor.output(),
-                  base.right_front.motor.output(),
-                  base.left_rear.motor.output(),
-                  base.right_rear.motor.output());
+    send_base_foc(base.left_front.output(),
+                  base.right_front.output(),
+                  base.left_rear.output(),
+                  base.right_rear.output());
 }
 
 void Chassis::UpdatePid() {
     // base.left_front.motor.set_speed(base.left_front.feed_back.data.speed);
-    base.left_front.motor.set_speed(wheelSpeed[chassis_dep::LeftFront]);
-    base.right_front.motor.set_speed(wheelSpeed[chassis_dep::RightFront]);
-    base.left_rear.motor.set_speed(wheelSpeed[chassis_dep::LeftRear]);
-    base.right_rear.motor.set_speed(wheelSpeed[chassis_dep::RightRear]);
+    base.left_front.set_speed(wheelSpeed[chassis_dep::LeftFront]);
+    base.right_front.set_speed(wheelSpeed[chassis_dep::RightFront]);
+    base.left_rear.set_speed(wheelSpeed[chassis_dep::LeftRear]);
+    base.right_rear.set_speed(wheelSpeed[chassis_dep::RightRear]);
 
-    extend.left.motor.set_speed(wheelSpeed[chassis_dep::ExtendLeft]);
-    extend.right.motor.set_speed(wheelSpeed[chassis_dep::ExtendRight]);
+    extend.left.set_speed(wheelSpeed[chassis_dep::ExtendLeft]);
+    extend.right.set_speed(wheelSpeed[chassis_dep::ExtendRight]);
 
 }
 
 void Chassis::UpdateMotor() {
     uint16_t id = can->read_header()->Identifier - M3508::foc.RX_ID;
-    if (base.left_front.motor.get_feedback(id, can->read())) { return; }
-    if (base.right_front.motor.get_feedback(id, can->read())) { return; }
-    if (base.left_rear.motor.get_feedback(id, can->read())) { return; }
-    if (base.right_rear.motor.get_feedback(id, can->read())) { return; }
-    if (extend.left.motor.get_feedback(id, can->read())) { return; }
-    if (extend.right.motor.get_feedback(id, can->read())) { return; }
+    if (base.left_front.get_feedback(id, can->read())) { return; }
+    if (base.right_front.get_feedback(id, can->read())) { return; }
+    if (base.left_rear.get_feedback(id, can->read())) { return; }
+    if (base.right_rear.get_feedback(id, can->read())) { return; }
+    if (extend.left.get_feedback(id, can->read())) { return; }
+    if (extend.right.get_feedback(id, can->read())) { return; }
 }
 
 void Chassis::update_slope() {

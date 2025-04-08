@@ -7,13 +7,12 @@
 #include "M3508.hpp"
 #include "M2006.hpp"
 #include "lkMotor.hpp"
-template<motor_control MOTOR>
-class Motor {
+template<motor_control motor>
+class Motor : public motor{
 public:
   template<typename... Args>
   explicit Motor(Args&&... args) : motor(std::forward<Args>(args)...) {};
 
-  MOTOR motor;
 };
 
 
