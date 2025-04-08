@@ -724,10 +724,15 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Chassis\Chassis.hpp \
   ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\Motor\Motor.hpp \
   ..\Own\App\Motor\Motor.tpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\M2006.hpp \
-  ..\Own\App\Motor\lkMotor.hpp ..\Own\Mod\MyMath\MyMath.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
-  ..\Own\Bsp\CDC\SuperCDC.hpp ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Own\App\Motor\Control\SpeedPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\Control\..\Motor.tpp ..\Own\App\Motor\Param\M3508.hpp \
+  ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M2006.hpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp \
+  ..\Own\App\Motor\Param\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
+  ..\Own\App\Motor\Control\lkControl.hpp ..\Own\Mod\MyMath\MyMath.hpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Obj\Interact\Interact_dep.hpp ..\Own\Bsp\CDC\SuperCDC.hpp \
+  ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \

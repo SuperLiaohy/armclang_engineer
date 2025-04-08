@@ -13,9 +13,6 @@ public:
   template<typename... Args>
   explicit Motor(Args&&... args) : motor(std::forward<Args>(args)...) {};
 
-  // template<typename... Args>
-  // explicit Motor(const Args&... args) : motor(args...) {};
-
   MOTOR motor;
 };
 

@@ -77,13 +77,13 @@ public:
         , rx_id(rx_id)
         , detect(1000) {}
     constexpr static float reduction_ratio = static_cast<float>(reduction_head) / reduction_src;
-    inline void get_feedback(const uint8_t* data);
+    void get_feedback(const uint8_t* data);
 private:
     Count rx_cnt{};
 };
 
 template<uint32_t precision_range, uint32_t reduction_head, uint32_t reduction_src>
-inline void default_motor<precision_range, reduction_head, reduction_src>::get_feedback(const uint8_t* data) {
+void default_motor<precision_range, reduction_head, reduction_src>::get_feedback(const uint8_t* data) {
     feedback.raw_data.position    = static_cast<int16_t>(((data[0] << 8) | data[1]));
     feedback.raw_data.speed       = static_cast<int16_t>((data[2] << 8) | data[3]);
     feedback.raw_data.current     = static_cast<int16_t>((data[4] << 8) | data[5]);

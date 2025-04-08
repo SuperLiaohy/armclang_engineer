@@ -891,7 +891,7 @@
             <File>
               <FileName>lkMotor.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\lkMotor.cpp</FilePath>
+              <FilePath>..\Own\App\Motor\Param\lkMotor.cpp</FilePath>
             </File>
           </Files>
         </Group>

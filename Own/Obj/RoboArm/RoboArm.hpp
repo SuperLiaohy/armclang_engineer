@@ -24,11 +24,11 @@ public:
             const Pid& left_speed_pid, uint32_t id6, const Pid& right_pos_pid, const Pid& right_speed_pid,
             roboarm_dep::offset&& offset)
         : diff(gain, id5, left_pos_pid, left_speed_pid, id6, right_pos_pid, right_speed_pid)
-        , joint1(id1, range1, ratio1, canPlus)
-        , joint2 {Motor<LKControl<LKMotor>>(id2_internal, range2_internal, ratio2_internal, canPlus),
-                  Motor<LKControl<LKMotor>>(id2_external, range2_external, ratio2_external, canPlus)}
-        , joint3(id3, range3, ratio3, canPlus)
-        , joint4(id4, range4, ratio4, canPlus)
+        , joint1(canPlus, id1, range1, ratio1)
+        , joint2 {Motor<LKMotorSingle>(canPlus, id2_internal, range2_internal, ratio2_internal),
+                  Motor<LKMotorSingle>(canPlus, id2_external, range2_external, ratio2_external)}
+        , joint3(canPlus, id3, range3, ratio3)
+        , joint4(canPlus, id4, range4, ratio4)
         , offset {offset} {};
 
     void enable();
@@ -50,14 +50,14 @@ public:
 
     roboarm_dep::Differentiator diff;
 
-    Motor<LKControl<LKMotor>> joint1;
+    Motor<LKMotorSingle> joint1;
     //    Motor<lkMotor> joint2;
     struct {
-        Motor<LKControl<LKMotor>> internal;
-        Motor<LKControl<LKMotor>> external;
+        Motor<LKMotorSingle> internal;
+        Motor<LKMotorSingle> external;
     } joint2;
-    Motor<LKControl<LKMotor>> joint3;
-    Motor<LKControl<LKMotor>> joint4;
+    Motor<LKMotorSingle> joint3;
+    Motor<LKMotorSingle> joint4;
 
     roboarm_dep::offset offset {};
     roboarm_dep::target target {};

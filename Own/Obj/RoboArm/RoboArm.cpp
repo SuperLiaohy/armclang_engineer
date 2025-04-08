@@ -30,7 +30,7 @@ void RoboArm::enable() {
 
     auto clear_error = [](auto& motor) {
         for (uint32_t i = 0; i < MaxTimeOut; i++) {
-            if (motor.m.clear_flag) { break; }
+            if (motor.clear_flag) { break; }
             motor.clear_error();
             osDelay(1);
         }
@@ -43,7 +43,7 @@ void RoboArm::enable() {
 
     auto close = [](auto& motor) {
         for (uint32_t i = 0; i < MaxTimeOut; i++) {
-            if (motor.m.clear_flag) { break; }
+            if (motor.clear_flag) { break; }
             motor.clear_error();
             osDelay(1);
         }
@@ -56,7 +56,7 @@ void RoboArm::enable() {
 
     auto open = [](auto& motor) {
         for (uint32_t i = 0; i < MaxTimeOut; i++) {
-            if (motor.m.start_flag) { break; }
+            if (motor.start_flag) { break; }
             motor.enable();
             osDelay(1);
         }
@@ -102,34 +102,34 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     target.joint6.angle = 0;
     target.joint5.angle = 0;
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
-        if (joint4.motor.m.offset_flag) {
+        if (joint4.motor.offset_flag) {
             joint[3] = 0;
-            if (joint4.motor.m.feedback.total_position < 0) { offset.joint4 -= 360; }
+            if (joint4.motor.feedback.total_position < 0) { offset.joint4 -= 360; }
             break;
         }
         joint4.motor.read_totalposition();
         osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
-        if (joint3.motor.m.offset_flag) {
+        if (joint3.motor.offset_flag) {
             joint[2] = 135;
-            if (joint3.motor.m.feedback.total_position < 0) { offset.joint3 -= 360; }
+            if (joint3.motor.feedback.total_position < 0) { offset.joint3 -= 360; }
             break;
         }
         joint3.motor.read_totalposition();
         osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
-        if (joint2.internal.motor.m.offset_flag) {
+        if (joint2.internal.motor.offset_flag) {
             joint[1] = -45;
-            if (joint2.internal.motor.m.feedback.total_position < 0) { offset.joint2.internal -= 360; }
+            if (joint2.internal.motor.feedback.total_position < 0) { offset.joint2.internal -= 360; }
             break;
         }
         joint2.internal.motor.read_totalposition();
         osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
-        if (joint2.external.motor.m.offset_flag) {
+        if (joint2.external.motor.offset_flag) {
             joint[1] = -45;
             // if (joint2.external.motor.m.feedback.total_position < 0) { offset.joint2.external -= 360; }
             break;
@@ -138,9 +138,9 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
         osDelay(1);
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
-        if (joint1.motor.m.offset_flag) {
+        if (joint1.motor.offset_flag) {
             joint[0] = 0;
-            if (joint1.motor.m.feedback.total_position < 0) { offset.joint1 -= 360; }
+            if (joint1.motor.feedback.total_position < 0) { offset.joint1 -= 360; }
             target.joint1.angle = offset.joint1 * 100;
             break;
         }
@@ -159,13 +159,13 @@ void RoboArm::update_relative_pos() {
     //
     // relative_pos[3] = joint4.motor.m.feedback.total_position - offset.joint4;
 
-     relative_pos[0] = joint1.motor.m.total_position - offset.joint1;
+     relative_pos[0] = joint1.motor.total_position - offset.joint1;
 
-     relative_pos[1] = -(joint2.external.motor.m.total_position - offset.joint2.external);
+     relative_pos[1] = -(joint2.external.motor.total_position - offset.joint2.external);
 
-     relative_pos[2] = -(joint3.motor.m.total_position - offset.joint3);
+     relative_pos[2] = -(joint3.motor.total_position - offset.joint3);
 
-     relative_pos[3] = joint4.motor.m.total_position - offset.joint4;
+     relative_pos[3] = joint4.motor.total_position - offset.joint4;
 
     diff.update_relative_pos(relative_pos[4], relative_pos[5]);
 }

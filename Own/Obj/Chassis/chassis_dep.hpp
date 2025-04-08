@@ -17,25 +17,25 @@ namespace chassis_dep {
     };
 
     struct base_motor {
-        Motor<SpeedPidControl<M3508>> left_front;
-        Motor<SpeedPidControl<M3508>> right_front;
-        Motor<SpeedPidControl<M3508>> left_rear;
-        Motor<SpeedPidControl<M3508>> right_rear;
+        Motor<M3508Speed> left_front;
+        Motor<M3508Speed> right_front;
+        Motor<M3508Speed> left_rear;
+        Motor<M3508Speed> right_rear;
 
         explicit base_motor(const std::array<ChassisMotorCfg, 4>& cfg)
-            : left_front(cfg[0].id, cfg[0].speed)
-            , right_front(cfg[1].id, cfg[1].speed)
-            , left_rear(cfg[2].id, cfg[1].speed)
-            , right_rear(cfg[3].id, cfg[1].speed) {}
+            : left_front(cfg[0].speed, cfg[0].id)
+            , right_front(cfg[1].speed, cfg[1].id)
+            , left_rear(cfg[1].speed, cfg[2].id)
+            , right_rear(cfg[1].speed, cfg[3].id) {}
     };
 
     struct extend_motor {
-        Motor<SpeedPidControl<M3508>> left;
-        Motor<SpeedPidControl<M3508>> right;
+        Motor<M3508Speed> left;
+        Motor<M3508Speed> right;
 
         explicit extend_motor(const std::array<ChassisMotorCfg, 2>& cfg)
-            : left(cfg[0].id, cfg[0].speed)
-            , right(cfg[1].id, cfg[1].speed) {}
+            : left(cfg[0].speed, cfg[0].id)
+            , right(cfg[1].speed, cfg[1].id) {}
     };
 
     enum mode {

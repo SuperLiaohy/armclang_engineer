@@ -7255,10 +7255,15 @@ I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x
 I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
 I (..\Own\App\Motor\Motor.hpp\.\Own\App\Motor\Motor.tpp)(0x00000000)
 I (..\Own\Mod\Detect\Detect.hpp\.\Own\Mod\Detect\DetectManager.hpp)(0x00000000)
-I (..\Own\App\Motor\M3508.hppp.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppp.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppt.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x66FB75A2)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x66FB75A2)
 I (..\Core\Inc\FreeRTOSConfig.h)(0x678B5297)
@@ -7493,8 +7498,8 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6569B012)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h)(0x64F9642C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6569B012)
 F (..\Own\App\PC\PC.cpp)(0x67E280F9)(-xc++ -std=gnu++17 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O0 -ffunction-sections -w -I ../Core/Inc -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Own/App -I ../Own/App/Imu/BMI088/inc -I ../Own/Bsp -I ../Own/Mod -I ../Own/Obj -I ../Own/OperateSystem -std=gnu++20-I./RTE/_armclang_engineer-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Include-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/Keil_Pack/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Keil_Pack/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32H723xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H723xx-o armclang_engineer/pc.o -MD)
-F (..\Own\App\Motor\lkMotor.cpp)(0x67EFD985)(-xc++ -std=gnu++17 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O0 -ffunction-sections -w -I ../Core/Inc -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Own/App -I ../Own/App/Imu/BMI088/inc -I ../Own/Bsp -I ../Own/Mod -I ../Own/Obj -I ../Own/OperateSystem -std=gnu++20-I./RTE/_armclang_engineer-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Include-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/Keil_Pack/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Keil_Pack/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32H723xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H723xx-o armclang_engineer/lkmotor.o -MD)
-I (..\Own\App\Motor\Motor.hppp.\Own\App\Motor\Motor.tpp)(0x00000000)
+F (..\Own\App\Motor\Param\lkMotor.cpp)(0x67F51A84)(-xc++ -std=gnu++17 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O0 -ffunction-sections -w -I ../Core/Inc -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Own/App -I ../Own/App/Imu/BMI088/inc -I ../Own/Bsp -I ../Own/Mod -I ../Own/Obj -I ../Own/OperateSystem -std=gnu++20-I./RTE/_armclang_engineer-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Include-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/Keil_Pack/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Keil_Pack/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32H723xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H723xx-o armclang_engineer/lkmotor.o -MD)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\Mod\Detect\Detect.hpp)(0x67D44D7A)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h)(0x64F9642C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config)(0x6569B00C)
@@ -7737,9 +7742,7 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppl.\Core\Inc\fdcan.hp.\Core\Inc\main.h)(0x00000000)
 I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
 F (..\Own\Bsp\CAN\SuperCan.cpp)(0x67CBF9B2)(-xc++ -std=gnu++17 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O0 -ffunction-sections -w -I ../Core/Inc -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Own/App -I ../Own/App/Imu/BMI088/inc -I ../Own/Bsp -I ../Own/Mod -I ../Own/Obj -I ../Own/OperateSystem -std=gnu++20-I./RTE/_armclang_engineer-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Include-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/Keil_Pack/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Keil_Pack/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32H723xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H723xx-o armclang_engineer/supercan.o -MD)
 I (..\Own\Bsp\CAN\SuperCan.hpp)(0x67CC0DC8)
@@ -9167,9 +9170,14 @@ I (..\Own\Mod\Detect\DetectManager.hpp)(0x67D44D7A)
 I (..\Own\Mod\CustomList\CustomList.hpp)(0x67BF12BE)
 I (..\Own\Mod\CustomList\CustomList.tpp)(0x67E280F9)
 I (..\Own\Mod\Count\CountManager.hppt.\Own\App\Motor\M3508.hpp)(0x00000000)
-I (..\Own\Mod\Pid\Pid.hppM.\Own\App\Motor\M2006.hpp)(0x00000000)
-I (..\Own\App\Motor\lkMotor.hpp\.\Own\Bsp\CAN\SuperCan.hpp)(0x00000000)
-I (..\Core\Inc\fdcan.hM.\Core\Inc\main.hp.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppM.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array)(0x6569B00E)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h)(0x6569AFFE)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h)(0x6569AFFE)
@@ -9889,10 +9897,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -10853,10 +10866,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -11620,10 +11638,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -14786,10 +14809,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -15538,10 +15566,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -16056,8 +16089,8 @@ I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x
 I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
 I (..\Own\Obj\RoboArm\RoboArm.hpp5.\Own\App\PC\PC.hpp)(0x00000000)
 I (..\Own\App\SubBoard\SubBoard.hpp)(0x67C9BB25)
-F (..\Own\Obj\RoboArm\RoboArm.cpp)(0x67F0C8BB)(-xc++ -std=gnu++17 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O0 -ffunction-sections -w -I ../Core/Inc -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Own/App -I ../Own/App/Imu/BMI088/inc -I ../Own/Bsp -I ../Own/Mod -I ../Own/Obj -I ../Own/OperateSystem -std=gnu++20-I./RTE/_armclang_engineer-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Include-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/Keil_Pack/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Keil_Pack/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32H723xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H723xx-o armclang_engineer/roboarm.o -MD)
-I (..\Own\Obj\RoboArm\RoboArm.hpp)(0x67F000C2)
+F (..\Own\Obj\RoboArm\RoboArm.cpp)(0x67F52160)(-xc++ -std=gnu++17 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O0 -ffunction-sections -w -I ../Core/Inc -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Own/App -I ../Own/App/Imu/BMI088/inc -I ../Own/Bsp -I ../Own/Mod -I ../Own/Obj -I ../Own/OperateSystem -std=gnu++20-I./RTE/_armclang_engineer-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Include-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/Keil_Pack/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Keil_Pack/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32H723xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H723xx-o armclang_engineer/roboarm.o -MD)
+I (..\Own\Obj\RoboArm\RoboArm.hpp)(0x67F52115)
 I (..\Own\Mod\Matrix\Matrix.hpp)(0x67BF12BE)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts)(0x64F9642C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert)(0x6569B00A)
@@ -16330,9 +16363,14 @@ I (..\Own\Mod\Detect\DetectManager.hpp)(0x67D44D7A)
 I (..\Own\Mod\CustomList\CustomList.hpp)(0x67BF12BE)
 I (..\Own\Mod\CustomList\CustomList.tpp)(0x67E280F9)
 I (..\Own\Mod\Count\CountManager.hppt.\Own\App\Motor\M3508.hpp)(0x00000000)
-I (..\Own\Mod\Pid\Pid.hppM.\Own\App\Motor\M2006.hpp)(0x00000000)
-I (..\Own\App\Motor\lkMotor.hpp\.\Own\Bsp\CAN\SuperCan.hpp)(0x00000000)
-I (..\Core\Inc\fdcan.hM.\Core\Inc\main.hp.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppM.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x66FB75A2)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x66FB75A2)
 I (..\Core\Inc\FreeRTOSConfig.h)(0x678B5297)
@@ -16800,7 +16838,7 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h)(0x64F
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h)(0x64F96428)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h)(0x6569B00C)
 I (..\Own\Obj\Interact\Interact.hppl.\Own\Obj\Chassis\Chassis.hpp)(0x00000000)
-I (..\Own\Obj\Chassis\chassis_dep.hpp)(0x67EFDD3B)
+I (..\Own\Obj\Chassis\chassis_dep.hpp)(0x67F51A1D)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -17064,10 +17102,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -17583,7 +17626,7 @@ I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
 I (..\Own\Obj\RoboArm\RoboArm.hpp5.\Own\App\PC\PC.hpp)(0x00000000)
 I (..\Own\App\SubBoard\SubBoard.hpp)(0x67C9BB25)
 F (..\Own\Obj\RoboArm\roboarm_dep.cpp)(0x67EF9ABF)(-xc++ -std=gnu++17 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O0 -ffunction-sections -w -I ../Core/Inc -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Own/App -I ../Own/App/Imu/BMI088/inc -I ../Own/Bsp -I ../Own/Mod -I ../Own/Obj -I ../Own/OperateSystem -std=gnu++20-I./RTE/_armclang_engineer-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/Include-ID:/Keil_Pack/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/Keil_Pack/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Keil_Pack/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32H723xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H723xx-o armclang_engineer/roboarm_dep.o -MD)
-I (..\Own\Obj\RoboArm\roboarm_dep.hpp)(0x67F010F7)
+I (..\Own\Obj\RoboArm\roboarm_dep.hpp)(0x67F50D94)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\concepts)(0x64F9642C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert)(0x6569B00A)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config)(0x6569B00C)
@@ -17855,9 +17898,14 @@ I (..\Own\Mod\Detect\DetectManager.hpp)(0x67D44D7A)
 I (..\Own\Mod\CustomList\CustomList.hpp)(0x67BF12BE)
 I (..\Own\Mod\CustomList\CustomList.tpp)(0x67E280F9)
 I (..\Own\Mod\Count\CountManager.hppt.\Own\App\Motor\M3508.hpp)(0x00000000)
-I (..\Own\Mod\Pid\Pid.hppM.\Own\App\Motor\M2006.hpp)(0x00000000)
-I (..\Own\App\Motor\lkMotor.hpp\.\Own\Bsp\CAN\SuperCan.hpp)(0x00000000)
-I (..\Core\Inc\fdcan.hM.\Core\Inc\main.hp.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppM.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x66FB75A2)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x66FB75A2)
 I (..\Core\Inc\FreeRTOSConfig.h)(0x678B5297)
@@ -18609,10 +18657,15 @@ I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x
 I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
 I (..\Own\App\Motor\Motor.hpp\.\Own\App\Motor\Motor.tpp)(0x00000000)
 I (..\Own\Mod\Detect\Detect.hpp\.\Own\Mod\Detect\DetectManager.hpp)(0x00000000)
-I (..\Own\App\Motor\M3508.hppp.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppp.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppt.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x66FB75A2)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x66FB75A2)
 I (..\Core\Inc\FreeRTOSConfig.h)(0x678B5297)
@@ -19387,9 +19440,14 @@ I (..\Own\Mod\CustomList\CustomList.hpp)(0x67BF12BE)
 I (..\Own\Mod\CustomList\CustomList.tpp)(0x67E280F9)
 I (..\Own\App\Motor\Motor.tppo.\Own\Mod\Count\Count.hpp)(0x00000000)
 I (..\Own\Mod\Count\CountManager.hppM.\Own\App\Motor\M3508.hpp)(0x00000000)
-I (..\Own\Mod\Pid\Pid.hppM.\Own\App\Motor\M2006.hpp)(0x00000000)
-I (..\Own\App\Motor\lkMotor.hpp\.\Own\Bsp\CAN\SuperCan.hpp)(0x00000000)
-I (..\Core\Inc\fdcan.hM.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppM.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -20373,10 +20431,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -21618,10 +21681,15 @@ I (..\Own\Mod\Key\Key.hppn.\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.h)(0x00000
 I (..\Own\Obj\Interact\Interact.hpp\.\Own\Obj\Chassis\Chassis.hpp)(0x00000000)
 I (..\Own\Obj\Chassis\chassis_dep.hpp\.\Own\App\Motor\Motor.hpp)(0x00000000)
 I (..\Own\App\Motor\Motor.tpp_.\Own\App\Motor\M3508.hpp)(0x00000000)
-I (..\Own\Mod\Pid\Pid.hpp..\Own\App\Motor\M2006.hpp)(0x00000000)
-I (..\Own\App\Motor\lkMotor.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
-I (..\Own\Mod\Slope\Slope.hppp.\Own\Obj\Interact\Interact_dep.hpp)(0x00000000)
-I (..\Own\Bsp\CDC\SuperCDC.hpp..\USB_DEVICE\App\usbd_cdc_if.h)(0x00000000)
+I (..\Own\App\Motor\Control\SpeedPidControl.hpp3.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp..\Own\Mod\Slope\Slope.hpp)(0x00000000)
+I (..\Own\Obj\Interact\Interact_dep.hpp\.\Own\Bsp\CDC\SuperCDC.hpp)(0x00000000)
+I (..\USB_DEVICE\App\usbd_cdc_if.h)(0x678B529A)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x66FB7633)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x66FB7633)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h)(0x66FB7633)
@@ -22877,10 +22945,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp..\Own\Obj\RoboArm\RoboArm.hpp)(0x00000000)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp\.\Own\Obj\RoboArm\RoboArm.hpp)(0x00000000)
 I (..\Own\Obj\RoboArm\roboarm_dep.hpp\.\Own\Mod\Matrix\Matrix.hpp)(0x00000000)
 I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h)(0x64E2E2DE)
 I (D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h)(0x64E2E2DE)
@@ -23361,7 +23434,7 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h)(0x64F
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h)(0x64F96428)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h)(0x6569B00C)
 I (..\Own\Obj\Interact\Interact.hppl.\Own\Obj\Chassis\Chassis.hpp)(0x00000000)
-I (..\Own\Obj\Chassis\chassis_dep.hpp)(0x67EFDD3B)
+I (..\Own\Obj\Chassis\chassis_dep.hpp)(0x67F51A1D)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -24095,11 +24168,16 @@ I (..\Own\Mod\Key\Key.hppn.\Own\OperateSystem\Thread\CppTask.hpp)(0x00000000)
 I (..\Own\Obj\Interact\Interact.hppr.\Own\Obj\Chassis\Chassis.hpp)(0x00000000)
 I (..\Own\Obj\Chassis\chassis_dep.hpp\.\Own\App\Motor\Motor.hpp)(0x00000000)
 I (..\Own\App\Motor\Motor.tpp_.\Own\App\Motor\M3508.hpp)(0x00000000)
-I (..\Own\Mod\Pid\Pid.hpp..\Own\App\Motor\M2006.hpp)(0x00000000)
-I (..\Own\App\Motor\lkMotor.hpp\.\Own\Bsp\CAN\SuperCan.hpp)(0x00000000)
-I (..\Core\Inc\fdcan.hM.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
-I (..\Own\Mod\Slope\Slope.hppM.\Own\Obj\Interact\Interact_dep.hpp)(0x00000000)
-I (..\Own\Bsp\CDC\SuperCDC.hpp..\USB_DEVICE\App\usbd_cdc_if.h)(0x00000000)
+I (..\Own\App\Motor\Control\SpeedPidControl.hpp3.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp\.\Own\Mod\Slope\Slope.hpp)(0x00000000)
+I (..\Own\Obj\Interact\Interact_dep.hpp\.\Own\Bsp\CDC\SuperCDC.hpp)(0x00000000)
+I (..\USB_DEVICE\App\usbd_cdc_if.h)(0x678B529A)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x66FB7633)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x66FB7633)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h)(0x66FB7633)
@@ -24852,9 +24930,14 @@ I (..\Own\Mod\CustomList\CustomList.tpp)(0x67E280F9)
 I (..\Own\Obj\Chassis\Chassis.hpps.\Own\Obj\Chassis\chassis_dep.hpp)(0x00000000)
 I (..\Own\Mod\Detect\Detect.hppp.\Own\Mod\Detect\DetectManager.hpp)(0x00000000)
 I (..\Own\App\Motor\Motor.hppp.\Own\App\Motor\Motor.tpp)(0x00000000)
-I (..\Own\App\Motor\M3508.hppp.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppp.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppo.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -25631,9 +25714,14 @@ I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h)(0x66FB7633
 I (..\Own\Obj\Chassis\Chassis.hppv.\Own\Obj\Chassis\chassis_dep.hpp)(0x00000000)
 I (..\Own\Mod\Detect\Detect.hppp.\Own\Mod\Detect\DetectManager.hpp)(0x00000000)
 I (..\Own\App\Motor\Motor.hppp.\Own\App\Motor\Motor.tpp)(0x00000000)
-I (..\Own\App\Motor\M3508.hppp.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppp.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppo.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -25934,10 +26022,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -26698,10 +26791,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -27463,10 +27561,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -28227,10 +28330,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -28991,10 +29099,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)
@@ -30696,10 +30809,15 @@ I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\regular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h)(0x6569B00C)
 I (D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h)(0x6569B00C)
-I (..\Own\App\Motor\M3508.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
-I (..\Own\App\Motor\M2006.hppc.\Own\App\Motor\lkMotor.hpp)(0x00000000)
-I (..\Own\Bsp\CAN\SuperCan.hpp..\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
-I (..\Own\Mod\MyMath\MyMath.hpp)(0x67EFDBF8)
+I (..\Own\App\Motor\M3508.hpp)(0x67F519A6)
+I (..\Own\App\Motor\Control\SpeedPidControl.hppc.\Own\Mod\Pid\Pid.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\..\Motor.tppr.\Own\App\Motor\Param\M3508.hpp)(0x00000000)
+I (..\Own\App\Motor\Param\..\Motor.tppp.\Own\App\Motor\M2006.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\PosPidControl.hpp)(0x67F51B75)
+I (..\Own\App\Motor\Param\M2006.hppo.\Own\App\Motor\lkMotor.hpp)(0x00000000)
+I (..\Own\App\Motor\Control\lkControl.hpp\.\Own\Mod\MyMath\MyMath.hpp)(0x00000000)
+I (..\Own\Bsp\CAN\SuperCan.hppC.\Core\Inc\fdcan.ho.\Core\Inc\main.h)(0x00000000)
+I (..\Own\App\Motor\Param\lkMotor.hpp)(0x67F51B75)
 I (..\Own\App\RemoteControl\RemoteControl.hpp)(0x67E280F9)
 I (..\Own\App\RemoteControl\remote_ctrl_dep.hpp)(0x67BF187F)
 I (..\Own\Bsp\Uart\SuperUart.hppt.\Core\Inc\usart.h)(0x00000000)

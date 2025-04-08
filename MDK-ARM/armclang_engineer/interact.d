@@ -243,10 +243,15 @@ armclang_engineer/interact.o: ..\Own\Obj\Interact\Interact.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
-  ..\Own\App\Motor\M3508.hpp ..\Own\Mod\Pid\Pid.hpp \
-  ..\Own\App\Motor\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
+  ..\Own\App\Motor\M3508.hpp \
+  ..\Own\App\Motor\Control\SpeedPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\Control\..\Motor.tpp ..\Own\App\Motor\Param\M3508.hpp \
+  ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M2006.hpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp \
+  ..\Own\App\Motor\Param\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
+  ..\Own\App\Motor\Control\lkControl.hpp ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
-  ..\Own\Mod\MyMath\MyMath.hpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \

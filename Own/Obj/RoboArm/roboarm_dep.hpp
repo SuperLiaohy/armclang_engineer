@@ -6,7 +6,6 @@
 #include "Matrix/Matrix.hpp"
 #include "Motor/Motor.hpp"
 #include "MyMath/MyMath.hpp"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -120,15 +119,15 @@ namespace roboarm_dep {
         float lAngle     = 0;
         float rAngle     = 0;
         float gain;
-        Motor<PosPidControl<M2006>> left;
-        Motor<PosPidControl<M2006>> right;
+        Motor<M2006Pos> left;
+        Motor<M2006Pos> right;
 
         Differentiator(float gain,
                        uint32_t left_id, const Pid& left_pos_pid, const Pid& left_speed_pid,
                        uint32_t right_id, const Pid& right_pos_pid, const Pid& right_speed_pid)
             : gain(gain)
-            , left(left_id, left_pos_pid, left_speed_pid)
-            , right(right_id, right_pos_pid, right_speed_pid) {};
+            , left(left_pos_pid, left_speed_pid, left_id)
+            , right(right_pos_pid, right_speed_pid, right_id) {};
 
         void init();
 

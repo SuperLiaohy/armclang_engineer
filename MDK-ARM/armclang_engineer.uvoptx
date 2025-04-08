@@ -1406,7 +1406,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Own\App\Motor\lkMotor.cpp</PathWithFileName>
+      <PathWithFileName>..\Own\App\Motor\Param\lkMotor.cpp</PathWithFileName>
       <FilenameWithoutPath>lkMotor.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

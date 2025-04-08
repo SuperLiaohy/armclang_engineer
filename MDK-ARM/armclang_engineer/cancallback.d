@@ -286,9 +286,14 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\CustomList.tpp ..\Own\Mod\Count\Count.hpp \
   ..\Own\Mod\Count\CountManager.hpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\Motor\M2006.hpp \
-  ..\Own\App\Motor\lkMotor.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
-  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h ..\Own\Mod\MyMath\MyMath.hpp \
+  ..\Own\App\Motor\Control\SpeedPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\Control\..\Motor.tpp ..\Own\App\Motor\Param\M3508.hpp \
+  ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M2006.hpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp \
+  ..\Own\App\Motor\Param\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
+  ..\Own\App\Motor\Control\lkControl.hpp ..\Own\Mod\MyMath\MyMath.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
+  ..\Own\App\Motor\Param\lkMotor.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \

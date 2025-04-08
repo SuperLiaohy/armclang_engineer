@@ -1,5 +1,5 @@
-armclang_engineer/lkmotor.o: ..\Own\App\Motor\lkMotor.cpp \
-  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\Motor.tpp \
+armclang_engineer/lkmotor.o: ..\Own\App\Motor\Param\lkMotor.cpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\App\Motor\Param\..\Motor.tpp \
   ..\Own\Mod\Detect\Detect.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
@@ -242,7 +242,5 @@ armclang_engineer/lkmotor.o: ..\Own\App\Motor\lkMotor.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\semiregular.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\relation.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__concepts\totally_ordered.h \
-  ..\Own\App\Motor\M3508.hpp ..\Own\Mod\Pid\Pid.hpp \
-  ..\Own\App\Motor\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
   ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
   ..\Own\Mod\MyMath\MyMath.hpp
