@@ -23,6 +23,9 @@ SuperUart::SuperUart(UART_HandleTypeDef *_uart, const uint16_t bufferSize, const
 }
 
 SuperUart::~SuperUart() {
+    if (rx_buffer != nullptr) {
+        D1Heap.free(rx_buffer);
+    }
     if (tx_buffer != nullptr) {
         D1Heap.free(tx_buffer);
     }

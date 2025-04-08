@@ -17,15 +17,17 @@ public:
     M2006(const uint16_t rx_id)
         : default_motor(rx_id) {};
 
+    int32_t cnt;
+
     static constexpr FOC foc = {0x200, 0x200, 0x1FF};
-    [[nodiscard]] float dpos() const {
+    [[nodiscard]] float total_cnt() {
         float dPos = feedback.data.position - feedback.data.last_position;
         if (dPos > 180) {
-            dPos = dPos - 360;
+            ++cnt;
         } else if (dPos < -180) {
-            dPos = dPos + 360;
+            --cnt;
         }
-        return dPos / reduction_ratio;
+        return dPos;
     }
 };
 
@@ -38,7 +40,7 @@ public:
         , speed(speed_cfg) {};
 
     float set_position(const float target) {
-        return speed.update(position.update(target, m.feedback.total_position), m.feedback.data.speed);
+        return speed.update(position.update(target, m.feedback.total_position), m.feedback.data.speed/60.f*360);
     }
 
     void clear() {
@@ -48,11 +50,11 @@ public:
 
     [[nodiscard]] float& output() { return position.output; }
     [[nodiscard]] float& total_position() { return m.feedback.total_position; }
-    [[nodiscard]] float dpos() { return m.dpos(); }
 
     bool get_feedback(uint16_t id, uint8_t* data) {
         if (id == m.rx_id) {
             m.get_feedback(data);
+            m.total_cnt();
             return true;
         }
         return false;

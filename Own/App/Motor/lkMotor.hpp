@@ -92,8 +92,21 @@ public:
         while (err < -18000) {
             err += 36000;
         }
+        // position = m.feedback.total_position * 100 + err;
+        totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5 * speed, 2 * speed), position * m.reduction_ratio);
+    };
+
+    void set_position_near(float position, float speed = 100) {
+        ++tx_cnt;
+        float err = position - m.feedback.total_position * 100; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
+        while (err > 18000) {
+            err -= 36000;
+        }
+        while (err < -18000) {
+            err += 36000;
+        }
         position = m.feedback.total_position * 100 + err;
-        totalposition2Control(limited<float>(speed * my_abs(err) / 1000, 0, 2 * speed), position * m.reduction_ratio);
+        totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5 * speed, 2 * speed), position * m.reduction_ratio);
     };
 
     void read_totalposition();

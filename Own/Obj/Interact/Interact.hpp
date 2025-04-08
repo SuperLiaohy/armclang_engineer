@@ -12,7 +12,8 @@ class Interact {
 public:
     Interact(const uint8_t& head, const uint8_t& tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef* uart_im,
              UART_HandleTypeDef* uart_sub_board)
-        : kb {interact_dep::kb_state::RC_ENABLE}
+        : path(interact_dep::path::REMOTE_CTRL)
+        , kb {interact_dep::kb_state::RC_ENABLE}
         , robo_arm {interact_dep::robo_mode::NORMAL, interact_dep::robo_mode::NORMAL}
         , chassis {interact_dep::chassis_mode::ALL, interact_dep::chassis_mode::ALL}
         , remote_control(uart_rc)
@@ -22,8 +23,6 @@ public:
 
         };
 
-    std::array<float, 6> joint;
-
     RemoteControl remote_control;
 
     ImageTrans image_trans;
@@ -32,10 +31,8 @@ public:
 
     SubBoard sub_board;
 
-    interact_dep::Actions* actions;
-
     Key keyList[18];
-    KeyBoard key_board;
+    KeyBoard key_board {};
 
     interact_dep::path path;
     interact_dep::kb_state kb;
@@ -44,6 +41,8 @@ public:
         interact_dep::robo_mode mode;
         interact_dep::robo_mode last_mode;
     } robo_arm;
+    std::array<float, 6> joint {};
+    interact_dep::Actions* actions {};
 
     struct {
         interact_dep::chassis_mode mode;

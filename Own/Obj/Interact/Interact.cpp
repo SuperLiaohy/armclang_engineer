@@ -41,7 +41,7 @@ void Interact::receive_rc() {
 
     if (robo_arm.mode == robo_mode::NORMAL) {
         if (remote_control.rcInfo.left == 1 && remote_control.rcInfo.right == 1) {
-            joint[3] = limited<float>(joint[3] - addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max, limitation.joint4.min, limitation.joint4.max);
+            joint[3] = joint[3] - addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max;
             joint[2] = limited<float>(joint[2] - addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max, limitation.joint3.min, limitation.joint3.max);
             joint[1] = limited<float>(joint[1] + addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max, limitation.joint2.min, limitation.joint2.max);
             joint[0] = limited<float>(joint[0] - addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max, limitation.joint1.min, limitation.joint1.max);
