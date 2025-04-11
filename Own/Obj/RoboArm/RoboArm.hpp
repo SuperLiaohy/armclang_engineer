@@ -7,7 +7,6 @@
  * @Description: 机械臂类 瓴控和大疆的电机: (5010 8016 8016)三个关节  (4005 2006 2006)末端机构
  */
 #pragma once
-
 #include "roboarm_dep.hpp"
 #include <array>
 extern int32_t left_dPos;
@@ -21,9 +20,9 @@ public:
             uint32_t range2_internal, const float ratio2_internal, uint32_t id2_external, uint32_t range2_external,
             const float ratio2_external, uint32_t id3, uint32_t range3, const float ratio3, uint32_t id4,
             uint32_t range4, const float ratio4, float gain, uint32_t id5, const Pid& left_pos_pid,
-            const Pid& left_speed_pid, uint32_t id6, const Pid& right_pos_pid, const Pid& right_speed_pid,
+            const Pid& left_speed_pid, uint32_t id6, const Pid& right_pos_pid, const Pid& right_speed_pid,I2C_HandleTypeDef* hi2c,
             roboarm_dep::offset&& offset)
-        : diff(gain, id5, left_pos_pid, left_speed_pid, id6, right_pos_pid, right_speed_pid)
+        : diff(gain, id5, left_pos_pid, left_speed_pid, id6, right_pos_pid, right_speed_pid, hi2c)
         , joint1(canPlus, id1, range1, ratio1)
         , joint2 {Motor<LKMotorSingle>(canPlus, id2_internal, range2_internal, ratio2_internal),
                   Motor<LKMotorSingle>(canPlus, id2_external, range2_external, ratio2_external)}

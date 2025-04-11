@@ -7,6 +7,7 @@
 "armclang_engineer\bdma.o"
 "armclang_engineer\dma.o"
 "armclang_engineer\fdcan.o"
+"armclang_engineer\i2c.o"
 "armclang_engineer\memorymap.o"
 "armclang_engineer\octospi.o"
 "armclang_engineer\spi.o"

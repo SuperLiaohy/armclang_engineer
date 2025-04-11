@@ -278,7 +278,9 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\App\Motor\Control\lkControl.hpp ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
   ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\Mod\Matrix\Matrix.hpp \
+  ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\App\Fram\Fram.hpp \
+  ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
+  ..\Own\Mod\Matrix\Matrix.hpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \

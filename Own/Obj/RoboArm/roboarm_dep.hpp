@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include "Fram/Fram.hpp"
 #include "Matrix/Matrix.hpp"
 #include "Motor/Motor.hpp"
 #include "MyMath/MyMath.hpp"
@@ -69,10 +70,7 @@ namespace roboarm_dep {
                 {arm_cos_f32(theta), -arm_sin_f32(theta), 0},
                 {arm_sin_f32(theta) * arm_cos_f32(alpha), arm_cos_f32(theta) * arm_cos_f32(alpha), -arm_sin_f32(alpha)},
                 {arm_sin_f32(theta) * arm_sin_f32(alpha), arm_cos_f32(theta) * arm_sin_f32(alpha), arm_cos_f32(alpha)}};
-            trans = {
-                {a},
-                {-arm_sin_f32(alpha) * d},
-                {arm_cos_f32(alpha) * d}};
+            trans = {{a}, {-arm_sin_f32(alpha) * d}, {arm_cos_f32(alpha) * d}};
         }
 
         float a;
@@ -114,68 +112,54 @@ namespace roboarm_dep {
 
     class Differentiator {
     public:
-        float common     = 0;
-        float difference = 0;
-        float lAngle     = 0;
-        float rAngle     = 0;
         float gain;
         Motor<M2006Pos> left;
         Motor<M2006Pos> right;
 
-        Differentiator(float gain,
-                       uint32_t left_id, const Pid& left_pos_pid, const Pid& left_speed_pid,
-                       uint32_t right_id, const Pid& right_pos_pid, const Pid& right_speed_pid)
+        Differentiator(float gain, uint32_t left_id, const Pid& left_pos_pid, const Pid& left_speed_pid,
+                       uint32_t right_id, const Pid& right_pos_pid, const Pid& right_speed_pid, I2C_HandleTypeDef* hi2c)
             : gain(gain)
             , left(left_pos_pid, left_speed_pid, left_id)
-            , right(right_pos_pid, right_speed_pid, right_id) {};
+            , right(right_pos_pid, right_speed_pid, right_id)
+            , fram(hi2c) {};
 
         void init();
 
         void update_relative_pos(float& pitch, float& roll);
+
+        void read_fram();
+
+        void write_fram();
+
+    private:
+        Fram fram;
+        uint8_t index;
     };
 
     constexpr float err           = deg2rad(5);
     constexpr float A             = 340.0;
     constexpr float B             = 330.0;
     constexpr uint32_t MaxTimeOut = 3000;
-    constexpr float M2006Scale    = 8192.0 * 36;
 
-    template<typename T = int16_t>
-    consteval T joint_scale(float angle, float scr, float head) {
+    template<typename T = int16_t> consteval T joint_scale(float angle, float scr, float head) {
         return static_cast<T>(angle * head / scr);
     }
 
-    consteval float joint_scale(float angle, float scale) {
-        return static_cast<float>(angle * scale);
-    }
+    consteval float joint_scale(float angle, float scale) { return static_cast<float>(angle * scale); }
 
-    inline bool is_zero(float x) {
-        return fabsf(x) < 1e-6;
-    };
+    inline bool is_zero(float x) { return fabsf(x) < 1e-6; };
 
-    inline float arm_atan_f32(float y, float x) {
-        return atanf(y / x);
-    };
+    inline float arm_atan_f32(float y, float x) { return atanf(y / x); };
 
-    inline float arm_atan2_f32(float y, float x) {
-        return atan2f(y, x);
-    };
+    inline float arm_atan2_f32(float y, float x) { return atan2f(y, x); };
 
-    inline float arm_acos_f32(float x) {
-        return acosf(x);
-    };
+    inline float arm_acos_f32(float x) { return acosf(x); };
 
-    inline float arm_abs_f32(float x) {
-        return fabsf(x);
-    };
+    inline float arm_abs_f32(float x) { return fabsf(x); };
 
-    inline float arm_asin_f32(float x) {
-        return asinf(x);
-    };
+    inline float arm_asin_f32(float x) { return asinf(x); };
 
-    inline bool is_equal(float x, float y) {
-        return is_zero(x - y);
-    };
+    inline bool is_equal(float x, float y) { return is_zero(x - y); };
     constexpr struct {
         range joint1;
         range joint2;
@@ -183,12 +167,6 @@ namespace roboarm_dep {
         range joint4;
         range joint5;
         range joint6;
-    } limitation = {
-        {-45, 45},
-        {-45 , 45},
-        {-135, 135},
-        {-180, 179.9},
-        {-90 , 90},
-        {-90 , 90}};
+    } limitation = {{-45, 45}, {-45, 45}, {-135, 135}, {-180, 179.9}, {-90, 90}, {-90, 90}};
 
 } // namespace roboarm_dep

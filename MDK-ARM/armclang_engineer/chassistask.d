@@ -741,7 +741,9 @@ armclang_engineer/chassistask.o: \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
-  ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\Mod\Matrix\Matrix.hpp \
+  ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\App\Fram\Fram.hpp \
+  ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
+  ..\Own\Mod\Matrix\Matrix.hpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \

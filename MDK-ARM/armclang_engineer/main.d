@@ -61,9 +61,9 @@ armclang_engineer/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Core\Inc\adc.h ..\Core\Inc\bdma.h ..\Core\Inc\dma.h \
-  ..\Core\Inc\fdcan.h ..\Core\Inc\memorymap.h ..\Core\Inc\octospi.h \
-  ..\Core\Inc\spi.h ..\Core\Inc\tim.h ..\Core\Inc\usart.h \
-  ..\USB_DEVICE\App\usb_device.h \
+  ..\Core\Inc\fdcan.h ..\Core\Inc\i2c.h ..\Core\Inc\memorymap.h \
+  ..\Core\Inc\octospi.h ..\Core\Inc\spi.h ..\Core\Inc\tim.h \
+  ..\Core\Inc\usart.h ..\USB_DEVICE\App\usb_device.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
   ..\USB_DEVICE\Target\usbd_conf.h \
   D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
