@@ -131,7 +131,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.offset_flag) {
             joint[1] = -45;
-            // if (joint2.external.motor.m.feedback.total_position < 0) { offset.joint2.external -= 360; }
+//             if (joint2.external.motor.m.feedback.total_position < 0) { offset.joint2.external -= 360; }
             break;
         }
         joint2.external.read_totalposition();

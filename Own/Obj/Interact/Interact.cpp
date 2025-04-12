@@ -68,6 +68,7 @@ void Interact::receive_xyz(RoboArm& Arm) {
             joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
             joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
             joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
+            joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
         }
     }
 }

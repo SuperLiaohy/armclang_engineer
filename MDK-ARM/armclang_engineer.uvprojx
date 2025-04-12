@@ -949,6 +949,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\App\Motor\Param\lkMotor.cpp</FilePath>
             </File>
+            <File>
+              <FileName>Fram.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\Fram\Fram.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1052,6 +1057,11 @@
               <FileName>SuperIWDG.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Bsp\WDG\SuperIWDG.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SuperIIC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\Bsp\IIC\SuperIIC.cpp</FilePath>
             </File>
           </Files>
         </Group>

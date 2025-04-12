@@ -18,7 +18,7 @@ public:
     [[nodiscard]] float& output() { return this->position.output; }
 
     float set_position(const float target) {
-        return this->speed.update(this->position.update(target, this->feedback.total_position), this->feedback.data.speed/60.f*360);
+        return this->speed.update(this->position.update(target, this->feedback.total_position), this->feedback.data.speed);
     }
 
 protected:

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [armclang_engineer\armclang_engineer.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image armclang_engineer\armclang_engineer.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Fri Apr 11 20:48:58 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Sat Apr 12 16:01:47 2025
 <BR><P>
 <H3>Maximum Stack Usage =        872 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -3307,7 +3307,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.rodata..L__const.MX_FREERTOS_Init.os_thread_def_PC_Task)
 </UL>
 <P><STRONG><a name="[db]"></a>OS_RemoteCtrlTask</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, thread.o(.text.OS_RemoteCtrlTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 840<LI>Call Chain = OS_RemoteCtrlTask &rArr; RemoteCtrlTask() &rArr; Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<BR><BR>[Stack]<UL><LI>Max Depth = 856<LI>Call Chain = OS_RemoteCtrlTask &rArr; RemoteCtrlTask() &rArr; Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xEventGroupWaitBits
 <LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCtrlTask()
@@ -4292,7 +4292,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[26f]"></a>RemoteCtrlTask()</STRONG> (Thumb, 964 bytes, Stack size 40 bytes, remotectrltask.o(.text._Z14RemoteCtrlTaskv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 824<LI>Call Chain = RemoteCtrlTask() &rArr; Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<BR><BR>[Stack]<UL><LI>Max Depth = 840<LI>Call Chain = RemoteCtrlTask() &rArr; Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelayUntil
 <LI><a href="#[2e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadResume
@@ -4504,6 +4504,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = float limited&lang;float&rang;(float&&, float, float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid::update(float, float)
+<LI><a href="#[3d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_xyz(RoboArm&)
 <LI><a href="#[3d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_rc()
 <LI><a href="#[2fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKControl&lang;LKMotor&rang;::set_position_near(float, float)
 <LI><a href="#[2fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKControl&lang;LKMotor&rang;::set_position(float, float)
@@ -5227,7 +5228,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor&lang;LKMotorSingle&rang;::~Motor__sub_object()
 </UL>
 
-<P><STRONG><a name="[2f5]"></a>PosPidControl&lang;M2006&rang;::set_position(float)</STRONG> (Thumb, 68 bytes, Stack size 24 bytes, armtask.o(.text._ZN13PosPidControlI5M2006E12set_positionEf))
+<P><STRONG><a name="[2f5]"></a>PosPidControl&lang;M2006&rang;::set_position(float)</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, armtask.o(.text._ZN13PosPidControlI5M2006E12set_positionEf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = PosPidControl&lang;M2006&rang;::set_position(float) &rArr; Pid::update(float, float) &rArr; float limited&lang;float&rang;(float&&, float, float)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pid::update(float, float)
@@ -5658,12 +5659,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CountManager::unregister_item(Count*)
 <LI><a href="#[2ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CountManagerInstance()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::~SuperCan__sub_object()
-<LI><a href="#[343]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperUart::~SuperUart()
+<BR>[Called By]<UL><LI><a href="#[343]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperUart::~SuperUart()
 <LI><a href="#[390]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 720u, 1u&rang;::~default_motor__sub_object()
 <LI><a href="#[3c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKMotor::~LKMotor__sub_object()
 <LI><a href="#[37f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LKControl&lang;LKMotor&rang;::~LKControl__sub_object()
 <LI><a href="#[38c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_motor&lang;8192u, 3591u, 187u&rang;::~default_motor__sub_object()
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SuperCan::~SuperCan__sub_object()
 </UL>
 
 <P><STRONG><a name="[15a]"></a>Count::operator++()</STRONG> (Thumb, 16 bytes, Stack size 4 bytes, lkmotor.o(.text._ZN5CountppEv))
@@ -5736,8 +5737,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[346]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508Speed::M3508Speed__sub_object&lang;Pid const&, unsigned short const&&rang;(Pid const&, unsigned short const&)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[351]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::base_motor::base_motor__sub_object(std::__2::array&lang;chassis_dep::ChassisMotorCfg, 4u&rang; const&)
-<LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::extend_motor::extend_motor__sub_object(std::__2::array&lang;chassis_dep::ChassisMotorCfg, 2u&rang; const&)
+<BR>[Called By]<UL><LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::extend_motor::extend_motor__sub_object(std::__2::array&lang;chassis_dep::ChassisMotorCfg, 2u&rang; const&)
+<LI><a href="#[351]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::base_motor::base_motor__sub_object(std::__2::array&lang;chassis_dep::ChassisMotorCfg, 4u&rang; const&)
 </UL>
 
 <P><STRONG><a name="[355]"></a>Motor&lang;M3508Speed&rang;::~Motor__sub_object()</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, vari.o(.text._ZN5MotorI10M3508SpeedED2Ev))
@@ -6124,10 +6125,10 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
 <LI>Call Chain = Chassis::Chassis__sub_object(SuperCan*, std::__2::array&lang;slope_cfg, 4u&rang; const&, std::__2::array&lang;chassis_dep::ChassisMotorCfg, 4u&rang; const&, std::__2::array&lang;chassis_dep::ChassisMotorCfg, 2u&rang; const&) &rArr; chassis_dep::base_motor::base_motor__sub_object(std::__2::array&lang;chassis_dep::ChassisMotorCfg, 4u&rang; const&) &rArr; Motor&lang;M3508Speed&rang;::Motor__sub_object&lang;Pid const&, unsigned short const&&rang;(Pid const&, unsigned short const&) &rArr; M3508Speed::M3508Speed__sub_object&lang;Pid const&, unsigned short const&&rang;(Pid const&, unsigned short const&) &rArr; SpeedPidControl&lang;M3508&rang;::SpeedPidControl__sub_object&lang;unsigned short const&&rang;(Pid const&, unsigned short const&) &rArr; M3508::M3508__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 3591u, 187u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[351]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::base_motor::base_motor__sub_object(std::__2::array&lang;chassis_dep::ChassisMotorCfg, 4u&rang; const&)
-<LI><a href="#[3c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::key::key__sub_object()
+<BR>[Calls]<UL><LI><a href="#[3c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::key::key__sub_object()
 <LI><a href="#[359]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::move::move__sub_object(std::__2::array&lang;slope_cfg, 4u&rang; const&)
 <LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::extend_motor::extend_motor__sub_object(std::__2::array&lang;chassis_dep::ChassisMotorCfg, 2u&rang; const&)
+<LI><a href="#[351]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_dep::base_motor::base_motor__sub_object(std::__2::array&lang;chassis_dep::ChassisMotorCfg, 4u&rang; const&)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxx_global_var_init.8
 </UL>
@@ -6294,14 +6295,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CDC_ReceiveCallBack
 </UL>
 
-<P><STRONG><a name="[3d5]"></a>Interact::receive_xyz(RoboArm&)</STRONG> (Thumb, 340 bytes, Stack size 80 bytes, interact.o(.text._ZN8Interact11receive_xyzER7RoboArm))
-<BR><BR>[Stack]<UL><LI>Max Depth = 696<LI>Call Chain = Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<P><STRONG><a name="[3d5]"></a>Interact::receive_xyz(RoboArm&)</STRONG> (Thumb, 432 bytes, Stack size 96 bytes, interact.o(.text._ZN8Interact11receive_xyzER7RoboArm))
+<BR><BR>[Stack]<UL><LI>Max Depth = 712<LI>Call Chain = Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;float limited&lang;float&rang;(float&, float, float)
 <LI><a href="#[3cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&)
 <LI><a href="#[3cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std::__2::array&lang;float, 3u&rang;::operator[][abi:v180000](unsigned int)
 <LI><a href="#[3ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RoboArm::fkine(std::__2::array&lang;float, 3u&rang;&)
 <LI><a href="#[3c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std::__2::array&lang;float, 6u&rang;::operator[][abi:v180000](unsigned int)
+<LI><a href="#[3a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;float limited&lang;float&rang;(float&&, float, float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::update_roboArm(RoboArm&)
 </UL>
@@ -6333,7 +6335,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2e4]"></a>Interact::update_roboArm(RoboArm&)</STRONG> (Thumb, 706 bytes, Stack size 88 bytes, interact.o(.text._ZN8Interact14update_roboArmER7RoboArm))
-<BR><BR>[Stack]<UL><LI>Max Depth = 784<LI>Call Chain = Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
+<BR><BR>[Stack]<UL><LI>Max Depth = 800<LI>Call Chain = Interact::update_roboArm(RoboArm&) &rArr; Interact::receive_xyz(RoboArm&) &rArr; RoboArm::ikine(std::__2::array&lang;float, 3u&rang; const&) &rArr; slove_q2(float, float, float, float, float) &rArr; roboarm_dep::arm_atan2_f32(float, float) &rArr; __hardfp_atan2f &rArr; __set_errno
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interact::receive_actions(bool)
 <LI><a href="#[3d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bool isApproxEqual&lang;float&rang;(float, float, float)
@@ -6600,9 +6602,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[38d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Count::~Count__sub_object()
 </UL>
-<BR>[Address Reference Count : 3]<UL><LI> vari.o(.text.__cxx_global_var_init.5)
+<BR>[Address Reference Count : 3]<UL><LI> vari.o(.text.__cxx_global_var_init.7)
+<LI> vari.o(.text.__cxx_global_var_init.5)
 <LI> vari.o(.text.__cxx_global_var_init.6)
-<LI> vari.o(.text.__cxx_global_var_init.7)
 </UL>
 <P><STRONG><a name="[315]"></a>SuperDWT::get_tick()</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, starttask.o(.text._ZN8SuperDWT8get_tickEv))
 <BR><BR>[Called By]<UL><LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask()
@@ -6638,7 +6640,7 @@ Global Symbols
 <LI><a href="#[3cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;auto RoboArm::enable()::$_0::operator()&lang;Motor&lang;LKMotorSingle&rang;&rang;(Motor&lang;LKMotorSingle&rang;&) const
 </UL>
 
-<P><STRONG><a name="[2fa]"></a>LKControl&lang;LKMotor&rang;::set_position(float, float)</STRONG> (Thumb, 228 bytes, Stack size 40 bytes, armtask.o(.text._ZN9LKControlI7LKMotorE12set_positionEff))
+<P><STRONG><a name="[2fa]"></a>LKControl&lang;LKMotor&rang;::set_position(float, float)</STRONG> (Thumb, 232 bytes, Stack size 40 bytes, armtask.o(.text._ZN9LKControlI7LKMotorE12set_positionEff))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = LKControl&lang;LKMotor&rang;::set_position(float, float) &rArr; LKControl&lang;LKMotor&rang;::totalposition2Control(unsigned short, int) &rArr; SuperCan::transmit_pdata(unsigned int, unsigned char*) &rArr; HAL_FDCAN_AddMessageToTxFifoQ &rArr; FDCAN_CopyMessageToRAM
 </UL>
 <BR>[Calls]<UL><LI><a href="#[397]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;float my_abs&lang;float&rang;(float)
@@ -9207,7 +9209,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GLOBAL__sub_I_Vari.cpp
 </UL>
 
-<P><STRONG><a name="[2b9]"></a>__cxx_global_var_init.9</STRONG> (Thumb, 384 bytes, Stack size 400 bytes, vari.o(.text.__cxx_global_var_init.9))
+<P><STRONG><a name="[2b9]"></a>__cxx_global_var_init.9</STRONG> (Thumb, 380 bytes, Stack size 400 bytes, vari.o(.text.__cxx_global_var_init.9))
 <BR><BR>[Stack]<UL><LI>Max Depth = 864 + Unknown Stack Size
 <LI>Call Chain = __cxx_global_var_init.9 &rArr; RoboArm::RoboArm__sub_object(SuperCan*, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, unsigned int, unsigned int, float, float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, __I2C_HandleTypeDef*, roboarm_dep::offset&&) &rArr; roboarm_dep::Differentiator::Differentiator__sub_object(float, unsigned int, Pid const&, Pid const&, unsigned int, Pid const&, Pid const&, __I2C_HandleTypeDef*) &rArr; Motor&lang;M2006Pos&rang;::Motor__sub_object&lang;Pid const&, Pid const&, unsigned int&&rang;(Pid const&, Pid const&, unsigned int&) &rArr; M2006Pos::M2006Pos__sub_object&lang;Pid const&, Pid const&, unsigned int&&rang;(Pid const&, Pid const&, unsigned int&) &rArr; PosPidControl&lang;M2006&rang;::PosPidControl__sub_object&lang;unsigned int&&rang;(Pid const&, Pid const&, unsigned int&) &rArr; M2006::M2006__sub_object(unsigned short) &rArr; default_motor&lang;8192u, 720u, 1u&rang;::default_motor__sub_object(unsigned short) &rArr; Detect::Detect(unsigned int) &rArr; DetectManager::Register(Detect*) &rArr; CustomList&lang;Detect*&rang;::push_back(Detect* const&) &rArr; operator new(unsigned int) &rArr; CustomHeap::malloc(unsigned int) &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
 </UL>

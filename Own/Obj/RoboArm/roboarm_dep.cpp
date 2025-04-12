@@ -7,6 +7,7 @@ namespace roboarm_dep {
     void Differentiator::init() {
         left.clear();
         right.clear();
+//        read_fram();
         left.total_position()  = 0;
         right.total_position() = 0;
     }
