@@ -148,7 +148,9 @@ void StartTask() {
     /* 蜂鸣器初始化 */
     buzzer.Start();
     ada = SuperDWT::get_tick() - ada;
+	
     /* 闪烁灯初始化 (暂无)*/
+//		roboArm.diff.init();
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
     StartHeapCnt = uxTaskGetStackHighWaterMark(NULL);

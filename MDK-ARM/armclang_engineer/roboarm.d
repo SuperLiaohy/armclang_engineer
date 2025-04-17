@@ -1,7 +1,11 @@
 armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\RoboArm\roboarm_dep.hpp \
-  ..\Own\App\Fram\Fram.hpp ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
-  ..\Core\Inc\main.h ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
+  ..\Own\App\Fram\Fram.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\Bsp\IIC\SuperIIC.hpp \
+  ..\Core\Inc\i2c.h ..\Core\Inc\main.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
@@ -9,7 +13,6 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h723xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
   D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_version.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_compiler.h \
@@ -242,8 +245,6 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\float.h \
   D:\Keil_v5\ARM\ARMCLANG\include\float.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\limits.h \

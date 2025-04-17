@@ -25,8 +25,8 @@ namespace chassis_dep {
         explicit base_motor(const std::array<ChassisMotorCfg, 4>& cfg)
             : left_front(cfg[0].speed, cfg[0].id)
             , right_front(cfg[1].speed, cfg[1].id)
-            , left_rear(cfg[1].speed, cfg[2].id)
-            , right_rear(cfg[1].speed, cfg[3].id) {}
+            , left_rear(cfg[2].speed, cfg[2].id)
+            , right_rear(cfg[3].speed, cfg[3].id) {}
     };
 
     struct extend_motor {

@@ -34,6 +34,7 @@ public:
         HAL_I2C_Mem_Write(hi2c, dev_address, mem_address, mem_addr_size, data, size, timeout);
     };
     void mem_block_read_bytes(uint16_t dev_address, uint16_t mem_address, uint16_t mem_addr_size, uint8_t* data, uint16_t size, uint32_t timeout) {
+
         HAL_I2C_Mem_Read(hi2c, dev_address, mem_address, mem_addr_size, data, size, timeout);
     };
 
