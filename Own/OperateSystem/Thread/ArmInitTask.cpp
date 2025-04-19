@@ -21,6 +21,6 @@ void ArmInitTask() {
 //    roboArm.diff.init();
     re_flag = 1;
     xEventGroupSetBits(osEventGroup, ROBO_ARM_INIT_END_EVENT);
-//		buzzer.PushMusic<24>(Buzzer::melody);
+		buzzer.PushMusic<24>(Buzzer::melody);
     vTaskDelete(NULL);
 }
