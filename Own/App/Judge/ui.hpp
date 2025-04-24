@@ -3,6 +3,28 @@
 #include "referee_system.h"
 
 namespace ui_dep {
+    struct basic_graphic
+    {
+        uint8_t figure_name[3];
+        uint32_t operate_type:3;
+        uint32_t figure_type:3;
+        uint32_t layer:4;
+        uint32_t color:4;
+        uint32_t details_a:9;
+        uint32_t details_b:9;
+        uint32_t width:10;
+        uint32_t start_x:11;
+        uint32_t start_y:11;
+        uint32_t details_c:10;
+        uint32_t details_d:11;
+        uint32_t details_e:11;
+    } __attribute__((packed));
+
+    template <typename T>
+    concept ui_item = requires(T t) {
+        t.set(std::declval<basic_graphic*>());
+    };
+
     enum class types : uint8_t {
         DELETE,
         FIGURE,
@@ -34,6 +56,19 @@ namespace ui_dep {
         STR     = 7,
     };
 
+    enum class layer {
+        LAYER_0 = 0,
+        LAYER_1 = 1,
+        LAYER_2 = 2,
+        LAYER_3 = 3,
+        LAYER_4 = 4,
+        LAYER_5 = 5,
+        LAYER_6 = 6,
+        LAYER_7 = 7,
+        LAYER_8 = 8,
+        LAYER_9 = 9,
+    };
+
     enum class color : uint8_t {
         SELF_COLOR = 0,
         YELLOW     = 1,
@@ -45,17 +80,123 @@ namespace ui_dep {
         BLACK      = 7,
         WHITE      = 8,
     };
+
+
+    struct line {
+        uint16_t end_x = 0;
+        uint16_t end_y = 0;
+
+        void set(basic_graphic& graphic) const {
+            graphic.details_a = 0;
+            graphic.details_b = 0;
+            graphic.details_c = 0;
+            graphic.details_d = end_x;
+            graphic.details_e = end_y;
+        }
+    };
+
+    struct rect {
+        uint16_t opposed_x = 0;
+        uint16_t opposed_y = 0;
+
+        void set(basic_graphic& graphic) const {
+            graphic.details_a = 0;
+            graphic.details_b = 0;
+            graphic.details_c = 0;
+            graphic.details_d = opposed_x;
+            graphic.details_e = opposed_y;
+        }
+    };
+
+    struct circle {
+        uint16_t radius = 0;
+        void set(basic_graphic& graphic) const {
+            graphic.details_a = 0;
+            graphic.details_b = 0;
+            graphic.details_c = 0;
+            graphic.details_d = radius;
+            graphic.details_e = 0;
+        }
+    };
+
+    struct ellipse {
+        uint16_t radius_x = 0;
+        uint16_t radius_y = 0;
+
+        void set(basic_graphic* graphic) const {
+            graphic->details_a = 0;
+            graphic->details_b = 0;
+            graphic->details_c = 0;
+            graphic->details_d = radius_x;
+            graphic->details_e = radius_y;
+        }
+    };
+
+    struct arc {
+        uint16_t radius = 0;
+        uint16_t angle  = 0;
+        uint16_t radius_x = 0;
+        uint16_t radius_y = 0;
+
+        void set(basic_graphic* graphic) const {
+            graphic->details_a = 0;
+            graphic->details_b = 0;
+            graphic->details_c = radius;
+            graphic->details_d = angle;
+            graphic->details_e = radius_x;
+        }
+    };
+
+    struct float_data {
+        uint16_t font_size = 0;
+        float data = 0;
+
+        void set(basic_graphic* graphic) const {
+            graphic->details_a = font_size;
+            graphic->details_b = 0;
+            auto data_int = static_cast<int32_t>(data * 1000);
+            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 11, &data_int, sizeof(data_int));
+        }
+    };
+
+    struct int_data {
+        uint16_t font_size = 0;
+        int32_t data = 0;
+
+        void set(basic_graphic* graphic) const {
+            graphic->details_a = font_size;
+            graphic->details_b = 0;
+            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 11, &data, sizeof(data));
+        }
+    };
+
+    template<uint8_t len>
+    struct string_data {
+        uint16_t font_size = 0;
+        uint8_t data[len] = {0};
+
+        void set(basic_graphic* graphic) const {
+            graphic->details_a = font_size;
+            graphic->details_b = 0;
+            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 11, data, len);
+        }
+    };
+
+
+
+
 } // namespace ui_dep
 
 class UI {
 public:
+    using basic_graphic        = ui_dep::basic_graphic;
     using types                = ui_dep::types;
     using operate_delete_layer = ui_dep::operate_delete_layer;
     using operation            = ui_dep::operation;
     using graphic              = ui_dep::graphic;
     using color                = ui_dep::color;
 
-    uint8_t len;
+    uint32_t len;
 
     struct {
         frame_header header;
@@ -64,7 +205,7 @@ public:
         uint16_t crc16;
     } __attribute__((packed)) frame;
 
-    UI(uint16_t sender_id, uint16_t receiver_id) {
+    UI(uint16_t sender_id, uint16_t receiver_id) : len(0), num(0), type(types::NONE) {
         frame = {0xA5, 30, 0, 0};
         crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&frame.header), sizeof(frame_header));
         frame.cmd_id = 0x301;
@@ -78,27 +219,40 @@ public:
     void delete_layer(ui_dep::operate_delete_layer delete_layer, uint8_t layer_id);
     void operate_str(const uint8_t* name, operation op, uint8_t layer_id, color col, uint16_t font, uint16_t str_len, uint16_t width, uint16_t start_x, uint16_t start_y,const uint8_t *str);
     void operate_fig(uint8_t* name, operation op, graphic graph, uint8_t layer_id, color col, uint16_t detail_a, uint16_t detail_b, uint16_t width, uint16_t start_x, uint16_t start_y, uint16_t detail_c, uint16_t detail_d, uint16_t detail_e);
+    template<ui_dep::ui_item ui_graphic>
+    void operate_fig(uint8_t* name, operation op, graphic graph, uint8_t layer_id, color col, uint16_t width, uint16_t start_x, uint16_t start_y, ui_graphic item) {
+        lock();
+        ui_graphic* addr = reinterpret_cast<ui_graphic*>(&(frame.data_frame.user_data[len]));
+        addr->figure_name = {name[0], name[1], name[2]};
+        addr->operate_type = static_cast<uint8_t>(op);
+        addr->figure_type = static_cast<uint8_t>(graph);
+        addr->layer = layer_id;
+        addr->color = static_cast<uint8_t>(col);
+        addr->width = width;
+        addr->start_x = start_x;
+        addr->start_y = start_y;
+        item.set(addr);
+        ++num;
+        switch (type) {
+            case types::FIGURE:
+                len += sizeof(ui_graphic);
+                break;
+            case types::STRING:
+                len += addr->len;
+                break;
+            case types::NONE:
+                break;
+            case types::DELETE:
+                break;
+        }
+        unlock();
+    };
 
     void add_frame_header();
     void clear() { len = 0; num = 0; type = types::NONE;};
 private:
     uint8_t num;
     types type;
-    uint16_t sum;
 };
 extern UI ui;
-/* Includes ------------------------------------------------------------------*/
-#include "main.h"
-//#include "RobotArm.h"
-/* Exported macros -----------------------------------------------------------*/
 
-/* Exported types ------------------------------------------------------------*/
-
-/* Exported variables --------------------------------------------------------*/
-extern uint8_t UI_reset_flag;
-/* Exported function declarations --------------------------------------------*/
-void UI_draw_layer_9(void);
-void UI_draw_layer_8(void);
-void UI_draw_arm_state(void);
-void UI_draw_sucker_state(void);
-void UI_draw_layer_5(void);

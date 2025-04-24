@@ -332,7 +332,7 @@ struct robot_interaction_data_t
     uint16_t data_cmd_id;
     uint16_t sender_id;
     uint16_t receiver_id;
-    uint8_t user_data[113];
+    uint8_t user_data[112];
 } __attribute__((packed));
 
 //0x0100 x=2 选手端删除图层

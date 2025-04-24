@@ -89,15 +89,11 @@ void RoboArm::close() {
 void RoboArm::init_offset(std::array<float, 6>& joint) {
     using namespace roboarm_dep;
 
-
     joint4.read_totalposition();
     joint3.read_totalposition();
     joint2.internal.read_totalposition();
     joint2.external.read_totalposition();
     joint1.read_totalposition();
-
-    joint[5] = 0;
-    joint[4] = 0;
 
     target.joint6.angle = 0;
     target.joint5.angle = 0;
@@ -147,7 +143,6 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
         joint1.read_totalposition();
         osDelay(1);
     }
-    this->load_target(joint);
 }
 
 void RoboArm::update_relative_pos() {

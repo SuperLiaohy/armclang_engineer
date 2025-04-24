@@ -81,7 +81,7 @@ public:
 
     void get_angle(const std::array<float, 6>& pos);
 
-    bool update();
+    bool update(uint16_t Size);
 
     image_trans_dep::custom_rx_frame custom_rx_frame;
     image_trans_dep::trans_frame tx_frame;
@@ -90,7 +90,8 @@ public:
     uint16_t rx_cmd_id;//命令ID
 
     SuperUart uartPlus;
-
+    Count rx_cnt{};
+    Count cnt{};
 private:
     image_trans_dep::custom_tx_frame custom_tx_frame;
 

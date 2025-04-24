@@ -78,7 +78,7 @@ public:
     }
     void Start();
 
-    void SetFreq(uint16_t freq, uint16_t pulse = 200);
+    void SetFreq(uint16_t freq, uint16_t pulse = 300);
 
     void Stop();
 
@@ -103,7 +103,7 @@ template<uint16_t size, Buzzer::delay_pl T>
 void Buzzer::StartMusic(const std::array<uint16_t, size>& music) {
     for (auto item: music) {
         SetFreq(item);
-        delay<T>(50);
+        delay<T>(100);
     }
     SetFreq(20000, 20);
 }

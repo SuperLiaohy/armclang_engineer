@@ -57,7 +57,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     } else if (huart == interact.image_trans.uartPlus.uart) {
         using namespace crc;
         ++interact.image_trans.uartPlus.rx_cnt;
-        if (interact.image_trans.update()) {
+        if (interact.image_trans.update(Size)) {
             auto data                      = interact.image_trans.uartPlus.rx_buffer;
             uint16_t len                   = (data[2] << 8 | data[1]);
             interact.image_trans.rx_cmd_id = data[6] << 8 | data[5];
@@ -67,6 +67,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                         interact.receive_custom(&data[7]);
                         break;
                     case 0x304:
+                        ++interact.image_trans.rx_cnt;
                         break;
                     case 0x306:
                         break;

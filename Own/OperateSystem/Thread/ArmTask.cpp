@@ -20,6 +20,8 @@ void ArmTask() {
         canPlus1.transmit(M2006::foc.TX_LOW_ID, roboArm.diff.left.output(), roboArm.diff.right.output(), 0, 0);
         xSemaphoreGive(CAN1MutexHandle);
 
+        roboArm.diff.write_fram();
+
         if (cnt % 10 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
             roboArm.joint3.set_position(roboArm.target.joint3.angle, 180);

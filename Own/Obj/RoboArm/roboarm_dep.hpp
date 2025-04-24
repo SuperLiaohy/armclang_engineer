@@ -2,7 +2,7 @@
 // Created by Administrator on 25-1-6.
 //
 #pragma once
-
+#include "array"
 #include "Fram/Fram.hpp"
 #include "Matrix/Matrix.hpp"
 #include "Motor/Motor.hpp"
@@ -123,7 +123,7 @@ namespace roboarm_dep {
             , right(right_pos_pid, right_speed_pid, right_id)
             , fram(hi2c) {};
 
-        void init();
+        void init(std::array<float, 6>& joint);
 
         void update_relative_pos(float& pitch, float& roll);
 
