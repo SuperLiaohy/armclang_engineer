@@ -3,7 +3,7 @@
 //
 
 #include "Interact/Interact.hpp"
-
+#include "Judge/ui.hpp"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -83,6 +83,41 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
         ++interact.sub_board.uartPlus.rx_cnt;
         interact.sub_board.get_feedback();
         interact.sub_board.start_receive();
+    } else if (huart == ui.uartPlus.uart) {
+        using namespace crc;
+        ++ui.uartPlus.rx_cnt;
+        for (int i = 0; i < Size - 9; ++i) {
+            if (ui.uartPlus.rx_buffer[i]==0xA5) {
+                auto data                      = &ui.uartPlus.rx_buffer[i];
+                uint16_t len                   = (data[2] << 8 | data[1]);
+                auto rx_cmd_id = data[6] << 8 | data[5];
+                if (verify_crc16_check_sum(data, len + 9)) {
+                    switch (rx_cmd_id) {
+                        case 0x201:
+                            ui.frame.data_frame.sender_id = data[7];
+                            switch (data[7]) {
+                                case 2:
+                                    ui.frame.data_frame.receiver_id = 0x102;
+                                    break;
+                                case 102:
+                                    ui.frame.data_frame.receiver_id = 0x166;
+                            }
+                            break;
+                        case 0x301:
+                            ++ui.rx_cnt;
+                            break;
+                        case 0x306:
+                            break;
+                        case 0x309:
+                            break;
+                        default:
+                            break;
+                    }
+                    i+=len-1;
+                }
+            }
+        }
+        ui.start_receive();
     }
 
     //    if (huart == uartPlus10.uart) {
@@ -102,7 +137,11 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
         interact.image_trans.uartPlus.receive_dma_idle(100);
         ++interact.image_trans.uartPlus.err_cnt;
     } else if (huart == interact.remote_control.uartPlus.uart) {
-        ++interact.remote_control.uartPlus.rx_cnt;
+        ++interact.remote_control.uartPlus.err_cnt;
+    } else if (huart == ui.uartPlus.uart) {
+        ++ui.uartPlus.err_cnt;
+        ui.get_feedback();
+        ui.start_receive();
     }
 };
 void HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef* huart) {
@@ -110,5 +149,9 @@ void HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef* huart) {
         interact.sub_board.start_receive();
     } else if (huart == interact.image_trans.uartPlus.uart) {
     } else if (huart == interact.remote_control.uartPlus.uart) {
+    } else if (huart == ui.uartPlus.uart) {
+        ++ui.uartPlus.err_cnt;
+        ui.get_feedback();
+        ui.start_receive();
     }
 };

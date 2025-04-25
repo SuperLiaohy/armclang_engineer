@@ -8,15 +8,16 @@
 #include "CppTask.hpp"
 #include "Detect/Detect.hpp"
 #include "Interact/Interact.hpp"
+#include "Judge/ui.hpp"
 #include "Pump/Pump.hpp"
 #include "RGBLED/RGBLED.hpp"
 #include "RemoteControl/RemoteControl.hpp"
 #include "RoboArm/RoboArm.hpp"
 #include "ThreadConfig.h"
 #include "W25Q64/W25Q64.hpp"
+#include <DWT/SuperDWT.hpp>
 #include <Motor/GM6020.hpp>
 #include <Motor/lkMotor.hpp>
-#include <DWT/SuperDWT.hpp>
 void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);
 
@@ -140,6 +141,7 @@ void StartTask() {
     interact.remote_control.start();
     interact.image_trans.uartPlus.receive_dma_idle(100);
 		interact.sub_board.start_receive();
+        ui.start_receive();
 
     /* 底盘电机初始化 */
 

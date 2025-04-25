@@ -117,4 +117,4 @@ interact_dep::Actions test_actions(4);
 interact_dep::Actions stretch(2);
 interact_dep::Actions turn_up(1);
 
-UI ui(102, 0x0166);
+UI ui(102, 0x0166, &huart7);

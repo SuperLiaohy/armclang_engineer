@@ -767,10 +767,11 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\Pump\Pump.hpp \
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\Judge\ui.hpp \
+  ..\Own\App\Judge\referee_system.h ..\Own\App\Pump\Pump.hpp \
   ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
   ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
   ..\Core\Inc\spi.h ..\Own\OperateSystem\ThreadConfig.h \
   ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
-  ..\Own\App\Motor\GM6020.hpp ..\Own\Bsp\DWT\SuperDWT.hpp \
+  ..\Own\Bsp\DWT\SuperDWT.hpp ..\Own\App\Motor\GM6020.hpp \
   ..\USB_DEVICE\App\usb_device.h

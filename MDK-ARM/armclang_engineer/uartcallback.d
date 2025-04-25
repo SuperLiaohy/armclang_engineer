@@ -767,7 +767,8 @@ armclang_engineer/uartcallback.o: ..\Own\CallBack\UARTCallback.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\Judge\ui.hpp \
+  ..\Own\App\Judge\referee_system.h \
   ..\Own\OperateSystem\LetterShell\shell.h \
   ..\Own\OperateSystem\LetterShell\shell_cfg.h \
   ..\Own\OperateSystem\LetterShell\shell_port.h \
