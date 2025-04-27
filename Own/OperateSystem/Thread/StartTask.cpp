@@ -43,78 +43,22 @@ extern osThreadId ERROR_TASKHandle;
 #ifdef __cplusplus
 }
 #endif
-uint8_t re_flag = 0;
+uint8_t re_flag       = 0;
 volatile uint32_t ada = 0;
 void StartTask() {
-     ada =  SuperDWT::get_tick();
-	    /* USB初始化 */
+    ada = SuperDWT::get_tick();
+    /* USB初始化 */
     MX_USB_DEVICE_Init();
-	
-    /* 使能两个24V 和 5V*/
-//        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15, GPIO_PIN_SET);
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_14, GPIO_PIN_RESET);
 
-    power_24v_right.WriteUp();
-    power_5v.WriteUp();
+    /* 关闭两个24V  打开5V*/
+    power_24v_right.WriteDown();
     power_24v_left.WriteDown();
-
-
-
-    test_actions.joint1.data[0] = 0;
-    test_actions.joint2.data[0] = -50;
-    test_actions.joint3.data[0] = 135;
-    test_actions.joint4.data[0] = 0;
-    test_actions.joint5.data[0] = -90;
-    test_actions.joint6.data[0] = 0;
-
-    test_actions.joint1.data[1] = 0;
-    test_actions.joint2.data[1] = -25;
-    test_actions.joint3.data[1] = 75;
-    test_actions.joint4.data[1] = 0;
-    test_actions.joint5.data[1] = -70;
-    test_actions.joint6.data[1] = 0;
-
-    test_actions.joint1.data[2] = 0;
-    test_actions.joint2.data[2] = -0;
-    test_actions.joint3.data[2] = 0;
-    test_actions.joint4.data[2] = 0;
-    test_actions.joint5.data[2] = -30;
-    test_actions.joint6.data[2] = 0;
-
-    test_actions.joint1.data[3] = 0;
-    test_actions.joint2.data[3] = 30;
-    test_actions.joint3.data[3] = -30;
-    test_actions.joint4.data[3] = 0;
-    test_actions.joint5.data[3] = -0;
-    test_actions.joint6.data[3] = 0;
-
-    stretch.joint1.data[0] = 0;
-    stretch.joint2.data[0] = -0;  // -50 -> 0
-    stretch.joint3.data[0] = 90;  // 135 -> 70
-    stretch.joint4.data[0] = 0;   // 0 -> 0
-    stretch.joint5.data[0] = -30; // -90 -> -30
-    stretch.joint6.data[0] = 120; // 0 -> 120
-
-    stretch.joint1.data[1] = 0;      // 0 -> 0
-    stretch.joint2.data[1] = 54.158; // 0 -> 57
-    stretch.joint3.data[1] = 24.174; // 70 -> 24
-    stretch.joint4.data[1] = 0;      //  0 -> 0
-    stretch.joint5.data[1] = 13.460; //-30 -> 3
-    stretch.joint6.data[1] = 139.86; // 120 -> 139.86
-
-    turn_up.joint1.data[0] = 0;
-    turn_up.joint2.data[0] = 55.063;  // -50 -> 0
-    turn_up.joint3.data[0] = 15.207;  // 135 -> 70
-    turn_up.joint4.data[0] = 0;       // 0 -> 0
-    turn_up.joint5.data[0] = -8.0725; // -90 -> -30
-    turn_up.joint6.data[0] = 139.86;  // 0 -> 120
-
-    pump.close();
+    power_5v.WriteUp();
 
     /* W25Q64初始化 */
     w25q64.init();
     /* CAN初始化 */
-    canPlus1.filter_config(0);
+    canPlus1.filter_config(1);
     canPlus2.filter_config(1);
     canPlus1.start();
     canPlus2.start();
@@ -126,6 +70,7 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_S, CombineKey_None, chassis_s_callback);
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_None, chassis_d_callback);
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_None, chassis_q_callback);
+
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Shift, robo_arm_shift_q_callback);
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Ctrl, robo_arm_ctrl_q_callback);
     KeyBoardRegister(interact.keyList, Key_Left, CombineKey_None, air_left_callback);
@@ -140,19 +85,13 @@ void StartTask() {
     //    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
     interact.remote_control.start();
     interact.image_trans.uartPlus.receive_dma_idle(100);
-		interact.sub_board.start_receive();
-        ui.start_receive();
-
-    /* 底盘电机初始化 */
-
-    /* 机械臂末端差分器的初始化 */
+    interact.sub_board.start_receive();
+    ui.start_receive();
 
     /* 蜂鸣器初始化 */
     buzzer.Start();
     ada = SuperDWT::get_tick() - ada;
-	
-    /* 闪烁灯初始化 (暂无)*/
-//		roboArm.diff.init();
+
     xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
     StartHeapCnt = uxTaskGetStackHighWaterMark(NULL);

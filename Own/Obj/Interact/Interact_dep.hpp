@@ -108,8 +108,4 @@ namespace interact_dep {
 } // namespace interact_dep
 
 extern Interact interact;
-extern interact_dep::Actions test_actions;
-extern interact_dep::Actions stretch;
-extern interact_dep::Actions turn_up;
-
 

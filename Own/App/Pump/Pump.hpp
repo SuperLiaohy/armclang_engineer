@@ -9,7 +9,6 @@ namespace pump_dep {
         close = 0,
         open  = 1,
     };
-
 }
 
 template<is_io io>
@@ -34,6 +33,3 @@ private:
     io handle;
     state s;
 };
-
-
-extern Pump<SuperGPIO> pump;

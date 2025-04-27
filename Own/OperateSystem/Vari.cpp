@@ -76,6 +76,8 @@ Chassis chassis(
     chassis_dep::base_motor_default,
     chassis_dep::extend_motor_default);
 #endif
+
+
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
 RoboArm roboArm(&canPlus1,
                 5, 65536, 10,
@@ -95,21 +97,13 @@ Buzzer buzzer(&htim12, TIM_CHANNEL_2);
 
 Imu imu(MEASURE_DISABLE);
 
-//ImageTrans image_trans(&huart10);
-
 Interact interact(0xFF, 0xFE, &huart5, &huart10, &huart3);
 
 //Key keyList[KEY_NUM];
 //KeyBoard key_board;
 
-Pump<SuperGPIO> pump(GPIOA, GPIO_PIN_0);
 SuperGPIO power_5v(GPIOC,GPIO_PIN_15);
 SuperGPIO power_24v_right(GPIOC, GPIO_PIN_14);
 SuperGPIO power_24v_left(GPIOC, GPIO_PIN_13);
-
-interact_dep::Actions test_actions(4);
-
-interact_dep::Actions stretch(2);
-interact_dep::Actions turn_up(1);
 
 UI ui(102, 0x0166, &huart1);
