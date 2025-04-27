@@ -696,6 +696,7 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_hsem.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c_ex.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_iwdg.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_ospi.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr_ex.h \
@@ -773,5 +774,4 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
   ..\Core\Inc\spi.h ..\Own\OperateSystem\ThreadConfig.h \
   ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
-  ..\Own\Bsp\DWT\SuperDWT.hpp ..\Own\App\Motor\GM6020.hpp \
-  ..\USB_DEVICE\App\usb_device.h
+  ..\Own\Bsp\DWT\SuperDWT.hpp ..\USB_DEVICE\App\usb_device.h

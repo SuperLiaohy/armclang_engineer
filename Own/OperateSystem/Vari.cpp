@@ -106,4 +106,4 @@ SuperGPIO power_5v(GPIOC,GPIO_PIN_15);
 SuperGPIO power_24v_right(GPIOC, GPIO_PIN_14);
 SuperGPIO power_24v_left(GPIOC, GPIO_PIN_13);
 
-UI ui(102, 0x0166, &huart1);
+UI ui(102, 0x0166, &huart7);

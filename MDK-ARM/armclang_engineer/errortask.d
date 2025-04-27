@@ -197,6 +197,7 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_hsem.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c_ex.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_iwdg.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_ospi.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr_ex.h \
@@ -768,4 +769,5 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\Bsp\WDG\SuperIWDG.hpp \
+  ..\Core\Inc\iwdg.h

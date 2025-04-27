@@ -70,7 +70,7 @@ public:
     ImageTrans(UART_HandleTypeDef *huart) : uartPlus(huart, 100, 100) {
         tx_frame.frame_head = {0xA5, 30, 0, 0};
         crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&tx_frame.frame_head), sizeof(image_trans_dep::frame_header));
-        tx_frame.cmd_id = 0x302;
+        tx_frame.cmd_id = 0x309;
     }
 
     void set_map_back(uint8_t is_able) { custom_tx_frame.s.enable_map_back = is_able; };

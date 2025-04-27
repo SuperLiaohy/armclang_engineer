@@ -63,11 +63,13 @@ void UI::add_frame_header() {
         case UI::types::DELETE:
             ui_frame->data_frame.data_cmd_id = 0x100;
             ui_frame->header.data_length     = len + 6;
+            crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
             crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
             break;
         case UI::types::STRING:
             ui_frame->data_frame.data_cmd_id = 0x110;
             ui_frame->header.data_length     = len + 6;
+            crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
             crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
             break;
         case UI::types::FIGURE:
@@ -75,11 +77,13 @@ void UI::add_frame_header() {
                 case 1:
                     ui_frame->data_frame.data_cmd_id = 0x101;
                     ui_frame->header.data_length     = len + 6;
+                    crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
                     crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
                     break;
                 case 2:
                     ui_frame->data_frame.data_cmd_id = 0x102;
                     ui_frame->header.data_length     = len + 6;
+                    crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
                     crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
                     break;
                 case 3:
@@ -87,6 +91,7 @@ void UI::add_frame_header() {
                     len                          += 30;
                     ui_frame->data_frame.data_cmd_id  = 0x103;
                     ui_frame->header.data_length      = len + 6;
+                    crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
                     crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
                     break;
                 case 4:
@@ -94,11 +99,13 @@ void UI::add_frame_header() {
                     len                          += 15;
                     ui_frame->data_frame.data_cmd_id  = 0x103;
                     ui_frame->header.data_length      = len + 6;
+                    crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
                     crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
                     break;
                 case 5:
                     ui_frame->data_frame.data_cmd_id = 0x103;
                     ui_frame->header.data_length     = len + 6;
+                    crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
                     crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
                     break;
                 case 6:
@@ -106,11 +113,13 @@ void UI::add_frame_header() {
                     len                          += 15;
                     ui_frame->data_frame.data_cmd_id  = 0x104;
                     ui_frame->header.data_length      = len + 6;
+                    crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
                     crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
                     break;
                 case 7:
                     ui_frame->data_frame.data_cmd_id = 0x104;
                     ui_frame->header.data_length     = len + 6;
+                    crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
                     crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(ui_frame), len + 15);
                     break;
             }

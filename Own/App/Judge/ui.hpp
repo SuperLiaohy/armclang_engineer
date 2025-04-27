@@ -105,12 +105,12 @@ namespace ui_dep {
     };
 
     struct circle {
-        uint16_t radius = 0;
+        uint16_t radius;
         void set(basic_graphic* graphic) const {
             graphic->details_a = 0;
             graphic->details_b = 0;
-            graphic->details_c = 0;
-            graphic->details_d = radius;
+            graphic->details_c = radius;
+            graphic->details_d = 0;
             graphic->details_e = 0;
         }
     };
@@ -129,17 +129,17 @@ namespace ui_dep {
     };
 
     struct arc {
-        uint16_t radius   = 0;
-        uint16_t angle    = 0;
-        uint16_t radius_x = 0;
-        uint16_t radius_y = 0;
+        uint16_t start_angle = 0;
+        uint16_t end_angle   = 0;
+        uint16_t radius_x    = 0;
+        uint16_t radius_y    = 0;
 
         void set(basic_graphic* graphic) const {
-            graphic->details_a = 0;
-            graphic->details_b = 0;
-            graphic->details_c = radius;
-            graphic->details_d = angle;
-            graphic->details_e = radius_x;
+            graphic->details_a = start_angle;
+            graphic->details_b = end_angle;
+            graphic->details_c = 0;
+            graphic->details_d = radius_x;
+            graphic->details_e = radius_y;
         }
     };
 
@@ -184,7 +184,6 @@ namespace ui_dep {
         uint16_t crc16;
     } __attribute__((packed));
 
-
 } // namespace ui_dep
 
 class UI {
@@ -198,15 +197,13 @@ public:
     using layer                = ui_dep::layer;
     using frame                = ui_dep::frame;
 
-
     UI(uint16_t sender_id, uint16_t receiver_id, UART_HandleTypeDef* huart)
         : len(0)
         , num(0)
         , type(types::NONE)
         , uartPlus(huart, 200, 200) {
-        ui_frame = reinterpret_cast<frame*>(uartPlus.tx_buffer);
-        *ui_frame = {0xA5, 0, 0, 0};
-        crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
+        ui_frame                         = reinterpret_cast<frame*>(uartPlus.tx_buffer);
+        *ui_frame                        = {0xA5, 0, 0, 0};
         ui_frame->cmd_id                 = 0x301;
         ui_frame->data_frame.sender_id   = sender_id;
         ui_frame->data_frame.receiver_id = receiver_id;
@@ -225,25 +222,24 @@ public:
     void operate_fig(const uint8_t* name, operation op, graphic graph, layer layer_id, color col, uint16_t width,
                      uint16_t start_x, uint16_t start_y, const ui_graphic& item) {
         lock();
-        auto* addr   = reinterpret_cast<basic_graphic *>(&(ui_frame->data_frame.user_data[len]));
-        (addr->figure_name)[0] =  name[0];
-        (addr->figure_name)[1] =  name[1];
-        (addr->figure_name)[2] =  name[2];
-        addr->operate_type = static_cast<uint8_t>(op);
-        addr->figure_type  = static_cast<uint8_t>(graph);
-        addr->layer        = static_cast<uint8_t>(layer_id);
-        addr->color        = static_cast<uint8_t>(col);
-        addr->width        = width;
-        addr->start_x      = start_x;
-        addr->start_y      = start_y;
+        auto* addr             = reinterpret_cast<basic_graphic*>(&((ui_frame->data_frame.user_data)[len]));
+        (addr->figure_name)[0] = name[0];
+        (addr->figure_name)[1] = name[1];
+        (addr->figure_name)[2] = name[2];
+        addr->operate_type     = static_cast<uint8_t>(op);
+        addr->figure_type      = static_cast<uint8_t>(graph);
+        addr->layer            = static_cast<uint8_t>(layer_id);
+        addr->color            = static_cast<uint8_t>(col);
+        addr->width            = width;
+        addr->start_x          = start_x;
+        addr->start_y          = start_y;
         item.set(addr);
         ++num;
 
-        if constexpr (
-            std::is_same_v<ui_graphic, ui_dep::line> || std::is_same_v<ui_graphic, ui_dep::rect> ||
-            std::is_same_v<ui_graphic, ui_dep::circle> || std::is_same_v<ui_graphic, ui_dep::ellipse> ||
-            std::is_same_v<ui_graphic, ui_dep::arc> || std::is_same_v<ui_graphic, ui_dep::float_data> ||
-            std::is_same_v<ui_graphic, ui_dep::int_data>) {
+        if constexpr (std::is_same_v<ui_graphic, ui_dep::line> || std::is_same_v<ui_graphic, ui_dep::rect>
+                      || std::is_same_v<ui_graphic, ui_dep::circle> || std::is_same_v<ui_graphic, ui_dep::ellipse>
+                      || std::is_same_v<ui_graphic, ui_dep::arc> || std::is_same_v<ui_graphic, ui_dep::float_data>
+                      || std::is_same_v<ui_graphic, ui_dep::int_data>) {
             len  += 15;
             type  = types::FIGURE;
         } else {
@@ -274,6 +270,5 @@ private:
         num  = 0;
         type = types::NONE;
     };
-
 };
 extern UI ui;
