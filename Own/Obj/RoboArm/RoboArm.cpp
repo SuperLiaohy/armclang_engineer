@@ -108,7 +108,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint3.offset_flag) {
-            joint[2] = 130;
+            joint[2] = 134;
             if (joint3.feedback.total_position < 0) { offset.joint3 -= 360; }
             break;
         }

@@ -9,12 +9,7 @@
 #include "GPIO/SuperGPIO.hpp"
 #include "Heap/CustomHeap.hpp"
 #include "Interact/Interact.hpp"
-// #include "Motor/GM6020.hpp"
-// #include "Motor/M2006.hpp"
-// #include "Motor/M3508.hpp"
-// #include "Motor/Motor.hpp"
-// #include "Motor/dmMotor.hpp"
-// #include "Motor/lkMotor.hpp"
+#include <GPIO/SuperGPIO.hpp>
 #include "ImageTrans/ImageTrans.hpp"
 #include "Judge/referee_system.h"
 #include "Judge/ui.hpp"
@@ -107,14 +102,14 @@ Interact interact(0xFF, 0xFE, &huart5, &huart10, &huart3);
 //Key keyList[KEY_NUM];
 //KeyBoard key_board;
 
-Pump<SuperGPIO<GPIOA_BASE, OUTPUT, GPIO_PIN_0>> pump;
-SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_15> power_5v;
-SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_14> power_24v_right;
-SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_13> power_24v_left;
+Pump<SuperGPIO> pump(GPIOA, GPIO_PIN_0);
+SuperGPIO power_5v(GPIOC,GPIO_PIN_15);
+SuperGPIO power_24v_right(GPIOC, GPIO_PIN_14);
+SuperGPIO power_24v_left(GPIOC, GPIO_PIN_13);
 
 interact_dep::Actions test_actions(4);
 
 interact_dep::Actions stretch(2);
 interact_dep::Actions turn_up(1);
 
-UI ui(102, 0x0166, &huart7);
+UI ui(102, 0x0166, &huart1);

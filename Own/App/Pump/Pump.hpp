@@ -16,23 +16,24 @@ template<is_io io>
 class Pump {
     using state = pump_dep::state;
 public:
+    Pump(typename io::handle* port, typename io::handle_pin pin) : handle(port, pin) {}
     void open() {
-        pin.WriteDown();
+        handle.WriteDown();
         s = state::open;
     };
     void close() {
-        pin.WriteUp();
+        handle.WriteUp();
         s = state::close;
     };
 
     void toggle() {
         s = state (1 - static_cast<uint8_t>(s));
-        pin.Toggle();
+        handle.Toggle();
     };
 private:
-    io pin;
+    io handle;
     state s;
 };
 
 
-extern Pump<SuperGPIO<GPIOA_BASE,OUTPUT,GPIO_PIN_0>> pump;
+extern Pump<SuperGPIO> pump;

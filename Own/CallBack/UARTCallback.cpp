@@ -94,13 +94,14 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                 if (verify_crc16_check_sum(data, len + 9)) {
                     switch (rx_cmd_id) {
                         case 0x201:
-                            ui.frame.data_frame.sender_id = data[7];
+                            ui.ui_frame->data_frame.sender_id = data[7];
                             switch (data[7]) {
                                 case 2:
-                                    ui.frame.data_frame.receiver_id = 0x102;
+                                    ui.ui_frame->data_frame.receiver_id = 0x102;
                                     break;
                                 case 102:
-                                    ui.frame.data_frame.receiver_id = 0x166;
+                                    ui.ui_frame->data_frame.receiver_id = 0x166;
+                                    break;
                             }
                             break;
                         case 0x301:

@@ -9,8 +9,8 @@ void JudgeTask() {
     while (1) {
         ++time;
         if (time % 100 == 0) {
-//            ui.operate_str(reinterpret_cast<const uint8_t*>("123"), UI::operation::ADD,
-//                           1, UI::color::SELF_COLOR, 100, 9, 8, 0, 0, reinterpret_cast<const uint8_t*>("engineer"));
+            // ui.operate_str(reinterpret_cast<const uint8_t*>("123"), UI::operation::ADD,
+            //                1, UI::color::SELF_COLOR, 20, 9, 2, 200, 200, reinterpret_cast<const uint8_t*>("engineer"));
 
             if (ui.type != UI::types::DELETE) {
 //                ui.operate_fig(reinterpret_cast<const uint8_t*>("123"), UI::operation::ADD, UI::graphic::STR, ui_dep::layer::LAYER_0, ui_dep::color::BLACK,
@@ -20,7 +20,7 @@ void JudgeTask() {
             }
 
             if (ui.type != UI::types::DELETE && ui.type != UI::types::STRING) {
-                ui.operate_fig(reinterpret_cast<const uint8_t*>("223"), UI::operation::ADD, UI::graphic::CIRCLE, ui_dep::layer::LAYER_5, ui_dep::color::PINK,
+                ui.operate_fig(reinterpret_cast<const uint8_t*>("23"), UI::operation::ADD, UI::graphic::CIRCLE, ui_dep::layer::LAYER_5, ui_dep::color::PINK,
                                3, 500, 500,
                                ui_dep::circle{.radius = 50});
 

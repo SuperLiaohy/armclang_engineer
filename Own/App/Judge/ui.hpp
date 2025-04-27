@@ -177,6 +177,14 @@ namespace ui_dep {
         }
     };
 
+    struct frame {
+        frame_header header;
+        uint16_t cmd_id;
+        robot_interaction_data_t data_frame;
+        uint16_t crc16;
+    } __attribute__((packed));
+
+
 } // namespace ui_dep
 
 class UI {
@@ -188,26 +196,20 @@ public:
     using graphic              = ui_dep::graphic;
     using color                = ui_dep::color;
     using layer                = ui_dep::layer;
+    using frame                = ui_dep::frame;
 
-    uint32_t len;
-
-    struct {
-        frame_header header;
-        uint16_t cmd_id;
-        robot_interaction_data_t data_frame;
-        uint16_t crc16;
-    } __attribute__((packed)) frame;
 
     UI(uint16_t sender_id, uint16_t receiver_id, UART_HandleTypeDef* huart)
         : len(0)
         , num(0)
         , type(types::NONE)
         , uartPlus(huart, 200, 200) {
-        frame = {0xA5, 0, 0, 0};
-        crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&frame.header), sizeof(frame_header));
-        frame.cmd_id                 = 0x301;
-        frame.data_frame.sender_id   = sender_id;
-        frame.data_frame.receiver_id = receiver_id;
+        ui_frame = reinterpret_cast<frame*>(uartPlus.tx_buffer);
+        *ui_frame = {0xA5, 0, 0, 0};
+        crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
+        ui_frame->cmd_id                 = 0x301;
+        ui_frame->data_frame.sender_id   = sender_id;
+        ui_frame->data_frame.receiver_id = receiver_id;
     }
 
     [[gnu::always_inline]] inline void lock() {};
@@ -216,14 +218,14 @@ public:
     void delete_layer(ui_dep::operate_delete_layer delete_layer, uint8_t layer_id);
     void operate_str(const uint8_t* name, operation op, uint8_t layer_id, color col, uint16_t font, uint16_t str_len,
                      uint16_t width, uint16_t start_x, uint16_t start_y, const uint8_t* str);
-//    void operate_fig(const uint8_t* name, operation op, graphic graph, uint8_t layer_id, color col, uint16_t detail_a,
-//                     uint16_t detail_b, uint16_t width, uint16_t start_x, uint16_t start_y, uint16_t detail_c,
-//                     uint16_t detail_d, uint16_t detail_e);
+    // void operate_fig(const uint8_t* name, operation op, graphic graph, uint8_t layer_id, color col, uint16_t detail_a,
+    //                  uint16_t detail_b, uint16_t width, uint16_t start_x, uint16_t start_y, uint16_t detail_c,
+    //                  uint16_t detail_d, uint16_t detail_e);
     template<ui_dep::ui_item ui_graphic>
     void operate_fig(const uint8_t* name, operation op, graphic graph, layer layer_id, color col, uint16_t width,
                      uint16_t start_x, uint16_t start_y, const ui_graphic& item) {
         lock();
-        auto* addr   = reinterpret_cast<basic_graphic *>(&(frame.data_frame.user_data[len]));
+        auto* addr   = reinterpret_cast<basic_graphic *>(&(ui_frame->data_frame.user_data[len]));
         (addr->figure_name)[0] =  name[0];
         (addr->figure_name)[1] =  name[1];
         (addr->figure_name)[2] =  name[2];
@@ -258,6 +260,8 @@ public:
 
     void start_receive();
 
+    frame* ui_frame;
+    uint32_t len;
     types type;
     SuperUart uartPlus;
     Count rx_cnt;

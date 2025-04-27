@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>28</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134351262</Address>
+          <Address>134351254</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +175,7 @@
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134364988</Address>
+          <Address>134364996</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -237,6 +237,22 @@
         <Bp>
           <Number>5</Number>
           <Type>0</Type>
+          <LineNumber>108</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134285736</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Own\CallBack\UARTCallback.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\armclang_engineer\../Own/CallBack/UARTCallback.cpp\108</Expression>
+        </Bp>
+        <Bp>
+          <Number>6</Number>
+          <Type>0</Type>
           <LineNumber>1</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
@@ -251,7 +267,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>6</Number>
+          <Number>7</Number>
           <Type>0</Type>
           <LineNumber>25</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -267,7 +283,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>7</Number>
+          <Number>8</Number>
           <Type>0</Type>
           <LineNumber>38</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -327,7 +343,7 @@
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ui,0x0A</ItemText>
+          <ItemText>ui,0x10</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
