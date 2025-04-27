@@ -100,7 +100,7 @@ void MX_FDCAN2_Init(void)
   hfdcan2.Init.DataPrescaler = 1;
   hfdcan2.Init.DataSyncJumpWidth = 2;
   hfdcan2.Init.DataTimeSeg1 = 13;
-  hfdcan2.Init.DataTimeSeg2 = 1;
+  hfdcan2.Init.DataTimeSeg2 = 2;
   hfdcan2.Init.MessageRAMOffset = 0x406;
   hfdcan2.Init.StdFiltersNbr = 4;
   hfdcan2.Init.ExtFiltersNbr = 4;
