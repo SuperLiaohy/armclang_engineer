@@ -20,6 +20,7 @@ extern osThreadId ERROR_TASKHandle;
 #include "Motor/Motor.hpp"
 #include "Motor/lkMotor.hpp"
 #include "RoboArm/RoboArm.hpp"
+#include "WDG/SuperIWDG.hpp"
 extern uint8_t re_flag;
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
@@ -44,7 +45,8 @@ void ErrorTask() {
             __set_FAULTMASK(1);
             HAL_NVIC_SystemReset();
         }
-        HAL_Delay(14);
+        SuperIWDG::GotInstance().give();
+        HAL_Delay(30);
         ErrorHeapCnt = uxTaskGetStackHighWaterMark(NULL);
     }
 }

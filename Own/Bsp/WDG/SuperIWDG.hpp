@@ -3,7 +3,7 @@
 //
 #pragma once
 
-#define USING_IWDG 0
+#define USING_IWDG 1
 #if USING_IWDG == 1
     #ifdef __cplusplus
 extern "C" {
@@ -23,7 +23,12 @@ public:
         return hiwdg->Instance->KR;
     }
 
+    static SuperIWDG& GotInstance() {
+        static auto instance = SuperIWDG(&hiwdg1);
+        return instance;
+    }
 private:
+    SuperIWDG(IWDG_HandleTypeDef* hiwdg) : hiwdg(hiwdg) {};
     IWDG_HandleTypeDef* hiwdg;
 };
 
