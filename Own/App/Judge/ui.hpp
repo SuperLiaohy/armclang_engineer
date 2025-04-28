@@ -83,11 +83,12 @@ namespace ui_dep {
         uint16_t end_y = 0;
 
         void set(basic_graphic* graphic) const {
-            graphic->details_a = 0;
-            graphic->details_b = 0;
-            graphic->details_c = 0;
-            graphic->details_d = end_x;
-            graphic->details_e = end_y;
+            graphic->figure_type = static_cast<uint32_t>(graphic::LINE);
+            graphic->details_a   = 0;
+            graphic->details_b   = 0;
+            graphic->details_c   = 0;
+            graphic->details_d   = end_x;
+            graphic->details_e   = end_y;
         }
     };
 
@@ -96,22 +97,24 @@ namespace ui_dep {
         uint16_t opposed_y = 0;
 
         void set(basic_graphic* graphic) const {
-            graphic->details_a = 0;
-            graphic->details_b = 0;
-            graphic->details_c = 0;
-            graphic->details_d = opposed_x;
-            graphic->details_e = opposed_y;
+            graphic->figure_type = static_cast<uint32_t>(graphic::RECT);
+            graphic->details_a   = 0;
+            graphic->details_b   = 0;
+            graphic->details_c   = 0;
+            graphic->details_d   = opposed_x;
+            graphic->details_e   = opposed_y;
         }
     };
 
     struct circle {
         uint16_t radius;
         void set(basic_graphic* graphic) const {
-            graphic->details_a = 0;
-            graphic->details_b = 0;
-            graphic->details_c = radius;
-            graphic->details_d = 0;
-            graphic->details_e = 0;
+            graphic->figure_type = static_cast<uint32_t>(graphic::CIRCLE);
+            graphic->details_a   = 0;
+            graphic->details_b   = 0;
+            graphic->details_c   = radius;
+            graphic->details_d   = 0;
+            graphic->details_e   = 0;
         }
     };
 
@@ -120,11 +123,12 @@ namespace ui_dep {
         uint16_t radius_y = 0;
 
         void set(basic_graphic* graphic) const {
-            graphic->details_a = 0;
-            graphic->details_b = 0;
-            graphic->details_c = 0;
-            graphic->details_d = radius_x;
-            graphic->details_e = radius_y;
+            graphic->figure_type = static_cast<uint32_t>(graphic::ELLIPSE);
+            graphic->details_a   = 0;
+            graphic->details_b   = 0;
+            graphic->details_c   = 0;
+            graphic->details_d   = radius_x;
+            graphic->details_e   = radius_y;
         }
     };
 
@@ -135,11 +139,12 @@ namespace ui_dep {
         uint16_t radius_y    = 0;
 
         void set(basic_graphic* graphic) const {
-            graphic->details_a = start_angle;
-            graphic->details_b = end_angle;
-            graphic->details_c = 0;
-            graphic->details_d = radius_x;
-            graphic->details_e = radius_y;
+            graphic->figure_type = static_cast<uint32_t>(graphic::ARC);
+            graphic->details_a   = start_angle;
+            graphic->details_b   = end_angle;
+            graphic->details_c   = 0;
+            graphic->details_d   = radius_x;
+            graphic->details_e   = radius_y;
         }
     };
 
@@ -148,9 +153,10 @@ namespace ui_dep {
         float data         = 0;
 
         void set(basic_graphic* graphic) const {
-            graphic->details_a = font_size;
-            graphic->details_b = 0;
-            auto data_int      = static_cast<int32_t>(data * 1000);
+            graphic->figure_type = static_cast<uint32_t>(graphic::FLOAT);
+            graphic->details_a   = font_size;
+            graphic->details_b   = 0;
+            auto data_int        = static_cast<int32_t>(data * 1000);
             std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 11, &data_int, sizeof(data_int));
         }
     };
@@ -160,20 +166,22 @@ namespace ui_dep {
         int32_t data       = 0;
 
         void set(basic_graphic* graphic) const {
-            graphic->details_a = font_size;
-            graphic->details_b = 0;
+            graphic->figure_type = static_cast<uint32_t>(graphic::INT);
+            graphic->details_a   = font_size;
+            graphic->details_b   = 0;
             std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 11, &data, sizeof(data));
         }
     };
 
-    template<uint8_t len> struct string_data {
+    template<uint16_t size> struct string_data {
         uint16_t font_size = 0;
-        uint8_t data[len]  = {0};
+        uint8_t data[30]   = {0};
 
         void set(basic_graphic* graphic) const {
-            graphic->details_a = font_size;
-            graphic->details_b = len;
-            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 15, data, len);
+            graphic->figure_type = static_cast<uint32_t>(graphic::STR);
+            graphic->details_a   = font_size;
+            graphic->details_b   = size;
+            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 15, data, 30);
         }
     };
 
@@ -219,15 +227,14 @@ public:
     //                  uint16_t detail_b, uint16_t width, uint16_t start_x, uint16_t start_y, uint16_t detail_c,
     //                  uint16_t detail_d, uint16_t detail_e);
     template<ui_dep::ui_item ui_graphic>
-    void operate_fig(const uint8_t* name, operation op, graphic graph, layer layer_id, color col, uint16_t width,
-                     uint16_t start_x, uint16_t start_y, const ui_graphic& item) {
+    void operate_fig(const uint8_t* name, operation op, layer layer_id, color col, uint16_t width, uint16_t start_x,
+                     uint16_t start_y, const ui_graphic& item) {
         lock();
         auto* addr             = reinterpret_cast<basic_graphic*>(&((ui_frame->data_frame.user_data)[len]));
         (addr->figure_name)[0] = name[0];
         (addr->figure_name)[1] = name[1];
         (addr->figure_name)[2] = name[2];
         addr->operate_type     = static_cast<uint8_t>(op);
-        addr->figure_type      = static_cast<uint8_t>(graph);
         addr->layer            = static_cast<uint8_t>(layer_id);
         addr->color            = static_cast<uint8_t>(col);
         addr->width            = width;

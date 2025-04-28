@@ -119,6 +119,7 @@ int main(void)
   MX_UART7_Init();
   MX_IWDG1_Init();
   /* USER CODE BEGIN 2 */
+	__HAL_DBGMCU_FREEZE_IWDG1();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
