@@ -9,6 +9,8 @@ extern "C" {
 #endif
 #include "FreeRTOS.h"
 #include "cmsis_os.h"
+
+extern osThreadId ERROR_TASKHandle;
 extern QueueHandle_t xRxedChars;
 extern uint8_t cli_buffer[];
 extern osThreadId IMAGEATRANS_TASHandle;
@@ -50,10 +52,15 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     if (huart == interact.remote_control.uartPlus.uart) {
         ++interact.remote_control.uartPlus.rx_cnt;
         interact.remote_control.update(interact.key_board);
-        if (cnt++ > 5) {
+
+        if (++cnt > 5) {
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
+
+
+
+
     } else if (huart == interact.image_trans.uartPlus.uart) {
         using namespace crc;
         ++interact.image_trans.uartPlus.rx_cnt;

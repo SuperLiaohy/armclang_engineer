@@ -30,7 +30,6 @@ void RemoteCtrlTask() {
         if (!interact.remote_control.detect.isLost) {
             if (interact.remote_control.rcInfo.right == 2)
                 osThreadResume(ERROR_TASKHandle);
-
             if (interact.remote_control.rcInfo.right == 3 && interact.remote_control.rcInfo.left == 2 && interact.kb == interact_dep::kb_state::DISABLE) {
                 if (interact.remote_control.rcInfo.wheel > 500) {
                     p = interact_dep::path::PC;
@@ -96,9 +95,6 @@ void RemoteCtrlTask() {
                             default:
                                 break;
                         }
-                        break;
-                    case 2:
-                        osThreadResume(ERROR_TASKHandle);
                         break;
                     default:
                         break;

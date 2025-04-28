@@ -9,7 +9,6 @@
 #include "RoboArm/RoboArm.hpp"
 #include "Interact/Interact.hpp"
 #include "ThreadConfig.h"
-
 void PCTask() {
     uint32_t cnt = 0;
     interact.pc.transmit_data.head = interact.pc.head;
