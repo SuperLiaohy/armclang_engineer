@@ -39,18 +39,20 @@ void Interact::receive_rc() {
     using namespace remote_ctrl_dep;
     using namespace my_math;
 
-    if (robo_arm.mode == robo_mode::NORMAL) {
-        if (remote_control.rcInfo.left == 1 && remote_control.rcInfo.right == 1) {
-            joint[3] = joint[3] - addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max;
-            joint[2] = limited<float>(joint[2] - addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max, limitation.joint3.min, limitation.joint3.max);
-            joint[1] = limited<float>(joint[1] + addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max, limitation.joint2.min, limitation.joint2.max);
-            joint[0] = limited<float>(joint[0] - addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max, limitation.joint1.min, limitation.joint1.max);
-        } else if (remote_control.rcInfo.left == 3 && remote_control.rcInfo.right == 1) {
-            // pitch
-            joint[4] = limited<float>(joint[4] + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max, limitation.joint5.min, limitation.joint5.max);
-            // yaw
-            joint[5] = joint[5] + addSpeed(remote_control.rcInfo.ch1, 0.01) * limitation.joint6.max;
-        }
+    if (robo_arm.mode == robo_mode::NORMAL1) {
+        joint[3] = joint[3] - addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max;
+        joint[2] = limited<float>(joint[2] - addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max,
+                                  limitation.joint3.min, limitation.joint3.max);
+        joint[1] = limited<float>(joint[1] + addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max,
+                                  limitation.joint2.min, limitation.joint2.max);
+        joint[0] = limited<float>(joint[0] + addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max,
+                                  limitation.joint1.min, limitation.joint1.max);
+    } else if (robo_arm.mode == robo_mode::NORMAL2) {
+        // pitch
+        joint[4] = limited<float>(joint[4] + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max,
+                                  limitation.joint5.min, limitation.joint5.max);
+        // yaw
+        joint[5] = joint[5] + addSpeed(remote_control.rcInfo.ch1, 0.01) * limitation.joint6.max;
     }
 }
 
@@ -114,8 +116,17 @@ void Interact::receive_custom(uint8_t* data) {
 void Interact::update_roboArm(RoboArm& Arm) {
     using namespace my_math;
     switch (robo_arm.mode) {
-        case interact_dep::robo_mode::NORMAL:
-            if (robo_arm.last_mode != interact_dep::robo_mode::NORMAL) {
+        case interact_dep::robo_mode::NORMAL1:
+            if (robo_arm.last_mode != interact_dep::robo_mode::NORMAL1) {
+                joint[0] = Arm.relative_pos[0];
+                joint[1] = Arm.relative_pos[1];
+                joint[2] = Arm.relative_pos[2];
+                joint[3] = Arm.relative_pos[3];
+            }
+            receive_rc();
+            break;
+        case interact_dep::robo_mode::NORMAL2:
+            if (robo_arm.last_mode != interact_dep::robo_mode::NORMAL1) {
                 joint[0] = Arm.relative_pos[0];
                 joint[1] = Arm.relative_pos[1];
                 joint[2] = Arm.relative_pos[2];
@@ -124,26 +135,21 @@ void Interact::update_roboArm(RoboArm& Arm) {
             receive_rc();
             break;
         case interact_dep::robo_mode::XYZ:
-            if (robo_arm.last_mode != interact_dep::robo_mode::XYZ) {
-                Arm.fkine(remote_control.pos);
-            }
+            if (robo_arm.last_mode != interact_dep::robo_mode::XYZ) { Arm.fkine(remote_control.pos); }
             receive_xyz(Arm);
             break;
-        case interact_dep::robo_mode::RESET:
-            receive_reset();
-            break;
+        case interact_dep::robo_mode::RESET: receive_reset(); break;
         case interact_dep::robo_mode::ACTIONS: {
             bool is_next = isApproxEqual<float>(Arm.relative_pos[0], actions->joint1.data[actions->now], 2);
-            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[1], actions->joint2.data[actions->now], 2));
-            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[2], actions->joint3.data[actions->now], 2));
-            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[3], actions->joint4.data[actions->now], 2));
-            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[4], actions->joint5.data[actions->now], 2));
-            is_next      = (is_next && isApproxEqual<float>(Arm.relative_pos[5], actions->joint6.data[actions->now], 2));
+            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[1], actions->joint2.data[actions->now], 2));
+            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[2], actions->joint3.data[actions->now], 2));
+            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[3], actions->joint4.data[actions->now], 2));
+            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[4], actions->joint5.data[actions->now], 2));
+            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[5], actions->joint6.data[actions->now], 2));
             interact.receive_actions(is_next);
             break;
         }
-        default:
-            break;
+        default: break;
     }
 }
 
@@ -152,12 +158,8 @@ void Interact::update_chassis(Chassis& cha) {
     using namespace remote_ctrl_dep;
     using namespace my_math;
     switch (chassis.mode) {
-        case interact_dep::chassis_mode::ALL:
+        case interact_dep::chassis_mode::CLIMB:
             switch (kb) {
-                case interact_dep::kb_state::LOST:
-                    cha.move.xSlope.target_set(0);
-                    cha.move.ySlope.target_set(0);
-                    break;
                 case interact_dep::kb_state::RC_ENABLE:
                 case interact_dep::kb_state::IM_ENABLE:
                     cha.move.xSlope.target_set(max.vx * static_cast<float>((cha.key.d + cha.key.a)));
@@ -174,10 +176,6 @@ void Interact::update_chassis(Chassis& cha) {
             break;
         case interact_dep::chassis_mode::NORMAL:
             switch (kb) {
-                case interact_dep::kb_state::LOST:
-                    cha.move.xSlope.target_set(0);
-                    cha.move.ySlope.target_set(0);
-                    break;
                 case interact_dep::kb_state::RC_ENABLE:
                 case interact_dep::kb_state::IM_ENABLE:
                     cha.move.xSlope.target_set(max.vx * static_cast<float>((cha.key.d + cha.key.a)));
@@ -187,7 +185,8 @@ void Interact::update_chassis(Chassis& cha) {
                 case interact_dep::kb_state::DISABLE:
                     cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
                     cha.move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
-                    cha.move.wSlope.target_set(0);
+                    cha.move.extendSlope.target_set(addSpeed(remote_control.rcInfo.ch2, max.vy));
+                    cha.move.wSlope.target_set(-addSpeed(remote_control.rcInfo.ch1, max.w));
                     break;
             }
             break;
@@ -196,8 +195,7 @@ void Interact::update_chassis(Chassis& cha) {
             cha.move.ySlope.target_set(0);
             cha.move.wSlope.target_set(0);
             break;
-        default:
-            break;
+        default: break;
     }
 }
 void Interact::receive_actions(bool is_next) {
@@ -210,8 +208,7 @@ void Interact::receive_actions(bool is_next) {
             joint[3] = actions->joint4.data[actions->now];
             joint[4] = actions->joint5.data[actions->now];
             joint[5] = actions->joint6.data[actions->now];
-            if (is_next)
-                actions->now += 1;
+            if (is_next) actions->now += 1;
         }
     }
 }

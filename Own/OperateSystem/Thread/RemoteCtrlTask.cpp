@@ -2,12 +2,12 @@
 // Created by liaohy on 24-11-15.
 //
 
-#include <RemoteControl/RemoteControl.hpp>
+#include "Chassis/Chassis.hpp"
 #include "CppTask.hpp"
 #include "Interact/Interact.hpp"
-#include "ThreadConfig.h"
 #include "MicroTime/MicroTime.hpp"
-#include "Chassis/Chassis.hpp"
+#include "ThreadConfig.h"
+#include <RemoteControl/RemoteControl.hpp>
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,111 +24,76 @@ extern uint8_t re_flag;
 void RemoteCtrlTask() {
     using namespace my_math;
     using namespace roboarm_dep;
-    interact_dep::path p = interact_dep::path::PC;
+    using namespace remote_ctrl_dep;
+    const auto& rc = interact.remote_control.rcInfo;
     while (1) {
         auto now = osKernelSysTick();
         if (!interact.remote_control.detect.isLost) {
-            if (interact.remote_control.rcInfo.right == 2)
-                osThreadResume(ERROR_TASKHandle);
-            if (interact.remote_control.rcInfo.right == 3 && interact.remote_control.rcInfo.left == 2 && interact.kb == interact_dep::kb_state::DISABLE) {
-                if (interact.remote_control.rcInfo.wheel > 500) {
-                    p = interact_dep::path::PC;
-                } else if (interact.remote_control.rcInfo.wheel < -500) {
-                    p = interact_dep::path::IMAGE_TRANSMIT;
-                }
-            } else {
-                if (interact.remote_control.rcInfo.wheel > 500) {
+            if (rc.left != static_cast<uint8_t>(lever::lower) && rc.right != static_cast<uint8_t>(lever::lower)) {
+                if (rc.wheel < -500) {
                     interact.kb = interact_dep::kb_state::RC_ENABLE;
-                } else if (interact.remote_control.rcInfo.wheel < -500) {
+                } else if (rc.wheel > 500) {
                     interact.kb = interact_dep::kb_state::DISABLE;
                 }
-            }
-            if (interact.kb == interact_dep::kb_state::DISABLE) {
-                switch (interact.remote_control.rcInfo.right) {
-                    case 1:
-                        switch (interact.remote_control.rcInfo.left) {
-                            case 1:
-                                interact.chassis.mode = interact_dep::chassis_mode::NONE;
-                                interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
-                                interact.path = interact_dep::path::REMOTE_CTRL;
-                                break;
-                            case 3:
-                                interact.chassis.mode = interact_dep::chassis_mode::NONE;
-                                interact.robo_arm.mode = interact_dep::robo_mode::NORMAL;
-                                interact.path = interact_dep::path::REMOTE_CTRL;
-
-                                break;
-                            case 2:
-                                interact.chassis.mode = interact_dep::chassis_mode::NONE;
-                                interact.robo_arm.mode = interact_dep::robo_mode::RESET;
-                                interact.path = interact_dep::path::REMOTE_CTRL;
-
-                                break;
-                            default:
-                                break;
+                if (interact.kb == interact_dep::kb_state::DISABLE) {
+                    if (rc.left == static_cast<uint8_t>(lever::upper)
+                        && rc.right == static_cast<uint8_t>(lever::upper)) {
+                        interact.robo_arm.mode = interact_dep::robo_mode::DRAW;
+                        interact.chassis.mode  = interact_dep::chassis_mode::CLIMB;
+                    } else if (rc.left == static_cast<uint8_t>(lever::upper)
+                               && rc.right == static_cast<uint8_t>(lever::middle)) {
+                        interact.robo_arm.mode = interact_dep::robo_mode::RESET;
+                        interact.chassis.mode  = interact_dep::chassis_mode::CLIMB;
+                    } else if (rc.left == static_cast<uint8_t>(lever::middle)
+                               && rc.right == static_cast<uint8_t>(lever::upper)) {
+                        interact.robo_arm.mode = interact_dep::robo_mode::DRAW;
+                        interact.chassis.mode  = interact_dep::chassis_mode::NORMAL;
+                    } else if (rc.left == static_cast<uint8_t>(lever::middle)
+                               && rc.right == static_cast<uint8_t>(lever::middle)) {
+                        interact.robo_arm.mode = interact_dep::robo_mode::RESET;
+                        interact.chassis.mode  = interact_dep::chassis_mode::NORMAL;
+                    }
+                }
+            } else if (rc.left == static_cast<uint8_t>(lever::lower)) {
+                if (interact.kb == interact_dep::kb_state::DISABLE) {
+                    interact.chassis.mode = interact_dep::chassis_mode::NONE;
+                    if (rc.right == static_cast<uint8_t>(lever::upper)) {
+                        interact.robo_arm.mode = interact_dep::robo_mode::XYZ;
+                    } else if (rc.right == static_cast<uint8_t>(lever::middle)) {
+                        if (interact.robo_arm.mode != interact_dep::robo_mode::NORMAL1
+                            && interact.robo_arm.mode != interact_dep::robo_mode::NORMAL2) {
+                            interact.robo_arm.mode = interact_dep::robo_mode::NORMAL1;
                         }
-                        break;
-                    case 3:
-                        switch (interact.remote_control.rcInfo.left) {
-                            case 1:
-                                interact.chassis.mode = interact_dep::chassis_mode::NORMAL;
-                                interact.robo_arm.mode = interact_dep::robo_mode::XYZ;
-                                interact.path = interact_dep::path::REMOTE_CTRL;
-
-                                break;
-                            case 3:
-                                interact.chassis.mode = interact_dep::chassis_mode::ALL;
-                                interact.robo_arm.mode = interact_dep::robo_mode::NONE;
-                                interact.path = interact_dep::path::REMOTE_CTRL;
-
-                                break;
-                            case 2:
-                                interact.chassis.mode = interact_dep::chassis_mode::NONE;
-                                if (p == interact_dep::path::PC) {
-                                    interact.robo_arm.mode = interact_dep::robo_mode::VISION;
-                                } else if (p == interact_dep::path::IMAGE_TRANSMIT) {
-                                    interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
-                                }
-                                interact.path = p;
-
-                                break;
-                            default:
-                                break;
+                        if (rc.wheel < -500) {
+                            interact.robo_arm.mode = interact_dep::robo_mode::NORMAL1;
+                        } else if (rc.wheel > 500) {
+                            interact.robo_arm.mode = interact_dep::robo_mode::NORMAL2;
                         }
-                        break;
-                    default:
-                        break;
+                    }
+                }
+            } else if (rc.right == static_cast<uint8_t>(lever::lower)) {
+                if (interact.kb == interact_dep::kb_state::DISABLE) {
+                    interact.chassis.mode = interact_dep::chassis_mode::NONE;
+                    if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM
+                        && interact.robo_arm.mode != interact_dep::robo_mode::VISION) {
+                        interact.robo_arm.mode = interact_dep::robo_mode::VISION;
+                    }
+                    if (rc.wheel < -500) {
+                        interact.robo_arm.mode = interact_dep::robo_mode::VISION;
+                    } else if (rc.wheel > 500) {
+                        interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
+                    }
                 }
             }
 
             // 判断了kb    更新chassis的目标
             interact.update_chassis(chassis);
-
-            xEventGroupSetBits(osEventGroup, REMOTE_CONTROL_RECEIVE_EVENT);
-            if (!re_flag) {
-                interact.chassis.last_mode = interact.chassis.mode;
-                interact.robo_arm.last_mode = interact.robo_arm.mode;
-                osDelayUntil(&now, 14);
-                continue;
-            }
-
-            xEventGroupWaitBits(osEventGroup, LK_RECEIVE_GET, pdFALSE, pdTRUE, portMAX_DELAY);
-
             // 还无判断kb
             interact.update_roboArm(roboArm);
-            if (interact.path == interact_dep::path::IMAGE_TRANSMIT && interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM && interact.kb == interact_dep::kb_state::DISABLE) {
-                if (interact.remote_control.rcInfo.ch1 > 500)
-                    interact.image_trans.set_map_back(1);
-                else if (interact.remote_control.rcInfo.ch1 < -500)
-                    interact.image_trans.set_map_back(0);
-            }
-        } else {
-            interact.chassis.mode = interact_dep::chassis_mode::NONE;
-            interact.robo_arm.mode = interact_dep::robo_mode::NONE;
         }
-        interact.chassis.last_mode = interact.chassis.mode;
+        interact.chassis.last_mode  = interact.chassis.mode;
         interact.robo_arm.last_mode = interact.robo_arm.mode;
-        RemoteCtrlHeapCnt = uxTaskGetStackHighWaterMark(NULL);
+        RemoteCtrlHeapCnt           = uxTaskGetStackHighWaterMark(NULL);
         osDelayUntil(&now, 14);
     }
 }

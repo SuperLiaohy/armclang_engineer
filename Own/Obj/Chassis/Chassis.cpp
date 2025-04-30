@@ -21,7 +21,6 @@ extern "C" {
 void Chassis::send_foc() {
     can->transmit(M3508::foc.TX_LOW_ID, base.left_front.output(), base.right_front.output(),
                base.right_rear.output(), base.left_rear.output());
-    //    MicroTime::us_delay(100);
     can->transmit(M3508::foc.TX_HIGH_ID, (int16_t)extend.left.output(), (int16_t)extend.right.output(), 0, 0);
 }
 

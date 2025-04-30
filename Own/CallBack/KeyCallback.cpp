@@ -126,8 +126,8 @@ void chassis_d_callback(KeyEventType event) {
 void chassis_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            if (interact.chassis.mode != interact_dep::chassis_mode::ALL) {
-                interact.chassis.mode = interact_dep::chassis_mode::ALL;
+            if (interact.chassis.mode != interact_dep::chassis_mode::CLIMB) {
+                interact.chassis.mode = interact_dep::chassis_mode::CLIMB;
             } else {
                 interact.chassis.mode = interact_dep::chassis_mode::NONE;
             }

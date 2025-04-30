@@ -62,7 +62,8 @@ void OS_ChassisTask(void const *argument) {
 
 void OS_RemoteCtrlTask(void const *argument) {
     UNUSED(argument);
-    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+
     RemoteCtrlTask();
 }
 

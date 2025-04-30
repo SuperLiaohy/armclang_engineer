@@ -21,6 +21,7 @@ extern osThreadId ERROR_TASKHandle;
 #include "Motor/lkMotor.hpp"
 #include "RoboArm/RoboArm.hpp"
 #include "WDG/SuperIWDG.hpp"
+
 extern uint8_t re_flag;
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
@@ -36,12 +37,11 @@ void ErrorTask() {
         canPlus2.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         Led.SetColor(red * 255, 0, 0);
         ++time;
-        if (time % 3 == 0) {
-            red = 1 - red;
-        }
+        if (time % 3 == 0) { red = 1 - red; }
 
         //        chassiss.stop();
-        if (interact.remote_control.rcInfo.right == 3) {
+        if (interact.remote_control.rcInfo.right != static_cast<uint8_t>(remote_ctrl_dep::lever::lower)
+            && interact.remote_control.rcInfo.left != static_cast<uint8_t>(remote_ctrl_dep::lever::lower)) {
             __set_FAULTMASK(1);
             HAL_NVIC_SystemReset();
         }

@@ -14,8 +14,8 @@ public:
              UART_HandleTypeDef* uart_sub_board)
         : path(interact_dep::path::REMOTE_CTRL)
         , kb {interact_dep::kb_state::RC_ENABLE}
-        , robo_arm {interact_dep::robo_mode::NORMAL, interact_dep::robo_mode::NORMAL}
-        , chassis {interact_dep::chassis_mode::ALL, interact_dep::chassis_mode::ALL}
+        , robo_arm {interact_dep::robo_mode::NORMAL1, interact_dep::robo_mode::NORMAL1}
+        , chassis {interact_dep::chassis_mode::CLIMB, interact_dep::chassis_mode::CLIMB}
         , remote_control(uart_rc)
         , image_trans(uart_im)
         , pc(head, tail)

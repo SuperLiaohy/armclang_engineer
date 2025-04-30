@@ -58,30 +58,35 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
 
-
+        if (interact.remote_control.rcInfo.right == 2 && interact.remote_control.rcInfo.left == 2)
+            osThreadResume(ERROR_TASKHandle);
 
 
     } else if (huart == interact.image_trans.uartPlus.uart) {
         using namespace crc;
         ++interact.image_trans.uartPlus.rx_cnt;
-        if (interact.image_trans.update(Size)) {
-            auto data                      = interact.image_trans.uartPlus.rx_buffer;
-            uint16_t len                   = (data[2] << 8 | data[1]);
-            interact.image_trans.rx_cmd_id = data[6] << 8 | data[5];
-            if (verify_crc16_check_sum(data, len + 9)) {
-                switch (interact.image_trans.rx_cmd_id) {
-                    case 0x302:
-                        interact.receive_custom(&data[7]);
-                        break;
-                    case 0x304:
-                        ++interact.image_trans.rx_cnt;
-                        break;
-                    case 0x306:
-                        break;
-                    case 0x309:
-                        break;
-                    default:
-                        break;
+        for (int i = 0; i < Size - 9; ++i) {
+            auto data = &interact.image_trans.uartPlus.rx_buffer[i];
+            if (data[0]==0xA5) {
+                uint16_t len                   = (data[2] << 8 | data[1]);
+                interact.image_trans.rx_cmd_id = data[6] << 8 | data[5];
+                if (verify_crc16_check_sum(data, len + 9)) {
+                    switch (interact.image_trans.rx_cmd_id) {
+                        case 0x302:
+                            interact.receive_custom(&data[7]);
+                            break;
+                        case 0x304:
+                            interact.image_trans.update(interact.key_board);
+                            ++interact.image_trans.rx_cnt;
+                            break;
+                        case 0x306:
+                            break;
+                        case 0x309:
+                            break;
+                        default:
+                            break;
+                    }
+                    i+=len+8;
                 }
             }
         }
@@ -94,8 +99,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
         using namespace crc;
         ++ui.uartPlus.rx_cnt;
         for (int i = 0; i < Size - 9; ++i) {
-            if (ui.uartPlus.rx_buffer[i]==0xA5) {
-                auto data                      = &ui.uartPlus.rx_buffer[i];
+            auto data                      = &ui.uartPlus.rx_buffer[i];
+            if (data[0]==0xA5) {
                 uint16_t len                   = (data[2] << 8 | data[1]);
                 auto rx_cmd_id = data[6] << 8 | data[5];
                 if (verify_crc16_check_sum(data, len + 9)) {
@@ -121,7 +126,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                         default:
                             break;
                     }
-                    i+=len-1;
+                    i+=len+8;
                 }
             }
         }

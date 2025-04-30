@@ -25,7 +25,7 @@ namespace roboarm_dep {
         fram.block_read(0x0010, &index, 1, 1);
         float target[2];
         switch (index) {
-            case 1: fram.block_read(0x0030, reinterpret_cast<uint8_t*>((target)), 8, 1);
+             case 1: fram.block_read(0x0030, reinterpret_cast<uint8_t*>((target)), 8, 1);
                 break;
             case 2: fram.block_read(0x0020, reinterpret_cast<uint8_t*>((target)), 8, 1);
                 break;

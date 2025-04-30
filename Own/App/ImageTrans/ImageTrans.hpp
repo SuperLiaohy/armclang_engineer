@@ -81,7 +81,9 @@ public:
 
     void get_angle(const std::array<float, 6>& pos);
 
-    bool update(uint16_t Size);
+    // bool update(uint16_t Size);
+
+    void update(KeyBoard &key_board);
 
     image_trans_dep::custom_rx_frame custom_rx_frame;
     image_trans_dep::trans_frame tx_frame;

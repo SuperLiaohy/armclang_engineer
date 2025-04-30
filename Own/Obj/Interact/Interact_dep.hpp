@@ -28,7 +28,6 @@ namespace interact_dep {
     };
 
     enum class kb_state : uint8_t {
-        LOST,
         DISABLE,
         RC_ENABLE,
         IM_ENABLE,
@@ -36,21 +35,20 @@ namespace interact_dep {
 
     enum class robo_mode : uint8_t {
         NONE,
-        NORMAL,
+        NORMAL1,
+        NORMAL2,
         XYZ,
         RESET,
         CUSTOM,
         VISION,
         ACTIONS,
+        DRAW,
     };
 
     enum class chassis_mode : uint8_t {
         NONE,
         NORMAL,
-        ALL,
-        CUSTOM,
-        VISION,
-        ACTIONS,
+        CLIMB,
     };
 
     struct receive_data_t {

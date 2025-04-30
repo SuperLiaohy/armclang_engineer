@@ -17,6 +17,11 @@ namespace remote_ctrl_dep {
         KEYBOARD,
         NORMAL
     };
+    enum class lever {
+        upper = 1,
+        middle = 3,
+        lower = 2,
+    };
 } // namespace remote_ctrl
 
 struct RC_TypeDef {

@@ -11,6 +11,7 @@ void ArmTask() {
         auto now = osKernelSysTick();
         ++cnt;
 
+        roboArm.update_relative_pos();
         roboArm.load_target(interact.joint);
 
         roboArm.diff.left.set_position(roboArm.target.joint5.angle);
