@@ -41,7 +41,7 @@ void ErrorTask() {
 
         //        chassiss.stop();
         if (interact.remote_control.rcInfo.right != static_cast<uint8_t>(remote_ctrl_dep::lever::lower)
-            && interact.remote_control.rcInfo.left != static_cast<uint8_t>(remote_ctrl_dep::lever::lower)) {
+            || interact.remote_control.rcInfo.left != static_cast<uint8_t>(remote_ctrl_dep::lever::lower)) {
             __set_FAULTMASK(1);
             HAL_NVIC_SystemReset();
         }

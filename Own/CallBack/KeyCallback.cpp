@@ -10,12 +10,12 @@ void air_left_callback(KeyEventType event) {
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
             interact.sub_board.set_valve1(1);
-            HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+            // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
             break;
         case KeyEvent_None:
         case KeyEvent_OnUp:
-            interact.sub_board.set_pump(0);
-            HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+            interact.sub_board.set_valve1(0);
+            // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
             break;
         default: break;
     }

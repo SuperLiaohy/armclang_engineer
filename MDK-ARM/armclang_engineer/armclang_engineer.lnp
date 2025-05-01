@@ -96,9 +96,9 @@
 "armclang_engineer\spicallback.o"
 "armclang_engineer\uartcallback.o"
 "armclang_engineer\keycallback.o"
+"armclang_engineer\timcallback.o"
 "armclang_engineer\crc.o"
 "armclang_engineer\detect.o"
-"armclang_engineer\detectmanager.o"
 "armclang_engineer\doublebuffer.o"
 "armclang_engineer\filter.o"
 "armclang_engineer\key.o"
@@ -172,6 +172,9 @@
 "armclang_engineer\supportfunctionsf16.o"
 "armclang_engineer\transformfunctions.o"
 "armclang_engineer\transformfunctionsf16.o"
+"armclang_engineer\retarget_io.o"
+"armclang_engineer\stdin_itm.o"
+"armclang_engineer\stdout_itm.o"
 --strict --scatter "armclang_engineer\armclang_engineer.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

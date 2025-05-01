@@ -13,26 +13,51 @@
 #include "vector"
 #endif
 
-class Detect;
 
+template<typename T>
 class DetectManager {
 public:
     DetectManager() = default;
 
     ~DetectManager() = default;
 
-    void Register(Detect *detect);
+    void Register(T *detect);
 
-    void Unregister(Detect *detect);
+    void Unregister(T *detect);
 
     void JudgeLost();
 
 private:
 #ifdef USE_HAL_SELF_LIST
-    CustomList<Detect *> detects;
+    CustomList<T *> detects;
 #else
     std::vector<Detect *> detects;
 #endif
 };
 
 
+template<typename T>
+DetectManager<T>& DetectManagerInstance() {
+    static DetectManager<T> manager;
+    return manager;
+}
+template<typename T>
+void DetectManager<T>::Register(T *detect) {
+    detects.push_back(detect);
+}
+
+template<typename T>
+void DetectManager<T>::Unregister(T *detect) {
+#ifdef USE_HAL_SELF_LIST
+    detects.remove(detect);
+#else
+    detects.erase(std::remove(detects.begin(), detects.end(), detect), detects.end());
+#endif
+}
+
+template<typename T>
+void DetectManager<T>::JudgeLost() {
+    for (auto detect: detects) {
+        detect->JudgeLost();
+    }
+}

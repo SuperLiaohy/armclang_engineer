@@ -64,6 +64,7 @@ uint32_t flash_data;
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
+void UserTimCallback(TIM_HandleTypeDef* htim);
 
 /* USER CODE END PFP */
 
@@ -82,6 +83,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
+
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -118,8 +120,10 @@ int main(void)
   MX_I2C1_Init();
   MX_UART7_Init();
   MX_IWDG1_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
 	__HAL_DBGMCU_FREEZE_IWDG1();
+    HAL_TIM_Base_Start_IT(&htim6);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
@@ -223,6 +227,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
+    UserTimCallback(htim);
 
   /* USER CODE END Callback 1 */
 }
