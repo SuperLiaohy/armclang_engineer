@@ -95,6 +95,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
         ++interact.sub_board.uartPlus.rx_cnt;
         interact.sub_board.get_feedback();
         interact.sub_board.start_receive();
+
     } else if (huart == ui.uartPlus.uart) {
         using namespace crc;
         ++ui.uartPlus.rx_cnt;

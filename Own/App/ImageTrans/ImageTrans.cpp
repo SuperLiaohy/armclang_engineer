@@ -17,17 +17,6 @@ extern osThreadId IMAGEATRANS_TASHandle;
 
 using namespace crc;
 
-// bool ImageTrans::update(uint16_t Size) {
-//     //    kb.mouse = 0;
-//     auto buff = uartPlus.rx_buffer;
-//     for (int i = 0; i < Size - 5; ++i) {
-//         if (buff[i] == image_trans_dep::SOF) {
-//             ++cnt;
-//             if (verify_crc8_check_sum(&buff[i], 5)) { return true; }
-//         }
-//     }
-//     return false;
-// }
 void ImageTrans::update(KeyBoard& key_board) {
     const auto buff = uartPlus.rx_buffer;
     key_board.mouse.x = static_cast<int16_t>((buff[7] | (buff[8] << 8))); // x axis

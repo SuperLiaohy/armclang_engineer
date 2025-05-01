@@ -2,6 +2,8 @@
 
 #include "referee_system.h"
 
+#include <variant>
+
 namespace ui_dep {
     struct basic_graphic {
         uint8_t figure_name[3];
@@ -20,7 +22,7 @@ namespace ui_dep {
     } __attribute__((packed));
 
     template<typename T>
-    concept ui_item = requires(T t) { t.set(std::declval<basic_graphic*>()); };
+    concept ui_features = requires(T t) { t.set_features(std::declval<basic_graphic*>()); };
 
     enum class types : uint8_t {
         DELETE,
@@ -40,6 +42,30 @@ namespace ui_dep {
         ADD    = 1,
         MODIFY = 2,
         DELETE = 3,
+    };
+
+    struct ui_control {
+        uint8_t name[3];
+        uint8_t display_interval;
+        uint8_t display_num;
+
+        ui_control(const uint8_t* name, const uint8_t freq) { this->init(name, freq); }
+        void init(const uint8_t* name, const uint8_t freq) {
+            this->name[0] = name[0];
+            this->name[1] = name[1];
+            this->name[2] = name[2];
+            if (freq == 0) {
+                this->display_interval = -1;
+                this->display_num      = 0;
+                return;
+            }
+            if (30 % freq > freq / 2) {
+                this->display_interval = 30 / freq;
+            } else {
+                this->display_interval = 30 / freq + 1;
+            }
+            this->display_num = 1;
+        }
     };
 
     enum class graphic : uint8_t {
@@ -81,8 +107,11 @@ namespace ui_dep {
     struct line {
         uint16_t end_x = 0;
         uint16_t end_y = 0;
-
-        void set(basic_graphic* graphic) const {
+        line()         = default;
+        line(const uint16_t end_x, const uint16_t end_y)
+            : end_x(end_x)
+            , end_y(end_y) {}
+        void set_features(basic_graphic* graphic) const {
             graphic->figure_type = static_cast<uint32_t>(graphic::LINE);
             graphic->details_a   = 0;
             graphic->details_b   = 0;
@@ -96,7 +125,12 @@ namespace ui_dep {
         uint16_t opposed_x = 0;
         uint16_t opposed_y = 0;
 
-        void set(basic_graphic* graphic) const {
+        rect() = default;
+        rect(const uint16_t opposed_x, const uint16_t opposed_y)
+            : opposed_x(opposed_x)
+            , opposed_y(opposed_y) {}
+
+        void set_features(basic_graphic* graphic) const {
             graphic->figure_type = static_cast<uint32_t>(graphic::RECT);
             graphic->details_a   = 0;
             graphic->details_b   = 0;
@@ -108,7 +142,12 @@ namespace ui_dep {
 
     struct circle {
         uint16_t radius;
-        void set(basic_graphic* graphic) const {
+
+        circle() = default;
+        circle(uint16_t radius)
+            : radius(radius) {}
+
+        void set_features(basic_graphic* graphic) const {
             graphic->figure_type = static_cast<uint32_t>(graphic::CIRCLE);
             graphic->details_a   = 0;
             graphic->details_b   = 0;
@@ -122,7 +161,12 @@ namespace ui_dep {
         uint16_t radius_x = 0;
         uint16_t radius_y = 0;
 
-        void set(basic_graphic* graphic) const {
+        ellipse() = default;
+        ellipse(uint16_t radius_x, uint16_t radius_y)
+            : radius_x(radius_x)
+            , radius_y(radius_y) {}
+
+        void set_features(basic_graphic* graphic) const {
             graphic->figure_type = static_cast<uint32_t>(graphic::ELLIPSE);
             graphic->details_a   = 0;
             graphic->details_b   = 0;
@@ -137,8 +181,13 @@ namespace ui_dep {
         uint16_t end_angle   = 0;
         uint16_t radius_x    = 0;
         uint16_t radius_y    = 0;
-
-        void set(basic_graphic* graphic) const {
+        arc()                = default;
+        arc(uint16_t start_angle, uint16_t end_angle, uint16_t radius_x, uint16_t radius_y)
+            : start_angle(start_angle)
+            , end_angle(end_angle)
+            , radius_x(radius_x)
+            , radius_y(radius_y) {}
+        void set_features(basic_graphic* graphic) const {
             graphic->figure_type = static_cast<uint32_t>(graphic::ARC);
             graphic->details_a   = start_angle;
             graphic->details_b   = end_angle;
@@ -150,39 +199,85 @@ namespace ui_dep {
 
     struct float_data {
         uint16_t font_size = 0;
-        float data         = 0;
-
-        void set(basic_graphic* graphic) const {
+        float* data        = nullptr;
+        float_data()       = default;
+        float_data(const uint16_t font_size, float* data)
+            : font_size(font_size)
+            , data(data) {}
+        void set_features(basic_graphic* graphic) const {
             graphic->figure_type = static_cast<uint32_t>(graphic::FLOAT);
             graphic->details_a   = font_size;
             graphic->details_b   = 0;
-            auto data_int        = static_cast<int32_t>(data * 1000);
+            const auto data_int  = static_cast<int32_t>(*data * 1000);
             std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 11, &data_int, sizeof(data_int));
         }
     };
 
     struct int_data {
         uint16_t font_size = 0;
-        int32_t data       = 0;
+        int32_t* data      = nullptr;
 
-        void set(basic_graphic* graphic) const {
+        int_data() = default;
+        int_data(uint16_t font_size, int32_t* data)
+            : font_size(font_size)
+            , data(data) {};
+        void set_features(basic_graphic* graphic) const {
             graphic->figure_type = static_cast<uint32_t>(graphic::INT);
             graphic->details_a   = font_size;
             graphic->details_b   = 0;
-            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 11, &data, sizeof(data));
+            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 11, data, sizeof(data));
         }
     };
 
-    template<uint16_t size> struct string_data {
-        uint16_t font_size = 0;
-        uint8_t data[30]   = {0};
-
-        void set(basic_graphic* graphic) const {
+    struct string_data {
+        uint16_t font_size  = 0;
+        const uint8_t* data = nullptr;
+        uint8_t length      = 0;
+        string_data()       = default;
+        string_data(uint16_t font_size, const uint8_t* data, uint8_t length)
+            : font_size(font_size)
+            , data(data)
+            , length(length) {}
+        void set_features(basic_graphic* graphic) const {
             graphic->figure_type = static_cast<uint32_t>(graphic::STR);
             graphic->details_a   = font_size;
-            graphic->details_b   = size;
-            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 15, data, 30);
+            graphic->details_b   = length;
+            std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 15, data, length);
         }
+    };
+
+    template<ui_features T> struct UiItem {
+        ui_control control;
+        operation op;
+        layer layer_id;
+        color col;
+        uint8_t width;
+        uint8_t start_x;
+        uint8_t start_y;
+        T feature;
+
+        UiItem(const uint8_t* name, const uint8_t freq)
+            : control(name, freq) {}
+        UiItem(const uint8_t* name, const uint8_t freq, operation op, layer layer_id, color col, uint16_t width,
+               uint16_t start_x, uint16_t start_y)
+            : control(name, freq)
+            , op(op)
+            , layer_id(layer_id)
+            , col(col)
+            , width(width)
+            , start_x(start_x)
+            , start_y(start_y) {}
+
+        UiItem(const uint8_t* name, const uint8_t freq, operation op, layer layer_id, color col, uint16_t width,
+               uint16_t start_x, uint16_t start_y, const T& args)
+            : control(name, freq)
+            , op(op)
+            , layer_id(layer_id)
+            , col(col)
+            , width(width)
+            , start_x(start_x)
+            , start_y(start_y)
+            , feature(args) {}
     };
 
     struct frame {
@@ -196,20 +291,25 @@ namespace ui_dep {
 
 class UI {
 public:
-    using basic_graphic        = ui_dep::basic_graphic;
-    using types                = ui_dep::types;
-    using operate_delete_layer = ui_dep::operate_delete_layer;
-    using operation            = ui_dep::operation;
-    using graphic              = ui_dep::graphic;
-    using color                = ui_dep::color;
-    using layer                = ui_dep::layer;
-    using frame                = ui_dep::frame;
+    using basic_graphic                          = ui_dep::basic_graphic;
+    using types                                  = ui_dep::types;
+    using operate_delete_layer                   = ui_dep::operate_delete_layer;
+    using operation                              = ui_dep::operation;
+    using graphic                                = ui_dep::graphic;
+    using color                                  = ui_dep::color;
+    using layer                                  = ui_dep::layer;
+    using frame                                  = ui_dep::frame;
+    using ui_control                             = ui_dep::ui_control;
+    template<ui_dep::ui_features T> using UiItem = ui_dep::UiItem<T>;
+    using VarUiItem = std::variant<UiItem<ui_dep::line>, UiItem<ui_dep::circle>, UiItem<ui_dep::arc>,
+                                   UiItem<ui_dep::ellipse>, UiItem<ui_dep::rect>, UiItem<ui_dep::int_data>,
+                                   UiItem<ui_dep::float_data>, UiItem<ui_dep::string_data>>;
 
     UI(uint16_t sender_id, uint16_t receiver_id, UART_HandleTypeDef* huart)
         : len(0)
-        , num(0)
         , type(types::NONE)
-        , uartPlus(huart, 200, 200) {
+        , uartPlus(huart, 200, 200)
+        , num(0) {
         ui_frame                         = reinterpret_cast<frame*>(uartPlus.tx_buffer);
         *ui_frame                        = {0xA5, 0, 0, 0};
         ui_frame->cmd_id                 = 0x301;
@@ -221,12 +321,8 @@ public:
     [[gnu::always_inline]] inline void unlock() {};
 
     void delete_layer(ui_dep::operate_delete_layer delete_layer, uint8_t layer_id);
-    void operate_str(const uint8_t* name, operation op, uint8_t layer_id, color col, uint16_t font, uint16_t str_len,
-                     uint16_t width, uint16_t start_x, uint16_t start_y, const uint8_t* str);
-    // void operate_fig(const uint8_t* name, operation op, graphic graph, uint8_t layer_id, color col, uint16_t detail_a,
-    //                  uint16_t detail_b, uint16_t width, uint16_t start_x, uint16_t start_y, uint16_t detail_c,
-    //                  uint16_t detail_d, uint16_t detail_e);
-    template<ui_dep::ui_item ui_graphic>
+
+    template<ui_dep::ui_features ui_graphic>
     void operate_fig(const uint8_t* name, operation op, layer layer_id, color col, uint16_t width, uint16_t start_x,
                      uint16_t start_y, const ui_graphic& item) {
         lock();
@@ -240,20 +336,74 @@ public:
         addr->width            = width;
         addr->start_x          = start_x;
         addr->start_y          = start_y;
-        item.set(addr);
+        item.set_features(addr);
         ++num;
 
-        if constexpr (std::is_same_v<ui_graphic, ui_dep::line> || std::is_same_v<ui_graphic, ui_dep::rect>
-                      || std::is_same_v<ui_graphic, ui_dep::circle> || std::is_same_v<ui_graphic, ui_dep::ellipse>
-                      || std::is_same_v<ui_graphic, ui_dep::arc> || std::is_same_v<ui_graphic, ui_dep::float_data>
-                      || std::is_same_v<ui_graphic, ui_dep::int_data>) {
-            len  += 15;
-            type  = types::FIGURE;
-        } else {
+        if constexpr (std::is_same_v<ui_graphic, ui_dep::string_data>) {
             len  += 45;
             type  = types::STRING;
+        } else {
+            len  += 15;
+            type  = types::FIGURE;
         }
 
+        unlock();
+    };
+    template<ui_dep::ui_features ui_graphic>
+    void operate_fig(ui_control& control, operation op, layer layer_id, color col, uint16_t width, uint16_t start_x,
+                     uint16_t start_y, const ui_graphic& item) {
+        lock();
+        if (num < 7 && control.display_num > 0) {
+            auto* addr             = reinterpret_cast<basic_graphic*>(&((ui_frame->data_frame.user_data)[len]));
+            (addr->figure_name)[0] = control.name[0];
+            (addr->figure_name)[1] = control.name[1];
+            (addr->figure_name)[2] = control.name[2];
+            addr->operate_type     = static_cast<uint8_t>(op);
+            addr->layer            = static_cast<uint8_t>(layer_id);
+            addr->color            = static_cast<uint8_t>(col);
+            addr->width            = width;
+            addr->start_x          = start_x;
+            addr->start_y          = start_y;
+            item.set_features(addr);
+            ++num;
+            if constexpr (std::is_same_v<ui_graphic, ui_dep::string_data>) {
+                len  += 45;
+                type  = types::STRING;
+            } else {
+                len  += 15;
+                type  = types::FIGURE;
+            }
+            --control.display_num;
+        }
+        unlock();
+    };
+    template<ui_dep::ui_features ui_graphic> void operate_fig(UiItem<ui_graphic>& item) {
+        lock();
+
+        if (type != types::DELETE && type != types::STRING) {
+            if (num < 7 && item.control.display_num > 0) {
+                auto* addr             = reinterpret_cast<basic_graphic*>(&((ui_frame->data_frame.user_data)[len]));
+                (addr->figure_name)[0] = item.control.name[0];
+                (addr->figure_name)[1] = item.control.name[1];
+                (addr->figure_name)[2] = item.control.name[2];
+                addr->operate_type     = static_cast<uint8_t>(item.op);
+                addr->layer            = static_cast<uint8_t>(item.layer_id);
+                addr->color            = static_cast<uint8_t>(item.col);
+                addr->width            = item.width;
+                addr->start_x          = item.start_x;
+                addr->start_y          = item.start_y;
+                item.feature.set_features(addr);
+                ++num;
+                if constexpr (std::is_same_v<ui_graphic, ui_dep::string_data>) {
+                    len  += 45;
+                    type  = types::STRING;
+                } else {
+                    len  += 15;
+                    type  = types::FIGURE;
+                }
+                --item.control.display_num;
+            }
+        }
         unlock();
     };
 

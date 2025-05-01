@@ -36,12 +36,8 @@ void air_right_callback(KeyEventType event) {
 void robo_arm_shift_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            interact.path = interact_dep::path::IMAGE_TRANSMIT;
             if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
                 interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
-            } else {
-                interact.path          = interact_dep::path::REMOTE_CTRL;
-                interact.robo_arm.mode = interact_dep::robo_mode::NONE;
             }
             break;
         default: break;
@@ -54,7 +50,6 @@ void robo_arm_ctrl_q_callback(KeyEventType event) {
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
         case KeyEvent_OnClick:
-            interact.path = interact_dep::path::PC;
             if (interact.robo_arm.mode != interact_dep::robo_mode::VISION) {
                 interact.robo_arm.mode = interact_dep::robo_mode::VISION;
             }
