@@ -748,13 +748,22 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
+  ..\Own\Bsp\CDC\SuperCDC.hpp D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
+  ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
+  ..\USB_DEVICE\Target\usbd_conf.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
+  ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
+  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
-  ..\Core\Inc\tim.h ..\Own\Mod\RoundQueue\RoundQueue.hpp \
-  ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
+  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\App\OneStepGet\OneStepGet.hpp

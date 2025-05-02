@@ -13,7 +13,7 @@ float OneStepGet::move_back(float target_speed) {
     return XMotor.set_speed(target_speed);
 }
 float OneStepGet::move_upward(float& target_pos) {
-    if (YMotor.is_block(10000) ) {
+    if (YMotor.is_block(10000)) {
         y_is_block = true;
         this->y = OneStepGetYStatus::NONE;
         target_pos = YMotor.total_position();
@@ -21,8 +21,8 @@ float OneStepGet::move_upward(float& target_pos) {
     }
     return YMotor.set_position(target_pos);
 }
-float OneStepGet::move_down(float& target_pos) {
-    if (YMotor.is_block(10000)) {
+float OneStepGet::move_down(float& target_pos, bool is_get) {
+    if (YMotor.is_block(10000) || is_get) {
         y_is_block = true;
         this->y = OneStepGetYStatus::NONE;
         target_pos = YMotor.total_position();

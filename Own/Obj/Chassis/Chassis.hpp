@@ -6,6 +6,7 @@
 #define USING_CHASSIS 1
 #if USING_CHASSIS == 1
 
+#include "Interact/Interact_dep.hpp"
 #include "chassis_dep.hpp"
 
 class Chassis {
@@ -30,7 +31,7 @@ public:
 
     void UpdatePid();
 
-    void update_slope();
+    void update_slope(interact_dep::chassis_mode mode);
 
     float wheelSpeed[6] {};
     chassis_dep::base_motor base;
@@ -41,7 +42,7 @@ private:
 
     chassis_dep::key key;
 
-    void load_speed();
+    void load_speed(interact_dep::chassis_mode mode);
 
     friend class Interact;
     friend void chassis_w_callback(KeyEventType event);

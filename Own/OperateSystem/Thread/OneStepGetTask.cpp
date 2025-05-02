@@ -16,34 +16,38 @@ void OneStepGetTask() {
     while (1) {
         switch (one_step_get_left.x) {
             case OneStepGetXStatus::NONE: left_out_x = one_step_get_left.move_front(0, false); break;
-            case OneStepGetXStatus::FRONT: left_out_x = one_step_get_left.move_front(2000, false); break;
-            case OneStepGetXStatus::BACK: left_out_x = one_step_get_left.move_back(-2000); break;
+            case OneStepGetXStatus::FRONT: left_out_x = one_step_get_left.move_front(4000, false); break;
+            case OneStepGetXStatus::BACK: left_out_x = one_step_get_left.move_back(-4000); break;
         }
         switch (one_step_get_left.y) {
-            case OneStepGetYStatus::NONE: break;
+            case OneStepGetYStatus::NONE:
+                right_out_y = one_step_get_right.YMotor.set_position(right_y);
+                break;
             case OneStepGetYStatus::UP:
                 ++left_y;
                 left_out_y = one_step_get_left.move_upward(left_y);
                 break;
             case OneStepGetYStatus::DOWN:
                 --left_y;
-                left_out_y = one_step_get_left.move_down(left_y);
+                left_out_y = one_step_get_left.move_down(left_y, false);
                 break;
         }
         switch (one_step_get_right.x) {
             case OneStepGetXStatus::NONE: right_out_x = one_step_get_right.move_front(0, false); break;
-            case OneStepGetXStatus::FRONT: right_out_x = one_step_get_right.move_front(-2000, false); break;
-            case OneStepGetXStatus::BACK: right_out_x = one_step_get_right.move_back(2000); break;
+            case OneStepGetXStatus::FRONT: right_out_x = one_step_get_right.move_front(-4000, false); break;
+            case OneStepGetXStatus::BACK: right_out_x = one_step_get_right.move_back(4000); break;
         }
         switch (one_step_get_right.y) {
-            case OneStepGetYStatus::NONE: break;
+            case OneStepGetYStatus::NONE:
+                right_out_y = one_step_get_right.YMotor.set_position(right_y);
+                break;
             case OneStepGetYStatus::UP:
                 ++right_y;
                 right_out_y = one_step_get_right.move_upward(right_y);
                 break;
             case OneStepGetYStatus::DOWN:
                 --right_y;
-                right_out_y = one_step_get_right.move_down(right_y);
+                right_out_y = one_step_get_right.move_down(right_y, false);
                 break;
         }
         canPlus3.transmit(0x200, right_out_y, left_out_y, right_out_x, left_out_x);

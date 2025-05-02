@@ -13,7 +13,6 @@ void one_step_get_z_callback(KeyEventType event) {
         case KeyEvent_OnUp:
             one_step_get_left.x = OneStepGetXStatus::NONE;
             break;
-            break;
         default: break;
     }
 }
@@ -282,8 +281,8 @@ void chassis_d_callback(KeyEventType event) {
 void chassis_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            if (interact.chassis.mode != interact_dep::chassis_mode::CLIMB) {
-                interact.chassis.mode = interact_dep::chassis_mode::CLIMB;
+            if (interact.chassis.mode != interact_dep::chassis_mode::NORMAL) {
+                interact.chassis.mode = interact_dep::chassis_mode::NORMAL;
             } else {
                 interact.chassis.mode = interact_dep::chassis_mode::NONE;
             }

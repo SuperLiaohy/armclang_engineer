@@ -13,8 +13,8 @@ public:
     Interact(const uint8_t& head, const uint8_t& tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef* uart_im,
              UART_HandleTypeDef* uart_sub_board)
         : kb {interact_dep::kb_state::RC_ENABLE}
-        , robo_arm {interact_dep::robo_mode::NORMAL1, interact_dep::robo_mode::NORMAL1}
-        , chassis {interact_dep::chassis_mode::CLIMB, interact_dep::chassis_mode::CLIMB}
+        , robo_arm {interact_dep::robo_mode::NONE, interact_dep::robo_mode::NONE}
+        , chassis {interact_dep::chassis_mode::NONE, interact_dep::chassis_mode::NONE}
         , remote_control(uart_rc)
         , image_trans(uart_im)
         , pc(head, tail)
