@@ -725,23 +725,22 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\Motor.tpp \
-  ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\Control\SpeedPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
-  ..\Own\App\Motor\Control\..\Motor.tpp ..\Own\App\Motor\Param\M3508.hpp \
-  ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M2006.hpp \
-  ..\Own\App\Motor\Control\PosPidControl.hpp \
-  ..\Own\App\Motor\Param\M2006.hpp ..\Own\App\Motor\lkMotor.hpp \
-  ..\Own\App\Motor\Control\lkControl.hpp ..\Own\Mod\MyMath\MyMath.hpp \
-  ..\Own\App\Motor\Param\lkMotor.hpp \
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006Diff.hpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\Control\..\Motor.tpp \
+  ..\Own\App\Motor\Control\SpeedPidControl.hpp \
+  ..\Own\App\Motor\Param\M2006Diff.hpp \
+  ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
+  ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
   ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Slope\Slope.hpp \
   ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
   ..\Own\OperateSystem\Heap\CustomHeap.hpp \
-  ..\Own\OperateSystem\Heap\rtx_lib.h ..\Own\Obj\Interact\Interact.hpp \
-  ..\Own\Obj\Interact\Interact_dep.hpp \
+  ..\Own\OperateSystem\Heap\rtx_lib.h \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
   ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\App\Fram\Fram.hpp \
   ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
@@ -770,9 +769,11 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\App\PC\PC.hpp \
   ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\Judge\referee_system.h \
-  ..\Own\App\Judge\ui.hpp ..\Own\App\Pump\Pump.hpp \
-  ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
-  ..\Core\Inc\spi.h ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
+  ..\Own\App\Judge\ui.hpp ..\Own\App\OneStepGet\OneStepGet.hpp \
+  ..\Own\App\Pump\Pump.hpp ..\Own\App\RGBLED\RGBLED.hpp \
+  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h \
+  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
   ..\Own\App\Imu\Imu.hpp

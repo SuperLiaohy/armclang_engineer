@@ -10,11 +10,10 @@ extern "C" {
 #endif
 #include "FreeRTOS.h"
 #include "cmsis_os.h"
-
 #ifdef __cplusplus
 }
 #endif
-
+#include "OneStepGet/OneStepGet.hpp"
 
 extern float yaw;
 
@@ -48,17 +47,24 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
             // roboArm.joint1.get_feedback(canPlus1.rx_data);
         // }
         // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.left.feed_back.id) {
-            roboArm.diff.left.get_feedback(canPlus1.rx_header.Identifier - M2006::foc.RX_ID, canPlus1.rx_data);
+            roboArm.diff.left.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus1.rx_data);
             xEventGroupSetBitsFromISR(osEventGroup, DIFF_LEFT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         // }
         // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.right.feed_back.id) {
-            roboArm.diff.right.get_feedback(canPlus1.rx_header.Identifier - M2006::foc.RX_ID,canPlus1.rx_data);
+            roboArm.diff.right.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID,canPlus1.rx_data);
             xEventGroupSetBitsFromISR(osEventGroup, DIFF_RIGHT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         // }
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     } else if (hfdcan == chassis.can->hcan){
         chassis.can->receive();
         chassis.UpdateMotor();
+    } else if (hfdcan == canPlus3.hcan){        
+				canPlus3.receive();
+
+        one_step_get_left.XMotor.get_feedback(canPlus3.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus3.rx_data);
+        one_step_get_left.YMotor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
+        one_step_get_right.XMotor.get_feedback(canPlus3.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus3.rx_data);
+        one_step_get_right.YMotor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
     }
 }
 

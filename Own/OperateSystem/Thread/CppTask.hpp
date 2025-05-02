@@ -40,3 +40,4 @@ void SubBoardTask();
 void ArmInitTask();
 void BuzzerTask();
 void ArmTask();
+void OneStepGetTask();

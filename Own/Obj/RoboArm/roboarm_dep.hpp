@@ -113,8 +113,8 @@ namespace roboarm_dep {
     class Differentiator {
     public:
         float gain;
-        Motor<M2006Pos> left;
-        Motor<M2006Pos> right;
+        Motor<M2006DiffPos> left;
+        Motor<M2006DiffPos> right;
 
         Differentiator(float gain, uint32_t left_id, const Pid& left_pos_pid, const Pid& left_speed_pid,
                        uint32_t right_id, const Pid& right_pos_pid, const Pid& right_speed_pid, I2C_HandleTypeDef* hi2c)

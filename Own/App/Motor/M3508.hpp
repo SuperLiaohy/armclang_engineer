@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Control/SpeedPidControl.hpp"
+#include "Control/PosPidControl.hpp"
 #include "Param/M3508.hpp"
 
 #define USING_M3508 1
@@ -13,15 +14,48 @@ class M3508Speed : public SpeedPidControl<M3508> {
 public:
     template<typename... Args>
     explicit M3508Speed(Args&&... args)
-        : SpeedPidControl<M3508>(std::forward<Args>(args)...) {};
+        : SpeedPidControl(std::forward<Args>(args)...) {};
 
-    bool get_feedback(uint16_t id, uint8_t* data) {
+    bool get_feedback(const uint16_t id, const uint8_t* data) {
         if (id == this->rx_id) {
-            SpeedPidControl<M3508>::get_feedback(data);
+            SpeedPidControl::get_feedback(data);
             return true;
         }
         return false;
     };
+
+    bool is_block(int16_t max_current) {
+        if (fabs(feedback.raw_data.current) > max_current ) {
+            return true;
+        }
+        return false;
+    }
+};
+
+class M3508Pos : public PosPidControl<M3508> {
+public:
+    template<typename... Args>
+    explicit M3508Pos(Args&&... args)
+        : PosPidControl(std::forward<Args>(args)...) {};
+
+    float total_position() {
+        return feedback.total_position;
+    }
+
+    bool get_feedback(const uint16_t id, const uint8_t* data) {
+        if (id == this->rx_id) {
+            PosPidControl::get_feedback(data);
+            return true;
+        }
+        return false;
+    };
+
+    bool is_block(int16_t max_current) {
+        if (fabs(feedback.raw_data.current) > max_current ) {
+            return true;
+        }
+        return false;
+    }
 };
 
 #endif //USING_M3508

@@ -1066,6 +1066,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\App\Fram\Fram.cpp</FilePath>
             </File>
+            <File>
+              <FileName>OneStepGet.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\OneStepGet\OneStepGet.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1756,6 +1761,11 @@
               <FileName>ArmTask.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\OperateSystem\Thread\ArmTask.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>OneStepGetTask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\OperateSystem\Thread\OneStepGetTask.cpp</FilePath>
             </File>
           </Files>
         </Group>

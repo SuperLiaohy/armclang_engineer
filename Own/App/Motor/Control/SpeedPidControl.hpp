@@ -14,12 +14,12 @@ public:
         : motor(std::forward<Args>(args)...)
         , speed(cfg) {};
 
-    void set_speed(float target) {
-        speed.update(target, this->feedback.data.speed);
+    float set_speed(float target) {
+        return  speed.update(target, this->feedback.data.speed);
     }
 
     [[nodiscard]] float output() const { return speed.output; }
 
-private:
+protected:
     Pid speed;
 };

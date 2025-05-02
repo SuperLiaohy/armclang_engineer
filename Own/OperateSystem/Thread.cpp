@@ -113,3 +113,10 @@ void OS_ArmTask(void const *argument) {
     xEventGroupWaitBits(osEventGroup, ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     ArmTask();
 }
+
+void OS_OneStepGetTask(void const *argument) {
+    UNUSED(argument);
+    xEventGroupWaitBits(osEventGroup, ROBO_ARM_INIT_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    OneStepGetTask();
+}
+

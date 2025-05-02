@@ -63,6 +63,7 @@ osThreadId SUB_TASKHandle;
 osThreadId ARM_INIT_TASKHandle;
 osThreadId BUZZER_TASKHandle;
 osThreadId ARM_TASKHandle;
+osThreadId OSG_TASKHandle;
 osMutexId CAN1MutexHandle;
 osMutexId CAN2MutexHandle;
 
@@ -86,6 +87,7 @@ void OS_SubBoardTask(void const * argument);
 void OS_ArmInitTask(void const * argument);
 void OS_BuzzerTask(void const * argument);
 void OS_ArmTask(void const * argument);
+void OS_OneStepGetTask(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -217,6 +219,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of ARM_TASK */
   osThreadDef(ARM_TASK, OS_ArmTask, osPriorityNormal, 0, 256);
   ARM_TASKHandle = osThreadCreate(osThread(ARM_TASK), NULL);
+
+  /* definition and creation of OSG_TASK */
+  osThreadDef(OSG_TASK, OS_OneStepGetTask, osPriorityNormal, 0, 256);
+  OSG_TASKHandle = osThreadCreate(osThread(OSG_TASK), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -494,6 +500,24 @@ __weak void OS_ArmTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END OS_ArmTask */
+}
+
+/* USER CODE BEGIN Header_OS_OneStepGetTask */
+/**
+* @brief Function implementing the OSG_TASK thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_OS_OneStepGetTask */
+__weak void OS_OneStepGetTask(void const * argument)
+{
+  /* USER CODE BEGIN OS_OneStepGetTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END OS_OneStepGetTask */
 }
 
 /* Private application code --------------------------------------------------*/

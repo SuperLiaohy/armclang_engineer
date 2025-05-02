@@ -16,7 +16,7 @@ extern osThreadId ERROR_TASKHandle;
 #endif
 #include "CAN/SuperCan.hpp"
 #include "Interact/Interact.hpp"
-#include "Motor/M2006.hpp"
+#include "Motor/M2006Diff.hpp"
 #include "Motor/Motor.hpp"
 #include "Motor/lkMotor.hpp"
 #include "RoboArm/RoboArm.hpp"
@@ -33,8 +33,9 @@ void ErrorTask() {
     while (1) {
         roboArm.close();
         buzzer.StartMusic<8, Buzzer::delay_pl::HAL>(Buzzer::error_music);
-        canPlus1.transmit(M2006::foc.TX_LOW_ID, 0, 0, 0, 0);
+        canPlus1.transmit(M2006Diff::foc.TX_LOW_ID, 0, 0, 0, 0);
         canPlus2.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
+        canPlus3.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         Led.SetColor(red * 255, 0, 0);
         ++time;
         if (time % 3 == 0) { red = 1 - red; }
