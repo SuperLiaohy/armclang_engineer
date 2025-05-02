@@ -12,7 +12,7 @@ void DebugTask() {
     while (1) {
         auto now = xTaskGetTickCount();
         ++time;
-        DetectManagerInstance<Detect>().JudgeLost();
+        DetectManagerInstance().JudgeLost();
         DetectHeapCnt = uxTaskGetStackHighWaterMark(NULL);
         if (time > 99) {
             it.mark();

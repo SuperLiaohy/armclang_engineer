@@ -13,6 +13,8 @@
 #include "vector"
 #endif
 
+class Detect;
+class TimDetect;
 
 template<typename T>
 class DetectManager {
@@ -41,6 +43,9 @@ DetectManager<T>& DetectManagerInstance() {
     static DetectManager<T> manager;
     return manager;
 }
+
+
+
 template<typename T>
 void DetectManager<T>::Register(T *detect) {
     detects.push_back(detect);

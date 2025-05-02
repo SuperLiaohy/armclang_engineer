@@ -107,6 +107,63 @@ void one_step_get_shift_v_callback(KeyEventType event) {
     }
 }
 
+void one_step_get_ctrl_z_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            interact.sub_board.set_valve2(1);
+            break;
+        case KeyEvent_None:
+        case KeyEvent_OnUp:
+            interact.sub_board.set_valve2(0);
+            break;
+        default: break;
+    }
+}
+void one_step_get_ctrl_x_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            interact.sub_board.set_valve3(1);
+            break;
+        case KeyEvent_None:
+        case KeyEvent_OnUp:
+            interact.sub_board.set_valve3(0);
+            break;
+        default: break;
+    }
+}
+void one_step_get_ctrl_c_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            interact.sub_board.set_valve4(1);
+            break;
+        case KeyEvent_None:
+        case KeyEvent_OnUp:
+            interact.sub_board.set_valve4(0);
+            break;
+        default: break;
+    }
+}
+void one_step_get_ctrl_v_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            interact.sub_board.set_valve5(1);
+            break;
+        case KeyEvent_None:
+        case KeyEvent_OnUp:
+            interact.sub_board.set_valve5(0);
+            break;
+        default: break;
+    }
+}
+
 uint32_t cnt_right;
 void air_left_callback(KeyEventType event) {
     switch (event) {

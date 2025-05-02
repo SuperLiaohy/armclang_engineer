@@ -4,7 +4,21 @@
 
 #include "Detect.hpp"
 
-Detect::~Detect() { DetectManagerInstance<Detect>().Unregister(this); }
+
+DetectManager<Detect>& DetectManagerInstance() {
+    static DetectManager<Detect> manager;
+    return manager;
+}
+
+
+DetectManager<TimDetect>& TimDetectManagerInstance() {
+    static DetectManager<TimDetect> tim_manager;
+    return tim_manager;
+}
+
+
+
+Detect::~Detect() { DetectManagerInstance().Unregister(this); }
 
 Detect::Detect(const uint32_t maxInterval, Fun lostFun, Fun recoverFun)
     : isLost(false)
@@ -12,7 +26,7 @@ Detect::Detect(const uint32_t maxInterval, Fun lostFun, Fun recoverFun)
     , recoverFun(recoverFun)
     , maxInterval(maxInterval)
     , lastReceiveTime(0) {
-        DetectManagerInstance<Detect>().Register(this);
+        DetectManagerInstance().Register(this);
 }
 
 void Detect::update() { lastReceiveTime = getSysTime(); }
@@ -32,7 +46,7 @@ void Detect::JudgeLost() {
     }
 }
 
-TimDetect::~TimDetect() { DetectManagerInstance<TimDetect>().Unregister(this); }
+TimDetect::~TimDetect() { TimDetectManagerInstance().Unregister(this); }
 
 TimDetect::TimDetect(const uint32_t maxInterval, Fun lostFun, Fun recoverFun)
     : isLost(false)
@@ -40,7 +54,7 @@ TimDetect::TimDetect(const uint32_t maxInterval, Fun lostFun, Fun recoverFun)
     , recoverFun(recoverFun)
     , maxInterval(maxInterval)
     , lastReceiveTime(0) {
-        DetectManagerInstance<TimDetect>().Register(this);
+        TimDetectManagerInstance().Register(this);
 }
 
 void TimDetect::update() { lastReceiveTime = getSysTime(); }

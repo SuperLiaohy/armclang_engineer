@@ -21,6 +21,9 @@ extern "C" {
 
 
 typedef void (*Fun)();
+DetectManager<Detect>& DetectManagerInstance();
+DetectManager<TimDetect>& TimDetectManagerInstance();
+
 
 class Detect {
 public:

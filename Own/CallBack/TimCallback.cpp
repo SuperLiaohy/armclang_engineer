@@ -5,7 +5,7 @@
 #include <Detect/Detect.hpp>
 extern "C" void UserTimCallback(TIM_HandleTypeDef* htim) {
     if (htim == &htim6) {
-        DetectManagerInstance<TimDetect>().JudgeLost();
+        TimDetectManagerInstance().JudgeLost();
 
     }
 }
