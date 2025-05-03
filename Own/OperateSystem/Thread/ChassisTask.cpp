@@ -12,7 +12,7 @@ Vofa<3> vofa __attribute__((section(".RAM_D1")));
 void ChassisTask() {
     //    float data[3] = {-46.475, 0, 255.320};
     while (1) {
-        chassis.update_slope(interact.chassis.mode);
+        chassis.update_slope(interact.chassis.mode, interact.polarity);
         chassis.UpdatePid();
         chassis.send_foc();
         ChassisHeapCnt = uxTaskGetStackHighWaterMark(NULL);

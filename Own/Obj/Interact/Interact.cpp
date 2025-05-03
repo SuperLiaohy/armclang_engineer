@@ -100,8 +100,8 @@ void Interact::receive_custom(uint8_t* data) {
     if (robo_arm.mode == robo_mode::CUSTOM) {
         memcpy(reinterpret_cast<uint8_t*>(&image_trans.custom_rx_frame), data,
                sizeof(image_trans_dep::custom_rx_frame));
-        sub_board.set_pump(image_trans.custom_rx_frame.s.pump);
-        sub_board.set_valve5(image_trans.custom_rx_frame.s.valve);
+        // sub_board.set_pump(image_trans.custom_rx_frame.s.pump);
+        // sub_board.set_valve5(image_trans.custom_rx_frame.s.valve);
         if (!image_trans.read_map_back()) {
             joint[0] = -image_trans.custom_rx_frame.joint[0] * scale(4096, 360);
             joint[1] = image_trans.custom_rx_frame.joint[1] * scale(4096, 360);
@@ -126,7 +126,7 @@ void Interact::update_roboArm(RoboArm& Arm) {
             receive_rc();
             break;
         case interact_dep::robo_mode::NORMAL2:
-            if (robo_arm.last_mode != interact_dep::robo_mode::NORMAL1) {
+            if (robo_arm.last_mode != interact_dep::robo_mode::NORMAL2) {
                 joint[0] = Arm.relative_pos[0];
                 joint[1] = Arm.relative_pos[1];
                 joint[2] = Arm.relative_pos[2];

@@ -31,7 +31,7 @@ public:
 
     void UpdatePid();
 
-    void update_slope(interact_dep::chassis_mode mode);
+    void update_slope(interact_dep::chassis_mode mode, interact_dep::chassis_polarity polarity);
 
     float wheelSpeed[6] {};
     chassis_dep::base_motor base;
@@ -42,7 +42,7 @@ private:
 
     chassis_dep::key key;
 
-    void load_speed(interact_dep::chassis_mode mode);
+    void load_speed(interact_dep::chassis_mode mode, interact_dep::chassis_polarity polarity);
 
     friend class Interact;
     friend void chassis_w_callback(KeyEventType event);

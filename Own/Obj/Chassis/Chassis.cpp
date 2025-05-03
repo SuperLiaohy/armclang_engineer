@@ -62,7 +62,7 @@ void Chassis::UpdateMotor() {
     if (extend.right.get_feedback(id, can->read())) { return; }
 }
 
-void Chassis::update_slope(interact_dep::chassis_mode mode) {
+void Chassis::update_slope(interact_dep::chassis_mode mode, interact_dep::chassis_polarity polarity) {
     move.xSlope.update();
     move.ySlope.update();
 
@@ -74,10 +74,10 @@ void Chassis::update_slope(interact_dep::chassis_mode mode) {
     move.vy              = -move.xSlope.get() * gimbalAngleSin + move.ySlope.get() * gimbalAngleCos;
     move.w               = move.wSlope.update();
     move.extend          = move.extendSlope.update();
-    load_speed(mode);
+    load_speed(mode, polarity);
 }
 
-void Chassis::load_speed(interact_dep::chassis_mode mode) {
+void Chassis::load_speed(interact_dep::chassis_mode mode, interact_dep::chassis_polarity polarity) {
     using namespace chassis_dep;
     float rotateRatio[4];
 
@@ -89,21 +89,38 @@ void Chassis::load_speed(interact_dep::chassis_mode mode) {
                             + info.offset_y * my_abs(move.w) / max.w + info.offset_x * my_abs(move.w) / max.w;
     rotateRatio[RightRear] = (rear_info.wheel_base + rear_info.wheel_track) / 2.f
                              + info.offset_y * my_abs(move.w) / max.w - info.offset_x * my_abs(move.w) / max.w;
+    if (polarity == interact_dep::chassis_polarity::NONE) {
+        wheelSpeed[LeftFront]  = (move.vx + move.vy - rotateRatio[LeftFront] * move.w) * v2rpm;
+        wheelSpeed[RightFront] = (move.vx - move.vy - rotateRatio[RightFront] * move.w) * v2rpm;
+        wheelSpeed[LeftRear]   = (-move.vx + (move.vy) - rotateRatio[LeftRear] * move.w) * v2rpm;
+        wheelSpeed[RightRear]  = (-move.vx - (move.vy) - rotateRatio[RightRear] * move.w) * v2rpm;
 
-    wheelSpeed[LeftFront]  = (move.vx + move.vy - rotateRatio[LeftFront] * move.w) * v2rpm;
-    wheelSpeed[RightFront] = (move.vx - move.vy - rotateRatio[RightFront] * move.w) * v2rpm;
-    wheelSpeed[LeftRear]   = (-move.vx + (move.vy) - rotateRatio[LeftRear] * move.w) * v2rpm;
-    wheelSpeed[RightRear]  = (-move.vx - (move.vy) - rotateRatio[RightRear] * move.w) * v2rpm;
+        switch (mode) {
+            case interact_dep::chassis_mode::CLIMB:
+                wheelSpeed[ExtendLeft]  = (move.extend) * v2rpm;
+                wheelSpeed[ExtendRight] = -(move.extend) * v2rpm;
+                break;
+            default:
+                wheelSpeed[ExtendLeft]  = (move.vy + move.extend) * v2rpm;
+                wheelSpeed[ExtendRight] = -(move.vy + move.extend) * v2rpm;
+                break;
+        }
+    } else {
+        wheelSpeed[LeftFront]  = -(move.vx + move.vy + rotateRatio[LeftFront] * move.w) * v2rpm;
+        wheelSpeed[RightFront] = -(move.vx - move.vy + rotateRatio[RightFront] * move.w) * v2rpm;
+        wheelSpeed[LeftRear]   = -(-move.vx + (move.vy) + rotateRatio[LeftRear] * move.w) * v2rpm;
+        wheelSpeed[RightRear]  = -(-move.vx - (move.vy) + rotateRatio[RightRear] * move.w) * v2rpm;
 
-    switch (mode) {
-        case interact_dep::chassis_mode::CLIMB:
-            wheelSpeed[ExtendLeft]  = (move.extend) * v2rpm;
-            wheelSpeed[ExtendRight] = -(move.extend) * v2rpm;
-            break;
-        default:
-            wheelSpeed[ExtendLeft]  = (move.vy + move.extend) * v2rpm;
-            wheelSpeed[ExtendRight] = -(move.vy + move.extend) * v2rpm;
-            break;
+        switch (mode) {
+            case interact_dep::chassis_mode::CLIMB:
+                wheelSpeed[ExtendLeft]  = -(move.extend) * v2rpm;
+                wheelSpeed[ExtendRight] = (move.extend) * v2rpm;
+                break;
+            default:
+                wheelSpeed[ExtendLeft]  = -(move.vy + move.extend) * v2rpm;
+                wheelSpeed[ExtendRight] = (move.vy + move.extend) * v2rpm;
+                break;
+        }
     }
 }
 

@@ -747,24 +747,4 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Interact\Interact_dep.hpp ..\Own\Bsp\CDC\SuperCDC.hpp \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  ..\USB_DEVICE\App\usbd_cdc_if.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
-  ..\USB_DEVICE\Target\usbd_conf.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
-  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
-  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
-  ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Mod\Slope\Slope.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h

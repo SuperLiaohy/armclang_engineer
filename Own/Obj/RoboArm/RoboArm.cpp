@@ -3,7 +3,6 @@
 //
 
 #include "RoboArm.hpp"
-#include "Interact/Interact.hpp"
 
 inline float slove_q2(float q1_slove, float q3_slove, float x, float y, float z) {
     using namespace my_math;
@@ -154,15 +153,16 @@ void RoboArm::update_relative_pos() {
     //
     // relative_pos[3] = joint4.motor.m.feedback.total_position - offset.joint4;
 
-     relative_pos[0] = joint1.total_position - offset.joint1;
+     relative_pos[0] = -(joint1.total_position - offset.joint1);
 
      relative_pos[1] = -(joint2.external.total_position - offset.joint2.external);
 
      relative_pos[2] = -(joint3.total_position - offset.joint3);
 
-     relative_pos[3] = joint4.total_position - offset.joint4;
+     relative_pos[3] = -(joint4.total_position - offset.joint4);
 
     diff.update_relative_pos(relative_pos[4], relative_pos[5]);
+
 }
 
 void RoboArm::fkine(std::array<float, 3>& xyz) {

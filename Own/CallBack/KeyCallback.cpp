@@ -107,76 +107,101 @@ void one_step_get_shift_v_callback(KeyEventType event) {
 }
 
 void one_step_get_ctrl_z_callback(KeyEventType event) {
+    static uint8_t open = 0;
     switch (event) {
-        case KeyEvent_OnDown:
-        case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing:
-            interact.sub_board.set_valve2(1);
-            break;
-        case KeyEvent_None:
-        case KeyEvent_OnUp:
-            interact.sub_board.set_valve2(0);
-            break;
+        case KeyEvent_OnClick:
+            open = 1-open;
+            interact.sub_board.set_valve5(open);
+        break;
+        // case KeyEvent_OnDown:
+        // case KeyEvent_OnLongPress:
+        // case KeyEvent_OnPressing:
+        //     interact.sub_board.set_valve5(1);
+        //     break;
+        // case KeyEvent_None:
+        // case KeyEvent_OnUp:
+        //     interact.sub_board.set_valve5(0);
+        //     break;
         default: break;
     }
 }
 void one_step_get_ctrl_x_callback(KeyEventType event) {
+    static uint8_t open = 0;
     switch (event) {
-        case KeyEvent_OnDown:
-        case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing:
-            interact.sub_board.set_valve3(1);
+        case KeyEvent_OnClick:
+            open = 1-open;
+            interact.sub_board.set_valve4(open);
             break;
-        case KeyEvent_None:
-        case KeyEvent_OnUp:
-            interact.sub_board.set_valve3(0);
-            break;
+        // case KeyEvent_OnDown:
+        // case KeyEvent_OnLongPress:
+        // case KeyEvent_OnPressing:
+        //     interact.sub_board.set_valve4(1);
+        //     break;
+        // case KeyEvent_None:
+        // case KeyEvent_OnUp:
+        //     interact.sub_board.set_valve4(0);
+        //     break;
         default: break;
     }
 }
 void one_step_get_ctrl_c_callback(KeyEventType event) {
+    static uint8_t open = 0;
     switch (event) {
-        case KeyEvent_OnDown:
-        case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing:
-            interact.sub_board.set_valve4(1);
+        case KeyEvent_OnClick:
+            open = 1-open;
+            interact.sub_board.set_valve1(open);
             break;
-        case KeyEvent_None:
-        case KeyEvent_OnUp:
-            interact.sub_board.set_valve4(0);
-            break;
+        // case KeyEvent_OnDown:
+        // case KeyEvent_OnLongPress:
+        // case KeyEvent_OnPressing:
+        //     interact.sub_board.set_valve1(1);
+        //     break;
+        // case KeyEvent_None:
+        // case KeyEvent_OnUp:
+        //     interact.sub_board.set_valve1(0);
+        //     break;
         default: break;
     }
 }
 void one_step_get_ctrl_v_callback(KeyEventType event) {
+    static uint8_t open = 0;
     switch (event) {
-        case KeyEvent_OnDown:
-        case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing:
-            interact.sub_board.set_valve5(1);
+        case KeyEvent_OnClick:
+            open = 1-open;
+            interact.sub_board.set_valve2(open);
             break;
-        case KeyEvent_None:
-        case KeyEvent_OnUp:
-            interact.sub_board.set_valve5(0);
-            break;
+        // case KeyEvent_OnDown:
+        // case KeyEvent_OnLongPress:
+        // case KeyEvent_OnPressing:
+        //     interact.sub_board.set_valve2(1);
+        //     break;
+        // case KeyEvent_None:
+        // case KeyEvent_OnUp:
+        //     interact.sub_board.set_valve2(0);
+        //     break;
         default: break;
     }
 }
 
 uint32_t cnt_right;
 void air_left_callback(KeyEventType event) {
+    static uint8_t open = 0;
     switch (event) {
-        case KeyEvent_OnDown:
-        case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing:
-            interact.sub_board.set_valve1(1);
-            // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        case KeyEvent_OnClick:
+            open = 1-open;
+            interact.sub_board.set_valve3(open);
             break;
-        case KeyEvent_None:
-        case KeyEvent_OnUp:
-            interact.sub_board.set_valve1(0);
-            // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
-            break;
+        // case KeyEvent_OnDown:
+        // case KeyEvent_OnLongPress:
+        // case KeyEvent_OnPressing:
+        //     interact.sub_board.set_valve3(1);
+        //     // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+        //     break;
+        // case KeyEvent_None:
+        // case KeyEvent_OnUp:
+        //     interact.sub_board.set_valve3(0);
+        //     // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+        //     break;
         default: break;
     }
 }
@@ -217,10 +242,14 @@ void robo_arm_ctrl_q_callback(KeyEventType event) {
         default: break;
     }
 }
+extern interact_dep::Actions get_right_y;
 
 void robo_arm_shift_f_callback(KeyEventType event) {
     switch (event) {
-        case KeyEvent_OnClick: interact.image_trans.toggle_map_back(); break;
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing: get_right_y.now = 0; interact.actions = &get_right_y; interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS; break;
+        // case KeyEvent_OnClick: interact.image_trans.toggle_map_back(); break;
         default: break;
     }
 }
@@ -233,6 +262,44 @@ void robo_arm_shift_r_callback(KeyEventType event) {
         default: break;
     }
 }
+
+extern interact_dep::Actions anti_reset;
+
+void robo_arm_ctrl_r_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing: anti_reset.now=0; interact.actions = &anti_reset; interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS; break;
+        default: break;
+    }
+}
+
+void robo_arm_ctrl_e_callback(KeyEventType event) {
+    static uint8_t open = 0;
+    switch (event) {
+        case KeyEvent_OnClick:
+            open = 1-open;
+            interact.sub_board.set_valve6(open);
+            break;
+            default: break;
+    }
+}
+
+void chassis_shift_e_callback(KeyEventType event) {
+    static uint8_t open = 0;
+    switch (event) {
+        case KeyEvent_OnClick:
+            open = 1-open;
+            if (open) {
+                interact.polarity = interact_dep::chassis_polarity::ANTI;
+            } else {
+                interact.polarity = interact_dep::chassis_polarity::NONE;
+            }
+            break;
+            default: break;
+    }
+}
+
 
 void chassis_w_callback(KeyEventType event) {
     switch (event) {

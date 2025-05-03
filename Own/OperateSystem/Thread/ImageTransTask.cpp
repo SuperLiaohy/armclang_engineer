@@ -13,10 +13,10 @@ void ImageTransTask() {
 
     while (1) {
         auto now = xTaskGetTickCount();
-        if (interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM) {
+        // if (interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM) {
             interact.image_trans.get_angle(roboArm.relative_pos);
             interact.image_trans.transmit();
-        }
+        // }
         osDelayUntil(&now, 100);
     }
 }

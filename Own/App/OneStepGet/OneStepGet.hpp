@@ -30,8 +30,8 @@ public:
     float move_front(float target_speed, bool is_get);
     float move_back(float target_speed);
 
-    float move_upward(float& target_pos);
-    float move_down(float& target_pos, bool is_get);
+    float move_upward(float& target_pos, bool is_block);
+    float move_down(float& target_pos, bool is_get, bool is_block);
 
     OneStepGetXStatus x;
     bool x_is_block;

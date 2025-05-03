@@ -131,8 +131,9 @@ namespace roboarm_dep {
 
         void write_fram();
 
-    private:
         Fram fram;
+
+    private:
         uint8_t index;
     };
 

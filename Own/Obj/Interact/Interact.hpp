@@ -15,6 +15,7 @@ public:
         : kb {interact_dep::kb_state::RC_ENABLE}
         , robo_arm {interact_dep::robo_mode::NONE, interact_dep::robo_mode::NONE}
         , chassis {interact_dep::chassis_mode::NONE, interact_dep::chassis_mode::NONE}
+        , polarity(interact_dep::chassis_polarity::NONE)
         , remote_control(uart_rc)
         , image_trans(uart_im)
         , pc(head, tail)
@@ -46,6 +47,8 @@ public:
         interact_dep::chassis_mode mode;
         interact_dep::chassis_mode last_mode;
     } chassis;
+
+    interact_dep::chassis_polarity polarity;
 
     void update_chassis(Chassis& cha);
 

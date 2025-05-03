@@ -74,10 +74,11 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                     switch (interact.image_trans.rx_cmd_id) {
                         case 0x302:
                             interact.receive_custom(&data[7]);
+												++interact.image_trans.rx_cnt;
                             break;
                         case 0x304:
-                            interact.image_trans.update(interact.key_board);
-                            ++interact.image_trans.rx_cnt;
+                            // interact.image_trans.update(interact.key_board);
+                            
                             break;
                         case 0x306:
                             break;

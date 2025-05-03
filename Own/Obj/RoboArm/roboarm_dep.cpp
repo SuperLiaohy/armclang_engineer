@@ -10,8 +10,8 @@ namespace roboarm_dep {
         left.clear();
         right.clear();
         read_fram();
-        joint[4] = (left.total_position() + right.total_position()) / 2;
-        joint[5]  = (1/gain) * (left.total_position() - right.total_position()) / 2;
+        joint[4] = 0;
+        joint[5]  = 0;
 
 //        fram.block_write(0x00, reinterpret_cast<uint8_t*>(arr), 8, 1);
 //        fram.it_read(0x00, reinterpret_cast<uint8_t*>(read_arr), 8);

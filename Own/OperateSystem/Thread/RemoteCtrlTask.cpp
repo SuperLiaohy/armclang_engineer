@@ -50,7 +50,7 @@ void RemoteCtrlTask() {
                         interact.chassis.mode  = interact_dep::chassis_mode::NORMAL;
                     } else if (rc.left == static_cast<uint8_t>(lever::middle)
                                && rc.right == static_cast<uint8_t>(lever::middle)) {
-                        interact.robo_arm.mode = interact_dep::robo_mode::RESET;
+                        interact.robo_arm.mode = interact_dep::robo_mode::NONE;
                         interact.chassis.mode  = interact_dep::chassis_mode::NORMAL;
                     }
                 }

@@ -50,6 +50,10 @@ namespace interact_dep {
         NORMAL,
         CLIMB,
     };
+    enum class chassis_polarity : uint8_t {
+        NONE,
+        ANTI
+    };
 
     struct receive_data_t {
         uint8_t head;
@@ -76,9 +80,7 @@ namespace interact_dep {
 
     struct Action {
         float* data {};
-        Slope slope;
-        explicit Action(uint8_t num, float step = 3, float dead_zone = 0.1)
-            : slope(step, dead_zone) {
+        explicit Action(uint8_t num) {
             data = reinterpret_cast<float *>(pvPortMalloc(num * sizeof(float )));
         };
     };

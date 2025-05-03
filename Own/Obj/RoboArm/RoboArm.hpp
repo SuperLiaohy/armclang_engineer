@@ -8,6 +8,7 @@
  */
 #pragma once
 #include "roboarm_dep.hpp"
+
 #include <array>
 extern int32_t left_dPos;
 extern int32_t right_dPos;
