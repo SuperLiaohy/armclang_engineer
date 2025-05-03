@@ -345,6 +345,50 @@ void chassis_d_callback(KeyEventType event) {
     }
 }
 
+void chassis_shift_w_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing: chassis.key.w = 0.2; break;
+        case KeyEvent_None:
+        case KeyEvent_OnUp: chassis.key.w = 0; break;
+        default: break;
+    }
+}
+
+void chassis_shift_a_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing: chassis.key.a = -0.2; break;
+        case KeyEvent_None:
+        case KeyEvent_OnUp: chassis.key.a = 0; break;
+        default: break;
+    }
+}
+
+void chassis_shift_s_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing: chassis.key.s = -0.2; break;
+        case KeyEvent_None:
+        case KeyEvent_OnUp: chassis.key.s = 0; break;
+        default: break;
+    }
+}
+
+void chassis_shift_d_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing: chassis.key.d = 0.2; break;
+        case KeyEvent_None:
+        case KeyEvent_OnUp: chassis.key.d = 0; break;
+        default: break;
+    }
+}
+
 void chassis_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:

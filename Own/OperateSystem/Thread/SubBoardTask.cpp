@@ -11,6 +11,7 @@ void SubBoardTask() {
     interact.sub_board.set_valve3(0);
     interact.sub_board.set_valve4(0);
     interact.sub_board.set_valve5(0);
+    interact.sub_board.set_valve6(0);
     for (;;) {
         interact.sub_board.transmit();
         osDelay(100);

@@ -68,10 +68,10 @@ namespace chassis_dep {
     };
 
     struct key {
-        int8_t w;
-        int8_t a;
-        int8_t s;
-        int8_t d;
+        float w;
+        float a;
+        float s;
+        float d;
 
         key()
             : w(0)

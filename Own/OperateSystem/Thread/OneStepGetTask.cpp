@@ -53,11 +53,11 @@ void OneStepGetTask() {
             case OneStepGetYStatus::NONE: right_out_y = one_step_get_right.YMotor.set_position(right_y); break;
             case OneStepGetYStatus::UP:
                 --right_y;
-                right_out_y = one_step_get_right.move_upward(right_y, one_step_get_right.YMotor.is_block(15000));
+                right_out_y = one_step_get_right.move_upward(right_y, one_step_get_right.YMotor.is_block(14000));
                 break;
             case OneStepGetYStatus::DOWN:
                 ++right_y;
-                right_out_y = one_step_get_right.move_down(right_y, false, one_step_get_right.YMotor.is_block(15000));
+                right_out_y = one_step_get_right.move_down(right_y, false, one_step_get_right.YMotor.is_block(14000));
                 break;
         }
         canPlus3.transmit(0x200, right_out_y, left_out_y, right_out_x, left_out_x);

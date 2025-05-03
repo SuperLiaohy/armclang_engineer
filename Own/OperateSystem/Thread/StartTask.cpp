@@ -63,6 +63,10 @@ void robo_arm_ctrl_r_callback(KeyEventType event);
 extern interact_dep::Actions anti_reset;
 extern interact_dep::Actions get_right_y;
 
+void chassis_shift_w_callback(KeyEventType event);
+void chassis_shift_a_callback(KeyEventType event);
+void chassis_shift_s_callback(KeyEventType event);
+void chassis_shift_d_callback(KeyEventType event);
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -81,8 +85,8 @@ void StartTask() {
     anti_reset.joint6.data[0] = 0.699188232;
 
     get_right_y.joint1.data[0] = -8.48937225;
-    get_right_y.joint2.data[0] = -5.90254879;
-    get_right_y.joint3.data[0] = -104.256134;
+    get_right_y.joint2.data[0] = -17.2843819;
+    get_right_y.joint3.data[0] = -102.246674;
     get_right_y.joint4.data[0] = 83.5459137;
     get_right_y.joint5.data[0] = 89.6870422;
     get_right_y.joint6.data[0] = 42.9085999;
@@ -104,14 +108,22 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_A, CombineKey_None, chassis_a_callback);
     KeyBoardRegister(interact.keyList, Key_S, CombineKey_None, chassis_s_callback);
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_None, chassis_d_callback);
+
+    KeyBoardRegister(interact.keyList, Key_W, CombineKey_Shift, chassis_shift_w_callback);
+    KeyBoardRegister(interact.keyList, Key_A, CombineKey_Shift, chassis_shift_a_callback);
+    KeyBoardRegister(interact.keyList, Key_S, CombineKey_Shift, chassis_shift_s_callback);
+    KeyBoardRegister(interact.keyList, Key_D, CombineKey_Shift, chassis_shift_d_callback);
+
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_None, chassis_q_callback);
 
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Shift, robo_arm_shift_q_callback);
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Ctrl, robo_arm_ctrl_q_callback);
-    KeyBoardRegister(interact.keyList, Key_Left, CombineKey_None, air_left_callback);
-    interact.keyList[16].longPressTime = 100;
-    KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
-    interact.keyList[16].longPressTime = 5000;
+
+//    KeyBoardRegister(interact.keyList, Key_Left, CombineKey_None, air_left_callback);
+//    interact.keyList[16].longPressTime = 100;
+//    KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
+//    interact.keyList[16].longPressTime = 5000;
+
     //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
     //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
     interact.keyList[7].longPressTime = 5000;
@@ -133,10 +145,10 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_V, CombineKey_None, one_step_get_v_callback);
     KeyBoardRegister(interact.keyList, Key_V, CombineKey_Shift, one_step_get_shift_v_callback);
 
-    KeyBoardRegister(interact.keyList, Key_Z, CombineKey_Ctrl, one_step_get_ctrl_z_callback);
-    KeyBoardRegister(interact.keyList, Key_X, CombineKey_Ctrl, one_step_get_ctrl_x_callback);
-    KeyBoardRegister(interact.keyList, Key_C, CombineKey_Ctrl, one_step_get_ctrl_c_callback);
-    KeyBoardRegister(interact.keyList, Key_V, CombineKey_Ctrl, one_step_get_ctrl_v_callback);
+    // KeyBoardRegister(interact.keyList, Key_Z, CombineKey_Ctrl, one_step_get_ctrl_z_callback);
+    // KeyBoardRegister(interact.keyList, Key_X, CombineKey_Ctrl, one_step_get_ctrl_x_callback);
+    // KeyBoardRegister(interact.keyList, Key_C, CombineKey_Ctrl, one_step_get_ctrl_c_callback);
+    // KeyBoardRegister(interact.keyList, Key_V, CombineKey_Ctrl, one_step_get_ctrl_v_callback);
 
     interact.remote_control.start();
     interact.image_trans.uartPlus.receive_dma_idle(100);
