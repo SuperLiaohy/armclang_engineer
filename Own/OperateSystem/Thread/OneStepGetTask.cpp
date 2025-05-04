@@ -28,7 +28,7 @@ void OneStepGetTask() {
                 left_y += 1;
 
                 if (one_step_get_left.YMotor.is_block(15000)) {
-                    if (++left_block_count > 5) { tick = true; }
+                    if (++left_block_count > 0) { tick = true; }
                 } else {
                     left_block_count = 0;
                 }
@@ -37,7 +37,7 @@ void OneStepGetTask() {
             case OneStepGetYStatus::DOWN:
                 left_y -= 1;
                 if (one_step_get_left.YMotor.is_block(15000)) {
-                    if (++left_block_count > 5) { tick = true; }
+                    if (++left_block_count > 0) { tick = true; }
                 } else {
                     left_block_count = 0;
                 }

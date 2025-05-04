@@ -4,9 +4,7 @@
 #pragma once
 
 
-#include "Uart/SuperUart.hpp"
 #include "Buzzer/Buzzer.hpp"
-#include "Key/Key.hpp"
 
 namespace remote_ctrl_dep {
     [[gnu::always_inline]] inline float addSpeed(float rc_ch, float max_speed) {
@@ -22,20 +20,20 @@ namespace remote_ctrl_dep {
         middle = 3,
         lower = 2,
     };
-} // namespace remote_ctrl
 
-struct RC_TypeDef {
-    /* rocker channel information */
-    int16_t ch1;
-    int16_t ch2;
-    int16_t ch3;
-    int16_t ch4;
-    /* left and right lever information */
-    uint8_t left;
-    uint8_t right;
-    /* mouse movement and button information */
-    int16_t wheel;
-};
+    struct RC_TypeDef {
+        /* rocker channel information */
+        int16_t ch1;
+        int16_t ch2;
+        int16_t ch3;
+        int16_t ch4;
+        /* left and right lever information */
+        uint8_t left;
+        uint8_t right;
+        /* mouse movement and button information */
+        int16_t wheel;
+    };
 
+}
 
 

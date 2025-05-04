@@ -61,10 +61,6 @@ void SuperGPIO::Toggle() { HAL_GPIO_TogglePin(port, pin); }
 
 SuperGPIO::state SuperGPIO::Read() { return HAL_GPIO_ReadPin(port, pin); }
 
-// extern SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_15> power_5v;
-// extern SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_14> power_24v_right;
-// extern SuperGPIO<GPIOC_BASE, OUTPUT, GPIO_PIN_13> power_24v_left;
-
 extern SuperGPIO power_5v;
 extern SuperGPIO power_24v_right;
 extern SuperGPIO power_24v_left;

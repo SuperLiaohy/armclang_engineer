@@ -21,14 +21,14 @@ extern osMutexId CAN1MutexHandle;
 void Interact::receive_cdc(uint8_t* data) {
     using namespace interact_dep;
     if (robo_arm.mode == robo_mode::VISION) {
-        if (data[0] == pc.head && data[sizeof(receive_data_t) - 1] == pc.tail) {
-            memcpy(&pc.receive_data, data, sizeof(receive_data_t));
-            joint[0] = pc.receive_data.joint1.angle * scale(65536, 360);
-            joint[1] = pc.receive_data.joint2.angle * scale(65536, 360);
-            joint[2] = pc.receive_data.joint3.angle * scale(65536, 360);
-            joint[3] = pc.receive_data.joint4.angle * scale(65536, 360);
-            joint[4] = pc.receive_data.joint5.angle * scale(8192, 360);
-            joint[5] = pc.receive_data.joint6.angle * scale(8192, 360);
+        if (data[0] == pc.head && data[sizeof(pc_dep::rx_frame) - 1] == pc.tail) {
+            memcpy(&pc.rx_frame, data, sizeof(pc_dep::rx_frame));
+            joint[0] = pc.rx_frame.data.joint1.angle * scale(65536, 360);
+            joint[1] = pc.rx_frame.data.joint2.angle * scale(65536, 360);
+            joint[2] = pc.rx_frame.data.joint3.angle * scale(65536, 360);
+            joint[3] = pc.rx_frame.data.joint4.angle * scale(65536, 360);
+            joint[4] = pc.rx_frame.data.joint5.angle * scale(8192, 360);
+            joint[5] = pc.rx_frame.data.joint6.angle * scale(8192, 360);
         }
     }
 }
@@ -77,13 +77,13 @@ void Interact::receive_xyz(RoboArm& Arm) {
 
 void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
     using namespace my_math;
-    pc.transmit_data.joint1.angle = pos[0] * d2b2;
-    pc.transmit_data.joint2.angle = pos[1] * d2b2;
-    pc.transmit_data.joint3.angle = pos[2] * d2b2;
-    pc.transmit_data.joint4.angle = pos[3] * d2b2;
-    pc.transmit_data.joint5.angle = pos[4] * scale(360, 8192);
-    pc.transmit_data.joint6.angle = static_cast<int>((pos[5] * scale(360, 8192))) % 8192;
-    pc.transmit(reinterpret_cast<uint8_t*>(&pc.transmit_data), sizeof(pc.transmit_data));
+    pc.tx_frame.data.joint1.angle = pos[0] * d2b2;
+    pc.tx_frame.data.joint2.angle = pos[1] * d2b2;
+    pc.tx_frame.data.joint3.angle = pos[2] * d2b2;
+    pc.tx_frame.data.joint4.angle = pos[3] * d2b2;
+    pc.tx_frame.data.joint5.angle = pos[4] * scale(360, 8192);
+    pc.tx_frame.data.joint6.angle = static_cast<int>((pos[5] * scale(360, 8192))) % 8192;
+    pc.transmit(reinterpret_cast<uint8_t*>(&pc.tx_frame), sizeof(pc.tx_frame));
 }
 
 void Interact::receive_reset() {
@@ -98,17 +98,17 @@ void Interact::receive_reset() {
 void Interact::receive_custom(uint8_t* data) {
     using namespace interact_dep;
     if (robo_arm.mode == robo_mode::CUSTOM) {
-        memcpy(reinterpret_cast<uint8_t*>(&image_trans.custom_rx_frame), data,
-               sizeof(image_trans_dep::custom_rx_frame));
-        sub_board.set_pump(image_trans.custom_rx_frame.s.pump);
-        sub_board.set_valve3(image_trans.custom_rx_frame.s.valve);
+        memcpy(reinterpret_cast<uint8_t*>(&image_trans.user_custom_rx_data), data,
+               sizeof(image_trans_dep::user_custom_rx_data));
+        sub_board.set_pump(image_trans.user_custom_rx_data.s.pump);
+        sub_board.set_valve3(image_trans.user_custom_rx_data.s.valve);
         if (!image_trans.read_map_back()) {
-            joint[0] = -image_trans.custom_rx_frame.joint[0] * scale(4096, 360);
-            joint[1] = image_trans.custom_rx_frame.joint[1] * scale(4096, 360);
-            joint[2] = image_trans.custom_rx_frame.joint[2] * scale(4096, 360);
-            joint[3] = -image_trans.custom_rx_frame.joint[3] * scale(4096, 360);
-            joint[4] = image_trans.custom_rx_frame.joint[4] * scale(4096, 360);
-            joint[5] = -image_trans.custom_rx_frame.joint[5] * scale(4096, 360);
+            joint[0] = -image_trans.user_custom_rx_data.joint[0] * scale(4096, 360);
+            joint[1] = image_trans.user_custom_rx_data.joint[1] * scale(4096, 360);
+            joint[2] = image_trans.user_custom_rx_data.joint[2] * scale(4096, 360);
+            joint[3] = -image_trans.user_custom_rx_data.joint[3] * scale(4096, 360);
+            joint[4] = image_trans.user_custom_rx_data.joint[4] * scale(4096, 360);
+            joint[5] = -image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
         }
     }
 }

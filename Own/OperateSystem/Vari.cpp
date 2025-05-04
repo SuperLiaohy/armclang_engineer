@@ -85,7 +85,7 @@ __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
 Buzzer buzzer(&htim12, TIM_CHANNEL_2);
 
-Imu imu(MEASURE_DISABLE);
+Imu imu(IMU_MEASURE::MEASURE_DISABLE);
 
 Interact interact(0xFF, 0xFE, &huart5, &huart10, &huart3);
 

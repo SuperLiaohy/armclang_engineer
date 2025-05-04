@@ -11,9 +11,9 @@
 #include "ThreadConfig.h"
 void PCTask() {
     uint32_t cnt = 0;
-    interact.pc.transmit_data.head = interact.pc.head;
-    interact.pc.transmit_data.tail = interact.pc.tail;
-    interact.pc.transmit_data.cmd = 0xA5;
+    interact.pc.tx_frame.head = interact.pc.head;
+    interact.pc.tx_frame.tail = interact.pc.tail;
+    interact.pc.tx_frame.cmd = 0xA5;
     while (1) {
         if (cnt++%10==0) {
             interact.transmit_relative_pos(roboArm.relative_pos);

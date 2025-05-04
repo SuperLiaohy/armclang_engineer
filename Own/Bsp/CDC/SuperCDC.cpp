@@ -3,7 +3,7 @@
 //
 
 #include "SuperCDC.hpp"
-
+#include "stdarg.h"
 
 
 void SuperCDC::printf(const char *fmt, ...) {

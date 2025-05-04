@@ -5,13 +5,22 @@ armclang_engineer/referee_system.o: ..\Own\App\Judge\referee_system.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\string.h ..\Own\Bsp\Uart\SuperUart.hpp \
   ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp \
+  ..\Own\Mod\CustomList\LinkedList.hpp \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stddef.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stddef.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdint.h ..\Core\Inc\FreeRTOSConfig.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\cstdint \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__verbose_abort \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__availability \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdint.h ..\Core\Inc\usart.h \
+  ..\Own\Mod\CustomList\SeqList.hpp ..\Core\Inc\usart.h \
   ..\Core\Inc\main.h ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
@@ -27,8 +36,6 @@ armclang_engineer/referee_system.o: ..\Own\App\Judge\referee_system.cpp \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\mpu_armv7.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stddef.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stddef.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\math.h \
   D:\Keil_v5\ARM\ARMCLANG\include\math.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__math\abs.h \
@@ -215,6 +222,4 @@ armclang_engineer/referee_system.o: ..\Own\App\Judge\referee_system.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\Mod\Crc\Crc.hpp
+  ..\Own\Mod\Crc\Crc.hpp

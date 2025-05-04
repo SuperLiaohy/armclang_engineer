@@ -7,12 +7,14 @@
 #include "Uart/SuperUart.hpp"
 
 namespace sub_board_dep {
-    typedef struct {
+#pragma pack(push, 1)
+    struct frame_header {
         uint8_t sof;
-    } __attribute__((packed)) frame_header;
+    };
+#pragma pack(pop)
 
-
-    typedef struct {
+#pragma pack(push, 1)
+    struct tx_status{
         uint8_t valve1: 1;
         uint8_t valve2: 1;
         uint8_t valve3: 1;
@@ -21,50 +23,62 @@ namespace sub_board_dep {
         uint8_t valve6: 1;
         uint8_t none: 1;
         uint8_t pump: 1;
-    } __attribute__((packed)) tx_status;
-    typedef struct {
+    };
+#pragma pack(pop)
+
+#pragma pack(push, 1)
+    struct user_tx_data{
         tx_status s;
-    } __attribute__((packed)) custom_tx_frame;
-    typedef struct {
+    };
+#pragma pack(pop)
+
+#pragma pack(push, 1)
+    struct tx_frame {
         frame_header frame_head;
         uint8_t cmd_id;
         uint8_t data[8 - sizeof(frame_header) - sizeof(uint8_t) - sizeof(uint8_t)];
         uint8_t crc8;
-    } __attribute__((packed)) trans_frame;
+    };
+#pragma pack(pop)
 
-
-    typedef struct {
+#pragma pack(push, 1)
+    struct rx_status {
         uint8_t valve1: 1;
         uint8_t valve2: 1;
         uint8_t valve3: 1;
         uint8_t valve4: 1;
         uint8_t valve5: 1;
         uint8_t none: 3;
-    } __attribute__((packed)) rx_status;
-    typedef struct {
+    };
+#pragma pack(pop)
+
+#pragma pack(push, 1)
+    struct user_rx_data{
         rx_status s;
 //    float data[8];
-    } __attribute__((packed)) custom_rx_frame;
-    typedef struct {
+    };
+#pragma pack(pop)
+
+#pragma pack(push, 1)
+    struct rx_frame {
         frame_header frame_head;
         uint8_t cmd_id;
         uint8_t data[8 - sizeof(frame_header) - sizeof(uint8_t) - sizeof(uint8_t)];
         uint8_t crc8;
-        uint8_t none[8];
-    } __attribute__((packed)) receive_frame;
-
+    };
+#pragma pack(pop)
 
 } // sub_board_dep
 
 
 class SubBoard {
 public:
-    using custom_rx_frame = sub_board_dep::custom_rx_frame;
-    using receive_frame = sub_board_dep::receive_frame;
-    using custom_tx_frame = sub_board_dep::custom_tx_frame;
-    using trans_frame = sub_board_dep::trans_frame;
+    using custom_rx_frame = sub_board_dep::user_rx_data;
+    using receive_frame = sub_board_dep::rx_frame;
+    using custom_tx_frame = sub_board_dep::user_tx_data;
+    using trans_frame = sub_board_dep::tx_frame;
 
-    SubBoard(UART_HandleTypeDef *uart) : uartPlus(uart, sizeof(receive_frame), sizeof(trans_frame)) {
+    SubBoard(UART_HandleTypeDef *uart) : uartPlus(uart, sizeof(receive_frame)*2, sizeof(trans_frame)) {
         rx_frame = reinterpret_cast<receive_frame*>(uartPlus.rx_buffer);
         tx_frame = reinterpret_cast<trans_frame*>(uartPlus.tx_buffer);
         tx_frame->frame_head.sof = 0xA5;

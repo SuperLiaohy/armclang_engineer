@@ -7,7 +7,6 @@
 extern "C" {
 #endif
 
-#include "stm32h7xx_hal.h"
 #include "octospi.h"
 
 #ifdef __cplusplus

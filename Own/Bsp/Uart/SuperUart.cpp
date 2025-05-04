@@ -2,24 +2,34 @@
 // Created by liaohy on 8/26/24.
 //
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "stdarg.h"
+#include "stdio.h"
+#ifdef __cplusplus
+}
+#endif
+
 #include "SuperUart.hpp"
 #include "Heap/CustomHeap.hpp"
 
-SuperUart::SuperUart(UART_HandleTypeDef *_uart, const uint16_t bufferSize, const uint16_t tx_buffer_size) {
-    if (bufferSize == 0) {
+SuperUart::SuperUart(UART_HandleTypeDef *_uart, const uint16_t rx_buffer_len, const uint16_t tx_buffer_len) {
+    if (rx_buffer_len == 0) {
         rx_buffer = nullptr;
     } else {
-        rx_buffer = reinterpret_cast<uint8_t *>(D1Heap.malloc(bufferSize));
+        rx_buffer = reinterpret_cast<uint8_t *>(D1Heap.malloc(rx_buffer_len));
     }
     this->uart = _uart;
-    if (tx_buffer_size != 0) {
-        tx_buffer = reinterpret_cast<uint8_t*>(D1Heap.malloc(tx_buffer_size)) ;
+    if (tx_buffer_len != 0) {
+        tx_buffer = reinterpret_cast<uint8_t*>(D1Heap.malloc(tx_buffer_len)) ;
     } else {
         tx_buffer = nullptr;
     }
     len = 0;
-    tx_size = tx_buffer_size;
-    rx_size = bufferSize;
+    tx_size = tx_buffer_len;
+    rx_size = rx_buffer_len;
 }
 
 SuperUart::~SuperUart() {
@@ -80,7 +90,7 @@ void SuperUart::transmit(std::uint16_t size) {
 }
 
 
-/*
+/**
  * @note: send tx_buffer data(the member of SuperUart) to uart
  */
 // void SuperUart::print() {
@@ -89,7 +99,7 @@ void SuperUart::transmit(std::uint16_t size) {
 //     len = 0;
 // }
 
-/*
+/**
  * @param data: the pointer to the data which you want to store in tx_buffer
  * @param size: the size of data
  * @note: store the data in tx_buffer
@@ -113,7 +123,7 @@ void SuperUart::set_hex(void *data, uint16_t size) {
     len += size;
 }
 
-/*
+/**
  * @param size: the size of data to read
  * @return: the pointer to the data
  * @note: rx_buffer is the class member of SuperUart, it is a DoubleBuffer object, don't need to another Buffer
@@ -125,7 +135,7 @@ uint8_t* SuperUart::receive_it(uint16_t size) {
     return pData;
 }
 
-/*
+/**
  * @param pData: the pointer to the data
  * @param size: the size of data to read
  * @return: the pointer to the data
@@ -138,7 +148,7 @@ uint8_t* SuperUart::receive_it(uint8_t *pData, uint16_t size) {
 }
 
 
-/*
+/**
  * @param size: the size of data to read
  * @return: the pointer to the data
  * @note: the rx_buffer is provided by you, you can choose to use which buffer to store the data
@@ -152,7 +162,7 @@ uint8_t* SuperUart::receive_dma_idle(uint16_t size) {
     return pData;
 }
 
-/*
+/**
  * @param pData: the pointer to the data
  * @param size: the size of data to read
  * @return: the pointer to the data
@@ -165,7 +175,7 @@ uint8_t *SuperUart::receive_dma_idle(uint8_t *pData, uint16_t size) {
     return pData;
 }
 
-/*
+/**
  * @param size: the size of data to read
  * @return: the pointer to the data
  * @note: rx_buffer is the class member of SuperUart, it is a DoubleBuffer object, don't need to another Buffer
@@ -176,7 +186,7 @@ uint8_t* SuperUart::receive(uint16_t size) {
     return pData;
 }
 
-/*
+/**
  * @param pData: the pointer to the data
  * @param size: the size of data to read
  * @return: the pointer to the data

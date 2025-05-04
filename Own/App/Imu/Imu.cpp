@@ -1,27 +1,28 @@
 //
 // Created by liaohy on 24-11-17.
 //
-#include <MyMath/MyMath.hpp>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "tim.h"
+#include "adc.h"
 
 #include "BMI088/inc/BMI088driver.h"
 #include "Imu/Algorithm/QuaternionEKF.h"
 #include "Mahony/MahonyAHRS.h"
-#include "tim.h"
-#include "adc.h"
 #ifdef __cplusplus
 }
 #endif
 
+#include <MyMath/MyMath.hpp>
 #include "Imu.hpp"
 float H723_Temperature;
 void Imu::init() {
     IMU_QuaternionEKF_Init(10, 0.001, 10000000, 1, 0.001f, 0); //ekf初始化
     // PID_init(&Temperature_PID, PID_POSITION,Temperature_PID_Para,2000,200); //加热pidlimit
     temprature_pid.set(200 , 0.05 , 35 , 200 , 2000);
-    if (offset.restart_measure == MEASURE_ENABLE)
+    if (offset.restart_measure == IMU_MEASURE::MEASURE_ENABLE)
         temp_ticks = 5000;
     else
         temp_ticks = 300;

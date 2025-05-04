@@ -10,9 +10,6 @@ extern "C" {
 #endif
 
 #include "usart.h"
-#include "stdarg.h"
-#include "string.h"
-#include "stdio.h"
 #ifdef __cplusplus
 }
 #endif
@@ -37,7 +34,7 @@ public:
 
     uint8_t *rx_buffer;
 
-    explicit SuperUart(UART_HandleTypeDef *_uart, uint16_t bufferSize, uint16_t tx_buffer_size = 64);
+    explicit SuperUart(UART_HandleTypeDef *_uart, uint16_t rx_buffer_len, uint16_t tx_buffer_len = 64);
 
     ~SuperUart();
 

@@ -5,16 +5,6 @@
 
 #include "SysTick/SysTick.hpp"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "stm32h7xx_hal.h"
-#include "cmsis_os.h"
-#ifdef __cplusplus
-}
-#endif
-
 class MicroTime {
 public:
 
@@ -29,7 +19,6 @@ private:
     uint32_t end_time;
 
     uint32_t count;
-
 };
 
 [[gnu::always_inline]] inline void MicroTime::start() {
@@ -50,7 +39,6 @@ private:
 }
 
 [[gnu::always_inline]] inline uint32_t MicroTime::get_time() {
-
     return time;
 }
 

@@ -12,36 +12,36 @@ extern "C" {
 #include "tim.h"
 #ifdef __cplusplus
 }
+#endif
 
 #include "RoundQueue/RoundQueue.hpp"
-#endif
 class Buzzer {
     enum NoteFrequency : uint16_t {
-        LC      = 262,
-        LD      = 294,
-        LE      = 330,
-        LF      = 349,
-        LG      = 392,
-        LA      = 440,
-        LAP_LBN = 466,
-        LB      = 494,
-        MC      = 523,
-        MD      = 587,
-        ME      = 659,
-        MEP     = 740,
-        MF      = 698,
-        MG      = 784,
-        MA      = 880,
-        MAP_MBN = 932,
-        MB      = 988,
-        HC      = 1046,
-        HD      = 1175,
-        HE      = 1318,
-        HF      = 1397,
-        HG      = 1568,
-        HA      = 1760,
-        HB      = 1976,
-        MUSIC_EOF     = 40000,
+        LC        = 262,
+        LD        = 294,
+        LE        = 330,
+        LF        = 349,
+        LG        = 392,
+        LA        = 440,
+        LAP_LBN   = 466,
+        LB        = 494,
+        MC        = 523,
+        MD        = 587,
+        ME        = 659,
+        MEP       = 740,
+        MF        = 698,
+        MG        = 784,
+        MA        = 880,
+        MAP_MBN   = 932,
+        MB        = 988,
+        HC        = 1046,
+        HD        = 1175,
+        HE        = 1318,
+        HF        = 1397,
+        HG        = 1568,
+        HA        = 1760,
+        HB        = 1976,
+        MUSIC_EOF = 40000,
     };
 
 public:
@@ -64,60 +64,56 @@ public:
         MG, MA, MB, HA, // G A B A
         MG, ME, MC, MC  // G E C C（结束）
     };
-    static constexpr std::array<uint16_t, 96> Romance =
-        {
-            ME, ME, ME, ME, MD, MC, MC, LB, LA, LA, MC, ME, MA, MA, MA,
-            MA, MG, MD, MF, ME, MD, MD, ME, MF, ME, MF, ME, MEP, MF, ME,
-            ME, MD, MC, MC, LB, LA, LB, LB, LB, LB, MC, LB, LA, LA, LA, LA, 20000, 20000,
-            ME, ME, ME, ME, MD, MC, MC, LB, LB, LB, LAP_LBN, LB, MA, MA, MA,
-            MA, MB, MA, MA, MG, MG, MG, MA, MB, HC, HC, HC, HC, MB, MAP_MBN,
-            MA, MA, MA, MA, ME, MD, ME, ME, ME, ME, MF, MD, MC, MC, MC, MC, 20000, 20000};
+    static constexpr std::array<uint16_t, 96> Romance = {
+        ME, ME, ME, ME, MD, MC, MC,    LB,    LA, LA, MC, ME, MA, MA, MA,    MA,   MG, MD,      MF,      ME,
+        MD, MD, ME, MF, ME, MF, ME,    MEP,   MF, ME, ME, MD, MC, MC, LB,    LA,   LB, LB,      LB,      LB,
+        MC, LB, LA, LA, LA, LA, 20000, 20000, ME, ME, ME, ME, MD, MC, MC,    LB,   LB, LB,      LAP_LBN, LB,
+        MA, MA, MA, MA, MB, MA, MA,    MG,    MG, MG, MA, MB, HC, HC, HC,    HC,   MB, MAP_MBN, MA,      MA,
+        MA, MA, ME, MD, ME, ME, ME,    ME,    MF, MD, MC, MC, MC, MC, 20000, 20000};
     Buzzer(TIM_HandleTypeDef* htim, uint16_t Channel)
         : htim(htim)
-        , Channel(Channel) {
-    }
+        , Channel(Channel) {}
     void Start();
 
     void SetFreq(uint16_t freq, uint16_t pulse = 300);
 
     void Stop();
 
-    template<uint16_t size, delay_pl T = delay_pl::OS>
-    void StartMusic(const std::array<uint16_t, size>& music);
+    template<uint16_t size, delay_pl T = delay_pl::OS> void StartMusic(const std::array<uint16_t, size>& music);
 
-    template<uint16_t size>
-    void PushMusic(const std::array<uint16_t, size>& music);
+    template<uint16_t size> void PushMusic(const std::array<uint16_t, size>& music);
 
-    template<delay_pl T = delay_pl::OS>
-    bool StartMusic();
+    template<delay_pl T = delay_pl::OS> bool StartMusic();
 
 private:
-    template<delay_pl T>
-    void delay(uint32_t ms);
+    template<delay_pl T> static void delay(uint32_t ms) {
+        if constexpr (T == delay_pl::HAL) {
+            HAL_Delay(50);
+        } else {
+            osDelay(50);
+        }
+    };
     TIM_HandleTypeDef* htim;
     uint16_t Channel;
     RoundBuffer<uint16_t, 50> music_buffer;
     int8_t music_cnt = 0;
 };
-template<uint16_t size, Buzzer::delay_pl T>
-void Buzzer::StartMusic(const std::array<uint16_t, size>& music) {
+
+template<uint16_t size, Buzzer::delay_pl T> void Buzzer::StartMusic(const std::array<uint16_t, size>& music) {
     for (auto item: music) {
         SetFreq(item);
         delay<T>(100);
     }
     SetFreq(20000, 20);
 }
-template<uint16_t size>
-void Buzzer::PushMusic(const std::array<uint16_t, size>& music) {
+template<uint16_t size> void Buzzer::PushMusic(const std::array<uint16_t, size>& music) {
     music_buffer.push(music);
     music_buffer.push(20000);
     music_buffer.push(MUSIC_EOF);
     ++music_cnt;
-
 }
 
-template<Buzzer::delay_pl T>
-inline bool Buzzer::StartMusic() {
+template<Buzzer::delay_pl T> bool Buzzer::StartMusic() {
     if (music_cnt > 0) {
         auto music = music_buffer.pop();
         if (music != MUSIC_EOF) {
@@ -129,35 +125,6 @@ inline bool Buzzer::StartMusic() {
         return false;
     }
     return true;
-}
-
-template<>
-inline void Buzzer::delay<Buzzer::delay_pl::OS>(uint32_t ms) {
-    osDelay(ms);
-}
-template<>
-inline void Buzzer::delay<Buzzer::delay_pl::HAL>(uint32_t ms) {
-    HAL_Delay(ms);
-}
-
-inline void Buzzer::Start() {
-    HAL_TIM_PWM_Start(htim, Channel);
-}
-
-inline void Buzzer::SetFreq(uint16_t freq, uint16_t pulse) {
-    if (freq < 200 || freq > 20000) {
-        htim->Instance->ARR = 10000000 / 20000 - 1;
-        htim->Init.Period   = 10000000 / 20000 - 1;
-        __HAL_TIM_SET_COMPARE(htim, Channel, 20);
-        return;
-    }
-    htim->Instance->ARR = 10000000 / freq - 1;
-    htim->Init.Period   = 10000000 / freq - 1;
-    __HAL_TIM_SET_COMPARE(htim, Channel, pulse);
-}
-
-inline void Buzzer::Stop() {
-    HAL_TIM_PWM_Stop(htim, Channel);
 }
 
 extern Buzzer buzzer;

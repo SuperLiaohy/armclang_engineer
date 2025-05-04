@@ -3,7 +3,14 @@
 //
 
 #include "SubBoard.hpp"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
+#include "string.h"
+#ifdef __cplusplus
+}
+#endif
 namespace sub_board_dep {
 } // sub_board_dep
 
@@ -14,7 +21,7 @@ void SubBoard::transmit() {
 }
 
 void SubBoard::start_receive() {
-    uartPlus.receive_dma_idle(sizeof(receive_frame));
+    uartPlus.receive_dma_idle(sizeof(receive_frame) * 2);
 }
 
 void SubBoard::write() {

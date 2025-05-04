@@ -39,7 +39,6 @@ public:
 
 private:
     chassis_dep::move move;
-
     chassis_dep::key key;
 
     void load_speed(interact_dep::chassis_mode mode, interact_dep::chassis_polarity polarity);

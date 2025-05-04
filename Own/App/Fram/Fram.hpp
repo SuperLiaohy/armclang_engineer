@@ -4,16 +4,6 @@
 
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <string.h>
-
-#ifdef __cplusplus
-}
-#endif
-
 #include "IIC/SuperIIC.hpp"
 
 class Fram {

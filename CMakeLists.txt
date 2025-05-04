@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 通用编译标志
-set(COMMON_FLAGS "--target=arm-arm-none-eabi -mcpu=cortex-m7  -mfpu=fpv5-sp-d16 -mfloat-abi=hard ${COMMON_OPTIMIZATION_FLAGS}")
+set(COMMON_FLAGS "--target=arm-arm-none-eabi -mcpu=cortex-m7  -mfpu=fpv5-sp-d16 -mfloat-abi=hard ${COMMON_OPTIMIZATION_FLAGS} -w")
 
 # 设置编译器标志
 set(CMAKE_C_FLAGS "${COMMON_FLAGS} -c -xc -std=c99 -fno-rtti -funsigned-char -fshort-enums -fshort-wchar")
@@ -71,7 +71,8 @@ include_directories(
         "Own/Bsp"
         "Own/Mod"
         "Own/Obj"
-        "Own/OperateSystem")
+        "Own/OperateSystem"
+)
 
 
 # 获取源文件

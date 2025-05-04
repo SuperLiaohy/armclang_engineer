@@ -3,26 +3,16 @@
 //
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "tim.h"
-
-#ifdef __cplusplus
-}
-#endif
-
 #include "Pid/Pid.hpp"
-enum MEASURE_ABLE {
+enum class IMU_MEASURE {
     MEASURE_ENABLE,
     MEASURE_DISABLE,
 };
 class Imu {
 
 public:
-    Imu(MEASURE_ABLE ifable = MEASURE_DISABLE): temprature_pid(0, 0, 0, 0, 0) {
-        offset.restart_measure = ifable;
+    Imu(IMU_MEASURE is_able = IMU_MEASURE::MEASURE_DISABLE): temprature_pid(0, 0, 0, 0, 0) {
+        offset.restart_measure = is_able;
     };
 
     float roll;
@@ -51,7 +41,7 @@ public:
         bool on;
         float correct[3];
         uint32_t target_times;
-        MEASURE_ABLE restart_measure;
+        IMU_MEASURE restart_measure;
     } offset;
 
 private:

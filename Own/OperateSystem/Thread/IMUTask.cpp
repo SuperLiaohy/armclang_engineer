@@ -39,11 +39,11 @@ void IMUTask() {
             switch (imu_flag) {
                 case 1:
                     switch (imu.offset.restart_measure) {
-                        case MEASURE_DISABLE:
+                    case IMU_MEASURE::MEASURE_DISABLE:
                             w25q64.raed_buffer(IMU_OFFSET_ADDRESS, (uint8_t *) &imu.offset.correct, 12);
                             imu_flag = 2;
                             break;
-                        case MEASURE_ENABLE:
+                    case IMU_MEASURE::MEASURE_ENABLE:
                             imu.update_offset(++correct_times, imu_flag);
                             if (imu_flag == 2) {
                                 w25q64.erase_sector_4(IMU_OFFSET_ADDRESS);

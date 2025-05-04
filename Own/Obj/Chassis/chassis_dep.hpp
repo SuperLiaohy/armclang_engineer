@@ -2,13 +2,12 @@
 // Created by lhy on 2024/9/15.
 //
 #pragma once
+#include "array"
 
-#include "Detect/Detect.hpp"
 #include "Motor/Motor.hpp"
 #include "MyMath/MyMath.hpp"
-#include "RemoteControl/RemoteControl.hpp"
 #include "Slope/Slope.hpp"
-#include "array"
+
 
 namespace chassis_dep {
     struct ChassisMotorCfg {
@@ -109,7 +108,7 @@ namespace chassis_dep {
         float vx;
         float vy;
         float w;
-    } max                 = {2000, 2000, 5};
+    } max                 = {2000, 2000, 15};
     constexpr float v2rpm = 60 / (2 * my_math::pi * info.wheel_radius) * 19.2f;
 
     constexpr std::array<slope_cfg, 4> move_default = {

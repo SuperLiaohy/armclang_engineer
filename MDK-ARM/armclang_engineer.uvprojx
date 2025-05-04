@@ -992,11 +992,6 @@
               <FilePath>..\Own\App\Imu\Imu.cpp</FilePath>
             </File>
             <File>
-              <FileName>MicroTime.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\MicroTime\MicroTime.cpp</FilePath>
-            </File>
-            <File>
               <FileName>dmMotor.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\Motor\dmMotor.cpp</FilePath>
@@ -1005,11 +1000,6 @@
               <FileName>GM6020.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\Motor\GM6020.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Pump.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Pump\Pump.cpp</FilePath>
             </File>
             <File>
               <FileName>RemoteControl.cpp</FileName>
@@ -1025,11 +1015,6 @@
               <FileName>W25Q64.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\W25Q64\W25Q64.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>remote_ctrl_dep.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\RemoteControl\remote_ctrl_dep.cpp</FilePath>
             </File>
             <File>
               <FileName>referee_system.cpp</FileName>
@@ -1052,19 +1037,9 @@
               <FilePath>..\Own\App\SubBoard\SubBoard.cpp</FilePath>
             </File>
             <File>
-              <FileName>PC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\PC\PC.cpp</FilePath>
-            </File>
-            <File>
               <FileName>lkMotor.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\Motor\Param\lkMotor.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Fram.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Fram\Fram.cpp</FilePath>
             </File>
             <File>
               <FileName>OneStepGet.cpp</FileName>
@@ -1156,29 +1131,9 @@
               <FilePath>..\Own\Bsp\CDC\SuperCDC.cpp</FilePath>
             </File>
             <File>
-              <FileName>SuperGPIO.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Bsp\GPIO\SuperGPIO.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SuperSPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Bsp\SPI\SuperSPI.cpp</FilePath>
-            </File>
-            <File>
               <FileName>SuperUart.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Bsp\Uart\SuperUart.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SuperIWDG.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Bsp\WDG\SuperIWDG.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SuperIIC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Bsp\IIC\SuperIIC.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1503,11 +1458,6 @@
               <FilePath>..\Own\Obj\Chassis\Chassis.cpp</FilePath>
             </File>
             <File>
-              <FileName>chassis_dep.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Obj\Chassis\chassis_dep.cpp</FilePath>
-            </File>
-            <File>
               <FileName>RoboArm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Obj\RoboArm\RoboArm.cpp</FilePath>
@@ -1521,11 +1471,6 @@
               <FileName>roboarm_dep.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\Obj\RoboArm\roboarm_dep.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>interact_dep.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\Obj\Interact\interact_dep.cpp</FilePath>
             </File>
           </Files>
         </Group>

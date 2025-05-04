@@ -55,28 +55,7 @@ namespace interact_dep {
         ANTI
     };
 
-    struct receive_data_t {
-        uint8_t head;
-        link_receive_t joint1;
-        link_receive_t joint2;
-        link_receive_t joint3;
-        link_receive_t joint4;
-        link_receive_t joint5;
-        link_receive_t joint6;
-        uint8_t tail;
-    } __attribute__((packed));
 
-    struct transmit_data_t {
-        uint8_t head;
-        uint16_t cmd;
-        link_transmit_t joint1;
-        link_transmit_t joint2;
-        link_transmit_t joint3;
-        link_transmit_t joint4;
-        link_transmit_t joint5;
-        link_transmit_t joint6;
-        uint8_t tail;
-    } __attribute__((packed));
 
     struct Action {
         float* data {};

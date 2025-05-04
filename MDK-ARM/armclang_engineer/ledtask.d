@@ -225,17 +225,6 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
-  ..\Own\Mod\Count\CountManager.hpp ..\Core\Inc\usart.h \
-  ..\Core\Inc\main.h D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
@@ -436,6 +425,8 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\hash.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\unary_function.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\cstring \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\operations.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\binary_function.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\operation_traits.h \
@@ -718,6 +709,13 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Core\Inc\tim.h ..\Own\Mod\RoundQueue\RoundQueue.hpp \
-  ..\Own\Mod\Key\Key.hpp ..\Own\App\RGBLED\RGBLED.hpp \
-  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h
+  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\LinkedList.hpp ..\Own\Mod\CustomList\SeqList.hpp \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
+  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h ..\Core\Inc\main.h \
+  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
+  ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
+  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp \
+  ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
+  ..\Core\Inc\spi.h

@@ -89,6 +89,7 @@ void Chassis::load_speed(interact_dep::chassis_mode mode, interact_dep::chassis_
                             + info.offset_y * my_abs(move.w) / max.w + info.offset_x * my_abs(move.w) / max.w;
     rotateRatio[RightRear] = (rear_info.wheel_base + rear_info.wheel_track) / 2.f
                              + info.offset_y * my_abs(move.w) / max.w - info.offset_x * my_abs(move.w) / max.w;
+
     if (polarity == interact_dep::chassis_polarity::NONE) {
         wheelSpeed[LeftFront]  = (move.vx + move.vy - rotateRatio[LeftFront] * move.w) * v2rpm;
         wheelSpeed[RightFront] = (move.vx - move.vy - rotateRatio[RightFront] * move.w) * v2rpm;

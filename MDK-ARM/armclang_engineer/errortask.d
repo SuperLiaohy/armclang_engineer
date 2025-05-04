@@ -227,17 +227,6 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
   ..\Core\Inc\spi.h ..\Core\Inc\main.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\CustomList.tpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
-  ..\Own\Mod\Count\CountManager.hpp ..\Core\Inc\usart.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdarg.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h ..\Own\App\Buzzer\Buzzer.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\comp.h \
@@ -438,6 +427,8 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\hash.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\unary_function.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\cstring \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\string.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\operations.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\binary_function.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\operation_traits.h \
@@ -720,15 +711,23 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__functional\weak_result_type.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\allocator_destructor.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__memory\uses_allocator_construction.h \
-  ..\Core\Inc\tim.h ..\Own\Mod\RoundQueue\RoundQueue.hpp \
-  ..\Own\Mod\Key\Key.hpp ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Interact\Interact_dep.hpp ..\Own\Bsp\CDC\SuperCDC.hpp \
-  ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\LinkedList.hpp ..\Own\Mod\CustomList\SeqList.hpp \
+  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
+  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
+  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
+  ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
+  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Core\Inc\fdcan.h ..\Own\Obj\Interact\Interact.hpp \
+  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
+  ..\Own\Bsp\CDC\SuperCDC.hpp ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
   ..\USB_DEVICE\Target\usbd_conf.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdio.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \

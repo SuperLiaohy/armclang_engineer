@@ -1,7 +1,6 @@
 #pragma once
 
 #include "referee_system.h"
-
 #include <variant>
 
 namespace ui_dep {

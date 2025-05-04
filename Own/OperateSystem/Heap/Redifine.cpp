@@ -13,26 +13,26 @@ extern "C" {
 
 #include "CustomHeap.hpp"
 
-#define USING_CUSTOM_D1_HEAP 1
-#define USING_FREERTOS_HEAP 0
+#define USING_CUSTOM_D1_HEAP 0
+#define USING_FREERTOS_HEAP 1
 
 #if USING_CUSTOM_D1_HEAP == 1
-void *operator new(size_t size) noexcept(false) {
-    void *ptr = D1Heap.malloc(size);
+void *operator new(size_t __sz) noexcept(false) {
+    void *ptr = D1Heap.malloc(__sz);
     return ptr;
 }
 
-void operator delete(void *ptr) noexcept {
-    D1Heap.free(ptr);
+void operator delete(void *__p) noexcept {
+    D1Heap.free(__p);
 }
 
-void *operator new[](size_t size) noexcept(false) {
-    void *ptr = D1Heap.malloc(size);
+void *operator new[](size_t __sz) noexcept(false) {
+    void *ptr = D1Heap.malloc(__sz);
     return ptr;
 }
 
-void operator delete[](void *ptr) noexcept {
-    D1Heap.free(ptr);
+void operator delete[](void *__p) noexcept {
+    D1Heap.free(__p);
 }
 #endif
 

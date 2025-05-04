@@ -1,15 +1,14 @@
-armclang_engineer/imu.o: ..\Own\App\Imu\Imu.cpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Imu\BMI088\inc\BMI088driver.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdint.h ..\Core\Inc\main.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
+armclang_engineer/imu.o: ..\Own\App\Imu\Imu.cpp ..\Core\Inc\tim.h \
+  ..\Core\Inc\main.h ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h723xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_version.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_compiler.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_armclang.h \
@@ -210,6 +209,7 @@ armclang_engineer/imu.o: ..\Own\App\Imu\Imu.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
+  ..\Core\Inc\adc.h ..\Own\App\Imu\BMI088\inc\BMI088driver.h \
   ..\Own\App\Imu\Algorithm\QuaternionEKF.h \
   ..\Own\App\Imu\Algorithm\kalman_filter.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
@@ -240,5 +240,5 @@ armclang_engineer/imu.o: ..\Own\App\Imu\Imu.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Imu\Mahony\MahonyAHRS.h ..\Core\Inc\tim.h ..\Core\Inc\adc.h \
+  ..\Own\App\Imu\Mahony\MahonyAHRS.h ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\App\Imu\Imu.hpp ..\Own\Mod\Pid\Pid.hpp

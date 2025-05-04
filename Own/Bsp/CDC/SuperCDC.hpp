@@ -6,8 +6,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "string.h"
-#include "stdarg.h"
 #include "usbd_cdc_if.h"
 extern USBD_HandleTypeDef hUsbDeviceHS;
 /** Received data over USB are stored in this buffer      */

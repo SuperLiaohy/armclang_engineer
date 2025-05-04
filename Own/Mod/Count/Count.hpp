@@ -8,26 +8,18 @@
 CountManager& CountManagerInstance();
 class Count {
 public:
-    Count() {
-        CountManagerInstance().register_item(this);
-    };
+    Count() { CountManagerInstance().register_item(this); };
 
-    ~Count() {
-        CountManagerInstance().unregister_item(this);
-    };
+    ~Count() { CountManagerInstance().unregister_item(this); };
 
-    void increment() {
-        ++cnt;
-    }
+    void increment() { ++cnt; }
 
     void mark() {
         max_cnt = cnt;
         cnt     = 0;
     }
 
-    void operator++() {
-        ++cnt;
-    }
+    void operator++() { ++cnt; }
 
 private:
     uint32_t cnt;
@@ -35,7 +27,5 @@ private:
 };
 
 inline void CountManager::mark() {
-    for (const auto item: list) {
-        item->mark();
-    }
+    for (const auto item: list) { item->mark(); }
 }

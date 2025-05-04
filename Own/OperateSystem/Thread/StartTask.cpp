@@ -119,10 +119,10 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Shift, robo_arm_shift_q_callback);
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Ctrl, robo_arm_ctrl_q_callback);
 
-//    KeyBoardRegister(interact.keyList, Key_Left, CombineKey_None, air_left_callback);
-//    interact.keyList[16].longPressTime = 100;
-//    KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
-//    interact.keyList[16].longPressTime = 5000;
+    KeyBoardRegister(interact.keyList, Key_Left, CombineKey_None, air_left_callback);
+    interact.keyList[16].longPressTime = 100;
+    KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
+    interact.keyList[16].longPressTime = 5000;
 
     //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
     //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
@@ -145,10 +145,10 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_V, CombineKey_None, one_step_get_v_callback);
     KeyBoardRegister(interact.keyList, Key_V, CombineKey_Shift, one_step_get_shift_v_callback);
 
-    // KeyBoardRegister(interact.keyList, Key_Z, CombineKey_Ctrl, one_step_get_ctrl_z_callback);
-    // KeyBoardRegister(interact.keyList, Key_X, CombineKey_Ctrl, one_step_get_ctrl_x_callback);
-    // KeyBoardRegister(interact.keyList, Key_C, CombineKey_Ctrl, one_step_get_ctrl_c_callback);
-    // KeyBoardRegister(interact.keyList, Key_V, CombineKey_Ctrl, one_step_get_ctrl_v_callback);
+    KeyBoardRegister(interact.keyList, Key_Z, CombineKey_Ctrl, one_step_get_ctrl_z_callback);
+    KeyBoardRegister(interact.keyList, Key_X, CombineKey_Ctrl, one_step_get_ctrl_x_callback);
+    KeyBoardRegister(interact.keyList, Key_C, CombineKey_Ctrl, one_step_get_ctrl_c_callback);
+    KeyBoardRegister(interact.keyList, Key_V, CombineKey_Ctrl, one_step_get_ctrl_v_callback);
 
     interact.remote_control.start();
     interact.image_trans.uartPlus.receive_dma_idle(100);
