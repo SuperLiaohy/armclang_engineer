@@ -99,10 +99,11 @@ SuperGPIO power_24v_left(GPIOC, GPIO_PIN_13);
 UI ui(102, 0x0166, &huart7);
 
 OneStepGet one_step_get_left(Pid(2, 0, 2.3, 4000, 10000, 1), 4, Pid(15, 0, 4, 8000, 16000, 1),
-                             Pid(15, 0, 0, 8000, 5000, 1), 2);
+                             Pid(15, 0, 0, 8000, 16000, 1), 2);
 OneStepGet one_step_get_right(Pid(2, 0, 2.3, 4000, 10000, 1), 3, Pid(15, 0, 4, 8000, 16000, 1),
                               Pid(15, 0, 4, 8000, 16000, 1), 1);
 
 interact_dep::Actions anti_reset(1);
 interact_dep::Actions get_right_y(1);
 
+OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;

@@ -31,7 +31,7 @@ public:
 
 private:
 #ifdef USE_HAL_SELF_LIST
-    CustomList<T *> detects;
+    CustomList<T *, SeqList<T*,20>> detects;
 #else
     std::vector<Detect *> detects;
 #endif

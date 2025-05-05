@@ -32,7 +32,7 @@ public:
 
     std::array<float, 3> pos = {85.912, 0, 241.753};
 
-    TimDetect detect;
+    Detect detect;
 
 private:
     SuperUart uartPlus;

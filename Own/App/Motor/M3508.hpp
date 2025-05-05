@@ -50,8 +50,8 @@ public:
         return false;
     };
 
-    bool is_block(int16_t max_current) {
-        if (fabs(feedback.raw_data.current) > max_current ) {
+    bool is_block(int16_t min_current, int16_t max_current) {
+        if (feedback.raw_data.current < min_current || feedback.raw_data.current > max_current) {
             return true;
         }
         return false;

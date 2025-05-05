@@ -16,7 +16,7 @@ float OneStepGet::move_upward(float& target_pos, bool is_block) {
     if (is_block) {
         y_is_block = true;
         this->y    = OneStepGetYStatus::NONE;
-        target_pos = YMotor.total_position() - 30;
+        target_pos = YMotor.total_position() - 1;
         return YMotor.set_position(target_pos);
     }
     return YMotor.set_position(target_pos);
@@ -25,7 +25,7 @@ float OneStepGet::move_down(float& target_pos, bool is_get, bool is_block) {
     if (is_block || is_get) {
         y_is_block = true;
         this->y    = OneStepGetYStatus::NONE;
-        target_pos = YMotor.total_position() - 30;
+        target_pos = YMotor.total_position() - 1;
         return YMotor.set_position(target_pos);
     }
     return YMotor.set_position(target_pos);

@@ -4,6 +4,11 @@
 
 #pragma once
 
+enum class OneStepGetControl {
+    AUTO,
+    MANUAL,
+};
+
 enum class OneStepGetYStatus {
     NONE,
     UP,
@@ -25,7 +30,7 @@ public:
     friend void OneStepGetTask();
 
     OneStepGet(const Pid& Xcfg , const uint16_t Xid,
-       const Pid& YcfgSpeed, const Pid& YcfgPos , const uint16_t Yid) : XMotor(Xcfg, Xid), YMotor(YcfgSpeed, YcfgPos, Yid), x(OneStepGetXStatus::NONE), y(OneStepGetYStatus::NONE), x_is_block(false), y_is_block(false) {};
+       const Pid& YcfgSpeed, const Pid& YcfgPos , const uint16_t Yid) : XMotor(Xcfg, Xid), YMotor(YcfgPos, YcfgSpeed, Yid), x(OneStepGetXStatus::NONE), y(OneStepGetYStatus::NONE), x_is_block(false), y_is_block(false) {};
 
     float move_front(float target_speed, bool is_get);
     float move_back(float target_speed);
@@ -45,5 +50,6 @@ private:
 
 extern OneStepGet one_step_get_left;
 extern OneStepGet one_step_get_right;
+extern OneStepGetControl one_step_get_control;
 
 

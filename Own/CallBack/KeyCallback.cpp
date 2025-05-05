@@ -34,10 +34,12 @@ void one_step_get_x_callback(KeyEventType event) {
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
             one_step_get_left.y           = OneStepGetYStatus::UP;
-            one_step_get_right.y_is_block = false;
+            one_step_get_left.y_is_block = false;
             break;
         case KeyEvent_None:
-        case KeyEvent_OnUp: break;
+        case KeyEvent_OnUp:
+            one_step_get_left.y           = OneStepGetYStatus::NONE;
+            break;
         default: break;
     }
 }
@@ -48,10 +50,12 @@ void one_step_get_shift_x_callback(KeyEventType event) {
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
             one_step_get_left.y           = OneStepGetYStatus::DOWN;
-            one_step_get_right.y_is_block = false;
+            one_step_get_left.y_is_block = false;
             break;
         case KeyEvent_None:
-        case KeyEvent_OnUp: break;
+        case KeyEvent_OnUp:
+            one_step_get_left.y           = OneStepGetYStatus::NONE;
+            break;
         default: break;
     }
 }
@@ -87,7 +91,9 @@ void one_step_get_v_callback(KeyEventType event) {
             one_step_get_right.y_is_block = false;
             break;
         case KeyEvent_None:
-        case KeyEvent_OnUp: break;
+        case KeyEvent_OnUp:
+            one_step_get_right.y           = OneStepGetYStatus::NONE;
+            break;
         default: break;
     }
 }
@@ -101,7 +107,9 @@ void one_step_get_shift_v_callback(KeyEventType event) {
             one_step_get_right.y_is_block = false;
             break;
         case KeyEvent_None:
-        case KeyEvent_OnUp: break;
+        case KeyEvent_OnUp:
+            one_step_get_right.y           = OneStepGetYStatus::NONE;
+            break;
         default: break;
     }
 }

@@ -48,8 +48,8 @@ namespace ui_dep {
         uint8_t display_interval;
         uint8_t display_num;
         operation op;
-        ui_control(const uint8_t* name, const uint8_t freq) { this->init(name, freq); }
-        void init(const uint8_t* name, const uint8_t freq) {
+        ui_control(const char* name, const uint8_t freq) { this->init(name, freq); }
+        void init(const char* name, const uint8_t freq) {
             this->name[0] = name[0];
             this->name[1] = name[1];
             this->name[2] = name[2];
@@ -209,7 +209,7 @@ namespace ui_dep {
 
     struct string_data {
         uint16_t font_size  = 0;
-        const uint8_t* data = nullptr;
+        const char* data = nullptr;
         uint8_t length      = 0;
 
         void set_features(basic_graphic* graphic) const {
@@ -230,9 +230,9 @@ namespace ui_dep {
         uint16_t start_y;
         T feature;
 
-        UiItem(const uint8_t* name, const uint8_t freq)
+        UiItem(const char* name, const uint8_t freq)
             : control(name, freq) {}
-        UiItem(const uint8_t* name, const uint8_t freq, operation op, layer layer_id, color col, uint16_t width,
+        UiItem(const char* name, const uint8_t freq, operation op, layer layer_id, color col, uint16_t width,
                uint16_t start_x, uint16_t start_y)
             : control(name, freq)
             , op(op)
@@ -242,7 +242,7 @@ namespace ui_dep {
             , start_x(start_x)
             , start_y(start_y) {}
 
-        UiItem(const uint8_t* name, const uint8_t freq, operation op, layer layer_id, color col, uint16_t width,
+        UiItem(const char* name, const uint8_t freq, operation op, layer layer_id, color col, uint16_t width,
                uint16_t start_x, uint16_t start_y, const T& args)
             : control(name, freq)
             , op(op)
@@ -297,7 +297,7 @@ public:
     void delete_layer(ui_dep::operate_delete_layer delete_layer, uint8_t layer_id);
 
     template<ui_dep::ui_features ui_graphic>
-    void operate_fig(const uint8_t* name, operation op, layer layer_id, color col, uint16_t width, uint16_t start_x,
+    void operate_fig(const char* name, operation op, layer layer_id, color col, uint16_t width, uint16_t start_x,
                      uint16_t start_y, const ui_graphic& item) {
         lock();
         auto* addr             = reinterpret_cast<basic_graphic*>(&((ui_frame->data_frame.user_data)[len]));

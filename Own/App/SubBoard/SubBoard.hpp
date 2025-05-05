@@ -21,8 +21,8 @@ namespace sub_board_dep {
         uint8_t valve4: 1;
         uint8_t valve5: 1;
         uint8_t valve6: 1;
-        uint8_t none: 1;
         uint8_t pump: 1;
+        uint8_t none: 1;
     };
 #pragma pack(pop)
 
@@ -106,6 +106,8 @@ public:
     void set_valve5(uint8_t x) { custom_frame_tx.s.valve5 = x; };
 
     void set_valve6(uint8_t x) { custom_frame_tx.s.valve6 = x; };
+
+    uint8_t read_tx_status(){ return *reinterpret_cast<uint8_t*>(&custom_frame_tx.s);}
 
     [[nodiscard]] bool read_valve1() const { return custom_frame_rx.s.valve1; };
 
