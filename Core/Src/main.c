@@ -119,11 +119,11 @@ int main(void)
   MX_USART3_UART_Init();
   MX_I2C1_Init();
   MX_UART7_Init();
-  // MX_IWDG1_Init();
+//  MX_IWDG1_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
 	// __HAL_DBGMCU_FREEZE_IWDG1();
-    HAL_TIM_Base_Start_IT(&htim6);
+    // HAL_TIM_Base_Start_IT(&htim6);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
@@ -207,7 +207,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+volatile uint32_t CPU_RunTime = 0UL;
 /* USER CODE END 4 */
 
 /**
@@ -228,7 +228,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   }
   /* USER CODE BEGIN Callback 1 */
     UserTimCallback(htim);
-
+  if (htim->Instance == TIM6) {
+		++CPU_RunTime;
+	}
   /* USER CODE END Callback 1 */
 }
 

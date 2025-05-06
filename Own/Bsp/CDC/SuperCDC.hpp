@@ -21,7 +21,7 @@ class SuperCDC {
 public:
     SuperCDC() = default;
     [[gnu::always_inline]]inline void transmit(uint8_t *data, uint16_t len);
-    void printf(const char *fmt, ...);
+    static void printf(const char *fmt, ...);
 };
 
 [[gnu::always_inline]]inline void SuperCDC::transmit(uint8_t *data, uint16_t len) {

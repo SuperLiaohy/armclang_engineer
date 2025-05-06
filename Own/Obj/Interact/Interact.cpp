@@ -88,7 +88,7 @@ void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
 
 void Interact::receive_reset() {
     joint[0] = 0;
-    joint[1] = -45;
+    joint[1] = -44;
     joint[2] = 135;
     joint[3] = 0;
     joint[4] = 0;

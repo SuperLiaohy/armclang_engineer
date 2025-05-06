@@ -98,6 +98,23 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
 /* GetTimerTaskMemory prototype (linked to static allocation support) */
 void vApplicationGetTimerTaskMemory( StaticTask_t **ppxTimerTaskTCBBuffer, StackType_t **ppxTimerTaskStackBuffer, uint32_t *pulTimerTaskStackSize );
 
+/* Hook prototypes */
+void configureTimerForRunTimeStats(void);
+unsigned long getRunTimeCounterValue(void);
+
+/* USER CODE BEGIN 1 */
+/* Functions needed when configGENERATE_RUN_TIME_STATS is on */
+__weak void configureTimerForRunTimeStats(void)
+{
+
+}
+
+__weak unsigned long getRunTimeCounterValue(void)
+{
+return 0;
+}
+/* USER CODE END 1 */
+
 /* USER CODE BEGIN GET_IDLE_TASK_MEMORY */
 static StaticTask_t xIdleTaskTCBBuffer;
 static StackType_t xIdleStack[configMINIMAL_STACK_SIZE];
@@ -185,7 +202,7 @@ void MX_FREERTOS_Init(void) {
   CHASSIS_TASKHandle = osThreadCreate(osThread(CHASSIS_TASK), NULL);
 
   /* definition and creation of REMOTE_CTRL_TAS */
-  osThreadDef(REMOTE_CTRL_TAS, OS_RemoteCtrlTask, osPriorityBelowNormal, 0, 256);
+  osThreadDef(REMOTE_CTRL_TAS, OS_RemoteCtrlTask, osPriorityNormal, 0, 384);
   REMOTE_CTRL_TASHandle = osThreadCreate(osThread(REMOTE_CTRL_TAS), NULL);
 
   /* definition and creation of PC_Task */

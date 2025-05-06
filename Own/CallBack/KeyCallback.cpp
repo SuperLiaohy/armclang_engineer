@@ -80,34 +80,6 @@ void one_step_get_c_callback(KeyEventType event) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing: one_step_get_right.x = OneStepGetXStatus::FRONT; break;
-            case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_right.x = OneStepGetXStatus::NONE; break;
-            default: break;
-        }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
-    }
-}
-
-void one_step_get_shift_c_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
-        switch (event) {
-            case KeyEvent_OnDown:
-            case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing: one_step_get_right.x = OneStepGetXStatus::BACK; break;
-            case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_right.x = OneStepGetXStatus::NONE; break;
-            default: break;
-        }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
-    }
-}
-
-void one_step_get_v_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
-        switch (event) {
-            case KeyEvent_OnDown:
-            case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 one_step_get_right.y          = OneStepGetYStatus::UP;
                 one_step_get_right.y_is_block = false;
@@ -120,7 +92,7 @@ void one_step_get_v_callback(KeyEventType event) {
     }
 }
 
-void one_step_get_shift_v_callback(KeyEventType event) {
+void one_step_get_shift_c_callback(KeyEventType event) {
     if (one_step_get_control == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
@@ -131,6 +103,34 @@ void one_step_get_shift_v_callback(KeyEventType event) {
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_get_right.y = OneStepGetYStatus::NONE; break;
+            default: break;
+        }
+    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    }
+}
+
+void one_step_get_v_callback(KeyEventType event) {
+    if (one_step_get_control == OneStepGetControl::MANUAL) {
+        switch (event) {
+            case KeyEvent_OnDown:
+            case KeyEvent_OnLongPress:
+            case KeyEvent_OnPressing: one_step_get_right.x = OneStepGetXStatus::FRONT; break;
+            case KeyEvent_None:
+            case KeyEvent_OnUp: one_step_get_right.x = OneStepGetXStatus::NONE; break;
+            default: break;
+        }
+    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    }
+}
+
+void one_step_get_shift_v_callback(KeyEventType event) {
+    if (one_step_get_control == OneStepGetControl::MANUAL) {
+        switch (event) {
+            case KeyEvent_OnDown:
+            case KeyEvent_OnLongPress:
+            case KeyEvent_OnPressing: one_step_get_right.x = OneStepGetXStatus::BACK; break;
+            case KeyEvent_None:
+            case KeyEvent_OnUp: one_step_get_right.x = OneStepGetXStatus::NONE; break;
             default: break;
         }
     } else if (one_step_get_control == OneStepGetControl::AUTO) {
@@ -187,16 +187,16 @@ void one_step_get_ctrl_c_callback(KeyEventType event) {
         switch (event) {
             case KeyEvent_OnClick:
                 open = 1 - open;
-                interact.sub_board.set_valve1(open);
+                interact.sub_board.set_valve2(open);
                 break;
                 // case KeyEvent_OnDown:
                 // case KeyEvent_OnLongPress:
                 // case KeyEvent_OnPressing:
-                //     interact.sub_board.set_valve1(1);
+                //     interact.sub_board.set_valve2(1);
                 //     break;
                 // case KeyEvent_None:
                 // case KeyEvent_OnUp:
-                //     interact.sub_board.set_valve1(0);
+                //     interact.sub_board.set_valve2(0);
                 //     break;
             default: break;
         }
@@ -209,16 +209,16 @@ void one_step_get_ctrl_v_callback(KeyEventType event) {
         switch (event) {
             case KeyEvent_OnClick:
                 open = 1 - open;
-                interact.sub_board.set_valve2(open);
+                interact.sub_board.set_valve1(open);
                 break;
                 // case KeyEvent_OnDown:
                 // case KeyEvent_OnLongPress:
                 // case KeyEvent_OnPressing:
-                //     interact.sub_board.set_valve2(1);
+                //     interact.sub_board.set_valve1(1);
                 //     break;
                 // case KeyEvent_None:
                 // case KeyEvent_OnUp:
-                //     interact.sub_board.set_valve2(0);
+                //     interact.sub_board.set_valve1(0);
                 //     break;
             default: break;
         }
