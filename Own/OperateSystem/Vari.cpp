@@ -78,7 +78,7 @@ Chassis chassis(&canPlus2, chassis_dep::move_default, chassis_dep::base_motor_de
 RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 1, 1,
                 Pid(50, 0.0001, 20, 500, 3000, 0.0), Pid(1.5f, 0.00f, 2.3f, 4000.f, 7000.0f), 2,
                 Pid(50, 0.0001, 20, 500, 3000, 0.0), Pid(1.5f, 0.00f, 2.3f, 4000.f, 7000.0f), &hi2c1,
-                {126.396004, -45.0833359 + 360 - 102.278336, -45.0833359 + 37.5383339, 135 + 27.9533329, 125.261002, 0,
+                {126.396004, -45.0833359 + 360 - 102.278336, -45.0833359 + 37.5383339, 135 + 27.9533329, 112.700996, 0,
                  0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
@@ -98,10 +98,10 @@ SuperGPIO power_24v_left(GPIOC, GPIO_PIN_13);
 
 UI ui(102, 0x0166, &huart7);
 
-OneStepGet one_step_get_left(Pid(2, 0, 2.3, 4000, 10000, 1), 4, Pid(15, 0, 4, 8000, 16000, 1),
-                             Pid(15, 0, 0, 8000, 16000, 1), 2);
-OneStepGet one_step_get_right(Pid(2, 0, 2.3, 4000, 10000, 1), 3, Pid(15, 0, 4, 8000, 16000, 1),
-                              Pid(15, 0, 4, 8000, 16000, 1), 1);
+OneStepGet one_step_get_left(Pid(1.5, 0, 2.3, 4000, 10000, 1), Pid(50, 0.0001, 20, 500, 3000, 0.0), 4,
+    Pid(15, 0, 4, 8000, 16000, 1), Pid(15, 0, 0, 8000, 16000, 1), 2);
+OneStepGet one_step_get_right(Pid(1.5, 0, 2.3, 4000, 10000, 1),Pid(50, 0.0001, 20, 500, 3000, 0.0), 3,
+    Pid(15, 0, 4, 8000, 16000, 1), Pid(15, 0, 4, 8000, 16000, 1), 1);
 
 interact_dep::Actions anti_reset(1);
 interact_dep::Actions get_right_y(1);

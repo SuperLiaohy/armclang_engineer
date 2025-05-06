@@ -35,6 +35,36 @@ public:
         return false;
     };
 };
+class M2006Pos : public PosPidControl<M2006> {
+public:
+    template<typename... Args>
+    explicit M2006Pos(Args&&... args)
+        : PosPidControl(std::forward<Args>(args)...) {};
+
+    void clear() {
+        this->position.clear();
+        this->speed.clear();
+    }
+
+    [[nodiscard]] float& total_position() { return this->feedback.total_position; }
+
+    bool is_block(int16_t max_current) {
+        if (fabs(feedback.raw_data.current) > max_current ) {
+            return true;
+        }
+        return false;
+    }
+
+
+    bool get_feedback(uint16_t id, uint8_t* data) {
+        if (id == this->rx_id) {
+            PosPidControl::get_feedback(data);
+            this->total_cnt();
+            return true;
+        }
+        return false;
+    };
+};
 
 class M2006Speed : public SpeedPidControl<M2006> {
 public:
