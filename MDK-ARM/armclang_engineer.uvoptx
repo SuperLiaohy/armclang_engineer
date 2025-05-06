@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>28</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134357662</Address>
+          <Address>134358326</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +175,7 @@
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134373246</Address>
+          <Address>134373910</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -191,7 +191,7 @@
           <Type>0</Type>
           <LineNumber>60</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134350652</Address>
+          <Address>134351212</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -207,7 +207,7 @@
           <Type>0</Type>
           <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134350418</Address>
+          <Address>134350978</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -433,6 +433,16 @@
           <count>13</count>
           <WinNumber>1</WinNumber>
           <ItemText>\\armclang_engineer\../Own/Mod/Detect/Detect.cpp\_Z21DetectManagerInstancev\manager,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>14</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>one_step_get_control</ItemText>
+        </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>one_step_get_auto</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>

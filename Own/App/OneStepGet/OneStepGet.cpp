@@ -5,11 +5,11 @@
 #include "OneStepGet.hpp"
 
 float OneStepGet::move_front(const float target_speed, const bool is_get) {
-    if (is_get || XMotor.is_block(4000)) return 0;
+    if (is_get || XMotor.is_block(3000)) {this->x = OneStepGetXStatus::NONE; return 0;}
     return XMotor.set_speed(target_speed);
 }
 float OneStepGet::move_back(float target_speed) {
-    if (XMotor.is_block(4000)) return 0;
+    if (XMotor.is_block(3000)) {this->x = OneStepGetXStatus::NONE; return 0;}
     return XMotor.set_speed(target_speed);
 }
 float OneStepGet::move_upward(float& target_pos, bool is_block) {

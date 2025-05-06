@@ -67,6 +67,7 @@ void chassis_shift_w_callback(KeyEventType event);
 void chassis_shift_a_callback(KeyEventType event);
 void chassis_shift_s_callback(KeyEventType event);
 void chassis_shift_d_callback(KeyEventType event);
+void one_step_get_b_callback(KeyEventType event);
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -149,6 +150,9 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_X, CombineKey_Ctrl, one_step_get_ctrl_x_callback);
     KeyBoardRegister(interact.keyList, Key_C, CombineKey_Ctrl, one_step_get_ctrl_c_callback);
     KeyBoardRegister(interact.keyList, Key_V, CombineKey_Ctrl, one_step_get_ctrl_v_callback);
+
+    KeyBoardRegister(interact.keyList, Key_B, CombineKey_None, one_step_get_b_callback);
+
 
     interact.remote_control.start();
     interact.image_trans.uartPlus.receive_dma_idle(100);

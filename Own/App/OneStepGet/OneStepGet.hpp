@@ -8,6 +8,11 @@ enum class OneStepGetControl {
     AUTO,
     MANUAL,
 };
+enum class OneStepGetAUTO {
+    NONE,
+    GOT_Y,
+    GOT_X,
+};
 
 enum class OneStepGetYStatus {
     NONE,
@@ -45,11 +50,11 @@ public:
 private:
     Motor<M2006Speed> XMotor;
     Motor<M3508Pos> YMotor;
-
 };
 
 extern OneStepGet one_step_get_left;
 extern OneStepGet one_step_get_right;
 extern OneStepGetControl one_step_get_control;
+extern OneStepGetAUTO one_step_get_auto;
 
 

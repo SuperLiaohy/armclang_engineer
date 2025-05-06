@@ -107,3 +107,4 @@ interact_dep::Actions anti_reset(1);
 interact_dep::Actions get_right_y(1);
 
 OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;
+OneStepGetAUTO one_step_get_auto = OneStepGetAUTO::NONE;
