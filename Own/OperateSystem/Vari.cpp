@@ -103,6 +103,13 @@ OneStepGet one_step_get_left(Pid(1.5, 0, 2.3, 4000, 10000, 1), Pid(50, 0.0001, 2
 OneStepGet one_step_get_right(Pid(1.5, 0, 2.3, 4000, 10000, 1),Pid(50, 0.0001, 20, 500, 3000, 0.0), 3,
     Pid(15, 0, 4, 8000, 16000, 1), Pid(15, 0, 4, 8000, 16000, 1), 1);
 
+OneStepGetControl OSG::mode = OneStepGetControl::AUTO;
+OneStepGetAUTO OSG::auto_mode = OneStepGetAUTO::NONE;
+OSG one_step_gets(Pid(50, 0.0001, 20, 500, 3000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, slope_cfg{.dead_zone = 0,.step = 1},
+    Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 2, slope_cfg{.dead_zone = 0,.step = 1},
+    Pid(50, 0.0001, 20, 500, 3000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, slope_cfg{.dead_zone = 0,.step = 1},
+    Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, slope_cfg{.dead_zone = 0,.step = 1});
+
 interact_dep::Actions anti_reset(1);
 interact_dep::Actions get_right_y(1);
 

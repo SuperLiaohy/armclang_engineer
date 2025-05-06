@@ -55,10 +55,10 @@ void OneStepGetTask() {
             switch (one_step_get_right.x) {
                 case OneStepGetXStatus::NONE: right_out_x = one_step_get_right.XMotor.set_position(right_x); break;
                 case OneStepGetXStatus::FRONT:
-                    ++right_x;
+                    --right_x;
                     right_out_x = one_step_get_right.move_front(right_x, false, one_step_get_right.XMotor.is_block(4000)); break;
                 case OneStepGetXStatus::BACK:
-                    --right_x;
+                    ++right_x;
                     right_out_x = one_step_get_right.move_back(right_x, one_step_get_right.XMotor.is_block(4000)); break;
             }
             switch (one_step_get_right.y) {
