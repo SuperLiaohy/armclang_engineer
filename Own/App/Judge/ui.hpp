@@ -217,6 +217,7 @@ namespace ui_dep {
             graphic->details_a   = font_size;
             graphic->details_b   = length;
             std::memcpy(reinterpret_cast<uint8_t*>(graphic) + 15, data, length);
+            std::memset(reinterpret_cast<uint8_t*>(graphic) + 15 + length, 0, 30 - length);
         }
     };
 

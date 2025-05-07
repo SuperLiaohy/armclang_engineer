@@ -4,7 +4,7 @@
 
 #include "Slope.hpp"
 
-float Slope::update() {
+float& Slope::update() {
     if (target - value < dead_zone && target - value > -dead_zone) { return value; }
 
     if (target > value) {

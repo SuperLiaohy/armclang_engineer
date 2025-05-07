@@ -5,22 +5,23 @@
 #include "OneStepGet/OneStepGet.hpp"
 
 void one_step_get_z_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing: one_step_get_left.x = OneStepGetXStatus::FRONT; break;
+            case KeyEvent_OnPressing:
+                one_step_gets.left.X.pos.target_set(2000);
+                one_step_gets.left.X.status = OneStepGetXStatus::FRONT; break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_left.x = OneStepGetXStatus::NONE; break;
+            case KeyEvent_OnUp: one_step_gets.left.X.status = OneStepGetXStatus::NONE; break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                one_step_get_right.x = OneStepGetXStatus::FRONT;
-                one_step_get_left.x  = OneStepGetXStatus::FRONT;
-
-                one_step_get_auto = OneStepGetAUTO::GOT_X;
+                one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+                one_step_gets.left.X.status  = OneStepGetXStatus::FRONT;
+                OSG::auto_mode = OneStepGetAUTO::GOT_X;
                 break;
             default: break;
         }
@@ -28,118 +29,127 @@ void one_step_get_z_callback(KeyEventType event) {
 }
 
 void one_step_get_shift_z_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing: one_step_get_left.x = OneStepGetXStatus::BACK; break;
+            case KeyEvent_OnPressing:
+                one_step_gets.left.X.pos.target_set(-20);
+                one_step_gets.left.X.status = OneStepGetXStatus::BACK; break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_left.x = OneStepGetXStatus::NONE; break;
+            case KeyEvent_OnUp: one_step_gets.left.X.status = OneStepGetXStatus::NONE; break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 
 void one_step_get_x_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_get_left.y          = OneStepGetYStatus::UP;
-                one_step_get_left.y_is_block = false;
+                one_step_gets.left.Y.pos.target_set(1300);
+                one_step_gets.left.Y.status = OneStepGetYStatus::UP;
                 break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_left.y = OneStepGetYStatus::NONE; break;
+            case KeyEvent_OnUp: one_step_gets.left.Y.status = OneStepGetYStatus::NONE; break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 
 void one_step_get_shift_x_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_get_left.y          = OneStepGetYStatus::DOWN;
-                one_step_get_left.y_is_block = false;
+                one_step_gets.left.Y.pos.target_set(-100);
+                one_step_gets.left.Y.status          = OneStepGetYStatus::DOWN;
                 break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_left.y = OneStepGetYStatus::NONE; break;
+            case KeyEvent_OnUp: one_step_gets.left.Y.status = OneStepGetYStatus::NONE; break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 
 void one_step_get_c_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_get_right.y          = OneStepGetYStatus::UP;
-                one_step_get_right.y_is_block = false;
+                one_step_gets.right.Y.pos.target_set(-1450);
+                one_step_gets.right.Y.status          = OneStepGetYStatus::UP;
                 break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_right.y = OneStepGetYStatus::NONE; break;
+            case KeyEvent_OnUp: one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 
 void one_step_get_shift_c_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_get_right.y          = OneStepGetYStatus::DOWN;
-                one_step_get_right.y_is_block = false;
+                one_step_gets.right.Y.pos.target_set(100);
+                one_step_gets.right.Y.status          = OneStepGetYStatus::DOWN;
                 break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_right.y = OneStepGetYStatus::NONE; break;
+            case KeyEvent_OnUp:
+                one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 
 void one_step_get_v_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing: one_step_get_right.x = OneStepGetXStatus::FRONT; break;
+            case KeyEvent_OnPressing:
+                one_step_gets.right.X.pos.target_set(-2300);
+                one_step_gets.right.X.status          = OneStepGetXStatus::FRONT;
+                break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_right.x = OneStepGetXStatus::NONE; break;
+            case KeyEvent_OnUp: one_step_gets.right.X.status = OneStepGetXStatus::NONE; break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 
 void one_step_get_shift_v_callback(KeyEventType event) {
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing: one_step_get_right.x = OneStepGetXStatus::BACK; break;
+            case KeyEvent_OnPressing:
+                one_step_gets.right.X.pos.target_set(100);
+                one_step_gets.right.X.status          = OneStepGetXStatus::FRONT;
+                break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_get_right.x = OneStepGetXStatus::NONE; break;
+            case KeyEvent_OnUp: one_step_gets.right.X.status = OneStepGetXStatus::NONE; break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 
 void one_step_get_ctrl_z_callback(KeyEventType event) {
     static uint8_t open = 0;
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnClick:
                 open = 1 - open;
@@ -156,12 +166,12 @@ void one_step_get_ctrl_z_callback(KeyEventType event) {
                 //     break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 void one_step_get_ctrl_x_callback(KeyEventType event) {
     static uint8_t open = 0;
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnClick:
                 open = 1 - open;
@@ -178,12 +188,12 @@ void one_step_get_ctrl_x_callback(KeyEventType event) {
                 //     break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 void one_step_get_ctrl_c_callback(KeyEventType event) {
     static uint8_t open = 0;
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnClick:
                 open = 1 - open;
@@ -200,12 +210,12 @@ void one_step_get_ctrl_c_callback(KeyEventType event) {
                 //     break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 void one_step_get_ctrl_v_callback(KeyEventType event) {
     static uint8_t open = 0;
-    if (one_step_get_control == OneStepGetControl::MANUAL) {
+    if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnClick:
                 open = 1 - open;
@@ -222,17 +232,18 @@ void one_step_get_ctrl_v_callback(KeyEventType event) {
                 //     break;
             default: break;
         }
-    } else if (one_step_get_control == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
 
 void one_step_get_b_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            if (one_step_get_control == OneStepGetControl::AUTO)
-                one_step_get_control = OneStepGetControl::MANUAL;
-            else if (one_step_get_control == OneStepGetControl::MANUAL)
-                one_step_get_control = OneStepGetControl::AUTO;
+            if (OSG::mode == OneStepGetControl::AUTO) {
+                OSG::mode = OneStepGetControl::MANUAL;
+            } else if (OSG::mode == OneStepGetControl::MANUAL) {
+                OSG::mode = OneStepGetControl::AUTO;
+            }
             break;
         default: break;
     }

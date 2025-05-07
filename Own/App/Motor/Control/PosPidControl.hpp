@@ -16,6 +16,7 @@ public:
         , speed(speed_cfg) {};
 
     [[nodiscard]] float& output() { return this->position.output; }
+    [[nodiscard]] float& speed_output() { return this->speed.output; }
 
     float set_position(const float target) {
         return this->speed.update(this->position.update(target, this->feedback.total_position), this->feedback.data.speed);

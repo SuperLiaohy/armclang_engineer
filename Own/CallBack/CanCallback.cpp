@@ -60,11 +60,10 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         chassis.UpdateMotor();
     } else if (hfdcan == canPlus3.hcan){        
 				canPlus3.receive();
-
-        one_step_get_left.XMotor.get_feedback(canPlus3.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus3.rx_data);
-        one_step_get_left.YMotor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
-        one_step_get_right.XMotor.get_feedback(canPlus3.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus3.rx_data);
-        one_step_get_right.YMotor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
+        one_step_gets.left.X.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus3.rx_data);
+        one_step_gets.left.Y.Motor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
+        one_step_gets.right.X.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus3.rx_data);
+        one_step_gets.right.Y.Motor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
     }
 }
 

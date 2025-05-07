@@ -27,12 +27,13 @@ public:
 
     [[gnu::always_inline]] inline void step_set(float input);
 
-    [[gnu::always_inline]] [[nodiscard]] inline float get() const;
+    [[gnu::always_inline]] [[nodiscard]] inline float& get();
 
-    float update();
+    float& update();
+
+    float target;
 
 private:
-    float target;
     float step;
     float value;
     float dead_zone;
@@ -40,5 +41,5 @@ private:
 
 [[gnu::always_inline]] inline void Slope::target_set(float input) { target = input; }
 [[gnu::always_inline]] inline void Slope::step_set(float input) { step = input; }
-[[gnu::always_inline]] [[nodiscard]] inline float Slope::get() const { return value; }
+[[gnu::always_inline]] [[nodiscard]] inline float& Slope::get() { return value; }
 

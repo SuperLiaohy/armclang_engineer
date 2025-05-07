@@ -39,3 +39,53 @@ float OneStepGet::move_down(float& target_pos, bool is_get, bool is_block) {
     }
     return YMotor.set_position(target_pos);
 }
+bool OSG::group::XGet::move_back() {
+    auto& target_pos = pos.update();
+    if (is_block) {
+        this->status = OneStepGetXStatus::NONE;
+        pos.target_set(Motor.total_position());
+        target_pos = Motor.total_position();
+        Motor.set_position(target_pos);
+        return false;
+    }
+    Motor.set_position(target_pos);
+    return true;
+}
+bool OSG::group::XGet::move_front(bool is_get) {
+    auto& target_pos = pos.update();
+    if (is_get || is_block) {
+        this->status = OneStepGetXStatus::NONE;
+        pos.target_set(Motor.total_position());
+        target_pos = Motor.total_position();
+        Motor.set_position(target_pos);
+        return false;
+    }
+    Motor.set_position(target_pos);
+    return true;
+}
+bool OSG::group::YGet::move_up() {
+    auto& target_pos = pos.update();
+    if (is_block) {
+        this->status = OneStepGetYStatus::NONE;
+        pos.target_set(Motor.total_position());
+        target_pos = Motor.total_position();
+        Motor.set_position(target_pos);
+        return false;
+    }
+    Motor.set_position(target_pos);
+    return true;
+}
+bool OSG::group::YGet::move_down(bool is_get) {
+    auto& target_pos = pos.update();
+    if (is_get || is_block) {
+        this->status = OneStepGetYStatus::NONE;
+        pos.target_set(Motor.total_position());
+        target_pos = Motor.total_position();
+        Motor.set_position(target_pos);
+        return false;
+    }
+    Motor.set_position(target_pos);
+    return true;
+}
+
+

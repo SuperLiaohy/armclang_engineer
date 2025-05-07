@@ -30,7 +30,7 @@ void JudgeTask() {
         return 1;
     };
     auto int_auto = []() -> int32_t {
-        if (OneStepGetControl::AUTO == one_step_get_control) { return 1; }
+        if (OneStepGetControl::AUTO == OSG::mode) { return 1; }
         return 0;
     };
     ui.operate_fig("001", UI::operation::ADD, UI::layer::LAYER_4, UI::color::GREEN, 2, 24, 838,
@@ -62,15 +62,15 @@ void JudgeTask() {
                    ui_dep::string_data {.font_size = 10, .data = "lb:", .length = 4});
     ui.update();
     osDelay(34);
-    ui.operate_fig("007", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 1022, 845,
+    ui.operate_fig("008", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 1022, 845,
                    ui_dep::string_data {.font_size = 10, .data = "rf:", .length = 4});
     ui.update();
     osDelay(34);
-    ui.operate_fig("008", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 1022, 790,
+    ui.operate_fig("009", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 1022, 790,
                    ui_dep::string_data {.font_size = 10, .data = "rb:", .length = 4});
     ui.update();
     osDelay(34);
-    ui.operate_fig("009", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 930, 880,
+    ui.operate_fig("010", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 930, 880,
                    ui_dep::string_data {.font_size = 10, .data = "main:", .length = 6});
     ui.update();
     osDelay(34);

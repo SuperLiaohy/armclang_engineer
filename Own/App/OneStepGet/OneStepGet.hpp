@@ -87,33 +87,27 @@ public:
         public:
             XGet(const Pid& x_pos_pid, const Pid& x_speed_pid, const uint8_t x_id, const slope_cfg& x_slope_cfg)
                 : pos(x_slope_cfg)
-                , XMotor(x_pos_pid, x_speed_pid, x_id) {};
-            void move_back();
-            void move_front(bool is_get);
+                , Motor(x_pos_pid, x_speed_pid, x_id) {};
+            bool move_back();
+            bool move_front(bool is_get);
             OneStepGetXStatus status;
             bool is_block;
             Slope pos;
             int32_t block_count;
-            ;
-
-        private:
-            Motor<M2006Pos> XMotor;
+            Motor<M2006Pos> Motor;
         } X;
         class YGet {
         public:
             YGet(const Pid& y_pos_pid, const Pid& y_speed_pid, const uint8_t y_id, const slope_cfg& y_slope_cfg)
                 : pos(y_slope_cfg)
-                , YMotor(y_pos_pid, y_speed_pid, y_id) {};
-            void move_up();
-            void move_down(bool is_get);
+                , Motor(y_pos_pid, y_speed_pid, y_id) {};
+            bool move_up();
+            bool move_down(bool is_get);
             OneStepGetYStatus status;
             bool is_block;
             Slope pos;
             int32_t block_count;
-            ;
-
-        private:
-            Motor<M3508Pos> YMotor;
+            Motor<M3508Pos> Motor;
         } Y;
     };
 
@@ -121,7 +115,9 @@ public:
     group right;
 };
 
-extern OneStepGet one_step_get_left;
-extern OneStepGet one_step_get_right;
-extern OneStepGetControl one_step_get_control;
-extern OneStepGetAUTO one_step_get_auto;
+// extern OneStepGet one_step_get_left;
+// extern OneStepGet one_step_get_right;
+// extern OneStepGetControl one_step_get_control;
+// extern OneStepGetAUTO one_step_get_auto;
+extern OSG one_step_gets;
+
