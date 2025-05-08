@@ -14,13 +14,15 @@ extern "C" {
 }
 #endif
 #include "OneStepGet/OneStepGet.hpp"
-
+#include "WDG/SuperIWDG.hpp"
 extern float yaw;
 
 float a =0;
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
     UNUSED(RxFifo0ITs);
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    SuperIWDG::GotInstance().give();
+
     if (hfdcan == canPlus1.hcan) {
 			++a;
         canPlus1.receive();

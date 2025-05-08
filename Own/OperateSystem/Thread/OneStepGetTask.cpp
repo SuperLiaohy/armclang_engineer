@@ -37,7 +37,7 @@ void OneStepGetTask() {
                     one_step_gets.left.X.move_front(false);
                     break;
                 case OneStepGetXStatus::BACK:
-                    if (one_step_gets.left.X.Motor.is_block(-2500, 2500)) {
+                    if (one_step_gets.left.X.Motor.is_block(-3500, 5500)) {
                         if (++one_step_gets.left.X.block_count > 1) { one_step_gets.left.X.is_block = true; }
                     } else {
                         one_step_gets.left.X.block_count = 0;
@@ -83,7 +83,7 @@ void OneStepGetTask() {
                     one_step_gets.right.X.move_front(false);
                     break;
                 case OneStepGetXStatus::BACK:
-                    if (one_step_gets.right.X.Motor.is_block(-2500, 2500)) {
+                    if (one_step_gets.right.X.Motor.is_block(-3500, 3500)) {
                         if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
                     } else {
                         one_step_gets.right.X.block_count = 0;

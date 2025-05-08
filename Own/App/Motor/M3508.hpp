@@ -38,7 +38,7 @@ public:
     explicit M3508Pos(Args&&... args)
         : PosPidControl(std::forward<Args>(args)...) {};
 
-    float total_position() {
+    float& total_position() {
         return feedback.total_position;
     }
 

@@ -41,6 +41,7 @@ extern osThreadId ERROR_TASKHandle;
 #ifdef __cplusplus
 }
 #endif
+#include "WDG/SuperIWDG.hpp"
 uint8_t re_flag       = 0;
 volatile uint32_t ada = 0;
 void one_step_get_z_callback(KeyEventType event);
@@ -68,6 +69,7 @@ void chassis_shift_a_callback(KeyEventType event);
 void chassis_shift_s_callback(KeyEventType event);
 void chassis_shift_d_callback(KeyEventType event);
 void one_step_get_b_callback(KeyEventType event);
+void robo_arm_ctrl_g_callback(KeyEventType event);
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -102,6 +104,7 @@ void StartTask() {
     canPlus1.start();
     canPlus2.start();
     canPlus3.start();
+    SuperIWDG::GotInstance().give();
     /* 遥控器和键鼠初始化 */
     // 键鼠默认配置uint32_t clickTime = 75, uint32_t longPressTime = 1000
     interact.remote_control.detect.lostFun = &remote_ctrl_recover;
@@ -152,6 +155,7 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_V, CombineKey_Ctrl, one_step_get_ctrl_v_callback);
 
     KeyBoardRegister(interact.keyList, Key_B, CombineKey_None, one_step_get_b_callback);
+    KeyBoardRegister(interact.keyList, Key_G, CombineKey_Ctrl, robo_arm_ctrl_g_callback);
 
 
     interact.remote_control.start();

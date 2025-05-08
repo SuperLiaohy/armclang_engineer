@@ -22,7 +22,7 @@ public:
         while (err > 18000) { err -= 36000; }
         while (err < -18000) { err += 36000; }
         // position = m.feedback.total_position * 100 + err;
-        totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.3f * speed, 3 * speed),
+        totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.3f * speed, 1.5 * speed),
                               position * this->reduction_ratio);
     };
 
@@ -45,6 +45,7 @@ public:
     void close();
 
     friend class RoboArm;
+    void clear_error();
 
 private:
     Count tx_cnt;
@@ -84,7 +85,6 @@ private:
 
     void read_error();
 
-    void clear_error();
 };
 
 template<motor_param motor> void LKControl<motor>::enable() {

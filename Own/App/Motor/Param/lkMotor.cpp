@@ -5,6 +5,7 @@
 
 void LKMotor::get_feedback(uint8_t* data) {
     ++rx_cnt;
+    detect.update();
     switch (data[0]) {
         case 0x80:
             // 关闭判断

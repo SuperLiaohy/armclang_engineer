@@ -763,10 +763,9 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\App\RemoteControl\RemoteControl.hpp \
+  ..\Own\Mod\Slope\Slope.hpp ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
   ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\OperateSystem\ThreadConfig.h
+  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\PC\PC.hpp \
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\OperateSystem\ThreadConfig.h

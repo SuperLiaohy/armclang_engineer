@@ -34,7 +34,7 @@ void one_step_get_shift_z_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.left.X.pos.target_set(-20);
+                one_step_gets.left.X.pos.target_set(-2000);
                 one_step_gets.left.X.status = OneStepGetXStatus::BACK; break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_gets.left.X.status = OneStepGetXStatus::NONE; break;
@@ -67,7 +67,7 @@ void one_step_get_shift_x_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.left.Y.pos.target_set(-100);
+                one_step_gets.left.Y.pos.target_set(-1300);
                 one_step_gets.left.Y.status          = OneStepGetYStatus::DOWN;
                 break;
             case KeyEvent_None:
@@ -101,7 +101,7 @@ void one_step_get_shift_c_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.right.Y.pos.target_set(100);
+                one_step_gets.right.Y.pos.target_set(1450);
                 one_step_gets.right.Y.status          = OneStepGetYStatus::DOWN;
                 break;
             case KeyEvent_None:
@@ -136,7 +136,7 @@ void one_step_get_shift_v_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.right.X.pos.target_set(100);
+                one_step_gets.right.X.pos.target_set(-2300);
                 one_step_gets.right.X.status          = OneStepGetXStatus::FRONT;
                 break;
             case KeyEvent_None:
@@ -283,6 +283,21 @@ void air_right_callback(KeyEventType event) {
         default: break;
     }
 }
+
+void robo_arm_ctrl_g_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnClick:
+            interact.robo_arm.last_mode = interact_dep::robo_mode::NONE;
+            interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+            interact.joint[5] = 0;
+            interact.joint[4] = 0;
+            roboArm.diff.left.total_position() = 0;
+            roboArm.diff.right.total_position() = 0;
+            break;
+        default: break;
+    }
+}
+
 
 void robo_arm_shift_q_callback(KeyEventType event) {
     switch (event) {

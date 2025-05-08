@@ -119,11 +119,13 @@ int main(void)
   MX_USART3_UART_Init();
   MX_I2C1_Init();
   MX_UART7_Init();
-//  MX_IWDG1_Init();
+  MX_IWDG1_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-	// __HAL_DBGMCU_FREEZE_IWDG1();
+	__HAL_DBGMCU_FREEZE_IWDG1();
     // HAL_TIM_Base_Start_IT(&htim6);
+    HAL_IWDG_Refresh(&hiwdg1);
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

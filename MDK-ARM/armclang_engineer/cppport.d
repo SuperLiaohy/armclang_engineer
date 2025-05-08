@@ -756,6 +756,7 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Own\App\Motor\Param\lkMotor.hpp \
+  ..\Own\Mod\Slope\Slope.hpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
@@ -767,6 +768,6 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
   ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h
+  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\PC\PC.hpp \
+  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\W25Q64\W25Q64.hpp \
+  ..\Core\Inc\octospi.h

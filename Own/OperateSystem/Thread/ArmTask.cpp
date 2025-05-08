@@ -18,7 +18,7 @@ void ArmTask() {
         roboArm.diff.right.set_position(roboArm.target.joint6.angle);
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        canPlus1.transmit(M2006Diff::foc.TX_LOW_ID, roboArm.diff.left.output(), roboArm.diff.right.output(), 0, 0);
+        canPlus1.transmit(M2006Diff::foc.TX_LOW_ID, roboArm.diff.left.speed_output(), roboArm.diff.right.speed_output(), 0, 0);
         xSemaphoreGive(CAN1MutexHandle);
 
         roboArm.diff.write_fram();
@@ -40,28 +40,29 @@ void ArmTask() {
         }
         if ((cnt + 2)%10 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint1.set_position(roboArm.target.joint1.angle, 480);
+            roboArm.joint1.set_position(roboArm.target.joint1.angle, 180);
             xSemaphoreGive(CAN1MutexHandle);
 
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint4.read_totalposition();
+            // roboArm.joint4.read_totalposition();
             xSemaphoreGive(CAN1MutexHandle);
         }
         if ((cnt+3) % 10 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint3.read_totalposition();
+            // roboArm.joint3.read_totalposition();
             xSemaphoreGive(CAN1MutexHandle);
 
             // 相对旋转角度只需要一个电机就可以确定，所以只需要一个电机的反馈数据，这里选择外侧电机
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint2.external.read_totalposition();
+            // roboArm.joint2.external.read_totalposition();
             xSemaphoreGive(CAN1MutexHandle);
 
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint1.read_totalposition();
+            // roboArm.joint1.read_totalposition();
+            // roboArm.joint1.clear_error();
             xSemaphoreGive(CAN1MutexHandle);
         }
         CANHeapCnt = uxTaskGetStackHighWaterMark(NULL);
-        osDelayUntil(&now, 1);
+        osDelay(1);
     }
 }

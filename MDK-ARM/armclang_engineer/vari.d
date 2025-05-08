@@ -762,11 +762,11 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\App\RemoteControl\RemoteControl.hpp \
+  ..\Own\Mod\Slope\Slope.hpp ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Mod\Slope\Slope.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\Bsp\GPIO\SuperGPIO.hpp \
-  ..\Core\Inc\gpio.h ..\Own\OperateSystem\Heap\CustomHeap.hpp \
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
+  ..\Own\OperateSystem\Heap\CustomHeap.hpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h ..\Own\Obj\Interact\Interact.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\Judge\referee_system.h ..\Own\App\Judge\ui.hpp \

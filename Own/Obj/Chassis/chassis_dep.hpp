@@ -108,14 +108,15 @@ namespace chassis_dep {
         float vx;
         float vy;
         float w;
-    } max                 = {2000, 2000, 15};
+    } max                 = {3732, 3732, 5};
+        // {2000, 2000, 15};
     constexpr float v2rpm = 60 / (2 * my_math::pi * info.wheel_radius) * 19.2f;
 
     constexpr std::array<slope_cfg, 4> move_default = {
-        slope_cfg(2*3, 1),
-        slope_cfg(2*3, 1),
-        slope_cfg(0.04, 0),
-        slope_cfg(2.00*3, 1)};
+        slope_cfg(2*2, 1),
+        slope_cfg(2*2, 1),
+        slope_cfg(0.01, 0),
+        slope_cfg(2*2, 1)};
     constexpr std::array<ChassisMotorCfg, 4> base_motor_default = {
         ChassisMotorCfg {1, Pid(15, 0, 4, 8000, 16000, 19.2)},
         ChassisMotorCfg {2, Pid(15, 0, 4, 8000, 16000, 19.2)},

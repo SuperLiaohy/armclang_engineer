@@ -18,7 +18,6 @@ void DebugTask() {
             it.mark();
             time = 0;
         }
-        SuperIWDG::GotInstance().give();
         osDelayUntil(&now, 10);
     }
 }

@@ -43,7 +43,9 @@ bool OSG::group::XGet::move_back() {
     auto& target_pos = pos.update();
     if (is_block) {
         this->status = OneStepGetXStatus::NONE;
+        Motor.total_position() = 0;
         pos.target_set(Motor.total_position());
+
         target_pos = Motor.total_position();
         Motor.set_position(target_pos);
         return false;
@@ -79,6 +81,7 @@ bool OSG::group::YGet::move_down(bool is_get) {
     auto& target_pos = pos.update();
     if (is_get || is_block) {
         this->status = OneStepGetYStatus::NONE;
+        Motor.total_position() = 0;
         pos.target_set(Motor.total_position());
         target_pos = Motor.total_position();
         Motor.set_position(target_pos);

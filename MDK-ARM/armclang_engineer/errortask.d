@@ -767,7 +767,7 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
   ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\PC\PC.hpp \
   ..\Own\App\SubBoard\SubBoard.hpp ..\Own\Bsp\WDG\SuperIWDG.hpp \
   ..\Core\Inc\iwdg.h
