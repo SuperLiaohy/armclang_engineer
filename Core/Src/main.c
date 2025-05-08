@@ -229,10 +229,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-    UserTimCallback(htim);
-  if (htim->Instance == TIM6) {
-		++CPU_RunTime;
-	}
+//    UserTimCallback(htim);
+//  if (htim->Instance == TIM6) {
+//		++CPU_RunTime;
+//	}
   /* USER CODE END Callback 1 */
 }
 

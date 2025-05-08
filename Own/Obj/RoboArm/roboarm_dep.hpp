@@ -117,16 +117,14 @@ namespace roboarm_dep {
         Motor<M2006DiffPos> left;
         Motor<M2006DiffPos> right;
 
-
-
         Differentiator(float gain, uint32_t left_id, const Pid& left_pos_pid, const Pid& left_speed_pid,
                        uint32_t right_id, const Pid& right_pos_pid, const Pid& right_speed_pid, I2C_HandleTypeDef* hi2c)
             : gain(gain)
             , left(left_pos_pid, left_speed_pid, left_id)
             , right(right_pos_pid, right_speed_pid, right_id)
             , fram(hi2c)
-            , slope_left(0.03, 2)
-            , slope_right(0.03, 2) {};
+            , slope_left(0.15, 2)
+            , slope_right(0.15, 2) {};
 
         void init(std::array<float, 6>& joint);
 

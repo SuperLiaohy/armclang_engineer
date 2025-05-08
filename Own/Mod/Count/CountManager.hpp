@@ -21,5 +21,5 @@ public:
     void mark();
 
 private:
-    CustomList<Count*> list;
+    CustomList<Count*, SeqList<Count*,60>> list;
 };
