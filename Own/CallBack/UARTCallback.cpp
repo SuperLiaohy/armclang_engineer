@@ -65,8 +65,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     } else if (huart == interact.image_trans.uartPlus.uart) {
         using namespace crc;
         ++interact.image_trans.uartPlus.rx_cnt;
-        for (int i = 0; i < Size - 9; ++i) {
-            auto data = &interact.image_trans.uartPlus.rx_buffer[i];
+        // for (int i = 0; i < Size - 9; ++i) {
+            auto data = &interact.image_trans.uartPlus.rx_buffer[0];
             if (data[0] == 0xA5) {
                 uint16_t len                   = (data[2] << 8 | data[1]);
                 interact.image_trans.rx_cmd_id = data[6] << 8 | data[5];
@@ -86,10 +86,10 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                         default:
                             break;
                     }
-                    i+=len+8;
+                    // i+=len+8;
                 }
             }
-        }
+        // }
         interact.image_trans.uartPlus.receive_dma_idle(100);
     } else if (huart == interact.sub_board.uartPlus.uart) {
         ++interact.sub_board.uartPlus.rx_cnt;
@@ -133,13 +133,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
         }
         ui.start_receive();
     }
-
-    //    if (huart == uartPlus10.uart) {
-    //        for (int i = 0; i < Size; ++i) {
-    //            xQueueSendFromISR(xRxedChars, &cli_buffer[i], &xHigherPriorityTaskWoken);
-    //            //            shellHandler(&shell, cli_buffer[i]);
-    //        }
-    //    }
 
 #endif
 }

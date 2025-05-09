@@ -43,12 +43,11 @@ namespace sub_board_dep {
 
 #pragma pack(push, 1)
     struct rx_status {
-        uint8_t valve1: 1;
-        uint8_t valve2: 1;
-        uint8_t valve3: 1;
-        uint8_t valve4: 1;
-        uint8_t valve5: 1;
-        uint8_t none: 3;
+        float valve1;
+        float valve2;
+        float valve3;
+        float valve4;
+        float valve5;
     };
 #pragma pack(pop)
 
@@ -63,7 +62,7 @@ namespace sub_board_dep {
     struct rx_frame {
         frame_header frame_head;
         uint8_t cmd_id;
-        uint8_t data[8 - sizeof(frame_header) - sizeof(uint8_t) - sizeof(uint8_t)];
+        uint8_t data[sizeof(user_rx_data)];
         uint8_t crc8;
     };
 #pragma pack(pop)
@@ -108,16 +107,6 @@ public:
     void set_valve6(uint8_t x) { custom_frame_tx.s.valve6 = x; };
 
     uint8_t read_tx_status(){ return *reinterpret_cast<uint8_t*>(&custom_frame_tx.s);}
-
-    [[nodiscard]] bool read_valve1() const { return custom_frame_rx.s.valve1; };
-
-    [[nodiscard]] bool read_valve2() const { return custom_frame_rx.s.valve2; };
-
-    [[nodiscard]] bool read_valve3() const { return custom_frame_rx.s.valve3; };
-
-    [[nodiscard]] bool read_valve4() const { return custom_frame_rx.s.valve4; };
-
-    [[nodiscard]] bool read_valve5() const { return custom_frame_rx.s.valve5; };
 
     void transmit();
 
