@@ -19,7 +19,8 @@ public:
         , remote_control(uart_rc)
         , image_trans(uart_im)
         , pc(head, tail)
-        , sub_board(uart_sub_board) {
+        , sub_board(uart_sub_board)
+        , joint_slope({Slope(0.3, 0.2), Slope(0.3, 0.2), Slope(0.3, 0.2)}) {
 
         };
 
@@ -41,6 +42,7 @@ public:
         interact_dep::robo_mode last_mode;
     } robo_arm;
     std::array<float, 6> joint {};
+    std::array<Slope, 3> joint_slope;
     interact_dep::Actions* actions {};
 
     struct {

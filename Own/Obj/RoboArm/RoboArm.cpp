@@ -107,7 +107,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint3.offset_flag) {
-            joint[2] = 134;
+            joint[2] = 145;
             if (joint3.feedback.total_position < 0) { offset.joint3 -= 360; }
             break;
         }
@@ -116,7 +116,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.internal.offset_flag) {
-            joint[1] = -45;
+            joint[1] = -55;
             if (joint2.internal.feedback.total_position < 0) { offset.joint2.internal -= 360; }
             break;
         }
@@ -125,7 +125,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint2.external.offset_flag) {
-            joint[1] = -45;
+            joint[1] = -55;
 //             if (joint2.external.motor.m.feedback.total_position < 0) { offset.joint2.external -= 360; }
             break;
         }
@@ -350,16 +350,23 @@ bool RoboArm::ikine(const std::array<float, 3>& pos) {
     return true;
 }
 
-void RoboArm::load_target(const std::array<float, 6>& joint) {
+void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3>& slope) {
     using namespace roboarm_dep;
     using namespace my_math;
 
     //电机的转向和人为规定的全部反了,故加上了负号.
-    target.joint1.angle          = (-joint[0] + offset.joint1) * scale(360, 36000);
-    target.joint2.internal.angle = (-joint[1] + offset.joint2.internal) * scale(360, 36000);
-    target.joint2.external.angle = (-joint[1] + offset.joint2.external) * scale(360, 36000);
-    target.joint3.angle          = (-joint[2] + offset.joint3) * scale(360, 36000);
+
+    slope[0].target_set(joint[0]);
+    slope[1].target_set(joint[1]);
+    slope[2].target_set(joint[2]);
+    auto joint2_slope_value = slope[1].update();
+    target.joint1.angle          = (-slope[0].update() + offset.joint1) * scale(360, 36000);
+    target.joint2.internal.angle = (-joint2_slope_value + offset.joint2.internal) * scale(360, 36000);
+    target.joint2.external.angle = (-joint2_slope_value + offset.joint2.external) * scale(360, 36000);
+    target.joint3.angle          = (-slope[2].update() + offset.joint3) * scale(360, 36000);
     target.joint4.angle          = (-joint[3] + offset.joint4) * scale(360, 36000);
+
+
     auto data = joint[5];
     float err = joint[5] - relative_pos[5]; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
     while (err >= 180) { err -= 359.99; }

@@ -18,7 +18,7 @@ void ArmInitTask() {
     /* 读取电机的偏移量，来判断offset是否需要减少360 */
     roboArm.init_offset(interact.joint);
 
-    roboArm.load_target(interact.joint);
+    roboArm.load_target(interact.joint, interact.joint_slope);
     roboArm.update_relative_pos();
 
     xEventGroupWaitBits(osEventGroup, DIFF_LEFT_RECEIVE_EVENT | DIFF_RIGHT_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);

@@ -3,7 +3,6 @@
 //
 #pragma once
 
-
 struct slope_cfg {
     float step;
     float dead_zone;
@@ -25,6 +24,8 @@ public:
 
     [[gnu::always_inline]] inline void target_set(float input);
 
+    [[gnu::always_inline]] inline void target_arrive() { value = target; };
+
     [[gnu::always_inline]] inline void step_set(float input);
 
     [[gnu::always_inline]] [[nodiscard]] inline float& get();
@@ -42,4 +43,3 @@ private:
 [[gnu::always_inline]] inline void Slope::target_set(float input) { target = input; }
 [[gnu::always_inline]] inline void Slope::step_set(float input) { step = input; }
 [[gnu::always_inline]] [[nodiscard]] inline float& Slope::get() { return value; }
-

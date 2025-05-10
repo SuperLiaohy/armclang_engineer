@@ -12,8 +12,10 @@ void ArmTask() {
         ++cnt;
 
         roboArm.update_relative_pos();
-        roboArm.load_target(interact.joint);
-
+        roboArm.load_target(interact.joint, interact.joint_slope);
+        interact.joint_slope[0].target_arrive();
+        interact.joint_slope[1].target_arrive();
+        interact.joint_slope[2].target_arrive();
         roboArm.diff.left.set_position(roboArm.target.joint5.angle);
         roboArm.diff.right.set_position(roboArm.target.joint6.angle);
 
@@ -23,43 +25,43 @@ void ArmTask() {
 
         roboArm.diff.write_fram();
 
-        if (cnt % 10 == 0) {
-            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            // roboArm.joint3.set_position(roboArm.target.joint3.angle, 180);
-            // xSemaphoreGive(CAN1MutexHandle);
-            //
-            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            // roboArm.joint4.set_position_near(roboArm.target.joint4.angle, 360);
-            // xSemaphoreGive(CAN1MutexHandle);
-        }
-        if ((cnt + 1) % 10 == 0) {
-            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            // roboArm.joint2.internal.set_position(roboArm.target.joint2.internal.angle, 180);
-            // roboArm.joint2.external.set_position(roboArm.target.joint2.external.angle, 180);
-            // xSemaphoreGive(CAN1MutexHandle);
-        }
-        if ((cnt + 2)%10 == 0) {
-            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            // roboArm.joint1.set_position(roboArm.target.joint1.angle, 180);
-            // xSemaphoreGive(CAN1MutexHandle);
+        if (cnt % 5 == 0) {
+            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            roboArm.joint3.set_position(roboArm.target.joint3.angle, 180);
+            xSemaphoreGive(CAN1MutexHandle);
 
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint4.read_totalposition();
+            roboArm.joint4.set_position_near(roboArm.target.joint4.angle, 360);
             xSemaphoreGive(CAN1MutexHandle);
+        }
+        if ((cnt + 1) % 5 == 0) {
+            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            roboArm.joint2.internal.set_position(roboArm.target.joint2.internal.angle, 180);
+            roboArm.joint2.external.set_position(roboArm.target.joint2.external.angle, 180);
+            xSemaphoreGive(CAN1MutexHandle);
+        }
+        if ((cnt + 2)%5 == 0) {
+            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            roboArm.joint1.set_position(roboArm.target.joint1.angle, 180);
+            xSemaphoreGive(CAN1MutexHandle);
+
+            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            // roboArm.joint4.read_totalposition();
+            // xSemaphoreGive(CAN1MutexHandle);
         }
         if ((cnt+3) % 10 == 0) {
-            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint3.read_totalposition();
-            xSemaphoreGive(CAN1MutexHandle);
+            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            // roboArm.joint3.read_totalposition();
+            // xSemaphoreGive(CAN1MutexHandle);
 
             // 相对旋转角度只需要一个电机就可以确定，所以只需要一个电机的反馈数据，这里选择外侧电机
-            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint2.external.read_totalposition();
-            xSemaphoreGive(CAN1MutexHandle);
+            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            // roboArm.joint2.external.read_totalposition();
+            // xSemaphoreGive(CAN1MutexHandle);
 
-            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint1.read_totalposition();
-            xSemaphoreGive(CAN1MutexHandle);
+            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            // roboArm.joint1.read_totalposition();
+            // xSemaphoreGive(CAN1MutexHandle);
         }
         CANHeapCnt = uxTaskGetStackHighWaterMark(NULL);
         osDelay(1);

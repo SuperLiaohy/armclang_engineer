@@ -62,7 +62,7 @@ public:
     roboarm_dep::offset offset {};
     roboarm_dep::target target {};
 
-    void load_target(const std::array<float, 6>& joint);
+    void load_target(const std::array<float, 6>& joint, std::array<Slope, 3>& Slope);
 
     std::array<float, 6> relative_pos;
     void update_relative_pos();
