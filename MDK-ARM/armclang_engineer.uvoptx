@@ -103,7 +103,7 @@
         <bEvRecOn>1</bEvRecOn>
         <bSchkAxf>0</bSchkAxf>
         <bTchkAxf>0</bTchkAxf>
-        <nTsel>6</nTsel>
+        <nTsel>3</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -114,7 +114,7 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile>.\local.ini</tIfile>
-        <pMon>STLink\ST-LINKIII-KEIL_SWO.dll</pMon>
+        <pMon>BIN\CMSIS_AGDI.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
@@ -140,7 +140,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>(105=-1,-1,-1,-1,0)</Name>
+          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134358046</Address>
+          <Address>134358334</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -189,73 +189,9 @@
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>28</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134327740</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Own\OperateSystem\Thread\ArmInitTask.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/OperateSystem/Thread/ArmInitTask.cpp\28</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>11</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134327600</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Own\OperateSystem\Thread\ArmInitTask.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/OperateSystem/Thread/ArmInitTask.cpp\11</Expression>
-        </Bp>
-        <Bp>
-          <Number>4</Number>
-          <Type>0</Type>
-          <LineNumber>24</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134327662</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Own\OperateSystem\Thread\ArmInitTask.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/OperateSystem/Thread/ArmInitTask.cpp\24</Expression>
-        </Bp>
-        <Bp>
-          <Number>5</Number>
-          <Type>0</Type>
-          <LineNumber>14</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134327604</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Own\OperateSystem\Thread\ArmInitTask.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/OperateSystem/Thread/ArmInitTask.cpp\14</Expression>
-        </Bp>
-        <Bp>
-          <Number>6</Number>
-          <Type>0</Type>
           <LineNumber>68</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134361686</Address>
+          <Address>134361974</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -267,11 +203,11 @@
           <Expression>\\armclang_engineer\../Own/Obj/RoboArm/RoboArm.cpp\68</Expression>
         </Bp>
         <Bp>
-          <Number>7</Number>
+          <Number>3</Number>
           <Type>0</Type>
           <LineNumber>43</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134361590</Address>
+          <Address>134361878</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -283,7 +219,23 @@
           <Expression>\\armclang_engineer\../Own/Obj/RoboArm/RoboArm.cpp\43</Expression>
         </Bp>
         <Bp>
-          <Number>8</Number>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>89</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>../Core/Src/main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
           <Type>0</Type>
           <LineNumber>38</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -299,7 +251,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>9</Number>
+          <Number>6</Number>
           <Type>0</Type>
           <LineNumber>118</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -315,7 +267,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>10</Number>
+          <Number>7</Number>
           <Type>0</Type>
           <LineNumber>1</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -331,7 +283,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>11</Number>
+          <Number>8</Number>
           <Type>0</Type>
           <LineNumber>25</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -347,7 +299,23 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>12</Number>
+          <Number>9</Number>
+          <Type>0</Type>
+          <LineNumber>37</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>startup_stm32h723xx.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>10</Number>
           <Type>0</Type>
           <LineNumber>38</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -363,7 +331,23 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>13</Number>
+          <Number>11</Number>
+          <Type>0</Type>
+          <LineNumber>60</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>startup_stm32h723xx.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>12</Number>
           <Type>0</Type>
           <LineNumber>108</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -379,7 +363,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>14</Number>
+          <Number>13</Number>
           <Type>0</Type>
           <LineNumber>304</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -395,7 +379,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>15</Number>
+          <Number>14</Number>
           <Type>0</Type>
           <LineNumber>309</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -411,7 +395,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>16</Number>
+          <Number>15</Number>
           <Type>0</Type>
           <LineNumber>310</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -427,7 +411,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>17</Number>
+          <Number>16</Number>
           <Type>0</Type>
           <LineNumber>311</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -443,7 +427,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>18</Number>
+          <Number>17</Number>
           <Type>0</Type>
           <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -459,7 +443,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>19</Number>
+          <Number>18</Number>
           <Type>0</Type>
           <LineNumber>60</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -489,7 +473,7 @@
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>interact,0x0A</ItemText>
+          <ItemText>interact,0x10</ItemText>
         </Ww>
         <Ww>
           <count>3</count>

@@ -45,10 +45,7 @@ void JudgeTask() {
                    ui_dep::string_data {.font_size = 20, .data = "air:", .length = 5});
     ui.update();
     osDelay(34);
-    ui.operate_fig("002", UI::operation::ADD, UI::layer::LAYER_4, UI::color::WHITE, 2, 24, 759,
-                   ui_dep::string_data {.font_size = 20, .data = "pressure:", .length = 10});
-    ui.update();
-    osDelay(34);
+
     ui.operate_fig("003", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 2, 24, 686,
                    ui_dep::string_data {.font_size = 20, .data = "chassis:", .length = 9});
     ui.update();
