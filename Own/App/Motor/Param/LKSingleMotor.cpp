@@ -1,9 +1,9 @@
 //
 // Created by Administrator on 2025/4/4.
 //
-#include "lkMotor.hpp"
+#include "LKSingleMotor.hpp"
 
-void LKMotor::get_feedback(uint8_t* data) {
+void LKSingleMotor::get_feedback(uint8_t* data) {
     ++rx_cnt;
     detect.update();
     switch (data[0]) {
@@ -42,6 +42,7 @@ void LKMotor::get_feedback(uint8_t* data) {
                 dPos = dPos + 360;
             }
             total_position += dPos;
+            feedback.total_position += dPos;
         } break;
         case 0x90:
             feedback.encoder.encoder       = *(uint16_t*)(&data[2]) * 360.0 / precision_range;
@@ -59,7 +60,7 @@ void LKMotor::get_feedback(uint8_t* data) {
                 total |= ((int64_t)0xFF << 56); // 将高 8 位填充为 0xFF，符号扩展
             }
 
-            feedback.total_position = static_cast<double>(total) / 100.f / reduction_ratio; // 0.01°/LSB
+            feedback.total_position = static_cast<float>(total) / 100.f / reduction_ratio; // 0.01°/LSB
             total_position = feedback.total_position;
             float tmp = feedback.total_position;
             feedback.data.position = whileLimit<float>(tmp,0,360);

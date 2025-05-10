@@ -11,18 +11,18 @@ extern uint8_t re_flag;
 void ArmInitTask() {
     /* 机械臂电机使能 */
     // enable 内部是先失能再使能
-    roboArm.enable();
+    // roboArm.enable();
+    //
+    // /* 机械臂的差分器初始化 */
+    // roboArm.diff.init(interact.joint);
+    // /* 读取电机的偏移量，来判断offset是否需要减少360 */
+    // roboArm.init_offset(interact.joint);
+    //
+    // roboArm.load_target(interact.joint);
+    // roboArm.update_relative_pos();
 
-    /* 机械臂的差分器初始化 */
-    roboArm.diff.init(interact.joint);
-    /* 读取电机的偏移量，来判断offset是否需要减少360 */
-    roboArm.init_offset(interact.joint);
-
-    roboArm.load_target(interact.joint);
-    roboArm.update_relative_pos();
-
-    xEventGroupWaitBits(osEventGroup, DIFF_LEFT_RECEIVE_EVENT | DIFF_RIGHT_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
-    re_flag = 1;
+//    xEventGroupWaitBits(osEventGroup, DIFF_LEFT_RECEIVE_EVENT | DIFF_RIGHT_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+//    re_flag = 1;
     xEventGroupSetBits(osEventGroup, ROBO_ARM_INIT_END_EVENT);
 		buzzer.PushMusic<24>(Buzzer::melody);
     vTaskDelete(NULL);

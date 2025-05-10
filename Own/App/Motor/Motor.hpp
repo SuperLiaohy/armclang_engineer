@@ -3,10 +3,10 @@
 //
 
 #pragma once
+#include "LKSingleMotor.hpp"
 #include "M2006Diff.hpp"
 #include "M3508.hpp"
 #include "Motor.tpp"
-#include "lkMotor.hpp"
 template<motor_control motor>
 class Motor : public motor{
 public:

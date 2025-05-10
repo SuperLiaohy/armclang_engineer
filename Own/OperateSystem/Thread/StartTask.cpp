@@ -167,7 +167,7 @@ void StartTask() {
     buzzer.Start();
     ada = SuperDWT::get_tick() - ada;
 
-    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    // xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
     StartHeapCnt = uxTaskGetStackHighWaterMark(NULL);
     vTaskDelete(NULL);

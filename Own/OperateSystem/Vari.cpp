@@ -114,5 +114,4 @@ OSG one_step_gets(
 interact_dep::Actions anti_reset(1);
 interact_dep::Actions get_right_y(1);
 
-// OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;
-// OneStepGetAUTO one_step_get_auto = OneStepGetAUTO::NONE;
+LKPidMotor lk4005(&canPlus1 ,Pid(72, 0.01, 0.1, 8000, 20800, 0), Pid(0.1, 0.0, 0, 1000, 2048, 1.0), 1, 65536, 10);

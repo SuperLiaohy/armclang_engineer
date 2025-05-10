@@ -282,20 +282,21 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
   D:\Keil_Pack\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006Diff.hpp \
-  ..\Own\App\Motor\Control\PosPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\LKSingleMotor.hpp \
+  ..\Own\App\Motor\Control\lkControl.hpp ..\Own\Mod\MyMath\MyMath.hpp \
   ..\Own\App\Motor\Control\..\Motor.tpp ..\Own\Mod\Detect\Detect.hpp \
   ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\LinkedList.hpp ..\Own\Mod\CustomList\SeqList.hpp \
   ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
+  ..\Own\App\Motor\Param\LKSingleMotor.hpp \
+  ..\Own\App\Motor\Param\..\Motor.tpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\M2006Diff.hpp \
   ..\Own\App\Motor\Control\SpeedPidControl.hpp \
-  ..\Own\App\Motor\Param\M2006Diff.hpp \
-  ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\App\Motor\Param\M2006Diff.hpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
-  ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
-  ..\Core\Inc\fdcan.h ..\Own\App\Motor\Param\lkMotor.hpp \
   ..\Own\Mod\Slope\Slope.hpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\array \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__algorithm\equal.h \

@@ -77,7 +77,7 @@
 "armclang_engineer\ui.o"
 "armclang_engineer\imagetrans.o"
 "armclang_engineer\subboard.o"
-"armclang_engineer\lkmotor.o"
+"armclang_engineer\lksinglemotor.o"
 "armclang_engineer\onestepget.o"
 "armclang_engineer\supercan.o"
 "armclang_engineer\supercdc.o"

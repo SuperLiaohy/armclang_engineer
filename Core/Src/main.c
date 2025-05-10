@@ -119,7 +119,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_I2C1_Init();
   MX_UART7_Init();
-  MX_IWDG1_Init();
+  // MX_IWDG1_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
 	__HAL_DBGMCU_FREEZE_IWDG1();

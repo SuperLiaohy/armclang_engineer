@@ -1037,9 +1037,9 @@
               <FilePath>..\Own\App\SubBoard\SubBoard.cpp</FilePath>
             </File>
             <File>
-              <FileName>lkMotor.cpp</FileName>
+              <FileName>lkSingleMotor.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\Own\App\Motor\Param\lkMotor.cpp</FilePath>
+              <FilePath>..\Own\App\Motor\Param\lkSingleMotor.cpp</FilePath>
             </File>
             <File>
               <FileName>OneStepGet.cpp</FileName>

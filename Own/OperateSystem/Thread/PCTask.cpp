@@ -4,9 +4,9 @@
 #include "CDC/SuperCDC.hpp"
 #include "CppTask.hpp"
 #include "Interact/Interact.hpp"
+#include "Motor/LKSingleMotor.hpp"
 #include "Motor/M2006Diff.hpp"
 #include "Motor/Motor.hpp"
-#include "Motor/lkMotor.hpp"
 #include "RoboArm/RoboArm.hpp"
 #include "ThreadConfig.h"
 

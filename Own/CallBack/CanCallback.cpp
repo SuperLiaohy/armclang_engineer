@@ -16,7 +16,7 @@ extern "C" {
 #include "OneStepGet/OneStepGet.hpp"
 #include "WDG/SuperIWDG.hpp"
 extern float yaw;
-
+extern LKPidMotor lk4005;
 float a =0;
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
     UNUSED(RxFifo0ITs);
@@ -26,11 +26,12 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
     if (hfdcan == canPlus1.hcan) {
 			++a;
         canPlus1.receive();
-        roboArm.joint4.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint3.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint2.external.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint2.internal.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint1.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint4.get_feedback(canPlus1.rx_header.Identifier - LKSingleMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint3.get_feedback(canPlus1.rx_header.Identifier - LKSingleMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint2.external.get_feedback(canPlus1.rx_header.Identifier - LKSingleMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint2.internal.get_feedback(canPlus1.rx_header.Identifier - LKSingleMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint1.get_feedback(canPlus1.rx_header.Identifier - LKSingleMotor::foc.RX_ID, canPlus1.rx_data);
+        lk4005.get_feedback(canPlus1.rx_header.Identifier - LKSingleMotor::foc.RX_ID, canPlus1.rx_data);
 
 
         // if (canPlus1.rx_header.Identifier == LKMotor::foc.RX_ID + roboArm.joint4.feed_back.id) {

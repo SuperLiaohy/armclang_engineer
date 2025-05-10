@@ -4,9 +4,8 @@
 
 #pragma once
 #include "MyMath/MyMath.hpp"
-#include "CAN/SuperCan.hpp"
 #include "../Motor.tpp"
-
+#include "CAN/SuperCan.hpp"
 template<motor_param motor>
 class LKControl : protected motor {
 public:

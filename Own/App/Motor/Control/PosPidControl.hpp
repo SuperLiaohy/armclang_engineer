@@ -7,7 +7,7 @@
 #include "../Motor.tpp"
 
 template<motor_param motor>
-class PosPidControl : protected motor {
+class PosPidControl : public motor {
 public:
     template<typename... Args>
     PosPidControl(const Pid& pos_cfg,const Pid& speed_cfg, Args&&... args)
