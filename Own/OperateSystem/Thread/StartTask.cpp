@@ -64,6 +64,8 @@ void robo_arm_ctrl_r_callback(KeyEventType event);
 extern interact_dep::Actions anti_reset;
 extern interact_dep::Actions get_right_y;
 extern interact_dep::Actions get_silver_mine;
+extern interact_dep::Actions exchange_left;
+extern interact_dep::Actions exchange_right;
 
 
 
@@ -74,6 +76,8 @@ void chassis_shift_d_callback(KeyEventType event);
 void one_step_get_b_callback(KeyEventType event);
 void robo_arm_ctrl_g_callback(KeyEventType event);
 void robo_arm_ctrl_f_callback(KeyEventType event);
+void robo_arm_e_callback(KeyEventType event);
+void robo_arm_f_callback(KeyEventType event);
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -104,6 +108,20 @@ void StartTask() {
     get_silver_mine.joints[3] = 0;
     get_silver_mine.joints[4] = 20;
     get_silver_mine.joints[5] = 0;
+
+    exchange_left.joints[0] = -17.9960938;
+    exchange_left.joints[1] = 36.7366142;
+    exchange_left.joints[2] = 35.3361511;
+    exchange_left.joints[3] = -89.4694138;
+    exchange_left.joints[4] = -89.9465207;
+    exchange_left.joints[5] = 52.6248474;
+
+    exchange_right.joints[0] = 17.9960938;
+    exchange_right.joints[1] = 36.7366142;
+    exchange_right.joints[2] = 35.3361511;
+    exchange_right.joints[3] = 89.4694138;
+    exchange_right.joints[4] = -89.9465207;
+    exchange_right.joints[5] = -52.6248474;
 
     /* W25Q64初始化 */
     w25q64.init();
@@ -147,8 +165,13 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_Ctrl, robo_arm_ctrl_r_callback);
     //    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
 
+
     KeyBoardRegister(interact.keyList, Key_F, CombineKey_Shift, robo_arm_shift_f_callback);
     KeyBoardRegister(interact.keyList, Key_F, CombineKey_Ctrl, robo_arm_ctrl_f_callback);
+
+    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
+    KeyBoardRegister(interact.keyList, Key_F, CombineKey_None, robo_arm_f_callback);
+
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Ctrl, robo_arm_ctrl_e_callback);
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, chassis_shift_e_callback);
 

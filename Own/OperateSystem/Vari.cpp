@@ -115,6 +115,8 @@ interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
 interact_dep::Actions get_right_y(interact_dep::action_status::Joints);
 interact_dep::Actions get_silver_mine(interact_dep::action_status::Joints);
 interact_dep::Actions get_silver_mine_z(Slope(2, 1, 220), interact_dep::action_status::CartesianZ, {327.5,0,-88});
+interact_dep::Actions exchange_left(interact_dep::action_status::Joints);
+interact_dep::Actions exchange_right(interact_dep::action_status::Joints);
 
 // OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;
 // OneStepGetAUTO one_step_get_auto = OneStepGetAUTO::NONE;

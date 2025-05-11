@@ -352,6 +352,34 @@ void robo_arm_ctrl_f_callback(KeyEventType event) {
     }
 }
 
+extern interact_dep::Actions exchange_left;
+void robo_arm_e_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            interact.actions       = &exchange_left;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            break;
+            // case KeyEvent_OnClick: interact.image_trans.toggle_map_back(); break;
+        default: break;
+    }
+}
+extern interact_dep::Actions exchange_right;
+void robo_arm_f_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            interact.actions       = &exchange_right;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            break;
+            // case KeyEvent_OnClick: interact.image_trans.toggle_map_back(); break;
+        default: break;
+    }
+}
+
+
 void robo_arm_shift_r_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnDown:
