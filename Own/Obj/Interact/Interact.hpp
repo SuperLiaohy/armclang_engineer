@@ -20,9 +20,7 @@ public:
         , image_trans(uart_im)
         , pc(head, tail)
         , sub_board(uart_sub_board)
-        , joint_slope({Slope(0.15, 0.2), Slope(0.6, 0.2), Slope(0.3, 0.2)}) {
-
-        };
+        , joint_slope({Slope(0.15, 0.2), Slope(0.6, 0.2), Slope(0.3, 0.2)}) {};
 
     RemoteControl remote_control;
 

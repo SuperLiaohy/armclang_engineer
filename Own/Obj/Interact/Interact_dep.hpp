@@ -85,6 +85,10 @@ namespace interact_dep {
             : status(status), axis_value(target), pos(pos),init(false) {};
     };
 
+    struct action_group {
+
+    };
+
 } // namespace interact_dep
 
 extern Interact interact;

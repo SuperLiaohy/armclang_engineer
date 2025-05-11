@@ -28,7 +28,7 @@ void ErrorTask() {
     // if (re_flag == 0) {
     //     vTaskDelete(ARM_INIT_TASKHandle);
     // }
-    uint32_t time;
+    uint32_t time = 0;
     uint8_t red = 0;
     while (1) {
         roboArm.close();
@@ -36,6 +36,14 @@ void ErrorTask() {
         canPlus1.transmit(M2006Diff::foc.TX_LOW_ID, 0, 0, 0, 0);
         canPlus2.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         canPlus3.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
+        interact.sub_board.set_pump(0);
+        interact.sub_board.set_valve1(0);
+        interact.sub_board.set_valve2(0);
+        interact.sub_board.set_valve3(0);
+        interact.sub_board.set_valve4(0);
+        interact.sub_board.set_valve5(0);
+        interact.sub_board.set_valve6(0);
+        interact.sub_board.transmit();
         Led.SetColor(red * 255, 0, 0);
         ++time;
         if (time % 3 == 0) { red = 1 - red; }

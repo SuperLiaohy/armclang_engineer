@@ -393,14 +393,14 @@ public:
     types type;
     SuperUart uartPlus;
     Count rx_cnt;
-
-private:
-    uint8_t num;
-    void add_frame_header();
     void clear() {
         len  = 0;
         num  = 0;
         type = types::NONE;
     };
+private:
+    uint8_t num;
+    void add_frame_header();
+
 };
 extern UI ui;

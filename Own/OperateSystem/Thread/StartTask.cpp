@@ -142,6 +142,7 @@ void StartTask() {
     //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
     interact.keyList[7].longPressTime = 5000;
     // KeyBoardRegister(interact.keyList, Key_F, CombineKey_Shift, robo_arm_shift_f_callback);
+    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_Shift, robo_arm_shift_r_callback);
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_Ctrl, robo_arm_ctrl_r_callback);
     //    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);

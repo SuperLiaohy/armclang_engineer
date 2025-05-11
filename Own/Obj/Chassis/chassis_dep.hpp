@@ -44,6 +44,9 @@ namespace chassis_dep {
         NONE,
     };
 
+    constexpr float normal_speed_step = 4;
+    constexpr float shift_speed_step = 0.4;
+
     struct move {
         float vx;
         float vy;

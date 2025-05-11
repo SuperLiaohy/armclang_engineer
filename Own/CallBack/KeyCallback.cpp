@@ -11,7 +11,8 @@ void one_step_get_z_callback(KeyEventType event) {
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 one_step_gets.left.X.pos.target_set(2000);
-                one_step_gets.left.X.status = OneStepGetXStatus::FRONT; break;
+                one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
+                break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_gets.left.X.status = OneStepGetXStatus::NONE; break;
             default: break;
@@ -21,7 +22,7 @@ void one_step_get_z_callback(KeyEventType event) {
             case KeyEvent_OnClick:
                 one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
                 one_step_gets.left.X.status  = OneStepGetXStatus::FRONT;
-                OSG::auto_mode = OneStepGetAUTO::GOT_X;
+                OSG::auto_mode               = OneStepGetAUTO::GOT_X;
                 break;
             default: break;
         }
@@ -35,7 +36,8 @@ void one_step_get_shift_z_callback(KeyEventType event) {
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 one_step_gets.left.X.pos.target_set(-2000);
-                one_step_gets.left.X.status = OneStepGetXStatus::BACK; break;
+                one_step_gets.left.X.status = OneStepGetXStatus::BACK;
+                break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_gets.left.X.status = OneStepGetXStatus::NONE; break;
             default: break;
@@ -68,7 +70,7 @@ void one_step_get_shift_x_callback(KeyEventType event) {
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 one_step_gets.left.Y.pos.target_set(-1300);
-                one_step_gets.left.Y.status          = OneStepGetYStatus::DOWN;
+                one_step_gets.left.Y.status = OneStepGetYStatus::DOWN;
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_gets.left.Y.status = OneStepGetYStatus::NONE; break;
@@ -85,7 +87,7 @@ void one_step_get_c_callback(KeyEventType event) {
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 one_step_gets.right.Y.pos.target_set(-1450);
-                one_step_gets.right.Y.status          = OneStepGetYStatus::UP;
+                one_step_gets.right.Y.status = OneStepGetYStatus::UP;
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
@@ -102,11 +104,10 @@ void one_step_get_shift_c_callback(KeyEventType event) {
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 one_step_gets.right.Y.pos.target_set(1450);
-                one_step_gets.right.Y.status          = OneStepGetYStatus::DOWN;
+                one_step_gets.right.Y.status = OneStepGetYStatus::DOWN;
                 break;
             case KeyEvent_None:
-            case KeyEvent_OnUp:
-                one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
+            case KeyEvent_OnUp: one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
@@ -120,7 +121,7 @@ void one_step_get_v_callback(KeyEventType event) {
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 one_step_gets.right.X.pos.target_set(-2300);
-                one_step_gets.right.X.status          = OneStepGetXStatus::FRONT;
+                one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_gets.right.X.status = OneStepGetXStatus::NONE; break;
@@ -137,7 +138,7 @@ void one_step_get_shift_v_callback(KeyEventType event) {
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 one_step_gets.right.X.pos.target_set(-2300);
-                one_step_gets.right.X.status          = OneStepGetXStatus::FRONT;
+                one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_gets.right.X.status = OneStepGetXStatus::NONE; break;
@@ -287,17 +288,16 @@ void air_right_callback(KeyEventType event) {
 void robo_arm_ctrl_g_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            interact.robo_arm.last_mode = interact_dep::robo_mode::NONE;
-            interact.robo_arm.mode = interact_dep::robo_mode::NONE;
-            interact.joint[5] = 0;
-            interact.joint[4] = 0;
-            roboArm.diff.left.total_position() = 0;
+            interact.robo_arm.last_mode         = interact_dep::robo_mode::NONE;
+            interact.robo_arm.mode              = interact_dep::robo_mode::NONE;
+            interact.joint[5]                   = 0;
+            interact.joint[4]                   = 0;
+            roboArm.diff.left.total_position()  = 0;
             roboArm.diff.right.total_position() = 0;
             break;
         default: break;
     }
 }
-
 
 void robo_arm_shift_q_callback(KeyEventType event) {
     switch (event) {
@@ -375,6 +375,16 @@ void robo_arm_ctrl_r_callback(KeyEventType event) {
     }
 }
 
+extern std::atomic<bool> ui_reset;
+void robo_arm_r_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing: ui_reset.store(true); break;
+        default: ui_reset.store(false); break;
+    }
+}
+
 void robo_arm_ctrl_e_callback(KeyEventType event) {
     static uint8_t open = 0;
     switch (event) {
@@ -449,9 +459,15 @@ void chassis_shift_w_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing: chassis.key.w = 0.2; break;
+        case KeyEvent_OnPressing:
+            chassis.key.w = 0.1;
+            chassis.move.ySlope.step_set(chassis_dep::shift_speed_step);
+            break;
         case KeyEvent_None:
-        case KeyEvent_OnUp: chassis.key.w = 0; break;
+        case KeyEvent_OnUp:
+            chassis.key.w = 0;
+            chassis.move.ySlope.step_set(chassis_dep::normal_speed_step);
+            break;
         default: break;
     }
 }
@@ -460,9 +476,18 @@ void chassis_shift_a_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing: chassis.key.a = -0.2; break;
+        case KeyEvent_OnPressing:
+            chassis.key.a = -0.1;
+            chassis.move.xSlope.step_set(chassis_dep::shift_speed_step);
+
+            break;
         case KeyEvent_None:
-        case KeyEvent_OnUp: chassis.key.a = 0; break;
+        case KeyEvent_OnUp:
+            chassis.key.a = 0;
+            chassis.move.xSlope.step_set(chassis_dep::normal_speed_step);
+
+            break;
+
         default: break;
     }
 }
@@ -471,9 +496,15 @@ void chassis_shift_s_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing: chassis.key.s = -0.2; break;
+        case KeyEvent_OnPressing:
+            chassis.key.s = -0.1;
+            chassis.move.ySlope.step_set(chassis_dep::shift_speed_step);
+            break;
         case KeyEvent_None:
-        case KeyEvent_OnUp: chassis.key.s = 0; break;
+        case KeyEvent_OnUp:
+            chassis.key.s = 0;
+            chassis.move.ySlope.step_set(chassis_dep::normal_speed_step);
+            break;
         default: break;
     }
 }
@@ -482,9 +513,15 @@ void chassis_shift_d_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing: chassis.key.d = 0.2; break;
+        case KeyEvent_OnPressing:
+            chassis.key.d = 0.1;
+            chassis.move.xSlope.step_set(chassis_dep::shift_speed_step);
+            break;
         case KeyEvent_None:
-        case KeyEvent_OnUp: chassis.key.d = 0; break;
+        case KeyEvent_OnUp:
+            chassis.key.d = 0;
+            chassis.move.xSlope.step_set(chassis_dep::normal_speed_step);
+            break;
         default: break;
     }
 }

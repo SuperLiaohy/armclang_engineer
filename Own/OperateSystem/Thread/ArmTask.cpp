@@ -30,13 +30,13 @@ void ArmTask() {
             xSemaphoreGive(CAN1MutexHandle);
 
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint4.set_position_near(roboArm.target.joint4.angle, 360);
+            roboArm.joint4.set_position_near(roboArm.target.joint4.angle, 720);
             xSemaphoreGive(CAN1MutexHandle);
         }
         if ((cnt + 1) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint2.internal.set_position(roboArm.target.joint2.internal.angle, 270);
-            roboArm.joint2.external.set_position(roboArm.target.joint2.external.angle, 270);
+            roboArm.joint2.internal.set_position(roboArm.target.joint2.internal.angle, 180);
+            roboArm.joint2.external.set_position(roboArm.target.joint2.external.angle, 180);
             xSemaphoreGive(CAN1MutexHandle);
         }
         if ((cnt + 2) % 5 == 0) {

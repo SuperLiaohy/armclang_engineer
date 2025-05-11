@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134358518</Address>
+          <Address>134359014</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -191,7 +191,7 @@
           <Type>0</Type>
           <LineNumber>68</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134362182</Address>
+          <Address>134362678</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -207,7 +207,7 @@
           <Type>0</Type>
           <LineNumber>43</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134362086</Address>
+          <Address>134362582</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -457,7 +457,7 @@
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>interact,0x10</ItemText>
+          <ItemText>interact,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
@@ -634,7 +634,7 @@
 
   <Group>
     <GroupName>Application/User/Core</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

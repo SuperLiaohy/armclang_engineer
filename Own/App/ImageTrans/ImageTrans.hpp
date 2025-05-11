@@ -84,8 +84,11 @@ public:
 
     image_trans_dep::user_custom_rx_data user_custom_rx_data{};
     image_trans_dep::custom_tx_frame* p_custom_tx_frame{};
+    image_trans_dep::user_custom_tx_status last_s;
     uint16_t rx_cmd_id{};//命令ID
     SuperUart uartPlus;
+
+    Count cnt;
 private:
     image_trans_dep::user_custom_tx_data user_custom_tx_data{};
 };

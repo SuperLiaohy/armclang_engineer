@@ -94,14 +94,20 @@ void Interact::receive_reset() {
     joint[4] = 0;
     joint[5] = 0;
 }
-
+void air_left_callback(KeyEventType event);
+void air_right_callback(KeyEventType event);
 void Interact::receive_custom(uint8_t* data) {
     using namespace interact_dep;
     if (robo_arm.mode == robo_mode::CUSTOM) {
+        auto last_s = image_trans_dep::user_custom_rx_status(image_trans.user_custom_rx_data.s);
         memcpy(reinterpret_cast<uint8_t*>(&image_trans.user_custom_rx_data), data,
                sizeof(image_trans_dep::user_custom_rx_data));
-        sub_board.set_pump(image_trans.user_custom_rx_data.s.pump);
-        sub_board.set_valve3(image_trans.user_custom_rx_data.s.valve);
+        if (image_trans.user_custom_rx_data.s.pump != last_s.pump) {
+            air_right_callback(KeyEvent_OnClick);
+        }
+        if (image_trans.user_custom_rx_data.s.valve != last_s.valve) {
+            air_left_callback(KeyEvent_OnClick);
+        }
         if (!image_trans.read_map_back()) {
             joint[0] = -image_trans.user_custom_rx_data.joint[0] * scale(4096, 360);
             joint[1] = image_trans.user_custom_rx_data.joint[1] * scale(4096, 360);
@@ -237,7 +243,6 @@ void Interact::receive_actions(RoboArm& Arm) {
                         limited<float>(180 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
                 }
             } break;
-                ;
             default: break;
         }
     }
