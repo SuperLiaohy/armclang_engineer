@@ -143,8 +143,8 @@ namespace roboarm_dep {
     };
 
     constexpr float err           = deg2rad(5);
-    constexpr float A             = 340.0;
-    constexpr float B             = 330.0;
+    constexpr float A             = 355.0;
+    constexpr float B             = 320.0;
     constexpr uint32_t MaxTimeOut = 3000;
 
     template<typename T = int16_t> consteval T joint_scale(float angle, float scr, float head) {

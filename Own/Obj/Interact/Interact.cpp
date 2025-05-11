@@ -70,7 +70,7 @@ void Interact::receive_xyz(RoboArm& Arm) {
             joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
             joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
             joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-            joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
+            joint[4] = limited<float>(180 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
         }
     }
 }
@@ -88,8 +88,8 @@ void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
 
 void Interact::receive_reset() {
     joint[0] = 0;
-    joint[1] = -44;
-    joint[2] = 135;
+    joint[1] = -55;
+    joint[2] = 145;
     joint[3] = 0;
     joint[4] = 0;
     joint[5] = 0;
@@ -140,13 +140,7 @@ void Interact::update_roboArm(RoboArm& Arm) {
             break;
         case interact_dep::robo_mode::RESET: receive_reset(); break;
         case interact_dep::robo_mode::ACTIONS: {
-            bool is_next = isApproxEqual<float>(Arm.relative_pos[0], actions->joint1.data[actions->now], 2);
-            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[1], actions->joint2.data[actions->now], 2));
-            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[2], actions->joint3.data[actions->now], 2));
-            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[3], actions->joint4.data[actions->now], 2));
-            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[4], actions->joint5.data[actions->now], 2));
-            is_next = (is_next && isApproxEqual<float>(Arm.relative_pos[5], actions->joint6.data[actions->now], 2));
-            interact.receive_actions(is_next);
+            interact.receive_actions(Arm);
             break;
         }
         default: break;
@@ -198,17 +192,53 @@ void Interact::update_chassis(Chassis& cha) {
         default: break;
     }
 }
-void Interact::receive_actions(bool is_next) {
+void Interact::receive_actions(RoboArm& Arm) {
     using namespace interact_dep;
+    using namespace roboarm_dep;
     if (robo_arm.mode == robo_mode::ACTIONS) {
-        if (actions->now < actions->num) {
-            joint[0] = actions->joint1.data[actions->now];
-            joint[1] = actions->joint2.data[actions->now];
-            joint[2] = actions->joint3.data[actions->now];
-            joint[3] = actions->joint4.data[actions->now];
-            joint[4] = actions->joint5.data[actions->now];
-            joint[5] = actions->joint6.data[actions->now];
-            if (is_next) actions->now += 1;
+        switch (actions->status) {
+            case interact_dep::action_status::Joints:
+                joint[0] = actions->joints[0];
+                joint[1] = actions->joints[1];
+                joint[2] = actions->joints[2];
+                joint[3] = actions->joints[3];
+                joint[4] = actions->joints[4];
+                joint[5] = actions->joints[5];
+                break;
+            case interact_dep::action_status::CartesianX: {
+                if (actions->init == false) {
+                    Arm.fkine(actions->pos);
+                    actions->init = true;
+                }
+                actions->pos[0] = actions->axis_value.update();
+                if (!Arm.ikine(actions->pos)) {
+                    // Arm.fkine(pos);
+                } else {
+                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
+                    joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
+                }
+            } break;
+            case interact_dep::action_status::CartesianZ: {
+                if (actions->init == false) {
+                    Arm.fkine(actions->pos);
+                    actions->axis_value.value_set(actions->pos[2]);
+                    actions->init = true;
+                }
+                actions->pos[2] = actions->axis_value.update();
+                if (!Arm.ikine(actions->pos)) {
+                    // Arm.fkine(pos);
+                } else {
+                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
+                    joint[4] =
+                        limited<float>(180 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
+                }
+            } break;
+                ;
+            default: break;
         }
     }
 }

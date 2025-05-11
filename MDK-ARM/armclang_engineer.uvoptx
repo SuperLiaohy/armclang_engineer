@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134358158</Address>
+          <Address>134358518</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -191,7 +191,7 @@
           <Type>0</Type>
           <LineNumber>68</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134361822</Address>
+          <Address>134362182</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -207,7 +207,7 @@
           <Type>0</Type>
           <LineNumber>43</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134361726</Address>
+          <Address>134362086</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -498,6 +498,11 @@
           <count>10</count>
           <WinNumber>1</WinNumber>
           <ItemText>canPlus3</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>get_silver_mine</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>

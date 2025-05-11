@@ -19,6 +19,9 @@ void ArmInitTask() {
     roboArm.init_offset(interact.joint);
 
     roboArm.load_target(interact.joint, interact.joint_slope);
+    interact.joint_slope[0].target_arrive();
+    interact.joint_slope[1].target_arrive();
+    interact.joint_slope[2].target_arrive();
     roboArm.update_relative_pos();
 
     xEventGroupWaitBits(osEventGroup, DIFF_LEFT_RECEIVE_EVENT | DIFF_RIGHT_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);

@@ -76,8 +76,8 @@ Chassis chassis(&canPlus2, chassis_dep::move_default, chassis_dep::base_motor_de
 
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
 RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 1, 1,
-                Pid(600, 0.01, 100, 0, 8000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), 2,
-                Pid(600, 0.01, 100, 0, 8000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), &hi2c1,
+                Pid(1100, 0.01, 100, 0, 8000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), 2,
+                Pid(1100, 0.01, 100, 0, 8000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329, 112.700996, 0,
                  0});
 
@@ -111,8 +111,10 @@ OSG one_step_gets(
     Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, slope_cfg{.dead_zone = 0,.step = 0.6},
     Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, slope_cfg{.dead_zone = 0,.step = 0.6});
 
-interact_dep::Actions anti_reset(1);
-interact_dep::Actions get_right_y(1);
+interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
+interact_dep::Actions get_right_y(interact_dep::action_status::Joints);
+interact_dep::Actions get_silver_mine(interact_dep::action_status::Joints);
+interact_dep::Actions get_silver_mine_z(Slope(1, 0.2, 220), interact_dep::action_status::CartesianZ, {327.5,0,-88});
 
 // OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;
 // OneStepGetAUTO one_step_get_auto = OneStepGetAUTO::NONE;

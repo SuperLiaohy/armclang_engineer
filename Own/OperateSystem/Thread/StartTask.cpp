@@ -63,6 +63,9 @@ void robo_arm_ctrl_r_callback(KeyEventType event);
 
 extern interact_dep::Actions anti_reset;
 extern interact_dep::Actions get_right_y;
+extern interact_dep::Actions get_silver_mine;
+
+
 
 void chassis_shift_w_callback(KeyEventType event);
 void chassis_shift_a_callback(KeyEventType event);
@@ -70,6 +73,7 @@ void chassis_shift_s_callback(KeyEventType event);
 void chassis_shift_d_callback(KeyEventType event);
 void one_step_get_b_callback(KeyEventType event);
 void robo_arm_ctrl_g_callback(KeyEventType event);
+void robo_arm_ctrl_f_callback(KeyEventType event);
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -80,20 +84,26 @@ void StartTask() {
     power_24v_left.WriteDown();
     power_5v.WriteUp();
 
-    anti_reset.joint1.data[0] = -3.35253143;
-    anti_reset.joint2.data[0] = -45.0083809;
-    anti_reset.joint3.data[0] = -62.4916077;
-    anti_reset.joint4.data[0] = 0.0380706787;
-    anti_reset.joint5.data[0] = 0.667541504;
-    anti_reset.joint6.data[0] = 0.699188232;
+    anti_reset.joints[0] = -3.35253143;
+    anti_reset.joints[1] = -45.0083809;
+    anti_reset.joints[2] = -62.4916077;
+    anti_reset.joints[3] = 0.0380706787;
+    anti_reset.joints[4] = 0.667541504;
+    anti_reset.joints[5] = 0.699188232;
 
-    get_right_y.joint1.data[0] = -8.48937225;
-    get_right_y.joint2.data[0] = -17.2843819;
-    get_right_y.joint3.data[0] = -102.246674;
-    get_right_y.joint4.data[0] = 83.5459137;
-    get_right_y.joint5.data[0] = 89.6870422;
-    get_right_y.joint6.data[0] = 42.9085999;
+    get_right_y.joints[0] = -8.48937225;
+    get_right_y.joints[1] = -17.2843819;
+    get_right_y.joints[2] = -102.246674;
+    get_right_y.joints[3] = 83.5459137;
+    get_right_y.joints[4] = 89.6870422;
+    get_right_y.joints[5] = 42.9085999;
 
+    get_silver_mine.joints[0] = 0;
+    get_silver_mine.joints[1] = 40;
+    get_silver_mine.joints[2] = 120;
+    get_silver_mine.joints[3] = 0;
+    get_silver_mine.joints[4] = 20;
+    get_silver_mine.joints[5] = 0;
 
     /* W25Q64初始化 */
     w25q64.init();
@@ -137,6 +147,7 @@ void StartTask() {
     //    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
 
     KeyBoardRegister(interact.keyList, Key_F, CombineKey_Shift, robo_arm_shift_f_callback);
+    KeyBoardRegister(interact.keyList, Key_F, CombineKey_Ctrl, robo_arm_ctrl_f_callback);
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Ctrl, robo_arm_ctrl_e_callback);
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, chassis_shift_e_callback);
 

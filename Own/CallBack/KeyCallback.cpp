@@ -324,14 +324,27 @@ void robo_arm_ctrl_q_callback(KeyEventType event) {
     }
 }
 extern interact_dep::Actions get_right_y;
-
+extern interact_dep::Actions get_silver_mine;
+extern interact_dep::Actions get_silver_mine_z;
 void robo_arm_shift_f_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
-            get_right_y.now        = 0;
-            interact.actions       = &get_right_y;
+            interact.actions       = &get_silver_mine;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            break;
+        // case KeyEvent_OnClick: interact.image_trans.toggle_map_back(); break;
+        default: break;
+    }
+}
+void robo_arm_ctrl_f_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnDown:
+        case KeyEvent_OnLongPress:
+        case KeyEvent_OnPressing:
+            get_silver_mine_z.init = false;
+            interact.actions       = &get_silver_mine_z;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;
         // case KeyEvent_OnClick: interact.image_trans.toggle_map_back(); break;
@@ -355,7 +368,6 @@ void robo_arm_ctrl_r_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
-            anti_reset.now         = 0;
             interact.actions       = &anti_reset;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;

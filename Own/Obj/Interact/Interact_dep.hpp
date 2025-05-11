@@ -50,41 +50,41 @@ namespace interact_dep {
         NORMAL,
         CLIMB,
     };
-    enum class chassis_polarity : uint8_t {
-        NONE,
-        ANTI
-    };
-
-
+    enum class chassis_polarity : uint8_t { NONE, ANTI };
 
     struct Action {
         float* data {};
-        explicit Action(uint8_t num) {
-            data = reinterpret_cast<float *>(pvPortMalloc(num * sizeof(float )));
-        };
+        explicit Action(uint8_t num) { data = reinterpret_cast<float*>(pvPortMalloc(num * sizeof(float))); };
+    };
+
+    enum class action_status : uint8_t {
+        Joints,
+        CartesianX,
+        CartesianZ,
     };
 
     struct Actions {
-        uint8_t num;
-        Action joint1;
-        Action joint2;
-        Action joint3;
-        Action joint4;
-        Action joint5;
-        Action joint6;
-        uint8_t now;
-        explicit Actions(uint8_t num = 0)
-            : num(num)
-            , joint1(num)
-            , joint2(num)
-            , joint3(num)
-            , joint4(num)
-            , joint5(num)
-            , joint6(num)
-            , now(0) {};
+        action_status status;
+        union {
+            struct {
+                std::array<float, 6> joints;
+            };
+            struct {
+                bool init;
+                std::array<float, 3> pos;
+                Slope axis_value;
+            };
+        };
+        explicit Actions(action_status status = action_status::Joints)
+            : status(status) {};
+        explicit Actions(const std::array<float, 6>& joints)
+            : status(action_status::Joints)
+            , joints(joints) {};
+
+        explicit Actions(const Slope& target, action_status status, const std::array<float, 3>& pos = {})
+            : status(status), axis_value(target), pos(pos),init(false) {};
     };
 
 } // namespace interact_dep
 
 extern Interact interact;
-

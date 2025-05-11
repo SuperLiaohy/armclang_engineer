@@ -15,6 +15,11 @@ public:
         , step(step)
         , value(0)
         , dead_zone(dead_zone) {}
+    Slope(float step, float dead_zone, float target, float value = 0)
+        : target(target)
+        , step(step)
+        , value(value)
+        , dead_zone(dead_zone) {}
 
     explicit Slope(const slope_cfg& cfg)
         : target(0)
@@ -27,6 +32,7 @@ public:
     [[gnu::always_inline]] inline void target_arrive() { value = target; };
 
     [[gnu::always_inline]] inline void step_set(float input);
+    [[gnu::always_inline]] inline void value_set(float input) { value = input; };
 
     [[gnu::always_inline]] [[nodiscard]] inline float& get();
 
