@@ -62,7 +62,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     } else if (huart == interact.image_trans.uartPlus.uart) {
         using namespace crc;
         ++interact.image_trans.uartPlus.rx_cnt;
-        // for (int i = 0; i < Size - 9; ++i) {
+        for (int i = 0; i < Size - 9; ++i) {
             uint8_t* data = &interact.image_trans.uartPlus.rx_buffer[0];
             if (data[0] == 0xA5) {
                 uint16_t len                   = (data[2] << 8 | data[1]);
@@ -84,9 +84,9 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                         default:
                             break;
                     }
-                    // i+=len+8;
+                    i+=len+8;
                 }
-            // }
+            }
         }
         interact.image_trans.start_receive();
     } else if (huart == interact.sub_board.uartPlus.uart) {

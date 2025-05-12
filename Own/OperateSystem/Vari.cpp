@@ -110,16 +110,27 @@ OSG one_step_gets(
     Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(0.6, 0),
     Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, Slope(0.6, 0));
 
-interact_dep::Actions reset(interact_dep::action_status::Joints);
 interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
 interact_dep::Actions get_right_y(interact_dep::action_status::Joints);
+
 interact_dep::Actions get_silver_mine(interact_dep::action_status::Joints);
 interact_dep::Actions get_silver_mine_z(Slope(0.2, 0.2, 220), interact_dep::action_status::CartesianZ, {327.5,0,-88});
+interact_dep::Actions put_silver_mine_right(interact_dep::action_status::Joints);
+interact_dep::Actions put_silver_mine_left(interact_dep::action_status::Joints);
+
 interact_dep::Actions exchange_left(interact_dep::action_status::Joints);
 interact_dep::Actions exchange_right(interact_dep::action_status::Joints);
 
-std::array<interact_dep::Actions, 2>get_silver_action = {get_silver_mine, get_silver_mine_z} ;
-std::array<uint32_t, 2>get_silver_time = {2000, 10000};
+interact_dep::Actions reset1(interact_dep::action_status::Joints);
+// interact_dep::Actions reset2(interact_dep::action_status::Joints);
+
+// std::array<interact_dep::Actions, 2>reset = {get_silver_mine, get_silver_mine_z} ;
+// std::array<uint32_t, 2>reset_time = {500, 2000};
+// interact_dep::ActionsGroup reset_group={.actions_list = reset.data(), .time_list = reset_time.data(), .len = 2, .index = 0, .time_cnt = 0};
+
+
+std::array<interact_dep::Actions, 3>get_silver_action = {get_silver_mine, get_silver_mine_z, put_silver_mine_left} ;
+std::array<uint32_t, 3>get_silver_time = {1500, 1000, 500};
 
 interact_dep::ActionsGroup get_silver_group={.actions_list = get_silver_action.data(), .time_list = get_silver_time.data(), .len = 2, .index = 0, .time_cnt = 0};
 // OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;

@@ -91,6 +91,7 @@ namespace interact_dep {
             ++time_cnt;
             if (time_cnt > time_list[index]) {
                 if (index < len - 1) {
+                    time_cnt = 0;
                     ++index;
                     actions_list[index].init = false;
                 }

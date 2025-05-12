@@ -176,4 +176,5 @@ namespace roboarm_dep {
     } limitation = {{-45, 45}, {-55, 55}, {-145, 145}, {-180, 179.9}, {-90, 90}, {-90, 90}};
 
     constexpr std::array<float, 4> default_speed = {180, 180, 180, 720};
+    constexpr std::array<float, 4> none_speed = {180, 180, 180, 720};
 } // namespace roboarm_dep

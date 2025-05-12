@@ -61,11 +61,14 @@ void one_step_get_ctrl_v_callback(KeyEventType event);
 void robo_arm_ctrl_e_callback(KeyEventType event);
 void robo_arm_ctrl_r_callback(KeyEventType event);
 
-extern interact_dep::Actions reset;
+extern interact_dep::Actions reset1;
+extern interact_dep::Actions reset2;
 extern interact_dep::Actions anti_reset;
 extern interact_dep::Actions get_right_y;
 extern interact_dep::Actions get_silver_mine;
 extern interact_dep::Actions get_silver_mine_z;
+extern interact_dep::Actions put_silver_mine_right;
+extern interact_dep::Actions put_silver_mine_left;
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
 
@@ -92,17 +95,29 @@ void StartTask() {
     power_24v_left.WriteDown();
     power_5v.WriteUp();
 
-    reset.joints[0] = 0;
-    reset.joints[1] = -55;
-    reset.joints[2] = 145;
-    reset.joints[3] = 0;
-    reset.joints[4] = 0;
-    reset.joints[5] = 0;
+    reset1.joints[0] = 0;
+    reset1.joints[1] = -55;
+    reset1.joints[2] = 145;
+    reset1.joints[3] = 0;
+    reset1.joints[4] = 0;
+    reset1.joints[5] = 0;
 
-    reset.speed[0] = 720;
-    reset.speed[1] = 720;
-    reset.speed[2] = 360;
-    reset.speed[3] = 720;
+    reset1.speed[0] = 720;
+    reset1.speed[1] = 720;
+    reset1.speed[2] = 720;
+    reset1.speed[3] = 720;
+
+    // reset2.joints[0] = 0;
+    // reset2.joints[1] = -55;
+    // reset2.joints[2] = 125;
+    // reset2.joints[3] = 0;
+    // reset2.joints[4] = 0;
+    // reset2.joints[5] = 0;
+    //
+    // reset2.speed[0] = 720;
+    // reset2.speed[1] = 720;
+    // reset2.speed[2] = 360;
+    // reset2.speed[3] = 720;
 
     anti_reset.joints[0] = -3.35253143;
     anti_reset.joints[1] = -45.0083809;
@@ -125,6 +140,20 @@ void StartTask() {
     get_silver_mine.joints[4] = 20;
     get_silver_mine.joints[5] = 0;
 
+    put_silver_mine_right.joints[0] = 16.20;
+    put_silver_mine_right.joints[1] = 14.4343681;
+    put_silver_mine_right.joints[2] = 122.649994;
+    put_silver_mine_right.joints[3] = 101.64;
+    put_silver_mine_right.joints[4] = 90.78;
+    put_silver_mine_right.joints[5] = 38.22;
+
+    put_silver_mine_left.joints[0] = -32.2453613;
+    put_silver_mine_left.joints[1] = 5.38013029;
+    put_silver_mine_left.joints[2] = 117.166023;
+    put_silver_mine_left.joints[3] = -42.4886055;
+    put_silver_mine_left.joints[4] = 70.3109283;
+    put_silver_mine_left.joints[5] = 0;
+
     exchange_left.joints[0] = -17.9960938;
     exchange_left.joints[1] = 36.7366142;
     exchange_left.joints[2] = 35.3361511;
@@ -141,6 +170,7 @@ void StartTask() {
 
     get_silver_group.actions_list[0] = get_silver_mine;
     get_silver_group.actions_list[1] = get_silver_mine_z;
+    get_silver_group.actions_list[2] = put_silver_mine_left;
 
 
     /* W25Q64初始化 */

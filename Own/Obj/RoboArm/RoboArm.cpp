@@ -107,7 +107,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint3.offset_flag) {
-            joint[2] = 145;
+            joint[2] = 135;
             if (joint3.feedback.total_position < 0) { offset.joint3 -= 360; }
             break;
         }
@@ -375,7 +375,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
 
     // diff.slope_left.target_set(data + joint[4]);
     // diff.slope_right.target_set(-data + joint[4]);
-    target.joint5.angle = data + joint[4];
-    target.joint6.angle = -data + joint[4];
+    target.joint5.angle = -(data + joint[4]);
+    target.joint6.angle = -(-data + joint[4]);
 }
 
