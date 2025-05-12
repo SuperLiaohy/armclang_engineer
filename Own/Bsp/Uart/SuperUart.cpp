@@ -157,8 +157,8 @@ uint8_t* SuperUart::receive_it(uint8_t *pData, uint16_t size) {
  */
 uint8_t* SuperUart::receive_dma_idle(uint16_t size) {
     auto pData = rx_buffer;
-    // HAL_UARTEx_ReceiveToIdle_DMA(uart, pData, size);
-        HAL_UARTEx_ReceiveToIdle_IT(uart, pData, size);
+    HAL_UARTEx_ReceiveToIdle_DMA(uart, pData, size);
+        // HAL_UARTEx_ReceiveToIdle_IT(uart, pData, size);
     __HAL_DMA_DISABLE_IT(uart->hdmarx, DMA_IT_HT);
     return pData;
 }
