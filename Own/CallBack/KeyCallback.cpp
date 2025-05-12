@@ -392,12 +392,16 @@ void robo_arm_f_callback(KeyEventType event) {
         default: break;
     }
 }
+extern interact_dep::Actions reset;
 
 void robo_arm_shift_r_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing: interact.robo_arm.mode = interact_dep::robo_mode::RESET; break;
+        case KeyEvent_OnPressing:
+            get_silver_mine_z.init = false;
+            interact.actions       = &reset;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
         default: break;
     }
 }

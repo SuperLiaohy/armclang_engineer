@@ -61,6 +61,7 @@ void one_step_get_ctrl_v_callback(KeyEventType event);
 void robo_arm_ctrl_e_callback(KeyEventType event);
 void robo_arm_ctrl_r_callback(KeyEventType event);
 
+extern interact_dep::Actions reset;
 extern interact_dep::Actions anti_reset;
 extern interact_dep::Actions get_right_y;
 extern interact_dep::Actions get_silver_mine;
@@ -90,6 +91,18 @@ void StartTask() {
     power_24v_right.WriteDown();
     power_24v_left.WriteDown();
     power_5v.WriteUp();
+
+    reset.joints[0] = 0;
+    reset.joints[1] = -55;
+    reset.joints[2] = 145;
+    reset.joints[3] = 0;
+    reset.joints[4] = 0;
+    reset.joints[5] = 0;
+
+    reset.speed[0] = 720;
+    reset.speed[1] = 720;
+    reset.speed[2] = 360;
+    reset.speed[3] = 720;
 
     anti_reset.joints[0] = -3.35253143;
     anti_reset.joints[1] = -45.0083809;

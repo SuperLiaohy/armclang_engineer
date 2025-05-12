@@ -18,6 +18,7 @@ extern osThreadId ERROR_TASKHandle;
 #ifdef __cplusplus
 }
 #endif
+extern interact_dep::Actions reset;
 
 MicroTime kineTime;
 extern uint8_t re_flag;
@@ -42,7 +43,8 @@ void RemoteCtrlTask() {
                         interact.chassis.mode  = interact_dep::chassis_mode::CLIMB;
                     } else if (rc.left == static_cast<uint8_t>(lever::upper)
                                && rc.right == static_cast<uint8_t>(lever::middle)) {
-                        interact.robo_arm.mode = interact_dep::robo_mode::RESET;
+                        interact.actions = &reset;
+                        interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
                         interact.chassis.mode  = interact_dep::chassis_mode::CLIMB;
                     } else if (rc.left == static_cast<uint8_t>(lever::middle)
                                && rc.right == static_cast<uint8_t>(lever::upper)) {

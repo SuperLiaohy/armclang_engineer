@@ -38,7 +38,6 @@ namespace interact_dep {
         NORMAL1,
         NORMAL2,
         XYZ,
-        RESET,
         CUSTOM,
         VISION,
         ACTIONS,
@@ -64,6 +63,7 @@ namespace interact_dep {
         CartesianZ,
     };
 
+    constexpr std::array<float, 4> default_action_speed = {720, 720, 480, 720};
     struct Actions {
         action_status status;
         bool init;
@@ -77,16 +77,19 @@ namespace interact_dep {
                 Slope axis_value;
             };
         };
-        explicit Actions(action_status status = action_status::Joints)
-            : status(status) {};
-        explicit Actions(const std::array<float, 6>& joints)
+        explicit Actions(action_status status = action_status::Joints, std::array<float, 4> speed=default_action_speed)
+            : status(status)
+            , speed(speed) {};
+        explicit Actions(const std::array<float, 6>& joints, std::array<float, 4> speed=default_action_speed)
             : status(action_status::Joints)
+            , speed(speed)
             , joints(joints) {};
 
-        explicit Actions(const Slope& target, action_status status, const std::array<float, 3>& pos = {})
+        explicit Actions(const Slope& target, action_status status, std::array<float, 4> speed=default_action_speed)
             : status(status)
             , init(false)
-            , pos(pos)
+            , speed(speed)
+            , pos()
             , axis_value(target) {};
     };
 
@@ -101,14 +104,14 @@ namespace interact_dep {
 
         void reset() {
             actions_list->init = false;
-            time_cnt = 0;
-            index    = 0;
+            time_cnt           = 0;
+            index              = 0;
         }
 
         void update() {
             ++time_cnt;
             if (time_cnt > time_list[index]) {
-                if (index < len-1) {
+                if (index < len - 1) {
                     ++index;
                     actions_list[index].init = false;
                 }

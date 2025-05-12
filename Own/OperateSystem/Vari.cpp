@@ -106,6 +106,7 @@ OSG one_step_gets(
     Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, slope_cfg{.dead_zone = 0,.step = 0.6},
     Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, slope_cfg{.dead_zone = 0,.step = 0.6});
 
+interact_dep::Actions reset(interact_dep::action_status::Joints);
 interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
 interact_dep::Actions get_right_y(interact_dep::action_status::Joints);
 interact_dep::Actions get_silver_mine(interact_dep::action_status::Joints);

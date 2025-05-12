@@ -61,13 +61,11 @@ public:
 
     void receive_xyz(RoboArm& Arm);
 
-    void receive_reset();
-
     void receive_custom(uint8_t* data);
 
     void receive_actions(RoboArm& Arm);
 
-    void receive_actions_group(RoboArm& Arm);
+    void receive_actions_group();
 
     void transmit_relative_pos(const std::array<float, 6>& pos);
 };

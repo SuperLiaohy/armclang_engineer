@@ -12,7 +12,7 @@ void ArmTask() {
         auto now = osKernelSysTick();
         ++cnt;
 
-        interact.receive_actions_group(roboArm);
+        interact.receive_actions_group();
         interact.receive_actions(roboArm);
 
         roboArm.update_relative_pos();

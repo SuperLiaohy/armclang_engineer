@@ -86,14 +86,6 @@ void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
     pc.transmit(reinterpret_cast<uint8_t*>(&pc.tx_frame), sizeof(pc.tx_frame));
 }
 
-void Interact::receive_reset() {
-    joint[0] = 0;
-    joint[1] = -55;
-    joint[2] = 145;
-    joint[3] = 0;
-    joint[4] = 0;
-    joint[5] = 0;
-}
 void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);
 void Interact::receive_custom(uint8_t* data) {
@@ -144,11 +136,6 @@ void Interact::update_roboArm(RoboArm& Arm) {
             if (robo_arm.last_mode != interact_dep::robo_mode::XYZ) { Arm.fkine(remote_control.pos); }
             receive_xyz(Arm);
             break;
-        case interact_dep::robo_mode::RESET: receive_reset(); break;
-        case interact_dep::robo_mode::ACTIONS: {
-            // receive_actions(Arm);
-            break;
-        }
         default: break;
     }
 }
@@ -199,7 +186,7 @@ void Interact::update_chassis(Chassis& cha) {
     }
 }
 
-void Interact::receive_actions_group(RoboArm& Arm) {
+void Interact::receive_actions_group() {
     if (robo_arm.mode == interact_dep::robo_mode::ACTIONS_GROUP) {
         actions_group->update();
         actions = actions_group->get();
@@ -220,10 +207,10 @@ void Interact::receive_actions(RoboArm& Arm) {
                 joint[4] = actions->joints[4];
                 joint[5] = actions->joints[5];
 
-                Arm.target_speed[3] = 1080;
-                Arm.target_speed[2] = 480;
-                Arm.target_speed[1] = 720;
-                Arm.target_speed[0] = 720;
+                Arm.target_speed[3] = actions->speed[3];
+                Arm.target_speed[2] = actions->speed[2];
+                Arm.target_speed[1] = actions->speed[1];
+                Arm.target_speed[0] = actions->speed[0];
                 break;
             case interact_dep::action_status::CartesianX: {
                 if (actions->init == false) {
