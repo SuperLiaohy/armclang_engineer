@@ -11,7 +11,7 @@
 
 class Chassis {
 public:
-    Chassis(SuperCan* can, const std::array<slope_cfg, 4>& move_cfg, const std::array<chassis_dep::ChassisMotorCfg, 4>& base_cfg,
+    Chassis(SuperCan* can, const std::array<Slope, 4>& move_cfg, const std::array<chassis_dep::ChassisMotorCfg, 4>& base_cfg,
             const std::array<chassis_dep::ChassisMotorCfg, 2>& extend_cfg)
         : can(can)
         , base(base_cfg)

@@ -4,16 +4,14 @@
 #pragma once
 
 #include "GPIO/SuperGPIO.hpp"
-namespace pump_dep {
+
+template<is_io io>
+class Pump {
     enum class state : uint8_t {
         close = 0,
         open  = 1,
     };
-}
 
-template<is_io io>
-class Pump {
-    using state = pump_dep::state;
 public:
     Pump(typename io::handle* port, typename io::handle_pin pin) : handle(port, pin) {}
     void open() {

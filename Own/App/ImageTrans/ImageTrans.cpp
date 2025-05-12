@@ -18,8 +18,8 @@ void ImageTrans::update_keyboard(KeyBoard& key_board) {
 
 void ImageTrans::transmit_custom_frame() {
     memcpy(p_custom_tx_frame->data, &user_custom_tx_data, sizeof(user_custom_tx_data));
-    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(p_custom_tx_frame), sizeof(image_trans_dep::custom_tx_frame));
-    uartPlus.transmit_dma_pdata(uartPlus.tx_buffer, sizeof(image_trans_dep::custom_tx_frame));
+    crc::append_crc16_check_sum(reinterpret_cast<uint8_t*>(p_custom_tx_frame), sizeof(custom_tx_frame));
+    uartPlus.transmit_dma_pdata(uartPlus.tx_buffer, sizeof(custom_tx_frame));
 }
 
 void ImageTrans::get_custom_feedback(const std::array<float, 6>& angle) {

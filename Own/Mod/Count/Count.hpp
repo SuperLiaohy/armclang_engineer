@@ -25,7 +25,3 @@ private:
     uint32_t cnt;
     uint32_t max_cnt;
 };
-
-inline void CountManager::mark() {
-    for (const auto item: list) { item->mark(); }
-}

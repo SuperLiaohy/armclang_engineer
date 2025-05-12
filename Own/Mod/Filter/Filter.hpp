@@ -11,7 +11,7 @@ extern "C" {
 }
 #endif
 
-#include "RoundQueue/RoundQueue.hpp"
+#include "RingQueue/RingQueue.hpp"
 
 template<uint32_t n>
 class Filter {
@@ -21,7 +21,7 @@ public:
     float update(float value);
 
 private:
-    RoundQueue<float, n> queue;
+    RingQueue<float, n> queue;
     float sum;
 };
 

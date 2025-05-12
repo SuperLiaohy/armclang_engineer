@@ -1,15 +1,39 @@
 armclang_engineer/thread.o: ..\Own\OperateSystem\Thread.cpp \
   ..\Own\OperateSystem\Thread.h ..\Own\OperateSystem\Thread\CppTask.hpp \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stddef.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
+  D:\Keil_v5\ARM\ARMCLANG\include\stddef.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdint.h ..\Core\Inc\FreeRTOSConfig.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
+  ..\Own\Mod\Count\CountManager.hpp ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\LinkedList.hpp \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\cstdint \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__verbose_abort \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__availability \
+  ..\Own\Mod\CustomList\SeqList.hpp ..\Core\Inc\usart.h \
+  ..\Core\Inc\main.h ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h723xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_version.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_compiler.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_armclang.h \
@@ -18,8 +42,6 @@ armclang_engineer/thread.o: ..\Own\OperateSystem\Thread.cpp \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\mpu_armv7.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stddef.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stddef.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\math.h \
   D:\Keil_v5\ARM\ARMCLANG\include\math.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__math\abs.h \
@@ -36,9 +58,6 @@ armclang_engineer/thread.o: ..\Own\OperateSystem\Thread.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_same.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__utility\declval.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\limits \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__assert \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__verbose_abort \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__availability \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_signed.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__undef_macros \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\version \
@@ -143,7 +162,6 @@ armclang_engineer/thread.o: ..\Own\OperateSystem\Thread.cpp \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_trivially_copy_assignable.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_trivially_copy_constructible.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_trivially_copyable.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\cstdint \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_trivially_default_constructible.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_trivially_destructible.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__type_traits\is_trivially_move_assignable.h \
@@ -209,23 +227,4 @@ armclang_engineer/thread.o: ..\Own\OperateSystem\Thread.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  ..\Core\Inc\FreeRTOSConfig.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\SubBoard\SubBoard.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
-  ..\Own\Mod\Count\CountManager.hpp ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\LinkedList.hpp ..\Own\Mod\CustomList\SeqList.hpp \
-  ..\Core\Inc\usart.h ..\Core\Inc\main.h
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h

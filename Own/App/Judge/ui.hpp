@@ -3,25 +3,28 @@
 #include "referee_system.h"
 #include <variant>
 
-namespace ui_dep {
-    struct basic_graphic {
-        uint8_t figure_name[3];
-        uint32_t operate_type : 3;
-        uint32_t figure_type : 3;
-        uint32_t layer : 4;
-        uint32_t color : 4;
-        uint32_t details_a : 9;
-        uint32_t details_b : 9;
-        uint32_t width : 10;
-        uint32_t start_x : 11;
-        uint32_t start_y : 11;
-        uint32_t details_c : 10;
-        uint32_t details_d : 11;
-        uint32_t details_e : 11;
-    } __attribute__((packed));
+struct basic_graphic {
+    uint8_t figure_name[3];
+    uint32_t operate_type : 3;
+    uint32_t figure_type : 3;
+    uint32_t layer : 4;
+    uint32_t color : 4;
+    uint32_t details_a : 9;
+    uint32_t details_b : 9;
+    uint32_t width : 10;
+    uint32_t start_x : 11;
+    uint32_t start_y : 11;
+    uint32_t details_c : 10;
+    uint32_t details_d : 11;
+    uint32_t details_e : 11;
+} __attribute__((packed));
 
-    template<typename T>
-    concept ui_features = requires(T t) { t.set_features(std::declval<basic_graphic*>()); };
+template<typename T>
+concept ui_features = requires(T t) { t.set_features(std::declval<basic_graphic*>()); };
+
+class UI {
+public:
+
 
     enum class types : uint8_t {
         DELETE,
@@ -262,23 +265,19 @@ namespace ui_dep {
         uint16_t crc16;
     } __attribute__((packed));
 
-} // namespace ui_dep
-
-class UI {
-public:
-    using basic_graphic                          = ui_dep::basic_graphic;
-    using types                                  = ui_dep::types;
-    using operate_delete_layer                   = ui_dep::operate_delete_layer;
-    using operation                              = ui_dep::operation;
-    using graphic                                = ui_dep::graphic;
-    using color                                  = ui_dep::color;
-    using layer                                  = ui_dep::layer;
-    using frame                                  = ui_dep::frame;
-    using ui_control                             = ui_dep::ui_control;
-    template<ui_dep::ui_features T> using UiItem = ui_dep::UiItem<T>;
-    using VarUiItem = std::variant<UiItem<ui_dep::line>, UiItem<ui_dep::circle>, UiItem<ui_dep::arc>,
-                                   UiItem<ui_dep::ellipse>, UiItem<ui_dep::rect>, UiItem<ui_dep::int_data>,
-                                   UiItem<ui_dep::float_data>, UiItem<ui_dep::string_data>>;
+    // using basic_graphic                          = ui_dep::basic_graphic;
+    // using types                                  = ui_dep::types;
+    // using operate_delete_layer                   = ui_dep::operate_delete_layer;
+    // using operation                              = ui_dep::operation;
+    // using graphic                                = ui_dep::graphic;
+    // using color                                  = ui_dep::color;
+    // using layer                                  = ui_dep::layer;
+    // using frame                                  = ui_dep::frame;
+    // using ui_control                             = ui_dep::ui_control;
+    // template<ui_dep::ui_features T> using UiItem = ui_dep::UiItem<T>;
+    // using VarUiItem = std::variant<UiItem<ui_dep::line>, UiItem<ui_dep::circle>, UiItem<ui_dep::arc>,
+    //                                UiItem<ui_dep::ellipse>, UiItem<ui_dep::rect>, UiItem<ui_dep::int_data>,
+    //                                UiItem<ui_dep::float_data>, UiItem<ui_dep::string_data>>;
 
     UI(uint16_t sender_id, uint16_t receiver_id, UART_HandleTypeDef* huart)
         : len(0)
@@ -295,9 +294,9 @@ public:
     [[gnu::always_inline]] inline void lock() {};
     [[gnu::always_inline]] inline void unlock() {};
 
-    void delete_layer(ui_dep::operate_delete_layer delete_layer, uint8_t layer_id);
+    void delete_layer(operate_delete_layer delete_layer, uint8_t layer_id);
 
-    template<ui_dep::ui_features ui_graphic>
+    template<ui_features ui_graphic>
     void operate_fig(const char* name, operation op, layer layer_id, color col, uint16_t width, uint16_t start_x,
                      uint16_t start_y, const ui_graphic& item) {
         lock();
@@ -314,7 +313,7 @@ public:
         item.set_features(addr);
         ++num;
 
-        if constexpr (std::is_same_v<ui_graphic, ui_dep::string_data>) {
+        if constexpr (std::is_same_v<ui_graphic, string_data>) {
             len  += 45;
             type  = types::STRING;
         } else {
@@ -324,7 +323,7 @@ public:
 
         unlock();
     };
-    template<ui_dep::ui_features ui_graphic>
+    template<ui_features ui_graphic>
     void operate_fig(ui_control& control, layer layer_id, color col, uint16_t width, uint16_t start_x,
                      uint16_t start_y, const ui_graphic& item) {
         lock();
@@ -341,7 +340,7 @@ public:
             addr->start_y          = start_y;
             item.set_features(addr);
             ++num;
-            if constexpr (std::is_same_v<ui_graphic, ui_dep::string_data>) {
+            if constexpr (std::is_same_v<ui_graphic, string_data>) {
                 len  += 45;
                 type  = types::STRING;
             } else {
@@ -352,7 +351,7 @@ public:
         }
         unlock();
     };
-    template<ui_dep::ui_features ui_graphic> void operate_fig(UiItem<ui_graphic>& item) {
+    template<ui_features ui_graphic> void operate_fig(UiItem<ui_graphic>& item) {
         lock();
 
         if (type != types::DELETE && type != types::STRING) {
@@ -369,7 +368,7 @@ public:
                 addr->start_y          = item.start_y;
                 item.feature.set_features(addr);
                 ++num;
-                if constexpr (std::is_same_v<ui_graphic, ui_dep::string_data>) {
+                if constexpr (std::is_same_v<ui_graphic, string_data>) {
                     len  += 45;
                     type  = types::STRING;
                 } else {

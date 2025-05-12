@@ -100,7 +100,7 @@
 "armclang_engineer\slope.o"
 "armclang_engineer\pid.o"
 "armclang_engineer\count.o"
-"armclang_engineer\roundqueue.o"
+"armclang_engineer\ringqueue.o"
 "armclang_engineer\chassis.o"
 "armclang_engineer\roboarm.o"
 "armclang_engineer\interact.o"

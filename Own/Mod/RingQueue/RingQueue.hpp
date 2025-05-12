@@ -4,13 +4,12 @@
 #pragma once
 
 #include <array>
-
 #include <cstdint>
 
 template<typename T, uint32_t n>
-class RoundQueue {
+class RingQueue {
 public:
-    explicit RoundQueue() : head(0), tail(0) {}
+    explicit RingQueue() : head(0), tail(0) {}
 
     bool pop(T& value);
 

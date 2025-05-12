@@ -764,13 +764,7 @@ armclang_engineer/uartcallback.o: ..\Own\CallBack\UARTCallback.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\Judge\ui.hpp \
-  ..\Own\App\Judge\referee_system.h \
-  ..\Own\OperateSystem\LetterShell\shell.h \
-  ..\Own\OperateSystem\LetterShell\shell_cfg.h \
-  ..\Own\OperateSystem\LetterShell\shell_port.h \
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\App\Judge\ui.hpp ..\Own\App\Judge\referee_system.h \
   ..\Own\OperateSystem\ThreadConfig.h

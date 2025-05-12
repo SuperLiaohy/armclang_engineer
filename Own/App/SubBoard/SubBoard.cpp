@@ -11,8 +11,6 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-namespace sub_board_dep {
-} // sub_board_dep
 
 
 void SubBoard::transmit() {

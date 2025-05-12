@@ -764,11 +764,8 @@ armclang_engineer/remotectrltask.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\OperateSystem\Thread\CppTask.hpp \
   ..\Own\Obj\Interact\Interact.hpp ..\Own\App\PC\PC.hpp \
   ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\MicroTime\MicroTime.hpp \
-  ..\Own\Bsp\SysTick\SysTick.hpp ..\Own\OperateSystem\ThreadConfig.h
+  ..\Own\Bsp\SysTick\SysTick.hpp

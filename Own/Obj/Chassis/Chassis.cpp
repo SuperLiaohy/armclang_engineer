@@ -2,9 +2,7 @@
 // Created by lhy on 2024/9/9.
 //
 
-#include "Chassis.hpp"
-#include "MyMath/MyMath.hpp"
-#if USING_CHASSIS == 1
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,7 +14,11 @@ extern "C" {
 }
 #endif
 
+#include "Chassis.hpp"
+#include "MyMath/MyMath.hpp"
 #include "MicroTime/MicroTime.hpp"
+
+#if USING_CHASSIS == 1
 
 void Chassis::send_foc() {
     can->transmit(M3508::foc.TX_LOW_ID, base.left_front.output(), base.right_front.output(), base.right_rear.output(),

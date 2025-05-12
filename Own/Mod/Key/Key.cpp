@@ -2,7 +2,6 @@
 // Created by Administrator on 25-1-20.
 //
 
-#include "Key.hpp"
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,6 +13,7 @@ extern "C" {
 }
 #endif
 
+#include "Key.hpp"
 
 void KeyBoardRegister(Key *keyList, uint32_t key, KeyCombineType combine,
                       KeyCallbackFunc callback) {

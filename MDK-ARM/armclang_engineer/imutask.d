@@ -1,5 +1,24 @@
 armclang_engineer/imutask.o: ..\Own\OperateSystem\Thread\IMUTask.cpp \
   ..\Own\OperateSystem\Thread\CppTask.hpp \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stddef.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
+  D:\Keil_v5\ARM\ARMCLANG\include\stddef.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
+  D:\Keil_v5\ARM\ARMCLANG\include\stdint.h ..\Core\Inc\FreeRTOSConfig.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\Own\App\Imu\Imu.hpp ..\Core\Inc\tim.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
@@ -7,9 +26,6 @@ armclang_engineer/imutask.o: ..\Own\OperateSystem\Thread\IMUTask.cpp \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h723xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stdint.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__config \
-  D:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_version.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_compiler.h \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\cmsis_armclang.h \
@@ -18,8 +34,6 @@ armclang_engineer/imutask.o: ..\Own\OperateSystem\Thread\IMUTask.cpp \
   D:\RM\armclang_engineer\Drivers\CMSIS\Include\mpu_armv7.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\libcxx\stddef.h \
-  D:\Keil_v5\ARM\ARMCLANG\include\stddef.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\math.h \
   D:\Keil_v5\ARM\ARMCLANG\include\math.h \
   D:\Keil_v5\ARM\ARMCLANG\include\libcxx\__math\abs.h \
@@ -210,20 +224,5 @@ armclang_engineer/imutask.o: ..\Own\OperateSystem\Thread\IMUTask.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  ..\Core\Inc\FreeRTOSConfig.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\App\Imu\Imu.hpp ..\Own\Mod\Pid\Pid.hpp \
-  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h ..\Core\Inc\main.h \
-  ..\Own\OperateSystem\ThreadConfig.h
+  ..\Own\Mod\Pid\Pid.hpp ..\Own\App\W25Q64\W25Q64.hpp \
+  ..\Core\Inc\octospi.h ..\Own\OperateSystem\ThreadConfig.h

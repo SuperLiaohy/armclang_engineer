@@ -2,10 +2,10 @@
 // Created by lhy on 2024/9/15.
 //
 
-#include "RoundQueue.hpp"
+#include "RingQueue.hpp"
 
 template<typename T, uint32_t n>
-bool RoundQueue<T, n>::pop(T& value) {
+bool RingQueue<T, n>::pop(T& value) {
     if (len() > 0) {
         value = buffer[head];
         head       = (head + 1) % n;
@@ -15,7 +15,7 @@ bool RoundQueue<T, n>::pop(T& value) {
 }
 
 template<typename T, uint32_t n>
-void RoundQueue<T, n>::push(const T&value) {
+void RingQueue<T, n>::push(const T&value) {
     if (len() < n - 1) {
         buffer[tail] = value;
         tail         = (tail + 1) % n;

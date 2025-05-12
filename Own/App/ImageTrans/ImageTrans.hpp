@@ -9,10 +9,9 @@
 #include "Crc/Crc.hpp"
 #include "RoboArm/roboarm_dep.hpp"
 
-
-
-namespace image_trans_dep {
-    constexpr uint8_t SOF = 0xA5; // 帧头
+class ImageTrans {
+public:
+    constexpr static uint8_t SOF = 0xA5; // 帧头
 
 #pragma pack(push, 1)
     struct user_custom_rx_status {
@@ -63,14 +62,13 @@ namespace image_trans_dep {
         uint16_t crc16{};
     };
 #pragma pack(pop)
-}
 
-class ImageTrans {
+
 public:
     ImageTrans(UART_HandleTypeDef *huart) : uartPlus(huart, 1000, 100) {
-        p_custom_tx_frame = reinterpret_cast<image_trans_dep::custom_tx_frame*>(uartPlus.tx_buffer);
+        p_custom_tx_frame = reinterpret_cast<custom_tx_frame*>(uartPlus.tx_buffer);
         p_custom_tx_frame->frame_head = {0xA5, 30, 0, 0};
-        crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&p_custom_tx_frame->frame_head), sizeof(image_trans_dep::frame_header));
+        crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&p_custom_tx_frame->frame_head), sizeof(frame_header));
         p_custom_tx_frame->cmd_id = 0x309;
     }
 
@@ -85,15 +83,15 @@ public:
         uartPlus.receive_dma_idle(1000);
     };
 
-    image_trans_dep::user_custom_rx_data user_custom_rx_data{};
-    image_trans_dep::custom_tx_frame* p_custom_tx_frame{};
-    image_trans_dep::user_custom_tx_status last_s;
+    user_custom_rx_data user_custom_rx_data{};
+    custom_tx_frame* p_custom_tx_frame{};
+
     uint16_t rx_cmd_id{};//命令ID
     SuperUart uartPlus;
 
     Count cnt;
 private:
-    image_trans_dep::user_custom_tx_data user_custom_tx_data{};
+    user_custom_tx_data user_custom_tx_data{};
 };
 
 

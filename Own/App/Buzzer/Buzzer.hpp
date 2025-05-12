@@ -14,8 +14,10 @@ extern "C" {
 }
 #endif
 
-#include "RoundQueue/RoundQueue.hpp"
+#include "RingQueue/RingQueue.hpp"
+
 class Buzzer {
+public:
     enum NoteFrequency : uint16_t {
         LC        = 262,
         LD        = 294,
@@ -44,11 +46,6 @@ class Buzzer {
         MUSIC_EOF = 40000,
     };
 
-public:
-    enum class delay_pl {
-        OS,
-        HAL,
-    };
     static constexpr std::array<uint16_t, 8> error_music = {HC, 20000, HC, 20000, HC, 20000, HC, 20000};
     // 定义旋律，长度为24个音符
     static constexpr std::array<uint16_t, 24> melody = {
@@ -70,6 +67,8 @@ public:
         MC, LB, LA, LA, LA, LA, 20000, 20000, ME, ME, ME, ME, MD, MC, MC,    LB,   LB, LB,      LAP_LBN, LB,
         MA, MA, MA, MA, MB, MA, MA,    MG,    MG, MG, MA, MB, HC, HC, HC,    HC,   MB, MAP_MBN, MA,      MA,
         MA, MA, ME, MD, ME, ME, ME,    ME,    MF, MD, MC, MC, MC, MC, 20000, 20000};
+
+public:
     Buzzer(TIM_HandleTypeDef* htim, uint16_t Channel)
         : htim(htim)
         , Channel(Channel) {}
@@ -79,30 +78,23 @@ public:
 
     void Stop();
 
-    template<uint16_t size, delay_pl T = delay_pl::OS> void StartMusic(const std::array<uint16_t, size>& music);
+    template<uint16_t size, auto delay = osDelay> void StartMusic(const std::array<uint16_t, size>& music);
 
     template<uint16_t size> void PushMusic(const std::array<uint16_t, size>& music);
 
-    template<delay_pl T = delay_pl::OS> bool StartMusic();
+    template<auto delay = osDelay> bool StartMusic();
 
 private:
-    template<delay_pl T> static void delay(uint32_t ms) {
-        if constexpr (T == delay_pl::HAL) {
-            HAL_Delay(50);
-        } else {
-            osDelay(50);
-        }
-    };
     TIM_HandleTypeDef* htim;
     uint16_t Channel;
     RoundBuffer<uint16_t, 50> music_buffer;
     int8_t music_cnt = 0;
 };
 
-template<uint16_t size, Buzzer::delay_pl T> void Buzzer::StartMusic(const std::array<uint16_t, size>& music) {
+template<uint16_t size, auto delay> void Buzzer::StartMusic(const std::array<uint16_t, size>& music) {
     for (auto item: music) {
         SetFreq(item);
-        delay<T>(100);
+        delay(100);
     }
     SetFreq(20000, 20);
 }
@@ -113,12 +105,12 @@ template<uint16_t size> void Buzzer::PushMusic(const std::array<uint16_t, size>&
     ++music_cnt;
 }
 
-template<Buzzer::delay_pl T> bool Buzzer::StartMusic() {
+template<auto delay> bool Buzzer::StartMusic() {
     if (music_cnt > 0) {
         auto music = music_buffer.pop();
         if (music != MUSIC_EOF) {
             SetFreq(music);
-            delay<T>(50);
+            delay(50);
         } else {
             --music_cnt;
         }

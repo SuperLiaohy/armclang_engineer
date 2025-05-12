@@ -709,7 +709,7 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Own\Mod\RingQueue\RingQueue.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Own\Mod\Count\Count.hpp \
   ..\Own\Mod\Count\CountManager.hpp ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\LinkedList.hpp ..\Own\Mod\CustomList\SeqList.hpp \
@@ -763,7 +763,6 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
   ..\Own\Mod\Slope\Slope.hpp ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
   ..\Own\OperateSystem\Heap\CustomHeap.hpp \

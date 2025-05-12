@@ -7,7 +7,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "stm32h7xx_hal.h"
 #include "cmsis_os.h"
 #include "FreeRTOS.h"
 

@@ -15,9 +15,6 @@ extern QueueHandle_t xRxedChars;
 extern uint8_t cli_buffer[];
 extern osThreadId IMAGEATRANS_TASHandle;
 
-#include "LetterShell/shell.h"
-#include "LetterShell/shell_port.h"
-
 #ifdef __cplusplus
 }
 #endif

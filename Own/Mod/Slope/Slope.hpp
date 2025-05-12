@@ -3,11 +3,6 @@
 //
 #pragma once
 
-struct slope_cfg {
-    float step;
-    float dead_zone;
-};
-
 class Slope {
 public:
     Slope(float step, float dead_zone)
@@ -21,11 +16,6 @@ public:
         , value(value)
         , dead_zone(dead_zone) {}
 
-    explicit Slope(const slope_cfg& cfg)
-        : target(0)
-        , step(cfg.step)
-        , value(0)
-        , dead_zone(cfg.dead_zone) {}
 
     [[gnu::always_inline]] inline void target_set(float input);
 

@@ -3,9 +3,9 @@
 //
 #pragma once
 
+#include "cstdint"
 
 #include "CustomList/CustomList.hpp"
-#include "cstdint"
 
 enum KeyType {
     Key_W = 1 << 0,

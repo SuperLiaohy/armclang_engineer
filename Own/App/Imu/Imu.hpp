@@ -2,6 +2,15 @@
 // Created by liaohy on 24-11-17.
 //
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "tim.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 #include "Pid/Pid.hpp"
 enum class IMU_MEASURE {

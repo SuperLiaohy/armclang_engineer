@@ -9,9 +9,6 @@
  */
 #pragma once
 
-
-#include <concepts>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -21,6 +18,7 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
 //template<size_t ROWS = 0, size_t COLS = 0>
 //concept StaticStorage = (ROWS != 0 && COLS != 0);
 //template<size_t ROWS = 0, size_t COLS = 0>

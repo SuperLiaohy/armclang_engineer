@@ -706,17 +706,6 @@ armclang_engineer/remotecontrol.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
-  ..\Own\Mod\CustomList\SeqList.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Core\Inc\tim.h ..\Core\Inc\main.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
+  ..\Own\Mod\CustomList\SeqList.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
   ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
-  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp
+  ..\Core\Inc\usart.h ..\Core\Inc\main.h ..\Own\Mod\Key\Key.hpp

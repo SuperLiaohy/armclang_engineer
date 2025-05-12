@@ -3,7 +3,7 @@
 //
 #pragma once
 
-namespace pid_dep {
+class Pid {
     struct Parameters {
         float p;
         float i;
@@ -14,36 +14,6 @@ namespace pid_dep {
         float min;
         float max;
     };
-} // namespace pid_dep
-
-// struct pid_cfg {
-//     float p;
-//     float i;
-//     float d;
-//     float min_i;
-//     float max_i;
-//     float min_out;
-//     float max_out;
-//     float dead_zone;
-//
-//     constexpr pid_cfg(const float p, const float i, const float d, const float max_i, const float max_out, const float dead_zone = 0)
-//         : p(p)
-//         , i(i)
-//         , d(d)
-//         , min_i(-max_i)
-//         , max_i(max_i)
-//         , min_out(-max_out)
-//         , max_out(max_out)
-//         , dead_zone(dead_zone) {
-//     }
-//
-//     constexpr pid_cfg(const pid_cfg& cfg) = default;
-// };
-
-class Pid {
-private:
-    using Parameters = pid_dep::Parameters;
-    using Limitation = pid_dep::Limitation;
 
 public:
     Pid() = default;

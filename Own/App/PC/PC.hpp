@@ -6,7 +6,7 @@
 
 #include "CDC/SuperCDC.hpp"
 
-namespace pc_dep {
+class PC : public SuperCDC {
 #pragma pack(push, 1)
     struct rx_joint_cfg {
         int16_t angle;
@@ -55,16 +55,13 @@ namespace pc_dep {
         uint8_t tail;
     };
 #pragma pack(pop)
-} // namespace pc_dep
-
-class PC : public SuperCDC {
 public:
     PC(const uint8_t head, const uint8_t tail)
         : head(head)
         , tail(tail) {}
 
-    pc_dep::rx_frame rx_frame {};
-    pc_dep::tx_frame tx_frame {};
+    rx_frame rx_frame {};
+    tx_frame tx_frame {};
 
     const uint8_t head;
     const uint8_t tail;

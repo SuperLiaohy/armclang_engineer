@@ -10,16 +10,12 @@ class Count;
 
 class CountManager {
 public:
-    void register_item(Count* count) {
-        list.push_back(count);
-    };
+    void register_item(Count* count) { list.push_back(count); };
 
-    void unregister_item(Count* count) {
-        list.remove(count);
-    }
+    void unregister_item(Count* count) { list.remove(count); }
 
     void mark();
 
 private:
-    CustomList<Count*, SeqList<Count*,60>> list;
+    CustomList<Count*, SeqList<Count*, 60>> list;
 };

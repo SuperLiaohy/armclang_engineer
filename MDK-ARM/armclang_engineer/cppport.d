@@ -765,9 +765,6 @@ armclang_engineer/cppport.o: ..\Own\OperateSystem\Port\CppPort.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\W25Q64\W25Q64.hpp \
-  ..\Core\Inc\octospi.h
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h

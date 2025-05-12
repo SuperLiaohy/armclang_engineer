@@ -4,6 +4,7 @@
 
 #include "CppTask.hpp"
 #include "Interact/Interact.hpp"
+#include "Buzzer/Buzzer.hpp"
 #include "RoboArm/RoboArm.hpp"
 #include "ThreadConfig.h"
 extern uint8_t re_flag;

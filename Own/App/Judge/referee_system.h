@@ -473,17 +473,6 @@ public:
     /* 函数 */
     explicit Class_Referee_System(UART_HandleTypeDef *huart) : uartPlus(huart, 512, 64) {};
 
-    void Layer_operations(interaction_layer_delete_t * interaction_layer_delete,uint8_t layer_id,uint8_t operate_type);//图层操作
-
-    void Draw_line(interaction_figure_t *interaction_figure,uint8_t name[],uint8_t operate_type,uint8_t layer_ID,uint8_t color_ID,uint16_t line_width,uint16_t start_x,uint16_t start_y,uint16_t end_x,uint16_t end_y);//绘制直线
-    void Draw_rectangle(interaction_figure_t *interaction_figure,uint8_t name[],uint8_t operate_type,uint8_t layer_ID,uint8_t color_ID,uint16_t line_width,uint16_t start_x,uint16_t start_y,uint16_t end_x,uint16_t end_y);//绘制矩形
-    void Draw_circle(interaction_figure_t *interaction_figure,uint8_t name[],uint8_t operate_type,uint8_t layer_ID,uint8_t color_ID,uint16_t line_width,uint16_t start_x,uint16_t start_y,uint16_t radius);//绘制圆形
-    void Draw_ellipse(interaction_figure_t *interaction_figure,uint8_t name[],uint8_t operate_type,uint8_t layer_ID,uint8_t color_ID,uint16_t line_width,uint16_t start_x,uint16_t start_y,uint16_t length_xaxis,uint16_t length_yaxis);//绘制椭圆
-    void Draw_arc(interaction_figure_t *interaction_figure,uint8_t name[],uint8_t operate_type,uint8_t layer_ID,uint8_t color_ID,uint16_t line_width,uint16_t start_x,uint16_t start_y,uint16_t start_angle,uint16_t end_angle,uint16_t length_xaxis,uint16_t length_yaxis);//绘制圆弧
-    void Draw_float(interaction_figure_t *interaction_figure,uint8_t name[],uint8_t operate_type,uint8_t layer_ID,uint8_t color_ID,uint16_t line_width,uint16_t start_x,uint16_t start_y,uint16_t font_size,float data_draw);//绘制浮点数
-    void Draw_int(interaction_figure_t *interaction_figure,uint8_t name[],uint8_t operate_type,uint8_t layer_ID,uint8_t color_ID,uint16_t line_width,uint16_t start_x,uint16_t start_y,uint16_t font_size,int32_t data_draw);//绘制整数
-    void Draw_string(ext_client_custom_character_t *client_custom_character,uint8_t name[],uint8_t operate_type,uint8_t layer_ID,uint8_t color_ID,uint16_t line_width,uint16_t start_x,uint16_t start_y,uint16_t font_size,uint8_t* data_draw,uint16_t CHAR_length);//绘制字符串
-
     void Referee_data_processing(uint8_t data[],uint16_t length);//裁判系统数据处理
 
     frame_header Frame_header;                          //帧头
@@ -542,6 +531,4 @@ private:
 /* 函数声明 ------------------------------------------------------------------------------------------------------------*/
 int16_t Referee_data_transmit(uint16_t Child_content_ID, uint16_t Cilent_ID, uint16_t Robot_ID, uint8_t user_tx_data[]);
 
-/* 变量声明 ------------------------------------------------------------------------------------------------------------*/
-extern Class_Referee_System Referee_System;
 

@@ -18,11 +18,13 @@ extern osMutexId CAN1MutexHandle;
 }
 #endif
 
+#include "Buzzer/Buzzer.hpp"
+
 void Interact::receive_cdc(uint8_t* data) {
     using namespace interact_dep;
     if (robo_arm.mode == robo_mode::VISION) {
-        if (data[0] == pc.head && data[sizeof(pc_dep::rx_frame) - 1] == pc.tail) {
-            memcpy(&pc.rx_frame, data, sizeof(pc_dep::rx_frame));
+        if (data[0] == pc.head && data[sizeof(PC::rx_frame) - 1] == pc.tail) {
+            memcpy(&pc.rx_frame, data, sizeof(PC::rx_frame));
             joint[0] = pc.rx_frame.data.joint1.angle * scale(65536, 360);
             joint[1] = pc.rx_frame.data.joint2.angle * scale(65536, 360);
             joint[2] = pc.rx_frame.data.joint3.angle * scale(65536, 360);
@@ -36,34 +38,32 @@ void Interact::receive_cdc(uint8_t* data) {
 void Interact::receive_rc() {
     using namespace interact_dep;
     using namespace roboarm_dep;
-    using namespace remote_ctrl_dep;
     using namespace my_math;
 
     if (robo_arm.mode == robo_mode::NORMAL1) {
-        joint[3] = joint[3] - addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max;
-        joint[2] = limited<float>(joint[2] - addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max,
+        joint[3] = joint[3] - RemoteControl::addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max;
+        joint[2] = limited<float>(joint[2] - RemoteControl::addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max,
                                   limitation.joint3.min, limitation.joint3.max);
-        joint[1] = limited<float>(joint[1] + addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max,
+        joint[1] = limited<float>(joint[1] + RemoteControl::addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max,
                                   limitation.joint2.min, limitation.joint2.max);
-        joint[0] = limited<float>(joint[0] + addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max,
+        joint[0] = limited<float>(joint[0] + RemoteControl::addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max,
                                   limitation.joint1.min, limitation.joint1.max);
     } else if (robo_arm.mode == robo_mode::NORMAL2) {
         // pitch
-        joint[4] = limited<float>(joint[4] + addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max,
+        joint[4] = limited<float>(joint[4] + RemoteControl::addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max,
                                   limitation.joint5.min, limitation.joint5.max);
         // yaw
-        joint[5] = joint[5] + addSpeed(remote_control.rcInfo.ch1, 0.01) * limitation.joint6.max;
+        joint[5] = joint[5] + RemoteControl::addSpeed(remote_control.rcInfo.ch1, 0.01) * limitation.joint6.max;
     }
 }
 
 void Interact::receive_xyz(RoboArm& Arm) {
     using namespace interact_dep;
-    using namespace remote_ctrl_dep;
     using namespace roboarm_dep;
     using namespace my_math;
     if (robo_arm.mode == robo_mode::XYZ) {
-        remote_control.pos[0] += addSpeed(remote_control.rcInfo.ch1, 2.5);
-        remote_control.pos[2] += addSpeed(remote_control.rcInfo.ch2, 2.5);
+        remote_control.pos[0] += RemoteControl::addSpeed(remote_control.rcInfo.ch1, 2.5);
+        remote_control.pos[2] += RemoteControl::addSpeed(remote_control.rcInfo.ch2, 2.5);
         if (!Arm.ikine(remote_control.pos)) {
             Arm.fkine(remote_control.pos);
         } else {
@@ -90,10 +90,10 @@ void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);
 void Interact::receive_custom(uint8_t* data) {
     using namespace interact_dep;
+    auto last_s = ImageTrans::user_custom_rx_status(image_trans.user_custom_rx_data.s);
     if (robo_arm.mode == robo_mode::CUSTOM) {
-        auto last_s = image_trans_dep::user_custom_rx_status(image_trans.user_custom_rx_data.s);
         memcpy(reinterpret_cast<uint8_t*>(&image_trans.user_custom_rx_data), data,
-               sizeof(image_trans_dep::user_custom_rx_data));
+               sizeof(ImageTrans::user_custom_rx_data));
         if (image_trans.user_custom_rx_data.s.pump != last_s.pump) {
             air_right_callback(KeyEvent_OnClick);
         }
@@ -142,7 +142,6 @@ void Interact::update_roboArm(RoboArm& Arm) {
 
 void Interact::update_chassis(Chassis& cha) {
     using namespace chassis_dep;
-    using namespace remote_ctrl_dep;
     using namespace my_math;
     switch (chassis.mode) {
         case interact_dep::chassis_mode::CLIMB:
@@ -154,10 +153,10 @@ void Interact::update_chassis(Chassis& cha) {
                     cha.move.wSlope.target_set(-max.w * static_cast<float>((interact.key_board.mouse.x)) / 32767 * 40);
                     break;
                 case interact_dep::kb_state::DISABLE:
-                    cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
-                    cha.move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
-                    cha.move.extendSlope.target_set(addSpeed(remote_control.rcInfo.ch2, max.vy));
-                    cha.move.wSlope.target_set(-addSpeed(remote_control.rcInfo.ch1, max.w));
+                    cha.move.xSlope.target_set(RemoteControl::addSpeed(remote_control.rcInfo.ch3, max.vx));
+                    cha.move.ySlope.target_set(RemoteControl::addSpeed(remote_control.rcInfo.ch4, max.vy));
+                    cha.move.extendSlope.target_set(RemoteControl::addSpeed(remote_control.rcInfo.ch2, max.vy));
+                    cha.move.wSlope.target_set(-RemoteControl::addSpeed(remote_control.rcInfo.ch1, max.w));
                     break;
             }
             break;
@@ -170,10 +169,10 @@ void Interact::update_chassis(Chassis& cha) {
                     cha.move.wSlope.target_set(-max.w * static_cast<float>((interact.key_board.mouse.x)) / 32767 * 40);
                     break;
                 case interact_dep::kb_state::DISABLE:
-                    cha.move.xSlope.target_set(addSpeed(remote_control.rcInfo.ch3, max.vx));
-                    cha.move.ySlope.target_set(addSpeed(remote_control.rcInfo.ch4, max.vy));
-                    cha.move.extendSlope.target_set(addSpeed(remote_control.rcInfo.ch2, max.vy));
-                    cha.move.wSlope.target_set(-addSpeed(remote_control.rcInfo.ch1, max.w));
+                    cha.move.xSlope.target_set(RemoteControl::addSpeed(remote_control.rcInfo.ch3, max.vx));
+                    cha.move.ySlope.target_set(RemoteControl::addSpeed(remote_control.rcInfo.ch4, max.vy));
+                    cha.move.extendSlope.target_set(RemoteControl::addSpeed(remote_control.rcInfo.ch2, max.vy));
+                    cha.move.wSlope.target_set(-RemoteControl::addSpeed(remote_control.rcInfo.ch1, max.w));
                     break;
             }
             break;

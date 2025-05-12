@@ -50,70 +50,70 @@ void JudgeTask() {
             item.display_num++;
         }
         ui.operate_fig("001", UI::operation::ADD, UI::layer::LAYER_4, UI::color::GREEN, 2, 24, 838,
-                       ui_dep::string_data {.font_size = 20, .data = "air:", .length = 5});
+                       UI::string_data {.font_size = 20, .data = "air:", .length = 5});
         ui.update();
         osDelay(34);
 
         ui.operate_fig("003", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 2, 24, 686,
-                       ui_dep::string_data {.font_size = 20, .data = "chassis:", .length = 9});
+                       UI::string_data {.font_size = 20, .data = "chassis:", .length = 9});
         ui.update();
         osDelay(34);
         ui.operate_fig("004", UI::operation::ADD, UI::layer::LAYER_4, UI::color::YELLOW, 2, 24, 595,
-                       ui_dep::string_data {.font_size = 20, .data = "roboarm:", .length = 9});
+                       UI::string_data {.font_size = 20, .data = "roboarm:", .length = 9});
         ui.update();
         osDelay(34);
         ui.operate_fig("005", UI::operation::ADD, UI::layer::LAYER_4, UI::color::PINK, 2, 24, 900,
-                       ui_dep::string_data {.font_size = 20, .data = "auto:", .length = 5});
+                       UI::string_data {.font_size = 20, .data = "auto:", .length = 5});
         ui.update();
         osDelay(34);
 
         ui.operate_fig("006", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 858, 845,
-                       ui_dep::string_data {.font_size = 10, .data = "lf:", .length = 4});
+                       UI::string_data {.font_size = 10, .data = "lf:", .length = 4});
         ui.update();
         osDelay(34);
         ui.operate_fig("007", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 858, 790,
-                       ui_dep::string_data {.font_size = 10, .data = "lb:", .length = 4});
+                       UI::string_data {.font_size = 10, .data = "lb:", .length = 4});
         ui.update();
         osDelay(34);
         ui.operate_fig("008", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 1022, 845,
-                       ui_dep::string_data {.font_size = 10, .data = "rf:", .length = 4});
+                       UI::string_data {.font_size = 10, .data = "rf:", .length = 4});
         ui.update();
         osDelay(34);
         ui.operate_fig("009", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 1022, 790,
-                       ui_dep::string_data {.font_size = 10, .data = "rb:", .length = 4});
+                       UI::string_data {.font_size = 10, .data = "rb:", .length = 4});
         ui.update();
         osDelay(34);
         ui.operate_fig("010", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 930, 880,
-                       ui_dep::string_data {.font_size = 10, .data = "main:", .length = 6});
+                       UI::string_data {.font_size = 10, .data = "main:", .length = 6});
         ui.update();
         osDelay(34);
 
-        ui.operate_fig(ui_list[0], ui_dep::layer::LAYER_5, UI::color::GREEN, 5, 221, 838,
-                       ui_dep::int_data {.font_size = 50, .data = int_valve_tx()});
-        ui.operate_fig(ui_list[1], ui_dep::layer::LAYER_5, UI::color::CYAN, 5, 221, 686,
-                       ui_dep::int_data {.font_size = 50, .data = int_chassis()});
-        ui.operate_fig(ui_list[2], ui_dep::layer::LAYER_5, UI::color::YELLOW, 5, 221, 595,
-                       ui_dep::int_data {.font_size = 50, .data = int_robo_arm()});
-        ui.operate_fig(ui_list[3], ui_dep::layer::LAYER_5, UI::color::PINK, 5, 221, 900,
-                       ui_dep::int_data {.font_size = 50, .data = int_auto()});
+        ui.operate_fig(ui_list[0], UI::layer::LAYER_5, UI::color::GREEN, 5, 221, 838,
+                       UI::int_data {.font_size = 50, .data = int_valve_tx()});
+        ui.operate_fig(ui_list[1], UI::layer::LAYER_5, UI::color::CYAN, 5, 221, 686,
+                       UI::int_data {.font_size = 50, .data = int_chassis()});
+        ui.operate_fig(ui_list[2], UI::layer::LAYER_5, UI::color::YELLOW, 5, 221, 595,
+                       UI::int_data {.font_size = 50, .data = int_robo_arm()});
+        ui.operate_fig(ui_list[3], UI::layer::LAYER_5, UI::color::PINK, 5, 221, 900,
+                       UI::int_data {.font_size = 50, .data = int_auto()});
 
         ui.update();
         osDelay(34);
 
         ui.operate_fig(ui_list[4], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 845,
-                   ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});
+                   UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});
 
         ui.operate_fig(ui_list[5], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 790,
-                       ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});
+                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});
 
         ui.operate_fig(ui_list[6], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 845,
-                       ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});
+                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});
 
         ui.operate_fig(ui_list[7], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 790,
-                       ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});
+                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});
 
         ui.operate_fig(ui_list[8], UI::layer::LAYER_4, UI::color::CYAN, 1, 930 + 70, 880,
-                       ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});
+                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});
         ui.update();
         osDelay(34);
         // ui.operate_fig(ui_list[1],ui_dep::layer::LAYER_0,UI::color::CYAN,5,800,400,ui_dep::int_data{.font_size = 50,.data = fps});
@@ -128,32 +128,32 @@ void JudgeTask() {
                 for (auto& item: ui_list) {
                     if (fps % item.display_interval == 0) { ++item.display_num; }
                 }
-                ui.operate_fig(ui_list[0], ui_dep::layer::LAYER_5, UI::color::PINK, 5, 221, 838,
-                               ui_dep::int_data {.font_size = 50, .data = int_valve_tx()});
+                ui.operate_fig(ui_list[0], UI::layer::LAYER_5, UI::color::PINK, 5, 221, 838,
+                               UI::int_data {.font_size = 50, .data = int_valve_tx()});
 
-                ui.operate_fig(ui_list[1], ui_dep::layer::LAYER_5, UI::color::CYAN, 5, 221, 686,
-                               ui_dep::int_data {.font_size = 50, .data = int_chassis()});
+                ui.operate_fig(ui_list[1], UI::layer::LAYER_5, UI::color::CYAN, 5, 221, 686,
+                               UI::int_data {.font_size = 50, .data = int_chassis()});
 
-                ui.operate_fig(ui_list[2], ui_dep::layer::LAYER_5, UI::color::YELLOW, 5, 221, 595,
-                               ui_dep::int_data {.font_size = 50, .data = int_robo_arm()});
+                ui.operate_fig(ui_list[2], UI::layer::LAYER_5, UI::color::YELLOW, 5, 221, 595,
+                               UI::int_data {.font_size = 50, .data = int_robo_arm()});
 
-                ui.operate_fig(ui_list[3], ui_dep::layer::LAYER_5, UI::color::PINK, 5, 221, 900,
-                               ui_dep::int_data {.font_size = 50, .data = int_auto()});
+                ui.operate_fig(ui_list[3], UI::layer::LAYER_5, UI::color::PINK, 5, 221, 900,
+                               UI::int_data {.font_size = 50, .data = int_auto()});
 
                 ui.operate_fig(ui_list[4], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 845,
-                           ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});
+                           UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});
 
                 ui.operate_fig(ui_list[5], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 790,
-                               ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});
+                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});
 
                 ui.operate_fig(ui_list[6], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 845,
-                               ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});
+                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});
 
                 ui.operate_fig(ui_list[7], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 790,
-                               ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});
+                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});
 
                 ui.operate_fig(ui_list[8], UI::layer::LAYER_4, UI::color::CYAN, 1, 930 + 70, 880,
-                               ui_dep::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});
+                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});
 
                 // ui.operate_fig(ui_list[1],ui_dep::layer::LAYER_0,UI::color::CYAN,5,800,400,ui_dep::int_data{.font_size = 50,.data = fps});
                 // ui.operate_fig(ui_list[2],ui_dep::layer::LAYER_0,UI::color::GREEN,5,800,200,ui_dep::int_data{.font_size = 50,.data = fps});

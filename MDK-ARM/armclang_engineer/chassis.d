@@ -763,8 +763,5 @@ armclang_engineer/chassis.o: ..\Own\Obj\Chassis\Chassis.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\MicroTime\MicroTime.hpp \
-  ..\Own\Bsp\SysTick\SysTick.hpp
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\MicroTime\MicroTime.hpp ..\Own\Bsp\SysTick\SysTick.hpp

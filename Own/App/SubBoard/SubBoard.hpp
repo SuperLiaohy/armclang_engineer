@@ -6,7 +6,8 @@
 
 #include "Uart/SuperUart.hpp"
 
-namespace sub_board_dep {
+
+class SubBoard {
 #pragma pack(push, 1)
     struct frame_header {
         uint8_t sof;
@@ -54,7 +55,7 @@ namespace sub_board_dep {
 #pragma pack(push, 1)
     struct user_rx_data{
         rx_status s;
-//    float data[8];
+        //    float data[8];
     };
 #pragma pack(pop)
 
@@ -67,15 +68,11 @@ namespace sub_board_dep {
     };
 #pragma pack(pop)
 
-} // sub_board_dep
-
-
-class SubBoard {
 public:
-    using custom_rx_frame = sub_board_dep::user_rx_data;
-    using receive_frame = sub_board_dep::rx_frame;
-    using custom_tx_frame = sub_board_dep::user_tx_data;
-    using trans_frame = sub_board_dep::tx_frame;
+    using custom_rx_frame = user_rx_data;
+    using receive_frame = rx_frame;
+    using custom_tx_frame = user_tx_data;
+    using trans_frame = tx_frame;
 
     SubBoard(UART_HandleTypeDef *uart) : uartPlus(uart, sizeof(receive_frame)*2, sizeof(trans_frame)) {
         rx_frame = reinterpret_cast<receive_frame*>(uartPlus.rx_buffer);

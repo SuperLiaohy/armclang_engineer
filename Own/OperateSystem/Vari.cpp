@@ -65,7 +65,11 @@ Motor<GM6020> gm6020(1, 8192, 1000);
 
 #endif
 #if USING_CHASSIS == 1
-Chassis chassis(&canPlus2, chassis_dep::move_default, chassis_dep::base_motor_default,
+Chassis chassis(&canPlus2, {
+        Slope(2*2, 1),
+        Slope(2*2, 1),
+        Slope(0.01, 0),
+        Slope(2*2, 1)}, chassis_dep::base_motor_default,
                 chassis_dep::extend_motor_default);
 #endif
 
@@ -101,10 +105,10 @@ UI ui(102, 0x0166, &huart7);
 OneStepGetControl OSG::mode = OneStepGetControl::AUTO;
 OneStepGetAUTO OSG::auto_mode = OneStepGetAUTO::NONE;
 OSG one_step_gets(
-    Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, slope_cfg{.dead_zone = 0,.step = 0.6},
-    Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 2, slope_cfg{.dead_zone = 0,.step = 0.6},
-    Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, slope_cfg{.dead_zone = 0,.step = 0.6},
-    Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, slope_cfg{.dead_zone = 0,.step = 0.6});
+    Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, Slope(0.6, 0),
+    Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 2, Slope{0.6, 0},
+    Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(0.6, 0),
+    Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, Slope(0.6, 0));
 
 interact_dep::Actions reset(interact_dep::action_status::Joints);
 interact_dep::Actions anti_reset(interact_dep::action_status::Joints);

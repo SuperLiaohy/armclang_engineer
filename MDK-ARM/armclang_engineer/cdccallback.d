@@ -1,5 +1,7 @@
 armclang_engineer/cdccallback.o: ..\Own\CallBack\CDCCallback.cpp \
-  ..\Own\Bsp\CDC\SuperCDC.hpp ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Chassis\Chassis.hpp \
+  ..\Own\Obj\Interact\Interact_dep.hpp ..\Own\Bsp\CDC\SuperCDC.hpp \
+  ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
@@ -220,8 +222,6 @@ armclang_engineer/cdccallback.o: ..\Own\CallBack\CDCCallback.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\LinkedList.hpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
@@ -764,8 +764,5 @@ armclang_engineer/cdccallback.o: ..\Own\CallBack\CDCCallback.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
-  ..\Own\App\RemoteControl\remote_ctrl_dep.hpp \
-  ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Mod\RoundQueue\RoundQueue.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp

@@ -68,24 +68,24 @@ public:
     static OneStepGetControl mode;
     static OneStepGetAUTO auto_mode;
     OSG(const Pid& left_x_pos_pid, const Pid& left_x_speed_pid, const uint8_t left_x_id,
-        const slope_cfg& left_x_slope_cfg, const Pid& left_y_pos_pid, const Pid& left_y_speed_pid,
-        const uint8_t left_y_id, const slope_cfg& left_y_slope_cfg, const Pid& right_x_pos_pid,
-        const Pid& right_x_speed_pid, const uint8_t right_x_id, const slope_cfg& right_x_slope_cfg,
+        const Slope& left_x_slope_cfg, const Pid& left_y_pos_pid, const Pid& left_y_speed_pid,
+        const uint8_t left_y_id, const Slope& left_y_slope_cfg, const Pid& right_x_pos_pid,
+        const Pid& right_x_speed_pid, const uint8_t right_x_id, const Slope& right_x_slope_cfg,
         const Pid& right_y_pos_pid, const Pid& right_y_speed_pid, const uint8_t right_y_id,
-        const slope_cfg& right_y_slope_cfg)
+        const Slope& right_y_slope_cfg)
         : left(left_x_pos_pid, left_x_speed_pid, left_x_id, left_x_slope_cfg,
             left_y_pos_pid, left_y_speed_pid, left_y_id, left_y_slope_cfg)
         , right(right_x_pos_pid, right_x_speed_pid, right_x_id, right_x_slope_cfg,
             right_y_pos_pid, right_y_speed_pid, right_y_id, right_y_slope_cfg) {};
     class group {
     public:
-        group(const Pid& x_pos_pid, const Pid& x_speed_pid, const uint8_t x_id, const slope_cfg& x_slope_cfg,
-              const Pid& y_pos_pid, const Pid& y_speed_pid, const uint8_t y_id, const slope_cfg& y_slope_cfg)
+        group(const Pid& x_pos_pid, const Pid& x_speed_pid, const uint8_t x_id, const Slope& x_slope_cfg,
+              const Pid& y_pos_pid, const Pid& y_speed_pid, const uint8_t y_id, const Slope& y_slope_cfg)
             : X(x_pos_pid, x_speed_pid, x_id, x_slope_cfg)
             , Y(y_pos_pid, y_speed_pid, y_id, y_slope_cfg) {}
         class XGet {
         public:
-            XGet(const Pid& x_pos_pid, const Pid& x_speed_pid, const uint8_t x_id, const slope_cfg& x_slope_cfg)
+            XGet(const Pid& x_pos_pid, const Pid& x_speed_pid, const uint8_t x_id, const Slope& x_slope_cfg)
                 : pos(x_slope_cfg)
                 , Motor(x_pos_pid, x_speed_pid, x_id) {};
             bool move_back();
@@ -98,7 +98,7 @@ public:
         } X;
         class YGet {
         public:
-            YGet(const Pid& y_pos_pid, const Pid& y_speed_pid, const uint8_t y_id, const slope_cfg& y_slope_cfg)
+            YGet(const Pid& y_pos_pid, const Pid& y_speed_pid, const uint8_t y_id, const Slope& y_slope_cfg)
                 : pos(y_slope_cfg)
                 , Motor(y_pos_pid, y_speed_pid, y_id) {};
             bool move_up();
