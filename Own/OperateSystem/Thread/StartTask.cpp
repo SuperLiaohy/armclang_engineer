@@ -194,7 +194,7 @@ void StartTask() {
 
 
     interact.remote_control.start();
-    interact.image_trans.uartPlus.receive_dma_idle(100);
+    interact.image_trans.start_receive();
     interact.sub_board.start_receive();
     ui.start_receive();
 

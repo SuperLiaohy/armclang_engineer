@@ -131,7 +131,8 @@ void SuperUart::set_hex(void *data, uint16_t size) {
  */
 uint8_t* SuperUart::receive_it(uint16_t size) {
     auto pData = rx_buffer;
-    HAL_UART_Receive_IT(uart, pData, size);
+    // HAL_UART_Receive_IT(uart, pData, size);
+    HAL_UARTEx_ReceiveToIdle_IT(uart, pData, size);
     return pData;
 }
 

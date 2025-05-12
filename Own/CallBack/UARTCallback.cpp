@@ -91,7 +91,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                 }
             // }
         }
-        interact.image_trans.uartPlus.receive_dma_idle(100);
+        interact.image_trans.start_receive();
     } else if (huart == interact.sub_board.uartPlus.uart) {
         ++interact.sub_board.uartPlus.rx_cnt;
         interact.sub_board.get_feedback();
@@ -142,7 +142,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
     if (huart == interact.sub_board.uartPlus.uart) {
         interact.sub_board.start_receive();
     } else if (huart == interact.image_trans.uartPlus.uart) {
-        interact.image_trans.uartPlus.receive_dma_idle(100);
+        interact.image_trans.start_receive();
         ++interact.image_trans.uartPlus.err_cnt;
     } else if (huart == interact.remote_control.uartPlus.uart) {
         ++interact.remote_control.uartPlus.err_cnt;

@@ -67,7 +67,7 @@ namespace image_trans_dep {
 
 class ImageTrans {
 public:
-    ImageTrans(UART_HandleTypeDef *huart) : uartPlus(huart, 100, 100) {
+    ImageTrans(UART_HandleTypeDef *huart) : uartPlus(huart, 1000, 100) {
         p_custom_tx_frame = reinterpret_cast<image_trans_dep::custom_tx_frame*>(uartPlus.tx_buffer);
         p_custom_tx_frame->frame_head = {0xA5, 30, 0, 0};
         crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&p_custom_tx_frame->frame_head), sizeof(image_trans_dep::frame_header));
@@ -81,6 +81,9 @@ public:
     void transmit_custom_frame();
     void get_custom_feedback(const std::array<float, 6>& pos);
     void update_keyboard(KeyBoard &key_board);
+    void start_receive() {
+        uartPlus.receive_dma_idle(1000);
+    };
 
     image_trans_dep::user_custom_rx_data user_custom_rx_data{};
     image_trans_dep::custom_tx_frame* p_custom_tx_frame{};
