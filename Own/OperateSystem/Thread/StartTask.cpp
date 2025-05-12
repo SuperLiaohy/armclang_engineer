@@ -64,8 +64,11 @@ void robo_arm_ctrl_r_callback(KeyEventType event);
 extern interact_dep::Actions anti_reset;
 extern interact_dep::Actions get_right_y;
 extern interact_dep::Actions get_silver_mine;
+extern interact_dep::Actions get_silver_mine_z;
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
+
+extern interact_dep::ActionsGroup get_silver_group;
 
 
 
@@ -122,6 +125,10 @@ void StartTask() {
     exchange_right.joints[3] = 89.4694138;
     exchange_right.joints[4] = -89.9465207;
     exchange_right.joints[5] = -52.6248474;
+
+    get_silver_group.actions_list[0] = get_silver_mine;
+    get_silver_group.actions_list[1] = get_silver_mine_z;
+
 
     /* W25Q64初始化 */
     w25q64.init();

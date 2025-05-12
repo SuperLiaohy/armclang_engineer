@@ -42,6 +42,7 @@ public:
     std::array<float, 6> joint {};
     std::array<Slope, 3> joint_slope;
     interact_dep::Actions* actions {};
+    interact_dep::ActionsGroup* actions_group {};
 
     struct {
         interact_dep::chassis_mode mode;
@@ -65,6 +66,8 @@ public:
     void receive_custom(uint8_t* data);
 
     void receive_actions(RoboArm& Arm);
+
+    void receive_actions_group(RoboArm& Arm);
 
     void transmit_relative_pos(const std::array<float, 6>& pos);
 };

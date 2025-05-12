@@ -7,9 +7,13 @@
 
 void ArmTask() {
     uint32_t cnt = 0;
+
     while (true) {
         auto now = osKernelSysTick();
         ++cnt;
+
+        interact.receive_actions_group(roboArm);
+        interact.receive_actions(roboArm);
 
         roboArm.update_relative_pos();
         roboArm.load_target(interact.joint, interact.joint_slope);
@@ -26,22 +30,22 @@ void ArmTask() {
 
         if ((cnt+3) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint3.set_position(roboArm.target.joint3.angle, 180);
+            roboArm.joint3.set_position(roboArm.target.joint3.angle, roboArm.target_speed[2]);
             xSemaphoreGive(CAN1MutexHandle);
 
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint4.set_position_near(roboArm.target.joint4.angle, 720);
+            roboArm.joint4.set_position_near(roboArm.target.joint4.angle, roboArm.target_speed[3]);
             xSemaphoreGive(CAN1MutexHandle);
         }
         if ((cnt + 1) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint2.internal.set_position(roboArm.target.joint2.internal.angle, 180);
-            roboArm.joint2.external.set_position(roboArm.target.joint2.external.angle, 180);
+            roboArm.joint2.internal.set_position(roboArm.target.joint2.internal.angle, roboArm.target_speed[1]);
+            roboArm.joint2.external.set_position(roboArm.target.joint2.external.angle, roboArm.target_speed[1]);
             xSemaphoreGive(CAN1MutexHandle);
         }
         if ((cnt + 2) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint1.set_position(roboArm.target.joint1.angle, 180);
+            roboArm.joint1.set_position(roboArm.target.joint1.angle, roboArm.target_speed[0]);
             xSemaphoreGive(CAN1MutexHandle);
 
             // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);

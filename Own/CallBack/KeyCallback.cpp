@@ -46,6 +46,8 @@ void one_step_get_shift_z_callback(KeyEventType event) {
     }
 }
 
+extern interact_dep::ActionsGroup get_silver_group;
+
 void one_step_get_x_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
@@ -60,6 +62,15 @@ void one_step_get_x_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                get_silver_group.reset();
+                interact.actions_group = &get_silver_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                break;
+            default: break;
+        }
     }
 }
 
@@ -331,6 +342,7 @@ void robo_arm_shift_f_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
+            get_silver_mine_z.init = false;
             interact.actions       = &get_silver_mine;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;
@@ -358,6 +370,7 @@ void robo_arm_e_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
+            get_silver_mine_z.init = false;
             interact.actions       = &exchange_left;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;
@@ -371,6 +384,7 @@ void robo_arm_f_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
+            get_silver_mine_z.init = false;
             interact.actions       = &exchange_right;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;
@@ -395,6 +409,7 @@ void robo_arm_ctrl_r_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
+            get_silver_mine_z.init = false;
             interact.actions       = &anti_reset;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;

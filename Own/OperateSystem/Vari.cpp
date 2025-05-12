@@ -8,18 +8,13 @@
 #include "Chassis/Chassis.hpp"
 #include "GPIO/SuperGPIO.hpp"
 #include "Heap/CustomHeap.hpp"
-#include "ImageTrans/ImageTrans.hpp"
 #include "Interact/Interact.hpp"
 #include "Judge/referee_system.h"
 #include "Judge/ui.hpp"
-#include "Motor/Motor.hpp"
 #include "OneStepGet/OneStepGet.hpp"
-#include "Pump/Pump.hpp"
 #include "RGBLED/RGBLED.hpp"
-#include "RemoteControl/RemoteControl.hpp"
 #include "RoboArm/RoboArm.hpp"
 #include "W25Q64/W25Q64.hpp"
-#include <GPIO/SuperGPIO.hpp>
 #include <Imu/Imu.hpp>
 
 __attribute__((section(".DTCMRAM"))) uint64_t DTCMUsed[8 * 1024 / 8];
@@ -114,9 +109,13 @@ OSG one_step_gets(
 interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
 interact_dep::Actions get_right_y(interact_dep::action_status::Joints);
 interact_dep::Actions get_silver_mine(interact_dep::action_status::Joints);
-interact_dep::Actions get_silver_mine_z(Slope(2, 1, 220), interact_dep::action_status::CartesianZ, {327.5,0,-88});
+interact_dep::Actions get_silver_mine_z(Slope(0.2, 0.2, 220), interact_dep::action_status::CartesianZ, {327.5,0,-88});
 interact_dep::Actions exchange_left(interact_dep::action_status::Joints);
 interact_dep::Actions exchange_right(interact_dep::action_status::Joints);
 
+std::array<interact_dep::Actions, 2>get_silver_action = {get_silver_mine, get_silver_mine_z} ;
+std::array<uint32_t, 2>get_silver_time = {2000, 10000};
+
+interact_dep::ActionsGroup get_silver_group={.actions_list = get_silver_action.data(), .time_list = get_silver_time.data(), .len = 2, .index = 0, .time_cnt = 0};
 // OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;
 // OneStepGetAUTO one_step_get_auto = OneStepGetAUTO::NONE;

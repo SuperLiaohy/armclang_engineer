@@ -61,6 +61,7 @@ public:
 
     roboarm_dep::offset offset {};
     roboarm_dep::target target {};
+    std::array<float, 4> target_speed {roboarm_dep::default_speed};
 
     void load_target(const std::array<float, 6>& joint, std::array<Slope, 3>& Slope);
 

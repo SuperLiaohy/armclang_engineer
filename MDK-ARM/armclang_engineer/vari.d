@@ -770,7 +770,7 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\OperateSystem\Heap\rtx_lib.h ..\Own\Obj\Interact\Interact.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\Judge\referee_system.h ..\Own\App\Judge\ui.hpp \
-  ..\Own\App\OneStepGet\OneStepGet.hpp ..\Own\App\Pump\Pump.hpp \
-  ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
-  ..\Core\Inc\spi.h ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
+  ..\Own\App\OneStepGet\OneStepGet.hpp ..\Own\App\RGBLED\RGBLED.hpp \
+  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h \
+  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
   ..\Own\App\Imu\Imu.hpp

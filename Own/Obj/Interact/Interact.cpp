@@ -146,7 +146,7 @@ void Interact::update_roboArm(RoboArm& Arm) {
             break;
         case interact_dep::robo_mode::RESET: receive_reset(); break;
         case interact_dep::robo_mode::ACTIONS: {
-            interact.receive_actions(Arm);
+            // receive_actions(Arm);
             break;
         }
         default: break;
@@ -198,10 +198,19 @@ void Interact::update_chassis(Chassis& cha) {
         default: break;
     }
 }
+
+void Interact::receive_actions_group(RoboArm& Arm) {
+    if (robo_arm.mode == interact_dep::robo_mode::ACTIONS_GROUP) {
+        actions_group->update();
+        actions = actions_group->get();
+    }
+}
 void Interact::receive_actions(RoboArm& Arm) {
     using namespace interact_dep;
     using namespace roboarm_dep;
-    if (robo_arm.mode == robo_mode::ACTIONS) {
+    if (robo_arm.mode == robo_mode::ACTIONS
+        || robo_arm.mode ==  robo_mode::ACTIONS_GROUP
+        ) {
         switch (actions->status) {
             case interact_dep::action_status::Joints:
                 joint[0] = actions->joints[0];
@@ -210,10 +219,16 @@ void Interact::receive_actions(RoboArm& Arm) {
                 joint[3] = actions->joints[3];
                 joint[4] = actions->joints[4];
                 joint[5] = actions->joints[5];
+
+                Arm.target_speed[3] = 1080;
+                Arm.target_speed[2] = 480;
+                Arm.target_speed[1] = 720;
+                Arm.target_speed[0] = 720;
                 break;
             case interact_dep::action_status::CartesianX: {
                 if (actions->init == false) {
                     Arm.fkine(actions->pos);
+                    actions->axis_value.value_set(actions->pos[0]);
                     actions->init = true;
                 }
                 actions->pos[0] = actions->axis_value.update();
@@ -225,6 +240,8 @@ void Interact::receive_actions(RoboArm& Arm) {
                     joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
                     joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
                 }
+                Arm.target_speed = {roboarm_dep::default_speed};
+
             } break;
             case interact_dep::action_status::CartesianZ: {
                 if (actions->init == false) {
@@ -242,9 +259,12 @@ void Interact::receive_actions(RoboArm& Arm) {
                     joint[4] =
                         limited<float>(180 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
                 }
+                Arm.target_speed = {roboarm_dep::default_speed};
             } break;
             default: break;
         }
+    } else {
+        Arm.target_speed = {roboarm_dep::default_speed};
     }
 }
 

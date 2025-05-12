@@ -42,6 +42,7 @@ namespace interact_dep {
         CUSTOM,
         VISION,
         ACTIONS,
+        ACTIONS_GROUP,
         DRAW,
     };
 
@@ -65,12 +66,13 @@ namespace interact_dep {
 
     struct Actions {
         action_status status;
+        bool init;
+        std::array<float, 4> speed;
         union {
             struct {
                 std::array<float, 6> joints;
             };
             struct {
-                bool init;
                 std::array<float, 3> pos;
                 Slope axis_value;
             };
@@ -82,11 +84,36 @@ namespace interact_dep {
             , joints(joints) {};
 
         explicit Actions(const Slope& target, action_status status, const std::array<float, 3>& pos = {})
-            : status(status), axis_value(target), pos(pos),init(false) {};
+            : status(status)
+            , init(false)
+            , pos(pos)
+            , axis_value(target) {};
     };
 
-    struct action_group {
+    struct ActionsGroup {
+        Actions* actions_list;
+        uint32_t* time_list;
+        uint8_t len;
+        uint8_t index;
+        uint32_t time_cnt;
 
+        Actions* get() { return &actions_list[index]; }
+
+        void reset() {
+            actions_list->init = false;
+            time_cnt = 0;
+            index    = 0;
+        }
+
+        void update() {
+            ++time_cnt;
+            if (time_cnt > time_list[index]) {
+                if (index < len-1) {
+                    ++index;
+                    actions_list[index].init = false;
+                }
+            }
+        }
     };
 
 } // namespace interact_dep
