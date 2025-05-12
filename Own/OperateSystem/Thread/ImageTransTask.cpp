@@ -11,10 +11,10 @@ void ImageTransTask() {
     interact.image_trans.set_map_back(0);
     while (1) {
         auto now = xTaskGetTickCount();
-        // if (interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM) {
+        if (interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM) {
             interact.image_trans.get_custom_feedback(roboArm.relative_pos);
             interact.image_trans.transmit_custom_frame();
-        // }
+        }
         osDelayUntil(&now, 100);
     }
 }

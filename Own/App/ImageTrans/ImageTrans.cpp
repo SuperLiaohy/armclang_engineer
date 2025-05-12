@@ -4,6 +4,19 @@
 
 #include "ImageTrans.hpp"
 
+__attribute__((section(".RAM_D1"))) static uint8_t image_trans_rx_buffer[500];
+__attribute__((section(".RAM_D1"))) static uint8_t image_trans_tx_buffer[500];
+
+ImageTrans::ImageTrans(UART_HandleTypeDef* huart) : uartPlus(huart, 0, 0) {
+    uartPlus.rx_buffer = image_trans_rx_buffer;
+    uartPlus.rx_buffer = image_trans_tx_buffer;
+    p_custom_tx_frame = reinterpret_cast<custom_tx_frame*>(uartPlus.tx_buffer);
+    p_custom_tx_frame->frame_head = {0xA5, 30, 0, 0};
+    crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&p_custom_tx_frame->frame_head), sizeof(frame_header));
+    p_custom_tx_frame->cmd_id = 0x309;
+}
+
+
 void ImageTrans::update_keyboard(KeyBoard& key_board) {
     const auto buff = uartPlus.rx_buffer;
     key_board.mouse.x = static_cast<int16_t>((buff[7] | (buff[8] << 8))); // x axis

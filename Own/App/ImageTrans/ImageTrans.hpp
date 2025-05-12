@@ -65,12 +65,7 @@ public:
 
 
 public:
-    ImageTrans(UART_HandleTypeDef *huart) : uartPlus(huart, 1000, 100) {
-        p_custom_tx_frame = reinterpret_cast<custom_tx_frame*>(uartPlus.tx_buffer);
-        p_custom_tx_frame->frame_head = {0xA5, 30, 0, 0};
-        crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&p_custom_tx_frame->frame_head), sizeof(frame_header));
-        p_custom_tx_frame->cmd_id = 0x309;
-    }
+    ImageTrans(UART_HandleTypeDef *huart);
 
     void set_map_back(const uint8_t is_able) { user_custom_tx_data.s.enable_map_back = is_able; };
     void toggle_map_back() { user_custom_tx_data.s.enable_map_back = 1 - user_custom_tx_data.s.enable_map_back; };
@@ -80,7 +75,7 @@ public:
     void get_custom_feedback(const std::array<float, 6>& pos);
     void update_keyboard(KeyBoard &key_board);
     void start_receive() {
-        uartPlus.receive_dma_idle(1000);
+        uartPlus.receive_dma_idle(500);
     };
 
     user_custom_rx_data user_custom_rx_data{};
