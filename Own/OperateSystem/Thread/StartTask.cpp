@@ -85,6 +85,8 @@ void robo_arm_ctrl_g_callback(KeyEventType event);
 void robo_arm_ctrl_f_callback(KeyEventType event);
 void robo_arm_e_callback(KeyEventType event);
 void robo_arm_f_callback(KeyEventType event);
+void robo_arm_g_callback(KeyEventType event);
+
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -246,6 +248,7 @@ void StartTask() {
 
     KeyBoardRegister(interact.keyList, Key_B, CombineKey_None, one_step_get_b_callback);
     KeyBoardRegister(interact.keyList, Key_G, CombineKey_Ctrl, robo_arm_ctrl_g_callback);
+    KeyBoardRegister(interact.keyList, Key_G, CombineKey_None, robo_arm_g_callback);
 
 
     interact.remote_control.start();

@@ -4,10 +4,10 @@
 
 #include "OneStepGet.hpp"
 
-bool OSG::group::XGet::move_back() {
+bool OSG::group::XGet::move_it() {
     switch (status) {
         case OneStepGetXStatus::NONE: break;
-        default:
+        case OneStepGetXStatus::BACK: {
             auto& target_pos = pos.update();
             if (is_block) {
                 this->status           = OneStepGetXStatus::NONE;
@@ -18,16 +18,8 @@ bool OSG::group::XGet::move_back() {
                 Motor.set_position(target_pos);
                 return false;
             }
-            break;
-    }
-    Motor.set_position(pos.get());
-    return true;
-}
-
-bool OSG::group::XGet::move_front() {
-    switch (status) {
-        case OneStepGetXStatus::NONE: break;
-        default:
+        } break;
+        case OneStepGetXStatus::FRONT: {
             auto& target_pos = pos.update();
             if (is_block) {
                 this->status = OneStepGetXStatus::NONE;
@@ -36,34 +28,16 @@ bool OSG::group::XGet::move_front() {
                 Motor.set_position(target_pos);
                 return false;
             }
-            break;
+        } break;
     }
     Motor.set_position(pos.get());
     return true;
 }
 
-bool OSG::group::YGet::move_up() {
+bool OSG::group::YGet::move_it() {
     switch (status) {
         case OneStepGetYStatus::NONE: break;
-        default:
-            auto& target_pos = pos.update();
-            if (is_block) {
-                this->status = OneStepGetYStatus::NONE;
-                pos.target_set(Motor.total_position());
-                target_pos = Motor.total_position();
-                Motor.set_position(target_pos);
-                return false;
-            }
-            break;
-    }
-    Motor.set_position(pos.get());
-    return true;
-}
-
-bool OSG::group::YGet::move_down() {
-    switch (status) {
-        case OneStepGetYStatus::NONE: break;
-        default:
+        case OneStepGetYStatus::DOWN: {
             auto& target_pos = pos.update();
             if (is_block) {
                 this->status           = OneStepGetYStatus::NONE;
@@ -73,7 +47,17 @@ bool OSG::group::YGet::move_down() {
                 Motor.set_position(target_pos);
                 return false;
             }
-            break;
+        } break;
+        case OneStepGetYStatus::UP: {
+            auto& target_pos = pos.update();
+            if (is_block) {
+                this->status = OneStepGetYStatus::NONE;
+                pos.target_set(Motor.total_position());
+                target_pos = Motor.total_position();
+                Motor.set_position(target_pos);
+                return false;
+            }
+        } break;
     }
     Motor.set_position(pos.get());
     return true;

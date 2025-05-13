@@ -13,8 +13,8 @@ enum class OneStepGetControl {
 };
 enum class OneStepGetAUTO {
     NONE,
-    GOT_Y,
-    GOT_X,
+    // RESET,
+    // GOLD,
 };
 
 enum class OneStepGetYStatus {
@@ -57,8 +57,8 @@ public:
             XGet(const Pid& x_pos_pid, const Pid& x_speed_pid, const uint8_t x_id, const Slope& x_slope_cfg)
                 : pos(x_slope_cfg)
                 , Motor(x_pos_pid, x_speed_pid, x_id) {};
-            bool move_back();
-            bool move_front();
+            bool move_it();
+            // bool move_front();
             OneStepGetXStatus status;
             bool is_block;
             Slope pos;
@@ -70,8 +70,8 @@ public:
             YGet(const Pid& y_pos_pid, const Pid& y_speed_pid, const uint8_t y_id, const Slope& y_slope_cfg)
                 : pos(y_slope_cfg)
                 , Motor(y_pos_pid, y_speed_pid, y_id) {};
-            bool move_up();
-            bool move_down();
+            // bool move_up();
+            bool move_it();
             OneStepGetYStatus status;
             bool is_block;
             Slope pos;
@@ -79,6 +79,17 @@ public:
             Motor<M3508Pos> Motor;
         } Y;
     };
+
+    void reset() {
+        left.X.status = OneStepGetXStatus::BACK;
+        left.Y.status = OneStepGetYStatus::DOWN;
+        right.X.status = OneStepGetXStatus::BACK;
+        right.Y.status = OneStepGetYStatus::DOWN;
+        left.X.pos.target_set(-2000);
+        left.Y.pos.target_set(-1300);
+        right.X.pos.target_set(2300);
+        right.Y.pos.target_set(1450);
+    }
 
     group left;
     group right;

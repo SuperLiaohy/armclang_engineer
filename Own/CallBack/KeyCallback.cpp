@@ -20,9 +20,9 @@ void one_step_get_z_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-                one_step_gets.left.X.status  = OneStepGetXStatus::FRONT;
-                OSG::auto_mode               = OneStepGetAUTO::GOT_X;
+                // one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+                // one_step_gets.left.X.status  = OneStepGetXStatus::FRONT;
+                // OSG::auto_mode               = OneStepGetAUTO::GOT_X;
                 break;
             default: break;
         }
@@ -148,8 +148,8 @@ void one_step_get_shift_v_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.right.X.pos.target_set(-2300);
-                one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+                one_step_gets.right.X.pos.target_set(2300);
+                one_step_gets.right.X.status = OneStepGetXStatus::BACK;
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: one_step_gets.right.X.status = OneStepGetXStatus::NONE; break;
@@ -309,6 +309,21 @@ void robo_arm_ctrl_g_callback(KeyEventType event) {
         default: break;
     }
 }
+void robo_arm_g_callback(KeyEventType event) {
+    static uint8_t open = 0;
+    switch (event) {
+        case KeyEvent_OnClick:
+            // exchange_right.init = false;
+            // interact.actions       = &exchange_right;
+            // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            open = 1 - open;
+            interact.image_trans.set_map_back(open);
+
+            break;
+            // case KeyEvent_OnClick: interact.image_trans.toggle_map_back(); break;
+        default: break;
+    }
+}
 
 void robo_arm_shift_q_callback(KeyEventType event) {
     switch (event) {
@@ -342,7 +357,7 @@ void robo_arm_shift_f_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
-            get_silver_mine_z.init = false;
+            get_silver_mine.init = false;
             interact.actions       = &get_silver_mine;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;
@@ -370,7 +385,7 @@ void robo_arm_e_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
-            get_silver_mine_z.init = false;
+            exchange_left.init = false;
             interact.actions       = &exchange_left;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;
@@ -403,7 +418,7 @@ void robo_arm_shift_r_callback(KeyEventType event) {
             // reset_group.reset();
             // interact.actions_group = &reset_group;
             // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
-            get_silver_mine_z.init = false;
+            reset1.init = false;
             interact.actions       = &reset1;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
         default: break;
@@ -417,9 +432,10 @@ void robo_arm_ctrl_r_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
-            get_silver_mine_z.init = false;
-            interact.actions       = &anti_reset;
-            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            // get_silver_mine_z.init = false;
+            // interact.actions       = &anti_reset;
+            // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            one_step_gets.reset();
             break;
         default: break;
     }

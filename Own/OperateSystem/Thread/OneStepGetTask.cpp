@@ -34,7 +34,7 @@ void OneStepGetTask() {
                         one_step_gets.left.X.block_count = 0;
                         one_step_gets.left.X.is_block    = false;
                     }
-                    one_step_gets.left.X.move_front();
+                    one_step_gets.left.X.move_it();
                     break;
                 case OneStepGetXStatus::BACK:
                     if (one_step_gets.left.X.Motor.is_block(-3500, 5500)) {
@@ -43,7 +43,7 @@ void OneStepGetTask() {
                         one_step_gets.left.X.block_count = 0;
                         one_step_gets.left.X.is_block    = false;
                     }
-                    one_step_gets.left.X.move_back();
+                    one_step_gets.left.X.move_it();
                     break;
             }
             switch (one_step_gets.left.Y.status) {
@@ -57,7 +57,7 @@ void OneStepGetTask() {
                         one_step_gets.left.Y.block_count = 0;
                         one_step_gets.left.Y.is_block    = false;
                     }
-                    one_step_gets.left.Y.move_up();
+                    one_step_gets.left.Y.move_it();
                     break;
                 case OneStepGetYStatus::DOWN:
                     if (one_step_gets.left.Y.Motor.is_block(-3500, 3500)) {
@@ -66,7 +66,7 @@ void OneStepGetTask() {
                         one_step_gets.left.Y.block_count = 0;
                         one_step_gets.left.Y.is_block    = false;
                     }
-                    one_step_gets.left.Y.move_down();
+                    one_step_gets.left.Y.move_it();
                     break;
             }
             switch (one_step_gets.right.X.status) {
@@ -80,7 +80,7 @@ void OneStepGetTask() {
                         one_step_gets.right.X.block_count = 0;
                         one_step_gets.right.X.is_block    = false;
                     }
-                    one_step_gets.right.X.move_front();
+                    one_step_gets.right.X.move_it();
                     break;
                 case OneStepGetXStatus::BACK:
                     if (one_step_gets.right.X.Motor.is_block(-3500, 3500)) {
@@ -89,7 +89,7 @@ void OneStepGetTask() {
                         one_step_gets.right.X.block_count = 0;
                         one_step_gets.right.X.is_block    = false;
                     }
-                    one_step_gets.right.X.move_back();
+                    one_step_gets.right.X.move_it();
                     break;
             }
             switch (one_step_gets.right.Y.status) {
@@ -103,7 +103,7 @@ void OneStepGetTask() {
                         one_step_gets.right.Y.block_count = 0;
                         one_step_gets.right.Y.is_block    = false;
                     }
-                    one_step_gets.right.Y.move_up();
+                    one_step_gets.right.Y.move_it();
                     break;
                 case OneStepGetYStatus::DOWN:
                     if (one_step_gets.right.Y.Motor.is_block(-3500, 3500)) {
@@ -112,7 +112,7 @@ void OneStepGetTask() {
                         one_step_gets.right.Y.block_count = 0;
                         one_step_gets.right.Y.is_block    = false;
                     }
-                    one_step_gets.right.Y.move_down();
+                    one_step_gets.right.Y.move_it();
                     break;
             }
         } else if (OSG::mode == OneStepGetControl::AUTO) {
@@ -138,14 +138,90 @@ void OneStepGetTask() {
             //         // }
             //     }
             // }
+            switch (one_step_gets.left.X.status) {
+                case OneStepGetXStatus::FRONT:
+                    if (one_step_gets.left.X.Motor.is_block(-2500, 2500)) {
+                        if (++one_step_gets.left.X.block_count > 1) { one_step_gets.left.X.is_block = true; }
+                    } else {
+                        one_step_gets.left.X.block_count = 0;
+                        one_step_gets.left.X.is_block    = false;
+                    }
+                    break;
+                case OneStepGetXStatus::BACK:
+                    if (one_step_gets.left.X.Motor.is_block(-3500, 5500)) {
+                        if (++one_step_gets.left.X.block_count > 1) { one_step_gets.left.X.is_block = true; }
+                    } else {
+                        one_step_gets.left.X.block_count = 0;
+                        one_step_gets.left.X.is_block    = false;
+                    }
+                    break;
+                default:break;
+            }
 
+            switch (one_step_gets.left.Y.status) {
+                case OneStepGetYStatus::UP:
+                    if (one_step_gets.left.Y.Motor.is_block(-3500, 3500)) {
+                        if (++one_step_gets.left.Y.block_count > 1) { one_step_gets.left.Y.is_block = true; }
+                    } else {
+                        one_step_gets.left.Y.block_count = 0;
+                        one_step_gets.left.Y.is_block    = false;
+                    }
+                    break;
+                case OneStepGetYStatus::DOWN:
+                    if (one_step_gets.left.Y.Motor.is_block(-3500, 3500)) {
+                        if (++one_step_gets.left.Y.block_count > 1) { one_step_gets.left.Y.is_block = true; }
+                    } else {
+                        one_step_gets.left.Y.block_count = 0;
+                        one_step_gets.left.Y.is_block    = false;
+                    }
+                    break;
+                default:;
+            }
+            switch (one_step_gets.right.X.status) {
+                case OneStepGetXStatus::FRONT:
+                    if (one_step_gets.right.X.Motor.is_block(-2500, 2500)) {
+                        if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
+                    } else {
+                        one_step_gets.right.X.block_count = 0;
+                        one_step_gets.right.X.is_block    = false;
+                    }
+                    break;
+                case OneStepGetXStatus::BACK:
+                    if (one_step_gets.right.X.Motor.is_block(-3500, 3500)) {
+                        if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
+                    } else {
+                        one_step_gets.right.X.block_count = 0;
+                        one_step_gets.right.X.is_block    = false;
+                    }
+                    break;
+                default:break;
+            }
 
+            switch (one_step_gets.right.Y.status) {
+                case OneStepGetYStatus::UP:
+                    if (one_step_gets.right.Y.Motor.is_block(-3500, 3500)) {
+                        if (++one_step_gets.right.Y.block_count > 1) { one_step_gets.right.Y.is_block = true; }
+                    } else {
+                        one_step_gets.right.Y.block_count = 0;
+                        one_step_gets.right.Y.is_block    = false;
+                    }
+                    break;
+                case OneStepGetYStatus::DOWN:
+                    if (one_step_gets.right.Y.Motor.is_block(-3500, 3500)) {
+                        if (++one_step_gets.right.Y.block_count > 1) { one_step_gets.right.Y.is_block = true; }
+                    } else {
+                        one_step_gets.right.Y.block_count = 0;
+                        one_step_gets.right.Y.is_block    = false;
+                    }
+                    break;
+                default:break;
+            }
 
-            one_step_gets.left.X.move_front();
-            one_step_gets.left.Y.move_up();
+            one_step_gets.left.X.move_it();
+            one_step_gets.left.Y.move_it();
 
-            one_step_gets.right.X.move_front();
-            one_step_gets.right.Y.move_up();
+            one_step_gets.right.X.move_it();
+            one_step_gets.right.Y.move_it();
 
         }
         canPlus3.transmit(0x200, one_step_gets.right.Y.Motor.speed_output(), one_step_gets.left.Y.Motor.speed_output(),
