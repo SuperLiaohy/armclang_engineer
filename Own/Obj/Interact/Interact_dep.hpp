@@ -42,7 +42,7 @@ namespace interact_dep {
         CartesianZ,
     };
 
-    constexpr std::array<float, 4> default_action_speed = {720, 720, 480, 720};
+    constexpr std::array<float, 4> default_action_speed = {480, 480, 720, 720};
     struct Actions {
         action_status status;
         bool init;

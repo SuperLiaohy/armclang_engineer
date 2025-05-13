@@ -130,8 +130,8 @@ interact_dep::Actions reset1(interact_dep::action_status::Joints);
 
 
 std::array<interact_dep::Actions, 3>get_silver_action = {get_silver_mine, get_silver_mine_z, put_silver_mine_left} ;
-std::array<uint32_t, 3>get_silver_time = {1500, 1000, 500};
+std::array<uint32_t, 3>get_silver_time = {1500, 1000, 1000};
 
-interact_dep::ActionsGroup get_silver_group={.actions_list = get_silver_action.data(), .time_list = get_silver_time.data(), .len = 2, .index = 0, .time_cnt = 0};
+interact_dep::ActionsGroup get_silver_group={.actions_list = get_silver_action.data(), .time_list = get_silver_time.data(), .len = 3, .index = 0, .time_cnt = 0};
 // OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;
 // OneStepGetAUTO one_step_get_auto = OneStepGetAUTO::NONE;
