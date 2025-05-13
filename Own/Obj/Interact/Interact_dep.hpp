@@ -73,8 +73,13 @@ namespace interact_dep {
     };
 
     struct ActionsGroup {
+        using event = bool (*)();
+        using exe = void (*)();
+
         Actions* actions_list;
         uint32_t* time_list;
+        event* event_list;
+        exe* exe_list;
         uint8_t len;
         uint8_t index;
         uint32_t time_cnt;
@@ -88,12 +93,29 @@ namespace interact_dep {
         }
 
         void update() {
+            if (time_cnt==0) {
+                if (exe_list != nullptr && exe_list[0] != nullptr) {
+                    exe_list[0]();
+                }
+            }
             ++time_cnt;
-            if (time_cnt > time_list[index]) {
+            auto event_bool = false;
+            if (event_list != nullptr && event_list[index] != nullptr) {
+                event_bool =event_list[index]();
+            }
+            if (time_cnt > time_list[index] || event_bool) {
                 if (index < len - 1) {
-                    time_cnt = 0;
                     ++index;
+                    if (exe_list != nullptr && exe_list[index] != nullptr) {
+                        exe_list[index]();
+                    }
+                    time_cnt = 1;
+
                     actions_list[index].init = false;
+                } else {
+                    if (exe_list != nullptr && exe_list[len] != nullptr) {
+                        exe_list[len]();
+                    }
                 }
             }
         }

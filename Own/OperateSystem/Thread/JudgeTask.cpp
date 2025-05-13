@@ -101,16 +101,16 @@ void JudgeTask() {
         osDelay(34);
 
         ui.operate_fig(ui_list[4], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 845,
-                   UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});
+                   UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});  //lf
 
         ui.operate_fig(ui_list[5], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 790,
-                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});
+                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});  //lb
 
         ui.operate_fig(ui_list[6], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 845,
-                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});
+                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});  //rf
 
         ui.operate_fig(ui_list[7], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 790,
-                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});
+                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});  //rb
 
         ui.operate_fig(ui_list[8], UI::layer::LAYER_4, UI::color::CYAN, 1, 930 + 70, 880,
                        UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});
@@ -141,16 +141,16 @@ void JudgeTask() {
                                UI::int_data {.font_size = 50, .data = int_auto()});
 
                 ui.operate_fig(ui_list[4], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 845,
-                           UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});
+                           UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});
 
                 ui.operate_fig(ui_list[5], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 790,
-                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});
-
-                ui.operate_fig(ui_list[6], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 845,
                                UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});
 
+                ui.operate_fig(ui_list[6], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 845,
+                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});
+
                 ui.operate_fig(ui_list[7], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 790,
-                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});
+                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});
 
                 ui.operate_fig(ui_list[8], UI::layer::LAYER_4, UI::color::CYAN, 1, 930 + 70, 880,
                                UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});

@@ -34,7 +34,7 @@ void OneStepGetTask() {
                         one_step_gets.left.X.block_count = 0;
                         one_step_gets.left.X.is_block    = false;
                     }
-                    one_step_gets.left.X.move_front(false);
+                    one_step_gets.left.X.move_front();
                     break;
                 case OneStepGetXStatus::BACK:
                     if (one_step_gets.left.X.Motor.is_block(-3500, 5500)) {
@@ -66,7 +66,7 @@ void OneStepGetTask() {
                         one_step_gets.left.Y.block_count = 0;
                         one_step_gets.left.Y.is_block    = false;
                     }
-                    one_step_gets.left.Y.move_down(false);
+                    one_step_gets.left.Y.move_down();
                     break;
             }
             switch (one_step_gets.right.X.status) {
@@ -80,7 +80,7 @@ void OneStepGetTask() {
                         one_step_gets.right.X.block_count = 0;
                         one_step_gets.right.X.is_block    = false;
                     }
-                    one_step_gets.right.X.move_front(false);
+                    one_step_gets.right.X.move_front();
                     break;
                 case OneStepGetXStatus::BACK:
                     if (one_step_gets.right.X.Motor.is_block(-3500, 3500)) {
@@ -112,32 +112,41 @@ void OneStepGetTask() {
                         one_step_gets.right.Y.block_count = 0;
                         one_step_gets.right.Y.is_block    = false;
                     }
-                    one_step_gets.right.Y.move_down(false);
+                    one_step_gets.right.Y.move_down();
                     break;
             }
         } else if (OSG::mode == OneStepGetControl::AUTO) {
-            if (OSG::auto_mode == OneStepGetAUTO::GOT_X) {
-                one_step_gets.left.Y.move_up();
-                one_step_gets.right.Y.move_up();
-                bool left_get =
-                    isInRange(one_step_gets.left.Y.pos.target, one_step_gets.left.Y.Motor.total_position() - 15,
-                              one_step_gets.left.Y.Motor.total_position() + 15);
-                bool right_get =
-                    isInRange(one_step_gets.right.Y.pos.target, one_step_gets.right.Y.Motor.total_position() - 15,
-                              one_step_gets.right.Y.Motor.total_position() + 15);
-                if (left_get && right_get) {
-                    // switch (one_step_get_right.x) {
-                    //     case OneStepGetXStatus::NONE: right_out_x = one_step_get_right.move_front(0, false); break;
-                    //     case OneStepGetXStatus::FRONT: right_out_x = one_step_get_right.move_front(-4000, false); break;
-                    //     case OneStepGetXStatus::BACK: right_out_x = one_step_get_right.move_back(4000); break;
-                    // }
-                    // switch (one_step_get_left.x) {
-                    //     case OneStepGetXStatus::NONE: left_out_x = one_step_get_left.move_front(0, false); break;
-                    //     case OneStepGetXStatus::FRONT: left_out_x = one_step_get_left.move_front(4000, false); break;
-                    //     case OneStepGetXStatus::BACK: left_out_x = one_step_get_left.move_back(-4000); break;
-                    // }
-                }
-            }
+            // if (OSG::auto_mode == OneStepGetAUTO::GOT_X) {
+            //     one_step_gets.left.Y.move_up();
+            //     one_step_gets.right.Y.move_up();
+            //     bool left_get =
+            //         isInRange(one_step_gets.left.Y.pos.target, one_step_gets.left.Y.Motor.total_position() - 15,
+            //                   one_step_gets.left.Y.Motor.total_position() + 15);
+            //     bool right_get =
+            //         isInRange(one_step_gets.right.Y.pos.target, one_step_gets.right.Y.Motor.total_position() - 15,
+            //                   one_step_gets.right.Y.Motor.total_position() + 15);
+            //     if (left_get && right_get) {
+            //         // switch (one_step_get_right.x) {
+            //         //     case OneStepGetXStatus::NONE: right_out_x = one_step_get_right.move_front(0, false); break;
+            //         //     case OneStepGetXStatus::FRONT: right_out_x = one_step_get_right.move_front(-4000, false); break;
+            //         //     case OneStepGetXStatus::BACK: right_out_x = one_step_get_right.move_back(4000); break;
+            //         // }
+            //         // switch (one_step_get_left.x) {
+            //         //     case OneStepGetXStatus::NONE: left_out_x = one_step_get_left.move_front(0, false); break;
+            //         //     case OneStepGetXStatus::FRONT: left_out_x = one_step_get_left.move_front(4000, false); break;
+            //         //     case OneStepGetXStatus::BACK: left_out_x = one_step_get_left.move_back(-4000); break;
+            //         // }
+            //     }
+            // }
+
+
+
+            one_step_gets.left.X.move_front();
+            one_step_gets.left.Y.move_up();
+
+            one_step_gets.right.X.move_front();
+            one_step_gets.right.Y.move_up();
+
         }
         canPlus3.transmit(0x200, one_step_gets.right.Y.Motor.speed_output(), one_step_gets.left.Y.Motor.speed_output(),
             one_step_gets.right.X.Motor.speed_output(), one_step_gets.left.X.Motor.speed_output());

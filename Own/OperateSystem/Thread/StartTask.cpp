@@ -103,7 +103,7 @@ void StartTask() {
     reset1.joints[5] = 0;
 
     reset1.speed[0] = 720;
-    reset1.speed[1] = 720;
+    reset1.speed[1] = 320;
     reset1.speed[2] = 720;
     reset1.speed[3] = 720;
 
@@ -147,12 +147,17 @@ void StartTask() {
     put_silver_mine_right.joints[4] = 90.78;
     put_silver_mine_right.joints[5] = 38.22;
 
-    put_silver_mine_left.joints[0] = -32.2453613;
-    put_silver_mine_left.joints[1] = 5.38013029;
-    put_silver_mine_left.joints[2] = 117.166023;
-    put_silver_mine_left.joints[3] = -42.4886055;
-    put_silver_mine_left.joints[4] = 70.3109283;
-    put_silver_mine_left.joints[5] = 0;
+    put_silver_mine_left.joints[0] = -44.8466797;
+    put_silver_mine_left.joints[1] = 1.91878128;
+    put_silver_mine_left.joints[2] = 108.428192;
+    put_silver_mine_left.joints[3] = -0.359306335;
+    put_silver_mine_left.joints[4] = 73.6503601;
+    put_silver_mine_left.joints[5] = -32.8104858;
+
+    put_silver_mine_left.speed[0] = 720;
+    put_silver_mine_left.speed[1] = 180;
+    put_silver_mine_left.speed[2] = 360;
+    put_silver_mine_left.speed[3] = 720;
 
     exchange_left.joints[0] = -17.9960938;
     exchange_left.joints[1] = 36.7366142;

@@ -157,9 +157,25 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
+          <LineNumber>104</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134393152</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Own\OperateSystem\Vari.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\armclang_engineer\../Own/OperateSystem/Vari.cpp\104</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
           <LineNumber>60</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134350372</Address>
+          <Address>134350188</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -171,11 +187,11 @@
           <Expression>\\armclang_engineer\../Own/OperateSystem/Thread/IMUTask.cpp\60</Expression>
         </Bp>
         <Bp>
-          <Number>1</Number>
+          <Number>2</Number>
           <Type>0</Type>
           <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134350138</Address>
+          <Address>134349954</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -187,11 +203,11 @@
           <Expression>\\armclang_engineer\../Own/OperateSystem/Thread/IMUTask.cpp\37</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>3</Number>
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134376374</Address>
+          <Address>134376430</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -203,7 +219,7 @@
           <Expression>\\armclang_engineer\../Own/Obj/RoboArm/RoboArm.cpp\83</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>4</Number>
           <Type>0</Type>
           <LineNumber>301</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -219,11 +235,11 @@
           <Expression>\\armclang_engineer\startup_stm32h723xx.s\301</Expression>
         </Bp>
         <Bp>
-          <Number>4</Number>
+          <Number>5</Number>
           <Type>0</Type>
           <LineNumber>68</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134380038</Address>
+          <Address>134380094</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -235,11 +251,11 @@
           <Expression>\\armclang_engineer\../Own/Obj/RoboArm/RoboArm.cpp\68</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>6</Number>
           <Type>0</Type>
           <LineNumber>43</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134379942</Address>
+          <Address>134379998</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -316,6 +332,16 @@
           <count>12</count>
           <WinNumber>1</WinNumber>
           <ItemText>one_step_gets</ItemText>
+        </Ww>
+        <Ww>
+          <count>13</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>get_silver_group</ItemText>
+        </Ww>
+        <Ww>
+          <count>14</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>reset1</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
