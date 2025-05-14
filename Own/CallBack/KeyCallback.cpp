@@ -90,6 +90,7 @@ void one_step_get_shift_x_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
+extern interact_dep::ActionsGroup get_second_silver_group;
 
 extern interact_dep::Actions reset2;
 void one_step_get_c_callback(KeyEventType event) {
@@ -107,15 +108,11 @@ void one_step_get_c_callback(KeyEventType event) {
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
-            case KeyEvent_OnDown:
-            case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing:
-                reset2.init            = false;
-                interact.actions = &reset2;
-                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            case KeyEvent_OnClick:
+                get_second_silver_group.reset();
+                interact.actions_group = &get_second_silver_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
                 break;
-            case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
             default: break;
         }
     }
@@ -152,6 +149,18 @@ void one_step_get_v_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnDown:
+            case KeyEvent_OnLongPress:
+            case KeyEvent_OnPressing:
+                reset2.init            = false;
+                interact.actions = &reset2;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+                break;
+            case KeyEvent_None:
+            case KeyEvent_OnUp: one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
+            default: break;
+        }
     }
 }
 

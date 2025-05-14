@@ -75,6 +75,7 @@ extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
 
 extern interact_dep::ActionsGroup get_silver_group;
+extern interact_dep::ActionsGroup get_second_silver_group;
 
 
 
@@ -249,10 +250,10 @@ void StartTask() {
     get_right_y.joints[5] = 42.9085999;
 
     get_silver_mine.joints[0] = 0;
-    get_silver_mine.joints[1] = 31.3752861;
-    get_silver_mine.joints[2] = 121.70;
+    get_silver_mine.joints[1] = 34.3415947;
+    get_silver_mine.joints[2] = 121.3975;
     get_silver_mine.joints[3] = 0;
-    get_silver_mine.joints[4] = 27;
+    get_silver_mine.joints[4] = 24.3;
     get_silver_mine.joints[5] = 0;
 
     put_silver_mine_right.joints[0] = 16.20;
@@ -298,8 +299,17 @@ void StartTask() {
     get_silver_group.actions_list[0] = get_silver_mine;
     get_silver_group.actions_list[1] = get_silver_mine_z;
     get_silver_group.actions_list[2] = put_silver_mine_left;
-    get_silver_group.actions_list[3] = exchange_left;
-    get_silver_group.actions_list[4] = silver_reset;
+    get_silver_group.actions_list[3] = put_silver_mine_left;
+    get_silver_group.actions_list[4] = exchange_left;
+    get_silver_group.actions_list[4].speed[0] = 360;
+    get_silver_group.actions_list[4].speed[1] = 360;
+    get_silver_group.actions_list[4].speed[2] = 360;
+    get_silver_group.actions_list[4].speed[3] = 360;
+    get_silver_group.actions_list[5] = silver_reset;
+
+    get_second_silver_group.actions_list[0] = get_silver_mine;
+    get_second_silver_group.actions_list[1] = get_silver_mine_z;
+    get_second_silver_group.actions_list[2] = reset1;
 
 
     /* W25Q64初始化 */

@@ -91,9 +91,10 @@ void air_right_callback(KeyEventType event);
 void Interact::receive_custom(uint8_t* data) {
     using namespace interact_dep;
     auto last_s = ImageTrans::user_custom_rx_status(image_trans.user_custom_rx_data.s);
-    if (robo_arm.mode == robo_mode::CUSTOM) {
-        memcpy(reinterpret_cast<uint8_t*>(&image_trans.user_custom_rx_data), data,
+    memcpy(reinterpret_cast<uint8_t*>(&image_trans.user_custom_rx_data), data,
                sizeof(ImageTrans::user_custom_rx_data));
+    if (robo_arm.mode == robo_mode::CUSTOM) {
+
         if (image_trans.user_custom_rx_data.s.pump != last_s.pump) {
             air_right_callback(KeyEvent_OnClick);
         }
