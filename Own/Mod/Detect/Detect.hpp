@@ -18,21 +18,21 @@ extern "C" {
  * 但是这样耦合了stm32的库很不好，所以我打算在后面的版本中，想办法改进
  */
 #include "DetectManager.hpp"
-
+#include "OwnFunc/OwnFunc.hpp"
 
 typedef void (*Fun)();
 DetectManager<Detect>& DetectManagerInstance();
 DetectManager<TimDetect>& TimDetectManagerInstance();
 
-
 class Detect {
 public:
+
     Detect(uint32_t maxInterval, Fun lostFun = nullptr, Fun recoverFun = nullptr);
 
     ~Detect();
 
-    void init(Fun lostFun, Fun recoverFun) {
-        this->lostFun = lostFun;
+    void init(const MyFunction& lostFun, const MyFunction& recoverFun) {
+        this->lostFun    = lostFun;
         this->recoverFun = recoverFun;
     }
 
@@ -42,16 +42,13 @@ public:
 
     uint8_t isLost; //标记是否已丢失
 
-    Fun lostFun;//掉线处理函数
-    Fun recoverFun;//恢复连接处理函数
+    MyFunction lostFun;    //掉线处理函数
+    MyFunction recoverFun; //恢复连接处理函数
 protected:
-    uint32_t maxInterval; //收到数据的最大间隔时间，超过则认为断开
+    uint32_t maxInterval;     //收到数据的最大间隔时间，超过则认为断开
     uint32_t lastReceiveTime; //记录到的上次收到数据的时间
 
-    static uint32_t getSysTime() {
-        return HAL_GetTick();
-    }
-
+    static uint32_t getSysTime() { return HAL_GetTick(); }
 };
 
 class TimDetect {
@@ -63,7 +60,7 @@ public:
     // static DetectManager detectManager;
 
     void init(Fun lostFun, Fun recoverFun) {
-        this->lostFun = lostFun;
+        this->lostFun    = lostFun;
         this->recoverFun = recoverFun;
     }
 
@@ -73,15 +70,11 @@ public:
 
     uint8_t isLost; //标记是否已丢失
 
-    Fun lostFun;//掉线处理函数
-    Fun recoverFun;//恢复连接处理函数
+    Fun lostFun;    //掉线处理函数
+    Fun recoverFun; //恢复连接处理函数
 protected:
-    uint32_t maxInterval; //收到数据的最大间隔时间，超过则认为断开
+    uint32_t maxInterval;     //收到数据的最大间隔时间，超过则认为断开
     uint32_t lastReceiveTime; //记录到的上次收到数据的时间
 
-    static uint32_t getSysTime() {
-        return HAL_GetTick();
-    }
-
+    static uint32_t getSysTime() { return HAL_GetTick(); }
 };
-

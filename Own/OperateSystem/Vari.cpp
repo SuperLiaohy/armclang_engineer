@@ -65,9 +65,9 @@ Motor<GM6020> gm6020(1, 8192, 1000);
 
 #endif
 #if USING_CHASSIS == 1
-Chassis chassis(&canPlus2, {Slope(2 * 2, 1), Slope(2 * 2, 1), Slope(0.01, 0), Slope(2 * 2, 1)},
-                chassis_dep::base_motor_default, chassis_dep::extend_motor_default);
 #endif
+Chassis chassis(&canPlus2, {Slope(10, 1), Slope(10, 1), Slope(0.01, 0), Slope(10, 1)},
+                chassis_dep::base_motor_default, chassis_dep::extend_motor_default);
 
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
 RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 1, 1,
