@@ -7,14 +7,11 @@
 #include "M3508.hpp"
 #include "Motor.tpp"
 #include "lkMotor.hpp"
-template<motor_control motor>
-class Motor : public motor{
+template<motor_control motor> class Motor : public motor {
 public:
-  template<typename... Args>
-  explicit Motor(Args&&... args) : motor(std::forward<Args>(args)...) {};
-
+    template<typename... Args>
+    explicit Motor(Args&&... args)
+        : motor(std::forward<Args>(args)...) {};
+    void detect_lost(Fun callback) { this->detect.lostFun = callback; }
+    void detect_recover(Fun callback) { this->detect.recoverFun = callback; }
 };
-
-
-
-

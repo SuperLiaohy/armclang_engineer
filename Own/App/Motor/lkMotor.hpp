@@ -10,18 +10,6 @@
 
 #include "Control/lkControl.hpp"
 #include "Param/lkMotor.hpp"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "cmsis_os.h"
-#include "FreeRTOS.h"
-    extern osMutexId CAN1MutexHandle;
-#ifdef __cplusplus
-}
-#endif
-
-
 #include <MyMath/MyMath.hpp>
 #define USING_LKMOTOR 1
 #if USING_LKMOTOR == 1

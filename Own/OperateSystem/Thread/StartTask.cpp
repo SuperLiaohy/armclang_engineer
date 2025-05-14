@@ -87,6 +87,81 @@ void robo_arm_e_callback(KeyEventType event);
 void robo_arm_f_callback(KeyEventType event);
 void robo_arm_g_callback(KeyEventType event);
 
+void chassis_motor_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+}
+
+void joint1_motor_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint1.clear_error();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint1.disable();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint1.enable();
+    xSemaphoreGive(CAN1MutexHandle);
+}
+
+void joint2_internal_motor_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint2.internal.clear_error();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint2.internal.disable();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint2.internal.enable();
+    xSemaphoreGive(CAN1MutexHandle);
+}
+void joint2_external_motor_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint2.external.clear_error();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint2.external.disable();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint2.external.enable();
+    xSemaphoreGive(CAN1MutexHandle);
+}
+void joint3_motor_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint3.clear_error();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint3.disable();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint3.enable();
+    xSemaphoreGive(CAN1MutexHandle);
+}
+void joint4_motor_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint4.clear_error();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint4.disable();
+    xSemaphoreGive(CAN1MutexHandle);
+
+    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    roboArm.joint4.enable();
+    xSemaphoreGive(CAN1MutexHandle);
+}
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -97,6 +172,19 @@ void StartTask() {
     power_24v_left.WriteDown();
     power_5v.WriteUp();
 
+    chassis.base.left_front.detect_lost(chassis_motor_detect);
+    chassis.base.right_front.detect_lost(chassis_motor_detect);
+    chassis.base.left_rear.detect_lost(chassis_motor_detect);
+    chassis.base.right_rear.detect_lost(chassis_motor_detect);
+    chassis.extend.left.detect_lost(chassis_motor_detect);
+    chassis.extend.right.detect_lost(chassis_motor_detect);
+
+    roboArm.joint1.detect_lost(joint1_motor_detect);
+    roboArm.joint2.internal.detect_lost(joint2_internal_motor_detect);
+    roboArm.joint2.external.detect_lost(joint2_external_motor_detect);
+    roboArm.joint3.detect_lost(joint3_motor_detect);
+    roboArm.joint4.detect_lost(joint4_motor_detect);
+
     reset1.joints[0] = 0;
     reset1.joints[1] = -55;
     reset1.joints[2] = 145;
@@ -105,9 +193,21 @@ void StartTask() {
     reset1.joints[5] = 0;
 
     reset1.speed[0] = 720;
-    reset1.speed[1] = 320;
-    reset1.speed[2] = 720;
+    reset1.speed[1] = 720;
+    reset1.speed[2] = 360;
     reset1.speed[3] = 720;
+    reset1.joints[0] = 0;
+
+    reset2.joints[1] = -4;
+    reset2.joints[2] = 145;
+    reset2.joints[3] = 0;
+    reset2.joints[4] = 0;
+    reset2.joints[5] = 0;
+
+    reset2.speed[0] = 720;
+    reset2.speed[1] = 720;
+    reset2.speed[2] = 360;
+    reset2.speed[3] = 720;
 
     // reset2.joints[0] = 0;
     // reset2.joints[1] = -55;
@@ -136,10 +236,10 @@ void StartTask() {
     get_right_y.joints[5] = 42.9085999;
 
     get_silver_mine.joints[0] = 0;
-    get_silver_mine.joints[1] = 40;
-    get_silver_mine.joints[2] = 120;
+    get_silver_mine.joints[1] = 31.3752861;
+    get_silver_mine.joints[2] = 121.70;
     get_silver_mine.joints[3] = 0;
-    get_silver_mine.joints[4] = 20;
+    get_silver_mine.joints[4] = 27;
     get_silver_mine.joints[5] = 0;
 
     put_silver_mine_right.joints[0] = 16.20;
@@ -149,16 +249,23 @@ void StartTask() {
     put_silver_mine_right.joints[4] = 90.78;
     put_silver_mine_right.joints[5] = 38.22;
 
-    put_silver_mine_left.joints[0] = -44.8466797;
-    put_silver_mine_left.joints[1] = 1.91878128;
-    put_silver_mine_left.joints[2] = 108.428192;
-    put_silver_mine_left.joints[3] = -0.359306335;
-    put_silver_mine_left.joints[4] = 73.6503601;
-    put_silver_mine_left.joints[5] = -32.8104858;
+    // put_silver_mine_left.joints[0] = -44.8466797;
+    // put_silver_mine_left.joints[1] = 1.91878128;
+    // put_silver_mine_left.joints[2] = 108.428192;
+    // put_silver_mine_left.joints[3] = -0.359306335;
+    // put_silver_mine_left.joints[4] = 73.6503601;
+    // put_silver_mine_left.joints[5] = 40.1804858;
+
+    put_silver_mine_left.joints[0] = -53.1208191;
+    put_silver_mine_left.joints[1] = 5.90897751;
+    put_silver_mine_left.joints[2] = 101.512299;
+    put_silver_mine_left.joints[3] = 0.601997375;
+    put_silver_mine_left.joints[4] = 83.9671173;
+    put_silver_mine_left.joints[5] = 35.4749832;
 
     put_silver_mine_left.speed[0] = 720;
     put_silver_mine_left.speed[1] = 180;
-    put_silver_mine_left.speed[2] = 360;
+    put_silver_mine_left.speed[2] = 180;
     put_silver_mine_left.speed[3] = 720;
 
     exchange_left.joints[0] = -17.9960938;

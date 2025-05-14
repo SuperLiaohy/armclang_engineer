@@ -44,7 +44,8 @@ namespace chassis_dep {
         NONE,
     };
 
-    constexpr float normal_speed_step = 4;
+    constexpr float normal_speed_step = 2;
+    constexpr float stop_speed_step = 30;
     constexpr float shift_speed_step = 2;
 
     struct move {
@@ -111,15 +112,15 @@ namespace chassis_dep {
         float vx;
         float vy;
         float w;
-    } max                 = {3732, 3732, 5};
+    } max                 = {3732, 3732, 15};
         // {2000, 2000, 15};
     constexpr float v2rpm = 60 / (2 * my_math::pi * info.wheel_radius) * 19.2f;
 
     constexpr std::array<ChassisMotorCfg, 4> base_motor_default = {
-        ChassisMotorCfg {1, Pid(15, 0, 4, 8000, 16000, 19.2)},
-        ChassisMotorCfg {2, Pid(15, 0, 4, 8000, 16000, 19.2)},
-        ChassisMotorCfg {4, Pid(15, 0, 4, 8000, 16000, 19.2)},
-        ChassisMotorCfg {3, Pid(15, 0, 4, 8000, 16000, 19.2)},
+        ChassisMotorCfg {1, Pid(15, 0, 3, 8000, 16000, 19.2)},
+        ChassisMotorCfg {2, Pid(15, 0, 3, 8000, 16000, 19.2)},
+        ChassisMotorCfg {4, Pid(15, 0, 3, 8000, 16000, 19.2)},
+        ChassisMotorCfg {3, Pid(15, 0, 3, 8000, 16000, 19.2)},
     };
     constexpr std::array<ChassisMotorCfg, 2> extend_motor_default = {
         ChassisMotorCfg {5, Pid(15, 0, 4, 8000, 16000, 19.2)},

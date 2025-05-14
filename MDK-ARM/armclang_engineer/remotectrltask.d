@@ -747,7 +747,7 @@ armclang_engineer/remotectrltask.o: \
   ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006Diff.hpp \
   ..\Own\App\Motor\Control\PosPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
   ..\Own\App\Motor\Control\..\Motor.tpp ..\Own\Mod\Detect\Detect.hpp \
-  ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\Detect\DetectManager.hpp ..\Own\Mod\OwnFunc\OwnFunc.hpp \
   ..\Own\App\Motor\Control\SpeedPidControl.hpp \
   ..\Own\App\Motor\Param\M2006Diff.hpp \
   ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \

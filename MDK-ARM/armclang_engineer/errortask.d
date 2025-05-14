@@ -713,12 +713,12 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\LinkedList.hpp ..\Own\Mod\CustomList\SeqList.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
-  ..\Own\Mod\Count\CountManager.hpp ..\Core\Inc\usart.h \
-  ..\Own\Mod\Key\Key.hpp ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\Obj\Chassis\Chassis.hpp \
-  ..\Own\Obj\Interact\Interact_dep.hpp ..\Own\Bsp\CDC\SuperCDC.hpp \
-  ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Own\Mod\OwnFunc\OwnFunc.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
+  ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
+  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Core\Inc\fdcan.h ..\Own\Obj\Interact\Interact.hpp \
+  ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
+  ..\Own\Bsp\CDC\SuperCDC.hpp ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \

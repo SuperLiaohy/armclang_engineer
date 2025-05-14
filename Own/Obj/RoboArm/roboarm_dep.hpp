@@ -124,7 +124,8 @@ namespace roboarm_dep {
             , right(right_pos_pid, right_speed_pid, right_id)
             , fram(hi2c)
             , slope_left(0.15, 2)
-            , slope_right(0.15, 2) {};
+            , slope_right(0.15, 2)
+            , index(0) {};
 
         void init(std::array<float, 6>& joint);
 
@@ -173,7 +174,7 @@ namespace roboarm_dep {
         range joint4;
         range joint5;
         range joint6;
-    } limitation = {{-45, 45}, {-55, 55}, {-145, 145}, {-180, 179.9}, {-90, 90}, {-90, 90}};
+    } limitation = {{-55, 55}, {-55, 55}, {-145, 145}, {-180, 179.9}, {-90, 90}, {-90, 90}};
 
     constexpr std::array<float, 4> default_speed = {180, 180, 180, 720};
     constexpr std::array<float, 4> none_speed = {180, 180, 180, 720};

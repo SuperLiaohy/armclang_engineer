@@ -36,10 +36,10 @@ void ImageTrans::transmit_custom_frame() {
 }
 
 void ImageTrans::get_custom_feedback(const std::array<float, 6>& angle) {
-    user_custom_tx_data.joint[0] = angle[0] * scale(360, 4096);
+    user_custom_tx_data.joint[0] = -angle[0] * scale(360, 4096);
     user_custom_tx_data.joint[1] = angle[1] * scale(360, 4096);
     user_custom_tx_data.joint[2] = angle[2] * scale(360, 4096);
-    user_custom_tx_data.joint[3] = angle[3] * scale(360, 4096);
+    user_custom_tx_data.joint[3] = -angle[3] * scale(360, 4096);
     user_custom_tx_data.joint[4] = angle[4] * scale(360, 4096);
     user_custom_tx_data.joint[5] = angle[5] * scale(360, 4096);
 }

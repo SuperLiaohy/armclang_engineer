@@ -31,7 +31,7 @@ public:
 
     ~Detect();
 
-    void init(const MyFunction& lostFun, const MyFunction& recoverFun) {
+    void init(Fun lostFun, Fun recoverFun) {
         this->lostFun    = lostFun;
         this->recoverFun = recoverFun;
     }
@@ -42,8 +42,8 @@ public:
 
     uint8_t isLost; //标记是否已丢失
 
-    MyFunction lostFun;    //掉线处理函数
-    MyFunction recoverFun; //恢复连接处理函数
+    Fun lostFun;    //掉线处理函数
+    Fun recoverFun; //恢复连接处理函数
 protected:
     uint32_t maxInterval;     //收到数据的最大间隔时间，超过则认为断开
     uint32_t lastReceiveTime; //记录到的上次收到数据的时间

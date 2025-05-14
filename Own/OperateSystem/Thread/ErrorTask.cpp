@@ -48,6 +48,9 @@ void ErrorTask() {
         ++time;
         if (time % 3 == 0) { red = 1 - red; }
 
+        interact.remote_control.detect.JudgeLost();
+
+
         if (interact.remote_control.rcInfo.right != static_cast<uint8_t>(RemoteControl::lever::lower)
             || interact.remote_control.rcInfo.left != static_cast<uint8_t>(RemoteControl::lever::lower)) {
             __set_FAULTMASK(1);

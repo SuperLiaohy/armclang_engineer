@@ -712,7 +712,8 @@ armclang_engineer/ledtask.o: ..\Own\OperateSystem\Thread\LedTask.cpp \
   ..\Own\Mod\Detect\DetectManager.hpp \
   ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\LinkedList.hpp ..\Own\Mod\CustomList\SeqList.hpp \
-  ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
-  ..\Own\Mod\Count\CountManager.hpp ..\Core\Inc\usart.h \
-  ..\Core\Inc\main.h ..\Own\Mod\Key\Key.hpp ..\Own\App\RGBLED\RGBLED.hpp \
-  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h
+  ..\Own\Mod\OwnFunc\OwnFunc.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
+  ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
+  ..\Core\Inc\usart.h ..\Core\Inc\main.h ..\Own\Mod\Key\Key.hpp \
+  ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
+  ..\Core\Inc\spi.h
