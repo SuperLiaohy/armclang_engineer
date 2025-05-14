@@ -63,6 +63,8 @@ void robo_arm_ctrl_r_callback(KeyEventType event);
 
 extern interact_dep::Actions reset1;
 extern interact_dep::Actions reset2;
+extern interact_dep::Actions silver_reset;
+
 extern interact_dep::Actions anti_reset;
 extern interact_dep::Actions get_right_y;
 extern interact_dep::Actions get_silver_mine;
@@ -196,8 +198,8 @@ void StartTask() {
     reset1.speed[1] = 720;
     reset1.speed[2] = 360;
     reset1.speed[3] = 720;
-    reset1.joints[0] = 0;
 
+    reset2.joints[0] = 0;
     reset2.joints[1] = -4;
     reset2.joints[2] = 145;
     reset2.joints[3] = 0;
@@ -208,6 +210,14 @@ void StartTask() {
     reset2.speed[1] = 720;
     reset2.speed[2] = 360;
     reset2.speed[3] = 720;
+
+    silver_reset.joints[0] = 0;
+    silver_reset.joints[1] = -55;
+    silver_reset.joints[2] = 135;
+    silver_reset.joints[3] = 0;
+    silver_reset.joints[4] = 0;
+    silver_reset.joints[5] = 0;
+
 
     // reset2.joints[0] = 0;
     // reset2.joints[1] = -55;
@@ -227,6 +237,9 @@ void StartTask() {
     anti_reset.joints[3] = 0.0380706787;
     anti_reset.joints[4] = 0.667541504;
     anti_reset.joints[5] = 0.699188232;
+
+    SuperIWDG::GotInstance().give();
+
 
     get_right_y.joints[0] = -8.48937225;
     get_right_y.joints[1] = -17.2843819;
@@ -285,6 +298,8 @@ void StartTask() {
     get_silver_group.actions_list[0] = get_silver_mine;
     get_silver_group.actions_list[1] = get_silver_mine_z;
     get_silver_group.actions_list[2] = put_silver_mine_left;
+    get_silver_group.actions_list[3] = exchange_left;
+    get_silver_group.actions_list[4] = silver_reset;
 
 
     /* W25Q64初始化 */

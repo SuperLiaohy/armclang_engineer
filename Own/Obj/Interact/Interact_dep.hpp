@@ -110,7 +110,6 @@ namespace interact_dep {
                         exe_list[index]();
                     }
                     time_cnt = 1;
-
                     actions_list[index].init = false;
                 } else {
                     if (exe_list != nullptr && exe_list[len] != nullptr) {

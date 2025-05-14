@@ -119,16 +119,17 @@ interact_dep::Actions exchange_right(interact_dep::action_status::Joints);
 
 interact_dep::Actions reset1(interact_dep::action_status::Joints);
 interact_dep::Actions reset2(interact_dep::action_status::Joints);
+interact_dep::Actions silver_reset(interact_dep::action_status::Joints);
 // interact_dep::Actions reset2(interact_dep::action_status::Joints);
 
 // std::array<interact_dep::Actions, 2>reset = {get_silver_mine, get_silver_mine_z} ;
 // std::array<uint32_t, 2>reset_time = {500, 2000};
 // interact_dep::ActionsGroup reset_group={.actions_list = reset.data(), .time_list = reset_time.data(), .len = 2, .index = 0, .time_cnt = 0};
 
-std::array<interact_dep::Actions, 4> get_silver_action = {get_silver_mine, get_silver_mine_z, put_silver_mine_left,
-                                                          exchange_left};
-std::array<uint32_t, 4> get_silver_time                = {2000, 2000, 2000, 500};
-std::array<interact_dep::ActionsGroup::exe, 5> get_silver_exe = {[]() {
+std::array<interact_dep::Actions, 5> get_silver_action = {get_silver_mine, get_silver_mine_z, put_silver_mine_left,
+                                                          exchange_left, silver_reset};
+std::array<uint32_t, 5> get_silver_time                = {2000, 2000, 2000, 200, 200};
+std::array<interact_dep::ActionsGroup::exe, 6> get_silver_exe = {[]() {
                                                                      interact.sub_board.set_pump(1);
                                                                      interact.sub_board.set_valve3(1);
                                                                      interact.sub_board.set_valve5(0);
@@ -138,19 +139,27 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_silver_exe = {[]() {
                                                                      interact.sub_board.set_valve5(1);
                                                                      one_step_gets.left.X.status =
                                                                          OneStepGetXStatus::FRONT;
+
+                                                                     one_step_gets.left.X.pos.step_set(0.35);
                                                                      one_step_gets.left.X.pos.target_set(350);
                                                                  },
                                                                  []() {
                                                                      interact.sub_board.set_valve3(0);
                                                                      one_step_gets.left.X.pos.target_set(0);
-                                                                 },
-                                                                 []() {}};
+                                                                     one_step_gets.left.X.pos.step_set(0.6);
+},
+                                                                 []() {},
+                                                                 []() {
+                                                                     interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+                                                                 }
+
+};
 
 interact_dep::ActionsGroup get_silver_group = {.actions_list = get_silver_action.data(),
                                                .time_list    = get_silver_time.data(),
                                                .event_list   = nullptr,
                                                .exe_list     = get_silver_exe.data(),
-                                               .len          = 3,
+                                               .len          = 5,
                                                .index        = 0,
                                                .time_cnt     = 0};
 
