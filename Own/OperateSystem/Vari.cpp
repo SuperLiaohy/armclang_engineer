@@ -74,8 +74,8 @@ Chassis chassis(&canPlus2, {Slope(15, 1), Slope(15, 1), Slope(0.1, 0), Slope(15,
 
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
 RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 1, 1,
-                Pid(1200, 0.01, 100, 4000, 8000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), 2,
-                Pid(1200, 0.01, 100, 4000, 8000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), &hi2c1,
+                Pid(1500, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), 2,
+                Pid(1500, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
                  112.700996, 0, 0});
 
@@ -101,9 +101,9 @@ UI ui(102, 0x0166, &huart7);
 
 OneStepGetControl OSG::mode   = OneStepGetControl::AUTO;
 OneStepGetAUTO OSG::auto_mode = OneStepGetAUTO::NONE;
-OSG one_step_gets(Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, Slope(0.6, 0),
+OSG one_step_gets(Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, Slope(1, 0),
                   Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 2, Slope {0.6, 0},
-                  Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(0.6, 0),
+                  Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(1, 0),
                   Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, Slope(0.6, 0));
 
 interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
@@ -126,8 +126,8 @@ interact_dep::Actions silver_reset(interact_dep::action_status::Joints);
 // std::array<uint32_t, 2>reset_time = {500, 2000};
 // interact_dep::ActionsGroup reset_group={.actions_list = reset.data(), .time_list = reset_time.data(), .len = 2, .index = 0, .time_cnt = 0};
 
-std::array<interact_dep::Actions, 6> get_silver_action = {get_silver_mine, get_silver_mine_z, put_silver_mine_left,put_silver_mine_left
-                                                          ,exchange_left, silver_reset};
+std::array<interact_dep::Actions, 6> get_silver_action = {get_silver_mine,      get_silver_mine_z, put_silver_mine_left,
+                                                          put_silver_mine_left, exchange_left,     silver_reset};
 std::array<uint32_t, 6> get_silver_time                = {2000, 2000, 2000, 500, 200, 200};
 std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() {
@@ -139,8 +139,8 @@ std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() {
         interact.sub_board.set_valve5(1);
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.left.X.pos.step_set(0.34);
-        one_step_gets.left.X.pos.target_set(350);
+        one_step_gets.left.X.pos.step_set(0.4);
+        one_step_gets.left.X.pos.target_set(400);
     },
     []() {
         interact.sub_board.set_valve3(0);
@@ -148,7 +148,7 @@ std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
         one_step_gets.left.X.pos.target_set(0);
         one_step_gets.left.X.pos.step_set(0.6);
     },
-    [](){},
+    []() {},
     []() {},
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 
@@ -181,7 +181,40 @@ interact_dep::ActionsGroup get_second_silver_group = {.actions_list = get_second
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 
-std::array<interact_dep::ActionsGroup::exe, 4> get_gold_exe = {
+
+interact_dep::Actions get_silver_from_left(interact_dep::action_status::Joints);
+
+std::array<interact_dep::Actions, 2> get_silver_from_left_actions        = {get_silver_from_left, reset1};
+std::array<uint32_t, 2> get_silver_from_time                       = {2000, 1000};
+std::array<interact_dep::ActionsGroup::exe, 3> get_silver_from_exe = {
+    []() {
+        interact.sub_board.set_pump(1);
+        interact.sub_board.set_valve3(1);
+    },
+     []() {
+         interact.sub_board.set_valve5(0);
+    },
+   []() {
+       interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+    }
+
+};
+
+
+interact_dep::ActionsGroup get_silver_from_left_group = {.actions_list = get_silver_from_left_actions.data(),
+                                                      .time_list    = get_silver_from_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = get_silver_from_exe.data(),
+                                                      .len          = 2,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
+
+
+
+
+std::array<uint32_t, 4> get_gold_time = {10, 3000, 2000, 4000};
+std::array<interact_dep::Actions, 4> get_gold_action        = {reset1, reset1, reset1, reset1};
+std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     []() {
         interact.sub_board.set_pump(1);
         interact.sub_board.set_valve4(1);
@@ -189,22 +222,36 @@ std::array<interact_dep::ActionsGroup::exe, 4> get_gold_exe = {
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.left.X.pos.target_set(2000);
-        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.right.X.pos.target_set(-2300);
+        one_step_gets.left.X.pos.target_set(2500);
+        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.left.Y.pos.target_set(150);
+        // one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+        // one_step_gets.right.X.pos.target_set(-2300);
+        // one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        // one_step_gets.right.Y.pos.target_set(-100);
     },
     []() {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(300);
-        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-300);
+        one_step_gets.left.Y.pos.target_set(0);
+        // one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        // one_step_gets.right.Y.pos.target_set(-300);
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
         one_step_gets.left.X.pos.target_set(0);
-        one_step_gets.right.X.status = OneStepGetXStatus::BACK;
-        one_step_gets.right.X.pos.target_set(0);
-    }};
+        // one_step_gets.right.X.status = OneStepGetXStatus::BACK;
+        // one_step_gets.right.X.pos.target_set(0);
+    },
+    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
+
+interact_dep::ActionsGroup get_gold_group = {.actions_list = get_gold_action.data(),
+                                                      .time_list    = get_gold_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = get_gold_exe.data(),
+                                                      .len          = 4,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
+
 
 // OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;
 // OneStepGetAUTO one_step_get_auto = OneStepGetAUTO::NONE;

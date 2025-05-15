@@ -4,6 +4,7 @@
 #include "Interact/Interact.hpp"
 #include "OneStepGet/OneStepGet.hpp"
 
+extern interact_dep::ActionsGroup get_gold_group;
 void one_step_get_z_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
@@ -20,9 +21,10 @@ void one_step_get_z_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                // one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-                // one_step_gets.left.X.status  = OneStepGetXStatus::FRONT;
-                // OSG::auto_mode               = OneStepGetAUTO::GOT_X;
+                get_gold_group.reset();
+                interact.actions_group = &get_gold_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
                 break;
             default: break;
         }
@@ -73,7 +75,7 @@ void one_step_get_x_callback(KeyEventType event) {
         }
     }
 }
-
+extern interact_dep::ActionsGroup get_silver_from_left_group;
 void one_step_get_shift_x_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
@@ -88,6 +90,15 @@ void one_step_get_shift_x_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                get_silver_from_left_group.reset();
+                interact.actions_group = &get_silver_from_left_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                break;
+            default: break;
+        }
     }
 }
 extern interact_dep::ActionsGroup get_second_silver_group;
@@ -154,7 +165,7 @@ void one_step_get_v_callback(KeyEventType event) {
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
                 reset2.init            = false;
-                interact.actions = &reset2;
+                interact.actions       = &reset2;
                 interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
                 break;
             case KeyEvent_None:
@@ -338,8 +349,18 @@ void robo_arm_g_callback(KeyEventType event) {
             // exchange_right.init = false;
             // interact.actions       = &exchange_right;
             // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
-            open = 1 - open;
-            interact.image_trans.set_map_back(open);
+            if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
+                interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
+            } else {
+                interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+            }
+
+
+            if (open) {
+                interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+            } else {
+
+            }
 
             break;
             // case KeyEvent_OnClick: interact.image_trans.toggle_map_back(); break;
@@ -350,9 +371,9 @@ void robo_arm_g_callback(KeyEventType event) {
 void robo_arm_shift_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
-                interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
-            }
+            // if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
+            // interact.robo_arm.mode = interact_dep::robo_mode::CUSTOM;
+            // }
             break;
         default: break;
     }

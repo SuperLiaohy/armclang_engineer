@@ -4,6 +4,9 @@
 
 #include "ImageTrans.hpp"
 
+#include "Interact/Interact.hpp"
+#include "Interact/Interact_dep.hpp"
+
 // __attribute__((section(".RAM_D1"))) static uint8_t image_trans_rx_buffer[500];
 // __attribute__((section(".RAM_D1"))) static uint8_t image_trans_tx_buffer[500];
 

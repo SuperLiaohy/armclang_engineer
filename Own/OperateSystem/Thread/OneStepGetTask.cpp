@@ -179,7 +179,7 @@ void OneStepGetTask() {
             }
             switch (one_step_gets.right.X.status) {
                 case OneStepGetXStatus::FRONT:
-                    if (one_step_gets.right.X.Motor.is_block(-2500, 2500)) {
+                    if (one_step_gets.right.X.Motor.is_block(-4500, 4500)) {
                         if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
                     } else {
                         one_step_gets.right.X.block_count = 0;
@@ -187,7 +187,7 @@ void OneStepGetTask() {
                     }
                     break;
                 case OneStepGetXStatus::BACK:
-                    if (one_step_gets.right.X.Motor.is_block(-3500, 3500)) {
+                    if (one_step_gets.right.X.Motor.is_block(-4500, 4500)) {
                         if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
                     } else {
                         one_step_gets.right.X.block_count = 0;
@@ -199,16 +199,16 @@ void OneStepGetTask() {
 
             switch (one_step_gets.right.Y.status) {
                 case OneStepGetYStatus::UP:
-                    if (one_step_gets.right.Y.Motor.is_block(-3500, 3500)) {
-                        if (++one_step_gets.right.Y.block_count > 1) { one_step_gets.right.Y.is_block = true; }
+                    if (one_step_gets.right.Y.Motor.is_block(-6500, 6500)) {
+                        if (++one_step_gets.right.Y.block_count > 10) { one_step_gets.right.Y.is_block = true; }
                     } else {
                         one_step_gets.right.Y.block_count = 0;
                         one_step_gets.right.Y.is_block    = false;
                     }
                     break;
                 case OneStepGetYStatus::DOWN:
-                    if (one_step_gets.right.Y.Motor.is_block(-3500, 3500)) {
-                        if (++one_step_gets.right.Y.block_count > 1) { one_step_gets.right.Y.is_block = true; }
+                    if (one_step_gets.right.Y.Motor.is_block(-6500, 6500)) {
+                        if (++one_step_gets.right.Y.block_count > 10) { one_step_gets.right.Y.is_block = true; }
                     } else {
                         one_step_gets.right.Y.block_count = 0;
                         one_step_gets.right.Y.is_block    = false;

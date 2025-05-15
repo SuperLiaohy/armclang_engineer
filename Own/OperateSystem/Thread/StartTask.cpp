@@ -71,12 +71,14 @@ extern interact_dep::Actions get_silver_mine;
 extern interact_dep::Actions get_silver_mine_z;
 extern interact_dep::Actions put_silver_mine_right;
 extern interact_dep::Actions put_silver_mine_left;
+extern interact_dep::Actions get_silver_from_left;
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
 
 extern interact_dep::ActionsGroup get_silver_group;
 extern interact_dep::ActionsGroup get_second_silver_group;
-
+extern interact_dep::ActionsGroup get_silver_from_left_group;
+extern interact_dep::ActionsGroup get_gold_group;
 
 
 void chassis_shift_w_callback(KeyEventType event);
@@ -282,6 +284,18 @@ void StartTask() {
     put_silver_mine_left.speed[2] = 180;
     put_silver_mine_left.speed[3] = 720;
 
+    get_silver_from_left.joints[0] = -30.2335701;
+    get_silver_from_left.joints[1] = 4.11271286;
+    get_silver_from_left.joints[2] = 135.33371;
+    get_silver_from_left.joints[3] = -94.2540131;
+    get_silver_from_left.joints[4] = 90;
+    get_silver_from_left.joints[5] = 0;
+
+    get_silver_from_left.speed[0] = 180;
+    get_silver_from_left.speed[1] = 180;
+    get_silver_from_left.speed[2] = 180;
+    get_silver_from_left.speed[3] = 720;
+
     exchange_left.joints[0] = -17.9960938;
     exchange_left.joints[1] = 36.7366142;
     exchange_left.joints[2] = 35.3361511;
@@ -310,6 +324,14 @@ void StartTask() {
     get_second_silver_group.actions_list[0] = get_silver_mine;
     get_second_silver_group.actions_list[1] = get_silver_mine_z;
     get_second_silver_group.actions_list[2] = reset1;
+
+    get_silver_from_left_group.actions_list[0] = get_silver_from_left;
+    get_silver_from_left_group.actions_list[1] = reset1;
+
+    get_gold_group.actions_list[0] = reset1;
+    get_gold_group.actions_list[1] = reset1;
+    get_gold_group.actions_list[2] = reset1;
+    get_gold_group.actions_list[3] = reset1;
 
 
     /* W25Q64初始化 */
