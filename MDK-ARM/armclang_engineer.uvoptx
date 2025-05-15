@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>104</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134398356</Address>
+          <Address>134398956</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +175,7 @@
           <Type>0</Type>
           <LineNumber>60</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134352260</Address>
+          <Address>134352316</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -191,7 +191,7 @@
           <Type>0</Type>
           <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134352026</Address>
+          <Address>134352082</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -207,7 +207,7 @@
           <Type>0</Type>
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134380574</Address>
+          <Address>134381078</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -239,7 +239,7 @@
           <Type>0</Type>
           <LineNumber>68</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134384214</Address>
+          <Address>134384718</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -249,22 +249,6 @@
           <Filename>..\Own\Obj\RoboArm\RoboArm.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\armclang_engineer\../Own/Obj/RoboArm/RoboArm.cpp\68</Expression>
-        </Bp>
-        <Bp>
-          <Number>6</Number>
-          <Type>0</Type>
-          <LineNumber>43</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134384118</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Own\Obj\RoboArm\RoboArm.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/Obj/RoboArm/RoboArm.cpp\43</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

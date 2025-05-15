@@ -127,8 +127,8 @@ interact_dep::Actions silver_reset(interact_dep::action_status::Joints);
 // interact_dep::ActionsGroup reset_group={.actions_list = reset.data(), .time_list = reset_time.data(), .len = 2, .index = 0, .time_cnt = 0};
 
 std::array<interact_dep::Actions, 6> get_silver_action = {get_silver_mine,      get_silver_mine_z, put_silver_mine_left,
-                                                          put_silver_mine_left, exchange_left,     silver_reset};
-std::array<uint32_t, 6> get_silver_time                = {2000, 2000, 2000, 500, 200, 200};
+                                                          put_silver_mine_left, exchange_left, silver_reset};
+std::array<uint32_t, 6> get_silver_time                = {2000, 2000, 2000, 500, 200, 1000};
 std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);
@@ -140,7 +140,7 @@ std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
         interact.sub_board.set_valve5(1);
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
         one_step_gets.left.X.pos.step_set(0.4);
-        one_step_gets.left.X.pos.target_set(400);
+        one_step_gets.left.X.pos.target_set(500);
     },
     []() {
         interact.sub_board.set_valve3(0);
@@ -185,7 +185,7 @@ interact_dep::ActionsGroup get_second_silver_group = {.actions_list = get_second
 interact_dep::Actions get_silver_from_left(interact_dep::action_status::Joints);
 
 std::array<interact_dep::Actions, 2> get_silver_from_left_actions        = {get_silver_from_left, reset1};
-std::array<uint32_t, 2> get_silver_from_time                       = {2000, 1000};
+std::array<uint32_t, 2> get_silver_from_time                       = {4000, 1000};
 std::array<interact_dep::ActionsGroup::exe, 3> get_silver_from_exe = {
     []() {
         interact.sub_board.set_pump(1);
