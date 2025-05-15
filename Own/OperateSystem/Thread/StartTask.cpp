@@ -74,12 +74,13 @@ extern interact_dep::Actions put_silver_mine_left;
 extern interact_dep::Actions get_silver_from_left;
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
+extern interact_dep::Actions put_down;
 
 extern interact_dep::ActionsGroup get_silver_group;
 extern interact_dep::ActionsGroup get_second_silver_group;
 extern interact_dep::ActionsGroup get_silver_from_left_group;
 extern interact_dep::ActionsGroup get_gold_group;
-
+extern interact_dep::ActionsGroup put_down_group;
 
 void chassis_shift_w_callback(KeyEventType event);
 void chassis_shift_a_callback(KeyEventType event);
@@ -265,6 +266,13 @@ void StartTask() {
     put_silver_mine_right.joints[4] = 90.78;
     put_silver_mine_right.joints[5] = 38.22;
 
+    put_down.joints[0] = 0;
+    put_down.joints[1] = 55;
+    put_down.joints[2] = 116.5;
+    put_down.joints[3] = 0;
+    put_down.joints[4] = -78;
+    put_down.joints[5] = 0;
+
     // put_silver_mine_left.joints[0] = -44.8466797;
     // put_silver_mine_left.joints[1] = 1.91878128;
     // put_silver_mine_left.joints[2] = 108.428192;
@@ -332,6 +340,9 @@ void StartTask() {
     get_gold_group.actions_list[1] = reset1;
     get_gold_group.actions_list[2] = reset1;
     get_gold_group.actions_list[3] = reset1;
+
+    put_down_group.actions_list[0] = put_down;
+    put_down_group.actions_list[1] = reset2;
 
 
     /* W25Q64初始化 */

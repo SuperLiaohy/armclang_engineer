@@ -128,6 +128,7 @@ void one_step_get_c_callback(KeyEventType event) {
         }
     }
 }
+extern interact_dep::ActionsGroup put_down_group;
 
 void one_step_get_shift_c_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
@@ -143,6 +144,14 @@ void one_step_get_shift_c_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                put_down_group.reset();
+                interact.actions_group = &put_down_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+                break;
+            default: break;
+        }
     }
 }
 
@@ -193,12 +202,10 @@ void one_step_get_shift_v_callback(KeyEventType event) {
 }
 
 void one_step_get_ctrl_z_callback(KeyEventType event) {
-    static uint8_t open = 0;
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnClick:
-                open = 1 - open;
-                interact.sub_board.set_valve5(open);
+                interact.sub_board.toggle_valve5();
                 break;
                 // case KeyEvent_OnDown:
                 // case KeyEvent_OnLongPress:
@@ -215,12 +222,10 @@ void one_step_get_ctrl_z_callback(KeyEventType event) {
     }
 }
 void one_step_get_ctrl_x_callback(KeyEventType event) {
-    static uint8_t open = 0;
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnClick:
-                open = 1 - open;
-                interact.sub_board.set_valve4(open);
+                interact.sub_board.toggle_valve4();
                 break;
                 // case KeyEvent_OnDown:
                 // case KeyEvent_OnLongPress:
@@ -237,12 +242,10 @@ void one_step_get_ctrl_x_callback(KeyEventType event) {
     }
 }
 void one_step_get_ctrl_c_callback(KeyEventType event) {
-    static uint8_t open = 0;
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnClick:
-                open = 1 - open;
-                interact.sub_board.set_valve2(open);
+                interact.sub_board.toggle_valve2();
                 break;
                 // case KeyEvent_OnDown:
                 // case KeyEvent_OnLongPress:
@@ -259,12 +262,11 @@ void one_step_get_ctrl_c_callback(KeyEventType event) {
     }
 }
 void one_step_get_ctrl_v_callback(KeyEventType event) {
-    static uint8_t open = 0;
+
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
             case KeyEvent_OnClick:
-                open = 1 - open;
-                interact.sub_board.set_valve1(open);
+                interact.sub_board.toggle_valve1();
                 break;
                 // case KeyEvent_OnDown:
                 // case KeyEvent_OnLongPress:
@@ -296,11 +298,9 @@ void one_step_get_b_callback(KeyEventType event) {
 
 uint32_t cnt_right;
 void air_left_callback(KeyEventType event) {
-    static uint8_t open = 0;
     switch (event) {
         case KeyEvent_OnClick:
-            open = 1 - open;
-            interact.sub_board.set_valve3(open);
+            interact.sub_board.toggle_valve3();
             break;
         // case KeyEvent_OnDown:
         // case KeyEvent_OnLongPress:
@@ -320,9 +320,7 @@ void air_left_callback(KeyEventType event) {
 void air_right_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            static uint8_t pump = 0;
-            pump                = 1 - pump;
-            interact.sub_board.set_pump(pump);
+            interact.sub_board.toggle_pump();
             ++cnt_right;
             break;
         default: break;
@@ -354,7 +352,6 @@ void robo_arm_g_callback(KeyEventType event) {
             } else {
                 interact.robo_arm.mode = interact_dep::robo_mode::NONE;
             }
-
 
             if (open) {
                 interact.robo_arm.mode = interact_dep::robo_mode::NONE;

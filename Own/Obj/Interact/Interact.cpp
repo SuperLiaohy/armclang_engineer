@@ -131,6 +131,16 @@ void Interact::update_roboArm(RoboArm& Arm) {
                 joint[2] = Arm.relative_pos[2];
                 joint[3] = Arm.relative_pos[3];
             }
+            if (remote_control.rcInfo.ch3 < -500) {
+                interact.sub_board.set_pump(1);
+            } else if (remote_control.rcInfo.ch3 > 500) {
+                interact.sub_board.set_pump(0);
+            }
+            if (remote_control.rcInfo.ch4 < -500) {
+                interact.sub_board.set_valve3(1);
+            } else if (remote_control.rcInfo.ch4 > 500) {
+                interact.sub_board.set_valve3(0);
+            }
             receive_rc();
             break;
         case interact_dep::robo_mode::XYZ:

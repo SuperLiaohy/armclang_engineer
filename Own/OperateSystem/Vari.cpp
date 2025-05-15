@@ -209,6 +209,26 @@ interact_dep::ActionsGroup get_silver_from_left_group = {.actions_list = get_sil
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 
+interact_dep::Actions put_down(interact_dep::action_status::Joints);
+std::array<uint32_t, 2> put_down_time = {2000, 1000};
+std::array<interact_dep::Actions, 2> put_down_action        = {put_down, reset2};
+std::array<interact_dep::ActionsGroup::exe, 3> put_down_exe = {
+    []() {
+        interact.sub_board.set_pump(1);
+        interact.sub_board.set_valve3(1);
+    },
+    []() {
+        interact.sub_board.set_valve3(0);
+    },
+    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
+
+interact_dep::ActionsGroup put_down_group = {.actions_list = put_down_action.data(),
+                                                      .time_list    = put_down_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = put_down_exe.data(),
+                                                      .len          = 2,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
 
 
 
