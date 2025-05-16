@@ -87,7 +87,7 @@ public:
 private:
     TIM_HandleTypeDef* htim;
     uint16_t Channel;
-    RoundBuffer<uint16_t, 50> music_buffer;
+    RoundBuffer<uint16_t, 100> music_buffer;
     int8_t music_cnt = 0;
 };
 
@@ -98,6 +98,7 @@ template<uint16_t size, auto delay> void Buzzer::StartMusic(const std::array<uin
     }
     SetFreq(20000, 20);
 }
+
 template<uint16_t size> void Buzzer::PushMusic(const std::array<uint16_t, size>& music) {
     music_buffer.push(music);
     music_buffer.push(20000);

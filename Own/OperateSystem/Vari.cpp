@@ -74,8 +74,8 @@ Chassis chassis(&canPlus2, {Slope(15, 1), Slope(15, 1), Slope(0.1, 0), Slope(15,
 
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
 RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 1, 1,
-                Pid(1500, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), 2,
-                Pid(1500, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.00f, 0.3f, 4000.f, 10000.0f), &hi2c1,
+                Pid(2500, 0.01, 100, 4000, 400*36, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
+                Pid(2500, 0.01, 100, 4000, 400*36, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
                  112.700996, 0, 0});
 
@@ -227,6 +227,31 @@ interact_dep::ActionsGroup put_down_group = {.actions_list = put_down_action.dat
                                                       .event_list   = nullptr,
                                                       .exe_list     = put_down_exe.data(),
                                                       .len          = 2,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
+
+
+
+interact_dep::Actions arm_get_gold(interact_dep::action_status::Joints);
+interact_dep::Actions arm_get_gold_mine_z(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianZ);
+interact_dep::Actions arm_get_gold_mine_x(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX);
+
+std::array<uint32_t, 3> arm_get_gold_time = {2000, 1000,3000};
+std::array<interact_dep::Actions, 3> arm_get_gold_action        = {arm_get_gold, arm_get_gold_mine_z, arm_get_gold_mine_x};
+std::array<interact_dep::ActionsGroup::exe, 4> arm_get_gold_exe = {
+    []() {
+        interact.sub_board.set_pump(1);
+        interact.sub_board.set_valve3(1);
+    },
+    []() {},
+    []() { },
+    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
+
+interact_dep::ActionsGroup arm_get_gold_group = {.actions_list = arm_get_gold_action.data(),
+                                                      .time_list    = arm_get_gold_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = arm_get_gold_exe.data(),
+                                                      .len          = 3,
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 

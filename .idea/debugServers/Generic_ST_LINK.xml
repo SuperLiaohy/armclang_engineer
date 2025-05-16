@@ -1,0 +1,14 @@
+<component name="DebugServers">
+  <generic-debug-target name="Generic ST-LINK" uniqueID="ae819a56-3141-4aa0-a87f-827ae6112bbb">
+    <debugger version="1">
+      <debugger kind="GDB" isBundled="true" />
+      <env />
+    </debugger>
+    <gdbserver exe="$APPLICATION_HOME_DIR$/bin/gdb/win/x64/bin/gdb.exe" args="-p 61234 -e  -cp &quot;&quot; --halt  --apid 0 -d --frequency 8000  ">
+      <env />
+    </gdbserver>
+    <console port="61235" />
+    <target reset-before="false" />
+    <connection remote-string="tcp:localhost:61234" warmup-ms="500" />
+  </generic-debug-target>
+</component>

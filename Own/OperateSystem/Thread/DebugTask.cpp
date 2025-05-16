@@ -10,7 +10,6 @@ void DebugTask() {
     uint32_t time    = 0;
     CountManager& it = CountManagerInstance();
     while (1) {
-        auto now = xTaskGetTickCount();
         ++time;
         DetectManagerInstance().JudgeLost();
         DetectHeapCnt = uxTaskGetStackHighWaterMark(NULL);
@@ -18,6 +17,6 @@ void DebugTask() {
             it.mark();
             time = 0;
         }
-        osDelayUntil(&now, 10);
+        osDelay(10);
     }
 }

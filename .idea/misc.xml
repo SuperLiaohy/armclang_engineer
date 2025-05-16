@@ -22,6 +22,7 @@
       <file path="$USER_HOME$/.arm/packs/ARM/CMSIS-DSP/1.16.2/Source/SupportFunctions" />
       <file path="$USER_HOME$/.arm/packs/ARM/CMSIS-DSP/1.16.2/Source/TransformFunctions" />
       <file path="$USER_HOME$/.arm/packs/ARM/CMSIS-DSP/1.16.2/Source/WindowFunctions" />
+      <file path="$PROJECT_DIR$/../../Keil_Pack/ARM/CMSIS-Compiler/2.1.0/source" />
     </libraryRoots>
   </component>
   <component name="WestSettings">{}</component>

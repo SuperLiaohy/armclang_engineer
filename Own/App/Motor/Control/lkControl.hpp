@@ -17,21 +17,25 @@ public:
         , canPlus(canPlus) {};
 
     void set_position(float position, float speed = 100) {
-        ++tx_cnt;
-        // position = m.feedback.total_position * 100 + err;
-        // totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5 * speed, 1.5 * speed),
-        //                       position * this->reduction_ratio);
-        totalposition2Control(speed,position * this->reduction_ratio);
+        if (!this->detect.isLost) {
+            ++tx_cnt;
+            // position = m.feedback.total_position * 100 + err;
+            // totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5 * speed, 1.5 * speed),
+            //                       position * this->reduction_ratio);
+            totalposition2Control(speed,position * this->reduction_ratio);
+        }
     };
 
     void set_position_near(float position, float speed = 100) {
-        ++tx_cnt;
-        float err = position - this->feedback.total_position * 100; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
-        while (err > 18000) { err -= 36000; }
-        while (err < -18000) { err += 36000; }
-        position = this->feedback.total_position * 100 + err;
-        totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5f * speed, 3 * speed),
-                              position * this->reduction_ratio);
+        if (!this->detect.isLost) {
+            ++tx_cnt;
+            float err = position - this->feedback.total_position * 100; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
+            while (err > 18000) { err -= 36000; }
+            while (err < -18000) { err += 36000; }
+            position = this->feedback.total_position * 100 + err;
+            totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5f * speed, 3 * speed),
+                                  position * this->reduction_ratio);
+        }
     };
 
     void read_totalposition();

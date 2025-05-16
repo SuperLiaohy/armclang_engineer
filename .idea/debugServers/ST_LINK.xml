@@ -1,0 +1,13 @@
+<component name="DebugServers">
+  <stlink-debug-target name="ST-LINK" uniqueID="bad10729-b6cd-406a-be25-d72c8f0f5b26" selected="true">
+    <debugger version="1">
+      <debugger kind="GDB" isBundled="true" />
+      <env />
+    </debugger>
+    <gdbserver exe="$APPLICATION_HOME_DIR$/bin/gdb/win/x64/bin/gdb.exe" />
+    <st-link />
+    <device interface="SWD" />
+    <connection port="61234" warmup-ms="500" />
+    <swo enabled="false" port="61235" />
+  </stlink-debug-target>
+</component>

@@ -5,6 +5,8 @@
 #include "OneStepGet/OneStepGet.hpp"
 
 extern interact_dep::ActionsGroup get_gold_group;
+extern interact_dep::ActionsGroup arm_get_gold_group;
+
 void one_step_get_z_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
@@ -21,8 +23,12 @@ void one_step_get_z_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                get_gold_group.reset();
-                interact.actions_group = &get_gold_group;
+                // get_gold_group.reset();
+                // interact.actions_group = &get_gold_group;
+                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                arm_get_gold_group.reset();
+                interact.actions_group = &arm_get_gold_group;
                 interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
 
                 break;

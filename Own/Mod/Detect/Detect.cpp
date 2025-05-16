@@ -34,10 +34,10 @@ void Detect::update() { lastReceiveTime = getSysTime(); }
 void Detect::JudgeLost() {
     uint32_t presentTime = getSysTime();
     if (presentTime - lastReceiveTime > maxInterval) {
-        if (!isLost) {
+        // if (!isLost) {
             if (lostFun != nullptr) lostFun();
             isLost = 1;
-        }
+        // }
     } else {
         if (isLost) {
             if (recoverFun != nullptr) recoverFun();

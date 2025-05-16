@@ -75,12 +75,16 @@ extern interact_dep::Actions get_silver_from_left;
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
 extern interact_dep::Actions put_down;
+extern interact_dep::Actions arm_get_gold;
+extern interact_dep::Actions arm_get_gold_mine_z;
+extern interact_dep::Actions arm_get_gold_mine_x;
 
 extern interact_dep::ActionsGroup get_silver_group;
 extern interact_dep::ActionsGroup get_second_silver_group;
 extern interact_dep::ActionsGroup get_silver_from_left_group;
 extern interact_dep::ActionsGroup get_gold_group;
 extern interact_dep::ActionsGroup put_down_group;
+extern interact_dep::ActionsGroup arm_get_gold_group;
 
 void chassis_shift_w_callback(KeyEventType event);
 void chassis_shift_a_callback(KeyEventType event);
@@ -103,9 +107,9 @@ void joint1_motor_detect() {
     roboArm.joint1.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint1.disable();
-    xSemaphoreGive(CAN1MutexHandle);
+    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    // roboArm.joint1.disable();
+    // xSemaphoreGive(CAN1MutexHandle);
 
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint1.enable();
@@ -118,9 +122,9 @@ void joint2_internal_motor_detect() {
     roboArm.joint2.internal.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint2.internal.disable();
-    xSemaphoreGive(CAN1MutexHandle);
+    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    // roboArm.joint2.internal.disable();
+    // xSemaphoreGive(CAN1MutexHandle);
 
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint2.internal.enable();
@@ -132,9 +136,9 @@ void joint2_external_motor_detect() {
     roboArm.joint2.external.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint2.external.disable();
-    xSemaphoreGive(CAN1MutexHandle);
+    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    // roboArm.joint2.external.disable();
+    // xSemaphoreGive(CAN1MutexHandle);
 
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint2.external.enable();
@@ -146,9 +150,9 @@ void joint3_motor_detect() {
     roboArm.joint3.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint3.disable();
-    xSemaphoreGive(CAN1MutexHandle);
+    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    // roboArm.joint3.disable();
+    // xSemaphoreGive(CAN1MutexHandle);
 
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint3.enable();
@@ -160,9 +164,9 @@ void joint4_motor_detect() {
     roboArm.joint4.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint4.disable();
-    xSemaphoreGive(CAN1MutexHandle);
+    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+    // roboArm.joint4.disable();
+    // xSemaphoreGive(CAN1MutexHandle);
 
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint4.enable();
@@ -308,6 +312,13 @@ void StartTask() {
     get_silver_from_left.speed[2] = 180;
     get_silver_from_left.speed[3] = 720;
 
+    arm_get_gold.joints[0] = 0;
+    arm_get_gold.joints[1] = 0;
+    arm_get_gold.joints[2] = 0;
+    arm_get_gold.joints[3] = 0;
+    arm_get_gold.joints[4] = 0;
+    arm_get_gold.joints[5] = 0;
+
     exchange_left.joints[0] = -17.9960938;
     exchange_left.joints[1] = 36.7366142;
     exchange_left.joints[2] = 35.3361511;
@@ -348,6 +359,9 @@ void StartTask() {
     put_down_group.actions_list[0] = put_down;
     put_down_group.actions_list[1] = reset2;
 
+    arm_get_gold_group.actions_list[0] = arm_get_gold;
+    arm_get_gold_group.actions_list[0] = arm_get_gold_mine_z;
+    arm_get_gold_group.actions_list[0] = arm_get_gold_mine_x;
 
     /* W25Q64初始化 */
     w25q64.init();
