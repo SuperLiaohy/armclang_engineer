@@ -74,8 +74,8 @@ Chassis chassis(&canPlus2, {Slope(15, 1), Slope(15, 1), Slope(0.1, 0), Slope(15,
 
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
 RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 1, 1,
-                Pid(2500, 0.01, 100, 4000, 400*36, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
-                Pid(2500, 0.01, 100, 4000, 400*36, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
+                Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
+                Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
                  112.700996, 0, 0});
 
@@ -262,7 +262,7 @@ std::array<interact_dep::Actions, 4> get_gold_action        = {reset1, reset1, r
 std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     []() {
         interact.sub_board.set_pump(1);
-        interact.sub_board.set_valve4(1);
+        interact.sub_board.set_valve1(1);
         interact.sub_board.set_valve5(1);
     },
     []() {
@@ -270,22 +270,22 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         one_step_gets.left.X.pos.target_set(2500);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
         one_step_gets.left.Y.pos.target_set(150);
-        // one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-        // one_step_gets.right.X.pos.target_set(-2300);
-        // one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        // one_step_gets.right.Y.pos.target_set(-100);
+        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+        one_step_gets.right.X.pos.target_set(-2300);
+        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.right.Y.pos.target_set(-250);
     },
     []() {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(0);
-        // one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        // one_step_gets.right.Y.pos.target_set(-300);
+        one_step_gets.left.Y.pos.target_set(400);
+        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.right.Y.pos.target_set(-500);
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
         one_step_gets.left.X.pos.target_set(0);
-        // one_step_gets.right.X.status = OneStepGetXStatus::BACK;
-        // one_step_gets.right.X.pos.target_set(0);
+        one_step_gets.right.X.status = OneStepGetXStatus::BACK;
+        one_step_gets.right.X.pos.target_set(0);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 

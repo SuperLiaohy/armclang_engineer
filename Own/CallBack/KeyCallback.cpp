@@ -23,13 +23,13 @@ void one_step_get_z_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                // get_gold_group.reset();
-                // interact.actions_group = &get_gold_group;
-                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
-
-                arm_get_gold_group.reset();
-                interact.actions_group = &arm_get_gold_group;
+                get_gold_group.reset();
+                interact.actions_group = &get_gold_group;
                 interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                // arm_get_gold_group.reset();
+                // interact.actions_group = &arm_get_gold_group;
+                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
 
                 break;
             default: break;
@@ -183,8 +183,8 @@ void one_step_get_v_callback(KeyEventType event) {
                 interact.actions       = &reset2;
                 interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
                 break;
-            case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
+            // case KeyEvent_None:
+            // case KeyEvent_OnUp: one_step_gets.right.Y.status = OneStepGetYStatus::NONE; break;
             default: break;
         }
     }
