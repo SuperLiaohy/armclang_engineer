@@ -83,6 +83,8 @@ extern interact_dep::ActionsGroup get_silver_group;
 extern interact_dep::ActionsGroup get_second_silver_group;
 extern interact_dep::ActionsGroup get_silver_from_left_group;
 extern interact_dep::ActionsGroup get_gold_group;
+extern interact_dep::ActionsGroup ready_silver2_group;
+extern interact_dep::ActionsGroup get_silver2_group;
 extern interact_dep::ActionsGroup put_down_group;
 extern interact_dep::ActionsGroup arm_get_gold_group;
 
@@ -172,6 +174,7 @@ void joint4_motor_detect() {
     roboArm.joint4.enable();
     xSemaphoreGive(CAN1MutexHandle);
 }
+std::atomic<bool> rc_ready(false);
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -243,12 +246,12 @@ void StartTask() {
     // reset2.speed[2] = 360;
     // reset2.speed[3] = 720;
 
-    anti_reset.joints[0] = -3.35253143;
-    anti_reset.joints[1] = -45.0083809;
-    anti_reset.joints[2] = -62.4916077;
+    anti_reset.joints[0] = -0;
+    anti_reset.joints[1] = -32.8050346;
+    anti_reset.joints[2] = -70.4041519;
     anti_reset.joints[3] = 0.0380706787;
-    anti_reset.joints[4] = 0.667541504;
-    anti_reset.joints[5] = 0.699188232;
+    anti_reset.joints[4] = 0;
+    anti_reset.joints[5] = 0;
 
     SuperIWDG::GotInstance().give();
 
@@ -261,11 +264,16 @@ void StartTask() {
     get_right_y.joints[5] = 42.9085999;
 
     get_silver_mine.joints[0] = 0;
-    get_silver_mine.joints[1] = 34.3415947;
-    get_silver_mine.joints[2] = 121.3975;
+    get_silver_mine.joints[1] = 37.604;
+    get_silver_mine.joints[2] = 115.54184;
     get_silver_mine.joints[3] = 0;
-    get_silver_mine.joints[4] = 24.3;
+    get_silver_mine.joints[4] = 27.570;
     get_silver_mine.joints[5] = 0;
+
+    get_silver_mine.speed[0] = 480;
+    get_silver_mine.speed[1] = 720;
+    get_silver_mine.speed[2] = 360;
+    get_silver_mine.speed[3] = 360;
 
     put_silver_mine_right.joints[0] = 16.20;
     put_silver_mine_right.joints[1] = 14.4343681;
@@ -288,12 +296,12 @@ void StartTask() {
     // put_silver_mine_left.joints[4] = 73.6503601;
     // put_silver_mine_left.joints[5] = 40.1804858;
 
-    put_silver_mine_left.joints[0] = -53.1208191;
-    put_silver_mine_left.joints[1] = 5.90897751;
-    put_silver_mine_left.joints[2] = 101.512299;
-    put_silver_mine_left.joints[3] = 0.601997375;
-    put_silver_mine_left.joints[4] = 83.9671173;
-    put_silver_mine_left.joints[5] = 35.4749832;
+    put_silver_mine_left.joints[0] = -54.8991699;
+    put_silver_mine_left.joints[1] = 6.22208786;
+    put_silver_mine_left.joints[2] = 99.8753357;
+    put_silver_mine_left.joints[3] = 2.40375519;
+    put_silver_mine_left.joints[4] = 80.6401367;
+    put_silver_mine_left.joints[5] = 47.9019775;
 
     put_silver_mine_left.speed[0] = 720;
     put_silver_mine_left.speed[1] = 180;
@@ -362,6 +370,21 @@ void StartTask() {
     arm_get_gold_group.actions_list[0] = arm_get_gold;
     arm_get_gold_group.actions_list[0] = arm_get_gold_mine_z;
     arm_get_gold_group.actions_list[0] = arm_get_gold_mine_x;
+
+    get_silver2_group.actions_list[0] = anti_reset;
+    get_silver2_group.actions_list[1] = anti_reset;
+
+    get_silver2_group.actions_list[2].joints[0] = anti_reset.joints[0];
+    get_silver2_group.actions_list[2].joints[1] = anti_reset.joints[1] + 20;
+    get_silver2_group.actions_list[2].joints[2] = reset1.joints[2];
+    get_silver2_group.actions_list[2].joints[3] = reset1.joints[3];
+    get_silver2_group.actions_list[2].joints[4] = reset1.joints[4];
+    get_silver2_group.actions_list[2].joints[5] = reset1.joints[5];
+    get_silver2_group.actions_list[2].speed[2] = 720;
+    get_silver2_group.actions_list[3] = reset1;
+    get_silver2_group.actions_list[3].speed[1] = 180;
+
+    ready_silver2_group.actions_list[0] = anti_reset;
 
     /* W25Q64初始化 */
     w25q64.init();
@@ -442,8 +465,15 @@ void StartTask() {
     /* 蜂鸣器初始化 */
     buzzer.Start();
     ada = SuperDWT::get_tick() - ada;
+    while (1) {
+        xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdTRUE, pdTRUE, 1) & REMOTE_CONTROL_START_EVENT;
+        if (rc_ready.load()) {
+            break;
+        }
+        interact.remote_control.detect.JudgeLost();
+    }
 
-    xEventGroupWaitBits(osEventGroup, REMOTE_CONTROL_START_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+
     xEventGroupSetBits(osEventGroup, START_END_EVENT);
     StartHeapCnt = uxTaskGetStackHighWaterMark(NULL);
     vTaskDelete(NULL);

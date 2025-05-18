@@ -34,7 +34,8 @@ void ArmTask() {
             xSemaphoreGive(CAN1MutexHandle);
 
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint4.set_position_near(roboArm.target.joint4.angle, roboArm.target_speed[3]);
+            // roboArm.joint4.set_position_near(roboArm.target.joint4.angle, roboArm.target_speed[3]);
+            roboArm.joint4.set_position(roboArm.target.joint4.angle, roboArm.target_speed[3]);
             xSemaphoreGive(CAN1MutexHandle);
         }
         if ((cnt + 1) % 5 == 0) {

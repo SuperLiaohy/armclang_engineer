@@ -33,7 +33,9 @@ public:
             while (err > 18000) { err -= 36000; }
             while (err < -18000) { err += 36000; }
             position = this->feedback.total_position * 100 + err;
-            totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5f * speed, 3 * speed),
+            // totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5f * speed, 3 * speed),
+                                  // position * this->reduction_ratio);
+            totalposition2Control(speed,
                                   position * this->reduction_ratio);
         }
     };

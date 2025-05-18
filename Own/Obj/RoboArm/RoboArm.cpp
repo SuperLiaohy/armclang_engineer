@@ -366,6 +366,13 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     target.joint3.angle          = (-slope[2].update() + offset.joint3) * scale(360, 36000);
     target.joint4.angle          = (-joint[3] + offset.joint4) * scale(360, 36000);
 
+    auto data3 = joint[3];
+    float err3 = joint[3] - relative_pos[3]; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
+    while (err3 >= 180) { err3 -= 359.99999999; }
+    while (err3 < -180) { err3 += 359.99999999; }
+    data3 = relative_pos[3] + err3;
+    target.joint4.angle          = (-data3 + offset.joint4) * scale(360, 36000);
+
 
     auto data = joint[5];
     float err = joint[5] - relative_pos[5]; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340

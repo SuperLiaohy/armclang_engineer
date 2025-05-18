@@ -190,6 +190,7 @@ void one_step_get_v_callback(KeyEventType event) {
     }
 }
 
+extern interact_dep::ActionsGroup ready_silver2_group;
 void one_step_get_shift_v_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
@@ -204,6 +205,17 @@ void one_step_get_shift_v_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                ready_silver2_group.reset();
+                interact.actions_group = &ready_silver2_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                break;
+            default: break;
+        }
+
+
     }
 }
 
@@ -267,6 +279,7 @@ void one_step_get_ctrl_c_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
     }
 }
+extern interact_dep::ActionsGroup get_silver2_group;
 void one_step_get_ctrl_v_callback(KeyEventType event) {
 
     if (OSG::mode == OneStepGetControl::MANUAL) {
@@ -286,6 +299,15 @@ void one_step_get_ctrl_v_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                get_silver2_group.reset();
+                interact.actions_group = &get_silver2_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                break;
+            default: break;
+        }
     }
 }
 
@@ -509,11 +531,9 @@ void robo_arm_ctrl_e_callback(KeyEventType event) {
 }
 
 void chassis_shift_e_callback(KeyEventType event) {
-    static uint8_t open = 0;
     switch (event) {
         case KeyEvent_OnClick:
-            open = 1 - open;
-            if (open) {
+            if (interact.polarity != interact_dep::chassis_polarity::ANTI) {
                 interact.polarity = interact_dep::chassis_polarity::ANTI;
             } else {
                 interact.polarity = interact_dep::chassis_polarity::NONE;

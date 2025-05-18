@@ -20,6 +20,7 @@ extern osThreadId IMAGEATRANS_TASHandle;
 #endif
 
 #include "ThreadConfig.h"
+extern std::atomic<bool> rc_ready;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
     UNUSED(huart);
@@ -51,6 +52,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
         interact.remote_control.update(interact.key_board);
 
         if (++cnt > 5) {
+            rc_ready.store(true);
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
