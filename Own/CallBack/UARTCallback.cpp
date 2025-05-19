@@ -76,7 +76,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                             ++interact.image_trans.cnt;
                             break;
                         case 0x304:
-                            // interact.image_trans.update(interact.key_board);
+                            interact.image_trans.update_keyboard(interact.key_board);
                             
                             break;
                         case 0x306:

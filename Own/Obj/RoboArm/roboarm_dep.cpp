@@ -55,8 +55,8 @@ namespace roboarm_dep {
     }
 
     void Differentiator::update_relative_pos(float& pitch, float& roll) {
-        pitch = -(left.total_position() + right.total_position()) / 2;
-        roll  = -(1/gain) * (left.total_position() - right.total_position()) / 2;
+        pitch = (left.total_position() + right.total_position()) / 2;
+        roll  = (1/gain) * (left.total_position() - right.total_position()) / 2;
     }
 
     MDH MDH::inv() {

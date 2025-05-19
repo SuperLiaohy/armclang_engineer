@@ -75,6 +75,7 @@ extern interact_dep::Actions get_silver_from_left;
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
 extern interact_dep::Actions put_down;
+extern interact_dep::Actions get_silver2_mine;
 extern interact_dep::Actions arm_get_gold;
 extern interact_dep::Actions arm_get_gold_mine_z;
 extern interact_dep::Actions arm_get_gold_mine_x;
@@ -288,6 +289,13 @@ void StartTask() {
     put_down.joints[3] = 0;
     put_down.joints[4] = -78;
     put_down.joints[5] = 0;
+
+    get_silver2_mine.joints[0] = -36.8980751;
+    get_silver2_mine.joints[1] = 47.0325127;
+    get_silver2_mine.joints[2] = 101.838203;
+    get_silver2_mine.joints[3] = 0;
+    get_silver2_mine.joints[4] = 31.1292877;
+    get_silver2_mine.joints[5] = 0;
 
     // put_silver_mine_left.joints[0] = -44.8466797;
     // put_silver_mine_left.joints[1] = 1.91878128;

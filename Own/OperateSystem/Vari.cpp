@@ -77,7 +77,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 143.613281, 0, 0});
+                 101.5+180, 0, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -139,11 +139,10 @@ std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() {
         interact.sub_board.set_lf_valve(1);
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.left.X.pos.step_set(0.15);
-        one_step_gets.left.X.pos.target_set(200);
+        one_step_gets.left.X.pos.step_set(0.22);
+        one_step_gets.left.X.pos.target_set(400);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.step_set(0.15);
-        one_step_gets.left.Y.pos.target_set(100);
+        one_step_gets.left.Y.pos.target_set(320);
     },
     []() {
         interact.sub_board.set_main_valve(0);
@@ -213,6 +212,7 @@ interact_dep::ActionsGroup get_silver_from_left_group = {.actions_list = get_sil
                                                       .time_cnt     = 0};
 
 interact_dep::Actions put_down(interact_dep::action_status::Joints);
+interact_dep::Actions get_silver2_mine(interact_dep::action_status::Joints);
 std::array<uint32_t, 2> put_down_time = {2000, 1000};
 std::array<interact_dep::Actions, 2> put_down_action        = {put_down, reset2};
 std::array<interact_dep::ActionsGroup::exe, 3> put_down_exe = {
@@ -337,15 +337,6 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_silver2_exe = {
         interact.sub_board.set_pump(1);
         interact.sub_board.set_lb_valve(1);
         interact.sub_board.set_rb_valve(1);
-        // one_step_gets.left.X.status = OneStepGetXStatus::BACK;
-        // one_step_gets.left.X.pos.target_set(-2000);
-        // one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        // one_step_gets.left.Y.pos.target_set(1800);
-        // one_step_gets.right.X.status = OneStepGetXStatus::BACK;
-        // one_step_gets.right.X.pos.target_set(2300);
-        // one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        // one_step_gets.right.Y.pos.target_set(-1450);
-
         one_step_gets.left.Y.status = OneStepGetYStatus::DOWN;
         one_step_gets.left.Y.pos.target_set(-1800);
         one_step_gets.right.Y.status = OneStepGetYStatus::DOWN;
@@ -362,11 +353,6 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_silver2_exe = {
     },
     []() {
         interact.polarity = interact_dep::chassis_polarity::NONE;
-
-        // one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        // one_step_gets.left.X.pos.target_set(2000);
-        // one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-        // one_step_gets.right.X.pos.target_set(-2300);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 
@@ -379,5 +365,4 @@ interact_dep::ActionsGroup get_silver2_group = {.actions_list = get_silver2_acti
                                                       .time_cnt     = 0};
 
 
-// OneStepGetControl one_step_get_control = OneStepGetControl::AUTO;
-// OneStepGetAUTO one_step_get_auto = OneStepGetAUTO::NONE;
+

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "referee_system.h"
-#include <variant>
 
 struct basic_graphic {
     uint8_t figure_name[3];
@@ -24,8 +23,6 @@ concept ui_features = requires(T t) { t.set_features(std::declval<basic_graphic*
 
 class UI {
 public:
-
-
     enum class types : uint8_t {
         DELETE,
         FIGURE,
