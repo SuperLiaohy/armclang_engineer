@@ -137,9 +137,9 @@ void Interact::update_roboArm(RoboArm& Arm) {
                 interact.sub_board.set_pump(0);
             }
             if (remote_control.rcInfo.ch4 < -500) {
-                interact.sub_board.set_valve3(1);
+                interact.sub_board.set_main_valve(1);
             } else if (remote_control.rcInfo.ch4 > 500) {
-                interact.sub_board.set_valve3(0);
+                interact.sub_board.set_main_valve(0);
             }
             receive_rc();
             break;

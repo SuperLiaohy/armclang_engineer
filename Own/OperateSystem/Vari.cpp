@@ -132,12 +132,12 @@ std::array<uint32_t, 6> get_silver_time                = {2000, 2000, 2000, 500,
 std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);
-        interact.sub_board.set_valve3(1);
-        interact.sub_board.set_valve5(0);
+        interact.sub_board.set_main_valve(1);
+        interact.sub_board.set_lf_valve(0);
     },
     nullptr,
     []() {
-        interact.sub_board.set_valve5(1);
+        interact.sub_board.set_lf_valve(1);
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
         one_step_gets.left.X.pos.step_set(0.15);
         one_step_gets.left.X.pos.target_set(200);
@@ -146,7 +146,7 @@ std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
         one_step_gets.left.Y.pos.target_set(100);
     },
     []() {
-        interact.sub_board.set_valve3(0);
+        interact.sub_board.set_main_valve(0);
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
         one_step_gets.left.X.pos.target_set(0);
         one_step_gets.left.X.pos.step_set(0.6);
@@ -162,7 +162,7 @@ std::array<uint32_t, 3> get_second_silver_time                       = {2000, 20
 std::array<interact_dep::ActionsGroup::exe, 4> get_second_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);
-        interact.sub_board.set_valve3(1);
+        interact.sub_board.set_main_valve(1);
     },
     nullptr, nullptr, []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 
@@ -192,10 +192,10 @@ std::array<uint32_t, 2> get_silver_from_time                       = {4000, 1000
 std::array<interact_dep::ActionsGroup::exe, 3> get_silver_from_exe = {
     []() {
         interact.sub_board.set_pump(1);
-        interact.sub_board.set_valve3(1);
+        interact.sub_board.set_main_valve(1);
     },
      []() {
-         interact.sub_board.set_valve5(0);
+         interact.sub_board.set_lf_valve(0);
     },
    []() {
        interact.robo_arm.mode = interact_dep::robo_mode::NONE;
@@ -218,10 +218,10 @@ std::array<interact_dep::Actions, 2> put_down_action        = {put_down, reset2}
 std::array<interact_dep::ActionsGroup::exe, 3> put_down_exe = {
     []() {
         interact.sub_board.set_pump(1);
-        interact.sub_board.set_valve3(1);
+        interact.sub_board.set_main_valve(1);
     },
     []() {
-        interact.sub_board.set_valve3(0);
+        interact.sub_board.set_main_valve(0);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 
@@ -244,7 +244,7 @@ std::array<interact_dep::Actions, 3> arm_get_gold_action        = {arm_get_gold,
 std::array<interact_dep::ActionsGroup::exe, 4> arm_get_gold_exe = {
     []() {
         interact.sub_board.set_pump(1);
-        interact.sub_board.set_valve3(1);
+        interact.sub_board.set_main_valve(1);
     },
     []() {},
     []() { },
@@ -266,7 +266,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     []() {
         interact.sub_board.set_pump(1);
         // interact.sub_board.set_valve1(1);
-        interact.sub_board.set_valve5(1);
+        interact.sub_board.set_lf_valve(1);
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
@@ -335,8 +335,8 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_silver2_exe = {
         interact.polarity = interact_dep::chassis_polarity::ANTI;
 
         interact.sub_board.set_pump(1);
-        interact.sub_board.set_valve4(1);
-        interact.sub_board.set_valve2(1);
+        interact.sub_board.set_lb_valve(1);
+        interact.sub_board.set_rb_valve(1);
         // one_step_gets.left.X.status = OneStepGetXStatus::BACK;
         // one_step_gets.left.X.pos.target_set(-2000);
         // one_step_gets.left.Y.status = OneStepGetYStatus::UP;

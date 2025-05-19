@@ -91,24 +91,31 @@ public:
 
     void set_pump(uint8_t x) { custom_frame_tx.s.pump = x; };
     void toggle_pump() { custom_frame_tx.s.pump = 1 - custom_frame_tx.s.pump;};
+    // void toggle_pump() { custom_frame_tx.s.pump = 1 - custom_frame_tx.s.pump;};
 
-    void set_valve1(uint8_t x) { custom_frame_tx.s.valve1 = x; };
-    void toggle_valve1() { custom_frame_tx.s.valve1 = 1 - custom_frame_tx.s.valve1; };
+    void set_rf_valve(uint8_t x) { custom_frame_tx.s.valve1 = x; };
+    void toggle_rf_valve() { custom_frame_tx.s.valve1 = 1 - custom_frame_tx.s.valve1; };
+    // void toggle_valve1() { custom_frame_tx.s.valve1 = 1 - custom_frame_tx.s.valve1; };
 
-    void set_valve2(uint8_t x) { custom_frame_tx.s.valve2 = x; };
-    void toggle_valve2() { custom_frame_tx.s.valve2 = 1 - custom_frame_tx.s.valve2; };
+    void set_rb_valve(uint8_t x) { custom_frame_tx.s.valve2 = x; };
+    void toggle_rb_valve() { custom_frame_tx.s.valve2 = 1 - custom_frame_tx.s.valve2; };
+    // void toggle_valve2() { custom_frame_tx.s.valve2 = 1 - custom_frame_tx.s.valve2; };
 
-    void set_valve3(uint8_t x) { custom_frame_tx.s.valve3 = x; };
-    void toggle_valve3() { custom_frame_tx.s.valve3 = 1 - custom_frame_tx.s.valve3; };
+    void set_main_valve(uint8_t x) { custom_frame_tx.s.valve3 = x; };
+    void toggle_main_valve() { custom_frame_tx.s.valve3 = 1 - custom_frame_tx.s.valve3; };
+    // void toggle_valve3() { custom_frame_tx.s.valve3 = 1 - custom_frame_tx.s.valve3; };
 
-    void set_valve4(uint8_t x) { custom_frame_tx.s.valve4 = x; };
-    void toggle_valve4() { custom_frame_tx.s.valve4 = 1 - custom_frame_tx.s.valve4; };
+    void set_lb_valve(uint8_t x) { custom_frame_tx.s.valve4 = x; };
+    void toggle_lb_valve() { custom_frame_tx.s.valve4 = 1 - custom_frame_tx.s.valve4; };
+    // void toggle_valve4() { custom_frame_tx.s.valve4 = 1 - custom_frame_tx.s.valve4; };
 
-    void set_valve5(uint8_t x) { custom_frame_tx.s.valve5 = x; };
-    void toggle_valve5() { custom_frame_tx.s.valve5 = 1 - custom_frame_tx.s.valve5; };
+    void set_lf_valve(uint8_t x) { custom_frame_tx.s.valve5 = x; };
+    void toggle_lf_valve() { custom_frame_tx.s.valve5 = 1 - custom_frame_tx.s.valve5; };
+    // void toggle_valve5() { custom_frame_tx.s.valve5 = 1 - custom_frame_tx.s.valve5; };
 
-    void set_valve6(uint8_t x) { custom_frame_tx.s.valve6 = x; };
-    void toggle_valve6() { custom_frame_tx.s.valve6 = 1 - custom_frame_tx.s.valve6; };
+    void set_chassis_valve(uint8_t x) { custom_frame_tx.s.valve6 = x; };
+    void toggle_chassis_valve() { custom_frame_tx.s.valve6 = 1 - custom_frame_tx.s.valve6; };
+    // void toggle_valve6() { custom_frame_tx.s.valve6 = 1 - custom_frame_tx.s.valve6; };
 
     uint8_t read_tx_status(){ return *reinterpret_cast<uint8_t*>(&custom_frame_tx.s);}
 

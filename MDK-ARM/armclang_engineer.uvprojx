@@ -1235,14 +1235,24 @@
               <FilePath>..\Own\CallBack\UARTCallback.cpp</FilePath>
             </File>
             <File>
-              <FileName>KeyCallback.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\CallBack\KeyCallback.cpp</FilePath>
-            </File>
-            <File>
               <FileName>TimCallback.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\CallBack\TimCallback.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ActionKeyCallback.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\CallBack\ActionKeyCallback.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ArmkKeyCallback.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\CallBack\ArmkKeyCallback.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ChassisKeyCallback.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\CallBack\ChassisKeyCallback.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -37,12 +37,12 @@ void ErrorTask() {
         canPlus2.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         canPlus3.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         interact.sub_board.set_pump(0);
-        interact.sub_board.set_valve1(0);
-        interact.sub_board.set_valve2(0);
-        interact.sub_board.set_valve3(0);
-        interact.sub_board.set_valve4(0);
-        interact.sub_board.set_valve5(0);
-        interact.sub_board.set_valve6(0);
+        interact.sub_board.set_rf_valve(0);
+        interact.sub_board.set_rb_valve(0);
+        interact.sub_board.set_main_valve(0);
+        interact.sub_board.set_lb_valve(0);
+        interact.sub_board.set_lf_valve(0);
+        interact.sub_board.set_chassis_valve(0);
         interact.sub_board.transmit();
         Led.SetColor(red * 255, 0, 0);
         ++time;
