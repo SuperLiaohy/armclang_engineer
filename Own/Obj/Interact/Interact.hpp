@@ -63,7 +63,7 @@ public:
 
     void receive_custom(uint8_t* data);
 
-    void receive_actions(RoboArm& Arm);
+    void receive_actions(RoboArm& Arm, float pitch);
 
     void receive_actions_group();
 

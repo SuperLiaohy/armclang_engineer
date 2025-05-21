@@ -304,12 +304,12 @@ void StartTask() {
     // put_silver_mine_left.joints[4] = 73.6503601;
     // put_silver_mine_left.joints[5] = 40.1804858;
 
-    put_silver_mine_left.joints[0] = -54.8991699;
-    put_silver_mine_left.joints[1] = 6.22208786;
-    put_silver_mine_left.joints[2] = 99.8753357;
-    put_silver_mine_left.joints[3] = 2.40375519;
-    put_silver_mine_left.joints[4] = 80.6401367;
-    put_silver_mine_left.joints[5] = 47.9019775;
+    put_silver_mine_left.joints[0] = -51.8910751;
+    put_silver_mine_left.joints[1] = 0.283977509;
+    put_silver_mine_left.joints[2] = 91.6136169;
+    put_silver_mine_left.joints[3] = 8.03382111;
+    put_silver_mine_left.joints[4] = 90;
+    put_silver_mine_left.joints[5] = -34.3062935;
 
     put_silver_mine_left.speed[0] = 720;
     put_silver_mine_left.speed[1] = 180;
@@ -353,7 +353,7 @@ void StartTask() {
     get_silver_group.actions_list[1] = get_silver_mine_z;
     get_silver_group.actions_list[2] = put_silver_mine_left;
     get_silver_group.actions_list[3] = put_silver_mine_left;
-    get_silver_group.actions_list[4] = exchange_left;
+    get_silver_group.actions_list[4];
     get_silver_group.actions_list[4].speed[0] = 180;
     get_silver_group.actions_list[4].speed[1] = 180;
     get_silver_group.actions_list[4].speed[2] = 180;

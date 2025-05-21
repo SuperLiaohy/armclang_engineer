@@ -77,7 +77,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 101.5+180, 0, 0});
+                 360-36.9964676, 0, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -110,7 +110,7 @@ interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
 interact_dep::Actions get_right_y(interact_dep::action_status::Joints);
 
 interact_dep::Actions get_silver_mine(interact_dep::action_status::Joints);
-interact_dep::Actions get_silver_mine_z(Slope(0.4, 0.15, 220), interact_dep::action_status::CartesianZ, {400, 0, -88});
+interact_dep::Actions get_silver_mine_z(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ, {400, 0, -88});
 interact_dep::Actions put_silver_mine_right(interact_dep::action_status::Joints);
 interact_dep::Actions put_silver_mine_left(interact_dep::action_status::Joints);
 
@@ -128,21 +128,22 @@ interact_dep::Actions silver_reset(interact_dep::action_status::Joints);
 
 std::array<interact_dep::Actions, 6> get_silver_action = {get_silver_mine,      get_silver_mine_z, put_silver_mine_left,
                                                           put_silver_mine_left, exchange_left, silver_reset};
-std::array<uint32_t, 6> get_silver_time                = {2000, 2000, 2000, 500, 200, 1000};
+std::array<uint32_t, 6> get_silver_time                = {3000, 3000, 2000, 500, 200, 1000};
 std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);
         interact.sub_board.set_main_valve(1);
         interact.sub_board.set_lf_valve(0);
+        one_step_gets.reset();
     },
     nullptr,
     []() {
         interact.sub_board.set_lf_valve(1);
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.left.X.pos.step_set(0.22);
-        one_step_gets.left.X.pos.target_set(400);
+        one_step_gets.left.X.pos.step_set(0.08);
+        one_step_gets.left.X.pos.target_set(200);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(320);
+        one_step_gets.left.Y.pos.target_set(750);
     },
     []() {
         interact.sub_board.set_main_valve(0);
@@ -155,17 +156,19 @@ std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 
 };
-
-std::array<interact_dep::Actions, 3> get_second_silver_action        = {get_silver_mine, get_silver_mine_z, reset1};
-std::array<uint32_t, 3> get_second_silver_time                       = {2000, 2000, 1000};
-std::array<interact_dep::ActionsGroup::exe, 4> get_second_silver_exe = {
-    []() {
-        interact.sub_board.set_pump(1);
-        interact.sub_board.set_main_valve(1);
+std::array<interact_dep::ActionsGroup::event, 6> get_silver_event = {
+    []()->bool {
+        return interact.sub_board.custom_frame_rx.s.valve3 < 400;
     },
-    nullptr, nullptr, []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
+    nullptr,
+    nullptr,
+    nullptr,
+    nullptr,
+    nullptr,
+    // []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 
 };
+
 
 interact_dep::ActionsGroup get_silver_group = {.actions_list = get_silver_action.data(),
                                                .time_list    = get_silver_time.data(),
@@ -175,11 +178,31 @@ interact_dep::ActionsGroup get_silver_group = {.actions_list = get_silver_action
                                                .index        = 0,
                                                .time_cnt     = 0};
 
+
+
+std::array<interact_dep::Actions, 2> get_second_silver_action        = {get_silver_mine, get_silver_mine_z};
+std::array<uint32_t, 2> get_second_silver_time                       = {3000, 2000};
+std::array<interact_dep::ActionsGroup::exe, 3> get_second_silver_exe = {
+    []() {
+        interact.sub_board.set_pump(1);
+        interact.sub_board.set_main_valve(1);
+    },
+    nullptr, []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
+
+};
+std::array<interact_dep::ActionsGroup::event, 2> get_second_silver_event = {
+    []()->bool {
+        return interact.sub_board.custom_frame_rx.s.valve3 < 400;
+    },
+    nullptr
+    // []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
+
+};
 interact_dep::ActionsGroup get_second_silver_group = {.actions_list = get_second_silver_action.data(),
                                                       .time_list    = get_second_silver_time.data(),
-                                                      .event_list   = nullptr,
+                                                      .event_list   = get_second_silver_event.data(),
                                                       .exe_list     = get_second_silver_exe.data(),
-                                                      .len          = 3,
+                                                      .len          = 2,
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 

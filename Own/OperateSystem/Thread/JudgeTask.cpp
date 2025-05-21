@@ -114,6 +114,9 @@ void JudgeTask() {
 
         ui.operate_fig(ui_list[8], UI::layer::LAYER_4, UI::color::CYAN, 1, 930 + 70, 880,
                        UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});
+
+        ui.operate_fig("011", UI::operation::ADD, UI::layer::LAYER_4, UI::color::GREEN, 10, 949, 518,
+                       UI::arc {.radius_x = 80, .radius_y = 60, .start_angle = 270, .end_angle = 90});
         ui.update();
         osDelay(34);
         // ui.operate_fig(ui_list[1],ui_dep::layer::LAYER_0,UI::color::CYAN,5,800,400,ui_dep::int_data{.font_size = 50,.data = fps});

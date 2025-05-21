@@ -202,7 +202,7 @@ void Interact::receive_actions_group() {
         actions = actions_group->get();
     }
 }
-void Interact::receive_actions(RoboArm& Arm) {
+void Interact::receive_actions(RoboArm& Arm, float pitch) {
     using namespace interact_dep;
     using namespace roboarm_dep;
     if (robo_arm.mode == robo_mode::ACTIONS
@@ -235,7 +235,7 @@ void Interact::receive_actions(RoboArm& Arm) {
                     joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
                     joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
                     joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-                    joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
+                    joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min, limitation.joint5.max);
                 }
                 Arm.target_speed = {roboarm_dep::default_speed};
 
@@ -254,7 +254,7 @@ void Interact::receive_actions(RoboArm& Arm) {
                     joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
                     joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
                     joint[4] =
-                        limited<float>(180 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
+                        limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min, limitation.joint5.max);
                 }
                 Arm.target_speed = {roboarm_dep::default_speed};
             } break;
