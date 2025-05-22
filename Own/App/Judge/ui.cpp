@@ -40,7 +40,7 @@ void UI::add_frame_header() {
                     break;
                 case 3:
                     memset(&(ui_frame->data_frame.user_data[len]), 0, 30);
-                    len                          += 30;
+                    len                              += 30;
                     ui_frame->data_frame.data_cmd_id  = 0x103;
                     ui_frame->header.data_length      = len + 6;
                     crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
@@ -48,7 +48,7 @@ void UI::add_frame_header() {
                     break;
                 case 4:
                     memset(&ui_frame->data_frame.user_data[len], 0, 15);
-                    len                          += 15;
+                    len                              += 15;
                     ui_frame->data_frame.data_cmd_id  = 0x103;
                     ui_frame->header.data_length      = len + 6;
                     crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
@@ -62,7 +62,7 @@ void UI::add_frame_header() {
                     break;
                 case 6:
                     memset(&(ui_frame->data_frame.user_data[len]), 0, 15);
-                    len                          += 15;
+                    len                              += 15;
                     ui_frame->data_frame.data_cmd_id  = 0x104;
                     ui_frame->header.data_length      = len + 6;
                     crc::append_crc8_check_sum(reinterpret_cast<uint8_t*>(&(ui_frame->header)), sizeof(frame_header));
@@ -80,10 +80,48 @@ void UI::add_frame_header() {
         default: break;
     }
 }
-void UI::update() {
+bool UI::update() {
+    if (type!=types::DELETE) {
+        for (uint8_t i = 0; i < str_index; i++) {
+            if (num < 7 && str_list[i].control.display_num > 0) {
+                if (str_list[i].control.visible == true) {
+                    type = types::STRING;
+                    memcpy(&((ui_frame->data_frame.user_data)[len]), &str_list[i], 15);
+                    len += 15;
+                    memcpy(&((ui_frame->data_frame.user_data)[len]), str_list[i].graphic.str,
+                           str_list[i].graphic.details_b);
+                    memset(&((ui_frame->data_frame.user_data)[len]) + str_list[i].graphic.details_b, 0,
+                           30 - str_list[i].graphic.details_b);
+                    len += 30;
+                    ++num;
+                    str_list[i].control.display_num--;
+                    str_list[i].control.visible = false;
+                    break;
+                }
+                str_list[i].control.display_num--;
+            }
+        }
+
+        if (type!=types::STRING) {
+            for (uint8_t i = 0; i < figure_index; i++) {
+                if (num < 7 && figure_list[i].control.display_num > 0) {
+                    if (figure_list[i].control.visible == true) {
+                        type = types::FIGURE;
+                        memcpy(&((ui_frame->data_frame.user_data)[len]), &figure_list[i], 15);
+                        len += 15;
+                        ++num;
+                        figure_list[i].control.visible = false;
+                    }
+                    figure_list[i].control.display_num--;
+                }
+            }
+        }
+    }
     this->add_frame_header();
     uartPlus.transmit_dma_pdata(uartPlus.tx_buffer, len + 15);
+    const auto no_empty = (len != 0);
     this->clear();
+    return no_empty;
 }
 void UI::start_receive() { uartPlus.receive_dma_idle(200); }
 void UI::get_feedback() {}

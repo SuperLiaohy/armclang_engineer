@@ -26,6 +26,7 @@ namespace interact_dep {
         VISION,
         ACTIONS,
         ACTIONS_GROUP,
+        KEYBOARD_PITCH,
         DRAW,
     };
 

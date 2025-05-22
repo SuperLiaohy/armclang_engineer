@@ -34,7 +34,11 @@ void robo_arm_g_callback(KeyEventType event) {
 void robo_arm_shift_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-
+            if (interact.robo_arm.mode != interact_dep::robo_mode::KEYBOARD_PITCH) {
+                interact.robo_arm.mode = interact_dep::robo_mode::KEYBOARD_PITCH;
+            } else {
+                interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+            }
             break;
         default: break;
     }

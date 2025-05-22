@@ -75,6 +75,16 @@ void Interact::receive_xyz(RoboArm& Arm) {
     }
 }
 
+void Interact::receive_kb() {
+    using namespace interact_dep;
+    using namespace roboarm_dep;
+    using namespace my_math;
+    if (robo_arm.mode == robo_mode::KEYBOARD_PITCH) {
+        joint[4] = limited<float>(joint[4] + interact.key_board.mouse.z * scale(32767, 5) * limitation.joint5.max,
+                                  limitation.joint5.min, limitation.joint5.max);
+    }
+}
+
 void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
     using namespace my_math;
     pc.tx_frame.data.joint1.angle = pos[0] * d2b2;
@@ -107,7 +117,7 @@ void Interact::receive_custom(uint8_t* data) {
             joint[2] = image_trans.user_custom_rx_data.joint[2] * scale(4096, 360);
             joint[3] = -image_trans.user_custom_rx_data.joint[3] * scale(4096, 360);
             joint[4] = image_trans.user_custom_rx_data.joint[4] * scale(4096, 360);
-            joint[5] = image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
+            joint[5] = -image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
         }
     }
 }
@@ -147,6 +157,10 @@ void Interact::update_roboArm(RoboArm& Arm) {
             if (robo_arm.last_mode != interact_dep::robo_mode::XYZ) { Arm.fkine(remote_control.pos); }
             receive_xyz(Arm);
             break;
+        case interact_dep::robo_mode::KEYBOARD_PITCH:
+            receive_kb();
+            break;
+
         default: break;
     }
 }

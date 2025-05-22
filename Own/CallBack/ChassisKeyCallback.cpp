@@ -153,14 +153,9 @@ void chassis_q_callback(KeyEventType event) {
     }
 }
 
-
 void robo_arm_ctrl_e_callback(KeyEventType event) {
     switch (event) {
-        case KeyEvent_OnClick:
-            interact.sub_board.toggle_chassis_valve();
-            break;
+        case KeyEvent_OnClick: interact.sub_board.toggle_chassis_valve(); break;
         default: break;
     }
 }
-
-

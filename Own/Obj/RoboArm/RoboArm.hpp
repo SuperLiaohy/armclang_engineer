@@ -51,7 +51,7 @@ public:
     roboarm_dep::Differentiator diff;
 
     Motor<LKMotorSingle> joint1;
-    //    Motor<lkMotor> joint2;
+
     struct {
         Motor<LKMotorSingle> internal;
         Motor<LKMotorSingle> external;

@@ -36,12 +36,12 @@ void Detect::JudgeLost() {
     if (presentTime - lastReceiveTime > maxInterval) {
         // if (!isLost) {
             if (lostFun != nullptr) lostFun();
-            isLost = 1;
+            isLost = true;
         // }
     } else {
         if (isLost) {
             if (recoverFun != nullptr) recoverFun();
-            isLost = 0;
+            isLost = false;
         }
     }
 }

@@ -135,6 +135,9 @@ namespace roboarm_dep {
 
         void write_fram();
 
+        std::atomic<float> up;
+        std::atomic<float> down;
+
         Fram fram;
 
         Slope slope_left;

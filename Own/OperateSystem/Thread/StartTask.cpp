@@ -212,8 +212,8 @@ void StartTask() {
     reset1.speed[3] = 720;
 
     reset2.joints[0] = 0;
-    reset2.joints[1] = -4;
-    reset2.joints[2] = 145;
+    reset2.joints[1] = -16.3;
+    reset2.joints[2] = 144.8;
     reset2.joints[3] = 0;
     reset2.joints[4] = 0;
     reset2.joints[5] = 0;
@@ -309,7 +309,7 @@ void StartTask() {
     put_silver_mine_left.joints[2] = 91.6136169;
     put_silver_mine_left.joints[3] = 8.03382111;
     put_silver_mine_left.joints[4] = 90;
-    put_silver_mine_left.joints[5] = -34.3062935;
+    put_silver_mine_left.joints[5] = -55.05;
 
     put_silver_mine_left.speed[0] = 720;
     put_silver_mine_left.speed[1] = 180;

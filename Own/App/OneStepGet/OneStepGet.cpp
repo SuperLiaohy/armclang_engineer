@@ -13,7 +13,6 @@ bool OSG::group::XGet::move_it() {
                 this->status           = OneStepGetXStatus::NONE;
                 Motor.total_position() = 0;
                 pos.target_set(Motor.total_position());
-
                 target_pos = Motor.total_position();
                 Motor.set_position(target_pos);
                 return false;

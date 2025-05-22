@@ -77,7 +77,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 360-36.9964676, 0, 0});
+                 360-104.738159, 0, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -101,9 +101,9 @@ UI ui(102, 0x0166, &huart7);
 
 OneStepGetControl OSG::mode   = OneStepGetControl::AUTO;
 OneStepGetAUTO OSG::auto_mode = OneStepGetAUTO::NONE;
-OSG one_step_gets(Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, Slope(1, 0),
+OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, Slope(1.2, 0),
                   Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 2, Slope {1.0, 0},
-                  Pid(100, 0.0000, 20, 500, 5000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(1, 0),
+                  Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(4, 0),
                   Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, Slope(1.0, 0));
 
 interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
@@ -128,7 +128,7 @@ interact_dep::Actions silver_reset(interact_dep::action_status::Joints);
 
 std::array<interact_dep::Actions, 6> get_silver_action = {get_silver_mine,      get_silver_mine_z, put_silver_mine_left,
                                                           put_silver_mine_left, exchange_left, silver_reset};
-std::array<uint32_t, 6> get_silver_time                = {3000, 3000, 2000, 500, 200, 1000};
+std::array<uint32_t, 6> get_silver_time                = {3000, 2000, 2000, 500, 200, 1000};
 std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);
@@ -140,7 +140,7 @@ std::array<interact_dep::ActionsGroup::exe, 7> get_silver_exe = {
     []() {
         interact.sub_board.set_lf_valve(1);
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.left.X.pos.step_set(0.08);
+        one_step_gets.left.X.pos.step_set(0.09);
         one_step_gets.left.X.pos.target_set(200);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
         one_step_gets.left.Y.pos.target_set(750);
@@ -283,35 +283,35 @@ interact_dep::ActionsGroup arm_get_gold_group = {.actions_list = arm_get_gold_ac
 
 
 
-std::array<uint32_t, 4> get_gold_time = {10, 3000, 2000, 4000};
+std::array<uint32_t, 4> get_gold_time = {10, 4000, 2000, 4000};
 std::array<interact_dep::Actions, 4> get_gold_action        = {reset1, reset1, reset1, reset1};
 std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     []() {
         interact.sub_board.set_pump(1);
-        // interact.sub_board.set_valve1(1);
+        interact.sub_board.set_rf_valve(1);
         interact.sub_board.set_lf_valve(1);
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
         one_step_gets.left.X.pos.target_set(2500);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(150);
-        // one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-        // one_step_gets.right.X.pos.target_set(-2300);
-        // one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        // one_step_gets.right.Y.pos.target_set(-250);
+        one_step_gets.left.Y.pos.target_set(0);
+        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+        one_step_gets.right.X.pos.target_set(-2500);
+        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.right.Y.pos.target_set(0);
     },
     []() {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(440);
-        // one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        // one_step_gets.right.Y.pos.target_set(-540);
+        one_step_gets.left.Y.pos.target_set(400);
+        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.right.Y.pos.target_set(-450);
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
         one_step_gets.left.X.pos.target_set(0);
-        // one_step_gets.right.X.status = OneStepGetXStatus::BACK;
-        // one_step_gets.right.X.pos.target_set(0);
+        one_step_gets.right.X.status = OneStepGetXStatus::BACK;
+        one_step_gets.right.X.pos.target_set(0);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 

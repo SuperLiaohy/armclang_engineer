@@ -40,7 +40,7 @@ public:
 
     void JudgeLost();
 
-    uint8_t isLost; //标记是否已丢失
+    bool isLost; //标记是否已丢失
 
     Fun lostFun;    //掉线处理函数
     Fun recoverFun; //恢复连接处理函数

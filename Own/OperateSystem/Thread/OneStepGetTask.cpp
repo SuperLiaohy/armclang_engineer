@@ -28,8 +28,8 @@ void OneStepGetTask() {
                     one_step_gets.left.X.Motor.set_position(one_step_gets.left.X.pos.get());
                     break;
                 case OneStepGetXStatus::FRONT:
-                    if (one_step_gets.left.X.Motor.is_block(-2500, 2500)) {
-                        if (++one_step_gets.left.X.block_count > 1) { one_step_gets.left.X.is_block = true; }
+                    if (one_step_gets.left.X.Motor.is_block(-7500, 7500)) {
+                        if (++one_step_gets.left.X.block_count > 500) { one_step_gets.left.X.is_block = true; }
                     } else {
                         one_step_gets.left.X.block_count = 0;
                         one_step_gets.left.X.is_block    = false;
@@ -37,8 +37,8 @@ void OneStepGetTask() {
                     one_step_gets.left.X.move_it();
                     break;
                 case OneStepGetXStatus::BACK:
-                    if (one_step_gets.left.X.Motor.is_block(-3500, 5500)) {
-                        if (++one_step_gets.left.X.block_count > 1) { one_step_gets.left.X.is_block = true; }
+                    if (one_step_gets.left.X.Motor.is_block(-7500, 7500)) {
+                        if (++one_step_gets.left.X.block_count > 500) { one_step_gets.left.X.is_block = true; }
                     } else {
                         one_step_gets.left.X.block_count = 0;
                         one_step_gets.left.X.is_block    = false;
@@ -51,8 +51,8 @@ void OneStepGetTask() {
                     one_step_gets.left.Y.Motor.set_position(one_step_gets.left.Y.pos.get());
                     break;
                 case OneStepGetYStatus::UP:
-                    if (one_step_gets.left.Y.Motor.is_block(-5500, 5500)) {
-                        if (++one_step_gets.left.Y.block_count > 1) { one_step_gets.left.Y.is_block = true; }
+                    if (one_step_gets.left.Y.Motor.is_block(-7500, 7500)) {
+                        if (++one_step_gets.left.Y.block_count > 100) { one_step_gets.left.Y.is_block = true; }
                     } else {
                         one_step_gets.left.Y.block_count = 0;
                         one_step_gets.left.Y.is_block    = false;
@@ -60,8 +60,8 @@ void OneStepGetTask() {
                     one_step_gets.left.Y.move_it();
                     break;
                 case OneStepGetYStatus::DOWN:
-                    if (one_step_gets.left.Y.Motor.is_block(-5500, 5500)) {
-                        if (++one_step_gets.left.Y.block_count > 1) { one_step_gets.left.Y.is_block = true; }
+                    if (one_step_gets.left.Y.Motor.is_block(-7500, 7500)) {
+                        if (++one_step_gets.left.Y.block_count > 100) { one_step_gets.left.Y.is_block = true; }
                     } else {
                         one_step_gets.left.Y.block_count = 0;
                         one_step_gets.left.Y.is_block    = false;
@@ -74,8 +74,8 @@ void OneStepGetTask() {
                     one_step_gets.right.X.Motor.set_position(one_step_gets.right.X.pos.get());
                     break;
                 case OneStepGetXStatus::FRONT:
-                    if (one_step_gets.right.X.Motor.is_block(-2500, 2500)) {
-                        if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
+                    if (one_step_gets.right.X.Motor.is_block(-6500, 6500)) {
+                        if (++one_step_gets.right.X.block_count > 100) { one_step_gets.right.X.is_block = true; }
                     } else {
                         one_step_gets.right.X.block_count = 0;
                         one_step_gets.right.X.is_block    = false;
@@ -83,8 +83,8 @@ void OneStepGetTask() {
                     one_step_gets.right.X.move_it();
                     break;
                 case OneStepGetXStatus::BACK:
-                    if (one_step_gets.right.X.Motor.is_block(-3500, 3500)) {
-                        if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
+                    if (one_step_gets.right.X.Motor.is_block(-6500, 6500)) {
+                        if (++one_step_gets.right.X.block_count > 100) { one_step_gets.right.X.is_block = true; }
                     } else {
                         one_step_gets.right.X.block_count = 0;
                         one_step_gets.right.X.is_block    = false;
@@ -97,8 +97,8 @@ void OneStepGetTask() {
                     one_step_gets.right.Y.Motor.set_position(one_step_gets.right.Y.pos.get());
                     break;
                 case OneStepGetYStatus::UP:
-                    if (one_step_gets.right.Y.Motor.is_block(-3500, 3500)) {
-                        if (++one_step_gets.right.Y.block_count > 1) { one_step_gets.right.Y.is_block = true; }
+                    if (one_step_gets.right.Y.Motor.is_block(-6500, 6500)) {
+                        if (++one_step_gets.right.Y.block_count > 100) { one_step_gets.right.Y.is_block = true; }
                     } else {
                         one_step_gets.right.Y.block_count = 0;
                         one_step_gets.right.Y.is_block    = false;
@@ -106,8 +106,8 @@ void OneStepGetTask() {
                     one_step_gets.right.Y.move_it();
                     break;
                 case OneStepGetYStatus::DOWN:
-                    if (one_step_gets.right.Y.Motor.is_block(-3500, 3500)) {
-                        if (++one_step_gets.right.Y.block_count > 1) { one_step_gets.right.Y.is_block = true; }
+                    if (one_step_gets.right.Y.Motor.is_block(-7500, 7500)) {
+                        if (++one_step_gets.right.Y.block_count > 100) { one_step_gets.right.Y.is_block = true; }
                     } else {
                         one_step_gets.right.Y.block_count = 0;
                         one_step_gets.right.Y.is_block    = false;
@@ -140,7 +140,7 @@ void OneStepGetTask() {
             // }
             switch (one_step_gets.left.X.status) {
                 case OneStepGetXStatus::FRONT:
-                    if (one_step_gets.left.X.Motor.is_block(-4500, 4500)) {
+                    if (one_step_gets.left.X.Motor.is_block(-4000, 4000)) {
                         if (++one_step_gets.left.X.block_count > 1) { one_step_gets.left.X.is_block = true; }
                     } else {
                         one_step_gets.left.X.block_count = 0;
@@ -148,7 +148,7 @@ void OneStepGetTask() {
                     }
                     break;
                 case OneStepGetXStatus::BACK:
-                    if (one_step_gets.left.X.Motor.is_block(-4500, 4500)) {
+                    if (one_step_gets.left.X.Motor.is_block(-4000, 4000)) {
                         if (++one_step_gets.left.X.block_count > 1) { one_step_gets.left.X.is_block = true; }
                     } else {
                         one_step_gets.left.X.block_count = 0;
@@ -160,7 +160,7 @@ void OneStepGetTask() {
 
             switch (one_step_gets.left.Y.status) {
                 case OneStepGetYStatus::UP:
-                    if (one_step_gets.left.Y.Motor.is_block(-5500, 5500)) {
+                    if (one_step_gets.left.Y.Motor.is_block(-7000, 7000)) {
                         if (++one_step_gets.left.Y.block_count > 1) { one_step_gets.left.Y.is_block = true; }
                     } else {
                         one_step_gets.left.Y.block_count = 0;
@@ -168,7 +168,7 @@ void OneStepGetTask() {
                     }
                     break;
                 case OneStepGetYStatus::DOWN:
-                    if (one_step_gets.left.Y.Motor.is_block(-5500, 5500)) {
+                    if (one_step_gets.left.Y.Motor.is_block(-7000, 7000)) {
                         if (++one_step_gets.left.Y.block_count > 1) { one_step_gets.left.Y.is_block = true; }
                     } else {
                         one_step_gets.left.Y.block_count = 0;
@@ -179,16 +179,16 @@ void OneStepGetTask() {
             }
             switch (one_step_gets.right.X.status) {
                 case OneStepGetXStatus::FRONT:
-                    if (one_step_gets.right.X.Motor.is_block(-4500, 4500)) {
-                        if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
+                    if (one_step_gets.right.X.Motor.is_block(-5000, 5000)) {
+                        if (++one_step_gets.right.X.block_count > 5) { one_step_gets.right.X.is_block = true; }
                     } else {
                         one_step_gets.right.X.block_count = 0;
                         one_step_gets.right.X.is_block    = false;
                     }
                     break;
                 case OneStepGetXStatus::BACK:
-                    if (one_step_gets.right.X.Motor.is_block(-4500, 4500)) {
-                        if (++one_step_gets.right.X.block_count > 1) { one_step_gets.right.X.is_block = true; }
+                    if (one_step_gets.right.X.Motor.is_block(-5000, 5000)) {
+                        if (++one_step_gets.right.X.block_count > 5) { one_step_gets.right.X.is_block = true; }
                     } else {
                         one_step_gets.right.X.block_count = 0;
                         one_step_gets.right.X.is_block    = false;
@@ -199,7 +199,7 @@ void OneStepGetTask() {
 
             switch (one_step_gets.right.Y.status) {
                 case OneStepGetYStatus::UP:
-                    if (one_step_gets.right.Y.Motor.is_block(-5500, 5500)) {
+                    if (one_step_gets.right.Y.Motor.is_block(-7000, 7000)) {
                         if (++one_step_gets.right.Y.block_count > 1) { one_step_gets.right.Y.is_block = true; }
                     } else {
                         one_step_gets.right.Y.block_count = 0;
@@ -207,7 +207,7 @@ void OneStepGetTask() {
                     }
                     break;
                 case OneStepGetYStatus::DOWN:
-                    if (one_step_gets.right.Y.Motor.is_block(-5500, 5500)) {
+                    if (one_step_gets.right.Y.Motor.is_block(-7000, 7000)) {
                         if (++one_step_gets.right.Y.block_count > 1) { one_step_gets.right.Y.is_block = true; }
                     } else {
                         one_step_gets.right.Y.block_count = 0;

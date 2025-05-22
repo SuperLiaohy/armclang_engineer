@@ -61,6 +61,8 @@ public:
 
     void receive_xyz(RoboArm& Arm);
 
+    void receive_kb();
+
     void receive_custom(uint8_t* data);
 
     void receive_actions(RoboArm& Arm, float pitch);

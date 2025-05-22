@@ -8,7 +8,7 @@
 #include "../Motor.tpp"
 
 template<motor_param motor>
-class LKControl : protected motor {
+class LKControl : public motor {
 public:
     template<typename... Args>
     LKControl(SuperCan* canPlus, uint16_t rx_id, Args&&... args)

@@ -9,19 +9,27 @@
 
 int32_t fps = 0;
 std::atomic<bool> ui_reset(false);
-UI::ui_control ui_list[] = {
-    UI::ui_control("101", 1),
-    // UI::ui_control("102", 1),
-    UI::ui_control("103", 3),
-    UI::ui_control("104", 3),
-    UI::ui_control("105", 4),
-    UI::ui_control("106", 3),
-    UI::ui_control("107", 3),
-    UI::ui_control("108", 3),
-    UI::ui_control("109", 3),
-    UI::ui_control("110", 3),
-};
+// UI::ui_control ui_list[] = {
+//     UI::ui_control("101", 1),
+//     // UI::ui_control("102", 1),
+//     UI::ui_control("103", 3),
+//     UI::ui_control("104", 3),
+//     UI::ui_control("105", 4),
+//     UI::ui_control("106", 3),
+//     UI::ui_control("107", 3),
+//     UI::ui_control("108", 3),
+//     UI::ui_control("109", 3),
+//     UI::ui_control("110", 3),
+// };
+
+UI::ui_item UI::figure_list[30];
+uint8_t UI::figure_index = 0;
+
+UI::ui_item UI::str_list[30];
+uint8_t UI::str_index = 0;
+
 void JudgeTask() {
+    osDelay(1000);
     auto int_valve_tx = []() -> int32_t {
         auto valve_tx_s = interact.sub_board.read_tx_status();
         int32_t result  = 0;
@@ -42,133 +50,143 @@ void JudgeTask() {
         return 0;
     };
     while (1) {
-        uint32_t time     = 0;
-        ui.clear();
+        uint32_t time = 0;
+        ui.reset();
         osDelay(34);
-        for (auto& item: ui_list) {
-            item.op = UI::operation::ADD;
-            item.display_num++;
+
+        UI::create_str("101", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PINK, 2, 24, 838, 24, 5, "air:", 40);
+        UI::create_str("102", UI::operation::ADD, UI::layer::LAYER_5, UI::color::CYAN, 2, 24, 686, 24, 9,
+                       "chassis:", 40);
+        UI::create_str("103", UI::operation::ADD, UI::layer::LAYER_5, UI::color::YELLOW, 2, 24, 595, 24, 9,
+                       "roboarm:", 40);
+        UI::create_str("104", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PINK, 2, 24, 900, 24, 6, "auto:", 40);
+
+        UI::create_str("105", UI::operation::ADD, UI::layer::LAYER_5, UI::color::GREEN, 1, 858, 845, 10, 4, "lf:", 40);
+        UI::create_str("106", UI::operation::ADD, UI::layer::LAYER_5, UI::color::GREEN, 1, 858, 790, 10, 4, "lb:", 40);
+        UI::create_str("107", UI::operation::ADD, UI::layer::LAYER_5, UI::color::GREEN, 1, 1022, 845, 10, 4, "rf:", 40);
+        UI::create_str("108", UI::operation::ADD, UI::layer::LAYER_5, UI::color::GREEN, 1, 1022, 790, 10, 4, "rb:", 40);
+        UI::create_str("109", UI::operation::ADD, UI::layer::LAYER_5, UI::color::GREEN, 1, 930, 880, 10, 6,
+                       "main:", 40);
+
+        UI::create_str("110", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PURPLE, 2, 1570, 870, 24, 8,
+                       "joint1:", 40);
+        UI::create_str("111", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PURPLE, 2, 1570, 820, 24, 8,
+                       "joint2:", 40);
+        UI::create_str("112", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PURPLE, 2, 1570, 770, 24, 8 ,
+                       "joint3:", 40);
+        UI::create_str("113", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PURPLE, 2, 1570, 720, 24, 8 ,
+                       "joint4:", 40);
+        UI::create_str("114", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PURPLE, 2, 1570, 670, 24, 8,
+                       "joint5:", 40);
+        UI::create_str("115", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PURPLE, 2, 1570, 620, 24, 8,
+                       "joint6:", 40);
+
+        // for (int i = 0; i < UI::str_index; ++i) {
+        //     ui.update();
+        //     osDelay(34);
+        // }
+
+        const auto air_num =
+            UI::create_int("201", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PINK, 2, 221, 838, 24, int_valve_tx(), 1);
+        const auto chassis_num =
+            UI::create_int("202", UI::operation::ADD, UI::layer::LAYER_6, UI::color::CYAN, 2, 221, 686, 24, int_chassis(), 1);
+        const auto robo_num =
+            UI::create_int("203", UI::operation::ADD, UI::layer::LAYER_6, UI::color::YELLOW, 2, 221, 595, 24, int_robo_arm(), 1);
+        const auto auto_num =
+            UI::create_int("204", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PINK, 2, 221, 900, 24, int_auto(), 1);
+
+        const auto lf_num   = UI::create_float("205", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+                                               858 + 50, 845, 10, 5, 2);
+        const auto lb_num   = UI::create_float("206", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+                                               858 + 50, 790, 10, 5, 2);
+        const auto rf_num   = UI::create_float("207", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+                                               1022 + 50, 845, 10, 5, 2);
+        const auto rb_num   = UI::create_float("208", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+                                               1022 + 50, 790, 10, 5, 2);
+        const auto main_num = UI::create_float("209", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+                                               930 + 70, 880, 10, 5, 2);
+        auto reset_arc = UI::create_arc("210", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 10, 949, 518,
+                                        270, 90, 80, 60, 40);
+
+        const auto joint1_num = UI::create_float("211", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 2,
+                                               1750, 870, 24, 5, 3);
+        const auto joint2_num = UI::create_float("212", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 2,
+                                               1750, 820, 24, 5, 3);
+        const auto joint3_num = UI::create_float("213", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 2,
+                                               1750, 770, 24, 5, 3);
+        const auto joint4_num = UI::create_float("214", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 2,
+                                               1750, 720, 24, 5, 3);
+        const auto joint5_num = UI::create_float("215", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 2,
+                                               1750, 670, 24, 5, 3);
+        const auto joint6_num = UI::create_float("216", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 2,
+                                               1750, 620, 24, 5, 3);
+
+        const auto gold_left = UI::create_ellipse("217", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 6,
+                                               493, 667, 70, 60, 40);
+        const auto gold_right = UI::create_ellipse("218", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 6,
+                                               1283, 755, 60, 50, 40);
+
+        while (ui.update()) {
+            osDelay(50);
         }
-        ui.operate_fig("001", UI::operation::ADD, UI::layer::LAYER_4, UI::color::GREEN, 2, 24, 838,
-                       UI::string_data {.font_size = 20, .data = "air:", .length = 5});
-        ui.update();
-        osDelay(34);
 
-        ui.operate_fig("003", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 2, 24, 686,
-                       UI::string_data {.font_size = 20, .data = "chassis:", .length = 9});
-        ui.update();
-        osDelay(34);
-        ui.operate_fig("004", UI::operation::ADD, UI::layer::LAYER_4, UI::color::YELLOW, 2, 24, 595,
-                       UI::string_data {.font_size = 20, .data = "roboarm:", .length = 9});
-        ui.update();
-        osDelay(34);
-        ui.operate_fig("005", UI::operation::ADD, UI::layer::LAYER_4, UI::color::PINK, 2, 24, 900,
-                       UI::string_data {.font_size = 20, .data = "auto:", .length = 5});
-        ui.update();
-        osDelay(34);
+        auto joint_lost = [](UI::float_data* self, bool is_lost) {
+            if (is_lost) {
+                self->set_color(UI::color::BLACK);
+            } else {
+                self->set_color(UI::color::PURPLE);
+            }
+        };
 
-        ui.operate_fig("006", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 858, 845,
-                       UI::string_data {.font_size = 10, .data = "lf:", .length = 4});
-        ui.update();
-        osDelay(34);
-        ui.operate_fig("007", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 858, 790,
-                       UI::string_data {.font_size = 10, .data = "lb:", .length = 4});
-        ui.update();
-        osDelay(34);
-        ui.operate_fig("008", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 1022, 845,
-                       UI::string_data {.font_size = 10, .data = "rf:", .length = 4});
-        ui.update();
-        osDelay(34);
-        ui.operate_fig("009", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 1022, 790,
-                       UI::string_data {.font_size = 10, .data = "rb:", .length = 4});
-        ui.update();
-        osDelay(34);
-        ui.operate_fig("010", UI::operation::ADD, UI::layer::LAYER_4, UI::color::CYAN, 1, 930, 880,
-                       UI::string_data {.font_size = 10, .data = "main:", .length = 6});
-        ui.update();
-        osDelay(34);
+        for (int i = 0; i < UI::figure_index; ++i) { UI::figure_list[i].set_operate(UI::operation::MODIFY); }
 
-        ui.operate_fig(ui_list[0], UI::layer::LAYER_5, UI::color::GREEN, 5, 221, 838,
-                       UI::int_data {.font_size = 50, .data = int_valve_tx()});
-        ui.operate_fig(ui_list[1], UI::layer::LAYER_5, UI::color::CYAN, 5, 221, 686,
-                       UI::int_data {.font_size = 50, .data = int_chassis()});
-        ui.operate_fig(ui_list[2], UI::layer::LAYER_5, UI::color::YELLOW, 5, 221, 595,
-                       UI::int_data {.font_size = 50, .data = int_robo_arm()});
-        ui.operate_fig(ui_list[3], UI::layer::LAYER_5, UI::color::PINK, 5, 221, 900,
-                       UI::int_data {.font_size = 50, .data = int_auto()});
-
-        ui.update();
-        osDelay(34);
-
-        ui.operate_fig(ui_list[4], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 845,
-                   UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});  //lf
-
-        ui.operate_fig(ui_list[5], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 790,
-                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});  //lb
-
-        ui.operate_fig(ui_list[6], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 845,
-                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});  //rf
-
-        ui.operate_fig(ui_list[7], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 790,
-                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});  //rb
-
-        ui.operate_fig(ui_list[8], UI::layer::LAYER_4, UI::color::CYAN, 1, 930 + 70, 880,
-                       UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});
-
-        ui.operate_fig("011", UI::operation::ADD, UI::layer::LAYER_4, UI::color::GREEN, 10, 949, 518,
-                       UI::arc {.radius_x = 80, .radius_y = 60, .start_angle = 270, .end_angle = 90});
-        ui.update();
-        osDelay(34);
-        // ui.operate_fig(ui_list[1],ui_dep::layer::LAYER_0,UI::color::CYAN,5,800,400,ui_dep::int_data{.font_size = 50,.data = fps});
-        // ui.operate_fig(ui_list[2],ui_dep::layer::LAYER_0,UI::color::GREEN,5,800,200,ui_dep::int_data{.font_size = 50,.data = fps});
-        // ui.operate_fig(ui_list[3],ui_dep::layer::LAYER_0,UI::color::YELLOW,5,800,800,ui_dep::int_data{.font_size = 50,.data = fps});
-        for (auto& item: ui_list) { item.op = UI::operation::MODIFY; }
         while (1) {
-
             ++time;
-            if (time % 33 == 0) {
+            if (time % 34 == 0) {
                 ++fps;
-                for (auto& item: ui_list) {
-                    if (fps % item.display_interval == 0) { ++item.display_num; }
+                for (int i = 0; i < UI::figure_index; ++i) {
+                    if (fps % UI::figure_list[i].control.display_interval == 0) {
+                        ++UI::figure_list[i].control.display_num;
+                    }
                 }
-                ui.operate_fig(ui_list[0], UI::layer::LAYER_5, UI::color::PINK, 5, 221, 838,
-                               UI::int_data {.font_size = 50, .data = int_valve_tx()});
+                lf_num->set_float(interact.sub_board.custom_frame_rx.s.valve5);
+                lb_num->set_float(interact.sub_board.custom_frame_rx.s.valve4);
+                rf_num->set_float(interact.sub_board.custom_frame_rx.s.valve1);
+                rb_num->set_float(interact.sub_board.custom_frame_rx.s.valve2);
+                main_num->set_float(interact.sub_board.custom_frame_rx.s.valve3);
 
-                ui.operate_fig(ui_list[1], UI::layer::LAYER_5, UI::color::CYAN, 5, 221, 686,
-                               UI::int_data {.font_size = 50, .data = int_chassis()});
+                chassis_num->set_int(int_chassis());
+                robo_num->set_int(int_robo_arm());
+                auto_num->set_int(int_auto());
+                air_num->set_int(int_valve_tx());
+                air_num->control.visible = true;
+                joint_lost(joint1_num, roboArm.joint1.detect.isLost);
+                if (roboArm.joint2.internal.detect.isLost == false && roboArm.joint2.external.detect.isLost == false) {
+                    joint2_num->set_color(UI::color::PURPLE);
+                } else if (roboArm.joint2.internal.detect.isLost == false) {
+                    joint2_num->set_color(UI::color::GREEN);
+                } else if (roboArm.joint2.external.detect.isLost == false) {
+                    joint2_num->set_color(UI::color::YELLOW);
+                } else {
+                    joint2_num->set_color(UI::color::BLACK);
+                }
+                joint_lost(joint3_num, roboArm.joint3.detect.isLost);
+                joint_lost(joint4_num, roboArm.joint4.detect.isLost);
+                joint_lost(joint5_num, roboArm.diff.left.detect.isLost);
+                joint_lost(joint6_num, roboArm.diff.right.detect.isLost);
+                joint1_num->set_float(roboArm.relative_pos[0]);
+                joint2_num->set_float(roboArm.relative_pos[1]);
+                joint3_num->set_float(roboArm.relative_pos[2]);
+                joint4_num->set_float(roboArm.relative_pos[3]);
+                joint5_num->set_float(roboArm.relative_pos[4]);
+                joint6_num->set_float(roboArm.relative_pos[5]);
 
-                ui.operate_fig(ui_list[2], UI::layer::LAYER_5, UI::color::YELLOW, 5, 221, 595,
-                               UI::int_data {.font_size = 50, .data = int_robo_arm()});
-
-                ui.operate_fig(ui_list[3], UI::layer::LAYER_5, UI::color::PINK, 5, 221, 900,
-                               UI::int_data {.font_size = 50, .data = int_auto()});
-
-                ui.operate_fig(ui_list[4], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 845,
-                           UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve5});
-
-                ui.operate_fig(ui_list[5], UI::layer::LAYER_4, UI::color::CYAN, 1, 858 + 50, 790,
-                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve4});
-
-                ui.operate_fig(ui_list[6], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 845,
-                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve1});
-
-                ui.operate_fig(ui_list[7], UI::layer::LAYER_4, UI::color::CYAN, 1, 1022 + 50, 790,
-                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve2});
-
-                ui.operate_fig(ui_list[8], UI::layer::LAYER_4, UI::color::CYAN, 1, 930 + 70, 880,
-                               UI::float_data {.font_size = 10, .data = interact.sub_board.custom_frame_rx.s.valve3});
-
-                // ui.operate_fig(ui_list[1],ui_dep::layer::LAYER_0,UI::color::CYAN,5,800,400,ui_dep::int_data{.font_size = 50,.data = fps});
-                // ui.operate_fig(ui_list[2],ui_dep::layer::LAYER_0,UI::color::GREEN,5,800,200,ui_dep::int_data{.font_size = 50,.data = fps});
-                // ui.operate_fig(ui_list[3],ui_dep::layer::LAYER_0,UI::color::YELLOW,5,800,800,ui_dep::int_data{.f/ont_size = 50,.data = fps});
                 ui.update();
             }
 
             if (time % 1000 == 0) { fps = 0; }
             osDelay(1);
-            if (ui_reset.load()) {
-                break;
-            }
+            if (ui_reset.load()) { break; }
         }
     }
 }
