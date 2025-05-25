@@ -77,7 +77,8 @@ extern interact_dep::Actions exchange_right;
 extern interact_dep::Actions put_down;
 extern interact_dep::Actions get_silver2_mine;
 extern interact_dep::Actions arm_get_gold;
-extern interact_dep::Actions arm_get_gold_mine_z;
+extern interact_dep::Actions arm_get_gold_z;
+extern interact_dep::Actions arm_get_gold_mine_X_x_in;
 extern interact_dep::Actions arm_get_gold_mine_x;
 
 extern interact_dep::ActionsGroup get_silver_group;
@@ -329,10 +330,10 @@ void StartTask() {
     get_silver_from_left.speed[3] = 720;
 
     arm_get_gold.joints[0] = 0;
-    arm_get_gold.joints[1] = 0;
-    arm_get_gold.joints[2] = 0;
-    arm_get_gold.joints[3] = 0;
-    arm_get_gold.joints[4] = 0;
+    arm_get_gold.joints[1] = 48.4501343;
+    arm_get_gold.joints[2] = 70.3479385;
+    arm_get_gold.joints[3] = 0.00540079346;
+    arm_get_gold.joints[4] = -28.7980728;
     arm_get_gold.joints[5] = 0;
 
     exchange_left.joints[0] = -17.9960938;
@@ -375,9 +376,10 @@ void StartTask() {
     put_down_group.actions_list[0] = put_down;
     put_down_group.actions_list[1] = reset2;
 
-    arm_get_gold_group.actions_list[0] = arm_get_gold;
-    arm_get_gold_group.actions_list[0] = arm_get_gold_mine_z;
-    arm_get_gold_group.actions_list[0] = arm_get_gold_mine_x;
+    // arm_get_gold_group.actions_list[0] = arm_get_gold;
+    // arm_get_gold_group.actions_list[1] = arm_get_gold_mine_X_x_in;
+    // arm_get_gold_group.actions_list[2] = arm_get_gold_mine_x;
+    // arm_get_gold_group.actions_list[3] = arm_get_gold_mine_x;
 
     get_silver2_group.actions_list[0] = anti_reset;
     get_silver2_group.actions_list[1] = anti_reset;

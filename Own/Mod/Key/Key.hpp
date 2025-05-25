@@ -53,6 +53,7 @@ struct KeyBoard {
 
         uint8_t l;
         uint8_t r;
+        uint8_t m;
     } mouse;
     /* keyboard key information */
     union {

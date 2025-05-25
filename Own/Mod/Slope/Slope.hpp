@@ -20,6 +20,7 @@ public:
     [[gnu::always_inline]] inline void target_set(float input);
 
     [[gnu::always_inline]] inline void target_arrive() { value = target; };
+    [[gnu::always_inline]] inline bool is_arrive() { return value > target - dead_zone && value < target + dead_zone; };
 
     [[gnu::always_inline]] inline void step_set(float input);
     [[gnu::always_inline]] inline void value_set(float input) { value = input; };

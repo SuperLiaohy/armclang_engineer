@@ -29,7 +29,9 @@ UI::ui_item UI::str_list[30];
 uint8_t UI::str_index = 0;
 
 void JudgeTask() {
-    osDelay(1000);
+    while (!ui.is_get_id.load()) {
+        osDelay(1);
+    }
     auto int_valve_tx = []() -> int32_t {
         auto valve_tx_s = interact.sub_board.read_tx_status();
         int32_t result  = 0;
@@ -52,7 +54,7 @@ void JudgeTask() {
     while (1) {
         uint32_t time = 0;
         ui.reset();
-        osDelay(34);
+        osDelay(35);
 
         UI::create_str("101", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PINK, 2, 24, 838, 24, 5, "air:", 40);
         UI::create_str("102", UI::operation::ADD, UI::layer::LAYER_5, UI::color::CYAN, 2, 24, 686, 24, 9,
@@ -142,7 +144,7 @@ void JudgeTask() {
 
         while (1) {
             ++time;
-            if (time % 34 == 0) {
+            if (time % 35 == 0) {
                 ++fps;
                 for (int i = 0; i < UI::figure_index; ++i) {
                     if (fps % UI::figure_list[i].control.display_interval == 0) {

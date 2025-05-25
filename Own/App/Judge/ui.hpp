@@ -2,6 +2,8 @@
 
 #include "referee_system.h"
 
+#include <atomic>
+
 struct basic_graphic {
     uint8_t figure_name[3];
     uint32_t operate_type : 3;
@@ -116,6 +118,7 @@ public:
             graphic.figure_name[1] = name[1];
             graphic.figure_name[2] = name[2];
         };
+
     public:
         void set_operate(operation op) {
             if (is_change(graphic.operate_type, op)) graphic.operate_type = static_cast<uint8_t>(op);
@@ -445,7 +448,8 @@ public:
         : len(0)
         , type(types::NONE)
         , uartPlus(huart, 200, 200)
-        , num(0) {
+        , num(0)
+        , is_get_id(false) {
         ui_frame                         = reinterpret_cast<frame*>(uartPlus.tx_buffer);
         *ui_frame                        = {0xA5, 0, 0, 0};
         ui_frame->cmd_id                 = 0x301;
@@ -464,6 +468,7 @@ public:
 
     void start_receive();
 
+    std::atomic<bool> is_get_id;
     frame* ui_frame;
     uint32_t len;
     types type;
@@ -479,6 +484,7 @@ public:
         str_index    = 0;
         clear();
     }
+
 private:
     uint8_t num;
     void add_frame_header();

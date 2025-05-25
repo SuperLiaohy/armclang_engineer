@@ -8,6 +8,9 @@
 extern interact_dep::ActionsGroup get_gold_group;
 extern interact_dep::ActionsGroup arm_get_gold_group;
 
+extern interact_dep::Actions arm_get_gold;
+extern interact_dep::Actions arm_get_gold_z;
+
 void action_z_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {
@@ -52,6 +55,14 @@ void action_shift_z_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                // arm_get_gold_z.init = false;
+                // interact.actions       = &arm_get_gold_z;
+                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+                break;
+            default: break;
+        }
     }
 }
 
@@ -224,6 +235,14 @@ void action_ctrl_z_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                arm_get_gold.init = false;
+                interact.actions       = &arm_get_gold;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+                break;
+            default: break;
+        }
     }
 }
 void action_ctrl_x_callback(KeyEventType event) {
@@ -303,9 +322,7 @@ void air_right_callback(KeyEventType event) {
 
 void action_ctrl_r_callback(KeyEventType event) {
     switch (event) {
-        case KeyEvent_OnDown:
-        case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing:
+        case KeyEvent_OnClick:
             one_step_gets.reset();
             break;
         default: break;

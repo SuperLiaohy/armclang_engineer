@@ -15,7 +15,7 @@ void ArmTask() {
 
         interact.receive_actions_group();
         interact.receive_actions(roboArm, imu.pitch);
-
+        interact.receive_kb();
         roboArm.update_relative_pos();
         roboArm.load_target(interact.joint, interact.joint_slope);
 

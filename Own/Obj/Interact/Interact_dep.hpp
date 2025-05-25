@@ -26,7 +26,7 @@ namespace interact_dep {
         VISION,
         ACTIONS,
         ACTIONS_GROUP,
-        KEYBOARD_PITCH,
+        // KEYBOARD_PITCH,
         DRAW,
     };
 
@@ -39,8 +39,10 @@ namespace interact_dep {
 
     enum class action_status : uint8_t {
         Joints,
-        CartesianX,
-        CartesianZ,
+        CartesianX_z,
+        CartesianX_x,
+        CartesianZ_z,
+        CartesianZ_x,
     };
 
     constexpr std::array<float, 4> default_action_speed = {480, 480, 720, 720};

@@ -90,6 +90,8 @@ void RemoteCtrlTask() {
             interact.update_chassis(chassis);
             // 还无判断kb
             interact.update_roboArm(roboArm);
+            // interact.receive_kb();
+
         }
         interact.chassis.last_mode  = interact.chassis.mode;
         interact.robo_arm.last_mode = interact.robo_arm.mode;

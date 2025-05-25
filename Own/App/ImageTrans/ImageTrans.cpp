@@ -21,7 +21,7 @@ ImageTrans::ImageTrans(UART_HandleTypeDef* huart) : uartPlus(huart, 500, 100) {
 
 
 void ImageTrans::update_keyboard(KeyBoard& key_board) {
-    const auto buff = uartPlus.rx_buffer;
+    const auto buff   = uartPlus.rx_buffer;
     key_board.mouse.x = static_cast<int16_t>((buff[7] | (buff[8] << 8))); // x axis
     key_board.mouse.y = static_cast<int16_t>((buff[9] | (buff[10] << 8)));
     key_board.mouse.z = static_cast<int16_t>((buff[11] | (buff[12] << 8)));
@@ -30,6 +30,18 @@ void ImageTrans::update_keyboard(KeyBoard& key_board) {
     key_board.mouse.r = buff[14];
 
     key_board.kb.key_code = buff[15] | buff[16] << 8; // key borad code
+}
+void ImageTrans::update_rc_keyboard(uint8_t* buff, KeyBoard& key_board) {
+    key_board.mouse.x = static_cast<int16_t>((buff[10] | (buff[11] << 8))); // x axis
+    key_board.mouse.y = static_cast<int16_t>((buff[12] | (buff[13] << 8)));
+    key_board.mouse.z = static_cast<int16_t>((buff[14] | (buff[15] << 8)));
+
+    key_board.mouse.l = buff[16] & 0b0000'0011;
+    key_board.mouse.r = buff[16] & 0b0000'1100;
+    key_board.mouse.m = buff[16] & 0b0011'0000;
+
+    key_board.kb.key_code = buff[17] | buff[18] << 8; // key borad code
+
 }
 
 void ImageTrans::transmit_custom_frame() {

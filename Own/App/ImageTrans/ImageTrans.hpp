@@ -74,6 +74,7 @@ public:
     void transmit_custom_frame();
     void get_custom_feedback(const std::array<float, 6>& pos);
     void update_keyboard(KeyBoard &key_board);
+    void update_rc_keyboard(uint8_t* buff, KeyBoard &key_board);
     void start_receive() {
         uartPlus.receive_dma_idle(500);
     };

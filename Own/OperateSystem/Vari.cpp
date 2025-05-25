@@ -77,7 +77,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 360-104.738159, 0, 0});
+                 360-103.392334, 0, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -110,7 +110,7 @@ interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
 interact_dep::Actions get_right_y(interact_dep::action_status::Joints);
 
 interact_dep::Actions get_silver_mine(interact_dep::action_status::Joints);
-interact_dep::Actions get_silver_mine_z(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ, {400, 0, -88});
+interact_dep::Actions get_silver_mine_z(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ_z, {400, 0, -88});
 interact_dep::Actions put_silver_mine_right(interact_dep::action_status::Joints);
 interact_dep::Actions put_silver_mine_left(interact_dep::action_status::Joints);
 
@@ -259,28 +259,33 @@ interact_dep::ActionsGroup put_down_group = {.actions_list = put_down_action.dat
 
 
 interact_dep::Actions arm_get_gold(interact_dep::action_status::Joints);
-interact_dep::Actions arm_get_gold_mine_z(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianZ);
-interact_dep::Actions arm_get_gold_mine_x(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX);
-
-std::array<uint32_t, 3> arm_get_gold_time = {2000, 1000,3000};
-std::array<interact_dep::Actions, 3> arm_get_gold_action        = {arm_get_gold, arm_get_gold_mine_z, arm_get_gold_mine_x};
-std::array<interact_dep::ActionsGroup::exe, 4> arm_get_gold_exe = {
-    []() {
-        interact.sub_board.set_pump(1);
-        interact.sub_board.set_main_valve(1);
-    },
-    []() {},
-    []() { },
-    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
-
-interact_dep::ActionsGroup arm_get_gold_group = {.actions_list = arm_get_gold_action.data(),
-                                                      .time_list    = arm_get_gold_time.data(),
-                                                      .event_list   = nullptr,
-                                                      .exe_list     = arm_get_gold_exe.data(),
-                                                      .len          = 3,
-                                                      .index        = 0,
-                                                      .time_cnt     = 0};
-
+interact_dep::Actions arm_get_gold_z(Slope(0.001, 0.15, 90), interact_dep::action_status::CartesianX_z);
+// interact_dep::Actions arm_get_gold_mine_X_x_in(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_x);
+// interact_dep::Actions arm_get_gold_mine_X_z(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_z);
+// interact_dep::Actions arm_get_gold_mine_X_x_out(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_x);
+//
+// // interact_dep::Actions arm_get_gold_mine_x(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX);
+//
+// std::array<uint32_t, 4> arm_get_gold_time = {1000, 1000, 1000, 1000};
+// std::array<interact_dep::Actions, 4> arm_get_gold_action        = {arm_get_gold, arm_get_gold_mine_X_x_in,arm_get_gold_mine_X_z,arm_get_gold_mine_X_x_out};
+// std::array<interact_dep::ActionsGroup::exe, 5> arm_get_gold_exe = {
+//     []() {
+//         interact.sub_board.set_pump(1);
+//         interact.sub_board.set_main_valve(1);
+//     },
+//     []() {},
+//     []() {},
+//     []() {},
+//     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
+//
+// interact_dep::ActionsGroup arm_get_gold_group = {.actions_list = arm_get_gold_action.data(),
+//                                                       .time_list    = arm_get_gold_time.data(),
+//                                                       .event_list   = nullptr,
+//                                                       .exe_list     = arm_get_gold_exe.data(),
+//                                                       .len          = 1,
+//                                                       .index        = 0,
+//                                                       .time_cnt     = 0};
+//
 
 
 std::array<uint32_t, 4> get_gold_time = {10, 4000, 2000, 4000};
@@ -293,7 +298,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.left.X.pos.target_set(2500);
+        one_step_gets.left.X.pos.target_set(2000);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
         one_step_gets.left.Y.pos.target_set(0);
         one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
@@ -303,9 +308,9 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     },
     []() {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(400);
+        one_step_gets.left.Y.pos.target_set(255);
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-450);
+        one_step_gets.right.Y.pos.target_set(-300);
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
@@ -323,7 +328,7 @@ interact_dep::ActionsGroup get_gold_group = {.actions_list = get_gold_action.dat
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 
-std::array<uint32_t, 1> ready_silver2_time = {2500};
+std::array<uint32_t, 1> ready_silver2_time = {100};
 std::array<interact_dep::Actions, 1> ready_silver2_action        = {anti_reset};
 std::array<interact_dep::ActionsGroup::exe, 2> ready_silver2_exe = {
     []() {

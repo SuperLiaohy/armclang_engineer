@@ -157,98 +157,82 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>104</LineNumber>
+          <LineNumber>60</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134404180</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Own\OperateSystem\Vari.cpp</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\Own\OperateSystem\Thread\IMUTask.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/OperateSystem/Vari.cpp\104</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>60</LineNumber>
+          <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134352340</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
+          <BreakIfRCount>0</BreakIfRCount>
           <Filename>..\Own\OperateSystem\Thread\IMUTask.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/OperateSystem/Thread/IMUTask.cpp\60</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>37</LineNumber>
+          <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134352106</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Own\OperateSystem\Thread\IMUTask.cpp</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\Own\Obj\RoboArm\RoboArm.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/OperateSystem/Thread/IMUTask.cpp\37</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>83</LineNumber>
+          <LineNumber>301</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134386030</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Own\Obj\RoboArm\RoboArm.cpp</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>startup_stm32h723xx.s</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/Obj/RoboArm/RoboArm.cpp\83</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>4</Number>
           <Type>0</Type>
-          <LineNumber>301</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134218752</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>startup_stm32h723xx.s</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\startup_stm32h723xx.s\301</Expression>
-        </Bp>
-        <Bp>
-          <Number>5</Number>
-          <Type>0</Type>
           <LineNumber>68</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134389670</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
+          <BreakIfRCount>0</BreakIfRCount>
           <Filename>..\Own\Obj\RoboArm\RoboArm.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\armclang_engineer\../Own/Obj/RoboArm/RoboArm.cpp\68</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -389,7 +373,7 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
@@ -1513,7 +1497,7 @@
 
   <Group>
     <GroupName>Own/Callback</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

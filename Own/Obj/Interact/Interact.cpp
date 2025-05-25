@@ -70,7 +70,7 @@ void Interact::receive_xyz(RoboArm& Arm) {
             joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
             joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
             joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-            joint[4] = limited<float>(180 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
+            joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
         }
     }
 }
@@ -79,10 +79,10 @@ void Interact::receive_kb() {
     using namespace interact_dep;
     using namespace roboarm_dep;
     using namespace my_math;
-    if (robo_arm.mode == robo_mode::KEYBOARD_PITCH) {
-        joint[4] = limited<float>(joint[4] + interact.key_board.mouse.z * scale(32767, 5) * limitation.joint5.max,
-                                  limitation.joint5.min, limitation.joint5.max);
-    }
+    // if (robo_arm.mode == robo_mode::KEYBOARD_PITCH) {
+    joint[4] = limited<float>(joint[4] + key_board.mouse.z * scale(32767, 1) * limitation.joint5.max,
+                              limitation.joint5.min, limitation.joint5.max);
+    // }
 }
 
 void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
@@ -101,23 +101,17 @@ void air_right_callback(KeyEventType event);
 void Interact::receive_custom(uint8_t* data) {
     using namespace interact_dep;
     auto last_s = ImageTrans::user_custom_rx_status(image_trans.user_custom_rx_data.s);
-    memcpy(reinterpret_cast<uint8_t*>(&image_trans.user_custom_rx_data), data,
-               sizeof(ImageTrans::user_custom_rx_data));
+    memcpy(reinterpret_cast<uint8_t*>(&image_trans.user_custom_rx_data), data, sizeof(ImageTrans::user_custom_rx_data));
     if (robo_arm.mode == robo_mode::CUSTOM) {
-
-        if (image_trans.user_custom_rx_data.s.pump != last_s.pump) {
-            air_right_callback(KeyEvent_OnClick);
-        }
-        if (image_trans.user_custom_rx_data.s.valve != last_s.valve) {
-            air_left_callback(KeyEvent_OnClick);
-        }
+        if (image_trans.user_custom_rx_data.s.pump != last_s.pump) { air_right_callback(KeyEvent_OnClick); }
+        if (image_trans.user_custom_rx_data.s.valve != last_s.valve) { air_left_callback(KeyEvent_OnClick); }
         if (!image_trans.read_map_back()) {
             joint[0] = -image_trans.user_custom_rx_data.joint[0] * scale(4096, 360);
             joint[1] = image_trans.user_custom_rx_data.joint[1] * scale(4096, 360);
             joint[2] = image_trans.user_custom_rx_data.joint[2] * scale(4096, 360);
             joint[3] = -image_trans.user_custom_rx_data.joint[3] * scale(4096, 360);
             joint[4] = image_trans.user_custom_rx_data.joint[4] * scale(4096, 360);
-            joint[5] = -image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
+            joint[5] = image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
         }
     }
 }
@@ -148,17 +142,22 @@ void Interact::update_roboArm(RoboArm& Arm) {
             }
             if (remote_control.rcInfo.ch4 < -500) {
                 interact.sub_board.set_main_valve(1);
+                interact.sub_board.set_lf_valve(1);
+                interact.sub_board.set_rf_valve(1);
+                interact.sub_board.set_lb_valve(1);
+                interact.sub_board.set_rb_valve(1);
             } else if (remote_control.rcInfo.ch4 > 500) {
                 interact.sub_board.set_main_valve(0);
+                interact.sub_board.set_lf_valve(0);
+                interact.sub_board.set_rf_valve(0);
+                interact.sub_board.set_lb_valve(0);
+                interact.sub_board.set_rb_valve(0);
             }
             receive_rc();
             break;
         case interact_dep::robo_mode::XYZ:
             if (robo_arm.last_mode != interact_dep::robo_mode::XYZ) { Arm.fkine(remote_control.pos); }
             receive_xyz(Arm);
-            break;
-        case interact_dep::robo_mode::KEYBOARD_PITCH:
-            receive_kb();
             break;
 
         default: break;
@@ -219,9 +218,7 @@ void Interact::receive_actions_group() {
 void Interact::receive_actions(RoboArm& Arm, float pitch) {
     using namespace interact_dep;
     using namespace roboarm_dep;
-    if (robo_arm.mode == robo_mode::ACTIONS
-        || robo_arm.mode ==  robo_mode::ACTIONS_GROUP
-        ) {
+    if (robo_arm.mode == robo_mode::ACTIONS || robo_arm.mode == robo_mode::ACTIONS_GROUP) {
         switch (actions->status) {
             case interact_dep::action_status::Joints:
                 joint[0] = actions->joints[0];
@@ -236,25 +233,7 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 Arm.target_speed[1] = actions->speed[1];
                 Arm.target_speed[0] = actions->speed[0];
                 break;
-            case interact_dep::action_status::CartesianX: {
-                if (actions->init == false) {
-                    Arm.fkine(actions->pos);
-                    actions->axis_value.value_set(actions->pos[0]);
-                    actions->init = true;
-                }
-                actions->pos[0] = actions->axis_value.update();
-                if (!Arm.ikine(actions->pos)) {
-                    // Arm.fkine(pos);
-                } else {
-                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
-                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
-                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-                    joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min, limitation.joint5.max);
-                }
-                Arm.target_speed = {roboarm_dep::default_speed};
-
-            } break;
-            case interact_dep::action_status::CartesianZ: {
+            case interact_dep::action_status::CartesianX_z: {
                 if (actions->init == false) {
                     Arm.fkine(actions->pos);
                     actions->axis_value.value_set(actions->pos[2]);
@@ -267,12 +246,76 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                     joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
                     joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
                     joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-                    joint[4] =
-                        limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min, limitation.joint5.max);
+                    joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
+                                              limitation.joint5.max);
+                }
+                Arm.target_speed = {roboarm_dep::default_speed};
+
+            } break;
+            case interact_dep::action_status::CartesianZ_z: {
+                if (actions->init == false) {
+                    Arm.fkine(actions->pos);
+                    actions->axis_value.value_set(actions->pos[2]);
+                    actions->init = true;
+                }
+                actions->pos[2] = actions->axis_value.update();
+                if (!Arm.ikine(actions->pos)) {
+                    // Arm.fkine(pos);
+                } else {
+                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
+                    joint[4] = limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
+                                              limitation.joint5.max);
+                }
+                Arm.target_speed = {roboarm_dep::default_speed};
+            } break;
+            case interact_dep::action_status::CartesianX_x: {
+                if (actions->init == false) {
+                    Arm.fkine(actions->pos);
+                    actions->axis_value.value_set(actions->pos[0]);
+                    actions->init = true;
+                }
+                actions->pos[0] = actions->axis_value.update();
+                if (!Arm.ikine(actions->pos)) {
+                    // Arm.fkine(pos);
+                } else {
+                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
+                    joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
+                                              limitation.joint5.max);
+                }
+                Arm.target_speed = {roboarm_dep::default_speed};
+            } break;
+            case interact_dep::action_status::CartesianZ_x: {
+                if (actions->init == false) {
+                    Arm.fkine(actions->pos);
+                    actions->axis_value.value_set(actions->pos[0]);
+                    actions->init = true;
+                }
+                actions->pos[0] = actions->axis_value.update();
+                if (!Arm.ikine(actions->pos)) {
+                    // Arm.fkine(pos);
+                } else {
+                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
+                    joint[4] = limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
+                                              limitation.joint5.max);
                 }
                 Arm.target_speed = {roboarm_dep::default_speed};
             } break;
             default: break;
+        }
+        if (robo_arm.mode == robo_mode::ACTIONS) {
+            if (actions->status == action_status::Joints) {
+                robo_arm.mode = robo_mode::NONE;
+            } else {
+                if (actions->axis_value.is_arrive()) {
+                    robo_arm.mode = robo_mode::NONE;
+                }
+            }
         }
     } else {
         Arm.target_speed = {roboarm_dep::default_speed};

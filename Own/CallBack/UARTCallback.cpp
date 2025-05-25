@@ -64,7 +64,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     } else if (huart == interact.image_trans.uartPlus.uart) {
         using namespace crc;
         ++interact.image_trans.uartPlus.rx_cnt;
-        for (int i = 0; i < Size - 9; ++i) {
+        // for (int i = 0; i < Size - 9; ++i) {
             uint8_t* data = &interact.image_trans.uartPlus.rx_buffer[0];
             if (data[0] == 0xA5) {
                 uint16_t len                   = (data[2] << 8 | data[1]);
@@ -76,7 +76,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                             ++interact.image_trans.cnt;
                             break;
                         case 0x304:
-                            interact.image_trans.update_keyboard(interact.key_board);
+                            // interact.image_trans.update_keyboard(interact.key_board);
                             
                             break;
                         case 0x306:
@@ -86,7 +86,12 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                         default:
                             break;
                     }
-                    i+=len+8;
+                    // i+=len+8;
+                }
+            // }
+            if (data[0] == 0xA9 && data[1] == 0x53) {
+                if (verify_crc16_check_sum(data,21)) {
+                    // interact.image_trans.update_rc_keyboard(data,interact.key_board);
                 }
             }
         }
@@ -116,6 +121,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                                     ui.ui_frame->data_frame.receiver_id = 0x166;
                                     break;
                             }
+                            ui.is_get_id.store(true);
                             break;
                         case 0x301:
                             ++ui.rx_cnt;
