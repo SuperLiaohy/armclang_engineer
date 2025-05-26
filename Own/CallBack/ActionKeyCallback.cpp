@@ -38,6 +38,16 @@ void action_z_callback(KeyEventType event) {
                 break;
             default: break;
         }
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                // arm_get_gold_group.reset();
+                // interact.actions_group = &arm_get_gold_group;
+                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                break;
+            default: break;
+        }
     }
 }
 
@@ -55,6 +65,8 @@ void action_shift_z_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
                 arm_get_gold_z.init = false;
@@ -82,6 +94,8 @@ void action_x_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
                 get_silver_group.reset();
@@ -108,6 +122,8 @@ void action_shift_x_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
                 get_silver_from_left_group.reset();
@@ -136,6 +152,8 @@ void action_c_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
                 get_second_silver_group.reset();
@@ -162,6 +180,8 @@ void action_shift_c_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
                 put_down_group.reset();
@@ -187,6 +207,17 @@ void action_v_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnDown:
+            case KeyEvent_OnLongPress:
+            case KeyEvent_OnPressing:
+                reset2.init            = false;
+                interact.actions       = &reset2;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+                break;
+            default: break;
+        }
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
@@ -223,6 +254,8 @@ void action_shift_v_callback(KeyEventType event) {
                 break;
             default: break;
         }
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+
     }
 }
 
@@ -235,6 +268,8 @@ void action_ctrl_z_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
                 arm_get_gold.init = false;
@@ -254,6 +289,7 @@ void action_ctrl_x_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
     }
 }
 void action_ctrl_c_callback(KeyEventType event) {
@@ -265,6 +301,7 @@ void action_ctrl_c_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
     }
 }
 extern interact_dep::ActionsGroup get_silver2_group;
@@ -286,6 +323,8 @@ void action_ctrl_v_callback(KeyEventType event) {
                 break;
             default: break;
         }
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+
     }
 }
 
@@ -295,6 +334,8 @@ void action_b_callback(KeyEventType event) {
             if (OSG::mode == OneStepGetControl::AUTO) {
                 OSG::mode = OneStepGetControl::MANUAL;
             } else if (OSG::mode == OneStepGetControl::MANUAL) {
+                OSG::mode = OneStepGetControl::ROBO_ARM;
+            } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
                 OSG::mode = OneStepGetControl::AUTO;
             }
             break;

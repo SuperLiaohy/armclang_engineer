@@ -49,6 +49,8 @@ void JudgeTask() {
     };
     auto int_auto = []() -> int32_t {
         if (OneStepGetControl::AUTO == OSG::mode) { return 1; }
+        if (OneStepGetControl::MANUAL == OSG::mode) { return 0; }
+        if (OneStepGetControl::ROBO_ARM == OSG::mode) { return 2; }
         return 0;
     };
     while (1) {

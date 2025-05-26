@@ -8,8 +8,9 @@
 #include "Slope/Slope.hpp"
 
 enum class OneStepGetControl {
-    AUTO,
     MANUAL,
+    AUTO,
+    ROBO_ARM,
 };
 enum class OneStepGetAUTO {
     NONE,
