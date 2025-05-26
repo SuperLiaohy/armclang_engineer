@@ -192,7 +192,7 @@ std::array<interact_dep::ActionsGroup::exe, 3> get_second_silver_exe = {
 };
 std::array<interact_dep::ActionsGroup::event, 2> get_second_silver_event = {
     []()->bool {
-        return interact.sub_board.custom_frame_rx.s.valve3 < 400;
+        return interact.sub_board.custom_frame_rx.s.valve3 < 250;
     },
     nullptr
     // []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }

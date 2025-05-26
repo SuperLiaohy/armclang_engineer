@@ -54,6 +54,11 @@ private:
     friend void chassis_shift_s_callback(KeyEventType event);
     friend void chassis_shift_d_callback(KeyEventType event);
     friend void chassis_shift_q_callback(KeyEventType event);
+
+    friend void chassis_ctrl_w_callback(KeyEventType event);
+    friend void chassis_ctrl_a_callback(KeyEventType event);
+    friend void chassis_ctrl_s_callback(KeyEventType event);
+    friend void chassis_ctrl_d_callback(KeyEventType event);
 };
 
 extern Chassis chassis;

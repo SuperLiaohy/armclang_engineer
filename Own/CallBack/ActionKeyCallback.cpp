@@ -152,7 +152,14 @@ void action_c_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
-
+        switch (event) {
+            case KeyEvent_OnClick:
+                get_second_silver_group.reset();
+                interact.actions_group = &get_second_silver_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+                break;
+            default: break;
+        }
     } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
@@ -374,27 +381,58 @@ extern interact_dep::Actions get_right_y;
 extern interact_dep::Actions get_silver_mine;
 extern interact_dep::Actions get_silver_mine_z;
 void action_shift_f_callback(KeyEventType event) {
-    switch (event) {
-        case KeyEvent_OnDown:
-        case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing:
-            get_silver_mine.init   = false;
-            interact.actions       = &get_silver_mine;
-            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
-            break;
-        default: break;
+    if (OSG::mode == OneStepGetControl::MANUAL) {
+        switch (event) {
+            case KeyEvent_OnDown:
+            case KeyEvent_OnLongPress:
+            case KeyEvent_OnPressing:
+                get_silver_mine.init   = false;
+                interact.actions       = &get_silver_mine;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+                break;
+            default: break;
+        }
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
     }
+
 }
 void action_ctrl_f_callback(KeyEventType event) {
-    switch (event) {
-        case KeyEvent_OnDown:
-        case KeyEvent_OnLongPress:
-        case KeyEvent_OnPressing:
-            get_silver_mine_z.init = false;
-            interact.actions       = &get_silver_mine_z;
-            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
-            break;
-        default: break;
+    if (OSG::mode == OneStepGetControl::MANUAL) {
+        switch (event) {
+            case KeyEvent_OnDown:
+            case KeyEvent_OnLongPress:
+            case KeyEvent_OnPressing:
+                get_silver_mine_z.init = false;
+                interact.actions       = &get_silver_mine_z;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+                break;
+            default: break;
+        }
+    } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                interact.sub_board.set_pump(0);
+                interact.sub_board.set_main_valve(0);
+                interact.sub_board.set_lb_valve(0);
+                interact.sub_board.set_lf_valve(0);
+                interact.sub_board.set_rb_valve(0);
+                interact.sub_board.set_rf_valve(0);
+                break;
+            default: break;
+        }
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                interact.sub_board.set_pump(0);
+                interact.sub_board.set_main_valve(0);
+                interact.sub_board.set_lb_valve(0);
+                interact.sub_board.set_lf_valve(0);
+                interact.sub_board.set_rb_valve(0);
+                interact.sub_board.set_rf_valve(0);
+                break;
+            default: break;
+        }
     }
 }
 

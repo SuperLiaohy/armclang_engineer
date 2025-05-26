@@ -177,6 +177,10 @@ void joint4_motor_detect() {
     xSemaphoreGive(CAN1MutexHandle);
 }
 std::atomic<bool> rc_ready(false);
+void chassis_ctrl_w_callback(KeyEventType event);
+void chassis_ctrl_a_callback(KeyEventType event);
+void chassis_ctrl_s_callback(KeyEventType event);
+void chassis_ctrl_d_callback(KeyEventType event);
 void StartTask() {
     ada = SuperDWT::get_tick();
     /* USB初始化 */
@@ -418,6 +422,11 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_A, CombineKey_Shift, chassis_shift_a_callback);
     KeyBoardRegister(interact.keyList, Key_S, CombineKey_Shift, chassis_shift_s_callback);
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_Shift, chassis_shift_d_callback);
+
+    KeyBoardRegister(interact.keyList, Key_W, CombineKey_Ctrl, chassis_ctrl_w_callback);
+    KeyBoardRegister(interact.keyList, Key_A, CombineKey_Ctrl, chassis_ctrl_a_callback);
+    KeyBoardRegister(interact.keyList, Key_S, CombineKey_Ctrl, chassis_ctrl_s_callback);
+    KeyBoardRegister(interact.keyList, Key_D, CombineKey_Ctrl, chassis_ctrl_d_callback);
 
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_None, chassis_q_callback);
 
