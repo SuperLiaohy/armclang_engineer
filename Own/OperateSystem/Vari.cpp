@@ -310,7 +310,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
         one_step_gets.left.Y.pos.target_set(255 + 200); //255
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-295 - 200); //-345
+        one_step_gets.right.Y.pos.target_set(-315 - 200); //-345
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;

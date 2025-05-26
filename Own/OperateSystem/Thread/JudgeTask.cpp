@@ -132,11 +132,17 @@ void JudgeTask() {
                                                1283, 755, 60, 50, 40);
 
 
-        const auto gold_left_line = UI::create_line("219", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
-                                               293, 381, 666, 377, 40);
+        const auto gold_left_line1 = UI::create_line("219", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
+                                               296, 369, 675, 363, 40);
 
-        const auto gold_right_line = UI::create_line("220", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
-                                               1207, 386, 1555, 401, 40);
+        const auto gold_left_line2 = UI::create_line("220", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
+                                               357, 513, 669, 572, 40);
+
+        const auto gold_right_line2 = UI::create_line("221", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
+                                               1142, 673, 1370, 669, 40);
+
+        const auto gold_right_line1 = UI::create_line("222", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
+                                               1210, 370, 1594, 388, 40);
 
         while (ui.update()) {
             osDelay(50);
