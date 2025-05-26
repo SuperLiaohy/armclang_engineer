@@ -27,7 +27,8 @@ uint8_t UI::figure_index = 0;
 
 UI::ui_item UI::str_list[30];
 uint8_t UI::str_index = 0;
-
+// uint32_t cnt_change;
+// uint32_t cnt_trans;
 void JudgeTask() {
     while (!ui.is_get_id.load()) {
         osDelay(1);
@@ -130,6 +131,13 @@ void JudgeTask() {
         const auto gold_right = UI::create_ellipse("218", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 6,
                                                1283, 755, 60, 50, 40);
 
+
+        const auto gold_left_line = UI::create_line("219", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
+                                               293, 381, 666, 377, 40);
+
+        const auto gold_right_line = UI::create_line("220", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
+                                               1207, 386, 1555, 401, 40);
+
         while (ui.update()) {
             osDelay(50);
         }
@@ -163,6 +171,9 @@ void JudgeTask() {
                 robo_num->set_int(int_robo_arm());
                 auto_num->set_int(int_auto());
                 air_num->set_int(int_valve_tx());
+                // if (air_num->control.visible) {
+                    // cnt_change++;
+                // }
                 air_num->control.visible = true;
                 joint_lost(joint1_num, roboArm.joint1.detect.isLost);
                 if (roboArm.joint2.internal.detect.isLost == false && roboArm.joint2.external.detect.isLost == false) {
@@ -186,6 +197,9 @@ void JudgeTask() {
                 joint6_num->set_float(roboArm.relative_pos[5]);
 
                 ui.update();
+                // if (air_num->control.visible == false) {
+                //     ++cnt_trans;
+                // }
             }
 
             if (time % 1000 == 0) { fps = 0; }

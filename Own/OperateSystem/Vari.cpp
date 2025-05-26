@@ -300,17 +300,17 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
         one_step_gets.left.X.pos.target_set(2000);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(0);
+        one_step_gets.left.Y.pos.target_set(200);
         one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
         one_step_gets.right.X.pos.target_set(-2500);
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(0);
+        one_step_gets.right.Y.pos.target_set(-200);
     },
     []() {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(255);
+        one_step_gets.left.Y.pos.target_set(255 + 200); //255
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-300);
+        one_step_gets.right.Y.pos.target_set(-295 - 200); //-345
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
