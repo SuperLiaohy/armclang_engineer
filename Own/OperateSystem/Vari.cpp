@@ -259,7 +259,7 @@ interact_dep::ActionsGroup put_down_group = {.actions_list = put_down_action.dat
 
 
 interact_dep::Actions arm_get_gold(interact_dep::action_status::Joints);
-interact_dep::Actions arm_get_gold_z(Slope(0.001, 0.15, 90), interact_dep::action_status::CartesianX_z);
+interact_dep::Actions arm_get_gold_z(Slope(0.1, 0.15, 90), interact_dep::action_status::CartesianX_z);
 // interact_dep::Actions arm_get_gold_mine_X_x_in(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_x);
 // interact_dep::Actions arm_get_gold_mine_X_z(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_z);
 // interact_dep::Actions arm_get_gold_mine_X_x_out(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_x);

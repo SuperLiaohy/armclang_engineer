@@ -234,7 +234,7 @@ void MX_FREERTOS_Init(void) {
   BUZZER_TASKHandle = osThreadCreate(osThread(BUZZER_TASK), NULL);
 
   /* definition and creation of ARM_TASK */
-  osThreadDef(ARM_TASK, OS_ArmTask, osPriorityNormal, 0, 256);
+  osThreadDef(ARM_TASK, OS_ArmTask, osPriorityNormal, 0, 512);
   ARM_TASKHandle = osThreadCreate(osThread(ARM_TASK), NULL);
 
   /* definition and creation of OSG_TASK */

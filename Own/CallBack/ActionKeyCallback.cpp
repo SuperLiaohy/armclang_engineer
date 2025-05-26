@@ -57,9 +57,9 @@ void action_shift_z_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                // arm_get_gold_z.init = false;
-                // interact.actions       = &arm_get_gold_z;
-                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+                arm_get_gold_z.init = false;
+                interact.actions       = &arm_get_gold_z;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
                 break;
             default: break;
         }
