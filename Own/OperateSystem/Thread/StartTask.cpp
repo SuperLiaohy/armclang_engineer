@@ -253,10 +253,10 @@ void StartTask() {
     // reset2.speed[2] = 360;
     // reset2.speed[3] = 720;
 
-    anti_reset.joints[0] = -0;
-    anti_reset.joints[1] = -32.8050346;
-    anti_reset.joints[2] = -70.4041519;
-    anti_reset.joints[3] = 0.0380706787;
+    anti_reset.joints[0] = -3.45;
+    anti_reset.joints[1] = -16.612;
+    anti_reset.joints[2] = -84.722;
+    anti_reset.joints[3] = 0.043;
     anti_reset.joints[4] = 0;
     anti_reset.joints[5] = 0;
 
