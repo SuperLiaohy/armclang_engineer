@@ -74,7 +74,7 @@ extern interact_dep::Actions put_silver_mine_left;
 extern interact_dep::Actions get_silver_from_left;
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
-extern interact_dep::Actions put_down;
+extern interact_dep::Actions put_down_silver;
 extern interact_dep::Actions get_silver2_mine;
 extern interact_dep::Actions arm_get_gold;
 extern interact_dep::Actions arm_get_gold_z;
@@ -87,7 +87,8 @@ extern interact_dep::ActionsGroup get_silver_from_left_group;
 extern interact_dep::ActionsGroup get_gold_group;
 extern interact_dep::ActionsGroup ready_silver2_group;
 extern interact_dep::ActionsGroup get_silver2_group;
-extern interact_dep::ActionsGroup put_down_group;
+extern interact_dep::ActionsGroup put_down_silver_group;
+extern interact_dep::ActionsGroup put_down_gold_group;
 extern interact_dep::ActionsGroup arm_get_gold_group;
 
 void chassis_shift_w_callback(KeyEventType event);
@@ -288,12 +289,12 @@ void StartTask() {
     put_silver_mine_right.joints[4] = 90.78;
     put_silver_mine_right.joints[5] = 38.22;
 
-    put_down.joints[0] = 0;
-    put_down.joints[1] = 55;
-    put_down.joints[2] = 116.5;
-    put_down.joints[3] = 0;
-    put_down.joints[4] = -78;
-    put_down.joints[5] = 0;
+    put_down_silver.joints[0] = 0;
+    put_down_silver.joints[1] = 55;
+    put_down_silver.joints[2] = 116.5;
+    put_down_silver.joints[3] = 0;
+    put_down_silver.joints[4] = -78;
+    put_down_silver.joints[5] = 0;
 
     get_silver2_mine.joints[0] = -36.8980751;
     get_silver2_mine.joints[1] = 47.0325127;
@@ -377,8 +378,9 @@ void StartTask() {
     get_gold_group.actions_list[2] = reset1;
     get_gold_group.actions_list[3] = reset1;
 
-    put_down_group.actions_list[0] = put_down;
-    put_down_group.actions_list[1] = reset2;
+    put_down_silver_group.actions_list[0] = reset2;
+
+    put_down_gold_group.actions_list[0] = reset2;
 
     // arm_get_gold_group.actions_list[0] = arm_get_gold;
     // arm_get_gold_group.actions_list[1] = arm_get_gold_mine_X_x_in;

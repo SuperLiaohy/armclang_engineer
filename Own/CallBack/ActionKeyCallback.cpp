@@ -50,6 +50,7 @@ void action_z_callback(KeyEventType event) {
         }
     }
 }
+extern interact_dep::ActionsGroup put_down_gold_group;
 
 void action_shift_z_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
@@ -65,7 +66,15 @@ void action_shift_z_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                put_down_gold_group.reset();
+                interact.actions_group = &put_down_gold_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
 
+                break;
+            default: break;
+        }
     } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
@@ -171,7 +180,7 @@ void action_c_callback(KeyEventType event) {
         }
     }
 }
-extern interact_dep::ActionsGroup put_down_group;
+extern interact_dep::ActionsGroup put_down_silver_group;
 
 void action_shift_c_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
@@ -187,16 +196,16 @@ void action_shift_c_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
-
-    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
-                put_down_group.reset();
-                interact.actions_group = &put_down_group;
+                put_down_silver_group.reset();
+                interact.actions_group = &put_down_silver_group;
                 interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
                 break;
             default: break;
         }
+    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+
     }
 }
 
@@ -299,6 +308,7 @@ void action_ctrl_x_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
     }
 }
+
 void action_ctrl_c_callback(KeyEventType event) {
     if (OSG::mode == OneStepGetControl::MANUAL) {
         switch (event) {

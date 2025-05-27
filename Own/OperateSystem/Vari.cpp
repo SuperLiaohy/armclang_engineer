@@ -77,7 +77,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 360-103.392334, 0, 0});
+                 360-96.6577225, 0, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -234,25 +234,58 @@ interact_dep::ActionsGroup get_silver_from_left_group = {.actions_list = get_sil
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 
-interact_dep::Actions put_down(interact_dep::action_status::Joints);
+interact_dep::Actions put_down_silver(interact_dep::action_status::Joints);
 interact_dep::Actions get_silver2_mine(interact_dep::action_status::Joints);
-std::array<uint32_t, 2> put_down_time = {2000, 1000};
-std::array<interact_dep::Actions, 2> put_down_action        = {put_down, reset2};
-std::array<interact_dep::ActionsGroup::exe, 3> put_down_exe = {
+std::array<uint32_t, 1> put_down_silver_time = {100};
+std::array<interact_dep::Actions, 1> put_down_silver_action        = {reset2};
+std::array<interact_dep::ActionsGroup::exe, 2> put_down_silver_exe = {
     []() {
-        interact.sub_board.set_pump(1);
-        interact.sub_board.set_main_valve(1);
-    },
-    []() {
-        interact.sub_board.set_main_valve(0);
+        interact.sub_board.set_pump(0);
+        interact.sub_board.set_lb_valve(0);
+        interact.sub_board.set_rb_valve(0);
+        one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
+
+        one_step_gets.left.X.pos.target_set(1000);
+        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+
+        one_step_gets.right.X.pos.target_set(-1000);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 
-interact_dep::ActionsGroup put_down_group = {.actions_list = put_down_action.data(),
-                                                      .time_list    = put_down_time.data(),
+interact_dep::ActionsGroup put_down_silver_group = {.actions_list = put_down_silver_action.data(),
+                                                      .time_list    = put_down_silver_time.data(),
                                                       .event_list   = nullptr,
-                                                      .exe_list     = put_down_exe.data(),
-                                                      .len          = 2,
+                                                      .exe_list     = put_down_silver_exe.data(),
+                                                      .len          = 1,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
+
+interact_dep::Actions put_down_gold(interact_dep::action_status::Joints);
+std::array<uint32_t, 1> put_down_gold_time = {100};
+std::array<interact_dep::Actions, 1> put_down_gold_action        = {reset2};
+std::array<interact_dep::ActionsGroup::exe, 2> put_down_gold_exe = {
+    []() {
+        interact.sub_board.set_pump(0);
+        interact.sub_board.set_lf_valve(0);
+        interact.sub_board.set_rf_valve(0);
+        one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
+
+        one_step_gets.left.X.pos.target_set(1000);
+        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+
+        one_step_gets.right.X.pos.target_set(-1000);
+        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.left.Y.pos.target_set(1800);
+        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.right.Y.pos.target_set(-1450);
+    },
+    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
+
+interact_dep::ActionsGroup put_down_gold_group = {.actions_list = put_down_gold_action.data(),
+                                                      .time_list    = put_down_gold_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = put_down_gold_exe.data(),
+                                                      .len          = 1,
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 
