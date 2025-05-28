@@ -466,7 +466,7 @@ void action_f_callback(KeyEventType event) {
         case KeyEvent_OnDown:
         case KeyEvent_OnLongPress:
         case KeyEvent_OnPressing:
-            get_silver_mine_z.init = false;
+            exchange_right.init = false;
             interact.actions       = &exchange_right;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
             break;

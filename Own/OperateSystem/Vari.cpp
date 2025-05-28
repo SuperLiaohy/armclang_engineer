@@ -77,7 +77,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 360-96.6577225, 0, 0});
+                 360-6.6577225, 0, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -292,7 +292,7 @@ interact_dep::ActionsGroup put_down_gold_group = {.actions_list = put_down_gold_
 
 
 interact_dep::Actions arm_get_gold(interact_dep::action_status::Joints);
-interact_dep::Actions arm_get_gold_z(Slope(0.1, 0.15, 100), interact_dep::action_status::CartesianX_z);
+interact_dep::Actions arm_get_gold_z(Slope(0.1, 0.15, 120), interact_dep::action_status::CartesianX_z);
 // interact_dep::Actions arm_get_gold_mine_X_x_in(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_x);
 // interact_dep::Actions arm_get_gold_mine_X_z(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_z);
 // interact_dep::Actions arm_get_gold_mine_X_x_out(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_x);
@@ -342,9 +342,9 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     },
     []() {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(255 + 200); //255
+        one_step_gets.left.Y.pos.target_set(285 + 200); //255
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-390 - 200); //-345
+        one_step_gets.right.Y.pos.target_set(-420 - 200); //-345
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;

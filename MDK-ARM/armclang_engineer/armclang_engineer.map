@@ -15941,7 +15941,7 @@ Image Symbol Table
     [Anonymous Symbol]                       0x0802cff0   Section        0  vari.o(.text._ZNK4$_17clEv)
     $_18::operator()() const                 0x0802d021   Thumb Code   114  vari.o(.text._ZNK4$_18clEv)
     [Anonymous Symbol]                       0x0802d020   Section        0  vari.o(.text._ZNK4$_18clEv)
-    $_19::operator()() const                 0x0802d099   Thumb Code    70  vari.o(.text._ZNK4$_19clEv)
+    $_19::operator()() const                 0x0802d099   Thumb Code    68  vari.o(.text._ZNK4$_19clEv)
     [Anonymous Symbol]                       0x0802d098   Section        0  vari.o(.text._ZNK4$_19clEv)
     $_20::operator()() const                 0x0802d0e1   Thumb Code    58  vari.o(.text._ZNK4$_20clEv)
     [Anonymous Symbol]                       0x0802d0e0   Section        0  vari.o(.text._ZNK4$_20clEv)
@@ -19665,8 +19665,8 @@ Memory Map of the image
     0x0802d01e   0x0802d01e   0x00000002   PAD
     0x0802d020   0x0802d020   0x00000072   Code   RO         5042    .text._ZNK4$_18clEv  vari.o
     0x0802d092   0x0802d092   0x00000006   PAD
-    0x0802d098   0x0802d098   0x00000046   Code   RO         5044    .text._ZNK4$_19clEv  vari.o
-    0x0802d0de   0x0802d0de   0x00000002   PAD
+    0x0802d098   0x0802d098   0x00000044   Code   RO         5044    .text._ZNK4$_19clEv  vari.o
+    0x0802d0dc   0x0802d0dc   0x00000004   PAD
     0x0802d0e0   0x0802d0e0   0x0000003a   Code   RO         5046    .text._ZNK4$_20clEv  vari.o
     0x0802d11a   0x0802d11a   0x00000006   PAD
     0x0802d120   0x0802d120   0x00000016   Code   RO         5048    .text._ZNK4$_21clEv  vari.o
@@ -20554,13 +20554,13 @@ Image component sizes
       3466         46          0          0          1       8596   usbd_ctlreq.o
        572          0         66         80        512       3459   usbd_desc.o
        232          0          0          0          0       4179   usbd_ioreq.o
-     12548        140        388      33236       6492     158324   vari.o
+     12546        140        388      33236       6492     158324   vari.o
       1176          0          0          0          0      17230   w25q64.o
 
     ----------------------------------------------------------------------
     208694       1806       5503      33792      66536    2158391   Object Totals
          0          0         80          0          0          0   (incl. Generated)
-      3406        124          0         15         22          0   (incl. Padding)
+      3408        124          0         15         22          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
