@@ -85,6 +85,8 @@ extern interact_dep::ActionsGroup get_silver_group;
 extern interact_dep::ActionsGroup get_second_silver_group;
 extern interact_dep::ActionsGroup get_silver_from_left_group;
 extern interact_dep::ActionsGroup get_gold_group;
+extern interact_dep::ActionsGroup get_left_gold_group;
+extern interact_dep::ActionsGroup get_right_gold_group;
 extern interact_dep::ActionsGroup ready_silver2_group;
 extern interact_dep::ActionsGroup get_silver2_group;
 extern interact_dep::ActionsGroup put_down_silver_group;
@@ -377,6 +379,18 @@ void StartTask() {
     get_gold_group.actions_list[1] = reset1;
     get_gold_group.actions_list[2] = reset1;
     get_gold_group.actions_list[3] = reset1;
+
+
+    get_left_gold_group.actions_list[0] = reset1;
+    get_left_gold_group.actions_list[1] = reset1;
+    get_left_gold_group.actions_list[2] = reset1;
+    get_left_gold_group.actions_list[3] = reset1;
+
+
+    get_right_gold_group.actions_list[0] = reset1;
+    get_right_gold_group.actions_list[1] = reset1;
+    get_right_gold_group.actions_list[2] = reset1;
+    get_right_gold_group.actions_list[3] = reset1;
 
     put_down_silver_group.actions_list[0] = reset2;
 

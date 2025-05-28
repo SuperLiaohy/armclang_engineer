@@ -3633,16 +3633,16 @@
       </Doc>
       <Doc>
         <Name>..\Own\OperateSystem\Vari.cpp</Name>
-        <ColumnNumber>0</ColumnNumber>
+        <ColumnNumber>28</ColumnNumber>
         <TopLine>81</TopLine>
-        <CurrentLine>85</CurrentLine>
+        <CurrentLine>95</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
         <Name>..\Own\OperateSystem\Thread\StartTask.cpp</Name>
-        <ColumnNumber>1</ColumnNumber>
+        <ColumnNumber>0</ColumnNumber>
         <TopLine>148</TopLine>
         <CurrentLine>149</CurrentLine>
         <Folding>1</Folding>

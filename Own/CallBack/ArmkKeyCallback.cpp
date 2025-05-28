@@ -5,6 +5,26 @@
 #include "RoboArm/RoboArm.hpp"
 #include "Interact/Interact.hpp"
 
+
+void air_left_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnClick:
+            interact.sub_board.toggle_main_valve();
+            break;
+        default: break;
+    }
+}
+
+void air_right_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnClick:
+            interact.sub_board.toggle_pump();
+            break;
+        default: break;
+    }
+}
+
+
 void robo_arm_ctrl_g_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
@@ -34,11 +54,12 @@ void robo_arm_g_callback(KeyEventType event) {
 void robo_arm_shift_q_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            // if (interact.robo_arm.mode != interact_dep::robo_mode::KEYBOARD_PITCH) {
-            //     interact.robo_arm.mode = interact_dep::robo_mode::KEYBOARD_PITCH;
-            // } else {
-            //     interact.robo_arm.mode = interact_dep::robo_mode::NONE;
-            // }
+            interact.sub_board.set_pump(0);
+            interact.sub_board.set_main_valve(0);
+            interact.sub_board.set_lb_valve(0);
+            interact.sub_board.set_lf_valve(0);
+            interact.sub_board.set_rb_valve(0);
+            interact.sub_board.set_rf_valve(0);
             break;
         default: break;
     }

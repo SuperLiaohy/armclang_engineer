@@ -293,34 +293,6 @@ interact_dep::ActionsGroup put_down_gold_group = {.actions_list = put_down_gold_
 
 interact_dep::Actions arm_get_gold(interact_dep::action_status::Joints);
 interact_dep::Actions arm_get_gold_z(Slope(0.1, 0.15, 120), interact_dep::action_status::CartesianX_z);
-// interact_dep::Actions arm_get_gold_mine_X_x_in(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_x);
-// interact_dep::Actions arm_get_gold_mine_X_z(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_z);
-// interact_dep::Actions arm_get_gold_mine_X_x_out(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX_x);
-//
-// // interact_dep::Actions arm_get_gold_mine_x(Slope(0.4, 0.2, 220), interact_dep::action_status::CartesianX);
-//
-// std::array<uint32_t, 4> arm_get_gold_time = {1000, 1000, 1000, 1000};
-// std::array<interact_dep::Actions, 4> arm_get_gold_action        = {arm_get_gold, arm_get_gold_mine_X_x_in,arm_get_gold_mine_X_z,arm_get_gold_mine_X_x_out};
-// std::array<interact_dep::ActionsGroup::exe, 5> arm_get_gold_exe = {
-//     []() {
-//         interact.sub_board.set_pump(1);
-//         interact.sub_board.set_main_valve(1);
-//     },
-//     []() {},
-//     []() {},
-//     []() {},
-//     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
-//
-// interact_dep::ActionsGroup arm_get_gold_group = {.actions_list = arm_get_gold_action.data(),
-//                                                       .time_list    = arm_get_gold_time.data(),
-//                                                       .event_list   = nullptr,
-//                                                       .exe_list     = arm_get_gold_exe.data(),
-//                                                       .len          = 1,
-//                                                       .index        = 0,
-//                                                       .time_cnt     = 0};
-//
-
-interact_dep::Actions ready_get_gold(interact_dep::action_status::Joints);
 
 std::array<uint32_t, 4> get_gold_time = {10, 4000, 2000, 4000};
 std::array<interact_dep::Actions, 4> get_gold_action        = {reset1, reset1, reset1, reset1};
@@ -361,6 +333,70 @@ interact_dep::ActionsGroup get_gold_group = {.actions_list = get_gold_action.dat
                                                       .len          = 4,
                                                       .index        = 0,
                                                       .time_cnt     = 0};
+
+std::array<uint32_t, 4> get_right_gold_time = {10, 4000, 2000, 4000};
+std::array<interact_dep::Actions, 4> get_right_gold_action        = {reset1, reset1, reset1, reset1};
+std::array<interact_dep::ActionsGroup::exe, 5> get_right_gold_exe = {
+    []() {
+        interact.sub_board.set_pump(1);
+        interact.sub_board.set_rf_valve(1);
+    },
+    []() {
+        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
+        one_step_gets.right.X.pos.target_set(-2500);
+        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.right.Y.pos.target_set(-200);
+    },
+    []() {
+        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.right.Y.pos.target_set(-420 - 200); //-345
+    },
+    []() {
+        one_step_gets.right.X.status = OneStepGetXStatus::BACK;
+        one_step_gets.right.X.pos.target_set(0);
+    },
+    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
+
+interact_dep::ActionsGroup get_right_gold_group = {.actions_list = get_right_gold_action.data(),
+                                                      .time_list    = get_right_gold_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = get_right_gold_exe.data(),
+                                                      .len          = 4,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
+
+std::array<uint32_t, 4> get_left_gold_time = {10, 4000, 2000, 4000};
+std::array<interact_dep::Actions, 4> get_left_gold_action        = {reset1, reset1, reset1, reset1};
+std::array<interact_dep::ActionsGroup::exe, 5> get_left_gold_exe = {
+    []() {
+        interact.sub_board.set_pump(1);
+        interact.sub_board.set_lf_valve(1);
+    },
+    []() {
+        one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
+        one_step_gets.left.X.pos.target_set(2000);
+        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.left.Y.pos.target_set(200);
+    },
+    []() {
+        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
+        one_step_gets.left.Y.pos.target_set(285 + 200); //255
+    },
+    []() {
+        one_step_gets.left.X.status = OneStepGetXStatus::BACK;
+        one_step_gets.left.X.pos.target_set(0);
+    },
+    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
+
+interact_dep::ActionsGroup get_left_gold_group = {.actions_list = get_left_gold_action.data(),
+                                                      .time_list    = get_left_gold_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = get_left_gold_exe.data(),
+                                                      .len          = 4,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
+
+
 
 std::array<uint32_t, 1> ready_silver2_time = {100};
 std::array<interact_dep::Actions, 1> ready_silver2_action        = {anti_reset};
