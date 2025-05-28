@@ -275,7 +275,7 @@ std::array<interact_dep::ActionsGroup::exe, 2> put_down_gold_exe = {
 
         one_step_gets.right.X.pos.target_set(-1000);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(1800);
+        one_step_gets.left.Y.pos.target_set(1450);
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
         one_step_gets.right.Y.pos.target_set(-1450);
     },
@@ -320,6 +320,7 @@ interact_dep::Actions arm_get_gold_z(Slope(0.1, 0.15, 100), interact_dep::action
 //                                                       .time_cnt     = 0};
 //
 
+interact_dep::Actions ready_get_gold(interact_dep::action_status::Joints);
 
 std::array<uint32_t, 4> get_gold_time = {10, 4000, 2000, 4000};
 std::array<interact_dep::Actions, 4> get_gold_action        = {reset1, reset1, reset1, reset1};
@@ -343,7 +344,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
         one_step_gets.left.Y.pos.target_set(255 + 200); //255
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-315 - 200); //-345
+        one_step_gets.right.Y.pos.target_set(-390 - 200); //-345
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
@@ -370,7 +371,7 @@ std::array<interact_dep::ActionsGroup::exe, 2> ready_silver2_exe = {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
         one_step_gets.left.X.pos.target_set(-2000);
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(1800);
+        one_step_gets.left.Y.pos.target_set(1450);
         one_step_gets.right.X.status = OneStepGetXStatus::BACK;
         one_step_gets.right.X.pos.target_set(2300);
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
@@ -399,13 +400,13 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_silver2_exe = {
         interact.sub_board.set_lb_valve(1);
         interact.sub_board.set_rb_valve(1);
         one_step_gets.left.Y.status = OneStepGetYStatus::DOWN;
-        one_step_gets.left.Y.pos.target_set(-1800);
+        one_step_gets.left.Y.pos.target_set(-1450);
         one_step_gets.right.Y.status = OneStepGetYStatus::DOWN;
         one_step_gets.right.Y.pos.target_set(1450);
     },
     []() {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(1800);
+        one_step_gets.left.Y.pos.target_set(1450);
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
         one_step_gets.right.Y.pos.target_set(-1450);
     },

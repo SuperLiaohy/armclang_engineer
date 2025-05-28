@@ -100,15 +100,15 @@ void JudgeTask() {
         const auto auto_num =
             UI::create_int("204", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PINK, 2, 221, 900, 24, int_auto(), 1);
 
-        const auto lf_num   = UI::create_float("205", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+        const auto lf_num   = UI::create_float("205", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 1,
                                                858 + 50, 845, 10, 5, 2);
-        const auto lb_num   = UI::create_float("206", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+        const auto lb_num   = UI::create_float("206", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 1,
                                                858 + 50, 790, 10, 5, 2);
-        const auto rf_num   = UI::create_float("207", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+        const auto rf_num   = UI::create_float("207", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 1,
                                                1022 + 50, 845, 10, 5, 2);
-        const auto rb_num   = UI::create_float("208", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+        const auto rb_num   = UI::create_float("208", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 1,
                                                1022 + 50, 790, 10, 5, 2);
-        const auto main_num = UI::create_float("209", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 1,
+        const auto main_num = UI::create_float("209", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 1,
                                                930 + 70, 880, 10, 5, 2);
         auto reset_arc = UI::create_arc("210", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 10, 949, 518,
                                         270, 90, 80, 60, 40);
@@ -126,23 +126,23 @@ void JudgeTask() {
         const auto joint6_num = UI::create_float("216", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 2,
                                                1750, 620, 24, 5, 3);
 
-        const auto gold_left = UI::create_ellipse("217", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 6,
-                                               493, 667, 70, 60, 40);
-        const auto gold_right = UI::create_ellipse("218", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 6,
-                                               1283, 755, 60, 50, 40);
+        // const auto gold_left = UI::create_ellipse("217", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 6,
+        //                                        493, 667, 70, 60, 40);
+        // const auto gold_right = UI::create_ellipse("218", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 6,
+        //                                        1283, 755, 60, 50, 40);
 
 
         const auto gold_left_line1 = UI::create_line("219", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
-                                               296, 369, 675, 363, 40);
+                                               431, 293, 707, 319, 40);
 
         const auto gold_left_line2 = UI::create_line("220", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
-                                               357, 513, 669, 572, 40);
+                                               691, 564, 372, 562, 40);
 
         const auto gold_right_line2 = UI::create_line("221", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
-                                               1142, 673, 1370, 669, 40);
+                                               1148, 570, 1450, 569, 40);
 
         const auto gold_right_line1 = UI::create_line("222", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
-                                               1210, 370, 1594, 388, 40);
+                                               1295, 382, 1130, 378, 40);
 
         while (ui.update()) {
             osDelay(50);

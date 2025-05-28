@@ -318,6 +318,7 @@ void action_ctrl_c_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+
     } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
     }
 }
