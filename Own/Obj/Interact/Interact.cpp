@@ -144,8 +144,8 @@ void Interact::update_roboArm(RoboArm& Arm) {
                 interact.sub_board.set_main_valve(1);
                 interact.sub_board.set_lf_valve(1);
                 interact.sub_board.set_rf_valve(1);
-                interact.sub_board.set_lb_valve(1);
-                interact.sub_board.set_rb_valve(1);
+//                interact.sub_board.set_lb_valve(1);
+//                interact.sub_board.set_rb_valve(1);
             } else if (remote_control.rcInfo.ch4 > 500) {
                 interact.sub_board.set_main_valve(0);
                 interact.sub_board.set_lf_valve(0);

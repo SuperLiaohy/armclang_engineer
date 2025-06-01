@@ -189,8 +189,8 @@ void OneStepGetTask() {
                     }
                     break;
                 case OneStepGetXStatus::BACK:
-                    if (one_step_gets.right.X.Motor.is_block(-7000, 7000)) {
-                        if (++one_step_gets.right.X.block_count > 50) { one_step_gets.right.X.is_block = true; }
+                    if (one_step_gets.right.X.Motor.is_block(-5500, 5500)) {
+                        if (++one_step_gets.right.X.block_count > 5) { one_step_gets.right.X.is_block = true; }
                     } else {
                         one_step_gets.right.X.block_count = 0;
                         one_step_gets.right.X.is_block    = false;

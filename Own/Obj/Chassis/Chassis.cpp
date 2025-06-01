@@ -74,7 +74,7 @@ void Chassis::update_slope(interact_dep::chassis_mode mode, interact_dep::chassi
     float gimbalAngleCos = 1;
     move.vx              = move.xSlope.get() * gimbalAngleCos + move.ySlope.get() * gimbalAngleSin;
     move.vy              = -move.xSlope.get() * gimbalAngleSin + move.ySlope.get() * gimbalAngleCos;
-    move.w               = move.wSlope.update();
+    move.w               = move.wSlope.update() + w1Speed + w2Speed;
     move.extend          = move.extendSlope.update();
     load_speed(mode, polarity);
 }

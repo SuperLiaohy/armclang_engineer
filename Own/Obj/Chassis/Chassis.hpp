@@ -36,6 +36,8 @@ public:
     float wheelSpeed[6] {};
     chassis_dep::base_motor base;
     chassis_dep::extend_motor extend;
+    float w1Speed = 0;
+    float w2Speed = 0;
 
 private:
     chassis_dep::move move;

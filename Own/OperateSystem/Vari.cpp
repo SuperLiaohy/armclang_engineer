@@ -77,7 +77,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), 2,
                 Pid(1000, 0.01, 100, 4000, 10000, 0.0), Pid(2.5f, 0.01f, 0.3f, 1000.f, 10000.0f), &hi2c1,
                 {87.197998, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 360-6.6577225, 0, 0});
+                 360-12.9308958, 0, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -103,7 +103,7 @@ OneStepGetControl OSG::mode   = OneStepGetControl::AUTO;
 OneStepGetAUTO OSG::auto_mode = OneStepGetAUTO::NONE;
 OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, Slope(1.2, 0),
                   Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 2, Slope {1.0, 0},
-                  Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(4, 0),
+                  Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(3, 0),
                   Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, Slope(1.0, 0));
 
 interact_dep::Actions anti_reset(interact_dep::action_status::Joints);
@@ -316,7 +316,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         one_step_gets.left.Y.status = OneStepGetYStatus::UP;
         one_step_gets.left.Y.pos.target_set(285 + 200); //255
         one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-420 - 200); //-345
+        one_step_gets.right.Y.pos.target_set(-320 - 200); //-345
     },
     []() {
         one_step_gets.left.X.status = OneStepGetXStatus::BACK;
@@ -326,9 +326,17 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 
+std::array<interact_dep::ActionsGroup::event, 4> get_gold_event = {
+    []()-> bool {
+        return interact.sub_board.custom_frame_rx.s.valve5 < 250  && interact.sub_board.custom_frame_rx.s.valve1 < 250;
+    },
+    nullptr,
+    nullptr,
+    nullptr};
+
 interact_dep::ActionsGroup get_gold_group = {.actions_list = get_gold_action.data(),
                                                       .time_list    = get_gold_time.data(),
-                                                      .event_list   = nullptr,
+                                                      .event_list   = get_gold_event.data(),
                                                       .exe_list     = get_gold_exe.data(),
                                                       .len          = 4,
                                                       .index        = 0,

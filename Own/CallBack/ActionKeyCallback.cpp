@@ -14,34 +14,49 @@ extern interact_dep::Actions arm_get_gold;
 extern interact_dep::Actions arm_get_gold_z;
 
 void action_z_callback(KeyEventType event) {
-    if (OSG::mode == OneStepGetControl::MANUAL) {
+    if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
+        if (OSG::mode == OneStepGetControl::MANUAL) {
+            switch (event) {
+                case KeyEvent_OnDown:
+                case KeyEvent_OnLongPress:
+                case KeyEvent_OnPressing:
+                    one_step_gets.left.X.pos.target_set(2000);
+                    one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
+                    break;
+                case KeyEvent_None:
+                case KeyEvent_OnUp: one_step_gets.left.X.status = OneStepGetXStatus::NONE; break;
+                default: break;
+            }
+        } else if (OSG::mode == OneStepGetControl::AUTO) {
+            switch (event) {
+                case KeyEvent_OnClick:
+                    get_gold_group.reset();
+                    interact.actions_group = &get_gold_group;
+                    interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+                    break;
+                default: break;
+            }
+        } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+            switch (event) {
+                case KeyEvent_OnClick:
+                    // arm_get_gold_group.reset();
+                    // interact.actions_group = &arm_get_gold_group;
+                    // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                    break;
+                default: break;
+            }
+        }
+    } else {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.left.X.pos.target_set(2000);
-                one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
+                chassis.w2Speed = -1;
                 break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_gets.left.X.status = OneStepGetXStatus::NONE; break;
-            default: break;
-        }
-    } else if (OSG::mode == OneStepGetControl::AUTO) {
-        switch (event) {
-            case KeyEvent_OnClick:
-                get_gold_group.reset();
-                interact.actions_group = &get_gold_group;
-                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
-                break;
-            default: break;
-        }
-    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
-        switch (event) {
-            case KeyEvent_OnClick:
-                // arm_get_gold_group.reset();
-                // interact.actions_group = &arm_get_gold_group;
-                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
-
+            case KeyEvent_OnUp:
+                chassis.w2Speed = 0;
                 break;
             default: break;
         }
@@ -117,38 +132,53 @@ void action_ctrl_z_callback(KeyEventType event) {
 extern interact_dep::ActionsGroup get_silver_group;
 
 void action_x_callback(KeyEventType event) {
-    if (OSG::mode == OneStepGetControl::MANUAL) {
+    if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
+        if (OSG::mode == OneStepGetControl::MANUAL) {
+            switch (event) {
+                case KeyEvent_OnDown:
+                case KeyEvent_OnLongPress:
+                case KeyEvent_OnPressing:
+                    one_step_gets.left.Y.pos.target_set(1300);
+                    one_step_gets.left.Y.status = OneStepGetYStatus::UP;
+                    break;
+                case KeyEvent_None:
+                case KeyEvent_OnUp: one_step_gets.left.Y.status = OneStepGetYStatus::NONE; break;
+                default: break;
+            }
+        } else if (OSG::mode == OneStepGetControl::AUTO) {
+            switch (event) {
+                case KeyEvent_OnClick:
+                    put_down_gold_group.reset();
+                    interact.actions_group = &put_down_gold_group;
+                    interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+
+                    break;
+                default: break;
+            }
+        } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+            // switch (event) {
+            //     case KeyEvent_OnClick:
+            //         get_silver_group.reset();
+            //         interact.actions_group = &get_silver_group;
+            //         interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+            //
+            //         break;
+            //     default: break;
+            // }
+        }
+    } else {
         switch (event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.left.Y.pos.target_set(1300);
-                one_step_gets.left.Y.status = OneStepGetYStatus::UP;
+                chassis.w1Speed = 1;
                 break;
             case KeyEvent_None:
-            case KeyEvent_OnUp: one_step_gets.left.Y.status = OneStepGetYStatus::NONE; break;
-            default: break;
-        }
-    } else if (OSG::mode == OneStepGetControl::AUTO) {
-        switch (event) {
-            case KeyEvent_OnClick:
-                put_down_gold_group.reset();
-                interact.actions_group = &put_down_gold_group;
-                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
-
+            case KeyEvent_OnUp:
+                chassis.w1Speed = 0;
                 break;
             default: break;
         }
-    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
-        // switch (event) {
-        //     case KeyEvent_OnClick:
-        //         get_silver_group.reset();
-        //         interact.actions_group = &get_silver_group;
-        //         interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
-        //
-        //         break;
-        //     default: break;
-        // }
     }
 }
 extern interact_dep::ActionsGroup get_silver_from_left_group;

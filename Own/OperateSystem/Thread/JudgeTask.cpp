@@ -110,7 +110,7 @@ void JudgeTask() {
                                                1022 + 50, 790, 10, 5, 2);
         const auto main_num = UI::create_float("209", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 1,
                                                930 + 70, 880, 10, 5, 2);
-        auto reset_arc = UI::create_arc("210", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 10, 949, 518,
+        auto reset_arc = UI::create_arc("210", UI::operation::ADD, UI::layer::LAYER_6, UI::color::GREEN, 10, 955, 518,
                                         270, 90, 80, 60, 40);
 
         const auto joint1_num = UI::create_float("211", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 2,
@@ -143,6 +143,20 @@ void JudgeTask() {
 
         const auto gold_right_line1 = UI::create_line("222", UI::operation::ADD, UI::layer::LAYER_6, UI::color::PURPLE, 10,
                                                1295, 382, 1130, 378, 40);
+
+        const auto gold_left_line3 = UI::create_line("223", UI::operation::ADD, UI::layer::LAYER_6, UI::color::ORANGE, 10,
+                                               296, 369, 675, 363, 40);
+
+        const auto gold_left_line4 = UI::create_line("224", UI::operation::ADD, UI::layer::LAYER_6, UI::color::ORANGE, 10,
+                                               357, 513, 669, 572, 40);
+
+        const auto gold_right_line3 = UI::create_line("225", UI::operation::ADD, UI::layer::LAYER_6, UI::color::ORANGE, 10,
+                                               1142, 673, 1370, 669, 40);
+
+        const auto gold_right_line4 = UI::create_line("226", UI::operation::ADD, UI::layer::LAYER_6, UI::color::ORANGE, 10,
+                                               1210, 370, 1594, 388, 40);
+
+
 
         while (ui.update()) {
             osDelay(50);

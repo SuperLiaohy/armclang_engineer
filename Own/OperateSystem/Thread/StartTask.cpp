@@ -343,6 +343,11 @@ void StartTask() {
     arm_get_gold.joints[4] = -28.7980728;
     arm_get_gold.joints[5] = 0;
 
+    arm_get_gold.speed[0] = 480;
+    arm_get_gold.speed[1] = 720;
+    arm_get_gold.speed[2] = 900;
+    arm_get_gold.speed[3] = 720;
+
     exchange_left.joints[0] = -17.9960938;
     exchange_left.joints[1] = 36.7366142;
     exchange_left.joints[2] = 35.3361511;
