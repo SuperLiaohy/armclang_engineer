@@ -66,6 +66,17 @@ namespace interact_dep {
             : status(action_status::Joints)
             , speed(speed)
             , joints(joints) {};
+        explicit Actions(const std::initializer_list<float>& joints, std::array<float, 4> speed=default_action_speed)
+            : status(action_status::Joints)
+            , speed(speed) {
+            uint8_t index = 0;
+            for (auto data : joints) {
+                this->joints[index++] = data;
+                if (index > 5) {
+                    break;
+                }
+            }
+        };
 
         explicit Actions(const Slope& target, action_status status, std::array<float, 4> speed=default_action_speed)
             : status(status)
@@ -83,8 +94,10 @@ namespace interact_dep {
         uint32_t* time_list;
         event* event_list;
         exe* exe_list;
+
         uint8_t len;
         uint8_t index;
+
         uint32_t time_cnt;
 
         Actions* get() { return &actions_list[index]; }

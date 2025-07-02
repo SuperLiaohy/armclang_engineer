@@ -250,7 +250,6 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                                               limitation.joint5.max);
                 }
                 Arm.target_speed = {roboarm_dep::default_speed};
-
             } break;
             case interact_dep::action_status::CartesianZ_z: {
                 if (actions->init == false) {

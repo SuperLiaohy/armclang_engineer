@@ -66,16 +66,16 @@ extern interact_dep::Actions reset2;
 extern interact_dep::Actions silver_reset;
 
 extern interact_dep::Actions anti_reset;
-extern interact_dep::Actions get_right_y;
+// extern interact_dep::Actions get_right_y;
 extern interact_dep::Actions get_silver_mine;
 extern interact_dep::Actions get_silver_mine_z;
-extern interact_dep::Actions put_silver_mine_right;
+// extern interact_dep::Actions put_silver_mine_right;
 extern interact_dep::Actions put_silver_mine_left;
 extern interact_dep::Actions get_silver_from_left;
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
-extern interact_dep::Actions put_down_silver;
-extern interact_dep::Actions get_silver2_mine;
+// extern interact_dep::Actions put_down_silver;
+// extern interact_dep::Actions get_silver2_mine;
 extern interact_dep::Actions arm_get_gold;
 extern interact_dep::Actions arm_get_gold_z;
 extern interact_dep::Actions arm_get_gold_mine_X_x_in;
@@ -265,12 +265,12 @@ void StartTask() {
     SuperIWDG::GotInstance().give();
 
 
-    get_right_y.joints[0] = -8.48937225;
-    get_right_y.joints[1] = -17.2843819;
-    get_right_y.joints[2] = -102.246674;
-    get_right_y.joints[3] = 83.5459137;
-    get_right_y.joints[4] = 89.6870422;
-    get_right_y.joints[5] = 42.9085999;
+    // get_right_y.joints[0] = -8.48937225;
+    // get_right_y.joints[1] = -17.2843819;
+    // get_right_y.joints[2] = -102.246674;
+    // get_right_y.joints[3] = 83.5459137;
+    // get_right_y.joints[4] = 89.6870422;
+    // get_right_y.joints[5] = 42.9085999;
 
     get_silver_mine.joints[0] = 0;
     get_silver_mine.joints[1] = 37.604;
@@ -284,26 +284,26 @@ void StartTask() {
     get_silver_mine.speed[2] = 360;
     get_silver_mine.speed[3] = 360;
 
-    put_silver_mine_right.joints[0] = 16.20;
-    put_silver_mine_right.joints[1] = 14.4343681;
-    put_silver_mine_right.joints[2] = 122.649994;
-    put_silver_mine_right.joints[3] = 101.64;
-    put_silver_mine_right.joints[4] = 90.78;
-    put_silver_mine_right.joints[5] = 38.22;
+    // put_silver_mine_right.joints[0] = 16.20;
+    // put_silver_mine_right.joints[1] = 14.4343681;
+    // put_silver_mine_right.joints[2] = 122.649994;
+    // put_silver_mine_right.joints[3] = 101.64;
+    // put_silver_mine_right.joints[4] = 90.78;
+    // put_silver_mine_right.joints[5] = 38.22;
 
-    put_down_silver.joints[0] = 0;
-    put_down_silver.joints[1] = 55;
-    put_down_silver.joints[2] = 116.5;
-    put_down_silver.joints[3] = 0;
-    put_down_silver.joints[4] = -78;
-    put_down_silver.joints[5] = 0;
-
-    get_silver2_mine.joints[0] = -36.8980751;
-    get_silver2_mine.joints[1] = 47.0325127;
-    get_silver2_mine.joints[2] = 101.838203;
-    get_silver2_mine.joints[3] = 0;
-    get_silver2_mine.joints[4] = 31.1292877;
-    get_silver2_mine.joints[5] = 0;
+    // put_down_silver.joints[0] = 0;
+    // put_down_silver.joints[1] = 55;
+    // put_down_silver.joints[2] = 116.5;
+    // put_down_silver.joints[3] = 0;
+    // put_down_silver.joints[4] = -78;
+    // put_down_silver.joints[5] = 0;
+    //
+    // get_silver2_mine.joints[0] = -36.8980751;
+    // get_silver2_mine.joints[1] = 47.0325127;
+    // get_silver2_mine.joints[2] = 101.838203;
+    // get_silver2_mine.joints[3] = 0;
+    // get_silver2_mine.joints[4] = 31.1292877;
+    // get_silver2_mine.joints[5] = 0;
 
     // put_silver_mine_left.joints[0] = -44.8466797;
     // put_silver_mine_left.joints[1] = 1.91878128;
