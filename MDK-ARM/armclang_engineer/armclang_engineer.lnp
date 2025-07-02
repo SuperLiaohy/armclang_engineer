@@ -165,6 +165,7 @@
 "armclang_engineer\supportfunctionsf16.o"
 "armclang_engineer\transformfunctions.o"
 "armclang_engineer\transformfunctionsf16.o"
+"armclang_engineer\windowfunctions.o"
 "armclang_engineer\retarget_io.o"
 "armclang_engineer\stdin_itm.o"
 "armclang_engineer\stdout_itm.o"

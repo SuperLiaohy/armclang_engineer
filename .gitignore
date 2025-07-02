@@ -1,10 +1,16 @@
-build/
+build
+
+libs
 
 MDK-ARM
 
 .mxproject
 
+.vscode
+
 !MDK-ARM/startup_stm32h723xx.s
+
+!MDK-ARM/armclang_engineer/armclang_engineer.sct
 
 #!MDK-ARM/out
 #
