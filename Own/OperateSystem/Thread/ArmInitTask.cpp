@@ -15,7 +15,7 @@ void ArmInitTask() {
     roboArm.enable();
 
     /* 机械臂的差分器初始化 */
-    roboArm.diff.init(interact.joint);
+    // roboArm.diff.init(interact.joint);
     /* 读取电机的偏移量，来判断offset是否需要减少360 */
     roboArm.init_offset(interact.joint);
 

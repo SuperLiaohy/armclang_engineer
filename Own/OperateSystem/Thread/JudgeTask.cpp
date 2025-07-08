@@ -207,8 +207,8 @@ void JudgeTask() {
                 }
                 joint_lost(joint3_num, roboArm.joint3.detect.isLost);
                 joint_lost(joint4_num, roboArm.joint4.detect.isLost);
-                joint_lost(joint5_num, roboArm.diff.left.detect.isLost);
-                joint_lost(joint6_num, roboArm.diff.right.detect.isLost);
+                // joint_lost(joint5_num, roboArm.diff.left.detect.isLost);
+                // joint_lost(joint6_num, roboArm.diff.right.detect.isLost);
                 joint1_num->set_float(roboArm.relative_pos[0]);
                 joint2_num->set_float(roboArm.relative_pos[1]);
                 joint3_num->set_float(roboArm.relative_pos[2]);

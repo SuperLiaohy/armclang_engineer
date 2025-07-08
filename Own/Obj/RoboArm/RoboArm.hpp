@@ -7,6 +7,7 @@
  * @Description: 机械臂类 瓴控和大疆的电机: (5010 8016 8016)三个关节  (4005 2006 2006)末端机构
  */
 #pragma once
+#include "Motor/Control/lkPidControl.hpp"
 #include "roboarm_dep.hpp"
 
 #include <array>
@@ -20,15 +21,21 @@ public:
     RoboArm(SuperCan* canPlus, uint32_t id1, uint32_t range1, const float ratio1, uint32_t id2_internal,
             uint32_t range2_internal, const float ratio2_internal, uint32_t id2_external, uint32_t range2_external,
             const float ratio2_external, uint32_t id3, uint32_t range3, const float ratio3, uint32_t id4,
-            uint32_t range4, const float ratio4, float gain, uint32_t id5, const Pid& left_pos_pid,
-            const Pid& left_speed_pid, uint32_t id6, const Pid& right_pos_pid, const Pid& right_speed_pid,I2C_HandleTypeDef* hi2c,
+            uint32_t range4, const float ratio4,
+            // const Pid& pid_pos5,const Pid& pid_speed5,
+            uint32_t id5, const uint32_t range5, const float ratio5,
+            const uint32_t id6, const uint32_t range6, const float ratio6,
             roboarm_dep::offset&& offset)
-        : diff(gain, id5, left_pos_pid, left_speed_pid, id6, right_pos_pid, right_speed_pid, hi2c)
-        , joint1(canPlus, id1, range1, ratio1)
+        :
+    // diff(gain, id5, left_pos_pid, left_speed_pid, id6, right_pos_pid, right_speed_pid, hi2c),
+        joint1(canPlus, id1, range1, ratio1)
         , joint2 {Motor<LKMotorSingle>(canPlus, id2_internal, range2_internal, ratio2_internal),
                   Motor<LKMotorSingle>(canPlus, id2_external, range2_external, ratio2_external)}
         , joint3(canPlus, id3, range3, ratio3)
         , joint4(canPlus, id4, range4, ratio4)
+        // , joint5(pid_pos5, pid_speed5, canPlus, id5, range5, ratio5)
+        , joint5(canPlus, id5, range5, ratio5)
+        , joint6(canPlus, id6, range6, ratio6)
         , offset {offset} {};
 
     void enable();
@@ -48,7 +55,7 @@ public:
 
     bool ikine(const std::array<float, 3>& pos);
 
-    roboarm_dep::Differentiator diff;
+    // roboarm_dep::Differentiator diff;
 
     Motor<LKMotorSingle> joint1;
 
@@ -58,6 +65,11 @@ public:
     } joint2;
     Motor<LKMotorSingle> joint3;
     Motor<LKMotorSingle> joint4;
+
+    Motor<LKMotorSingle> joint5;
+    // Motor<LKMotorPid> joint5;
+    Motor<LKMotorSingle> joint6;
+    // Motor<LKMotorSingle> joint6;
 
     roboarm_dep::offset offset {};
     roboarm_dep::target target {};

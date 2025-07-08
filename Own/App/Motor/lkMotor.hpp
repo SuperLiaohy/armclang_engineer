@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Control/lkControl.hpp"
+#include "Control/lkPidControl.hpp"
 #include "Param/lkMotor.hpp"
 #include <MyMath/MyMath.hpp>
 #define USING_LKMOTOR 1
@@ -22,7 +23,21 @@ public:
 
     bool get_feedback(uint16_t id, uint8_t* data) {
         if (id == this->rx_id) {
-            LKControl<LKMotor>::get_feedback(data);
+            LKMotor::get_feedback(data);
+            return true;
+        }
+        return false;
+    };
+};
+class LKMotorPid : public lkPidControl<LKMotor> {
+public:
+    template<typename... Args>
+    explicit LKMotorPid(Args&&... args)
+        : lkPidControl(std::forward<Args>(args)...) {};
+
+    bool get_feedback(uint16_t id, uint8_t* data) {
+        if (id == this->rx_id) {
+            LKMotor::get_feedback(data);
             return true;
         }
         return false;

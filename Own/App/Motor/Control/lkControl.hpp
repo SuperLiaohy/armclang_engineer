@@ -23,6 +23,8 @@ public:
             // totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5 * speed, 1.5 * speed),
             //                       position * this->reduction_ratio);
             totalposition2Control(speed,position * this->reduction_ratio);
+        } else {
+            clear_error();
         }
     };
 
@@ -37,6 +39,8 @@ public:
                                   // position * this->reduction_ratio);
             totalposition2Control(speed,
                                   position * this->reduction_ratio);
+        } else {
+            clear_error();
         }
     };
 
@@ -48,8 +52,10 @@ public:
 
     void close();
 
-    friend class RoboArm;
+    void read_feedback();
+
     void clear_error();
+    friend class RoboArm;
 
 private:
     Count tx_cnt;
@@ -75,7 +81,6 @@ private:
 
     void addposition2Control(uint16_t speed, int32_t target);
 
-    void read_feedback();
 
     void read_encoder();
 

@@ -49,11 +49,13 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
             // roboArm.joint1.get_feedback(canPlus1.rx_data);
         // }
         // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.left.feed_back.id) {
-            roboArm.diff.left.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus1.rx_data);
+            roboArm.joint5.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+            // roboArm.diff.left.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus1.rx_data);
             xEventGroupSetBitsFromISR(osEventGroup, DIFF_LEFT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         // }
         // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.right.feed_back.id) {
-            roboArm.diff.right.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID,canPlus1.rx_data);
+            roboArm.joint6.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+            // roboArm.diff.right.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID,canPlus1.rx_data);
             xEventGroupSetBitsFromISR(osEventGroup, DIFF_RIGHT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
         // }
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);

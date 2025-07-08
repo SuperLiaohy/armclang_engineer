@@ -19,17 +19,25 @@ void ArmTask() {
         roboArm.update_relative_pos();
         roboArm.load_target(interact.joint, interact.joint_slope);
 
-        roboArm.diff.left.set_position(roboArm.target.joint5.angle);
-        roboArm.diff.right.set_position(roboArm.target.joint6.angle);
+        // roboArm.diff.left.set_position(roboArm.target.joint5.angle);
+        // roboArm.diff.right.set_position(roboArm.target.joint6.angle);
+        if ((cnt + 4) % 5 == 0) {
+            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            roboArm.joint5.read_feedback();
+            // roboArm.joint5.set_position(roboArm.target.joint5.angle, 600);
+            xSemaphoreGive(CAN1MutexHandle);
 
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        canPlus1.transmit(M2006Diff::foc.TX_LOW_ID, roboArm.diff.left.speed_output(), roboArm.diff.right.speed_output(),
-                          0, 0);
-        xSemaphoreGive(CAN1MutexHandle);
+            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+            roboArm.joint6.read_feedback();
+            // roboArm.joint6.set_position(roboArm.target.joint6.angle, 720);
 
-        roboArm.diff.write_fram();
+            // canPlus1.transmit(M2006Diff::foc.TX_LOW_ID, roboArm.diff.left.speed_output(), roboArm.diff.right.speed_output(),
+            // 0, 0);
+            xSemaphoreGive(CAN1MutexHandle);
+        }
+        // roboArm.diff.write_fram();
 
-        if ((cnt+3) % 5 == 0) {
+        if ((cnt) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
             roboArm.joint3.set_position(roboArm.target.joint3.angle, roboArm.target_speed[2]);
             xSemaphoreGive(CAN1MutexHandle);
@@ -47,7 +55,8 @@ void ArmTask() {
         }
         if ((cnt + 2) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            roboArm.joint1.set_position(roboArm.target.joint1.angle, roboArm.target_speed[0]);
+            // roboArm.joint1.set_position(roboArm.target.joint1.angle, roboArm.target_speed[0]);
+            roboArm.joint1.read_feedback();
             xSemaphoreGive(CAN1MutexHandle);
 
             // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);

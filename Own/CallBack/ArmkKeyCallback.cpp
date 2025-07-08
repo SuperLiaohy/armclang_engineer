@@ -32,8 +32,8 @@ void robo_arm_ctrl_g_callback(KeyEventType event) {
             interact.robo_arm.mode              = interact_dep::robo_mode::NONE;
             interact.joint[5]                   = 0;
             interact.joint[4]                   = 0;
-            roboArm.diff.left.total_position()  = 0;
-            roboArm.diff.right.total_position() = 0;
+            // roboArm.diff.left.total_position()  = 0;
+            // roboArm.diff.right.total_position() = 0;
             break;
         default: break;
     }
