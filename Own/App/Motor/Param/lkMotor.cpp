@@ -15,6 +15,8 @@ void LKMotor::get_feedback(uint8_t* data) {
             // 启动判断
             start_flag = 1;
             break;
+        case 0x9c:
+
         case 0xa0:
         case 0xa1:
         case 0xa2:
@@ -32,7 +34,7 @@ void LKMotor::get_feedback(uint8_t* data) {
 
             feedback.data.position    = feedback.raw_data.position * 360.f / precision_range;
             feedback.data.speed       = feedback.raw_data.speed;
-            feedback.data.current     = feedback.raw_data.current * 32.f / 2000.f;
+            feedback.data.current     = feedback.raw_data.current * 33.f / 2048.f;
             feedback.data.temperature = feedback.raw_data.temperature;
 
             float dPos = feedback.data.position - feedback.data.last_position;
@@ -74,18 +76,7 @@ void LKMotor::get_feedback(uint8_t* data) {
             feedback.err.voltage          = *(uint16_t*)(&data[3]) * 0.1;
             feedback.err.error            = data[7];
             break;
-        case 0x9c:
 
-            feedback.raw_data.temperature = data[1];
-            feedback.raw_data.current     = *(int16_t*)(&data[2]);
-            feedback.raw_data.speed       = *(int16_t*)(&data[4]);
-            feedback.raw_data.position    = *(int16_t*)(&data[6]);
-
-            feedback.data.position    = feedback.raw_data.position * 360.0 / precision_range;
-            feedback.data.speed       = feedback.raw_data.speed;
-            feedback.data.current     = feedback.raw_data.current * 32.f / 2000.f;
-            feedback.data.temperature = feedback.raw_data.temperature;
-            break;
 
         case 0x30:
             feedback.foc_pid.pos_p     = data[1];

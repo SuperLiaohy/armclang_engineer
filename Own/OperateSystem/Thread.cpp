@@ -7,6 +7,7 @@
 #include "ThreadConfig.h"
 
 #include <SubBoard/SubBoard.hpp>
+#include <atomic>
 
 #ifdef __cplusplus
 extern "C" {
@@ -25,7 +26,7 @@ UBaseType_t IMUHeapCnt = 0;
 #ifdef __cplusplus
 }
 #endif
-
+std::atomic<bool> arminit_flag(false);
 void StartDefaultTask(void const *argument) {
     UNUSED(argument);
     StartTask();
@@ -51,6 +52,13 @@ void OS_ErrorTask(void const *argument) {
 void OS_DebugTask(void const *argument) {
     UNUSED(argument);
     xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
+    for (int i = 0; i < 2000;++i) {
+        xEventGroupWaitBits(osEventGroup, ROBO_ARM_INIT_END_EVENT, pdTRUE, pdTRUE, 1) & ROBO_ARM_INIT_END_EVENT;
+        if (arminit_flag.load()) {
+            break;
+        }
+    }
+    // xEventGroupWaitBits(osEventGroup, START_END_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     DebugTask();
 }
 

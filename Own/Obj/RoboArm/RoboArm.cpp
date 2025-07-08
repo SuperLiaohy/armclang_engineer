@@ -99,7 +99,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     using namespace roboarm_dep;
 
     joint6.read_totalposition();
-    // joint5.read_totalposition();
+    joint5.read_feedback();
     joint4.read_totalposition();
     joint3.read_totalposition();
     joint2.internal.read_totalposition();
@@ -155,16 +155,16 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
         joint1.read_totalposition();
         osDelay(1);
     }
-    for (uint32_t i = 0; i < MaxTimeOut; i++) {
-        if (joint5.offset_flag) {
-            joint[4] = 0;
-            // if (joint5.feedback.total_position < 0) { offset.joint5 -= 360; }
-            // target.joint1.angle = offset.joint1 * 100;
-            break;
-        }
-        joint1.read_totalposition();
-        osDelay(1);
-    }
+    // for (uint32_t i = 0; i < MaxTimeOut; i++) {
+    //     if (joint5.offset_flag) {
+    //         joint[4] = 0;
+    //         // if (joint5.feedback.total_position < 0) { offset.joint5 -= 360; }
+    //         // target.joint1.angle = offset.joint1 * 100;
+    //         break;
+    //     }
+    //     joint5.read_totalposition();
+    //     osDelay(1);
+    // }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint6.offset_flag) {
             joint[5] = 0;
@@ -172,7 +172,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
             // if (joint1.feedback.total_position < 0) { offset.joint1 -= 360; }
             break;
         }
-        joint1.read_totalposition();
+        joint6.read_totalposition();
         osDelay(1);
     }
 }

@@ -95,8 +95,8 @@ armclang_engineer/remotectrltask.o: \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
-  ..\Core\Inc\fdcan.h ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\Mod\Slope\Slope.hpp \
+  ..\Core\Inc\fdcan.h ..\Own\App\Motor\Control\lkPidControl.hpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\Mod\Slope\Slope.hpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \

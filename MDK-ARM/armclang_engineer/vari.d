@@ -102,8 +102,9 @@ armclang_engineer/vari.o: ..\Own\OperateSystem\Vari.cpp \
   ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\App\RemoteControl\RemoteControl.hpp \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Control\lkPidControl.hpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
   ..\Own\OperateSystem\Heap\CustomHeap.hpp \

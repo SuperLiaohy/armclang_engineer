@@ -23,12 +23,23 @@ public:
     [[nodiscard]] float& speed_output() { return this->speed.output; }
 
     float set_position(const float target) {
-        return this->speed.update(this->position.update(target, this->total_position), this->feedback.data.speed);
+        if (!this->detect.isLost) {
+            return this->speed.update(this->position.update(target, this->total_position), this->feedback.data.speed);
+        } else {
+            speed.clear();
+            position.clear();
+            return 0;
+        }
     }
 
     void SingleControl() {
-        uint8_t data[8] = {0xa1, 0, 0, 0, *(uint8_t*)(&speed.output), *((uint8_t*)(&speed.output) + 1), 0, 0};
-        canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
+        if (!this->detect.isLost) {
+            int16_t out = speed.output;
+            uint8_t data[8] = {0xa1, 0, 0, 0, *(uint8_t*)(&out), *((uint8_t*)(&out) + 1), 0, 0};
+            canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
+        } else {
+            clear_error();
+        }
     };
 
     void enable();
@@ -38,6 +49,10 @@ public:
     void close();
 
     void clear_error();
+
+    void read_totalposition();
+
+    void read_feedback();
 
 protected:
     Pid position;
@@ -68,4 +83,15 @@ template<motor_param motor> void lkPidControl<motor>::clear_error() {
     canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
 }
 
+
+template<motor_param motor> void lkPidControl<motor>::read_totalposition() {
+    uint8_t data[8] = {0x92, 0, 0, 0, 0, 0, 0, 0};
+    canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
+}
+
+
+template<motor_param motor> void lkPidControl<motor>::read_feedback() {
+    uint8_t data[8] = {0x9c, 0, 0, 0, 0, 0, 0, 0};
+    canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
+}
 

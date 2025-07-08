@@ -8,7 +8,7 @@
 #include "RoboArm/RoboArm.hpp"
 #include "ThreadConfig.h"
 extern uint8_t re_flag;
-
+extern std::atomic<bool> arminit_flag;
 void ArmInitTask() {
     /* 机械臂电机使能 */
     // enable 内部是先失能再使能
@@ -28,6 +28,8 @@ void ArmInitTask() {
     xEventGroupWaitBits(osEventGroup, DIFF_LEFT_RECEIVE_EVENT | DIFF_RIGHT_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     re_flag = 1;
     xEventGroupSetBits(osEventGroup, ROBO_ARM_INIT_END_EVENT);
-		buzzer.PushMusic<24>(Buzzer::melody);
+    buzzer.CleanMusic();
+    buzzer.PushMusic<24>(Buzzer::melody);
+    arminit_flag.store(true);
     vTaskDelete(NULL);
 }

@@ -102,8 +102,9 @@ armclang_engineer/pctask.o: ..\Own\OperateSystem\Thread\PCTask.cpp \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
-  ..\Core\Inc\fdcan.h ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\App\RemoteControl\RemoteControl.hpp \
+  ..\Core\Inc\fdcan.h ..\Own\App\Motor\Control\lkPidControl.hpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\OperateSystem\ThreadConfig.h

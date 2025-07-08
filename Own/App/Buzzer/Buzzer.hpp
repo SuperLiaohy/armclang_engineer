@@ -81,6 +81,11 @@ public:
     template<uint16_t size, auto delay = osDelay> void StartMusic(const std::array<uint16_t, size>& music);
 
     template<uint16_t size> void PushMusic(const std::array<uint16_t, size>& music);
+    void CleanMusic() {
+        music_cnt = 0;
+        music_buffer.clear();
+    };
+
 
     template<auto delay = osDelay> bool StartMusic();
 
