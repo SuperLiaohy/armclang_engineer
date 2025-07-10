@@ -194,7 +194,7 @@ void RoboArm::update_relative_pos() {
 
     relative_pos[3] = -(joint4.total_position - offset.joint4);
 
-    relative_pos[4] = (joint5.total_position - offset.joint5);
+    relative_pos[4] = -(joint5.total_position - offset.joint5);
 
     relative_pos[5] = -(joint6.total_position/joint6.reduction_ratio - offset.joint6);
 
@@ -425,7 +425,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     // target.joint5.angle = (data + joint[4]);
     // target.joint6.angle = (-data + joint[4]);
 
-    target.joint5.angle = (joint[4] + offset.joint5) * scale(360, 36000);
+    target.joint5.angle = (-joint[4] + offset.joint5) * scale(360, 36000);
     target.joint6.angle = (-data + offset.joint6) * scale(360, 36000);
 
 
