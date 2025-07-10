@@ -243,18 +243,6 @@ void StartTask() {
     silver_reset.speed[2] = 360;
     silver_reset.speed[3] = 360;
 
-    // reset2.joints[0] = 0;
-    // reset2.joints[1] = -55;
-    // reset2.joints[2] = 125;
-    // reset2.joints[3] = 0;
-    // reset2.joints[4] = 0;
-    // reset2.joints[5] = 0;
-    //
-    // reset2.speed[0] = 720;
-    // reset2.speed[1] = 720;
-    // reset2.speed[2] = 360;
-    // reset2.speed[3] = 720;
-
     anti_reset.joints[0] = -3.45;
     anti_reset.joints[1] = -16.612;
     anti_reset.joints[2] = -84.722;
@@ -264,13 +252,6 @@ void StartTask() {
 
     SuperIWDG::GotInstance().give();
 
-
-    // get_right_y.joints[0] = -8.48937225;
-    // get_right_y.joints[1] = -17.2843819;
-    // get_right_y.joints[2] = -102.246674;
-    // get_right_y.joints[3] = 83.5459137;
-    // get_right_y.joints[4] = 89.6870422;
-    // get_right_y.joints[5] = 42.9085999;
 
     get_silver_mine.joints[0] = 0;
     get_silver_mine.joints[1] = 37.604;
@@ -283,34 +264,6 @@ void StartTask() {
     get_silver_mine.speed[1] = 720;
     get_silver_mine.speed[2] = 360;
     get_silver_mine.speed[3] = 360;
-
-    // put_silver_mine_right.joints[0] = 16.20;
-    // put_silver_mine_right.joints[1] = 14.4343681;
-    // put_silver_mine_right.joints[2] = 122.649994;
-    // put_silver_mine_right.joints[3] = 101.64;
-    // put_silver_mine_right.joints[4] = 90.78;
-    // put_silver_mine_right.joints[5] = 38.22;
-
-    // put_down_silver.joints[0] = 0;
-    // put_down_silver.joints[1] = 55;
-    // put_down_silver.joints[2] = 116.5;
-    // put_down_silver.joints[3] = 0;
-    // put_down_silver.joints[4] = -78;
-    // put_down_silver.joints[5] = 0;
-    //
-    // get_silver2_mine.joints[0] = -36.8980751;
-    // get_silver2_mine.joints[1] = 47.0325127;
-    // get_silver2_mine.joints[2] = 101.838203;
-    // get_silver2_mine.joints[3] = 0;
-    // get_silver2_mine.joints[4] = 31.1292877;
-    // get_silver2_mine.joints[5] = 0;
-
-    // put_silver_mine_left.joints[0] = -44.8466797;
-    // put_silver_mine_left.joints[1] = 1.91878128;
-    // put_silver_mine_left.joints[2] = 108.428192;
-    // put_silver_mine_left.joints[3] = -0.359306335;
-    // put_silver_mine_left.joints[4] = 73.6503601;
-    // put_silver_mine_left.joints[5] = 40.1804858;
 
     put_silver_mine_left.joints[0] = -51.8910751;
     put_silver_mine_left.joints[1] = 0.283977509;
@@ -400,11 +353,6 @@ void StartTask() {
     put_down_silver_group.actions_list[0] = reset2;
 
     put_down_gold_group.actions_list[0] = reset2;
-
-    // arm_get_gold_group.actions_list[0] = arm_get_gold;
-    // arm_get_gold_group.actions_list[1] = arm_get_gold_mine_X_x_in;
-    // arm_get_gold_group.actions_list[2] = arm_get_gold_mine_x;
-    // arm_get_gold_group.actions_list[3] = arm_get_gold_mine_x;
 
     get_silver2_group.actions_list[0] = anti_reset;
     get_silver2_group.actions_list[1] = anti_reset;

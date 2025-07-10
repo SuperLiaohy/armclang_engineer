@@ -194,7 +194,7 @@ void RoboArm::update_relative_pos() {
 
     relative_pos[3] = -(joint4.total_position - offset.joint4);
 
-    relative_pos[4] = -(joint5.total_position - offset.joint5);
+    relative_pos[4] = (joint5.total_position - offset.joint5);
 
     relative_pos[5] = -(joint6.total_position/joint6.reduction_ratio - offset.joint6);
 
@@ -388,7 +388,7 @@ bool RoboArm::ikine(const std::array<float, 3>& pos) {
 
     return true;
 }
-
+float target_joint5;
 void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3>& slope) {
     using namespace roboarm_dep;
     using namespace my_math;
@@ -403,7 +403,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     target.joint2.internal.angle = (-joint2_slope_value + offset.joint2.internal) * scale(360, 36000);
     target.joint2.external.angle = (-joint2_slope_value + offset.joint2.external) * scale(360, 36000);
     target.joint3.angle          = (-slope[2].update() + offset.joint3) * scale(360, 36000);
-    target.joint4.angle          = (-joint[3] + offset.joint4) * scale(360, 36000);
+    // target.joint4.angle          = (-joint[3] + offset.joint4) * scale(360, 36000);
 
     auto data3 = joint[3];
     float err3 = joint[3] - relative_pos[3]; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
@@ -413,19 +413,20 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     target.joint4.angle          = (-data3 + offset.joint4) * scale(360, 36000);
 
 
-    auto data = -joint[5];
-    // float err = joint[5] - relative_pos[5]; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
-    // while (err >= 180) { err -= 359.99; }
-    // while (err < -180) { err += 359.99; }
-    // data = relative_pos[5] + err;
+    float data;
+    float err = joint[5] - relative_pos[5]; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
+    while (err >= 180) { err -= 360; }
+    while (err < -180) { err += 360; }
+    data = relative_pos[5] + err;
+    target_joint5 = data;
 
     // diff.slope_left.target_set(data + joint[4]);
     // diff.slope_right.target_set(-data + joint[4]);
     // target.joint5.angle = (data + joint[4]);
     // target.joint6.angle = (-data + joint[4]);
 
-    target.joint5.angle = (-joint[4] + offset.joint5) * scale(360, 36000);
-    target.joint6.angle = (data + offset.joint6) * scale(360, 36000);
+    target.joint5.angle = (joint[4] + offset.joint5) * scale(360, 36000);
+    target.joint6.angle = (-data + offset.joint6) * scale(360, 36000);
 
 
 }

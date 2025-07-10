@@ -147,7 +147,7 @@ namespace roboarm_dep {
     };
 
     constexpr float err           = deg2rad(5);
-    constexpr float A             = 355.0;
+    constexpr float A             = 325.5;
     constexpr float B             = 320.0;
     constexpr uint32_t MaxTimeOut = 3000;
 

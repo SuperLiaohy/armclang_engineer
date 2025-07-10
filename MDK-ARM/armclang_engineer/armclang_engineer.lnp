@@ -167,9 +167,9 @@
 "armclang_engineer\transformfunctionsf16.o"
 "armclang_engineer\windowfunctions.o"
 "armclang_engineer\retarget_io.o"
+"armclang_engineer\stderr_itm.o"
 "armclang_engineer\stdin_itm.o"
 "armclang_engineer\stdout_itm.o"
-"armclang_engineer\stderr_itm.o"
 --strict --scatter "armclang_engineer\armclang_engineer.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
