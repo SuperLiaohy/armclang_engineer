@@ -63,35 +63,23 @@ void action_ctrl_r_callback(KeyEventType event);
 
 extern interact_dep::Actions reset1;
 extern interact_dep::Actions reset2;
-extern interact_dep::Actions silver_reset;
 
-extern interact_dep::Actions anti_reset;
-// extern interact_dep::Actions get_right_y;
 extern interact_dep::Actions get_silver_mine;
 extern interact_dep::Actions get_silver_mine_z;
-// extern interact_dep::Actions put_silver_mine_right;
-extern interact_dep::Actions put_silver_mine_left;
-extern interact_dep::Actions get_silver_from_left;
+
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
-// extern interact_dep::Actions put_down_silver;
-// extern interact_dep::Actions get_silver2_mine;
+
 extern interact_dep::Actions arm_get_gold;
 extern interact_dep::Actions arm_get_gold_z;
-extern interact_dep::Actions arm_get_gold_mine_X_x_in;
-extern interact_dep::Actions arm_get_gold_mine_x;
 
-extern interact_dep::ActionsGroup get_silver_group;
 extern interact_dep::ActionsGroup get_second_silver_group;
-extern interact_dep::ActionsGroup get_silver_from_left_group;
 extern interact_dep::ActionsGroup get_gold_group;
 extern interact_dep::ActionsGroup get_left_gold_group;
 extern interact_dep::ActionsGroup get_right_gold_group;
-extern interact_dep::ActionsGroup ready_silver2_group;
-extern interact_dep::ActionsGroup get_silver2_group;
+
 extern interact_dep::ActionsGroup put_down_silver_group;
 extern interact_dep::ActionsGroup put_down_gold_group;
-extern interact_dep::ActionsGroup arm_get_gold_group;
 
 void chassis_shift_w_callback(KeyEventType event);
 void chassis_shift_a_callback(KeyEventType event);
@@ -207,167 +195,7 @@ void StartTask() {
     roboArm.joint3.detect_lost(joint3_motor_detect);
     roboArm.joint4.detect_lost(joint4_motor_detect);
 
-    reset1.joints[0] = 0;
-    reset1.joints[1] = -55;
-    reset1.joints[2] = 145;
-    reset1.joints[3] = 0;
-    reset1.joints[4] = 0;
-    reset1.joints[5] = 0;
-
-    reset1.speed[0] = 720;
-    reset1.speed[1] = 720;
-    reset1.speed[2] = 360;
-    reset1.speed[3] = 720;
-
-    reset2.joints[0] = 0;
-    reset2.joints[1] = -16.3;
-    reset2.joints[2] = 144.8;
-    reset2.joints[3] = 0;
-    reset2.joints[4] = 0;
-    reset2.joints[5] = 0;
-
-    reset2.speed[0] = 720;
-    reset2.speed[1] = 720;
-    reset2.speed[2] = 360;
-    reset2.speed[3] = 720;
-
-    silver_reset.joints[0] = 0;
-    silver_reset.joints[1] = -55;
-    silver_reset.joints[2] = 135;
-    silver_reset.joints[3] = 0;
-    silver_reset.joints[4] = 0;
-    silver_reset.joints[5] = 0;
-
-    silver_reset.speed[0] = 720;
-    silver_reset.speed[1] = 180;
-    silver_reset.speed[2] = 360;
-    silver_reset.speed[3] = 360;
-
-    anti_reset.joints[0] = -3.45;
-    anti_reset.joints[1] = -16.612;
-    anti_reset.joints[2] = -84.722;
-    anti_reset.joints[3] = 0.043;
-    anti_reset.joints[4] = 0;
-    anti_reset.joints[5] = 0;
-
     SuperIWDG::GotInstance().give();
-
-
-    get_silver_mine.joints[0] = 0;
-    get_silver_mine.joints[1] = 37.604;
-    get_silver_mine.joints[2] = 115.54184;
-    get_silver_mine.joints[3] = 0;
-    get_silver_mine.joints[4] = 27.570;
-    get_silver_mine.joints[5] = 0;
-
-    get_silver_mine.speed[0] = 480;
-    get_silver_mine.speed[1] = 720;
-    get_silver_mine.speed[2] = 360;
-    get_silver_mine.speed[3] = 360;
-
-    put_silver_mine_left.joints[0] = -51.8910751;
-    put_silver_mine_left.joints[1] = 0.283977509;
-    put_silver_mine_left.joints[2] = 91.6136169;
-    put_silver_mine_left.joints[3] = 8.03382111;
-    put_silver_mine_left.joints[4] = 90;
-    put_silver_mine_left.joints[5] = -55.05;
-
-    put_silver_mine_left.speed[0] = 720;
-    put_silver_mine_left.speed[1] = 180;
-    put_silver_mine_left.speed[2] = 180;
-    put_silver_mine_left.speed[3] = 720;
-
-    get_silver_from_left.joints[0] = -27.51478;
-    get_silver_from_left.joints[1] = 10.4793777;
-    get_silver_from_left.joints[2] = 126.511063;
-    get_silver_from_left.joints[3] = 95.8899307;
-    get_silver_from_left.joints[4] = -90;
-    get_silver_from_left.joints[5] = -7.86681938;
-
-    get_silver_from_left.speed[0] = 90;
-    get_silver_from_left.speed[1] = 180;
-    get_silver_from_left.speed[2] = 180;
-    get_silver_from_left.speed[3] = 720;
-
-    arm_get_gold.joints[0] = 0;
-    arm_get_gold.joints[1] = 48.4501343;
-    arm_get_gold.joints[2] = 70.3479385;
-    arm_get_gold.joints[3] = 0.00540079346;
-    arm_get_gold.joints[4] = -28.7980728;
-    arm_get_gold.joints[5] = 0;
-
-    arm_get_gold.speed[0] = 480;
-    arm_get_gold.speed[1] = 720;
-    arm_get_gold.speed[2] = 900;
-    arm_get_gold.speed[3] = 720;
-
-    exchange_left.joints[0] = -17.9960938;
-    exchange_left.joints[1] = 36.7366142;
-    exchange_left.joints[2] = 35.3361511;
-    exchange_left.joints[3] = -89.4694138;
-    exchange_left.joints[4] = -89.9465207;
-    exchange_left.joints[5] = 52.6248474;
-
-    exchange_right.joints[0] = 17.9960938;
-    exchange_right.joints[1] = 36.7366142;
-    exchange_right.joints[2] = 35.3361511;
-    exchange_right.joints[3] = 89.4694138;
-    exchange_right.joints[4] = -89.9465207;
-    exchange_right.joints[5] = -52.6248474;
-
-    get_silver_group.actions_list[0] = get_silver_mine;
-    get_silver_group.actions_list[1] = get_silver_mine_z;
-    get_silver_group.actions_list[2] = put_silver_mine_left;
-    get_silver_group.actions_list[3] = put_silver_mine_left;
-    get_silver_group.actions_list[4];
-    get_silver_group.actions_list[4].speed[0] = 180;
-    get_silver_group.actions_list[4].speed[1] = 180;
-    get_silver_group.actions_list[4].speed[2] = 180;
-    get_silver_group.actions_list[4].speed[3] = 180;
-    get_silver_group.actions_list[5] = silver_reset;
-
-    get_second_silver_group.actions_list[0] = get_silver_mine;
-    get_second_silver_group.actions_list[1] = get_silver_mine_z;
-    get_second_silver_group.actions_list[2] = reset1;
-
-    get_silver_from_left_group.actions_list[0] = get_silver_from_left;
-    get_silver_from_left_group.actions_list[1] = reset1;
-
-    get_gold_group.actions_list[0] = reset1;
-    get_gold_group.actions_list[1] = reset1;
-    get_gold_group.actions_list[2] = reset1;
-    get_gold_group.actions_list[3] = reset1;
-
-
-    get_left_gold_group.actions_list[0] = reset1;
-    get_left_gold_group.actions_list[1] = reset1;
-    get_left_gold_group.actions_list[2] = reset1;
-    get_left_gold_group.actions_list[3] = reset1;
-
-
-    get_right_gold_group.actions_list[0] = reset1;
-    get_right_gold_group.actions_list[1] = reset1;
-    get_right_gold_group.actions_list[2] = reset1;
-    get_right_gold_group.actions_list[3] = reset1;
-
-    put_down_silver_group.actions_list[0] = reset2;
-
-    put_down_gold_group.actions_list[0] = reset2;
-
-    get_silver2_group.actions_list[0] = anti_reset;
-    get_silver2_group.actions_list[1] = anti_reset;
-
-    get_silver2_group.actions_list[2].joints[0] = anti_reset.joints[0];
-    get_silver2_group.actions_list[2].joints[1] = anti_reset.joints[1] + 20;
-    get_silver2_group.actions_list[2].joints[2] = reset1.joints[2];
-    get_silver2_group.actions_list[2].joints[3] = reset1.joints[3];
-    get_silver2_group.actions_list[2].joints[4] = reset1.joints[4];
-    get_silver2_group.actions_list[2].joints[5] = reset1.joints[5];
-    get_silver2_group.actions_list[2].speed[2] = 720;
-    get_silver2_group.actions_list[3] = reset1;
-    get_silver2_group.actions_list[3].speed[1] = 180;
-
-    ready_silver2_group.actions_list[0] = anti_reset;
 
     /* W25Q64初始化 */
     w25q64.init();
