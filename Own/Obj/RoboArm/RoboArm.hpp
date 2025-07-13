@@ -34,28 +34,26 @@ public:
         , joint3(canPlus, id3, range3, ratio3)
         , joint4(canPlus, id4, range4, ratio4)
         , joint5(pid_pos5, pid_speed5, canPlus, id5, range5, ratio5)
-        // , joint5(canPlus, id5, range5, ratio5)
         , joint6(canPlus, id6, range6, ratio6)
         , offset {offset} {};
 
     void enable();
-
     void disable();
-
     void close();
 
-    /* 正运动学解 顺序x y z */
-    float pos[3] = {0, 0, 0};
+    /* 正运动学解 位置x y z  单位mm */
+    std::array<float, 3> position = {0, 0, 0};
+    /* 运动学解 姿态z y z    单位为rad*/
+    std::array<float, 3> posture = {0, 0, 0};
+
     /* 逆运动学解 顺序q1 q2 q3 并且有四种*/
-    float q[3] = {};
+    std::array<float, 6> q = {};
 
-    void init_offset(std::array<float, 6>& joint);
+    void fkine(std::array<float, 3>& position);
+    void fkine(std::array<float, 3>& position,  std::array<float, 3>& posture);
 
-    void fkine(std::array<float, 3>& xyz);
-
-    bool ikine(const std::array<float, 3>& pos);
-
-    // roboarm_dep::Differentiator diff;
+    bool ikine(const std::array<float, 3>& position);
+    bool ikine(const std::array<float, 3>& position,const std::array<float, 3>& posture);
 
     Motor<LKMotorSingle> joint1;
 
@@ -65,19 +63,16 @@ public:
     } joint2;
     Motor<LKMotorSingle> joint3;
     Motor<LKMotorSingle> joint4;
-
-    // Motor<LKMotorSingle> joint5;
     Motor<LKMotorPid> joint5;
     Motor<LKMotorSingle> joint6;
-    // Motor<LKMotorSingle> joint6;
 
     roboarm_dep::offset offset {};
     roboarm_dep::target target {};
     std::array<float, 4> target_speed {roboarm_dep::default_speed};
-
-    void load_target(const std::array<float, 6>& joint, std::array<Slope, 3>& Slope);
-
     std::array<float, 6> relative_pos;
+
+    void init_offset(std::array<float, 6>& joint);
+    void load_target(const std::array<float, 6>& joint, std::array<Slope, 3>& Slope);
     void update_relative_pos();
 
 private:

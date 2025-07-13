@@ -3,7 +3,6 @@
 //
 
 #include "RoboArm.hpp"
-
 inline float slove_q2(float q1_slove, float q3_slove, float x, float y, float z) {
     using namespace my_math;
     using namespace roboarm_dep;
@@ -204,188 +203,352 @@ void RoboArm::update_relative_pos() {
 
 }
 
-void RoboArm::fkine(std::array<float, 3>& xyz) {
+void RoboArm::fkine(std::array<float, 3>& position) {
     using namespace my_math;
     using namespace roboarm_dep;
-    float q1 = relative_pos[0] * d2r;
-    float q2 = relative_pos[1] * d2r;
-    float q3 = relative_pos[2] * d2r;
-    pos[0]   = arm_cos_f32(q1) * (A * arm_sin_f32(q2 + q3) + B * arm_sin_f32(q2));
-    pos[1]   = arm_sin_f32(q1) * (A * arm_sin_f32(q2 + q3) + B * arm_sin_f32(q2));
-    pos[2]   = A * arm_cos_f32(q2 + q3) + B * arm_cos_f32(q2);
-    xyz[0] = pos[0];
-    xyz[1] = pos[1];
-    xyz[2] = pos[2];
+    float cq1;
+    float sq1;
+    arm_sin_cos_f32(relative_pos[0], &sq1, &cq1);
+    float cq2;
+    float sq2;
+    arm_sin_cos_f32(relative_pos[1], &sq2, &cq2);
+    float cq3;
+    float sq3;
+    arm_sin_cos_f32(relative_pos[2], &sq3, &cq3);
+    float cq4;
+    float sq4;
+    arm_sin_cos_f32(relative_pos[3], &sq4, &cq4);
+    float cq5;
+    float sq5;
+    arm_sin_cos_f32(relative_pos[4], &sq5, &cq5);
+
+    position[0] = 320 * cq1 * sq2 - 122 * sq1 * sq4 * sq5 + (651 * cq1 * cq2 * sq3) / 2 + (651 * cq1 * cq3 * sq2) / 2
+                  + 122 * cq1 * cq2 * cq5 * sq3 + 122 * cq1 * cq3 * cq5 * sq2 + 122 * cq1 * cq2 * cq3 * cq4 * sq5
+                  - 122 * cq1 * cq4 * sq2 * sq3 * sq5;
+    position[1] = 320 * sq1 * sq2 + (651 * cq2 * sq1 * sq3) / 2 + (651 * cq3 * sq1 * sq2) / 2 + 122 * cq1 * sq4 * sq5
+                  + 122 * cq2 * cq5 * sq1 * sq3 + 122 * cq3 * cq5 * sq1 * sq2 + 122 * cq2 * cq3 * cq4 * sq1 * sq5
+                  - 122 * cq4 * sq1 * sq2 * sq3 * sq5;
+    position[2] = 320 * cq2 + (651 * cq2 * cq3) / 2 - (651 * sq2 * sq3) / 2 + 122 * cq2 * cq3 * cq5
+                  - 122 * cq5 * sq2 * sq3 - 122 * cq2 * cq4 * sq3 * sq5 - 122 * cq3 * cq4 * sq2 * sq5;
+
+    this->position[0] = position[0];
+    this->position[1] = position[1];
+    this->position[2] = position[2];
+}
+void RoboArm::fkine(std::array<float, 3>& position, std::array<float, 3>& posture) {
+    using namespace my_math;
+    using namespace roboarm_dep;
+    float cq1;float sq1;
+    arm_sin_cos_f32(relative_pos[0], &sq1,&cq1);
+    float cq2;float sq2;
+    arm_sin_cos_f32(relative_pos[1], &sq2,&cq2);
+    float cq3;float sq3;
+    arm_sin_cos_f32(relative_pos[2], &sq3,&cq3);
+    float cq4;float sq4;
+    arm_sin_cos_f32(relative_pos[3], &sq4,&cq4);
+    float cq5;float sq5;
+    arm_sin_cos_f32(relative_pos[4], &sq5,&cq5);
+    float cq6;float sq6;
+    arm_sin_cos_f32(relative_pos[5], &sq6,&cq6);
+
+    position[0] = 320 * cq1 * sq2 - 122 * sq1 * sq4 * sq5 + (651 * cq1 * cq2 * sq3) / 2
+                        + (651 * cq1 * cq3 * sq2) / 2 + 122 * cq1 * cq2 * cq5 * sq3 + 122 * cq1 * cq3 * cq5 * sq2
+                        + 122 * cq1 * cq2 * cq3 * cq4 * sq5 - 122 * cq1 * cq4 * sq2 * sq3 * sq5;
+    position[1] = 320 * sq1 * sq2 + (651 * cq2 * sq1 * sq3) / 2 + (651 * cq3 * sq1 * sq2) / 2
+                        + 122 * cq1 * sq4 * sq5 + 122 * cq2 * cq5 * sq1 * sq3 + 122 * cq3 * cq5 * sq1 * sq2
+                        + 122 * cq2 * cq3 * cq4 * sq1 * sq5 - 122 * cq4 * sq1 * sq2 * sq3 * sq5;
+    position[2] = 320 * cq2 + (651 * cq2 * cq3) / 2 - (651 * sq2 * sq3) / 2 + 122 * cq2 * cq3 * cq5
+                        - 122 * cq5 * sq2 * sq3 - 122 * cq2 * cq4 * sq3 * sq5 - 122 * cq3 * cq4 * sq2 * sq5;
+
+    float sq2q3 = sq2 * cq3 + cq2 * sq3;
+    float r1_3 = cq1*cq2*cq5*sq3 - sq1*sq4*sq5 + cq1*cq3*cq5*sq2 + cq1*cq2*cq3*cq4*sq5 - cq1*cq4*sq2*sq3*sq5;
+    float r2_3 = cq1*sq4*sq5 + cq2*cq5*sq1*sq3 + cq3*cq5*sq1*sq2 + cq2*cq3*cq4*sq1*sq5 - cq4*sq1*sq2*sq3*sq5;
+    float r3_3 = cq2*cq3*cq5 - cq5*sq2*sq3 - cq2*cq4*sq3*sq5 - cq3*cq4*sq2*sq5;
+    float r3_2 = sq6*(cq2*cq3*sq5 - sq2*sq3*sq5 + cq2*cq4*cq5*sq3 + cq3*cq4*cq5*sq2) + sq2q3*cq6*sq4;
+    float r3_1 = sq2q3*sq4*sq6 - cq6*(cq2*cq3*sq5 - sq2*sq3*sq5 + cq2*cq4*cq5*sq3 + cq3*cq4*cq5*sq2);
+
+    float tmp;
+    arm_sqrt_f32(r1_3 * r1_3 + r2_3 * r2_3, &tmp);
+    arm_atan2_f32(tmp, r3_3, &posture[1]);
+
+    float sp2 = arm_sin_f32(posture[1]);
+    arm_atan2_f32(r2_3/sp2,r1_3/sp2, &posture[0]);
+    arm_atan2_f32(r3_2/sp2,-r3_1/sp2, &posture[2]);
+
+    this->position[0] = position[0];
+    this->position[1] = position[1];
+    this->position[2] = position[2];
+
+    this->posture[0] = posture[0];
+    this->posture[1] = posture[1];
+    this->posture[2] = posture[2];
 }
 
-bool RoboArm::ikine(const std::array<float, 3>& pos) {
-    using namespace my_math;
-    using namespace roboarm_dep;
-    uint8_t select = 0b00001111;
+bool RoboArm::ikine(const std::array<float, 3>& position) {
+    std::array<float, 3> terminal_pitch_position;
+    terminal_pitch_position[0] = position[0] - 122 * (arm_cos_f32(posture[0]) * arm_sin_f32(posture[1]));
+    terminal_pitch_position[1] = position[1] - 122 * (arm_sin_f32(posture[0]) * arm_sin_f32(posture[1]));
+    terminal_pitch_position[2] = position[2] - 122 * (arm_cos_f32(posture[1]));
 
-    float q1_slove[2];
-    float q3_slove[2];
+    bool is_success = false;
+    // 选择出当前距离位置更近的q1的解 （q1的另外一个解为q1的对角）
+    std::tie(q[0], is_success) = [&terminal_pitch_position, this] -> std::pair<float, bool> {
+        using namespace my_math;
+        using namespace roboarm_dep;
+        float q1;
+        arm_atan2_f32(terminal_pitch_position[1], terminal_pitch_position[0], &q1);
+        if (my_abs(whileLimit(my_abs(this->relative_pos[0] * d2r - q1), deg2rad(-180), deg2rad(180))) < deg2rad(90))
+            if (isInRange(q1 * r2d, limitation.joint1.min, limitation.joint1.max)) return {q1, true};
+        if (q1 < 0)
+            if (isInRange(q1 * r2d + 180, limitation.joint1.min, limitation.joint1.max))
+                return {q1 + deg2rad(180), true};
+        if (isInRange(q1 * r2d - 180, limitation.joint1.min, limitation.joint1.max)) return {q1 - deg2rad(180), true};
+        return {relative_pos[0], false};
+    }();
+    if (!is_success) return false;
+    {
+        // 计算q2的解
+        // 为防止除零做的选择
+        float r;
+        if (is_equal<0.001f>(my_abs(q[0]), deg2rad(90)))
+            r = terminal_pitch_position[0] / arm_cos_f32(q[0]);
+        else
+            r = terminal_pitch_position[1] / arm_sin_f32(q[0]);
 
-    float q2_slove[4];
+        // 中间变量节省计算时间的，同时方便表达式简洁
+        auto t0 = 4 * (r * r + terminal_pitch_position[2] * terminal_pitch_position[2]);
+        auto t1 = (t0 - 121);
+        float t2;
+        if (arm_sqrt_f32(-t1 * (t0 - 1666681), &t2) < 0) return false;
+        auto t3 = t1 * (2560 * terminal_pitch_position[2] + t0 - 14201);
+        auto t4 = t1 * t2;
+        auto t5 = (2560 * t0 - 309760) * r;
 
-    float destion[4];
-    /*
-     * 1. 计算q1的解
-     */
-    if (is_zero(pos[0]) && is_zero(pos[1])) {
-        if (my_abs((pos[2])) <= A + B) {
-            q1_slove[0] = relative_pos[0];
-            q1_slove[1] = relative_pos[0];
-            //            return false;
+        float q2[2];
+
+        // 计算出q2的两个解
+        q2[0] = 2 * atanf((t5 + t4) / t3);
+        q2[1] = 2 * atanf((t5 - t4) / t3);
+
+        // 选择其中最近的a2作为解，并且计算其对应的q3
+        if (isInRange<float>(q2[0] * my_math::r2d, roboarm_dep::limitation.joint2.min,
+                             roboarm_dep::limitation.joint2.max)
+            && Rdistance(q2[1], relative_pos[1] * my_math::d2r) > Rdistance(q2[0], relative_pos[1] * my_math::d2r)) {
+            q[1] = q2[0];
+            q[2] = -2 * atanf(t2 / t1);
+        } else if (isInRange<float>(q2[1] * my_math::r2d, roboarm_dep::limitation.joint2.min,
+                                    roboarm_dep::limitation.joint2.max)) {
+            q[1] = q2[1];
+            q[2] = 2 * atanf(t2 / t1);
         } else {
-            select = 0;
             return false;
         }
-    } else {
-        if (is_zero(pos[0])) {
-            q1_slove[0] = pi / 2;
-            q1_slove[1] = -pi / 2;
-        } else if (is_zero(pos[1])) {
-            q1_slove[1] = 0;
-            q1_slove[0] = -pi;
+    }
+    float r1_3;
+    float r2_3;
+    float r3_3;
+    float r3_2;
+    float r3_1;
+    {
+        float cq1;
+        float sq1;
+        arm_sin_cos_f32(q[0] * my_math::r2d, &sq1, &cq1);
+        float cq2;
+        float sq2;
+        arm_sin_cos_f32(q[1] * my_math::r2d, &sq2, &cq2);
+        float cq3;
+        float sq3;
+        arm_sin_cos_f32(q[2] * my_math::r2d, &sq3, &cq3);
+
+        float cp1;
+        float sp1;
+        arm_sin_cos_f32(posture[0] * my_math::r2d, &sp1, &cp1);
+        float cp2;
+        float sp2;
+        arm_sin_cos_f32(posture[1] * my_math::r2d, &sp2, &cp2);
+        float cp3;
+        float sp3;
+        arm_sin_cos_f32(posture[2] * my_math::r2d, &sp3, &cp3);
+        float sq1q2 = sq1 * cq2 + cq1 * sq2;
+        float cq1q2 = cq1 * cq2 - sq1 * sq2;
+
+        r3_3 = cp2 * cq2 * cq3 - cp2 * sq2 * sq3 + cq1 * cq2 * cp1 * sp2 * sq3 + cq1 * cq3 * cp1 * sp2 * sq2
+               + cq2 * sp2 * sq1 * sq3 * sp1 + cq3 * sp2 * sq1 * sq2 * sp1;
+
+        if (is_equal<0.0001f>(r3_3, 1)) {
+            q[4]       = 0;
+            float r2_1 = cq1 * (cp1 * sp3 + cp2 * cp3 * sp1) + sq1 * (sp1 * sp3 - cp2 * cp1 * cp3);
+            float r2_2 = cq1 * (cp1 * cp3 - cp2 * sp1 * sp3) + sq1 * (cp3 * sp1 + cp2 * cp1 * sp3);
+            q[3]       = relative_pos[3];
+            float all;
+            arm_atan2_f32(r2_1, r2_2, &all);
+            q[5] = all - relative_pos[3];
+            return true;
+        }
+
+        r1_3 = cq1 * cq2 * cq3 * cp1 * sp2 - cp2 * cq3 * sq2 - cp2 * cq2 * sq3 - cq1 * cp1 * sp2 * sq2 * sq3
+               + cq2 * cq3 * sp2 * sq1 * sp1 - sp2 * sq1 * sq2 * sq3 * sp1;
+        // r2_3 = -sin(q[0] - posture[0])*sp2;
+        r2_3 = -(sq1 * cp1 - cq1 * sp1) * sp2;
+
+        r3_2 = sq1q2 * sq1 * (cp1 * cp3 - cp2 * sp1 * sp3) - sq1q2 * cq1 * (cp3 * sp1 + cp2 * cp1 * sp3)
+               + cq1q2 * sp2 * sp3;
+        r3_1 = sq1q2 * sq1 * (cp1 * sp3 + cp2 * cp3 * sp1) - sq1q2 * cq1 * (sp1 * sp3 - cp2 * cp1 * cp3)
+               - cq1q2 * cp3 * sp2;
+    }
+    {
+        float tmp;
+        arm_sqrt_f32(r1_3 * r1_3 + r2_3 * r2_3, &tmp);
+        float q5[2];
+        arm_atan2_f32(tmp, r3_3, &q5[0]);
+        arm_atan2_f32(-tmp, r3_3, &q5[1]);
+
+        if (isInRange<float>(q5[0] * my_math::r2d, roboarm_dep::limitation.joint5.min,
+                             roboarm_dep::limitation.joint5.max)
+            && Rdistance(q5[1], relative_pos[4] * my_math::d2r) > Rdistance(q5[0], relative_pos[4] * my_math::d2r)) {
+            q[4] = q5[0];
+        } else if (isInRange<float>(q5[1] * my_math::r2d, roboarm_dep::limitation.joint5.min,
+                                    roboarm_dep::limitation.joint5.max)) {
+            q[4] = q5[1];
         } else {
-            q1_slove[0] = arm_atan_f32(pos[1], pos[0]);
+            return false;
         }
+    }
 
-        if (q1_slove[0] < 0) {
-            q1_slove[1] = q1_slove[0] + pi;
+    float sq5 = arm_sin_f32(q[4]);
+    arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
+    arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
+    return true;
+}
+bool RoboArm::ikine(const std::array<float, 3>& position,const std::array<float, 3>& posture) {
+    std::array<float, 3> terminal_pitch_position;
+    terminal_pitch_position[0] = position[0] - 122 * (arm_cos_f32(posture[0]) * arm_sin_f32(posture[1]));
+    terminal_pitch_position[1] = position[1] - 122 * (arm_sin_f32(posture[0]) * arm_sin_f32(posture[1]));
+    terminal_pitch_position[2] = position[2] - 122 * (arm_cos_f32(posture[1]));
+
+    bool is_success = false;
+    // 选择出当前距离位置更近的q1的解 （q1的另外一个解为q1的对角）
+    std::tie(q[0], is_success) = [&terminal_pitch_position, this] -> std::pair<float, bool> {
+        using namespace my_math;
+        using namespace roboarm_dep;
+        float q1;
+        arm_atan2_f32(terminal_pitch_position[1], terminal_pitch_position[0], &q1);
+        if (my_abs(whileLimit(my_abs(this->relative_pos[0] * d2r - q1), deg2rad(-180), deg2rad(180))) < deg2rad(90))
+            if (isInRange(q1 * r2d, limitation.joint1.min, limitation.joint1.max)) return {q1, true};
+        if (q1 < 0)
+            if (isInRange(q1 * r2d + 180, limitation.joint1.min, limitation.joint1.max))
+                return {q1 + deg2rad(180), true};
+        if (isInRange(q1 * r2d - 180, limitation.joint1.min, limitation.joint1.max)) return {q1 - deg2rad(180), true};
+        return {relative_pos[0], false};
+    }();
+    if (!is_success) return false;
+    {
+        // 计算q2的解
+        // 为防止除零做的选择
+        float r;
+        if (is_equal<0.001f>(my_abs(q[0]), deg2rad(90)))
+            r = terminal_pitch_position[0] / arm_cos_f32(q[0]);
+        else
+            r = terminal_pitch_position[1] / arm_sin_f32(q[0]);
+
+        // 中间变量节省计算时间的，同时方便表达式简洁
+        auto t0 = 4 * (r * r + terminal_pitch_position[2] * terminal_pitch_position[2]);
+        auto t1 = (t0 - 121);
+        float t2;
+        if (arm_sqrt_f32(-t1 * (t0 - 1666681), &t2) < 0) return false;
+        auto t3 = t1 * (2560 * terminal_pitch_position[2] + t0 - 14201);
+        auto t4 = t1 * t2;
+        auto t5 = (2560 * t0 - 309760) * r;
+
+        float q2[2];
+
+        // 计算出q2的两个解
+        q2[0] = 2 * atanf((t5 + t4) / t3);
+        q2[1] = 2 * atanf((t5 - t4) / t3);
+
+        // 选择其中最近的a2作为解，并且计算其对应的q3
+        if (isInRange<float>(q2[0] * my_math::r2d, roboarm_dep::limitation.joint2.min,
+                             roboarm_dep::limitation.joint2.max)
+            && Rdistance(q2[1], relative_pos[1] * my_math::d2r) > Rdistance(q2[0], relative_pos[1] * my_math::d2r)) {
+            q[1] = q2[0];
+            q[2] = -2 * atanf(t2 / t1);
+        } else if (isInRange<float>(q2[1] * my_math::r2d, roboarm_dep::limitation.joint2.min,
+                                    roboarm_dep::limitation.joint2.max)) {
+            q[1] = q2[1];
+            q[2] = 2 * atanf(t2 / t1);
         } else {
-            q1_slove[1]  = q1_slove[0];
-            q1_slove[0] -= pi;
+            return false;
         }
     }
-    /*
-     * 2. 计算q3的解，判断是否有解
-     */
-    float delta;
-    if (is_zero(pos[0])) {
-        delta =
-            (pos[2] * pos[2] + pos[1] / arm_sin_f32(q1_slove[0]) * pos[1] / arm_sin_f32(q1_slove[0]) - A * A - B * B)
-            / (2 * A * B);
-    } else {
-        delta =
-            (pos[2] * pos[2] + pos[0] / arm_cos_f32(q1_slove[0]) * pos[0] / arm_cos_f32(q1_slove[0]) - A * A - B * B)
-            / (2 * A * B);
+    float r1_3;float r2_3;float r3_3;float r3_2;float r3_1;
+    {
+        float cq1;
+        float sq1;
+        arm_sin_cos_f32(q[0] * my_math::r2d, &sq1, &cq1);
+        float cq2;
+        float sq2;
+        arm_sin_cos_f32(q[1] * my_math::r2d, &sq2, &cq2);
+        float cq3;
+        float sq3;
+        arm_sin_cos_f32(q[2] * my_math::r2d, &sq3, &cq3);
+        float cp1;
+        float sp1;
+        arm_sin_cos_f32(posture[0] * my_math::r2d, &sp1, &cp1);
+        float cp2;
+        float sp2;
+        arm_sin_cos_f32(posture[1] * my_math::r2d, &sp2, &cp2);
+        float cp3;
+        float sp3;
+        arm_sin_cos_f32(posture[2] * my_math::r2d, &sp3, &cp3);
+        float sq1q2 = sq1 * cq2 + cq1 * sq2;
+        float cq1q2 = cq1 * cq2 - sq1 * sq2;
+
+        r3_3 = cp2 * cq2 * cq3 - cp2 * sq2 * sq3 + cq1 * cq2 * cp1 * sp2 * sq3 + cq1 * cq3 * cp1 * sp2 * sq2
+               + cq2 * sp2 * sq1 * sq3 * sp1 + cq3 * sp2 * sq1 * sq2 * sp1;
+
+        if (is_equal<0.0001f>(r3_3, 1)) {
+            q[4]       = 0;
+            float r2_1 = cq1 * (cp1 * sp3 + cp2 * cp3 * sp1) + sq1 * (sp1 * sp3 - cp2 * cp1 * cp3);
+            float r2_2 = cq1 * (cp1 * cp3 - cp2 * sp1 * sp3) + sq1 * (cp3 * sp1 + cp2 * cp1 * sp3);
+            q[3]       = relative_pos[3];
+            float all;
+            arm_atan2_f32(r2_1, r2_2, &all);
+            q[5] = all - relative_pos[3];
+            return true;
+        }
+
+        r1_3 = cq1 * cq2 * cq3 * cp1 * sp2 - cp2 * cq3 * sq2 - cp2 * cq2 * sq3 - cq1 * cp1 * sp2 * sq2 * sq3
+               + cq2 * cq3 * sp2 * sq1 * sp1 - sp2 * sq1 * sq2 * sq3 * sp1;
+        // r2_3 = -sin(q[0] - posture[0])*sp2;
+        r2_3 = -(sq1 * cp1 - cq1 * sp1) * sp2;
+
+        r3_2 = sq1q2 * sq1 * (cp1 * cp3 - cp2 * sp1 * sp3) - sq1q2 * cq1 * (cp3 * sp1 + cp2 * cp1 * sp3)
+               + cq1q2 * sp2 * sp3;
+        r3_1 = sq1q2 * sq1 * (cp1 * sp3 + cp2 * cp3 * sp1) - sq1q2 * cq1 * (sp1 * sp3 - cp2 * cp1 * cp3)
+               - cq1q2 * cp3 * sp2;
     }
-    if (delta > 1) {
-        select = 0;
-        return false;
-    }
-    q3_slove[1] = arm_acos_f32(delta);
-    q3_slove[0] = -q3_slove[1];
+    {
+        float tmp;
+        arm_sqrt_f32(r1_3 * r1_3 + r2_3 * r2_3, &tmp);
+        float q5[2];
+        arm_atan2_f32(tmp, r3_3, &q5[0]);
+        arm_atan2_f32(-tmp, r3_3, &q5[1]);
 
-    /*
-     * 3. 计算q2的解
-     */
-    q2_slove[0] = slove_q2(q1_slove[0], q3_slove[0], pos[0], pos[1], pos[2]);
-    q2_slove[1] = slove_q2(q1_slove[0], q3_slove[1], pos[0], pos[1], pos[2]);
-    q2_slove[2] = slove_q2(q1_slove[1], q3_slove[0], pos[0], pos[1], pos[2]);
-    q2_slove[3] = slove_q2(q1_slove[1], q3_slove[1], pos[0], pos[1], pos[2]);
-
-    /*
-     * 4. 组合解,并判断解是否在限制范围内
-     */
-    if (isInRange(q1_slove[0], joint_scale<float>(limitation.joint1.min, 180, pi),
-                  joint_scale<float>(limitation.joint1.max, 180, pi), err)
-        && isInRange(q2_slove[0], joint_scale<float>(limitation.joint2.min, 180, pi),
-                     joint_scale<float>(limitation.joint2.max, 180, pi), err)
-        && isInRange(q3_slove[0], joint_scale<float>(limitation.joint3.min, 180, pi),
-                     joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
-        destion[0] = (q1_slove[0] - relative_pos[0] * d2r) * (q1_slove[0] - relative_pos[0] * d2r)
-                     + (q2_slove[0] - relative_pos[1] * d2r) * (q2_slove[0] - relative_pos[1] * d2r)
-                     + (q3_slove[0] - relative_pos[2] * d2r) * (q3_slove[0] - relative_pos[2] * d2r);
-    } else {
-        select &= 0b1110;
-    }
-
-    if (isInRange(q1_slove[0], joint_scale<float>(limitation.joint1.min, 180, pi),
-                  joint_scale<float>(limitation.joint1.max, 180, pi), err)
-        && isInRange(q2_slove[1], joint_scale<float>(limitation.joint2.min, 180, pi),
-                     joint_scale<float>(limitation.joint2.max, 180, pi), err)
-        && isInRange(q3_slove[1], joint_scale<float>(limitation.joint3.min, 180, pi),
-                     joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
-        destion[1] = (q1_slove[0] - relative_pos[0] * d2r) * (q1_slove[0] - relative_pos[0] * d2r)
-                     + (q2_slove[1] - relative_pos[1] * d2r) * (q2_slove[1] - relative_pos[1] * d2r)
-                     + (q3_slove[1] - relative_pos[2] * d2r) * (q3_slove[1] - relative_pos[2] * d2r);
-
-    } else {
-        select &= 0b1101;
-    }
-
-    if (isInRange(q1_slove[1], joint_scale<float>(limitation.joint1.min, 180, pi),
-                  joint_scale<float>(limitation.joint1.max, 180, pi), err)
-        && isInRange(q2_slove[2], joint_scale<float>(limitation.joint2.min, 180, pi),
-                     joint_scale<float>(limitation.joint2.max, 180, pi), err)
-        && isInRange(q3_slove[0], joint_scale<float>(limitation.joint3.min, 180, pi),
-                     joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
-        destion[2] = (q1_slove[1] - relative_pos[0] * d2r) * (q1_slove[1] - relative_pos[0] * d2r)
-                     + (q2_slove[2] - relative_pos[1] * d2r) * (q2_slove[2] - relative_pos[1] * d2r)
-                     + (q3_slove[0] - relative_pos[2] * d2r) * (q3_slove[0] - relative_pos[2] * d2r);
-
-    } else {
-        select &= 0b1011;
-    }
-
-    if (isInRange(q1_slove[1], joint_scale<float>(limitation.joint1.min, 180, pi),
-                  joint_scale<float>(limitation.joint1.max, 180, pi), err)
-        && isInRange(q2_slove[3], joint_scale<float>(limitation.joint2.min, 180, pi),
-                     joint_scale<float>(limitation.joint2.max, 180, pi), err)
-        && isInRange(q3_slove[1], joint_scale<float>(limitation.joint3.min, 180, pi),
-                     joint_scale<float>(limitation.joint3.max, 180, pi), err)) {
-        destion[3] = (q1_slove[1] - relative_pos[0] * d2r) * (q1_slove[1] - relative_pos[0] * d2r)
-                     + (q2_slove[3] - relative_pos[1] * d2r) * (q2_slove[3] - relative_pos[1] * d2r)
-                     + (q3_slove[1] - relative_pos[2] * d2r) * (q3_slove[1] - relative_pos[2] * d2r);
-    } else {
-        select &= 0b0111;
-    }
-
-    /*
-     * 5. 寻找最近的解
-     */
-    float min_destion = 1000000000.f;
-    uint8_t num       = 5; //这样如果没有解则就会保留之前的
-    for (int i = 0; i < 4; ++i) {
-        if (select & (1 << i)) {
-            if (destion[i] < min_destion) {
-                min_destion = destion[i];
-                num         = i;
-            }
+        if (isInRange<float>(q5[0] * my_math::r2d, roboarm_dep::limitation.joint5.min,
+                             roboarm_dep::limitation.joint5.max)
+            && Rdistance(q5[1], relative_pos[4] * my_math::d2r) > Rdistance(q5[0], relative_pos[4] * my_math::d2r)) {
+            q[4] = q5[0];
+        } else if (isInRange<float>(q5[1] * my_math::r2d, roboarm_dep::limitation.joint5.min,
+                                    roboarm_dep::limitation.joint5.max)) {
+            q[4] = q5[1];
+        } else {
+            return false;
         }
     }
-    select &= (1 << num);
-    //    if (arm_abs_f32(max_destion) > 300 * 300) {
-    //        select = 0;
-    //        return false;
-    //    }
-    switch (select) {
-        case 0b1:
-            q[0] = q1_slove[0] * r2d;
-            q[2] = q3_slove[0] * r2d;
-            q[1] = q2_slove[0] * r2d;
-            break;
-        case 0b10:
-            q[0] = q1_slove[0] * r2d;
-            q[2] = q3_slove[1] * r2d;
-            q[1] = q2_slove[1] * r2d;
-            break;
-        case 0b100:
-            q[0] = q1_slove[1] * r2d;
-            q[2] = q3_slove[0] * r2d;
-            q[1] = q2_slove[2] * r2d;
-            break;
-        case 0b1000:
-            q[0] = q1_slove[1] * r2d;
-            q[2] = q3_slove[1] * r2d;
-            q[1] = q2_slove[3] * r2d;
-            break;
-        default: break;
-    }
 
+    float sq5 = arm_sin_f32(q[4]);
+    arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
+    arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
     return true;
 }
 float target_joint5;

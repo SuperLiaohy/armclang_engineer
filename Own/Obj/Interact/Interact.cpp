@@ -64,13 +64,16 @@ void Interact::receive_xyz(RoboArm& Arm) {
     if (robo_arm.mode == robo_mode::XYZ) {
         remote_control.pos[0] += RemoteControl::addSpeed(remote_control.rcInfo.ch1, 2.5);
         remote_control.pos[2] += RemoteControl::addSpeed(remote_control.rcInfo.ch2, 2.5);
-        if (!Arm.ikine(remote_control.pos)) {
+        if (!Arm.ikine(remote_control.pos, {deg2rad(0),deg2rad(90),deg2rad(0)})) {
             Arm.fkine(remote_control.pos);
         } else {
-            joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
-            joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
-            joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-            joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
+            joint[0] = limited<float>(Arm.q[0] * r2d, limitation.joint1.min, limitation.joint1.max);
+            joint[1] = limited<float>(Arm.q[1] * r2d, limitation.joint2.min, limitation.joint2.max);
+            joint[2] = limited<float>(Arm.q[2] * r2d, limitation.joint3.min, limitation.joint3.max);
+            joint[3] = limited<float>(Arm.q[3] * r2d, limitation.joint3.min, limitation.joint3.max);
+            joint[4] = limited<float>(Arm.q[4] * r2d, limitation.joint3.min, limitation.joint3.max);
+            joint[5] = limited<float>(Arm.q[5] * r2d, limitation.joint3.min, limitation.joint3.max);
+            // joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
         }
     }
 }

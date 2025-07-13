@@ -59,11 +59,11 @@ T whileLimit(T& value, T min, T max) {
 template<typename T>
 T whileLimit(T&& value, T min, T max) {
     float len = max - min;
-    if (value > max) {
-        return value - len;
-    } else if (value < min) {
-        return value + len;
-    }
+    while (value < min)
+        value += len;
+    while (value >= max)
+        value -= len;
+    return value;
 }
 
 template<typename T>
@@ -129,6 +129,12 @@ consteval float deg2rad(float deg) {
 consteval float scale(float src, float head) {
     return head / src;
 }
+template<float err>
+bool is_equal(const float q1,const float q2) {
+    return my_abs(q1 - q2) < err;
+}
+
+float Rdistance(float q1, float q2);
 
 int float_to_uint(float x_float, float x_min, float x_max, int bits);
 
