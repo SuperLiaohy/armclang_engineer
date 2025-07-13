@@ -63,6 +63,7 @@ void Interact::receive_xyz(RoboArm& Arm) {
     using namespace my_math;
     if (robo_arm.mode == robo_mode::XYZ) {
         remote_control.pos[0] += RemoteControl::addSpeed(remote_control.rcInfo.ch1, 2.5);
+        remote_control.pos[1] += RemoteControl::addSpeed(remote_control.rcInfo.ch3, 2.5);
         remote_control.pos[2] += RemoteControl::addSpeed(remote_control.rcInfo.ch2, 2.5);
         if (!Arm.ikine(remote_control.pos, {deg2rad(0),deg2rad(90),deg2rad(0)})) {
             Arm.fkine(remote_control.pos);
@@ -70,9 +71,9 @@ void Interact::receive_xyz(RoboArm& Arm) {
             joint[0] = limited<float>(Arm.q[0] * r2d, limitation.joint1.min, limitation.joint1.max);
             joint[1] = limited<float>(Arm.q[1] * r2d, limitation.joint2.min, limitation.joint2.max);
             joint[2] = limited<float>(Arm.q[2] * r2d, limitation.joint3.min, limitation.joint3.max);
-            joint[3] = limited<float>(Arm.q[3] * r2d, limitation.joint3.min, limitation.joint3.max);
-            joint[4] = limited<float>(Arm.q[4] * r2d, limitation.joint3.min, limitation.joint3.max);
-            joint[5] = limited<float>(Arm.q[5] * r2d, limitation.joint3.min, limitation.joint3.max);
+            joint[3] = limited<float>(Arm.q[3] * r2d, limitation.joint4.min, limitation.joint4.max);
+            joint[4] = limited<float>(Arm.q[4] * r2d, limitation.joint5.min, limitation.joint5.max);
+            joint[5] = limited<float>(Arm.q[5] * r2d, limitation.joint6.min, limitation.joint6.max);
             // joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
         }
     }
@@ -243,14 +244,17 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                     actions->init = true;
                 }
                 actions->pos[2] = actions->axis_value.update();
-                if (!Arm.ikine(actions->pos)) {
+                if (!Arm.ikine(actions->pos,{deg2rad(0),deg2rad(90),deg2rad(0)})) {
                     // Arm.fkine(pos);
                 } else {
-                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
-                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
-                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-                    joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
-                                              limitation.joint5.max);
+                    joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
+                    joint[3] = limited<float>(Arm.q[3] * my_math::r2d, limitation.joint4.min, limitation.joint4.max);
+                    joint[4] = limited<float>(Arm.q[4] * my_math::r2d, limitation.joint5.min, limitation.joint5.max);
+                    joint[5] = limited<float>(Arm.q[5] * my_math::r2d, limitation.joint6.min, limitation.joint6.max);
+                    // joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
+                    //                           limitation.joint5.max);
                 }
                 Arm.target_speed = {roboarm_dep::default_speed};
             } break;
@@ -261,14 +265,17 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                     actions->init = true;
                 }
                 actions->pos[2] = actions->axis_value.update();
-                if (!Arm.ikine(actions->pos)) {
+                if (!Arm.ikine(actions->pos, {deg2rad(0),deg2rad(180),deg2rad(0)})) {
                     // Arm.fkine(pos);
                 } else {
-                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
-                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
-                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
-                    joint[4] = limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
-                                              limitation.joint5.max);
+                    joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
+                    joint[3] = limited<float>(Arm.q[3] * my_math::r2d, limitation.joint4.min, limitation.joint4.max);
+                    joint[4] = limited<float>(Arm.q[4] * my_math::r2d, limitation.joint5.min, limitation.joint5.max);
+                    joint[5] = limited<float>(Arm.q[5] * my_math::r2d, limitation.joint6.min, limitation.joint6.max);
+                    // joint[4] = limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
+                    //                           limitation.joint5.max);
                 }
                 Arm.target_speed = {roboarm_dep::default_speed};
             } break;
@@ -282,9 +289,9 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 if (!Arm.ikine(actions->pos)) {
                     // Arm.fkine(pos);
                 } else {
-                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
-                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
-                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
+                    joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
                     joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
                                               limitation.joint5.max);
                 }
@@ -300,9 +307,9 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 if (!Arm.ikine(actions->pos)) {
                     // Arm.fkine(pos);
                 } else {
-                    joint[0] = limited<float>(Arm.q[0], limitation.joint1.min, limitation.joint1.max);
-                    joint[1] = limited<float>(Arm.q[1], limitation.joint2.min, limitation.joint2.max);
-                    joint[2] = limited<float>(Arm.q[2], limitation.joint3.min, limitation.joint3.max);
+                    joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
+                    joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
+                    joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
                     joint[4] = limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
                                               limitation.joint5.max);
                 }

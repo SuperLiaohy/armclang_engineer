@@ -42,5 +42,5 @@ float uint_to_float(int x_int, float x_min, float x_max, int bits)
 }
 
 float Rdistance(float q1, float q2) {
-    return  whileLimit(my_abs(q1-q2), deg2rad(-180), deg2rad(180));
+    return  my_abs(whileLimit(my_abs(q1-q2), deg2rad(-180), deg2rad(180)));
 }

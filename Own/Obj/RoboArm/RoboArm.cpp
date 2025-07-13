@@ -271,9 +271,15 @@ void RoboArm::fkine(std::array<float, 3>& position, std::array<float, 3>& postur
     arm_sqrt_f32(r1_3 * r1_3 + r2_3 * r2_3, &tmp);
     arm_atan2_f32(tmp, r3_3, &posture[1]);
 
-    float sp2 = arm_sin_f32(posture[1]);
-    arm_atan2_f32(r2_3/sp2,r1_3/sp2, &posture[0]);
-    arm_atan2_f32(r3_2/sp2,-r3_1/sp2, &posture[2]);
+    if (is_equal<0.000001f>(posture[1], deg2rad(180))) {
+        float sp2 = -my_abs(arm_sin_f32(posture[1]));
+        arm_atan2_f32(r2_3/sp2,r1_3/sp2, &posture[0]);
+        arm_atan2_f32(r3_2/sp2,-r3_1/sp2, &posture[2]);
+    } else {
+        float sp2 = arm_sin_f32(posture[1]);
+        arm_atan2_f32(r2_3/sp2,r1_3/sp2, &posture[0]);
+        arm_atan2_f32(r3_2/sp2,-r3_1/sp2, &posture[2]);
+    }
 
     this->position[0] = position[0];
     this->position[1] = position[1];
@@ -311,9 +317,9 @@ bool RoboArm::ikine(const std::array<float, 3>& position) {
         // 为防止除零做的选择
         float r;
         if (is_equal<0.001f>(my_abs(q[0]), deg2rad(90)))
-            r = terminal_pitch_position[0] / arm_cos_f32(q[0]);
-        else
             r = terminal_pitch_position[1] / arm_sin_f32(q[0]);
+        else
+            r = terminal_pitch_position[0] / arm_cos_f32(q[0]);
 
         // 中间变量节省计算时间的，同时方便表达式简洁
         auto t0 = 4 * (r * r + terminal_pitch_position[2] * terminal_pitch_position[2]);
@@ -333,7 +339,7 @@ bool RoboArm::ikine(const std::array<float, 3>& position) {
         // 选择其中最近的a2作为解，并且计算其对应的q3
         if (isInRange<float>(q2[0] * my_math::r2d, roboarm_dep::limitation.joint2.min,
                              roboarm_dep::limitation.joint2.max)
-            && Rdistance(q2[1], relative_pos[1] * my_math::d2r) > Rdistance(q2[0], relative_pos[1] * my_math::d2r)) {
+            && Rdistance(q2[1], relative_pos[1] * my_math::d2r) >= Rdistance(q2[0], relative_pos[1] * my_math::d2r)) {
             q[1] = q2[0];
             q[2] = -2 * atanf(t2 / t1);
         } else if (isInRange<float>(q2[1] * my_math::r2d, roboarm_dep::limitation.joint2.min,
@@ -369,8 +375,8 @@ bool RoboArm::ikine(const std::array<float, 3>& position) {
         float cp3;
         float sp3;
         arm_sin_cos_f32(posture[2] * my_math::r2d, &sp3, &cp3);
-        float sq1q2 = sq1 * cq2 + cq1 * sq2;
-        float cq1q2 = cq1 * cq2 - sq1 * sq2;
+        float sq2q3 = sq2 * cq3 + cq2 * sq3;
+        float cq2q3 = cq2 * cq3 - sq2 * sq3;
 
         r3_3 = cp2 * cq2 * cq3 - cp2 * sq2 * sq3 + cq1 * cq2 * cp1 * sp2 * sq3 + cq1 * cq3 * cp1 * sp2 * sq2
                + cq2 * sp2 * sq1 * sq3 * sp1 + cq3 * sp2 * sq1 * sq2 * sp1;
@@ -391,10 +397,10 @@ bool RoboArm::ikine(const std::array<float, 3>& position) {
         // r2_3 = -sin(q[0] - posture[0])*sp2;
         r2_3 = -(sq1 * cp1 - cq1 * sp1) * sp2;
 
-        r3_2 = sq1q2 * sq1 * (cp1 * cp3 - cp2 * sp1 * sp3) - sq1q2 * cq1 * (cp3 * sp1 + cp2 * cp1 * sp3)
-               + cq1q2 * sp2 * sp3;
-        r3_1 = sq1q2 * sq1 * (cp1 * sp3 + cp2 * cp3 * sp1) - sq1q2 * cq1 * (sp1 * sp3 - cp2 * cp1 * cp3)
-               - cq1q2 * cp3 * sp2;
+        r3_2 = sq2q3 * sq1 * (cp1 * cp3 - cp2 * sp1 * sp3) - sq2q3 * cq1 * (cp3 * sp1 + cp2 * cp1 * sp3)
+               + cq2q3 * sp2 * sp3;
+        r3_1 = sq2q3 * sq1 * (cp1 * sp3 + cp2 * cp3 * sp1) - sq2q3 * cq1 * (sp1 * sp3 - cp2 * cp1 * cp3)
+               - cq2q3 * cp3 * sp2;
     }
     {
         float tmp;
@@ -403,21 +409,49 @@ bool RoboArm::ikine(const std::array<float, 3>& position) {
         arm_atan2_f32(tmp, r3_3, &q5[0]);
         arm_atan2_f32(-tmp, r3_3, &q5[1]);
 
-        if (isInRange<float>(q5[0] * my_math::r2d, roboarm_dep::limitation.joint5.min,
-                             roboarm_dep::limitation.joint5.max)
-            && Rdistance(q5[1], relative_pos[4] * my_math::d2r) > Rdistance(q5[0], relative_pos[4] * my_math::d2r)) {
+        bool q5_0range = isInRange(q5[0] * my_math::r2d, roboarm_dep::limitation.joint5.min, roboarm_dep::limitation.joint5.max);
+        bool q5_1range = isInRange(q5[1] * my_math::r2d, roboarm_dep::limitation.joint5.min, roboarm_dep::limitation.joint5.max);
+        if (q5_0range && q5_1range) {
+            float q4[2];float q6[2];
+            float qr[2];
+            qr[0] = Rdistance(q5[0], relative_pos[4] * my_math::d2r);
+            qr[1] = Rdistance(q5[1], relative_pos[4] * my_math::d2r);
+            float sq5 = arm_sin_f32(q5[0]);
+            arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q4[0]);
+            arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q6[0]);
+            qr[0] += Rdistance(q4[0], relative_pos[3] * my_math::d2r);
+            qr[0] += Rdistance(q6[0], relative_pos[5] * my_math::d2r);
+            sq5 = arm_sin_f32(q5[1]);
+            arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q4[1]);
+            arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q6[1]);
+            qr[1] += Rdistance(q4[1], relative_pos[3] * my_math::d2r);
+            qr[1] += Rdistance(q6[1], relative_pos[5] * my_math::d2r);
+            if (qr[0] > qr[1]) {
+                q[3] = q4[1];
+                q[4] = q5[1];
+                q[5] = q6[1];
+            } else {
+                q[3] = q4[0];
+                q[4] = q5[0];
+                q[5] = q6[0];
+            }
+        } else if (q5_0range) {
             q[4] = q5[0];
-        } else if (isInRange<float>(q5[1] * my_math::r2d, roboarm_dep::limitation.joint5.min,
-                                    roboarm_dep::limitation.joint5.max)) {
+            float sq5 = arm_sin_f32(q[4]);
+            arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
+            arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
+        } else if (q5_1range) {
             q[4] = q5[1];
+            float sq5 = arm_sin_f32(q[4]);
+            arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
+            arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
         } else {
             return false;
         }
     }
-
-    float sq5 = arm_sin_f32(q[4]);
-    arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
-    arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
+    // float sq5 = arm_sin_f32(q[4]);
+    // arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
+    // arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
     return true;
 }
 bool RoboArm::ikine(const std::array<float, 3>& position,const std::array<float, 3>& posture) {
@@ -447,9 +481,9 @@ bool RoboArm::ikine(const std::array<float, 3>& position,const std::array<float,
         // 为防止除零做的选择
         float r;
         if (is_equal<0.001f>(my_abs(q[0]), deg2rad(90)))
-            r = terminal_pitch_position[0] / arm_cos_f32(q[0]);
-        else
             r = terminal_pitch_position[1] / arm_sin_f32(q[0]);
+        else
+            r = terminal_pitch_position[0] / arm_cos_f32(q[0]);
 
         // 中间变量节省计算时间的，同时方便表达式简洁
         auto t0 = 4 * (r * r + terminal_pitch_position[2] * terminal_pitch_position[2]);
@@ -469,7 +503,7 @@ bool RoboArm::ikine(const std::array<float, 3>& position,const std::array<float,
         // 选择其中最近的a2作为解，并且计算其对应的q3
         if (isInRange<float>(q2[0] * my_math::r2d, roboarm_dep::limitation.joint2.min,
                              roboarm_dep::limitation.joint2.max)
-            && Rdistance(q2[1], relative_pos[1] * my_math::d2r) > Rdistance(q2[0], relative_pos[1] * my_math::d2r)) {
+            && Rdistance(q2[1], relative_pos[1] * my_math::d2r) >= Rdistance(q2[0], relative_pos[1] * my_math::d2r)) {
             q[1] = q2[0];
             q[2] = -2 * atanf(t2 / t1);
         } else if (isInRange<float>(q2[1] * my_math::r2d, roboarm_dep::limitation.joint2.min,
@@ -500,8 +534,8 @@ bool RoboArm::ikine(const std::array<float, 3>& position,const std::array<float,
         float cp3;
         float sp3;
         arm_sin_cos_f32(posture[2] * my_math::r2d, &sp3, &cp3);
-        float sq1q2 = sq1 * cq2 + cq1 * sq2;
-        float cq1q2 = cq1 * cq2 - sq1 * sq2;
+        float sq2q3 = sq2 * cq3 + cq2 * sq3;
+        float cq2q3 = cq2 * cq3 - sq2 * sq3;
 
         r3_3 = cp2 * cq2 * cq3 - cp2 * sq2 * sq3 + cq1 * cq2 * cp1 * sp2 * sq3 + cq1 * cq3 * cp1 * sp2 * sq2
                + cq2 * sp2 * sq1 * sq3 * sp1 + cq3 * sp2 * sq1 * sq2 * sp1;
@@ -522,10 +556,10 @@ bool RoboArm::ikine(const std::array<float, 3>& position,const std::array<float,
         // r2_3 = -sin(q[0] - posture[0])*sp2;
         r2_3 = -(sq1 * cp1 - cq1 * sp1) * sp2;
 
-        r3_2 = sq1q2 * sq1 * (cp1 * cp3 - cp2 * sp1 * sp3) - sq1q2 * cq1 * (cp3 * sp1 + cp2 * cp1 * sp3)
-               + cq1q2 * sp2 * sp3;
-        r3_1 = sq1q2 * sq1 * (cp1 * sp3 + cp2 * cp3 * sp1) - sq1q2 * cq1 * (sp1 * sp3 - cp2 * cp1 * cp3)
-               - cq1q2 * cp3 * sp2;
+        r3_2 = sq2q3 * sq1 * (cp1 * cp3 - cp2 * sp1 * sp3) - sq2q3 * cq1 * (cp3 * sp1 + cp2 * cp1 * sp3)
+               + cq2q3 * sp2 * sp3;
+        r3_1 = sq2q3 * sq1 * (cp1 * sp3 + cp2 * cp3 * sp1) - sq2q3 * cq1 * (sp1 * sp3 - cp2 * cp1 * cp3)
+               - cq2q3 * cp3 * sp2;
     }
     {
         float tmp;
@@ -534,21 +568,51 @@ bool RoboArm::ikine(const std::array<float, 3>& position,const std::array<float,
         arm_atan2_f32(tmp, r3_3, &q5[0]);
         arm_atan2_f32(-tmp, r3_3, &q5[1]);
 
-        if (isInRange<float>(q5[0] * my_math::r2d, roboarm_dep::limitation.joint5.min,
-                             roboarm_dep::limitation.joint5.max)
-            && Rdistance(q5[1], relative_pos[4] * my_math::d2r) > Rdistance(q5[0], relative_pos[4] * my_math::d2r)) {
+        bool q5_0range = isInRange(q5[0] * my_math::r2d, roboarm_dep::limitation.joint5.min, roboarm_dep::limitation.joint5.max);
+        bool q5_1range = isInRange(q5[1] * my_math::r2d, roboarm_dep::limitation.joint5.min, roboarm_dep::limitation.joint5.max);
+        if (q5_0range && q5_1range) {
+            float q4[2];float q6[2];
+            float qr[2];
+            qr[0] = Rdistance(q5[0], relative_pos[4] * my_math::d2r);
+            qr[1] = Rdistance(q5[1], relative_pos[4] * my_math::d2r);
+            float sq5 = arm_sin_f32(q5[0]);
+            arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q4[0]);
+            arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q6[0]);
+            qr[0] += Rdistance(q4[0], relative_pos[3] * my_math::d2r);
+            qr[0] += Rdistance(q6[0], relative_pos[5] * my_math::d2r);
+            sq5 = arm_sin_f32(q5[1]);
+            arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q4[1]);
+            arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q6[1]);
+            qr[1] += Rdistance(q4[1], relative_pos[3] * my_math::d2r);
+            qr[1] += Rdistance(q6[1], relative_pos[5] * my_math::d2r);
+            if (qr[0] > qr[1]) {
+                q[3] = q4[1];
+                q[4] = q5[1];
+                q[5] = q6[1];
+            } else {
+                q[3] = q4[0];
+                q[4] = q5[0];
+                q[5] = q6[0];
+            }
+
+        } else if (q5_0range) {
             q[4] = q5[0];
-        } else if (isInRange<float>(q5[1] * my_math::r2d, roboarm_dep::limitation.joint5.min,
-                                    roboarm_dep::limitation.joint5.max)) {
+            float sq5 = arm_sin_f32(q[4]);
+            arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
+            arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
+        } else if (q5_1range) {
             q[4] = q5[1];
+            float sq5 = arm_sin_f32(q[4]);
+            arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
+            arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
         } else {
             return false;
         }
     }
 
-    float sq5 = arm_sin_f32(q[4]);
-    arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
-    arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
+    // float sq5 = arm_sin_f32(q[4]);
+    // arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q[3]);
+    // arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
     return true;
 }
 float target_joint5;
