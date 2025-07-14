@@ -6,7 +6,9 @@ MDK-ARM
 
 .mxproject
 
-#.vscode
+.vscode
+
+.idea
 
 !MDK-ARM/startup_stm32h723xx.s
 
