@@ -9,19 +9,6 @@
 
 int32_t fps = 0;
 std::atomic<bool> ui_reset(false);
-// UI::ui_control ui_list[] = {
-//     UI::ui_control("101", 1),
-//     // UI::ui_control("102", 1),
-//     UI::ui_control("103", 3),
-//     UI::ui_control("104", 3),
-//     UI::ui_control("105", 4),
-//     UI::ui_control("106", 3),
-//     UI::ui_control("107", 3),
-//     UI::ui_control("108", 3),
-//     UI::ui_control("109", 3),
-//     UI::ui_control("110", 3),
-// };
-
 UI::ui_item UI::figure_list[30];
 uint8_t UI::figure_index = 0;
 

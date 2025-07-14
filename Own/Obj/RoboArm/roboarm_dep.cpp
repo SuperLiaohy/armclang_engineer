@@ -14,13 +14,6 @@ namespace roboarm_dep {
         read_fram();
         joint[4] = 0;
         joint[5]  = 0;
-
-//        fram.block_write(0x00, reinterpret_cast<uint8_t*>(arr), 8, 1);
-//        fram.it_read(0x00, reinterpret_cast<uint8_t*>(read_arr), 8);
-				// left.total_position()  = 0;
-				// right.total_position() = 0;
-				// write_fram();
-        
     }
 
     void Differentiator::read_fram() {

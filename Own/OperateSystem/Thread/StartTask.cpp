@@ -42,7 +42,6 @@ extern osThreadId ERROR_TASKHandle;
 }
 #endif
 #include "WDG/SuperIWDG.hpp"
-uint8_t re_flag       = 0;
 volatile uint32_t ada = 0;
 void action_z_callback(KeyEventType event);
 void action_shift_z_callback(KeyEventType event);
@@ -102,10 +101,6 @@ void joint1_motor_detect() {
     roboArm.joint1.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
 
-    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    // roboArm.joint1.disable();
-    // xSemaphoreGive(CAN1MutexHandle);
-
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint1.enable();
     xSemaphoreGive(CAN1MutexHandle);
@@ -117,10 +112,6 @@ void joint2_internal_motor_detect() {
     roboArm.joint2.internal.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
 
-    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    // roboArm.joint2.internal.disable();
-    // xSemaphoreGive(CAN1MutexHandle);
-
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint2.internal.enable();
     xSemaphoreGive(CAN1MutexHandle);
@@ -130,10 +121,6 @@ void joint2_external_motor_detect() {
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint2.external.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
-
-    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    // roboArm.joint2.external.disable();
-    // xSemaphoreGive(CAN1MutexHandle);
 
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint2.external.enable();
@@ -145,10 +132,6 @@ void joint3_motor_detect() {
     roboArm.joint3.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
 
-    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    // roboArm.joint3.disable();
-    // xSemaphoreGive(CAN1MutexHandle);
-
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint3.enable();
     xSemaphoreGive(CAN1MutexHandle);
@@ -158,10 +141,6 @@ void joint4_motor_detect() {
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint4.clear_error();
     xSemaphoreGive(CAN1MutexHandle);
-
-    // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    // roboArm.joint4.disable();
-    // xSemaphoreGive(CAN1MutexHandle);
 
     xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
     roboArm.joint4.enable();

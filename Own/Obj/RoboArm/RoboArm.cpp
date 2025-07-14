@@ -3,25 +3,6 @@
 //
 
 #include "RoboArm.hpp"
-inline float slove_q2(float q1_slove, float q3_slove, float x, float y, float z) {
-    using namespace my_math;
-    using namespace roboarm_dep;
-
-    float TMP_A = A * arm_cos_f32(q3_slove) + B;
-    float TMP_B = A * arm_sin_f32(q3_slove);
-    float tmp_cos;
-    float tmp_sin;
-
-    if (is_equal(q1_slove, pi / 2) || is_equal(q1_slove, -pi / 2)) {
-        tmp_cos = (y * TMP_B / arm_sin_f32(q1_slove) + z * TMP_A);
-        tmp_sin = (y * TMP_A / arm_sin_f32(q1_slove) - z * TMP_B);
-    } else {
-        tmp_cos = (x * TMP_B / arm_cos_f32(q1_slove) + z * TMP_A);
-        tmp_sin = (x * TMP_A / arm_cos_f32(q1_slove) - z * TMP_B);
-    }
-    return arm_atan2_f32(tmp_sin, tmp_cos);
-};
-
 void RoboArm::enable() {
     using namespace roboarm_dep;
     // 先清除错误状态再关闭再开启

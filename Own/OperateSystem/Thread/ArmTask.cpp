@@ -10,7 +10,6 @@ void ArmTask() {
     uint32_t cnt = 0;
 
     while (true) {
-        auto now = osKernelSysTick();
         ++cnt;
 
         interact.receive_actions_group();
@@ -19,25 +18,17 @@ void ArmTask() {
         roboArm.update_relative_pos();
         roboArm.load_target(interact.joint, interact.joint_slope);
 
-        // roboArm.diff.left.set_position(roboArm.target.joint5.angle);
-        // roboArm.diff.right.set_position(roboArm.target.joint6.angle);
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         // roboArm.joint5.read_feedback();
         roboArm.joint5.set_position(roboArm.target.joint5.angle/100.f);
         roboArm.joint5.SingleControl();
         xSemaphoreGive(CAN1MutexHandle);
-        if ((cnt + 4) % 1 == 0) {
-
-
+        if ((cnt + 4) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
             // roboArm.joint6.read_feedback();
             roboArm.joint6.set_position(roboArm.target.joint6.angle, 720);
-            // canPlus1.transmit(M2006Diff::foc.TX_LOW_ID, roboArm.diff.left.speed_output(), roboArm.diff.right.speed_output(),
-            // 0, 0);
             xSemaphoreGive(CAN1MutexHandle);
         }
-        // roboArm.diff.write_fram();
-
         if ((cnt) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
             roboArm.joint3.set_position(roboArm.target.joint3.angle, roboArm.target_speed[2]);

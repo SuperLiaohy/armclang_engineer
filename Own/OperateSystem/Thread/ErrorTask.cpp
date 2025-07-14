@@ -22,7 +22,6 @@ extern osThreadId ERROR_TASKHandle;
 #include "RoboArm/RoboArm.hpp"
 #include "WDG/SuperIWDG.hpp"
 
-extern uint8_t re_flag;
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
     // if (re_flag == 0) {
@@ -49,7 +48,6 @@ void ErrorTask() {
         if (time % 3 == 0) { red = 1 - red; }
 
         interact.remote_control.detect.JudgeLost();
-
 
         if (interact.remote_control.rcInfo.right != static_cast<uint8_t>(RemoteControl::lever::lower)
             || interact.remote_control.rcInfo.left != static_cast<uint8_t>(RemoteControl::lever::lower)) {

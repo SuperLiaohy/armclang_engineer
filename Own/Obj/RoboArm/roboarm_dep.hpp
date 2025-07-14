@@ -32,13 +32,10 @@ namespace roboarm_dep {
 
     struct target {
         joint_target joint1;
-
-        //        joint_target joint2;
         struct {
             joint_target internal;
             joint_target external;
         } joint2;
-
         joint_target joint3;
         joint_target joint4;
         joint_target joint5;
@@ -47,7 +44,6 @@ namespace roboarm_dep {
 
     struct offset {
         float joint1;
-        //        float joint2;
         struct {
             float internal;
             float external;
@@ -62,11 +58,7 @@ namespace roboarm_dep {
     public:
         MDH() = default;
 
-        MDH(float a, float alpha, float d, float theta = 0) {
-            this->a     = a;
-            this->alpha = alpha;
-            this->d     = d;
-            this->theta = theta;
+        MDH(float a, float alpha, float d, float theta = 0) : a(a), alpha(alpha), d(d), theta(theta) {
             rota        = {
                 {arm_cos_f32(theta), -arm_sin_f32(theta), 0},
                 {arm_sin_f32(theta) * arm_cos_f32(alpha), arm_cos_f32(theta) * arm_cos_f32(alpha), -arm_sin_f32(alpha)},
@@ -146,30 +138,8 @@ namespace roboarm_dep {
         uint8_t index;
     };
 
-    constexpr float err           = deg2rad(5);
-    constexpr float A             = 325.5;
-    constexpr float B             = 320.0;
-    constexpr uint32_t MaxTimeOut = 3000;
-
-    template<typename T = int16_t> consteval T joint_scale(float angle, float scr, float head) {
-        return static_cast<T>(angle * head / scr);
-    }
-
     consteval float joint_scale(float angle, float scale) { return static_cast<float>(angle * scale); }
 
-    inline bool is_zero(float x) { return fabsf(x) < 1e-6; };
-
-    inline float arm_atan_f32(float y, float x) { return atanf(y / x); };
-
-    inline float arm_atan2_f32(float y, float x) { return atan2f(y, x); };
-
-    inline float arm_acos_f32(float x) { return acosf(x); };
-
-    inline float arm_abs_f32(float x) { return fabsf(x); };
-
-    inline float arm_asin_f32(float x) { return asinf(x); };
-
-    inline bool is_equal(float x, float y) { return is_zero(x - y); };
     constexpr struct {
         range joint1;
         range joint2;
@@ -181,4 +151,6 @@ namespace roboarm_dep {
 
     constexpr std::array<float, 4> default_speed = {250, 300, 360, 720};
     constexpr std::array<float, 4> none_speed = {180, 180, 180, 720};
+    constexpr uint32_t MaxTimeOut = 3000;
+
 } // namespace roboarm_dep

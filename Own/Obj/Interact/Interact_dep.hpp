@@ -26,7 +26,6 @@ namespace interact_dep {
         VISION,
         ACTIONS,
         ACTIONS_GROUP,
-        // KEYBOARD_PITCH,
         DRAW,
     };
 
@@ -45,8 +44,8 @@ namespace interact_dep {
         CartesianZ_x,
     };
 
-    constexpr std::array<float, 4> default_action_speed = {480, 480, 720, 720};
     struct Actions {
+        static constexpr std::array<float, 4> default_action_speed = {480, 480, 720, 720};
         action_status status;
         bool init;
         std::array<float, 4> speed;

@@ -122,7 +122,8 @@ std::array<interact_dep::ActionsGroup::event, 2> get_second_silver_event = {
 };
 interact_dep::ActionsGroup get_second_silver_group = {.actions_list = get_second_silver_action.data(),
                                                       .time_list    = get_second_silver_time.data(),
-                                                      .event_list   = get_second_silver_event.data(),
+//                                                      .event_list   = get_second_silver_event.data(),
+	                                                    .event_list   = nullptr,
                                                       .exe_list     = get_second_silver_exe.data(),
                                                       .len          = 2,
                                                       .index        = 0,

@@ -140,22 +140,22 @@ void Interact::update_roboArm(RoboArm& Arm) {
                 joint[3] = Arm.relative_pos[3];
             }
             if (remote_control.rcInfo.ch3 < -500) {
-                interact.sub_board.set_pump(1);
+                sub_board.set_pump(1);
             } else if (remote_control.rcInfo.ch3 > 500) {
-                interact.sub_board.set_pump(0);
+                sub_board.set_pump(0);
             }
             if (remote_control.rcInfo.ch4 < -500) {
-                interact.sub_board.set_main_valve(1);
-                interact.sub_board.set_lf_valve(1);
-                interact.sub_board.set_rf_valve(1);
+                sub_board.set_main_valve(1);
+                sub_board.set_lf_valve(1);
+                sub_board.set_rf_valve(1);
 //                interact.sub_board.set_lb_valve(1);
 //                interact.sub_board.set_rb_valve(1);
             } else if (remote_control.rcInfo.ch4 > 500) {
-                interact.sub_board.set_main_valve(0);
-                interact.sub_board.set_lf_valve(0);
-                interact.sub_board.set_rf_valve(0);
-                interact.sub_board.set_lb_valve(0);
-                interact.sub_board.set_rb_valve(0);
+               sub_board.set_main_valve(0);
+               sub_board.set_lf_valve(0);
+               sub_board.set_rf_valve(0);
+               sub_board.set_lb_valve(0);
+               sub_board.set_rb_valve(0);
             }
             receive_rc();
             break;
@@ -163,7 +163,6 @@ void Interact::update_roboArm(RoboArm& Arm) {
             if (robo_arm.last_mode != interact_dep::robo_mode::XYZ) { Arm.fkine(remote_control.pos); }
             receive_xyz(Arm);
             break;
-
         default: break;
     }
 }

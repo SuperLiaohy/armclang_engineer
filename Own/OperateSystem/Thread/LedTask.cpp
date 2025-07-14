@@ -8,7 +8,6 @@
 
 void LedTask() {
     while (1) {
-
         Led.update();
         LedHeapCnt = uxTaskGetStackHighWaterMark(NULL);
         osDelay(1);

@@ -46,7 +46,7 @@ public:
     /* 运动学解 姿态z y z    单位为rad*/
     std::array<float, 3> posture = {0, 0, 0};
 
-    /* 逆运动学解 顺序q1 q2 q3 并且有四种*/
+    /* 逆运动学解 顺序q1 q2 q3 q4 q5 q6 */
     std::array<float, 6> q = {};
 
     void fkine(std::array<float, 3>& position);
@@ -56,7 +56,6 @@ public:
     bool ikine(const std::array<float, 3>& position,const std::array<float, 3>& posture);
 
     Motor<LKMotorSingle> joint1;
-
     struct {
         Motor<LKMotorSingle> internal;
         Motor<LKMotorSingle> external;
