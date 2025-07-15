@@ -16,3 +16,5 @@ float& Slope::update() {
     }
     return value;
 }
+
+

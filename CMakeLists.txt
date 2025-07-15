@@ -94,9 +94,9 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${OWN_SOURCES})
 # 添加头文件路径
 target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
 
-# 添加CMSISDSP库
-include(cmake/cmsiscompiler.cmake)
 # 添加compiler补丁
+include(cmake/cmsiscompiler.cmake)
+# 添加CMSISDSP库
 include(cmake/cmsisdsp.cmake)
 
 # 为主项目添加编译定义
