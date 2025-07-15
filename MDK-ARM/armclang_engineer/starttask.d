@@ -54,7 +54,7 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Mod\RingQueue\RingQueue.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Own\Mod\RingBuffer\RingBuffer.h ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Own\Mod\Count\Count.hpp \
   ..\Own\Mod\Count\CountManager.hpp ..\Own\Mod\CustomList\CustomList.hpp \
   ..\Own\Mod\CustomList\LinkedList.hpp ..\Own\Mod\CustomList\SeqList.hpp \

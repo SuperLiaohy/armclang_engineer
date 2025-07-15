@@ -108,4 +108,4 @@ armclang_engineer/interact.o: ..\Own\Obj\Interact\Interact.cpp \
   ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Mod\RingQueue\RingQueue.hpp
+  ..\Own\Mod\RingBuffer\RingBuffer.h

@@ -9,8 +9,7 @@
 
 void BuzzerTask() {
     while (1) {
-        if (buzzer.StartMusic()) {
-           osDelay(10);
-        }
+        if (!buzzer.StartMusic())
+            osDelay(500);
     }
 }

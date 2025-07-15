@@ -14,7 +14,7 @@ extern "C" {
 }
 #endif
 
-#include "RingQueue/RingQueue.hpp"
+#include "RingBuffer/RingBuffer.h"
 
 class Buzzer {
 public:
@@ -71,29 +71,22 @@ public:
 public:
     Buzzer(TIM_HandleTypeDef* htim, uint16_t Channel)
         : htim(htim)
-        , Channel(Channel) {}
+        , Channel(Channel) {};
+
     void Start();
-
     void SetFreq(uint16_t freq, uint16_t pulse = 300);
-
     void Stop();
 
     template<uint16_t size, auto delay = osDelay> void StartMusic(const std::array<uint16_t, size>& music);
-
     template<uint16_t size> void PushMusic(const std::array<uint16_t, size>& music);
-    void CleanMusic() {
-        music_cnt = 0;
-        music_buffer.clear();
-    };
-
-
     template<auto delay = osDelay> bool StartMusic();
+
+    void CleanMusic() {music_buffer.reset();};
 
 private:
     TIM_HandleTypeDef* htim;
     uint16_t Channel;
-    RoundBuffer<uint16_t, 100> music_buffer;
-    int8_t music_cnt = 0;
+    RingBuffer<100, uint16_t> music_buffer;
 };
 
 template<uint16_t size, auto delay> void Buzzer::StartMusic(const std::array<uint16_t, size>& music) {
@@ -105,24 +98,20 @@ template<uint16_t size, auto delay> void Buzzer::StartMusic(const std::array<uin
 }
 
 template<uint16_t size> void Buzzer::PushMusic(const std::array<uint16_t, size>& music) {
-    music_buffer.push(music);
-    music_buffer.push(20000);
-    music_buffer.push(MUSIC_EOF);
-    ++music_cnt;
+    music_buffer.write_data(music.data(), size);
+    uint16_t end[2] = {20000, MUSIC_EOF};
+    music_buffer.write_data(end, 2);
 }
 
 template<auto delay> bool Buzzer::StartMusic() {
-    if (music_cnt > 0) {
-        auto music = music_buffer.pop();
-        if (music != MUSIC_EOF) {
-            SetFreq(music);
-            delay(50);
-        } else {
-            --music_cnt;
-        }
-        return false;
+    if (music_buffer.get_index_len()!=0) {
+        auto music = music_buffer.get();
+        music_buffer.add_read();
+        SetFreq(music);
+        delay(100);
+        return true;
     }
-    return true;
+    return false;
 }
 
 extern Buzzer buzzer;
