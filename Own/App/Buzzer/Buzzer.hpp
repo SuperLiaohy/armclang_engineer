@@ -104,7 +104,7 @@ template<uint16_t size> void Buzzer::PushMusic(const std::array<uint16_t, size>&
 }
 
 template<auto delay> bool Buzzer::StartMusic() {
-    if (music_buffer.get_index_len()!=0) {
+    if (!music_buffer.is_empty()) {
         auto music = music_buffer.get();
         music_buffer.add_read();
         SetFreq(music);
