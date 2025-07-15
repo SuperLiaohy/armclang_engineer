@@ -77,11 +77,14 @@ SuperGPIO power_24v_left(GPIOC, GPIO_PIN_13);
 UI ui(102, 0x0166, &huart7);
 
 OneStepGetControl OSG::mode   = OneStepGetControl::AUTO;
-OneStepGetAUTO OSG::auto_mode = OneStepGetAUTO::NONE;
-OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 4, Slope(1.2, 0),
-                  Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 2, Slope {1.0, 0},
-                  Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1), 3, Slope(3, 0),
-                  Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0), 1, Slope(1.0, 0));
+OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1),
+                  4, Slope(1.2, 0), true,4000,-4000,
+                  Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0),
+                  2, Slope {1.0, 0}, true,4000,-4000,
+                  Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 10000, 1),
+                  3, Slope(3, 0), false,4000,-4000,
+                  Pid(15, 0, 4, 8000, 16000, 1.0), Pid(15, 0, 4, 8000, 16000, 1.0),
+                  1, Slope(1.0, 0), false,4000,-4000);
 
 interact_dep::Actions get_silver_mine({0,37.604,115.54184,0,27.570,0}, {480, 720, 360, 360});
 interact_dep::Actions get_silver_mine_z(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ_z);
@@ -139,12 +142,9 @@ std::array<interact_dep::ActionsGroup::exe, 2> put_down_silver_exe = {
         interact.sub_board.set_pump(0);
         interact.sub_board.set_lb_valve(0);
         interact.sub_board.set_rb_valve(0);
-        one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
+        one_step_gets.Xleft.set_state(Translation::state::MOVE,1000);
 
-        one_step_gets.left.X.pos.target_set(1000);
-        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-
-        one_step_gets.right.X.pos.target_set(-1000);
+        one_step_gets.Xright.set_state(Translation::state::MOVE,-1000);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 
@@ -166,16 +166,10 @@ std::array<interact_dep::ActionsGroup::exe, 2> put_down_gold_exe = {
         interact.sub_board.set_pump(0);
         interact.sub_board.set_lf_valve(0);
         interact.sub_board.set_rf_valve(0);
-        one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-
-        one_step_gets.left.X.pos.target_set(1000);
-        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-
-        one_step_gets.right.X.pos.target_set(-1000);
-        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(1450);
-        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-1450);
+        one_step_gets.Xleft.set_state(Translation::state::MOVE, 1000);
+        one_step_gets.Xright.set_state(Translation::state::MOVE, -1000);
+        one_step_gets.Yleft.set_state(Translation::state::MOVE, 1450);
+        one_step_gets.Yright.set_state(Translation::state::MOVE, -1450);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 
@@ -199,26 +193,18 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         interact.sub_board.set_lf_valve(1);
     },
     []() {
-        one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.left.X.pos.target_set(2000);
-        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(200);
-        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.right.X.pos.target_set(-2500);
-        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-200);
+        one_step_gets.Xleft.set_state(Translation::state::MOVE, 2000);
+        one_step_gets.Yleft.set_state(Translation::state::MOVE, 200);
+        one_step_gets.Xright.set_state(Translation::state::MOVE, -2500);
+        one_step_gets.Yright.set_state(Translation::state::MOVE, -200);
     },
     []() {
-        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(285 + 200); //255
-        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-320 - 200); //-345
+        one_step_gets.Yleft.set_state(Translation::state::MOVE, 285 + 200); //255
+        one_step_gets.Yright.set_state(Translation::state::MOVE, -320 - 200); //-345
     },
     []() {
-        one_step_gets.left.X.status = OneStepGetXStatus::BACK;
-        one_step_gets.left.X.pos.target_set(0);
-        one_step_gets.right.X.status = OneStepGetXStatus::BACK;
-        one_step_gets.right.X.pos.target_set(0);
+        one_step_gets.Xleft.set_state(Translation::state::MOVE, 0);
+        one_step_gets.Xright.set_state(Translation::state::MOVE, 0);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 
@@ -253,18 +239,14 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_right_gold_exe = {
         interact.sub_board.set_rf_valve(1);
     },
     []() {
-        one_step_gets.right.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.right.X.pos.target_set(-2500);
-        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-200);
+        one_step_gets.Xright.set_state(Translation::state::MOVE, -2500);
+        one_step_gets.Yright.set_state(Translation::state::MOVE, -200);
     },
     []() {
-        one_step_gets.right.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.right.Y.pos.target_set(-420 - 200); //-345
+        one_step_gets.Yright.set_state(Translation::state::MOVE, -420 - 200); //-345
     },
     []() {
-        one_step_gets.right.X.status = OneStepGetXStatus::BACK;
-        one_step_gets.right.X.pos.target_set(0);
+        one_step_gets.Xright.set_state(Translation::state::MOVE, 0);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 
@@ -287,18 +269,14 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_left_gold_exe = {
         interact.sub_board.set_lf_valve(1);
     },
     []() {
-        one_step_gets.left.X.status = OneStepGetXStatus::FRONT;
-        one_step_gets.left.X.pos.target_set(2000);
-        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(200);
+        one_step_gets.Xleft.set_state(Translation::state::MOVE, 2000);
+        one_step_gets.Yleft.set_state(Translation::state::MOVE, 200);
     },
     []() {
-        one_step_gets.left.Y.status = OneStepGetYStatus::UP;
-        one_step_gets.left.Y.pos.target_set(285 + 200); //255
+        one_step_gets.Yleft.set_state(Translation::state::MOVE, 285 + 200); //255
     },
     []() {
-        one_step_gets.left.X.status = OneStepGetXStatus::BACK;
-        one_step_gets.left.X.pos.target_set(0);
+        one_step_gets.Xleft.set_state(Translation::state::MOVE, 0);
     },
     []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }};
 

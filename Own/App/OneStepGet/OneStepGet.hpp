@@ -12,36 +12,19 @@ enum class OneStepGetControl {
     AUTO,
     ROBO_ARM,
 };
-enum class OneStepGetAUTO {
-    NONE,
-    // RESET,
-    // GOLD,
-};
-
-enum class OneStepGetYStatus {
-    NONE,
-    UP,
-    DOWN,
-};
-
-enum class OneStepGetXStatus {
-    NONE,
-    FRONT,
-    BACK,
-};
 
 class Translation {
+public:
     enum class state {
         RESET,
         P_BLOCK,
         N_BLOCK,
         MOVE,
     };
-
 public:
-    Translation(const Pid &x_pos_pid, const Pid &x_speed_pid, const uint8_t x_id, const Slope &x_slope_cfg,
+    Translation(const Pid &x_pos_pid, const Pid &x_speed_pid, const uint8_t x_id, const Slope &x_slope_cfg,bool p,
                 int16_t pThreshold, int16_t nThreshold)
-            : axis(x_slope_cfg), pblock_count(0),nblock_count(0), pThresholdBlock(pThreshold), nThresholdBlock(nThreshold),
+            : s(state::RESET),polarity(p),axis(x_slope_cfg), pblock_count(0),nblock_count(0), pThresholdBlock(pThreshold), nThresholdBlock(nThreshold),
               Motor(x_pos_pid, x_speed_pid, x_id) {};
 
 
@@ -56,100 +39,43 @@ public:
 
     void set_state(state s, float param) {
         if (s == state::RESET) {
-            if (param>0)
-                polarity = true;
-            else
-                polarity = false;
             this->s = state::RESET;
         } else if (this->s != state::P_BLOCK && this->s != state::N_BLOCK) {
             this->s = s;
             axis.target_set(param);
         }
     }
+    Motor<M2006Pos> Motor;
+    Slope axis;
 
 private:
     state s;
     bool polarity;
 
-    Slope axis;
     int32_t pblock_count;
     int32_t nblock_count;
     int16_t pThresholdBlock;
     int16_t nThresholdBlock;
-    Motor<M2006Pos> Motor;
 };
 
 class OSG {
 public:
     static OneStepGetControl mode;
-    static OneStepGetAUTO auto_mode;
 
-    OSG(const Pid &left_x_pos_pid, const Pid &left_x_speed_pid, const uint8_t left_x_id,
-        const Slope &left_x_slope_cfg, const Pid &left_y_pos_pid, const Pid &left_y_speed_pid,
-        const uint8_t left_y_id, const Slope &left_y_slope_cfg, const Pid &right_x_pos_pid,
-        const Pid &right_x_speed_pid, const uint8_t right_x_id, const Slope &right_x_slope_cfg,
-        const Pid &right_y_pos_pid, const Pid &right_y_speed_pid, const uint8_t right_y_id,
-        const Slope &right_y_slope_cfg)
-            : left(left_x_pos_pid, left_x_speed_pid, left_x_id, left_x_slope_cfg,
-                   left_y_pos_pid, left_y_speed_pid, left_y_id, left_y_slope_cfg),
-              right(right_x_pos_pid, right_x_speed_pid, right_x_id, right_x_slope_cfg,
-                    right_y_pos_pid, right_y_speed_pid, right_y_id, right_y_slope_cfg) {};
+    OSG(const Pid &xl_pos_pid, const Pid &xl_speed_pid, const uint8_t xl_id,const Slope &xl_slope,bool xl_p,int16_t xl_pt,int16_t xl_nt,
+        const Pid &yl_pos_pid, const Pid &yl_speed_pid,const uint8_t yl_id, const Slope &yl_slope,bool yl_p,int16_t yl_pt,int16_t yl_nt,
+        const Pid &xr_pos_pid,const Pid &xr_speed_pid, const uint8_t xr_id, const Slope &xr_slope,bool xr_p,int16_t xr_pt,int16_t xr_nt,
+        const Pid &yr_pos_pid, const Pid &yr_speed_pid, const uint8_t yr_id,const Slope &yr_slope,bool yr_p,int16_t yr_pt,int16_t yr_nt)
+            : Xleft(xl_pos_pid, xl_speed_pid, xl_id, xl_slope, xl_p,xl_pt,xl_nt),
+              Yleft(yl_pos_pid, yl_speed_pid, yl_id, yl_slope, yl_p, yl_pt, yl_nt),
+              Xright(xr_pos_pid, xr_speed_pid, xr_id, xr_slope,xr_p,xr_pt,xr_nt),
+              Yright(yr_pos_pid, yr_speed_pid, yr_id, yr_slope,yr_p,yr_pt,yr_nt) {};
+        Translation Xleft;
+        Translation Xright;
+        Translation Yleft;
+        Translation Yright;
 
-    class group {
-    public:
-        group(const Pid &x_pos_pid, const Pid &x_speed_pid, const uint8_t x_id, const Slope &x_slope_cfg,
-              const Pid &y_pos_pid, const Pid &y_speed_pid, const uint8_t y_id, const Slope &y_slope_cfg)
-                : X(x_pos_pid, x_speed_pid, x_id, x_slope_cfg), Y(y_pos_pid, y_speed_pid, y_id, y_slope_cfg) {}
-
-        class XGet {
-        public:
-            XGet(const Pid &x_pos_pid, const Pid &x_speed_pid, const uint8_t x_id, const Slope &x_slope_cfg)
-                    : pos(x_slope_cfg), Motor(x_pos_pid, x_speed_pid, x_id) {};
-
-            bool move_it();
-
-            // bool move_front();
-            OneStepGetXStatus status;
-            bool is_block;
-            Slope pos;
-            int32_t block_count;
-            Motor<M2006Pos> Motor;
-        } X;
-
-        class YGet {
-        public:
-            YGet(const Pid &y_pos_pid, const Pid &y_speed_pid, const uint8_t y_id, const Slope &y_slope_cfg)
-                    : pos(y_slope_cfg), Motor(y_pos_pid, y_speed_pid, y_id) {};
-
-            // bool move_up();
-            bool move_it();
-
-            OneStepGetYStatus status;
-            bool is_block;
-            Slope pos;
-            int32_t block_count;
-            Motor<M3508Pos> Motor;
-        } Y;
-    };
-
-    void reset() {
-        left.X.status = OneStepGetXStatus::BACK;
-        left.Y.status = OneStepGetYStatus::DOWN;
-        right.X.status = OneStepGetXStatus::BACK;
-        right.Y.status = OneStepGetYStatus::DOWN;
-        left.X.pos.target_set(-2000);
-        left.Y.pos.target_set(-1300);
-        right.X.pos.target_set(2300);
-        right.Y.pos.target_set(1450);
-    }
-
-    group left;
-    group right;
 };
 
-// extern OneStepGet one_step_get_left;
-// extern OneStepGet one_step_get_right;
-// extern OneStepGetControl one_step_get_control;
-// extern OneStepGetAUTO one_step_get_auto;
 extern OSG one_step_gets;
 
