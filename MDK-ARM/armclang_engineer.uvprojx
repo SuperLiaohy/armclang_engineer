@@ -1046,6 +1046,11 @@
               <FileType>8</FileType>
               <FilePath>..\Own\App\OneStepGet\OneStepGet.cpp</FilePath>
             </File>
+            <File>
+              <FileName>CanServos.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\Own\App\CanServos\CanServos.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

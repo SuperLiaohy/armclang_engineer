@@ -893,8 +893,8 @@ __STATIC_FORCEINLINE void __TZ_set_MSPLIM_NS(uint32_t MainStackPtrLimit)
 
 
 /**
-  \brief   Rotate Right in unsigned value (32 bit)
-  \details Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits.
+  \brief   rotate Right in unsigned value (32 bit)
+  \details rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits.
   \param [in]    op1  Value to rotate
   \param [in]    op2  Number of Bits to rotate
   \return               Rotated value
@@ -1054,7 +1054,7 @@ __STATIC_FORCEINLINE uint8_t __CLZ(uint32_t value)
 
 
 /**
-  \brief   Rotate Right with Extend (32 bit)
+  \brief   rotate Right with Extend (32 bit)
   \details Moves each bit of a bitstring right by one bit.
            The carry input is shifted in at the left end of the bitstring.
   \param [in]    value  Value to rotate

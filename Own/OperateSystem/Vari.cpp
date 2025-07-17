@@ -84,7 +84,11 @@ OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 7
                   Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0.00, 2.3, 4000, 7000, 1),
                   3, Slope(1.3, 0), true,4000,-4000,
                   Pid(20, 0, 4, 8000, 16000, 1.0), Pid(20, 0, 4, 8000, 16000, 1.0),
-                  1, Slope(0.6, 0), false,4000,-4000);
+                  1, Slope(0.6, 0), false,4000,-4000,
+                  Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0.00, 2.3, 4000, 7000, 1),
+                  5, Slope(1.3, 0), true,4000,-4000,
+                  &canPlus3,6
+);
 
 interact_dep::Actions get_silver_mine({0,37.604,115.54184,0,27.570,0}, {480, 720, 360, 360});
 interact_dep::Actions get_silver_mine_z(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ_z);

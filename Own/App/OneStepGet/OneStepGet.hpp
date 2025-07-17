@@ -6,6 +6,7 @@
 
 #include "Motor/Motor.hpp"
 #include "Slope/Slope.hpp"
+#include "CanServos/CanServos.hpp"
 
 enum class OneStepGetControl {
     MANUAL,
@@ -150,15 +151,22 @@ public:
     OSG(const Pid &xl_pos_pid, const Pid &xl_speed_pid, const uint8_t xl_id,const Slope &xl_slope,bool xl_p,int16_t xl_pt,int16_t xl_nt,
         const Pid &yl_pos_pid, const Pid &yl_speed_pid,const uint8_t yl_id, const Slope &yl_slope,bool yl_p,int16_t yl_pt,int16_t yl_nt,
         const Pid &xr_pos_pid,const Pid &xr_speed_pid, const uint8_t xr_id, const Slope &xr_slope,bool xr_p,int16_t xr_pt,int16_t xr_nt,
-        const Pid &yr_pos_pid, const Pid &yr_speed_pid, const uint8_t yr_id,const Slope &yr_slope,bool yr_p,int16_t yr_pt,int16_t yr_nt)
+        const Pid &yr_pos_pid, const Pid &yr_speed_pid, const uint8_t yr_id,const Slope &yr_slope,bool yr_p,int16_t yr_pt,int16_t yr_nt,
+        const Pid &rotate_pos_pid, const Pid &rotate_speed_pid, const uint8_t rotate_id,const Slope &rotate_slope,bool rotate_p,int16_t rotate_pt,int16_t rotate_nt,
+        SuperCan*canPluse, uint32_t id)
             : Xleft(xl_pos_pid, xl_speed_pid, xl_id, xl_slope, xl_p,xl_pt,xl_nt),
               Yleft(yl_pos_pid, yl_speed_pid, yl_id, yl_slope, yl_p, yl_pt, yl_nt),
               Xright(xr_pos_pid, xr_speed_pid, xr_id, xr_slope,xr_p,xr_pt,xr_nt),
-              Yright(yr_pos_pid, yr_speed_pid, yr_id, yr_slope,yr_p,yr_pt,yr_nt) {};
+              Yright(yr_pos_pid, yr_speed_pid, yr_id, yr_slope,yr_p,yr_pt,yr_nt),
+              rotate_move(rotate_pos_pid, rotate_speed_pid, rotate_id, rotate_slope,rotate_p,rotate_pt,rotate_nt),
+              rotate(canPluse, id) {};
         Translation<M2006Pos> Xleft;
         Translation<M2006Pos> Xright;
         Translation<M3508Pos> Yleft;
         Translation<M3508Pos> Yright;
+
+        Translation<M2006Pos> rotate_move;
+        CanServos rotate;
 
 };
 

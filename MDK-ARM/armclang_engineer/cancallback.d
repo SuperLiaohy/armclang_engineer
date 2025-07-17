@@ -107,5 +107,6 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\App\OneStepGet\OneStepGet.hpp ..\Own\Bsp\WDG\SuperIWDG.hpp \
+  ..\Own\App\OneStepGet\OneStepGet.hpp \
+  ..\Own\App\CanServos\CanServos.hpp ..\Own\Bsp\WDG\SuperIWDG.hpp \
   ..\Core\Inc\iwdg.h

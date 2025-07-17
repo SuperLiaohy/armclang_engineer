@@ -32,22 +32,6 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         roboArm.joint2.internal.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint1.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
 
-
-        // if (canPlus1.rx_header.Identifier == LKMotor::foc.RX_ID + roboArm.joint4.feed_back.id) {
-            // roboArm.joint4.get_feedback(canPlus1.rx_data);
-        // }
-        // else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint3.feed_back.id) {
-            // roboArm.joint3.get_feedback(canPlus1.rx_data);
-        // }
-        // else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.internal.feed_back.id) {
-            // roboArm.joint2.internal.get_feedback(canPlus1.rx_data);
-        // }
-        // else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint2.external.feed_back.id) {
-            // roboArm.joint2.external.get_feedback(canPlus1.rx_data);
-        // }
-        // else if (canPlus1.rx_header.Identifier == Motor<lkMotor>::foc.RX_ID + roboArm.joint1.feed_back.id) {
-            // roboArm.joint1.get_feedback(canPlus1.rx_data);
-        // }
         // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.left.feed_back.id) {
             roboArm.joint5.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
             // roboArm.diff.left.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus1.rx_data);
@@ -64,10 +48,14 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         chassis.UpdateMotor();
     } else if (hfdcan == canPlus3.hcan){        
 				canPlus3.receive();
-        one_step_gets.Xleft.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus3.rx_data);
+        one_step_gets.Xleft.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID, canPlus3.rx_data);
         one_step_gets.Yleft.Motor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
-        one_step_gets.Xright.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus3.rx_data);
+        one_step_gets.Xright.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID, canPlus3.rx_data);
         one_step_gets.Yright.Motor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
+        one_step_gets.rotate_move.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID, canPlus3.rx_data);
+        if (canPlus1.rx_header.Identifier<100) {
+            one_step_gets.rotate.get_feedback();
+        }
     }
 }
 
