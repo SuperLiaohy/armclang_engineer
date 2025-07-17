@@ -19,9 +19,17 @@ void OneStepGetTask() {
         one_step_gets.Xright.move_handle();
         one_step_gets.Xleft.move_handle();
 
+//        canPlus3.transmit(0x200,
+//                          one_step_gets.Yright.Motor.speed_output(),
+//                          one_step_gets.Yleft.Motor.speed_output(),
+//                          one_step_gets.Xright.Motor.speed_output(),
+//                          one_step_gets.Xleft.Motor.speed_output());
         canPlus3.transmit(0x200,
+//                          0,
                           one_step_gets.Yright.Motor.speed_output(),
+//0,
                           one_step_gets.Yleft.Motor.speed_output(),
+//0,
                           one_step_gets.Xright.Motor.speed_output(),
                           one_step_gets.Xleft.Motor.speed_output());
         osDelay(1);

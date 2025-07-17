@@ -56,6 +56,10 @@ public:
         }
         return false;
     }
+    void clear() {
+        this->position.clear();
+        this->speed.clear();
+    }
 };
 
 #endif //USING_M3508

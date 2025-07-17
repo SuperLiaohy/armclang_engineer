@@ -29,7 +29,7 @@ void action_z_callback(KeyEventType event) {
                 case KeyEvent_OnDown:
                 case KeyEvent_OnLongPress:
                 case KeyEvent_OnPressing:
-                    one_step_gets.Xleft.axis.increase();
+                    one_step_gets.Xleft.axis.Tdecrease();
                     break;
                 case KeyEvent_None:
                 case KeyEvent_OnUp:  break;
@@ -78,7 +78,7 @@ void action_shift_z_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.Xleft.axis.decrease();
+                one_step_gets.Xleft.axis.Tincrease();
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp:  break;
@@ -143,7 +143,7 @@ void action_x_callback(KeyEventType event) {
                 case KeyEvent_OnDown:
                 case KeyEvent_OnLongPress:
                 case KeyEvent_OnPressing:
-                    one_step_gets.Yleft.axis.increase();
+                    one_step_gets.Yleft.axis.Tincrease();
                     break;
                 case KeyEvent_None:
                 case KeyEvent_OnUp: break;
@@ -191,7 +191,7 @@ void action_shift_x_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.Yleft.axis.decrease();
+                one_step_gets.Yleft.axis.Tdecrease();
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: break;
@@ -233,7 +233,7 @@ void action_c_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.Yright.axis.increase();
+                one_step_gets.Yright.axis.Tincrease();
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: break;
@@ -266,7 +266,7 @@ void action_shift_c_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.Yright.axis.decrease();
+                one_step_gets.Yright.axis.Tdecrease();
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: break;
@@ -307,7 +307,7 @@ void action_v_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.Xright.axis.increase();
+                one_step_gets.Xright.axis.Tdecrease();
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: break;
@@ -342,7 +342,7 @@ void action_shift_v_callback(KeyEventType event) {
             case KeyEvent_OnDown:
             case KeyEvent_OnLongPress:
             case KeyEvent_OnPressing:
-                one_step_gets.Xright.axis.decrease();
+                one_step_gets.Xright.axis.Tincrease();
                 break;
             case KeyEvent_None:
             case KeyEvent_OnUp: break;
@@ -389,10 +389,10 @@ void action_b_callback(KeyEventType event) {
 void action_ctrl_r_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            one_step_gets.Xleft.set_state(Translation::state::RESET,0);
-            one_step_gets.Xright.set_state(Translation::state::RESET,0);
-            one_step_gets.Yleft.set_state(Translation::state::RESET,0);
-            one_step_gets.Yright.set_state(Translation::state::RESET,0);
+            one_step_gets.Xleft.set_state(translation::state::RESET,0);
+            one_step_gets.Xright.set_state(translation::state::RESET,0);
+            one_step_gets.Yleft.set_state(translation::state::RESET,0);
+            one_step_gets.Yright.set_state(translation::state::RESET,0);
             break;
         default: break;
     }

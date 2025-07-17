@@ -12,15 +12,17 @@ enum class OneStepGetControl {
     AUTO,
     ROBO_ARM,
 };
-
-class Translation {
-public:
+namespace translation {
     enum class state {
         RESET,
         P_BLOCK,
         N_BLOCK,
         MOVE,
     };
+}
+template<typename T>
+class Translation {
+    using state = translation::state;
 public:
     Translation(const Pid &x_pos_pid, const Pid &x_speed_pid, const uint8_t x_id, const Slope &x_slope_cfg,bool p,
                 int16_t pThreshold, int16_t nThreshold)
@@ -45,7 +47,7 @@ public:
             axis.target_set(param);
         }
     }
-    Motor<M2006Pos> Motor;
+    Motor<T> Motor;
     Slope axis;
 
 private:
@@ -57,6 +59,89 @@ private:
     int16_t pThresholdBlock;
     int16_t nThresholdBlock;
 };
+
+template<typename T>
+void Translation<T>::move_handle() {
+    Motor.set_position(axis.get());
+};
+template<typename T>
+void Translation<T>::state_handle() {
+    switch (s) {
+        case state::P_BLOCK:
+            if (pblock_count > -5)
+                axis.decrease();
+            else {
+                pblock_count = 0;
+                s = state::MOVE;
+            }
+            if (Motor.feedback.raw_data.current < pThresholdBlock) {
+                --pblock_count;
+            } else {
+                ++pblock_count;
+            }
+            break;
+        case state::N_BLOCK:
+            if (nblock_count > -5)
+                axis.increase();
+            else {
+                nblock_count = 0;
+                s = state::MOVE;
+            }
+            if (Motor.feedback.raw_data.current > nThresholdBlock) {
+                --nblock_count;
+            } else {
+                ++nblock_count;
+            }
+            break;
+        case state::MOVE:
+            axis.update();
+            if (Motor.feedback.raw_data.current > pThresholdBlock) {
+                if(++pblock_count > 20) {
+                    s = state::P_BLOCK;
+                };
+            } else if (Motor.feedback.raw_data.current < nThresholdBlock) {
+                if(++pblock_count > 20) {
+                    s = state::N_BLOCK;
+                };
+            }
+            break;
+        case state::RESET:
+            if (polarity) {
+                if (Motor.feedback.raw_data.current < nThresholdBlock) {
+                    if(++nblock_count > 10) {
+                        Motor.total_position() = 0;
+                        axis.target_set(0);
+                        axis.target_arrive();
+                        nblock_count = 10;
+                        s = state::N_BLOCK;
+                    };
+                } else {
+                    axis.target_set(-10000);
+                }
+            } else {
+                if (Motor.feedback.raw_data.current > pThresholdBlock) {
+                    if(++pblock_count > 10) {
+                        Motor.total_position() = 0;
+                        Motor.clear();
+                        axis.target_set(0);
+                        axis.target_arrive();
+                        pblock_count = 10;
+                        s = state::P_BLOCK;
+                    }
+                } else {
+                    axis.target_set(10000);
+                }
+            }
+            axis.update();
+            break;
+    }
+};
+namespace osg {
+    constexpr float xl_max = -1636;
+    constexpr float yl_max = 224;
+    constexpr float xr_max = 1666;
+    constexpr float yr_max = -224;
+}
 
 class OSG {
 public:
@@ -70,12 +155,11 @@ public:
               Yleft(yl_pos_pid, yl_speed_pid, yl_id, yl_slope, yl_p, yl_pt, yl_nt),
               Xright(xr_pos_pid, xr_speed_pid, xr_id, xr_slope,xr_p,xr_pt,xr_nt),
               Yright(yr_pos_pid, yr_speed_pid, yr_id, yr_slope,yr_p,yr_pt,yr_nt) {};
-        Translation Xleft;
-        Translation Xright;
-        Translation Yleft;
-        Translation Yright;
+        Translation<M2006Pos> Xleft;
+        Translation<M2006Pos> Xright;
+        Translation<M3508Pos> Yleft;
+        Translation<M3508Pos> Yright;
 
 };
 
 extern OSG one_step_gets;
-

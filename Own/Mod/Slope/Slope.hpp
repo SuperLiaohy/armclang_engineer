@@ -29,7 +29,9 @@ public:
 
     float& update();
     float& increase() { value+=step; return value;};
+    void Tincrease() { target+=step;};
     float& decrease() { value-=step; return value;};
+    void Tdecrease() { target-=step;};
 
 
     float target;
