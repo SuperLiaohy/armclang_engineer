@@ -111,4 +111,5 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
   ..\Own\Mod\RingBuffer\RingBuffer.h ..\Own\Bsp\WDG\SuperIWDG.hpp \
-  ..\Core\Inc\iwdg.h
+  ..\Core\Inc\iwdg.h ..\Own\App\OneStepGet\OneStepGet.hpp \
+  ..\Own\App\CanServos\CanServos.hpp

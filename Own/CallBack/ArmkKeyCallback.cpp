@@ -10,6 +10,10 @@ void air_left_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
             interact.sub_board.toggle_main_valve();
+//            interact.sub_board.toggle_lf_valve();
+//            interact.sub_board.toggle_lb_valve();
+//            interact.sub_board.toggle_rf_valve();
+//            interact.sub_board.toggle_rb_valve();
             break;
         default: break;
     }

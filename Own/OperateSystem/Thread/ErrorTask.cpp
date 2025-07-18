@@ -21,6 +21,7 @@ extern osThreadId ERROR_TASKHandle;
 #include "Buzzer/Buzzer.hpp"
 #include "RoboArm/RoboArm.hpp"
 #include "WDG/SuperIWDG.hpp"
+#include "OneStepGet/OneStepGet.hpp"
 
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
@@ -35,6 +36,7 @@ void ErrorTask() {
         canPlus1.transmit(M2006Diff::foc.TX_LOW_ID, 0, 0, 0, 0);
         canPlus2.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         canPlus3.transmit(0x200, 0, 0, 0, 0);
+        one_step_gets.rotate.unlock();
         interact.sub_board.set_pump(0);
         interact.sub_board.set_rf_valve(0);
         interact.sub_board.set_rb_valve(0);

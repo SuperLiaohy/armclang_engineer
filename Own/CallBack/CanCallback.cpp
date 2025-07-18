@@ -53,9 +53,9 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         one_step_gets.Xright.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID, canPlus3.rx_data);
         one_step_gets.Yright.Motor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
         one_step_gets.rotate_move.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID, canPlus3.rx_data);
-        if (canPlus1.rx_header.Identifier<100) {
-            one_step_gets.rotate.get_feedback();
-        }
+       
+        one_step_gets.rotate.get_feedback();
+       
     }
 }
 

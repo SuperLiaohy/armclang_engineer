@@ -43,10 +43,11 @@ public:
     void set_state(state s, float param) {
         if (s == state::RESET) {
             this->s = state::RESET;
+            return;
         } else if (this->s != state::P_BLOCK && this->s != state::N_BLOCK) {
             this->s = s;
-            axis.target_set(param);
         }
+        axis.target_set(param);
     }
     Motor<T> Motor;
     Slope axis;
@@ -138,10 +139,10 @@ void Translation<T>::state_handle() {
     }
 };
 namespace osg {
-    constexpr float xl_max = -1636;
-    constexpr float yl_max = 224;
-    constexpr float xr_max = 1666;
-    constexpr float yr_max = -224;
+    constexpr float xl_max = -1512.33521; //  -1636   -1502.33521
+    constexpr float yl_max = 224;   //  224
+    constexpr float xr_max = 1577.41211;  //  1666    1557.41211
+    constexpr float yr_max = -224;  //  -244
 }
 
 class OSG {

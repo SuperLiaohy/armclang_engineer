@@ -11,6 +11,7 @@ extern interact_dep::ActionsGroup get_left_gold_group;
 extern interact_dep::ActionsGroup get_right_gold_group;
 extern interact_dep::ActionsGroup put_down_gold_group;
 extern interact_dep::ActionsGroup put_down_silver_group;
+extern interact_dep::ActionsGroup get_silver_group;
 
 
 extern interact_dep::Actions arm_get_gold;
@@ -242,9 +243,9 @@ void action_c_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                // get_silver2_group.reset();
-                // interact.actions_group = &get_silver2_group;
-                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+                get_silver_group.reset();
+                 interact.actions_group = &get_silver_group;
+                 interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
                 break;
             default: break;
         }
@@ -393,6 +394,8 @@ void action_ctrl_r_callback(KeyEventType event) {
             one_step_gets.Xright.set_state(translation::state::RESET,0);
             one_step_gets.Yleft.set_state(translation::state::RESET,0);
             one_step_gets.Yright.set_state(translation::state::RESET,0);
+            one_step_gets.rotate_move.set_state(translation::state::RESET,0);
+            one_step_gets.rotate.set_target(180);
             break;
         default: break;
     }

@@ -32,7 +32,7 @@ public:
 
     Detect detect;
 
-    uint16_t target;
+    float target;
     float angle;
 
     void read_all(); //广播读取位置，只挂载一个舵机，这样可以获取舵机的ID
@@ -48,6 +48,8 @@ public:
     inline void change_id(uint8_t new_id); //修改ID
     inline void read_id();
     inline void set_pos_speed(uint16_t pos, uint16_t speed); //设置速度
+    inline void move(); //设置速度
+    inline void set_target(float pos) {target = pos;}; //设置速度
     void test(uint8_t cmd, int16_t pos, int16_t speed, uint8_t a, uint8_t b, uint8_t c ); //测试
 
     inline bool get_feedback(); //获取反馈
@@ -96,6 +98,16 @@ void CanServos::read_idcard() {
     canPlus->transmit_pdata(id, data);
 }
 void CanServos::set_pos_speed(uint16_t pos, uint16_t speed) {
+    target = pos*180.0/2048;
+    uint8_t data[8] = {0x03,
+                       static_cast<uint8_t>((pos & 0xff)), static_cast<uint8_t>((pos >> 8)),
+                       static_cast<uint8_t>((speed & 0xff)), static_cast<uint8_t>((speed >> 8)),
+                       0, 0, 0};
+    canPlus->transmit_pdata(id, data);
+}
+void CanServos::move() {
+    uint16_t speed = 100;
+    uint16_t pos = target/180.0*2048;
     uint8_t data[8] = {0x03,
                        static_cast<uint8_t>((pos & 0xff)), static_cast<uint8_t>((pos >> 8)),
                        static_cast<uint8_t>((speed & 0xff)), static_cast<uint8_t>((speed >> 8)),
