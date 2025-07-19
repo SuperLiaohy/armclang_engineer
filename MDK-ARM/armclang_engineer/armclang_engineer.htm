@@ -3,7 +3,7 @@
 <title>Static Call Graph - [armclang_engineer\armclang_engineer.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image armclang_engineer\armclang_engineer.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Fri Jul 18 17:39:18 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Sun Jul 20 03:42:43 2025
 <BR><P>
 <H3>Maximum Stack Usage =       1392 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -6852,7 +6852,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ErrorTask()
 </UL>
 
-<P><STRONG><a name="[33b]"></a>bool Buzzer::StartMusic&lang;&osDelay&rang;()</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, buzzertask.o(.text._ZN6Buzzer10StartMusicITnDaXadL_Z7osDelayEEEEbv))
+<P><STRONG><a name="[33b]"></a>bool Buzzer::StartMusic&lang;&osDelay&rang;()</STRONG> (Thumb, 110 bytes, Stack size 32 bytes, buzzertask.o(.text._ZN6Buzzer10StartMusicITnDaXadL_Z7osDelayEEEEbv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = bool Buzzer::StartMusic&lang;&osDelay&rang;() &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vListInsertEnd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[33c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
@@ -6879,7 +6879,7 @@ Global Symbols
 <LI><a href="#[3a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void Buzzer::StartMusic&lang;(unsigned short)8, &HAL_Delay&rang;(std::__2::array&lang;unsigned short, (unsigned short)8&rang; const&)
 </UL>
 
-<P><STRONG><a name="[345]"></a>void Buzzer::PushMusic&lang;(unsigned short)24&rang;(std::__2::array&lang;unsigned short, (unsigned short)24&rang; const&)</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, arminittask.o(.text._ZN6Buzzer9PushMusicILt24EEEvRKNSt3__25arrayItXT_EEE))
+<P><STRONG><a name="[345]"></a>void Buzzer::PushMusic&lang;(unsigned short)24&rang;(std::__2::array&lang;unsigned short, (unsigned short)24&rang; const&)</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, arminittask.o(.text._ZN6Buzzer9PushMusicILt24EEEvRKNSt3__25arrayItXT_EEE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = void Buzzer::PushMusic&lang;(unsigned short)24&rang;(std::__2::array&lang;unsigned short, (unsigned short)24&rang; const&) &rArr; RingBuffer&lang;100u, unsigned short&rang;::write_data(unsigned short const*, unsigned int) &rArr; RingBuffer&lang;100u, unsigned short&rang;::add_write(unsigned int) &rArr; RingBuffer&lang;100u, unsigned short&rang;::get_write_index() &rArr; std::__2::__atomic_base&lang;unsigned int, false&rang;::load[abi:nn200000](std::__2::memory_order) const &rArr; unsigned int std::__2::__cxx_atomic_load[abi:nn200000]&lang;unsigned int&rang;(std::__2::__cxx_atomic_base_impl&lang;unsigned int&rang; const*, std::__2::memory_order)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RingBuffer&lang;100u, unsigned short&rang;::write_data(unsigned short const*, unsigned int)
@@ -6888,7 +6888,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ArmInitTask()
 </UL>
 
-<P><STRONG><a name="[372]"></a>void Buzzer::PushMusic&lang;(unsigned short)8&rang;(std::__2::array&lang;unsigned short, (unsigned short)8&rang; const&)</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, interact.o(.text._ZN6Buzzer9PushMusicILt8EEEvRKNSt3__25arrayItXT_EEE))
+<P><STRONG><a name="[372]"></a>void Buzzer::PushMusic&lang;(unsigned short)8&rang;(std::__2::array&lang;unsigned short, (unsigned short)8&rang; const&)</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, interact.o(.text._ZN6Buzzer9PushMusicILt8EEEvRKNSt3__25arrayItXT_EEE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = void Buzzer::PushMusic&lang;(unsigned short)8&rang;(std::__2::array&lang;unsigned short, (unsigned short)8&rang; const&) &rArr; RingBuffer&lang;100u, unsigned short&rang;::write_data(unsigned short const*, unsigned int) &rArr; RingBuffer&lang;100u, unsigned short&rang;::add_write(unsigned int) &rArr; RingBuffer&lang;100u, unsigned short&rang;::get_write_index() &rArr; std::__2::__atomic_base&lang;unsigned int, false&rang;::load[abi:nn200000](std::__2::memory_order) const &rArr; unsigned int std::__2::__cxx_atomic_load[abi:nn200000]&lang;unsigned int&rang;(std::__2::__cxx_atomic_base_impl&lang;unsigned int&rang; const*, std::__2::memory_order)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RingBuffer&lang;100u, unsigned short&rang;::write_data(unsigned short const*, unsigned int)
@@ -11472,14 +11472,14 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[16]"></a>$_16::__invoke()</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, vari.o(.text._ZN4$_168__invokeEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = $_16::__invoke() &rArr; $_16::operator()() const
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = $_16::__invoke() &rArr; $_16::operator()() const
 </UL>
 <BR>[Calls]<UL><LI><a href="#[47c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$_16::operator()() const
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> vari.o(.data.get_gold_event)
 </UL>
-<P><STRONG><a name="[47c]"></a>$_16::operator()() const</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, vari.o(.text._ZNK4$_16clEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = $_16::operator()() const
+<P><STRONG><a name="[47c]"></a>$_16::operator()() const</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, vari.o(.text._ZNK4$_16clEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = $_16::operator()() const
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$_16::__invoke()
 </UL>

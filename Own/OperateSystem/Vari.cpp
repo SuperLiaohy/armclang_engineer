@@ -99,7 +99,7 @@ interact_dep::Actions exchange_right({17.9960938,36.7366142,35.3361511,89.469413
 interact_dep::Actions reset1({0, -55, 145, 0, 0, 0}, {720,720,360,720});
 interact_dep::Actions reset2({0, -16.3, 144.8, 0, 0, 0}, {720, 720, 360, 720});
 
-interact_dep::Actions arm_get_gold({0, 48.4501343, 70.3479385, 0.00540079346, -28.7980728, 0}, {480, 720, 900, 720});
+interact_dep::Actions arm_get_gold({0, 53.8834076, 66.5721664, 0, -30.4555893, 0}, {480, 720, 900, 720});
 interact_dep::Actions arm_get_gold_z(Slope(0.1, 0.15, 120), interact_dep::action_status::CartesianX_z);
 
 // **************************************************************************************************** //

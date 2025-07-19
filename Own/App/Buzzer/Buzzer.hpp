@@ -99,8 +99,8 @@ template<uint16_t size, auto delay> void Buzzer::StartMusic(const std::array<uin
 
 template<uint16_t size> void Buzzer::PushMusic(const std::array<uint16_t, size>& music) {
     music_buffer.write_data(music.data(), size);
-    uint16_t end[2] = {20000, MUSIC_EOF};
-    music_buffer.write_data(end, 2);
+//    uint16_t end[2] = {20000, MUSIC_EOF};
+//    music_buffer.write_data(end, 2);
 }
 
 template<auto delay> bool Buzzer::StartMusic() {
@@ -108,9 +108,11 @@ template<auto delay> bool Buzzer::StartMusic() {
         auto music = music_buffer.get();
         music_buffer.add_read();
         SetFreq(music);
-        delay(100);
+        delay(50);
         return true;
     }
+    SetFreq(20000);
+    delay(50);
     return false;
 }
 
