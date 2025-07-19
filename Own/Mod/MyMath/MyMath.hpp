@@ -120,10 +120,10 @@ T my_abs(T value) {
     return value > 0 ? value : -value;
 }
 
-consteval float rad2deg(float rad) {
+constexpr float rad2deg(float rad) {
     return rad * 180 / my_math::pi;
 }
-consteval float deg2rad(float deg) {
+constexpr float deg2rad(float deg) {
     return deg * my_math::pi / 180;
 }
 consteval float scale(float src, float head) {

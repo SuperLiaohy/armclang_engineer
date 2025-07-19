@@ -38,51 +38,39 @@ namespace interact_dep {
 
     enum class action_status : uint8_t {
         Joints,
-        CartesianX_z,
-        CartesianX_x,
-        CartesianZ_z,
-        CartesianZ_x,
+        XYZ,
     };
 
     struct Actions {
         static constexpr std::array<float, 4> default_action_speed = {480, 480, 720, 720};
+        static constexpr std::array<float, 3> default_pos_step = {0.2,0.2,0.2};
         action_status status;
         bool init;
-        std::array<float, 4> speed;
         union {
             struct {
                 std::array<float, 6> joints;
+                std::array<float, 4> speed;
             };
             struct {
-                std::array<float, 3> pos;
-                Slope axis_value;
+                std::array<float, 3> zyz;
+                Slope Xaxis;
+                Slope Yaxis;
+                Slope Zaxis;
             };
         };
-        explicit Actions(action_status status = action_status::Joints, std::array<float, 4> speed=default_action_speed)
-            : status(status)
-            , speed(speed) {};
         explicit Actions(const std::array<float, 6>& joints, std::array<float, 4> speed=default_action_speed)
             : status(action_status::Joints)
             , speed(speed)
             , joints(joints) {};
-        explicit Actions(const std::initializer_list<float>& joints, std::array<float, 4> speed=default_action_speed)
-            : status(action_status::Joints)
-            , speed(speed) {
-            uint8_t index = 0;
-            for (auto data : joints) {
-                this->joints[index++] = data;
-                if (index > 5) {
-                    break;
-                }
-            }
-        };
 
-        explicit Actions(const Slope& target, action_status status, std::array<float, 4> speed=default_action_speed)
-            : status(status)
+        explicit Actions(const std::array<float, 3>& posi, const std::array<float, 3>& post, std::array<float, 3> step=default_pos_step)
+            : status(action_status::XYZ)
             , init(false)
-            , speed(speed)
-            , pos()
-            , axis_value(target) {};
+            , Xaxis(step[0],step[0],posi[0])
+            , Yaxis(step[1],step[1],posi[1])
+            , Zaxis(step[2],step[2],posi[2])
+            , zyz(post)
+            {};
     };
 
     struct ActionsGroup {

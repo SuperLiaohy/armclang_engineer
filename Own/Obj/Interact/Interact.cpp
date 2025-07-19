@@ -236,16 +236,19 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 Arm.target_speed[1] = actions->speed[1];
                 Arm.target_speed[0] = actions->speed[0];
                 break;
-            case interact_dep::action_status::CartesianX_z: {
-                if (actions->init == false) {
-                    Arm.fkine(actions->pos);
-                    actions->axis_value.value_set(actions->pos[2]);
+            case interact_dep::action_status::XYZ: {
+                std::array<float, 3> posi;
+                if (!actions->init) {
+                    Arm.fkine(posi);
+                    actions->Xaxis.value_set(posi[0]);
+                    actions->Yaxis.value_set(posi[1]);
+                    actions->Zaxis.value_set(posi[2]);
                     actions->init = true;
                 }
-                actions->pos[2] = actions->axis_value.update();
-                if (!Arm.ikine(actions->pos,{deg2rad(0),deg2rad(90),deg2rad(0)})) {
-                    // Arm.fkine(pos);
-                } else {
+                posi[0] = actions->Xaxis.update();
+                posi[1] = actions->Yaxis.update();
+                posi[2] = actions->Zaxis.update();
+                if (Arm.ikine(posi,{deg2rad(actions->zyz[0]),deg2rad(actions->zyz[1]),deg2rad(actions->zyz[2])})) {
                     joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
                     joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
                     joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
@@ -257,70 +260,13 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 }
                 Arm.target_speed = {roboarm_dep::default_speed};
             } break;
-            case interact_dep::action_status::CartesianZ_z: {
-                if (actions->init == false) {
-                    Arm.fkine(actions->pos);
-                    actions->axis_value.value_set(actions->pos[2]);
-                    actions->init = true;
-                }
-                actions->pos[2] = actions->axis_value.update();
-                if (!Arm.ikine(actions->pos, {deg2rad(0),deg2rad(180),deg2rad(0)})) {
-                    // Arm.fkine(pos);
-                } else {
-                    joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
-                    joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
-                    joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
-                    joint[3] = limited<float>(Arm.q[3] * my_math::r2d, limitation.joint4.min, limitation.joint4.max);
-                    joint[4] = limited<float>(Arm.q[4] * my_math::r2d, limitation.joint5.min, limitation.joint5.max);
-                    joint[5] = limited<float>(Arm.q[5] * my_math::r2d, limitation.joint6.min, limitation.joint6.max);
-                    // joint[4] = limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
-                    //                           limitation.joint5.max);
-                }
-                Arm.target_speed = {roboarm_dep::default_speed};
-            } break;
-            case interact_dep::action_status::CartesianX_x: {
-                if (actions->init == false) {
-                    Arm.fkine(actions->pos);
-                    actions->axis_value.value_set(actions->pos[0]);
-                    actions->init = true;
-                }
-                actions->pos[0] = actions->axis_value.update();
-                if (!Arm.ikine(actions->pos)) {
-                    // Arm.fkine(pos);
-                } else {
-                    joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
-                    joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
-                    joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
-                    joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
-                                              limitation.joint5.max);
-                }
-                Arm.target_speed = {roboarm_dep::default_speed};
-            } break;
-            case interact_dep::action_status::CartesianZ_x: {
-                if (actions->init == false) {
-                    Arm.fkine(actions->pos);
-                    actions->axis_value.value_set(actions->pos[0]);
-                    actions->init = true;
-                }
-                actions->pos[0] = actions->axis_value.update();
-                if (!Arm.ikine(actions->pos)) {
-                    // Arm.fkine(pos);
-                } else {
-                    joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
-                    joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
-                    joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
-                    joint[4] = limited<float>(180 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
-                                              limitation.joint5.max);
-                }
-                Arm.target_speed = {roboarm_dep::default_speed};
-            } break;
             default: break;
         }
         if (robo_arm.mode == robo_mode::ACTIONS) {
             if (actions->status == action_status::Joints) {
                 robo_arm.mode = robo_mode::NONE;
             } else {
-                if (actions->axis_value.is_arrive()) {
+                if (actions->Xaxis.is_arrive()&&actions->Yaxis.is_arrive()&&actions->Zaxis.is_arrive()) {
                     robo_arm.mode = robo_mode::NONE;
                 }
             }

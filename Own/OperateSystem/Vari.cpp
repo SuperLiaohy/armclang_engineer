@@ -89,9 +89,9 @@ OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 7
                   6, Slope(1.3, 0), false,4000,-4000,
                   &canPlus3,9
 );
-
-interact_dep::Actions get_silver_mine({0,33.6004066,114.50135,0,27.570,0}, {480, 720, 360, 360});
-interact_dep::Actions get_silver_mine_z(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ_z);
+// 349.146 0 -131.812
+interact_dep::Actions get_silver_mine({0,33.6004066,114.50135,0,31.870,0}, {480, 720, 360, 360});
+interact_dep::Actions get_silver_mine_z(std::array<float,3>{349.146f,0.f,-131.812+300},std::array<float,3>{0.f,180.f,0.f});
 
 interact_dep::Actions exchange_left({-17.9960938, 36.7366142, 35.3361511, -89.4694138, -89.9465207, 52.6248474});
 interact_dep::Actions exchange_right({17.9960938,36.7366142,35.3361511,89.4694138,-89.9465207,-52.6248474});
@@ -99,8 +99,9 @@ interact_dep::Actions exchange_right({17.9960938,36.7366142,35.3361511,89.469413
 interact_dep::Actions reset1({0, -55, 145, 0, 0, 0}, {720,720,360,720});
 interact_dep::Actions reset2({0, -16.3, 144.8, 0, 0, 0}, {720, 720, 360, 720});
 
+// 661.090, 0, 23.632
 interact_dep::Actions arm_get_gold({0, 53.8834076, 66.5721664, 0, -30.4555893, 0}, {480, 720, 900, 720});
-interact_dep::Actions arm_get_gold_z(Slope(0.1, 0.15, 120), interact_dep::action_status::CartesianX_z);
+interact_dep::Actions arm_get_gold_z(std::array<float,3>{661.090, 0, 23.632+80},std::array<float,3>{0.f,90.f,0.f});
 
 // **************************************************************************************************** //
 // OK
