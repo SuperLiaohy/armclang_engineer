@@ -46,7 +46,7 @@ void ImageTransTask() {
                     if (image_trans.rb.size() >= frame.header.data_length + 4) {
                         image_trans.rb.get_data(reinterpret_cast<uint8_t *>(&frame.cmd_id),
                                                 frame.header.data_length + 4);
-                        if (verify_crc8_check_sum(reinterpret_cast<uint8_t *>(&frame), frame.header.data_length + 9)) {
+                        if (verify_crc16_check_sum(reinterpret_cast<uint8_t *>(&frame), frame.header.data_length + 9)) {
                             switch (frame.cmd_id) {
                                 case 0x302:
                                     interact.receive_custom(frame.data);

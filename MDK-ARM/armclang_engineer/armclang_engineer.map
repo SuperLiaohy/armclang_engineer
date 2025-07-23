@@ -5555,9 +5555,9 @@ Section Cross References
     imagetranstask.o(.text._Z14ImageTransTaskv) refers to crc.o(.text._ZN3crc21verify_crc8_check_sumEPhj) for crc::verify_crc8_check_sum(unsigned char*, unsigned int)
     imagetranstask.o(.text._Z14ImageTransTaskv) refers to imagetranstask.o(.text._ZNK10RingBufferILj200EhEixEj) for RingBuffer<200u, unsigned char>::operator[](unsigned int) const
     imagetranstask.o(.text._Z14ImageTransTaskv) refers to imagetranstask.o(.text._ZN10RingBufferILj200EhE8add_readEj) for RingBuffer<200u, unsigned char>::add_read(unsigned int)
+    imagetranstask.o(.text._Z14ImageTransTaskv) refers to crc.o(.text._ZN3crc22verify_crc16_check_sumEPhj) for crc::verify_crc16_check_sum(unsigned char*, unsigned int)
     imagetranstask.o(.text._Z14ImageTransTaskv) refers to interact.o(.text._ZN8Interact14receive_customEPh) for Interact::receive_custom(unsigned char*)
     imagetranstask.o(.text._Z14ImageTransTaskv) refers to lkmotor.o(.text._ZN5CountppEv) for Count::operator++()
-    imagetranstask.o(.text._Z14ImageTransTaskv) refers to crc.o(.text._ZN3crc22verify_crc16_check_sumEPhj) for crc::verify_crc16_check_sum(unsigned char*, unsigned int)
     imagetranstask.o(.text._Z14ImageTransTaskv) refers to imagetrans.o(.text._ZN10ImageTrans18update_rc_keyboardEPhR8KeyBoard) for ImageTrans::update_rc_keyboard(unsigned char*, KeyBoard&)
     imagetranstask.o(.text._Z14ImageTransTaskv) refers to imagetranstask.o(.text._ZN10ImageTrans9is_changeEv) for ImageTrans::is_change()
     imagetranstask.o(.text._Z14ImageTransTaskv) refers to imagetrans.o(.text._ZN10ImageTrans21transmit_custom_frameEv) for ImageTrans::transmit_custom_frame()
