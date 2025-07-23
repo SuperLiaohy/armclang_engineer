@@ -1,64 +1,96 @@
-//
-// Created by liaohy on 7/14/25.
-//
-
 #pragma once
 
 #include <cstdint>
 #include <atomic>
-#include <string.h>
+#include <cstring>
 
 template<uint32_t N, typename T = uint8_t>
 class RingBuffer {
 public:
     RingBuffer() : read_handle(0), write_handle(0) {};
 
-    bool is_empty() {return write_handle.load() == read_handle.load();}
-    bool is_full() {return (write_handle.load()+1)&overall_index() == read_handle.load();}
+    bool is_empty() const { return write_handle == read_handle; }
+    bool is_full() const { return (write_handle + 1) & mask() == read_handle; }
 
-    static consteval uint32_t overall_index() { return up_power_of_2(N)-1; }
-    uint32_t get_index_len() { return (write_handle.load()-read_handle.load()) & overall_index();}
-    uint32_t get_space_len() { return overall_index() - ((write_handle.load()-read_handle.load()) & overall_index());}
-    uint32_t get_read_index() { return  read_handle.load();}
-    uint32_t get_write_index() { return write_handle.load();}
+    // 返回缓冲区掩码（总是 2 的幂次方减 1）
+    static consteval uint32_t mask() { return capacity() - 1; }
 
-    T operator[](const uint32_t index) { return *(buffer+((get_read_index()+index)&overall_index())); }
-    T get() {return buffer[read_handle.load()]; }
+    // 返回缓冲区实际容量（向上取整为 2 的幂次方）
+    static consteval uint32_t capacity() { return up_power_of_2(N); }
+
+    // 返回当前缓冲区中的元素数量
+    uint32_t size() const {
+        return (capacity() + write_handle - read_handle) & mask();
+    }
+
+    // 返回当前可用空间数量
+    uint32_t available() const {
+        return mask() - size();
+    }
+
+    uint32_t get_read_index() const { return read_handle; }
+    uint32_t get_write_index() const { return write_handle; }
+
+    // 安全地访问元素，确保索引在范围内
+    T operator[](const uint32_t index) const {
+        if (index >= size()) {
+            // 可以选择抛出异常或返回默认值
+            return T{};
+        }
+        return buffer[(read_handle + index) & mask()];
+    }
+
+    T get() const { return buffer[read_handle]; }
+    T* get_read_point() { return &buffer[read_handle]; }
 
     bool write_data(const T* data, uint32_t len) {
-        if (get_space_len() < len)
+        if (available() < len)
             return false;
-        if (get_space_len() >= len) {
-            memcpy(&buffer[write_handle.load()], data, len*sizeof(T));
-            add_write(len);
-            return true;
+
+        const uint32_t first_chunk = std::min(capacity() - (write_handle & mask()), len);
+        const uint32_t second_chunk = len - first_chunk;
+
+        // 复制第一段数据（可能是全部）
+        std::memcpy(&buffer[write_handle & mask()], data, first_chunk * sizeof(T));
+
+        // 如果有第二段数据（环绕情况），复制到缓冲区开头
+        if (second_chunk > 0) {
+            std::memcpy(buffer, data + first_chunk, second_chunk * sizeof(T));
         }
-        memcpy(&buffer[write_handle.load()], data, (up_power_of_2(N) - get_write_index())*sizeof(T));
-        memcpy(buffer, data + up_power_of_2(N) - get_write_index(), (len-(up_power_of_2(N)-get_write_index()))*sizeof(T));
-        add_write(len);
+
+        // 更新写指针
+        write_handle = (write_handle + len) & mask();
         return true;
     }
 
-    bool get_data(T*data, uint32_t len) {
-        if (get_index_len() < len)
+    bool get_data(T* data, uint32_t len) {
+        if (size() < len)
             return false;
-        if (read_handle.load() < write_handle.load()) {
-            memcpy(data, &buffer[read_handle.load()], len*sizeof(T));
-            add_read(len);
-            return true;
+
+        const uint32_t first_chunk = std::min(capacity() - (read_handle & mask()), len);
+        const uint32_t second_chunk = len - first_chunk;
+
+        // 复制第一段数据（可能是全部）
+        std::memcpy(data, &buffer[read_handle & mask()], first_chunk * sizeof(T));
+
+        // 如果有第二段数据（环绕情况），从缓冲区开头复制
+        if (second_chunk > 0) {
+            std::memcpy(data + first_chunk, buffer, second_chunk * sizeof(T));
         }
-        memcpy(data, &buffer[read_handle.load()], (up_power_of_2(N) - get_read_index())*sizeof(T));
-        memcpy(data + up_power_of_2(N) - get_read_index(), buffer, (len-(up_power_of_2(N)-get_read_index()))*sizeof(T));
-        add_read(len);
+
+        // 更新读指针
+        read_handle = (read_handle + len) & mask();
         return true;
     }
 
-    void add_write(uint32_t len) {write_handle.store((get_write_index()+len)&overall_index());}
-    void add_read(uint32_t len = 1) {read_handle.store((get_read_index()+len)&overall_index());}
+    void add_write(uint32_t len) { write_handle = (write_handle + len) & mask(); }
+    void add_read(uint32_t len = 1) { read_handle = (read_handle + len) & mask(); }
+
     void reset() {
-        read_handle.store(0) ;
-        write_handle.store(0);
+        read_handle = 0;
+        write_handle = 0;
     }
+
 private:
     static consteval uint32_t up_power_of_2(uint32_t number) {
         if (number == 0)
@@ -71,8 +103,11 @@ private:
 
     T buffer[up_power_of_2(N)];
 
-    std::atomic<uint32_t> write_handle;
-    std::atomic<uint32_t> read_handle;
+    // 考虑使用原子变量以支持多线程访问
+    // 对于多线程环境，取消下面的注释并注释掉普通变量
+    // std::atomic<uint32_t> write_handle;
+    // std::atomic<uint32_t> read_handle;
 
-
+    uint32_t write_handle;
+    uint32_t read_handle;
 };

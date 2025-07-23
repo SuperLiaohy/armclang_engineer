@@ -64,37 +64,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
     } else if (huart == interact.image_trans.uartPlus.uart) {
         using namespace crc;
         ++interact.image_trans.uartPlus.rx_cnt;
-        // for (int i = 0; i < Size - 9; ++i) {
-            uint8_t* data = &interact.image_trans.uartPlus.rx_buffer[0];
-            if (data[0] == 0xA5) {
-                uint16_t len                   = (data[2] << 8 | data[1]);
-                interact.image_trans.rx_cmd_id = data[6] << 8 | data[5];
-                if (verify_crc16_check_sum(data, len + 9)) {
-                    switch (interact.image_trans.rx_cmd_id) {
-                        case 0x302:
-                            interact.receive_custom(&data[7]);
-                            ++interact.image_trans.cnt;
-                            break;
-                        case 0x304:
-                            // interact.image_trans.update_keyboard(interact.key_board);
-                            
-                            break;
-                        case 0x306:
-                            break;
-                        case 0x309:
-                            break;
-                        default:
-                            break;
-                    }
-                    // i+=len+8;
-                }
-            // }
-            if (data[0] == 0xA9 && data[1] == 0x53) {
-                if (verify_crc16_check_sum(data,21)) {
-                    // interact.image_trans.update_rc_keyboard(data,interact.key_board);
-                }
-            }
-        }
+        interact.image_trans.rb.write_data(interact.image_trans.uartPlus.rx_buffer, Size);
         interact.image_trans.start_receive();
     } else if (huart == interact.sub_board.uartPlus.uart) {
         ++interact.sub_board.uartPlus.rx_cnt;

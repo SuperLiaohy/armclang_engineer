@@ -105,6 +105,7 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
   ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
+  ..\Own\Mod\RingBuffer\RingBuffer.h \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\App\OneStepGet\OneStepGet.hpp \

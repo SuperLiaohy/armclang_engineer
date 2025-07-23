@@ -72,6 +72,9 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Crc\Crc.hpp \
+  ..\Own\Mod\RingBuffer\RingBuffer.h ..\Own\Obj\RoboArm\RoboArm.hpp \
+  ..\Own\App\Motor\Control\lkPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\Control\..\Motor.tpp \
   ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\App\Fram\Fram.hpp \
   ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
   ..\Own\Mod\Matrix\Matrix.hpp \
@@ -98,18 +101,16 @@ armclang_engineer/errortask.o: ..\Own\OperateSystem\Thread\ErrorTask.cpp \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\dsp\quaternion_math_functions.h \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\dsp\window_functions.h \
   ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006Diff.hpp \
-  ..\Own\App\Motor\Control\PosPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
-  ..\Own\App\Motor\Control\..\Motor.tpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp \
   ..\Own\App\Motor\Control\SpeedPidControl.hpp \
   ..\Own\App\Motor\Param\M2006Diff.hpp \
   ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Control\lkPidControl.hpp \
-  ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\Mod\Slope\Slope.hpp \
-  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
+  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\Buzzer\Buzzer.hpp ..\Core\Inc\tim.h \
-  ..\Own\Mod\RingBuffer\RingBuffer.h ..\Own\Bsp\WDG\SuperIWDG.hpp \
-  ..\Core\Inc\iwdg.h ..\Own\App\OneStepGet\OneStepGet.hpp \
+  ..\Own\Bsp\WDG\SuperIWDG.hpp ..\Core\Inc\iwdg.h \
+  ..\Own\App\OneStepGet\OneStepGet.hpp \
   ..\Own\App\CanServos\CanServos.hpp

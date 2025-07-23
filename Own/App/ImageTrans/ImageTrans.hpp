@@ -7,12 +7,20 @@
 #include "Uart/SuperUart.hpp"
 #include "Key/Key.hpp"
 #include "Crc/Crc.hpp"
-#include "RoboArm/roboarm_dep.hpp"
+#include "RingBuffer/RingBuffer.h"
 
 class ImageTrans {
 public:
     constexpr static uint8_t SOF = 0xA5; // 帧头
-
+    enum class State {
+        GET_FULL_FRAME,
+        RC_FRAME,
+        WAIT_ENOUGH_HEADER,
+        WAIT_FRAME_SOF,
+        WAIT_FULL_FRAME,
+        ERROR_CRC8,
+        ERROR_CRC16,
+    };
 #pragma pack(push, 1)
     struct user_custom_rx_status {
         uint8_t map_back_over: 1;
@@ -24,7 +32,7 @@ public:
 #pragma pack(pop)
 
 #pragma pack(push, 1)
-    struct user_custom_rx_data {
+    struct user_custom_rx_form {
         user_custom_rx_status s;
         std::array<int16_t, 6> joint;
     };
@@ -39,7 +47,7 @@ public:
 #pragma pack(pop)
 
 #pragma pack(push, 1)
-    struct user_custom_tx_data {
+    struct user_custom_tx_form {
         user_custom_tx_status s;
         std::array<int16_t, 6> joint;
     };
@@ -51,6 +59,14 @@ public:
         uint16_t data_length;
         uint8_t seq;
         uint8_t crc8;
+    };
+#pragma pack(pop)
+
+#pragma pack(push, 1)
+    struct frame_template {
+        frame_header header;
+        uint16_t cmd_id;
+        uint8_t data[40];   // 实际最大为自定义控制器30字节。加上crc16应该为32字节。
     };
 #pragma pack(pop)
 
@@ -79,7 +95,16 @@ public:
         uartPlus.receive_dma_idle(500);
     };
 
-    user_custom_rx_data user_custom_rx_data{};
+    RingBuffer<200> rb;
+    void set_state(ImageTrans::State s) { this->s = s; state_change = true;}
+    ImageTrans::State read_state() { return s; }
+    bool is_change() {
+        auto is_change = state_change;
+        state_change = false;
+        return is_change;
+    }
+
+    user_custom_rx_form user_custom_rx_data{};
     custom_tx_frame* p_custom_tx_frame{};
 
     uint16_t rx_cmd_id{};//命令ID
@@ -87,7 +112,9 @@ public:
 
     Count cnt;
 private:
-    user_custom_tx_data user_custom_tx_data{};
+    user_custom_tx_form user_custom_tx_data{};
+    State s;
+    bool state_change;
 };
 
 

@@ -10,7 +10,7 @@
 // __attribute__((section(".RAM_D1"))) static uint8_t image_trans_rx_buffer[500];
 // __attribute__((section(".RAM_D1"))) static uint8_t image_trans_tx_buffer[500];
 
-ImageTrans::ImageTrans(UART_HandleTypeDef* huart) : uartPlus(huart, 500, 100) {
+ImageTrans::ImageTrans(UART_HandleTypeDef* huart) : uartPlus(huart, 500, 100), s(State::WAIT_ENOUGH_HEADER), state_change(false) {
     // uartPlus.rx_buffer = image_trans_rx_buffer;
     // uartPlus.rx_buffer = image_trans_tx_buffer;
     p_custom_tx_frame = reinterpret_cast<custom_tx_frame*>(uartPlus.tx_buffer);
