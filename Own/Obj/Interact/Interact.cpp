@@ -154,8 +154,8 @@ void Interact::update_roboArm(RoboArm& Arm) {
                sub_board.set_main_valve(0);
                sub_board.set_lf_valve(0);
                sub_board.set_rf_valve(0);
-               sub_board.set_lb_valve(0);
-               sub_board.set_rb_valve(0);
+//               sub_board.set_lb_valve(0);
+//               sub_board.set_rb_valve(0);
             }
             receive_rc();
             break;

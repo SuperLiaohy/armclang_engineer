@@ -60,9 +60,9 @@ void robo_arm_shift_q_callback(KeyEventType event) {
         case KeyEvent_OnClick:
             interact.sub_board.set_pump(0);
             interact.sub_board.set_main_valve(0);
-            interact.sub_board.set_lb_valve(0);
+//            interact.sub_board.set_lb_valve(0);
             interact.sub_board.set_lf_valve(0);
-            interact.sub_board.set_rb_valve(0);
+//            interact.sub_board.set_rb_valve(0);
             interact.sub_board.set_rf_valve(0);
             break;
         default: break;
