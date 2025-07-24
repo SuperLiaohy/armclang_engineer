@@ -3,10 +3,10 @@
 //
 #pragma once
 
-#include "Chassis/Chassis.hpp"
 #include "Interact/Interact_dep.hpp"
-#include "PC/PC.hpp"
-#include "SubBoard/SubBoard.hpp"
+
+class Chassis;
+class RoboArm;
 
 class Interact {
 public:
@@ -60,3 +60,6 @@ public:
 
     void transmit_relative_pos(const std::array<float, 6>& pos);
 };
+
+extern Interact interact;
+

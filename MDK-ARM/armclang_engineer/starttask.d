@@ -68,13 +68,28 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
   ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
+  ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\OwnFunc\OwnFunc.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\App\Motor\Control\lkPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\Mod\OwnFunc\OwnFunc.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006Diff.hpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
   ..\Own\App\Motor\Control\..\Motor.tpp \
-  ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\App\Fram\Fram.hpp \
-  ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
+  ..\Own\App\Motor\Control\SpeedPidControl.hpp \
+  ..\Own\App\Motor\Param\M2006Diff.hpp \
+  ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \
+  ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
+  ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
+  ..\Own\App\Motor\Control\lkPidControl.hpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp \
+  ..\Own\OperateSystem\Thread\CppTask.hpp \
+  ..\Own\Obj\Interact\Interact.hpp ..\Own\App\Judge\ui.hpp \
+  ..\Own\App\Pump\Pump.hpp ..\Own\Bsp\GPIO\SuperGPIO.hpp \
+  ..\Core\Inc\gpio.h ..\Own\App\RGBLED\RGBLED.hpp \
+  ..\Own\Bsp\SPI\SuperSPI.hpp ..\Core\Inc\spi.h \
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\RoboArm\roboarm_dep.hpp \
+  ..\Own\App\Fram\Fram.hpp ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
   ..\Own\Mod\Matrix\Matrix.hpp \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\arm_math.h \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\arm_math_types.h \
@@ -98,24 +113,8 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\dsp\filtering_functions.h \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\dsp\quaternion_math_functions.h \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\dsp\window_functions.h \
-  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006Diff.hpp \
-  ..\Own\App\Motor\Control\PosPidControl.hpp \
-  ..\Own\App\Motor\Control\SpeedPidControl.hpp \
-  ..\Own\App\Motor\Param\M2006Diff.hpp \
-  ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \
-  ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
-  ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\Mod\Slope\Slope.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
-  ..\Own\OperateSystem\Thread\CppTask.hpp \
-  ..\Own\Obj\Interact\Interact.hpp ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp ..\Own\App\Judge\ui.hpp \
-  ..\Own\App\Judge\referee_system.h ..\Own\App\Pump\Pump.hpp \
-  ..\Own\Bsp\GPIO\SuperGPIO.hpp ..\Core\Inc\gpio.h \
-  ..\Own\App\RGBLED\RGBLED.hpp ..\Own\Bsp\SPI\SuperSPI.hpp \
-  ..\Core\Inc\spi.h ..\Own\OperateSystem\ThreadConfig.h \
-  ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
-  ..\Own\Bsp\DWT\SuperDWT.hpp ..\USB_DEVICE\App\usb_device.h \
-  ..\Own\Bsp\WDG\SuperIWDG.hpp ..\Core\Inc\iwdg.h \
-  ..\Own\App\OneStepGet\OneStepGet.hpp \
+  ..\Own\OperateSystem\ThreadConfig.h ..\Own\App\W25Q64\W25Q64.hpp \
+  ..\Core\Inc\octospi.h ..\Own\Bsp\DWT\SuperDWT.hpp \
+  ..\USB_DEVICE\App\usb_device.h ..\Own\Bsp\WDG\SuperIWDG.hpp \
+  ..\Core\Inc\iwdg.h ..\Own\App\OneStepGet\OneStepGet.hpp \
   ..\Own\App\CanServos\CanServos.hpp

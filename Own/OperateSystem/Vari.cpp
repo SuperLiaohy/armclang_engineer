@@ -9,7 +9,6 @@
 #include "GPIO/SuperGPIO.hpp"
 #include "Heap/CustomHeap.hpp"
 #include "Interact/Interact.hpp"
-#include "Judge/referee_system.h"
 #include "Judge/ui.hpp"
 #include "OneStepGet/OneStepGet.hpp"
 #include "RGBLED/RGBLED.hpp"

@@ -3,9 +3,9 @@
 //
 #include "CppTask.hpp"
 #include "Interact/Interact.hpp"
-#include "Judge/ui.hpp"
 #include "OneStepGet/OneStepGet.hpp"
-#include "atomic"
+#include "RoboArm/RoboArm.hpp"
+#include "Judge/ui.hpp"
 
 int32_t fps = 0;
 std::atomic<bool> ui_reset(false);

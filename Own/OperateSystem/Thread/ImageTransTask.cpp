@@ -3,7 +3,7 @@
 //
 #include "CppTask.hpp"
 #include "Interact/Interact.hpp"
-
+#include "RoboArm/RoboArm.hpp"
 uint16_t cmd_id = 0;
 uint16_t cmd    = 0;
 

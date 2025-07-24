@@ -8,8 +8,6 @@
 extern "C" {
 #endif
 #include "cmsis_os.h"
-#include "FreeRTOS.h"
-
 extern UBaseType_t StartHeapCnt;
 extern UBaseType_t LedHeapCnt;
 extern UBaseType_t CANHeapCnt;
@@ -18,8 +16,11 @@ extern UBaseType_t DetectHeapCnt;
 extern UBaseType_t ChassisHeapCnt;
 extern UBaseType_t RemoteCtrlHeapCnt;
 extern UBaseType_t IMUHeapCnt;
+
 extern osMutexId CAN1MutexHandle;
+
 extern osThreadId ARM_INIT_TASKHandle;
+extern osThreadId ERROR_TASKHandle;
 #ifdef __cplusplus
 }
 #endif

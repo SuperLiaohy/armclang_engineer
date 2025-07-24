@@ -27,5 +27,7 @@ void ArmInitTask() {
     buzzer.CleanMusic();
     buzzer.PushMusic<24>(Buzzer::melody);
     arminit_flag.store(true);
+
+    ARM_INIT_TASKHandle = NULL;
     vTaskDelete(NULL);
 }

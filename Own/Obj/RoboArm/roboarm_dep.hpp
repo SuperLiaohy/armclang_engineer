@@ -8,13 +8,11 @@
 #include "MyMath/MyMath.hpp"
 #include "Slope/Slope.hpp"
 #include "array"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include "arm_math.h"
 #include "cmsis_os.h"
-#include "stm32h7xx_hal.h"
 #ifdef __cplusplus
 }
 #endif

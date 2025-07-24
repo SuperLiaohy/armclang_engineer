@@ -3,24 +3,11 @@
 //
 
 #include "Interact.hpp"
-#include "Chassis/Chassis.hpp"
-#include "MyMath/MyMath.hpp"
 #include "RoboArm/RoboArm.hpp"
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "FreeRTOS.h"
-#include "cmsis_os.h"
-
-extern osMutexId CAN1MutexHandle;
-
-#ifdef __cplusplus
-}
-#endif
-
+#include "Chassis/Chassis.hpp"
 #include "Buzzer/Buzzer.hpp"
 
-void Interact::receive_cdc(uint8_t* data) {
+void Interact::receive_cdc(uint8_t *data) {
     using namespace interact_dep;
     if (robo_arm.mode == robo_mode::VISION) {
         if (data[0] == pc.head && data[sizeof(PC::rx_frame) - 1] == pc.tail) {
@@ -39,25 +26,28 @@ void Interact::receive_rc() {
     using namespace interact_dep;
     using namespace roboarm_dep;
     using namespace my_math;
-
     if (robo_arm.mode == robo_mode::NORMAL1) {
         joint[3] = joint[3] - RemoteControl::addSpeed(remote_control.rcInfo.ch1, 0.005) * limitation.joint4.max;
-        joint[2] = limited<float>(joint[2] - RemoteControl::addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max,
-                                  limitation.joint3.min, limitation.joint3.max);
-        joint[1] = limited<float>(joint[1] + RemoteControl::addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max,
-                                  limitation.joint2.min, limitation.joint2.max);
-        joint[0] = limited<float>(joint[0] + RemoteControl::addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max,
-                                  limitation.joint1.min, limitation.joint1.max);
+        joint[2] = limited<float>(
+                joint[2] - RemoteControl::addSpeed(remote_control.rcInfo.ch2, 0.005) * limitation.joint3.max,
+                limitation.joint3.min, limitation.joint3.max);
+        joint[1] = limited<float>(
+                joint[1] + RemoteControl::addSpeed(remote_control.rcInfo.ch4, 0.01) * limitation.joint2.max,
+                limitation.joint2.min, limitation.joint2.max);
+        joint[0] = limited<float>(
+                joint[0] + RemoteControl::addSpeed(remote_control.rcInfo.ch3, 0.01) * limitation.joint1.max,
+                limitation.joint1.min, limitation.joint1.max);
     } else if (robo_arm.mode == robo_mode::NORMAL2) {
         // pitch
-        joint[4] = limited<float>(joint[4] + RemoteControl::addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max,
-                                  limitation.joint5.min, limitation.joint5.max);
+        joint[4] = limited<float>(
+                joint[4] + RemoteControl::addSpeed(remote_control.rcInfo.ch2, 0.01) * limitation.joint5.max,
+                limitation.joint5.min, limitation.joint5.max);
         // yaw
         joint[5] = joint[5] + RemoteControl::addSpeed(remote_control.rcInfo.ch1, 0.01) * limitation.joint6.max;
     }
 }
 
-void Interact::receive_xyz(RoboArm& Arm) {
+void Interact::receive_xyz(RoboArm &Arm) {
     using namespace interact_dep;
     using namespace roboarm_dep;
     using namespace my_math;
@@ -65,7 +55,7 @@ void Interact::receive_xyz(RoboArm& Arm) {
         remote_control.pos[0] += RemoteControl::addSpeed(remote_control.rcInfo.ch1, 2.5);
         remote_control.pos[1] += RemoteControl::addSpeed(remote_control.rcInfo.ch3, 2.5);
         remote_control.pos[2] += RemoteControl::addSpeed(remote_control.rcInfo.ch2, 2.5);
-        if (!Arm.ikine(remote_control.pos, {deg2rad(0),deg2rad(90),deg2rad(0)})) {
+        if (!Arm.ikine(remote_control.pos, {deg2rad(0), deg2rad(90), deg2rad(0)})) {
             Arm.fkine(remote_control.pos);
         } else {
             joint[0] = limited<float>(Arm.q[0] * r2d, limitation.joint1.min, limitation.joint1.max);
@@ -74,7 +64,6 @@ void Interact::receive_xyz(RoboArm& Arm) {
             joint[3] = limited<float>(Arm.q[3] * r2d, limitation.joint4.min, limitation.joint4.max);
             joint[4] = limited<float>(Arm.q[4] * r2d, limitation.joint5.min, limitation.joint5.max);
             joint[5] = limited<float>(Arm.q[5] * r2d, limitation.joint6.min, limitation.joint6.max);
-            // joint[4] = limited<float>(90 - (joint[1] + joint[2]), limitation.joint5.min, limitation.joint5.max);
         }
     }
 }
@@ -83,13 +72,11 @@ void Interact::receive_kb() {
     using namespace interact_dep;
     using namespace roboarm_dep;
     using namespace my_math;
-    // if (robo_arm.mode == robo_mode::KEYBOARD_PITCH) {
     joint[4] = limited<float>(joint[4] + key_board.mouse.z * scale(32767, 1) * limitation.joint5.max,
                               limitation.joint5.min, limitation.joint5.max);
-    // }
 }
 
-void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
+void Interact::transmit_relative_pos(const std::array<float, 6> &pos) {
     using namespace my_math;
     pc.tx_frame.data.joint1.angle = pos[0] * d2b2;
     pc.tx_frame.data.joint2.angle = pos[1] * d2b2;
@@ -97,15 +84,17 @@ void Interact::transmit_relative_pos(const std::array<float, 6>& pos) {
     pc.tx_frame.data.joint4.angle = pos[3] * d2b2;
     pc.tx_frame.data.joint5.angle = pos[4] * scale(360, 8192);
     pc.tx_frame.data.joint6.angle = static_cast<int>((pos[5] * scale(360, 8192))) % 8192;
-    pc.transmit(reinterpret_cast<uint8_t*>(&pc.tx_frame), sizeof(pc.tx_frame));
+    pc.transmit(reinterpret_cast<uint8_t *>(&pc.tx_frame), sizeof(pc.tx_frame));
 }
 
 void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);
-void Interact::receive_custom(uint8_t* data) {
+
+void Interact::receive_custom(uint8_t *data) {
     using namespace interact_dep;
     auto last_s = ImageTrans::user_custom_rx_status(image_trans.user_custom_rx_data.s);
-    memcpy(reinterpret_cast<uint8_t*>(&image_trans.user_custom_rx_data), data, sizeof(ImageTrans::user_custom_rx_data));
+    memcpy(reinterpret_cast<uint8_t *>(&image_trans.user_custom_rx_data), data,
+           sizeof(ImageTrans::user_custom_rx_data));
     if (robo_arm.mode == robo_mode::CUSTOM) {
         if (image_trans.user_custom_rx_data.s.pump != last_s.pump) { air_right_callback(KeyEvent_OnClick); }
         if (image_trans.user_custom_rx_data.s.valve != last_s.valve) { air_left_callback(KeyEvent_OnClick); }
@@ -120,24 +109,18 @@ void Interact::receive_custom(uint8_t* data) {
     }
 }
 
-void Interact::update_roboArm(RoboArm& Arm) {
+void Interact::update_roboArm(RoboArm &Arm) {
     using namespace my_math;
     switch (robo_arm.mode) {
         case interact_dep::robo_mode::NORMAL1:
             if (robo_arm.last_mode != interact_dep::robo_mode::NORMAL1) {
-                joint[0] = Arm.relative_pos[0];
-                joint[1] = Arm.relative_pos[1];
-                joint[2] = Arm.relative_pos[2];
-                joint[3] = Arm.relative_pos[3];
+                joint = Arm.relative_pos;
             }
             receive_rc();
             break;
         case interact_dep::robo_mode::NORMAL2:
             if (robo_arm.last_mode != interact_dep::robo_mode::NORMAL2) {
-                joint[0] = Arm.relative_pos[0];
-                joint[1] = Arm.relative_pos[1];
-                joint[2] = Arm.relative_pos[2];
-                joint[3] = Arm.relative_pos[3];
+                joint = Arm.relative_pos;
             }
             if (remote_control.rcInfo.ch3 < -500) {
                 sub_board.set_pump(1);
@@ -148,14 +131,10 @@ void Interact::update_roboArm(RoboArm& Arm) {
                 sub_board.set_main_valve(1);
                 sub_board.set_lf_valve(1);
                 sub_board.set_rf_valve(1);
-//                interact.sub_board.set_lb_valve(1);
-//                interact.sub_board.set_rb_valve(1);
             } else if (remote_control.rcInfo.ch4 > 500) {
-               sub_board.set_main_valve(0);
-               sub_board.set_lf_valve(0);
-               sub_board.set_rf_valve(0);
-//               sub_board.set_lb_valve(0);
-//               sub_board.set_rb_valve(0);
+                sub_board.set_main_valve(0);
+                sub_board.set_lf_valve(0);
+                sub_board.set_rf_valve(0);
             }
             receive_rc();
             break;
@@ -163,11 +142,12 @@ void Interact::update_roboArm(RoboArm& Arm) {
             if (robo_arm.last_mode != interact_dep::robo_mode::XYZ) { Arm.fkine(remote_control.pos); }
             receive_xyz(Arm);
             break;
-        default: break;
+        default:
+            break;
     }
 }
 
-void Interact::update_chassis(Chassis& cha) {
+void Interact::update_chassis(Chassis &cha) {
     using namespace chassis_dep;
     using namespace my_math;
     switch (chassis.mode) {
@@ -208,7 +188,8 @@ void Interact::update_chassis(Chassis& cha) {
             cha.move.ySlope.target_set(0);
             cha.move.wSlope.target_set(0);
             break;
-        default: break;
+        default:
+            break;
     }
 }
 
@@ -218,7 +199,8 @@ void Interact::receive_actions_group() {
         actions = actions_group->get();
     }
 }
-void Interact::receive_actions(RoboArm& Arm, float pitch) {
+
+void Interact::receive_actions(RoboArm &Arm, float pitch) {
     using namespace interact_dep;
     using namespace roboarm_dep;
     if (robo_arm.mode == robo_mode::ACTIONS || robo_arm.mode == robo_mode::ACTIONS_GROUP) {
@@ -227,13 +209,13 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 if (!actions->init) {
                     if (robo_arm.mode == robo_mode::ACTIONS_GROUP) {
                         auto time = actions_group->time_list[actions_group->index];
-                        joint_slope[0].step_set(my_abs(actions->joints[0]-Arm.relative_pos[0])/ time);
-                        joint_slope[1].step_set(my_abs(actions->joints[1]-Arm.relative_pos[1])/ time);
-                        joint_slope[2].step_set(my_abs(actions->joints[2]-Arm.relative_pos[2])/ time);
+                        joint_slope[0].step_set(my_abs(actions->joints[0] - Arm.relative_pos[0]) / time);
+                        joint_slope[1].step_set(my_abs(actions->joints[1] - Arm.relative_pos[1]) / time);
+                        joint_slope[2].step_set(my_abs(actions->joints[2] - Arm.relative_pos[2]) / time);
                     } else {
-                        joint_slope[0].step_set(my_abs(actions->joints[0]-Arm.relative_pos[0])/ actions->time);
-                        joint_slope[1].step_set(my_abs(actions->joints[1]-Arm.relative_pos[1])/ actions->time);
-                        joint_slope[2].step_set(my_abs(actions->joints[2]-Arm.relative_pos[2])/ actions->time);
+                        joint_slope[0].step_set(my_abs(actions->joints[0] - Arm.relative_pos[0]) / actions->time);
+                        joint_slope[1].step_set(my_abs(actions->joints[1] - Arm.relative_pos[1]) / actions->time);
+                        joint_slope[2].step_set(my_abs(actions->joints[2] - Arm.relative_pos[2]) / actions->time);
 
                     }
                     actions->init = true;
@@ -266,7 +248,7 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 posi[0] = actions->Xaxis.update();
                 posi[1] = actions->Yaxis.update();
                 posi[2] = actions->Zaxis.update();
-                if (Arm.ikine(posi,{deg2rad(actions->zyz[0]),deg2rad(actions->zyz[1]),deg2rad(actions->zyz[2])})) {
+                if (Arm.ikine(posi, {deg2rad(actions->zyz[0]), deg2rad(actions->zyz[1]), deg2rad(actions->zyz[2])})) {
                     joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
                     joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
                     joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);
@@ -281,14 +263,16 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 interact.joint_slope[0].step_set(0.15);
                 interact.joint_slope[1].step_set(0.15);
                 interact.joint_slope[2].step_set(0.15);
-            } break;
-            default: break;
+            }
+                break;
+            default:
+                break;
         }
         if (robo_arm.mode == robo_mode::ACTIONS) {
             if (actions->status == action_status::Joints) {
                 robo_arm.mode = robo_mode::NONE;
             } else {
-                if (actions->Xaxis.is_arrive()&&actions->Yaxis.is_arrive()&&actions->Zaxis.is_arrive()) {
+                if (actions->Xaxis.is_arrive() && actions->Yaxis.is_arrive() && actions->Zaxis.is_arrive()) {
                     robo_arm.mode = robo_mode::NONE;
                 }
             }
@@ -301,7 +285,7 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
     }
 }
 
-void Interact::set_action(interact_dep::Actions& action) {
+void Interact::set_action(interact_dep::Actions &action) {
     action.init = false;
     this->actions = &action;
     robo_arm.mode = interact_dep::robo_mode::ACTIONS;

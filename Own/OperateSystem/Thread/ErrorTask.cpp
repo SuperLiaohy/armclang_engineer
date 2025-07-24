@@ -3,31 +3,19 @@
 //
 #include "CppTask.hpp"
 #include "RGBLED/RGBLED.hpp"
-#include "RemoteControl/RemoteControl.hpp"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-extern osThreadId ERROR_TASKHandle;
-
-#ifdef __cplusplus
-}
-#endif
-#include "CAN/SuperCan.hpp"
-#include "Interact/Interact.hpp"
-#include "Motor/M2006Diff.hpp"
-#include "Motor/Motor.hpp"
 #include "Buzzer/Buzzer.hpp"
-#include "RoboArm/RoboArm.hpp"
 #include "WDG/SuperIWDG.hpp"
 #include "OneStepGet/OneStepGet.hpp"
+#include "Interact/Interact.hpp"
+#include "RoboArm/RoboArm.hpp"
 
 void ErrorTask() {
     osThreadSuspend(ERROR_TASKHandle);
-    // if (re_flag == 0) {
-    //     vTaskDelete(ARM_INIT_TASKHandle);
-    // }
+    osThreadSuspendAll();
+    if (ARM_INIT_TASKHandle != NULL) {
+         vTaskDelete(ARM_INIT_TASKHandle);
+     }
+    osThreadResumeAll();
     uint32_t time = 0;
     uint8_t red = 0;
     while (1) {

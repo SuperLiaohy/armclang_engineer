@@ -73,7 +73,6 @@
 "armclang_engineer\remotecontrol.o"
 "armclang_engineer\rgbled.o"
 "armclang_engineer\w25q64.o"
-"armclang_engineer\referee_system.o"
 "armclang_engineer\ui.o"
 "armclang_engineer\imagetrans.o"
 "armclang_engineer\subboard.o"

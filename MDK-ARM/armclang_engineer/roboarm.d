@@ -1,8 +1,7 @@
 armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
-  ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\App\Motor\Control\lkPidControl.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
-  ..\Core\Inc\fdcan.h ..\Core\Inc\main.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
+  ..\Own\Obj\RoboArm\RoboArm.hpp ..\Own\Obj\RoboArm\roboarm_dep.hpp \
+  ..\Own\App\Fram\Fram.hpp ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
+  ..\Core\Inc\main.h ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
@@ -41,21 +40,6 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_usb.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pcd_ex.h \
-  ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
-  ..\Own\Mod\CustomList\CustomList.hpp \
-  ..\Own\Mod\CustomList\LinkedList.hpp \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  ..\Core\Inc\FreeRTOSConfig.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
-  ..\Own\Mod\CustomList\SeqList.hpp ..\Own\Mod\Pid\Pid.hpp \
-  ..\Own\App\Motor\Control\..\Motor.tpp ..\Own\Mod\Detect\Detect.hpp \
-  ..\Own\Mod\Detect\DetectManager.hpp ..\Own\Mod\OwnFunc\OwnFunc.hpp \
-  ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\App\Fram\Fram.hpp \
-  ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
   ..\Own\Mod\Matrix\Matrix.hpp \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\arm_math.h \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\arm_math_types.h \
@@ -80,14 +64,28 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\dsp\quaternion_math_functions.h \
   D:\Keil_v5_Packs\ARM\CMSIS-DSP\1.16.2\Include\dsp\window_functions.h \
   ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006Diff.hpp \
-  ..\Own\App\Motor\Control\PosPidControl.hpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\App\Motor\Control\..\Motor.tpp ..\Own\Mod\Detect\Detect.hpp \
+  ..\Own\Mod\Detect\DetectManager.hpp \
+  ..\Own\Mod\CustomList\CustomList.hpp \
+  ..\Own\Mod\CustomList\LinkedList.hpp \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
+  ..\Core\Inc\FreeRTOSConfig.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
+  ..\Own\Mod\CustomList\SeqList.hpp ..\Own\Mod\OwnFunc\OwnFunc.hpp \
+  ..\Own\Mod\Count\Count.hpp ..\Own\Mod\Count\CountManager.hpp \
   ..\Own\App\Motor\Control\SpeedPidControl.hpp \
   ..\Own\App\Motor\Param\M2006Diff.hpp \
   ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
+  ..\Core\Inc\fdcan.h ..\Own\App\Motor\Control\lkPidControl.hpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\Mod\Slope\Slope.hpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \

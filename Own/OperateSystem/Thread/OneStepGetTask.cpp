@@ -2,9 +2,16 @@
 // Created by Administrator on 25-5-2.
 //
 #include "Interact/Interact.hpp"
-#include "Motor/M2006Diff.hpp"
-#include "Motor/Param/M2006Diff.hpp"
 #include "OneStepGet/OneStepGet.hpp"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include "cmsis_os.h"
+#ifdef __cplusplus
+}
+#endif
+
 
 void OneStepGetTask() {
     one_step_gets.rotate.set_target(osg::rota_init);

@@ -1,8 +1,34 @@
 #pragma once
 
-#include "referee_system.h"
-
+#include "Uart/SuperUart.hpp"
+#include "Crc/Crc.hpp"
 #include <atomic>
+
+
+/* 帧头 */
+struct frame_header
+{
+    uint8_t sof;
+    uint16_t data_length;
+    uint8_t seq;
+    uint8_t crc8;
+} __attribute__((packed));
+
+/* 机器人交互数据，发送方触发发送，频率上限为 10Hz 0x0301 */
+struct robot_interaction_data_t
+{
+    uint16_t data_cmd_id;
+    uint16_t sender_id;
+    uint16_t receiver_id;
+    uint8_t user_data[112];
+} __attribute__((packed));
+
+//0x0100 x=2 选手端删除图层
+struct interaction_layer_delete_t
+{
+    uint8_t delete_type;
+    uint8_t layer;
+} __attribute__((packed));
 
 struct basic_graphic {
     uint8_t figure_name[3];

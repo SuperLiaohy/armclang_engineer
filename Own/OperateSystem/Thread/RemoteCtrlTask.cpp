@@ -2,11 +2,11 @@
 // Created by liaohy on 24-11-15.
 //
 
-#include "Chassis/Chassis.hpp"
 #include "CppTask.hpp"
+#include "Chassis/Chassis.hpp"
 #include "Interact/Interact.hpp"
+#include "RoboArm/RoboArm.hpp"
 #include "MicroTime/MicroTime.hpp"
-#include <RemoteControl/RemoteControl.hpp>
 
 #ifdef __cplusplus
 extern "C" {

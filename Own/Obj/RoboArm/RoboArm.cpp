@@ -158,14 +158,6 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
 }
 
 void RoboArm::update_relative_pos() {
-    // relative_pos[0] = joint1.motor.m.feedback.total_position - offset.joint1;
-    //
-    // relative_pos[1] = -(joint2.external.motor.m.feedback.total_position - offset.joint2.external);
-    //
-    // relative_pos[2] = -(joint3.motor.m.feedback.total_position - offset.joint3);
-    //
-    // relative_pos[3] = joint4.motor.m.feedback.total_position - offset.joint4;
-
     relative_pos[0] = (joint1.total_position - offset.joint1);
 
     relative_pos[1] = -(joint2.external.total_position - offset.joint2.external);

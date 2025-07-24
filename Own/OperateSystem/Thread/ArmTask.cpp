@@ -11,7 +11,6 @@ void ArmTask() {
 
     while (true) {
         ++cnt;
-
         interact.receive_actions_group();
         interact.receive_actions(roboArm, imu.pitch);
         interact.receive_kb();

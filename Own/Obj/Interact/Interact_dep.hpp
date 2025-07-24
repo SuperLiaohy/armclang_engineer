@@ -6,9 +6,11 @@
 #include "CDC/SuperCDC.hpp"
 #include "CustomList/CustomList.hpp"
 #include "ImageTrans/ImageTrans.hpp"
+#include "PC/PC.hpp"
+#include "SubBoard/SubBoard.hpp"
 #include "RemoteControl/RemoteControl.hpp"
-#include "RoboArm/RoboArm.hpp"
 #include "Slope/Slope.hpp"
+#include "MyMath/MyMath.hpp"
 
 namespace interact_dep {
     enum class kb_state : uint8_t {
@@ -146,4 +148,3 @@ namespace interact_dep {
 
 } // namespace interact_dep
 
-extern Interact interact;

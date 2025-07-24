@@ -174,17 +174,14 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_A, CombineKey_None, chassis_a_callback);
     KeyBoardRegister(interact.keyList, Key_S, CombineKey_None, chassis_s_callback);
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_None, chassis_d_callback);
-
     KeyBoardRegister(interact.keyList, Key_W, CombineKey_Shift, chassis_shift_w_callback);
     KeyBoardRegister(interact.keyList, Key_A, CombineKey_Shift, chassis_shift_a_callback);
     KeyBoardRegister(interact.keyList, Key_S, CombineKey_Shift, chassis_shift_s_callback);
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_Shift, chassis_shift_d_callback);
-
     KeyBoardRegister(interact.keyList, Key_W, CombineKey_Ctrl, chassis_ctrl_w_callback);
     KeyBoardRegister(interact.keyList, Key_A, CombineKey_Ctrl, chassis_ctrl_a_callback);
     KeyBoardRegister(interact.keyList, Key_S, CombineKey_Ctrl, chassis_ctrl_s_callback);
     KeyBoardRegister(interact.keyList, Key_D, CombineKey_Ctrl, chassis_ctrl_d_callback);
-
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_None, chassis_q_callback);
 
     KeyBoardRegister(interact.keyList, Key_Q, CombineKey_Shift, robo_arm_shift_q_callback);
@@ -195,22 +192,14 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_Right, CombineKey_None, air_right_callback);
     interact.keyList[16].longPressTime = 5000;
 
-    //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, robo_arm_e_callback);
-    //    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, robo_arm_shift_e_callback);
     interact.keyList[7].longPressTime = 5000;
-    // KeyBoardRegister(interact.keyList, Key_F, CombineKey_Shift, robo_arm_shift_f_callback);
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_Shift, action_shift_r_callback);
     KeyBoardRegister(interact.keyList, Key_R, CombineKey_Ctrl, action_ctrl_r_callback);
-    //    KeyBoardRegister(interact.keyList, Key_R, CombineKey_None, robo_arm_r_callback);
-
-
     KeyBoardRegister(interact.keyList, Key_F, CombineKey_Shift, action_shift_f_callback);
     KeyBoardRegister(interact.keyList, Key_F, CombineKey_Ctrl, action_ctrl_f_callback);
-
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, action_e_callback);
     KeyBoardRegister(interact.keyList, Key_F, CombineKey_None, action_f_callback);
-
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Ctrl, robo_arm_ctrl_e_callback);
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, chassis_shift_e_callback);
 

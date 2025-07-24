@@ -1017,11 +1017,6 @@
               <FilePath>..\Own\App\W25Q64\W25Q64.cpp</FilePath>
             </File>
             <File>
-              <FileName>referee_system.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\Own\App\Judge\referee_system.cpp</FilePath>
-            </File>
-            <File>
               <FileName>ui.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\Own\App\Judge\ui.cpp</FilePath>

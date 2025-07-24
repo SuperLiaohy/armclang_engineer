@@ -10,6 +10,6 @@
 void BuzzerTask() {
     while (1) {
         if (!buzzer.StartMusic())
-            osDelay(500);
+            osDelay(2000);
     }
 }

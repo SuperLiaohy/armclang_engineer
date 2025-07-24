@@ -3,6 +3,7 @@
 //
 
 #include "Interact/Interact.hpp"
+#include "Chassis/Chassis.hpp"
 #include "OneStepGet/OneStepGet.hpp"
 
 extern interact_dep::ActionsGroup arm_get_silver_group;

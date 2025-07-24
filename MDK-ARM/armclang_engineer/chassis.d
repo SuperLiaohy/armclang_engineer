@@ -82,31 +82,28 @@ armclang_engineer/chassis.o: ..\Own\Obj\Chassis\Chassis.cpp \
   ..\Own\Bsp\Uart\SuperUart.hpp ..\Own\Mod\Count\Count.hpp \
   ..\Own\Mod\Count\CountManager.hpp ..\Core\Inc\usart.h \
   ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
-  ..\Own\Mod\RingBuffer\RingBuffer.h \
+  ..\Own\Mod\RingBuffer\RingBuffer.h ..\Own\App\PC\PC.hpp \
+  ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\Mod\Detect\Detect.hpp ..\Own\Mod\Detect\DetectManager.hpp \
-  ..\Own\Mod\OwnFunc\OwnFunc.hpp ..\Own\Obj\RoboArm\RoboArm.hpp \
-  ..\Own\App\Motor\Control\lkPidControl.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
-  ..\Core\Inc\fdcan.h ..\Own\Mod\Pid\Pid.hpp \
+  ..\Own\Mod\OwnFunc\OwnFunc.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Obj\Chassis\chassis_dep.hpp \
+  ..\Own\App\Motor\Motor.hpp ..\Own\App\Motor\M2006Diff.hpp \
+  ..\Own\App\Motor\Control\PosPidControl.hpp ..\Own\Mod\Pid\Pid.hpp \
   ..\Own\App\Motor\Control\..\Motor.tpp \
-  ..\Own\Obj\RoboArm\roboarm_dep.hpp ..\Own\App\Fram\Fram.hpp \
-  ..\Own\Bsp\IIC\SuperIIC.hpp ..\Core\Inc\i2c.h \
-  ..\Own\Mod\Matrix\Matrix.hpp ..\Own\App\Motor\Motor.hpp \
-  ..\Own\App\Motor\M2006Diff.hpp \
-  ..\Own\App\Motor\Control\PosPidControl.hpp \
   ..\Own\App\Motor\Control\SpeedPidControl.hpp \
   ..\Own\App\Motor\Param\M2006Diff.hpp \
   ..\Own\App\Motor\Param\..\Motor.tpp ..\Own\App\Motor\M3508.hpp \
   ..\Own\App\Motor\Param\M3508.hpp ..\Own\App\Motor\Motor.tpp \
   ..\Own\App\Motor\lkMotor.hpp ..\Own\App\Motor\Control\lkControl.hpp \
-  ..\Own\Mod\MyMath\MyMath.hpp ..\Own\App\Motor\Param\lkMotor.hpp \
-  ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Bsp\CAN\SuperCan.hpp ..\Core\Inc\fdcan.h \
+  ..\Own\App\Motor\Control\lkPidControl.hpp \
+  ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\App\MicroTime\MicroTime.hpp \
+  ..\Own\Bsp\SysTick\SysTick.hpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Own\Obj\Chassis\chassis_dep.hpp ..\Own\App\MicroTime\MicroTime.hpp \
-  ..\Own\Bsp\SysTick\SysTick.hpp
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h

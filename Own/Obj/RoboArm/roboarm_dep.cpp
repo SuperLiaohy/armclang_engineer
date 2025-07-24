@@ -4,9 +4,6 @@
 
 #include "roboarm_dep.hpp"
 
-#include "Slope/Slope.hpp"
-uint32_t read_arr[2] = {};
-uint32_t arr[2] = {0x00, 0x00};
 namespace roboarm_dep {
     void Differentiator::init(std::array<float, 6>& joint) {
         left.clear();
