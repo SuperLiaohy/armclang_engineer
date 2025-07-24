@@ -224,13 +224,27 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
     if (robo_arm.mode == robo_mode::ACTIONS || robo_arm.mode == robo_mode::ACTIONS_GROUP) {
         switch (actions->status) {
             case interact_dep::action_status::Joints:
+                if (!actions->init) {
+                    if (robo_arm.mode == robo_mode::ACTIONS_GROUP) {
+                        auto time = actions_group->time_list[actions_group->index];
+                        actions->setup_step(Arm.relative_pos.data(), time);
+                        joint_slope[0].step_set(my_abs(actions->joints[0]-Arm.relative_pos[0])/ time);
+                        joint_slope[1].step_set(my_abs(actions->joints[1]-Arm.relative_pos[1])/ time);
+                        joint_slope[2].step_set(my_abs(actions->joints[2]-Arm.relative_pos[2])/ time);
+                    } else {
+                        joint_slope[0].step_set(my_abs(actions->joints[0]-Arm.relative_pos[0])/ actions->time);
+                        joint_slope[1].step_set(my_abs(actions->joints[1]-Arm.relative_pos[1])/ actions->time);
+                        joint_slope[2].step_set(my_abs(actions->joints[2]-Arm.relative_pos[2])/ actions->time);
+
+                    }
+                    actions->init = true;
+                }
                 joint[0] = actions->joints[0];
                 joint[1] = actions->joints[1];
                 joint[2] = actions->joints[2];
                 joint[3] = actions->joints[3];
                 joint[4] = actions->joints[4];
                 joint[5] = actions->joints[5];
-
                 Arm.target_speed[3] = actions->speed[3];
                 Arm.target_speed[2] = actions->speed[2];
                 Arm.target_speed[1] = actions->speed[1];
@@ -243,6 +257,11 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                     actions->Xaxis.value_set(posi[0]);
                     actions->Yaxis.value_set(posi[1]);
                     actions->Zaxis.value_set(posi[2]);
+                    if (robo_arm.mode == robo_mode::ACTIONS_GROUP) {
+                        actions->setup_step(posi.data(), actions_group->time_list[actions_group->index]);
+                    } else {
+                        actions->setup_step(posi.data());
+                    }
                     actions->init = true;
                 }
                 posi[0] = actions->Xaxis.update();
@@ -259,20 +278,27 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                     //                           limitation.joint5.max);
                 }
                 Arm.target_speed = {roboarm_dep::default_speed};
+                Arm.target_speed = {roboarm_dep::default_speed};
+                interact.joint_slope[0].step_set(0.15);
+                interact.joint_slope[1].step_set(0.15);
+                interact.joint_slope[2].step_set(0.15);
             } break;
             default: break;
         }
-        if (robo_arm.mode == robo_mode::ACTIONS) {
-            if (actions->status == action_status::Joints) {
-                robo_arm.mode = robo_mode::NONE;
-            } else {
-                if (actions->Xaxis.is_arrive()&&actions->Yaxis.is_arrive()&&actions->Zaxis.is_arrive()) {
-                    robo_arm.mode = robo_mode::NONE;
-                }
-            }
-        }
+//        if (robo_arm.mode == robo_mode::ACTIONS) {
+//            if (actions->status == action_status::Joints) {
+//                robo_arm.mode = robo_mode::NONE;
+//            } else {
+//                if (actions->Xaxis.is_arrive()&&actions->Yaxis.is_arrive()&&actions->Zaxis.is_arrive()) {
+//                    robo_arm.mode = robo_mode::NONE;
+//                }
+//            }
+//        }
     } else {
         Arm.target_speed = {roboarm_dep::default_speed};
+        interact.joint_slope[0].step_set(0.15);
+        interact.joint_slope[1].step_set(0.15);
+        interact.joint_slope[2].step_set(0.15);
     }
 }
 

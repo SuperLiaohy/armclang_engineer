@@ -42,6 +42,8 @@ extern osThreadId ERROR_TASKHandle;
 }
 #endif
 #include "WDG/SuperIWDG.hpp"
+#include "OneStepGet/OneStepGet.hpp"
+
 volatile uint32_t ada = 0;
 void action_z_callback(KeyEventType event);
 void action_shift_z_callback(KeyEventType event);
@@ -69,7 +71,7 @@ extern interact_dep::Actions exchange_right;
 extern interact_dep::Actions arm_get_gold;
 extern interact_dep::Actions arm_get_gold_z;
 
-extern interact_dep::ActionsGroup get_second_silver_group;
+extern interact_dep::ActionsGroup arm_get_silver_group;
 extern interact_dep::ActionsGroup get_gold_group;
 extern interact_dep::ActionsGroup get_left_gold_group;
 extern interact_dep::ActionsGroup get_right_gold_group;
@@ -143,6 +145,9 @@ void joint4_motor_detect() {
     roboArm.joint4.enable();
     xSemaphoreGive(CAN1MutexHandle);
 }
+void osg_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+}
 std::atomic<bool> rc_ready(false);
 void chassis_ctrl_w_callback(KeyEventType event);
 void chassis_ctrl_a_callback(KeyEventType event);
@@ -170,6 +175,7 @@ void StartTask() {
     roboArm.joint2.external.detect_lost(joint2_external_motor_detect);
     roboArm.joint3.detect_lost(joint3_motor_detect);
     roboArm.joint4.detect_lost(joint4_motor_detect);
+    one_step_gets.rotate_move.Motor.detect_lost(osg_detect);
 
     SuperIWDG::GotInstance().give();
 

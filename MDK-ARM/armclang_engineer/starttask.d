@@ -116,4 +116,6 @@ armclang_engineer/starttask.o: ..\Own\OperateSystem\Thread\StartTask.cpp \
   ..\Core\Inc\spi.h ..\Own\OperateSystem\ThreadConfig.h \
   ..\Own\App\W25Q64\W25Q64.hpp ..\Core\Inc\octospi.h \
   ..\Own\Bsp\DWT\SuperDWT.hpp ..\USB_DEVICE\App\usb_device.h \
-  ..\Own\Bsp\WDG\SuperIWDG.hpp ..\Core\Inc\iwdg.h
+  ..\Own\Bsp\WDG\SuperIWDG.hpp ..\Core\Inc\iwdg.h \
+  ..\Own\App\OneStepGet\OneStepGet.hpp \
+  ..\Own\App\CanServos\CanServos.hpp

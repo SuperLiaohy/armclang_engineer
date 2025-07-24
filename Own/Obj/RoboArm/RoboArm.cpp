@@ -433,8 +433,9 @@ bool RoboArm::ikine(const std::array<float, 3>& position) {
     // arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
     return true;
 }
-bool RoboArm::ikine(const std::array<float, 3>& position,const std::array<float, 3>& posture) {
+bool RoboArm::ikine(const std::array<float, 3>& position, std::array<float, 3> posture, float imu_pitch) {
     std::array<float, 3> terminal_pitch_position;
+    posture[1] -= deg2rad(imu_pitch);
     terminal_pitch_position[0] = position[0] - 122 * (arm_cos_f32(posture[0]) * arm_sin_f32(posture[1]));
     terminal_pitch_position[1] = position[1] - 122 * (arm_sin_f32(posture[0]) * arm_sin_f32(posture[1]));
     terminal_pitch_position[2] = position[2] - 122 * (arm_cos_f32(posture[1]));

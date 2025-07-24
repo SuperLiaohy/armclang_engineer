@@ -5,6 +5,7 @@
 #include "Interact/Interact.hpp"
 #include "OneStepGet/OneStepGet.hpp"
 
+extern interact_dep::ActionsGroup arm_get_silver_group;
 extern interact_dep::ActionsGroup get_second_silver_group;
 extern interact_dep::ActionsGroup get_gold_group;
 extern interact_dep::ActionsGroup get_left_gold_group;
@@ -20,6 +21,7 @@ extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
 extern interact_dep::Actions reset2;
 extern interact_dep::Actions reset1;
+extern interact_dep::Actions get_silver_mine;
 
 
 
@@ -252,8 +254,8 @@ void action_c_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
         switch (event) {
             case KeyEvent_OnClick:
-                get_second_silver_group.reset();
-                interact.actions_group = &get_second_silver_group;
+                arm_get_silver_group.reset();
+                interact.actions_group = &arm_get_silver_group;
                 interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
                 break;
             default: break;
@@ -276,9 +278,9 @@ void action_shift_c_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                // ready_silver2_group.reset();
-                // interact.actions_group = &ready_silver2_group;
-                // interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+            arm_get_silver_group.reset();
+            interact.actions_group = &arm_get_silver_group;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
                 break;
             default: break;
         }
@@ -297,6 +299,14 @@ void action_ctrl_c_callback(KeyEventType event) {
             default: break;
         }
     } else if (OSG::mode == OneStepGetControl::AUTO) {
+        switch (event) {
+            case KeyEvent_OnClick:
+                get_second_silver_group.reset();
+                interact.actions_group = &get_second_silver_group;
+                interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+                break;
+            default: break;
+        }
 
     } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
     }
@@ -448,9 +458,12 @@ void action_e_callback(KeyEventType event) {
 void action_f_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            get_second_silver_group.reset();
-            interact.actions_group = &get_second_silver_group;
-            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+            get_silver_mine.init            = false;
+            interact.actions       = &get_silver_mine;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+//            arm_get_silver_group.reset();
+//            interact.actions_group = &arm_get_silver_group;
+//            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
             break;
         default: break;
     }

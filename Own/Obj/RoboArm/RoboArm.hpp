@@ -53,7 +53,7 @@ public:
     void fkine(std::array<float, 3>& position,  std::array<float, 3>& posture);
 
     bool ikine(const std::array<float, 3>& position);
-    bool ikine(const std::array<float, 3>& position,const std::array<float, 3>& posture);
+    bool ikine(const std::array<float, 3>& position, std::array<float, 3> posture, float imu_pitch = 0);
 
     Motor<LKMotorSingle> joint1;
     struct {

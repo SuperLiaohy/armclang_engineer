@@ -42,9 +42,10 @@ namespace interact_dep {
     };
 
     struct Actions {
-        static constexpr std::array<float, 4> default_action_speed = {480, 480, 720, 720};
+        static constexpr std::array<float, 4> default_action_speed = {360, 360, 360, 360};
         static constexpr std::array<float, 3> default_pos_step = {0.2,0.2,0.2};
-        action_status status;
+        const action_status status;
+        uint32_t time;
         bool init;
         union {
             struct {
@@ -58,19 +59,40 @@ namespace interact_dep {
                 Slope Zaxis;
             };
         };
-        explicit Actions(const std::array<float, 6>& joints, std::array<float, 4> speed=default_action_speed)
+        explicit Actions(const std::array<float, 6>& joints, std::array<float, 4> speed=default_action_speed, uint32_t time = 0)
             : status(action_status::Joints)
             , speed(speed)
-            , joints(joints) {};
+            , joints(joints)
+            , time(time){};
 
-        explicit Actions(const std::array<float, 3>& posi, const std::array<float, 3>& post, std::array<float, 3> step=default_pos_step)
+        explicit Actions(const std::array<float, 3>& posi, const std::array<float, 3>& post, std::array<float, 3> step=default_pos_step, uint32_t time = 0)
             : status(action_status::XYZ)
             , init(false)
             , Xaxis(step[0],step[0],posi[0])
             , Yaxis(step[1],step[1],posi[1])
             , Zaxis(step[2],step[2],posi[2])
             , zyz(post)
+            , time(time)
             {};
+
+        void setup_step(float* data, uint32_t time) {
+            if (status == action_status::XYZ) {
+                if (time!=0) {
+                    Xaxis.step_set(my_abs(data[0] - Xaxis.target) / time);
+                    Yaxis.step_set(my_abs(data[1] - Yaxis.target) / time);
+                    Zaxis.step_set(my_abs(data[2] - Zaxis.target) / time);
+                }
+            }
+        }
+        void setup_step(float* data) {
+            if (status == action_status::XYZ) {
+                if (time!=0) {
+                    Xaxis.step_set(my_abs(data[0] - Xaxis.target) / time);
+                    Yaxis.step_set(my_abs(data[1] - Yaxis.target) / time);
+                    Zaxis.step_set(my_abs(data[2] - Zaxis.target) / time);
+                }
+            }
+        }
     };
 
     struct ActionsGroup {

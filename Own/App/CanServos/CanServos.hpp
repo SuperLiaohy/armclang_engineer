@@ -52,7 +52,7 @@ public:
     inline void set_target(float pos) {target = pos;}; //设置速度
     void test(uint8_t cmd, int16_t pos, int16_t speed, uint8_t a, uint8_t b, uint8_t c ); //测试
 
-    inline bool get_feedback(); //获取反馈
+    inline bool get_feedback(uint16_t id,uint8_t *data); //获取反馈
 
     SuperCan* canPlus;
 
@@ -66,9 +66,8 @@ inline void CanServos::read_all() {
 };
 
 
-inline bool CanServos::get_feedback() {
-    auto data = canPlus->read();
-    if (canPlus->read_header()->Identifier == id) {
+inline bool CanServos::get_feedback(uint16_t id,uint8_t *data) {
+    if (id == this->id) {
         switch (data[0]) {
             case 0x02:
                 angle = (data[1] | (data[2] << 8)) * scale(4096, 360);
@@ -99,7 +98,6 @@ void CanServos::read_idcard() {
     canPlus->transmit_pdata(id, data);
 }
 void CanServos::set_pos_speed(uint16_t pos, uint16_t speed) {
-    target = pos*180.0/2048;
     uint8_t data[8] = {0x03,
                        static_cast<uint8_t>((pos & 0xff)), static_cast<uint8_t>((pos >> 8)),
                        static_cast<uint8_t>((speed & 0xff)), static_cast<uint8_t>((speed >> 8)),
@@ -108,7 +106,7 @@ void CanServos::set_pos_speed(uint16_t pos, uint16_t speed) {
 }
 void CanServos::move() {
     uint16_t speed = 100;
-    uint16_t pos = target/180.0*2048;
+    uint16_t pos = target/180.0f*2048;
     uint8_t data[8] = {0x03,
                        static_cast<uint8_t>((pos & 0xff)), static_cast<uint8_t>((pos >> 8)),
                        static_cast<uint8_t>((speed & 0xff)), static_cast<uint8_t>((speed >> 8)),
