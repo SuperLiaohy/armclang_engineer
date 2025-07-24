@@ -395,7 +395,7 @@ void action_ctrl_r_callback(KeyEventType event) {
             one_step_gets.Yleft.set_state(translation::state::RESET,0);
             one_step_gets.Yright.set_state(translation::state::RESET,0);
             one_step_gets.rotate_move.set_state(translation::state::RESET,0);
-            one_step_gets.rotate.set_target(180);
+            one_step_gets.rotate.set_target(osg::rota_init);
             break;
         default: break;
     }

@@ -62,7 +62,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 7, 65536, 10,
                 6, 65536, 10,
                 {88.961792, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 360-13.6999512, /*(310.715 - 360)*/-47.9443359, 0});
+                 360-5.21850491, /*(310.715 - 360)*/-47.9443359, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -90,14 +90,18 @@ OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 7
                   &canPlus3,3
 );
 // 349.146 0 -131.812
-interact_dep::Actions get_silver_mine({0,33.6004066,114.50135,0,31.870,0}, {480, 720, 360, 360});
-interact_dep::Actions get_silver_mine_z(std::array<float,3>{349.146f,0.f,-131.812+300},std::array<float,3>{0.f,180.f,0.f});
+//interact_dep::Actions get_silver_mine({0,33.6004066,114.50135,0,31.870,0}, {480, 720, 360, 360});
+interact_dep::Actions get_silver_mine({0,25.666613159627129519036695734921, 114.03037145218561331967584563847,0,180 - 114.03037145218561331967584563847 - 25.666613159627129519036695734921,0}, {180, 360, 480, 360});
+interact_dep::Actions get_silver_mine_lz(std::array<float,3>{349.146f,0.f,-131.812},std::array<float,3>{0.f,180.f,0.f},std::array<float,3>{0.06f,0.06f,0.2f});
+interact_dep::Actions get_silver_mine_z(std::array<float,3>{349.146f,0.f,-131.812+250},std::array<float,3>{0.f,180.f,0.f},std::array<float,3>{0.06f,0.06f,0.16f});
+interact_dep::Actions put_silver_mine(std::array<float,3>{270.f,-263.5f,126.5},std::array<float,3>{0.f,180.f,0.f},std::array<float,3>{0.15f,0.2f,0.1f});
+interact_dep::Actions put_silver_mine_l(std::array<float,3>{250.f,-263.5f,126.5},std::array<float,3>{0.f,200.f,0.f},std::array<float,3>{0.1f,0.2f,0.1f});
 
 interact_dep::Actions exchange_left({-17.9960938, 36.7366142, 35.3361511, -89.4694138, -89.9465207, 52.6248474});
 interact_dep::Actions exchange_right({17.9960938,36.7366142,35.3361511,89.4694138,-89.9465207,-52.6248474});
 
 interact_dep::Actions reset1({0, -55, 145, 0, 0, 0}, {720,720,360,720});
-interact_dep::Actions reset2({0, -16.3, 144.8, 0, 0, 0}, {720, 720, 360, 720});
+interact_dep::Actions reset2({0, -8.31188679, 145, 0, 0, 0}, {720, 720, 360, 720});
 
 // 661.090, 0, 23.632
 interact_dep::Actions arm_get_gold({0, 53.8834076, 66.5721664, 0, -30.4555893, 0}, {480, 720, 900, 720});
@@ -106,26 +110,40 @@ interact_dep::Actions arm_get_gold_z(std::array<float,3>{661.090, 0, 23.632+80},
 // **************************************************************************************************** //
 // OK
 
-std::array<interact_dep::Actions, 2> get_second_silver_action        = {
+std::array<interact_dep::Actions, 5> get_second_silver_action        = {
      get_silver_mine,
-     get_silver_mine_z};
+     get_silver_mine_lz,
+     get_silver_mine_z,
+     put_silver_mine,
+     put_silver_mine_l};
 // std::array<interact_dep::Actions, 2> get_second_silver_action        = {
 //     interact_dep::Actions({0, 37.604, 115.54184, 0, 27.570, 0},{480,720,360,360}),
 //     interact_dep::Actions(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ_z)
 // };
-std::array<uint32_t, 2> get_second_silver_time                       = {3000, 2000};
-std::array<interact_dep::ActionsGroup::exe, 3> get_second_silver_exe = {
+std::array<uint32_t, 5> get_second_silver_time                       = {1500,1000,2000,1500,1000};
+std::array<interact_dep::ActionsGroup::exe, 6> get_second_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);
         interact.sub_board.set_main_valve(1);
     },
     nullptr,
-    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
+    nullptr,
+    []() {
+        interact.sub_board.set_rf_valve(1);
+        one_step_gets.Xright.set_state(translation::state::MOVE,210);
+    },
+    []() {
+
+    },
+    []() {interact.sub_board.set_main_valve(0); interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 };
-std::array<interact_dep::ActionsGroup::event, 2> get_second_silver_event = {
+std::array<interact_dep::ActionsGroup::event, 5> get_second_silver_event = {
     []()->bool {
         return interact.sub_board.custom_frame_rx.s.valve3 < 250;
     },
+    nullptr,
+    nullptr,
+    nullptr,
     nullptr
 };
 interact_dep::ActionsGroup get_second_silver_group = {.actions_list = get_second_silver_action.data(),
@@ -133,7 +151,7 @@ interact_dep::ActionsGroup get_second_silver_group = {.actions_list = get_second
 //                                                      .event_list   = get_second_silver_event.data(),
 	                                                    .event_list   = nullptr,
                                                       .exe_list     = get_second_silver_exe.data(),
-                                                      .len          = 2,
+                                                      .len          = 5,
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 
@@ -168,7 +186,7 @@ std::array<interact_dep::ActionsGroup::exe, 4> get_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);
         interact.sub_board.set_lf_valve(1);
-        one_step_gets.rotate.set_target(100);
+        one_step_gets.rotate.set_target(osg::rota_up);
         one_step_gets.Yleft.set_state(translation::state::MOVE,0);
         one_step_gets.Xleft.set_state(translation::state::MOVE,osg::xl_max);
 //        one_step_gets.Xleft.set_state(translation::state::MOVE,1000);
@@ -182,7 +200,7 @@ std::array<interact_dep::ActionsGroup::exe, 4> get_silver_exe = {
         one_step_gets.Yleft.set_state(translation::state::MOVE,osg::yl_max);
         },
     []() {
-        one_step_gets.rotate.set_target(180);
+        one_step_gets.rotate.set_target(osg::rota_init);
         one_step_gets.Xleft.set_state(translation::state::MOVE,0);
         interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 };
@@ -230,7 +248,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         interact.sub_board.set_pump(1);
         interact.sub_board.set_rf_valve(1);
         interact.sub_board.set_lf_valve(1);
-        one_step_gets.rotate.set_target(180);
+        one_step_gets.rotate.set_target(osg::rota_init);
     },
     []() {
         one_step_gets.Xleft.set_state(translation::state::MOVE, osg::xl_max);

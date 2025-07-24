@@ -80,6 +80,7 @@ inline bool CanServos::get_feedback() {
                 //                idcard[3] = data[4];
                 break;
         }
+        detect.update();
         return true;
     }
     return false;

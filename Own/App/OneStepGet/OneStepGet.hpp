@@ -143,6 +143,8 @@ namespace osg {
     constexpr float yl_max = 224;   //  224
     constexpr float xr_max = 1597.41211;  //  1666    1557.41211
     constexpr float yr_max = -224;  //  -244
+    constexpr float rota_init = 176.835938;  //  -244
+    constexpr float rota_up = 95.537;  //  -244
 }
 
 class OSG {

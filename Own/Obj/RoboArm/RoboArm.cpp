@@ -166,19 +166,17 @@ void RoboArm::update_relative_pos() {
     //
     // relative_pos[3] = joint4.motor.m.feedback.total_position - offset.joint4;
 
-    relative_pos[0] = -(joint1.total_position - offset.joint1);
+    relative_pos[0] = (joint1.total_position - offset.joint1);
 
     relative_pos[1] = -(joint2.external.total_position - offset.joint2.external);
 
     relative_pos[2] = -(joint3.total_position - offset.joint3);
 
-    relative_pos[3] = -(joint4.total_position - offset.joint4);
+    relative_pos[3] = (joint4.total_position - offset.joint4);
 
     relative_pos[4] = -(joint5.total_position - offset.joint5);
 
-    relative_pos[5] = -(joint6.total_position/joint6.reduction_ratio - offset.joint6);
-
-
+    relative_pos[5] = (joint6.total_position/joint6.reduction_ratio - offset.joint6);
 
     // diff.update_relative_pos(relative_pos[4], relative_pos[5]);
 
@@ -607,7 +605,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     slope[1].target_set(joint[1]);
     slope[2].target_set(joint[2]);
     auto joint2_slope_value = slope[1].update();
-    target.joint1.angle          = (-slope[0].update() + offset.joint1) * scale(360, 36000);
+    target.joint1.angle          = (slope[0].update() + offset.joint1) * scale(360, 36000);
     target.joint2.internal.angle = (-joint2_slope_value + offset.joint2.internal) * scale(360, 36000);
     target.joint2.external.angle = (-joint2_slope_value + offset.joint2.external) * scale(360, 36000);
     target.joint3.angle          = (-slope[2].update() + offset.joint3) * scale(360, 36000);
@@ -618,7 +616,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     while (err3 >= 180) { err3 -= 359.99999999; }
     while (err3 < -180) { err3 += 359.99999999; }
     data3 = relative_pos[3] + err3;
-    target.joint4.angle          = (-data3 + offset.joint4) * scale(360, 36000);
+    target.joint4.angle          = (data3 + offset.joint4) * scale(360, 36000);
 
 
     float data;
@@ -634,7 +632,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     // target.joint6.angle = (-data + joint[4]);
 
     target.joint5.angle = (-joint[4] + offset.joint5) * scale(360, 36000);
-    target.joint6.angle = (-data + offset.joint6) * scale(360, 36000);
+    target.joint6.angle = (data + offset.joint6) * scale(360, 36000);
 
 
 }

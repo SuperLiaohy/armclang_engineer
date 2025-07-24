@@ -63,9 +63,6 @@ void action_ctrl_r_callback(KeyEventType event);
 extern interact_dep::Actions reset1;
 extern interact_dep::Actions reset2;
 
-extern interact_dep::Actions get_silver_mine;
-extern interact_dep::Actions get_silver_mine_z;
-
 extern interact_dep::Actions exchange_left;
 extern interact_dep::Actions exchange_right;
 

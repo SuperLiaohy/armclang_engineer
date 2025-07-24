@@ -6,7 +6,7 @@
 #include "Motor/Param/M2006Diff.hpp"
 #include "OneStepGet/OneStepGet.hpp"
 void OneStepGetTask() {
-    one_step_gets.rotate.set_target(180);
+    one_step_gets.rotate.set_target(osg::rota_init);
     uint32_t time = 0;
     while (1) {
         if (time++ % 3) {
