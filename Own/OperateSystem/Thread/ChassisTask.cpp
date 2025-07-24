@@ -12,7 +12,7 @@ Vofa<3> vofa __attribute__((section(".RAM_D1")));
 void ChassisTask() {
     uint32_t time = 0;
     while (1) {
-        chassis.update_slope(interact.chassis.mode, interact.polarity);
+        chassis.update_slope(interact.chassis.mode);
         chassis.UpdatePid();
         if (++time % 2 == 0)
             chassis.send_foc();

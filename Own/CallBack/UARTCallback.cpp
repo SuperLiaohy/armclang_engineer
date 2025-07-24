@@ -4,25 +4,13 @@
 
 #include "Interact/Interact.hpp"
 #include "Judge/ui.hpp"
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "FreeRTOS.h"
-#include "cmsis_os.h"
-
-extern osThreadId ERROR_TASKHandle;
-extern QueueHandle_t xRxedChars;
-extern uint8_t cli_buffer[];
-extern osThreadId IMAGEATRANS_TASHandle;
-
-#ifdef __cplusplus
-}
-#endif
-
 #include "ThreadConfig.h"
+extern "C" {
+    extern osThreadId ERROR_TASKHandle;
+}
 extern std::atomic<bool> rc_ready;
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     UNUSED(huart);
 #if USING_UART_IT
 
@@ -43,14 +31,14 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
 }
 
 static uint8_t cnt = 0;
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
+
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
     UNUSED(Size);
 #if USING_UART_IDLE
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (huart == interact.remote_control.uartPlus.uart) {
         ++interact.remote_control.uartPlus.rx_cnt;
-        interact.remote_control.update(interact.key_board);
-
+        interact.remote_control.update();
         if (++cnt > 5) {
             rc_ready.store(true);
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
@@ -59,7 +47,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
 
         if (interact.remote_control.rcInfo.right == 2 && interact.remote_control.rcInfo.left == 2)
             osThreadResume(ERROR_TASKHandle);
-
 
     } else if (huart == interact.image_trans.uartPlus.uart) {
         using namespace crc;
@@ -70,14 +57,13 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
         ++interact.sub_board.uartPlus.rx_cnt;
         interact.sub_board.get_feedback();
         interact.sub_board.start_receive();
-
     } else if (huart == ui.uartPlus.uart) {
         using namespace crc;
         ++ui.uartPlus.rx_cnt;
         for (int i = 0; i < Size - 9; ++i) {
-            auto data                      = &ui.uartPlus.rx_buffer[i];
-            if (data[0]==0xA5) {
-                uint16_t len                   = (data[2] << 8 | data[1]);
+            auto data = &ui.uartPlus.rx_buffer[i];
+            if (data[0] == 0xA5) {
+                uint16_t len = (data[2] << 8 | data[1]);
                 auto rx_cmd_id = data[6] << 8 | data[5];
                 if (verify_crc16_check_sum(data, len + 9)) {
                     switch (rx_cmd_id) {
@@ -103,38 +89,40 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
                         default:
                             break;
                     }
-                    i+=len+8;
+                    i += len + 8;
                 }
             }
         }
         ui.start_receive();
     }
-
 #endif
 }
 
-void HAL_UART_ErrorCallback(UART_HandleTypeDef* huart) {
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
     if (huart == interact.sub_board.uartPlus.uart) {
+        ++interact.sub_board.uartPlus.err_cnt;
         interact.sub_board.start_receive();
     } else if (huart == interact.image_trans.uartPlus.uart) {
-        interact.image_trans.start_receive();
         ++interact.image_trans.uartPlus.err_cnt;
+        interact.image_trans.start_receive();
     } else if (huart == interact.remote_control.uartPlus.uart) {
         ++interact.remote_control.uartPlus.err_cnt;
     } else if (huart == ui.uartPlus.uart) {
         ++ui.uartPlus.err_cnt;
-        ui.get_feedback();
         ui.start_receive();
     }
 };
-void HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef* huart) {
+
+void HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef *huart) {
     if (huart == interact.sub_board.uartPlus.uart) {
+        ++interact.sub_board.uartPlus.err_cnt;
         interact.sub_board.start_receive();
     } else if (huart == interact.image_trans.uartPlus.uart) {
+        ++interact.image_trans.uartPlus.err_cnt;
     } else if (huart == interact.remote_control.uartPlus.uart) {
+        ++interact.remote_control.uartPlus.uart;
     } else if (huart == ui.uartPlus.uart) {
         ++ui.uartPlus.err_cnt;
-        ui.get_feedback();
         ui.start_receive();
     }
 };

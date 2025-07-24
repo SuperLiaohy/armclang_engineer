@@ -44,6 +44,7 @@ public:
 
     void start() { uartPlus.receive_dma_idle(60); };
 
+    void update();
     void update(KeyBoard& key_board);
 
     void clear() {

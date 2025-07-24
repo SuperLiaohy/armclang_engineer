@@ -284,21 +284,33 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
             } break;
             default: break;
         }
-//        if (robo_arm.mode == robo_mode::ACTIONS) {
-//            if (actions->status == action_status::Joints) {
-//                robo_arm.mode = robo_mode::NONE;
-//            } else {
-//                if (actions->Xaxis.is_arrive()&&actions->Yaxis.is_arrive()&&actions->Zaxis.is_arrive()) {
-//                    robo_arm.mode = robo_mode::NONE;
-//                }
-//            }
-//        }
+        if (robo_arm.mode == robo_mode::ACTIONS) {
+            if (actions->status == action_status::Joints) {
+                robo_arm.mode = robo_mode::NONE;
+            } else {
+                if (actions->Xaxis.is_arrive()&&actions->Yaxis.is_arrive()&&actions->Zaxis.is_arrive()) {
+                    robo_arm.mode = robo_mode::NONE;
+                }
+            }
+        }
     } else {
         Arm.target_speed = {roboarm_dep::default_speed};
         interact.joint_slope[0].step_set(0.15);
         interact.joint_slope[1].step_set(0.15);
         interact.joint_slope[2].step_set(0.15);
     }
+}
+
+void Interact::set_action(interact_dep::Actions& action) {
+    action.init = false;
+    this->actions = &action;
+    robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+}
+
+void Interact::set_action_group(interact_dep::ActionsGroup &actions_group) {
+    actions_group.reset();
+    this->actions_group = &actions_group;
+    robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
 }
 
 void remote_ctrl_recover() {

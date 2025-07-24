@@ -23,7 +23,6 @@ void ArmInitTask() {
     }
     roboArm.update_relative_pos();
 
-    xEventGroupWaitBits(osEventGroup, DIFF_LEFT_RECEIVE_EVENT | DIFF_RIGHT_RECEIVE_EVENT, pdFALSE, pdTRUE, portMAX_DELAY);
     xEventGroupSetBits(osEventGroup, ROBO_ARM_INIT_END_EVENT);
     buzzer.CleanMusic();
     buzzer.PushMusic<24>(Buzzer::melody);

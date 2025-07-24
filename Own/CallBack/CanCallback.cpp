@@ -4,66 +4,43 @@
 #include "ThreadConfig.h"
 #include "RoboArm/RoboArm.hpp"
 #include "Chassis/Chassis.hpp"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "FreeRTOS.h"
-#include "cmsis_os.h"
-#ifdef __cplusplus
-}
-#endif
 #include "OneStepGet/OneStepGet.hpp"
 #include "WDG/SuperIWDG.hpp"
-extern float yaw;
 
-float a =0;
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
     UNUSED(RxFifo0ITs);
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     SuperIWDG::GotInstance().give();
-
     if (hfdcan == canPlus1.hcan) {
-			++a;
         canPlus1.receive();
         roboArm.joint4.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint3.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint2.external.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint2.internal.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint1.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-
-        // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.left.feed_back.id) {
-            roboArm.joint5.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-            // roboArm.diff.left.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID, canPlus1.rx_data);
-            xEventGroupSetBitsFromISR(osEventGroup, DIFF_LEFT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
-        // }
-        // else if (canPlus1.rx_header.Identifier == M2006::foc.RX_ID + roboArm.diff.right.feed_back.id) {
-            roboArm.joint6.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-            // roboArm.diff.right.get_feedback(canPlus1.rx_header.Identifier - M2006Diff::foc.RX_ID,canPlus1.rx_data);
-            xEventGroupSetBitsFromISR(osEventGroup, DIFF_RIGHT_RECEIVE_EVENT, &xHigherPriorityTaskWoken);
-        // }
-        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-    } else if (hfdcan == chassis.can->hcan){
+        roboArm.joint5.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+        roboArm.joint6.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+    } else if (hfdcan == chassis.can->hcan) {
         chassis.can->receive();
         chassis.UpdateMotor();
-    } else if (hfdcan == canPlus3.hcan){        
-				canPlus3.receive();
+    } else if (hfdcan == canPlus3.hcan) {
+        canPlus3.receive();
         one_step_gets.Xleft.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID, canPlus3.rx_data);
         one_step_gets.Yleft.Motor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
         one_step_gets.Xright.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID, canPlus3.rx_data);
         one_step_gets.Yright.Motor.get_feedback(canPlus3.rx_header.Identifier - M3508::foc.RX_ID, canPlus3.rx_data);
-        one_step_gets.rotate_move.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID, canPlus3.rx_data);
+        one_step_gets.rotate_move.Motor.get_feedback(canPlus3.rx_header.Identifier - M2006::foc.RX_ID,canPlus3.rx_data);
 //        if (canPlus3.rx_header.Identifier < 100) {
-            one_step_gets.rotate.get_feedback(canPlus3.rx_header.Identifier, canPlus3.rx_data);
+        one_step_gets.rotate.get_feedback(canPlus3.rx_header.Identifier, canPlus3.rx_data);
 //        }
     }
 }
 
-void HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorStatusITs)
-{
+void HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorStatusITs) {
     if (hfdcan == canPlus1.hcan) {
         ++canPlus1.err_cnt;
     } else if (hfdcan == canPlus2.hcan) {
         ++canPlus2.err_cnt;
+    } else if (hfdcan == canPlus3.hcan) {
+        ++canPlus3.err_cnt;
     }
 }

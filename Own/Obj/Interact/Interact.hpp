@@ -7,7 +7,7 @@
 #include "Interact/Interact_dep.hpp"
 #include "PC/PC.hpp"
 #include "SubBoard/SubBoard.hpp"
-//设定交互方式的统一标准为2个字节16bit的形式
+
 class Interact {
 public:
     Interact(const uint8_t head,const uint8_t tail, UART_HandleTypeDef* uart_rc, UART_HandleTypeDef* uart_im,
@@ -19,11 +19,11 @@ public:
         , robo_arm {interact_dep::robo_mode::NONE, interact_dep::robo_mode::NONE}
         , joint_slope({Slope(0.15, 0), Slope(0.6, 0), Slope(0.3, 0)})
         , chassis {interact_dep::chassis_mode::NONE, interact_dep::chassis_mode::NONE}
-        , polarity(interact_dep::chassis_polarity::NONE)
         , sub_board(uart_sub_board) {};
 
     RemoteControl remote_control;
     ImageTrans image_trans;
+    SubBoard sub_board;
     PC pc;
 
     interact_dep::kb_state kb;
@@ -43,12 +43,10 @@ public:
         interact_dep::chassis_mode mode;
         interact_dep::chassis_mode last_mode;
     } chassis;
-    interact_dep::chassis_polarity polarity;
-
-    SubBoard sub_board;
 
     void update_chassis(Chassis& cha);
     void update_roboArm(RoboArm& Arm);
+
     void receive_cdc(uint8_t* data);
     void receive_rc();
     void receive_xyz(RoboArm& Arm);
@@ -56,5 +54,9 @@ public:
     void receive_custom(uint8_t* data);
     void receive_actions(RoboArm& Arm, float pitch);
     void receive_actions_group();
+
+    void set_action(interact_dep::Actions& action);
+    void set_action_group(interact_dep::ActionsGroup& actions_group);
+
     void transmit_relative_pos(const std::array<float, 6>& pos);
 };

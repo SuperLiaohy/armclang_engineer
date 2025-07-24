@@ -34,7 +34,6 @@ namespace interact_dep {
         NORMAL,
         CLIMB,
     };
-    enum class chassis_polarity : uint8_t { NONE, ANTI };
 
     enum class action_status : uint8_t {
         Joints,

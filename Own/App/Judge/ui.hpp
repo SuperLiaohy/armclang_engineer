@@ -464,8 +464,6 @@ public:
 
     bool update();
 
-    void get_feedback();
-
     void start_receive();
 
     std::atomic<bool> is_get_id;

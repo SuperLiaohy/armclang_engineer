@@ -6,11 +6,7 @@
 void chassis_shift_e_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            if (interact.polarity != interact_dep::chassis_polarity::ANTI) {
-                interact.polarity = interact_dep::chassis_polarity::ANTI;
-            } else {
-                interact.polarity = interact_dep::chassis_polarity::NONE;
-            }
+
             break;
         default: break;
     }
@@ -27,7 +23,7 @@ void chassis_w_callback(KeyEventType event) {
         case KeyEvent_None:
         case KeyEvent_OnUp:
             chassis.key.w = 0;
-            if (chassis.key.w == 0 && chassis.key.s == 0) chassis.move.ySlope.step_set(chassis_dep::stop_speed_step);
+            if (is_equal<0.01f>(chassis.key.w,0) && is_equal<0.01f>(chassis.key.s,0)) chassis.move.ySlope.step_set(chassis_dep::stop_speed_step);
             break;
         default: break;
     }
@@ -44,7 +40,7 @@ void chassis_a_callback(KeyEventType event) {
         case KeyEvent_None:
         case KeyEvent_OnUp:
             chassis.key.a = 0;
-            if (chassis.key.a == 0 && chassis.key.d == 0) chassis.move.xSlope.step_set(chassis_dep::stop_speed_step);
+            if (is_equal<0.01f>(chassis.key.a,0) && is_equal<0.01f>(chassis.key.d,0)) chassis.move.xSlope.step_set(chassis_dep::stop_speed_step);
             break;
         default: break;
     }
@@ -61,7 +57,7 @@ void chassis_s_callback(KeyEventType event) {
         case KeyEvent_None:
         case KeyEvent_OnUp:
             chassis.key.s = 0;
-            if (chassis.key.w == 0 && chassis.key.s == 0) chassis.move.ySlope.step_set(chassis_dep::stop_speed_step);
+            if (is_equal<0.01f>(chassis.key.w,0) && is_equal<0.01f>(chassis.key.s,0)) chassis.move.ySlope.step_set(chassis_dep::stop_speed_step);
             break;
         default: break;
     }
@@ -78,7 +74,7 @@ void chassis_d_callback(KeyEventType event) {
         case KeyEvent_None:
         case KeyEvent_OnUp:
             chassis.key.d = 0;
-            if (chassis.key.a == 0 && chassis.key.d == 0) chassis.move.xSlope.step_set(chassis_dep::stop_speed_step);
+            if (is_equal<0.01f>(chassis.key.a,0) && is_equal<0.01f>(chassis.key.d,0)) chassis.move.xSlope.step_set(chassis_dep::stop_speed_step);
             break;
         default: break;
     }

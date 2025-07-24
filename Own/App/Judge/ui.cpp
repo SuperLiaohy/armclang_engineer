@@ -124,4 +124,3 @@ bool UI::update() {
     return no_empty;
 }
 void UI::start_receive() { uartPlus.receive_dma_idle(200); }
-void UI::get_feedback() {}
