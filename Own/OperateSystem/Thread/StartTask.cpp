@@ -96,54 +96,30 @@ void chassis_motor_detect() {
 
 void joint1_motor_detect() {
     buzzer.PushMusic<8>(Buzzer::error_music);
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint1.clear_error();
-    xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint1.enable();
-    xSemaphoreGive(CAN1MutexHandle);
 }
 
 void joint2_internal_motor_detect() {
     buzzer.PushMusic<8>(Buzzer::error_music);
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint2.internal.clear_error();
-    xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint2.internal.enable();
-    xSemaphoreGive(CAN1MutexHandle);
 }
 void joint2_external_motor_detect() {
     buzzer.PushMusic<8>(Buzzer::error_music);
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint2.external.clear_error();
-    xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint2.external.enable();
-    xSemaphoreGive(CAN1MutexHandle);
 }
 void joint3_motor_detect() {
     buzzer.PushMusic<8>(Buzzer::error_music);
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint3.clear_error();
-    xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint3.enable();
-    xSemaphoreGive(CAN1MutexHandle);
 }
 void joint4_motor_detect() {
     buzzer.PushMusic<8>(Buzzer::error_music);
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint4.clear_error();
-    xSemaphoreGive(CAN1MutexHandle);
 
-    xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-    roboArm.joint4.enable();
-    xSemaphoreGive(CAN1MutexHandle);
+}void joint5_motor_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+
+}void joint6_motor_detect() {
+    buzzer.PushMusic<8>(Buzzer::error_music);
+
 }
 void osg_detect() {
     buzzer.PushMusic<8>(Buzzer::error_music);
@@ -175,6 +151,8 @@ void StartTask() {
     roboArm.joint2.external.detect_lost(joint2_external_motor_detect);
     roboArm.joint3.detect_lost(joint3_motor_detect);
     roboArm.joint4.detect_lost(joint4_motor_detect);
+    roboArm.joint5.detect_lost(joint5_motor_detect);
+    roboArm.joint6.detect_lost(joint6_motor_detect);
     one_step_gets.rotate_move.Motor.detect_lost(osg_detect);
 
     SuperIWDG::GotInstance().give();

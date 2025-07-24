@@ -17,14 +17,15 @@ public:
         , canPlus(canPlus) {};
 
     void set_position(float position, float speed = 100) {
+        ++tx_cnt;
         if (!this->detect.isLost) {
-            ++tx_cnt;
             // position = m.feedback.total_position * 100 + err;
             // totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5 * speed, 1.5 * speed),
             //                       position * this->reduction_ratio);
             totalposition2Control(speed,position * this->reduction_ratio);
         } else {
             clear_error();
+            read_feedback();
         }
     };
 

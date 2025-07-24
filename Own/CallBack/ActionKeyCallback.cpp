@@ -278,8 +278,8 @@ void action_shift_c_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-            arm_get_silver_group.reset();
-            interact.actions_group = &arm_get_silver_group;
+            get_second_silver_group.reset();
+            interact.actions_group = &get_second_silver_group;
             interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
                 break;
             default: break;
@@ -458,12 +458,12 @@ void action_e_callback(KeyEventType event) {
 void action_f_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            get_silver_mine.init            = false;
-            interact.actions       = &get_silver_mine;
-            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
-//            arm_get_silver_group.reset();
-//            interact.actions_group = &arm_get_silver_group;
-//            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
+//            get_silver_mine.init            = false;
+//            interact.actions       = &get_silver_mine;
+//            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS;
+            arm_get_silver_group.reset();
+            interact.actions_group = &arm_get_silver_group;
+            interact.robo_arm.mode = interact_dep::robo_mode::ACTIONS_GROUP;
             break;
         default: break;
     }

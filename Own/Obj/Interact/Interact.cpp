@@ -227,7 +227,6 @@ void Interact::receive_actions(RoboArm& Arm, float pitch) {
                 if (!actions->init) {
                     if (robo_arm.mode == robo_mode::ACTIONS_GROUP) {
                         auto time = actions_group->time_list[actions_group->index];
-                        actions->setup_step(Arm.relative_pos.data(), time);
                         joint_slope[0].step_set(my_abs(actions->joints[0]-Arm.relative_pos[0])/ time);
                         joint_slope[1].step_set(my_abs(actions->joints[1]-Arm.relative_pos[1])/ time);
                         joint_slope[2].step_set(my_abs(actions->joints[2]-Arm.relative_pos[2])/ time);

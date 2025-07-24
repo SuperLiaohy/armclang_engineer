@@ -39,6 +39,7 @@ public:
             canPlus->transmit_pdata(tx_id + motor::foc.TX_LOW_ID, data);
         } else {
             clear_error();
+            read_feedback();
         }
     };
 
