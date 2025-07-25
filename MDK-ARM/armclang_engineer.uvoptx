@@ -215,7 +215,7 @@
         <Ww>
           <count>0</count>
           <WinNumber>2</WinNumber>
-          <ItemText>\\armclang_engineer\../Own/OperateSystem/Vari.cpp\roboArm</ItemText>
+          <ItemText>\\armclang_engineer\../Own/OperateSystem/Vari.cpp\roboArm,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
@@ -1188,7 +1188,7 @@
 
   <Group>
     <GroupName>Own/App</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1664,7 +1664,7 @@
 
   <Group>
     <GroupName>Own/Obj</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1776,7 +1776,7 @@
 
   <Group>
     <GroupName>Own/OperateSystem/Task</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2008,7 +2008,7 @@
 
   <Group>
     <GroupName>Own/App/Imu</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

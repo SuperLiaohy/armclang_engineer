@@ -55,7 +55,7 @@ void Interact::receive_xyz(RoboArm &Arm) {
         remote_control.pos[0] += RemoteControl::addSpeed(remote_control.rcInfo.ch1, 2.5);
         remote_control.pos[1] += RemoteControl::addSpeed(remote_control.rcInfo.ch3, 2.5);
         remote_control.pos[2] += RemoteControl::addSpeed(remote_control.rcInfo.ch2, 2.5);
-        if (!Arm.ikine(remote_control.pos, {deg2rad(0), deg2rad(90), deg2rad(0)})) {
+        if (!Arm.ikine(remote_control.pos, {deg2rad(0), deg2rad(180), deg2rad(0)})) {
             Arm.fkine(remote_control.pos);
         } else {
             joint[0] = limited<float>(Arm.q[0] * r2d, limitation.joint1.min, limitation.joint1.max);
@@ -226,10 +226,11 @@ void Interact::receive_actions(RoboArm &Arm, float pitch) {
                 joint[3] = actions->joints[3];
                 joint[4] = actions->joints[4];
                 joint[5] = actions->joints[5];
-                Arm.target_speed[3] = actions->speed[3];
-                Arm.target_speed[2] = actions->speed[2];
-                Arm.target_speed[1] = actions->speed[1];
-                Arm.target_speed[0] = actions->speed[0];
+                Arm.target_speed = {roboarm_dep::default_speed};
+//                Arm.target_speed[3] = actions->speed[3];
+//                Arm.target_speed[2] = actions->speed[2];
+//                Arm.target_speed[1] = actions->speed[1];
+//                Arm.target_speed[0] = actions->speed[0];
                 break;
             case interact_dep::action_status::XYZ: {
                 std::array<float, 3> posi;
@@ -258,7 +259,6 @@ void Interact::receive_actions(RoboArm &Arm, float pitch) {
                     // joint[4] = limited<float>(90 - (joint[1] + joint[2] + pitch), limitation.joint5.min,
                     //                           limitation.joint5.max);
                 }
-                Arm.target_speed = {roboarm_dep::default_speed};
                 Arm.target_speed = {roboarm_dep::default_speed};
                 interact.joint_slope[0].step_set(0.15);
                 interact.joint_slope[1].step_set(0.15);

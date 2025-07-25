@@ -20,7 +20,7 @@
 void air_left_callback(KeyEventType event);
 void air_right_callback(KeyEventType event);
 
-void chassis_shift_e_callback(KeyEventType event);
+void roboarm_shift_e_callback(KeyEventType event);
 void robo_arm_shift_q_callback(KeyEventType event);
 void robo_arm_ctrl_q_callback(KeyEventType event);
 void action_shift_f_callback(KeyEventType event);
@@ -201,7 +201,7 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_None, action_e_callback);
     KeyBoardRegister(interact.keyList, Key_F, CombineKey_None, action_f_callback);
     KeyBoardRegister(interact.keyList, Key_E, CombineKey_Ctrl, robo_arm_ctrl_e_callback);
-    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, chassis_shift_e_callback);
+    KeyBoardRegister(interact.keyList, Key_E, CombineKey_Shift, roboarm_shift_e_callback);
 
     KeyBoardRegister(interact.keyList, Key_Z, CombineKey_None, action_z_callback);
     KeyBoardRegister(interact.keyList, Key_Z, CombineKey_Shift, action_shift_z_callback);

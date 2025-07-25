@@ -3,14 +3,6 @@
 //
 #include "Chassis/Chassis.hpp"
 #include "Interact/Interact.hpp"
-void chassis_shift_e_callback(KeyEventType event) {
-    switch (event) {
-        case KeyEvent_OnClick:
-
-            break;
-        default: break;
-    }
-}
 
 void chassis_w_callback(KeyEventType event) {
     switch (event) {

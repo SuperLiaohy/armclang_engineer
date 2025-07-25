@@ -14,7 +14,7 @@ extern interact_dep::ActionsGroup get_right_gold_group;
 extern interact_dep::ActionsGroup put_down_gold_group;
 extern interact_dep::ActionsGroup put_down_silver_group;
 extern interact_dep::ActionsGroup get_silver_group;
-
+extern interact_dep::Actions arm_error;
 
 extern interact_dep::Actions arm_get_gold;
 extern interact_dep::Actions arm_get_gold_z;
@@ -489,4 +489,14 @@ void action_shift_r_callback(KeyEventType event) {
             break;
     }
 }
+
+void roboarm_shift_e_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnClick:
+            interact.set_action(arm_error);
+            break;
+        default: break;
+    }
+}
+
 

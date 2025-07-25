@@ -57,7 +57,7 @@ Chassis chassis(&canPlus2, {Slope(15, 1), Slope(15, 1), Slope(0.1, 0), Slope(15,
 
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
 RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 
-                Pid(400, 0.002, 0.8, 800, 1200, 0), Pid(0.40, 0.010, 0.00, 500, 500, 1.0),
+                Pid(400, 0.002, 0.8, 800, 1200, 0), Pid(0.45, 0.010, 0.00, 550, 550, 1.0),
                 7, 65536, 10,
                 6, 65536, 10,
                 {88.961792, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
@@ -106,6 +106,9 @@ interact_dep::Actions reset2({0, -8.31188679, 145, 0, 0, 0}, {720, 720, 360, 720
 interact_dep::Actions arm_get_gold({0, 53.8834076, 66.5721664, 0, -30.4555893, 0}, {480, 720, 900, 720});
 interact_dep::Actions arm_get_gold_z(std::array<float,3>{661.090, 0, 23.632+80},std::array<float,3>{0.f,90.f,0.f});
 
+interact_dep::Actions arm_error({-25.3774509, 4.23235941, 98.7619476, 0, 77.0056915, -25.3774529}, {480, 720, 900, 720});
+
+
 // **************************************************************************************************** //
 // OK
 
@@ -119,7 +122,7 @@ std::array<interact_dep::Actions, 5> get_second_silver_action        = {
 //     interact_dep::Actions({0, 37.604, 115.54184, 0, 27.570, 0},{480,720,360,360}),
 //     interact_dep::Actions(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ_z)
 // };
-std::array<uint32_t, 5> get_second_silver_time                       = {1500,1000,2000,3000,2000};
+std::array<uint32_t, 5> get_second_silver_time                       = {1500,1000,2000,1000,1000};
 std::array<interact_dep::ActionsGroup::exe, 6> get_second_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);

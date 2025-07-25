@@ -425,12 +425,13 @@ bool RoboArm::ikine(const std::array<float, 3>& position) {
     // arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q[5]);
     return true;
 }
-bool RoboArm::ikine(const std::array<float, 3>& position, std::array<float, 3> posture, float imu_pitch) {
-    std::array<float, 3> terminal_pitch_position;
-    posture[1] -= deg2rad(imu_pitch);
-    terminal_pitch_position[0] = position[0] - 122 * (arm_cos_f32(posture[0]) * arm_sin_f32(posture[1]));
+bool RoboArm::ikine(const std::array<float, 3>& position, const std::array<float, 3>& posture, float imu_pitch) {
+    std::array<float, 3> terminal_pitch_position{};
+    float cimu,simu;
+    arm_sin_cos_f32(imu_pitch, &simu, &cimu);
+    terminal_pitch_position[0] = position[0] - 122 * cimu * (arm_cos_f32(posture[0]) * arm_sin_f32(posture[1])) + 122 * arm_cos_f32(posture[1]) * simu;
     terminal_pitch_position[1] = position[1] - 122 * (arm_sin_f32(posture[0]) * arm_sin_f32(posture[1]));
-    terminal_pitch_position[2] = position[2] - 122 * (arm_cos_f32(posture[1]));
+    terminal_pitch_position[2] = position[2] - 122 * cimu * (arm_cos_f32(posture[1])) - 122 * arm_cos_f32(posture[0])*simu*arm_sin_f32(posture[1]);
 
     bool is_success = false;
     // 选择出当前距离位置更近的q1的解 （q1的另外一个解为q1的对角）
@@ -509,13 +510,17 @@ bool RoboArm::ikine(const std::array<float, 3>& position, std::array<float, 3> p
         float sq2q3 = sq2 * cq3 + cq2 * sq3;
         float cq2q3 = cq2 * cq3 - sq2 * sq3;
 
-        r3_3 = cp2 * cq2 * cq3 - cp2 * sq2 * sq3 + cq1 * cq2 * cp1 * sp2 * sq3 + cq1 * cq3 * cp1 * sp2 * sq2
-               + cq2 * sp2 * sq1 * sq3 * sp1 + cq3 * sp2 * sq1 * sq2 * sp1;
+//        cos(q2 + q3)*(cos(imu_pitch)*cos(p) + cos(r)*sin(imu_pitch)*sin(p)) - sin(q2 + q3)*cos(q1)*(cos(p)*sin(imu_pitch) - cos(imu_pitch)*cos(r)*sin(p)) + sin(q2 + q3)*sin(p)*sin(q1)*sin(r)
+//        r3_3 = cp2 * cq2 * cq3 - cp2 * sq2 * sq3 + cq1 * cq2 * cp1 * sp2 * sq3 + cq1 * cq3 * cp1 * sp2 * sq2
+//               + cq2 * sp2 * sq1 * sq3 * sp1 + cq3 * sp2 * sq1 * sq2 * sp1;
+        r3_3 = cq2q3*(cimu*cp2+cp1*simu*sp2) - sq2q3*cq1*(cp2*simu-cimu*cp1*sp2) + sq2q3*sp2*sq1*sp1;
 
         if (is_equal<0.0001f>(r3_3, 1)) {
             q[4]       = 0;
-            float r2_1 = cq1 * (cp1 * sp3 + cp2 * cp3 * sp1) + sq1 * (sp1 * sp3 - cp2 * cp1 * cp3);
-            float r2_2 = cq1 * (cp1 * cp3 - cp2 * sp1 * sp3) + sq1 * (cp3 * sp1 + cp2 * cp1 * sp3);
+//  sin(q1)*(cos(imu_pitch)*(sin(r)*sin(y) - cos(p)*cos(r)*cos(y)) - cos(y)*sin(imu_pitch)*sin(p)) + cos(q1)*(cos(r)*sin(y) + cos(p)*cos(y)*sin(r))
+            float r2_1 = cq1 * (cp1 * sp3 + cp2 * cp3 * sp1) + sq1 * (cimu * (sp1 * sp3 - cp2 * cp1 * cp3) - cp3 * simu * sp2);
+//  sin(q1)*(cos(imu_pitch)*(cos(y)*sin(r) + cos(p)*cos(r)*sin(y)) + sin(imu_pitch)*sin(p)*sin(y)) + cos(q1)*(cos(r)*cos(y) - cos(p)*sin(r)*sin(y))
+            float r2_2 = cq1 * (cp1 * cp3 - cp2 * sp1 * sp3) + sq1 * (cimu * (cp3 * sp1 + cp2 * cp1 * sp3) + simu * sp2 * sp3);
             q[3]       = relative_pos[3];
             float all;
             arm_atan2_f32(r2_1, r2_2, &all);
@@ -523,15 +528,23 @@ bool RoboArm::ikine(const std::array<float, 3>& position, std::array<float, 3> p
             return true;
         }
 
-        r1_3 = cq1 * cq2 * cq3 * cp1 * sp2 - cp2 * cq3 * sq2 - cp2 * cq2 * sq3 - cq1 * cp1 * sp2 * sq2 * sq3
-               + cq2 * cq3 * sp2 * sq1 * sp1 - sp2 * sq1 * sq2 * sq3 * sp1;
-        // r2_3 = -sin(q[0] - posture[0])*sp2;
-        r2_3 = -(sq1 * cp1 - cq1 * sp1) * sp2;
+//  cos(q2 + q3)*sin(p)*sin(q1)*sin(r) - cos(q2 + q3)*cos(q1)*(cos(p)*sin(imu_pitch) - cos(imu_pitch)*cos(r)*sin(p)) - sin(q2 + q3)*(cos(imu_pitch)*cos(p) + cos(r)*sin(imu_pitch)*sin(p))
+//        r1_3 = cq1 * cq2 * cq3 * cp1 * sp2 - cp2 * cq3 * sq2 - cp2 * cq2 * sq3 - cq1 * cp1 * sp2 * sq2 * sq3
+//               + cq2 * cq3 * sp2 * sq1 * sp1 - sp2 * sq1 * sq2 * sq3 * sp1;
 
-        r3_2 = sq2q3 * sq1 * (cp1 * cp3 - cp2 * sp1 * sp3) - sq2q3 * cq1 * (cp3 * sp1 + cp2 * cp1 * sp3)
-               + cq2q3 * sp2 * sp3;
-        r3_1 = sq2q3 * sq1 * (cp1 * sp3 + cp2 * cp3 * sp1) - sq2q3 * cq1 * (sp1 * sp3 - cp2 * cp1 * cp3)
-               - cq2q3 * cp3 * sp2;
+        r1_3 = cq2q3*sp2*sq1*sp1-cq2q3*cq1*(cp2*simu-cimu*cp1*sp2) - sq2q3*(cimu*cp2+cp1*simu*sp2);
+
+        // r2_3 = -sin(q[0] - posture[0])*sp2;
+        //  sin(q1)*(cos(p)*sin(imu_pitch) - cos(imu_pitch)*cos(r)*sin(p)) + cos(q1)*sin(p)*sin(r)
+//        r2_3 = -(sq1 * cp1 - cq1 * sp1) * sp2;
+        r2_3 = sq1*(cp2*simu-cimu*cp1*sp2) + cq1*sp2*sp1;
+
+//  sin(q2 + q3)*sin(q1)*(cos(r)*cos(y) - cos(p)*sin(r)*sin(y)) - sin(q2 + q3)*cos(q1)*(sin(imu_pitch)*sin(p)*sin(y) + cos(imu_pitch)*cos(y)*sin(r) + cos(imu_pitch)*cos(p)*cos(r)*sin(y)) - cos(q2 + q3)*(cos(y)*sin(imu_pitch)*sin(r) - cos(imu_pitch)*sin(p)*sin(y) + cos(p)*cos(r)*sin(imu_pitch)*sin(y))
+        r3_2 = sq2q3 * sq1 * (cp1 * cp3 - cp2 * sp1 * sp3) - sq2q3 * cq1 * (simu*sp2*sp3 + cimu*(cp3 * sp1 + cp2 * cp1 * sp3))
+               + cq2q3 * (simu*(cp1*cp2*sp3+cp3*sp1)+(cimu*sp2 * sp3));
+//  sin(q2 + q3)*sin(q1)*(cos(r)*sin(y) + cos(p)*cos(y)*sin(r)) - cos(q2 + q3)*(sin(imu_pitch)*sin(r)*sin(y) + cos(imu_pitch)*cos(y)*sin(p) - cos(p)*cos(r)*cos(y)*sin(imu_pitch)) + sin(q2 + q3)*cos(q1)*(cos(y)*sin(imu_pitch)*sin(p) - cos(imu_pitch)*sin(r)*sin(y) + cos(imu_pitch)*cos(p)*cos(r)*cos(y))
+        r3_1 = sq2q3 * sq1 * (cp1 * sp3 + cp2 * cp3 * sp1) - sq2q3 * cq1 * (cimu*(sp1 * sp3 - cp2 * cp1 * cp3) - cp3*simu*sp2)
+               - cq2q3 * (simu*sp1*sp3 + cimu * cp3 * sp2 - simu*cp1*cp2*cp3);
     }
     {
         float tmp;
@@ -545,8 +558,9 @@ bool RoboArm::ikine(const std::array<float, 3>& position, std::array<float, 3> p
         if (q5_0range && q5_1range) {
             float q4[2];float q6[2];
             float qr[2];
-            qr[0] = Rdistance(q5[0], relative_pos[4] * my_math::d2r);
-            qr[1] = Rdistance(q5[1], relative_pos[4] * my_math::d2r);
+            // 附加权重，权重越大，表示越希望该关节活动距离越小
+            qr[0] = 2*Rdistance(q5[0], relative_pos[4] * my_math::d2r);
+            qr[1] = 2*Rdistance(q5[1], relative_pos[4] * my_math::d2r);
             float sq5 = arm_sin_f32(q5[0]);
             arm_atan2_f32(r2_3 / sq5, r1_3 / sq5, &q4[0]);
             arm_atan2_f32(r3_2 / sq5, -r3_1 / sq5, &q6[0]);
@@ -592,8 +606,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     using namespace roboarm_dep;
     using namespace my_math;
 
-    //电机的转向和人为规定的全部反了,故加上了负号.
-
+    //一些电机的转向和人为规定的反了,故加上了负号.
     slope[0].target_set(joint[0]);
     slope[1].target_set(joint[1]);
     slope[2].target_set(joint[2]);
@@ -602,7 +615,6 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     target.joint2.internal.angle = (-joint2_slope_value + offset.joint2.internal) * scale(360, 36000);
     target.joint2.external.angle = (-joint2_slope_value + offset.joint2.external) * scale(360, 36000);
     target.joint3.angle          = (-slope[2].update() + offset.joint3) * scale(360, 36000);
-    // target.joint4.angle          = (-joint[3] + offset.joint4) * scale(360, 36000);
 
     auto data3 = joint[3];
     float err3 = joint[3] - relative_pos[3]; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
@@ -611,7 +623,6 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     data3 = relative_pos[3] + err3;
     target.joint4.angle          = (data3 + offset.joint4) * scale(360, 36000);
 
-
     float data;
     float err = joint[5] - relative_pos[5]; // 10 <- 350 + 360 = -340 - 360 // 350 <- 10 = 340
     while (err >= 180) { err -= 360; }
@@ -619,14 +630,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     data = relative_pos[5] + err;
     target_joint5 = data;
 
-    // diff.slope_left.target_set(data + joint[4]);
-    // diff.slope_right.target_set(-data + joint[4]);
-    // target.joint5.angle = (data + joint[4]);
-    // target.joint6.angle = (-data + joint[4]);
-
     target.joint5.angle = (-joint[4] + offset.joint5) * scale(360, 36000);
     target.joint6.angle = (data + offset.joint6) * scale(360, 36000);
-
-
 }
 
