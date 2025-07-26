@@ -139,9 +139,9 @@ void Translation<T>::state_handle() {
     }
 };
 namespace osg {
-    constexpr float xl_max = -1542.33521; //  -1636   -1502.33521
+    constexpr float xl_max = -1600.33521; //  -1636   -1502.33521
     constexpr float yl_max = 224;   //  224
-    constexpr float xr_max = 1597.41211;  //  1666    1557.41211
+    constexpr float xr_max = 1630.41211;  //  1666    1557.41211
     constexpr float yr_max = -224;  //  -244
     constexpr float rota_init = 305;  //  -244
     constexpr float rota_up = 230;  //  -244

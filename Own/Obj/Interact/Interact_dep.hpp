@@ -76,6 +76,16 @@ namespace interact_dep {
             , time(time)
             {};
 
+        explicit Actions(const std::array<float, 3>& posi, const std::array<float, 3>& post, uint32_t time = 0)
+                : status(action_status::XYZ)
+                , init(false)
+                , Xaxis(default_pos_step[0],default_pos_step[0],posi[0])
+                , Yaxis(default_pos_step[1],default_pos_step[1],posi[1])
+                , Zaxis(default_pos_step[2],default_pos_step[2],posi[2])
+                , zyz(post)
+                , time(time)
+        {};
+
         void setup_step(float* data, uint32_t time) {
             if (status == action_status::XYZ) {
                 if (time!=0) {

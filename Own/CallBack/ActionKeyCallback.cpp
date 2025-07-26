@@ -493,7 +493,7 @@ void action_shift_r_callback(KeyEventType event) {
 void roboarm_shift_e_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            interact.set_action(arm_error);
+//            interact.set_action(arm_error);
             break;
         default: break;
     }

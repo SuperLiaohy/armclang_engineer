@@ -35,6 +35,10 @@ public:
     explicit LKMotorPid(Args&&... args)
         : lkPidControl(std::forward<Args>(args)...) {};
 
+    void change_kp(float kp) {
+        speed.parameters.p = kp;
+    }
+
     bool get_feedback(uint16_t id, uint8_t* data) {
         if (id == this->rx_id) {
             LKMotor::get_feedback(data);

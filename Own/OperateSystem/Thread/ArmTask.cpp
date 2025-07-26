@@ -19,6 +19,11 @@ void ArmTask() {
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         // roboArm.joint5.read_feedback();
+//        if (interact.sub_board.custom_frame_rx.s.valve2 < 400) {
+//            roboArm.joint5.change_kp(0.35);
+//        } else {
+//            roboArm.joint5.change_kp(0.35);
+//        }
         roboArm.joint5.set_position(roboArm.target.joint5.angle/100.f);
         roboArm.joint5.SingleControl();
         xSemaphoreGive(CAN1MutexHandle);

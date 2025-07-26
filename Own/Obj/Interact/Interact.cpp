@@ -249,7 +249,7 @@ void Interact::receive_actions(RoboArm &Arm, float pitch) {
                 posi[0] = actions->Xaxis.update();
                 posi[1] = actions->Yaxis.update();
                 posi[2] = actions->Zaxis.update();
-                if (Arm.ikine(posi, {deg2rad(actions->zyz[0]), deg2rad(actions->zyz[1]), deg2rad(actions->zyz[2])})) {
+                if (Arm.ikine(posi, {deg2rad(actions->zyz[0]), deg2rad(actions->zyz[1]), deg2rad(actions->zyz[2])}),pitch) {
                     joint[0] = limited<float>(Arm.q[0] * my_math::r2d, limitation.joint1.min, limitation.joint1.max);
                     joint[1] = limited<float>(Arm.q[1] * my_math::r2d, limitation.joint2.min, limitation.joint2.max);
                     joint[2] = limited<float>(Arm.q[2] * my_math::r2d, limitation.joint3.min, limitation.joint3.max);

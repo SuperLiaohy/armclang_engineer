@@ -30,10 +30,10 @@ void air_right_callback(KeyEventType event) {
 void robo_arm_ctrl_g_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            interact.robo_arm.last_mode = interact_dep::robo_mode::NONE;
-            interact.robo_arm.mode = interact_dep::robo_mode::NONE;
-            interact.joint[5] = 0;
-            interact.joint[4] = 0;
+//            interact.robo_arm.last_mode = interact_dep::robo_mode::NONE;
+//            interact.robo_arm.mode = interact_dep::robo_mode::NONE;
+//            interact.joint[5] = 0;
+//            interact.joint[4] = 0;
             break;
         default:
             break;

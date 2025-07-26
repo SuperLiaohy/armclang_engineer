@@ -92,7 +92,7 @@ void ImageTransTask() {
             }
         } while (image_trans.is_change());
 
-        if (time % 100) {
+        if (time % 100 == 0) {
             if (interact.robo_arm.mode == interact_dep::robo_mode::CUSTOM) {
                 image_trans.set_map_back(0);
             } else {

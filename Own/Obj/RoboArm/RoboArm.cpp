@@ -428,7 +428,11 @@ bool RoboArm::ikine(const std::array<float, 3>& position) {
 bool RoboArm::ikine(const std::array<float, 3>& position, const std::array<float, 3>& posture, float imu_pitch) {
     std::array<float, 3> terminal_pitch_position{};
     float cimu,simu;
-    arm_sin_cos_f32(imu_pitch, &simu, &cimu);
+    if (my_abs(imu_pitch)<90) {
+        arm_sin_cos_f32(imu_pitch, &simu, &cimu);
+    } else {
+        imu_pitch = 0;
+    }
     terminal_pitch_position[0] = position[0] - 122 * cimu * (arm_cos_f32(posture[0]) * arm_sin_f32(posture[1])) + 122 * arm_cos_f32(posture[1]) * simu;
     terminal_pitch_position[1] = position[1] - 122 * (arm_sin_f32(posture[0]) * arm_sin_f32(posture[1]));
     terminal_pitch_position[2] = position[2] - 122 * cimu * (arm_cos_f32(posture[1])) - 122 * arm_cos_f32(posture[0])*simu*arm_sin_f32(posture[1]);
