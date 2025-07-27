@@ -32,6 +32,7 @@ void LKMotor::get_feedback(uint8_t* data) {
             feedback.raw_data.speed       = *(int16_t*)(&data[4]);
             feedback.raw_data.position    = *(int16_t*)(&data[6]);
 
+            last_speed = feedback.data.speed;
             feedback.data.position    = feedback.raw_data.position * 360.f / precision_range;
             feedback.data.speed       = feedback.raw_data.speed;
             feedback.data.current     = feedback.raw_data.current * 33.f / 2048.f;

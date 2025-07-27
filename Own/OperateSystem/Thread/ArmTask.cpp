@@ -5,6 +5,19 @@
 #include "Interact/Interact.hpp"
 #include "RoboArm/RoboArm.hpp"
 #include "Imu/Imu.hpp"
+struct  {
+    float speed_p;
+    float speed_i;
+    float speed_d;
+
+    float pos_p;
+    float pos_i;
+    float pos_d;
+
+    float pos;
+    float target;
+}pid_parma = {.pos_p = 100,.pos_i = 0.002, .pos_d = 35,.speed_p = 0.25,.speed_i = 0.01,.speed_d = 0,};
+
 
 void ArmTask() {
     uint32_t cnt = 0;
@@ -19,11 +32,23 @@ void ArmTask() {
 
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
         // roboArm.joint5.read_feedback();
-//        if (interact.sub_board.custom_frame_rx.s.valve2 < 400) {
-//            roboArm.joint5.change_kp(0.35);
-//        } else {
-//            roboArm.joint5.change_kp(0.35);
-//        }
+        pid_parma.target = roboArm.target.joint5.angle/100.f;
+        pid_parma.pos = roboArm.joint5.total_position;
+        if (interact.sub_board.custom_frame_rx.s.valve2 > 700) {
+            roboArm.joint5.change_speed_kp(pid_parma.speed_p);
+            roboArm.joint5.change_speed_ki(pid_parma.speed_i);
+            roboArm.joint5.change_speed_kd(pid_parma.speed_d);
+            roboArm.joint5.change_pos_kp(pid_parma.pos_p);
+            roboArm.joint5.change_pos_ki(pid_parma.pos_i);
+            roboArm.joint5.change_pos_kd(pid_parma.pos_d);        }
+        else {
+            roboArm.joint5.change_speed_kp(pid_parma.speed_p);
+            roboArm.joint5.change_speed_ki(pid_parma.speed_i);
+            roboArm.joint5.change_speed_kd(pid_parma.speed_d);
+            roboArm.joint5.change_pos_kp(pid_parma.pos_p);
+            roboArm.joint5.change_pos_ki(pid_parma.pos_i);
+            roboArm.joint5.change_pos_kd(pid_parma.pos_d);
+        }
         roboArm.joint5.set_position(roboArm.target.joint5.angle/100.f);
         roboArm.joint5.SingleControl();
         xSemaphoreGive(CAN1MutexHandle);

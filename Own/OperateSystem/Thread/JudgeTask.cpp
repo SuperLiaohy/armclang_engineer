@@ -24,7 +24,7 @@ void JudgeTask() {
         auto valve_tx_s = interact.sub_board.read_tx_status();
         int32_t result  = 0;
         result          = result * 10 + (0x01);
-        for (int i = 6; i >= 0; --i) { result = result * 10 + ((valve_tx_s >> i) & 0x01); }
+        for (int i = 3; i >= 0; --i) { result = result * 10 + ((valve_tx_s >> i) & 0x01); }
         return result;
     };
     auto int_robo_arm = []() -> int32_t {
@@ -168,11 +168,11 @@ void JudgeTask() {
                         ++UI::figure_list[i].control.display_num;
                     }
                 }
-                lf_num->set_float(interact.sub_board.custom_frame_rx.s.valve5);
-                lb_num->set_float(interact.sub_board.custom_frame_rx.s.valve4);
-                rf_num->set_float(interact.sub_board.custom_frame_rx.s.valve1);
-                rb_num->set_float(interact.sub_board.custom_frame_rx.s.valve2);
-                main_num->set_float(interact.sub_board.custom_frame_rx.s.valve3);
+                lf_num->set_float(interact.sub_board.custom_frame_rx.s.valve1);
+//                lb_num->set_float(interact.sub_board.custom_frame_rx.s.valve4);
+                rf_num->set_float(interact.sub_board.custom_frame_rx.s.valve3);
+//                rb_num->set_float(interact.sub_board.custom_frame_rx.s.valve2);
+                main_num->set_float(interact.sub_board.custom_frame_rx.s.valve2);
 
                 chassis_num->set_int(int_chassis());
                 robo_num->set_int(int_robo_arm());

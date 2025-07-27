@@ -99,12 +99,12 @@ void Interact::receive_custom(uint8_t *data) {
         if (image_trans.user_custom_rx_data.s.pump != last_s.pump) { air_right_callback(KeyEvent_OnClick); }
         if (image_trans.user_custom_rx_data.s.valve != last_s.valve) { air_left_callback(KeyEvent_OnClick); }
         if (!image_trans.read_map_back()) {
-            joint[0] = -image_trans.user_custom_rx_data.joint[0] * scale(4096, 360);
+            joint[0] = image_trans.user_custom_rx_data.joint[0] * scale(4096, 360);
             joint[1] = image_trans.user_custom_rx_data.joint[1] * scale(4096, 360);
             joint[2] = image_trans.user_custom_rx_data.joint[2] * scale(4096, 360);
-            joint[3] = -image_trans.user_custom_rx_data.joint[3] * scale(4096, 360);
+            joint[3] = image_trans.user_custom_rx_data.joint[3] * scale(4096, 360);
             joint[4] = image_trans.user_custom_rx_data.joint[4] * scale(4096, 360);
-            joint[5] = image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
+            joint[5] = -image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
         }
     }
 }

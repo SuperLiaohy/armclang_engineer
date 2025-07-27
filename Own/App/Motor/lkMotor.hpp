@@ -35,9 +35,27 @@ public:
     explicit LKMotorPid(Args&&... args)
         : lkPidControl(std::forward<Args>(args)...) {};
 
-    void change_kp(float kp) {
+    void change_speed_kp(float kp) {
         speed.parameters.p = kp;
     }
+    void change_speed_ki(float ki) {
+        speed.parameters.i = ki;
+    }
+    void change_speed_kd(float kd) {
+        speed.parameters.d = kd;
+    }
+
+    void change_pos_kp(float kp) {
+        position.parameters.p = kp;
+    }
+    void change_pos_ki(float ki) {
+        position.parameters.i = ki;
+    }
+    void change_pos_kd(float kd) {
+        position.parameters.d = kd;
+    }
+
+
 
     bool get_feedback(uint16_t id, uint8_t* data) {
         if (id == this->rx_id) {

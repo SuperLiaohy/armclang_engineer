@@ -41,7 +41,7 @@ public:
         foc_pid_t foc_pid;
         err_t err;
     };
-
+    float last_speed;
 public:
     Feedback feedback;
     uint16_t rx_id;

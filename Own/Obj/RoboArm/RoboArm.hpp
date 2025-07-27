@@ -9,7 +9,7 @@ public:
             uint32_t range2_internal, const float ratio2_internal, uint32_t id2_external, uint32_t range2_external,
             const float ratio2_external, uint32_t id3, uint32_t range3, const float ratio3, uint32_t id4,
             uint32_t range4, const float ratio4,
-            const Pid& pid_pos5,const Pid& pid_speed5,
+            float alpha, const Pid& pid_pos5,const Pid& pid_speed5,
             uint32_t id5, const uint32_t range5, const float ratio5,
             const uint32_t id6, const uint32_t range6, const float ratio6,
             roboarm_dep::offset&& offset)
@@ -19,7 +19,7 @@ public:
                   Motor<LKMotorSingle>(canPlus, id2_external, range2_external, ratio2_external)}
         , joint3(canPlus, id3, range3, ratio3)
         , joint4(canPlus, id4, range4, ratio4)
-        , joint5(pid_pos5, pid_speed5, canPlus, id5, range5, ratio5)
+        , joint5(alpha, pid_pos5, pid_speed5, canPlus, id5, range5, ratio5)
         , joint6(canPlus, id6, range6, ratio6)
         , offset {offset} {};
 

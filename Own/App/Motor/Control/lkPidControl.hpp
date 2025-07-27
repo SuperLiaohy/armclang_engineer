@@ -12,10 +12,11 @@ template<motor_param motor>
 class lkPidControl: public motor {
 public:
     template<typename... Args>
-    lkPidControl(const Pid& pos_cfg,const Pid& speed_cfg,SuperCan* canPlus, uint16_t rx_id, Args&&... args)
+    lkPidControl(float alpha, const Pid& pos_cfg,const Pid& speed_cfg,SuperCan* canPlus, uint16_t rx_id, Args&&... args)
         : motor(rx_id, std::forward<Args>(args)...)
         , position(pos_cfg)
         , speed(speed_cfg)
+        ,alpha(alpha)
     , tx_id(rx_id)
     , canPlus(canPlus){};
 
@@ -23,8 +24,9 @@ public:
     [[nodiscard]] float& speed_output() { return this->speed.output; }
 
     float set_position(const float target) {
+        float filter = (1 - alpha) * this->feedback.data.speed + alpha * this->last_speed;
         if (!this->detect.isLost) {
-            return this->speed.update(this->position.update(target, this->total_position), this->feedback.data.speed);
+            return this->speed.update(this->position.update(target, this->total_position), filter);
         } else {
             speed.clear();
             position.clear();
@@ -59,6 +61,7 @@ protected:
     Pid position;
     Pid speed;
 
+    float alpha;
     uint16_t tx_id;
     SuperCan* canPlus;
 };

@@ -57,7 +57,7 @@ Chassis chassis(&canPlus2, {Slope(15, 1), Slope(15, 1), Slope(0.1, 0), Slope(15,
 
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
 RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 
-                Pid(400, 0.002, 0.8, 800, 1200, 0), Pid(0.50, 0.010, 0.00, 500, 500, 1.0),
+                1, Pid(400, 0.002, 0.8, 500, 1200, 0), Pid(0.25, 0.010, 0.00, 300, 500, 1.0),
                 7, 65536, 10,
                 6, 65536, 10,
                 {88.961792, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
@@ -93,9 +93,9 @@ OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 7
 interact_dep::Actions get_silver_mine({0,25.666613159627129519036695734921, 114.03037145218561331967584563847,0,180 - 114.03037145218561331967584563847 - 25.666613159627129519036695734921,0}, {180, 360, 480, 360},1000);
 interact_dep::Actions get_silver_mine_lz(std::array<float,3>{349.146f,0.f,-131.812},std::array<float,3>{0.f,180.f,0.f},std::array<float,3>{0.06f,0.06f,0.2f});
 interact_dep::Actions get_silver_mine_z(std::array<float,3>{349.146f,0.f,-131.812+250},std::array<float,3>{0.f,180.f,0.f},std::array<float,3>{0.06f,0.06f,0.16f});
-interact_dep::Actions put_silver_mine(std::array<float,3>{295.f,-270.5f,126.5},std::array<float,3>{0.f,180.f,0.f},std::array<float,3>{0.15f,0.2f,0.1f});
-interact_dep::Actions put_silver_mine_back(std::array<float,3>{250.f, -270.5f, 126.5}, std::array<float,3>{0.f, 190.f, 0.f}, std::array<float,3>{0.1f, 0.2f, 0.1f});
-interact_dep::Actions put_silver_mine_up(std::array<float,3>{250.f,-270.5f,200.0},std::array<float,3>{0.f,190.f,0.f},std::array<float,3>{0.1f,0.2f,0.1f});
+interact_dep::Actions put_silver_mine(std::array<float,3>{295.f,-300.5f,126.5},std::array<float,3>{0.f,180.f,0.f},std::array<float,3>{0.15f,0.2f,0.1f});
+interact_dep::Actions put_silver_mine_back(std::array<float,3>{230.f, -300.5f, 126.5}, std::array<float,3>{0.f, 190.f, 0.f}, std::array<float,3>{0.1f, 0.2f, 0.1f});
+interact_dep::Actions put_silver_mine_up(std::array<float,3>{235.f,-300.5f,200.0},std::array<float,3>{0.f,190.f,0.f},std::array<float,3>{0.1f,0.2f,0.1f});
 
 interact_dep::Actions exchange_left({-17.9960938, 36.7366142, 35.3361511, -89.4694138, -89.9465207, 52.6248474});
 interact_dep::Actions exchange_right({17.9960938,36.7366142,35.3361511,89.4694138,-89.9465207,-52.6248474});
@@ -126,7 +126,7 @@ std::array<interact_dep::Actions, 7> get_second_silver_action        = {
 //     interact_dep::Actions({0, 37.604, 115.54184, 0, 27.570, 0},{480,720,360,360}),
 //     interact_dep::Actions(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ_z)
 // };
-std::array<uint32_t, 7> get_second_silver_time                       = {1500,1000,2000,1300,700,500,500};
+std::array<uint32_t, 7> get_second_silver_time                       = {1500,1000,2000,1300,1500,500,500};
 std::array<interact_dep::ActionsGroup::exe, 8> get_second_silver_exe = {
     []() {
         interact.sub_board.set_pump(1);
@@ -138,7 +138,7 @@ std::array<interact_dep::ActionsGroup::exe, 8> get_second_silver_exe = {
         interact.sub_board.set_rf_valve(1);
     },
     []() {
-        one_step_gets.Xright.set_state(translation::state::MOVE,220);
+        one_step_gets.Xright.set_state(translation::state::MOVE,210);
     },
     []() {
         interact.sub_board.set_main_valve(0);
@@ -247,8 +247,8 @@ std::array<interact_dep::ActionsGroup::exe, 4> get_silver_exe = {
         one_step_gets.Yleft.set_state(translation::state::MOVE,osg::yl_max);
         },
     []() {
-//        one_step_gets.rotate.set_target(osg::rota_init);
-//        one_step_gets.Xleft.set_state(translation::state::MOVE,0);
+        one_step_gets.rotate.set_target(osg::rota_init);
+        one_step_gets.Xleft.set_state(translation::state::MOVE,0);
         interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 };
 
@@ -288,7 +288,7 @@ interact_dep::ActionsGroup put_down_gold_group = {.actions_list = put_down_gold_
 // **************************************************************************************************** //
 
 
-std::array<uint32_t, 4> get_gold_time = {10, 2000, 1500, 2000};
+std::array<uint32_t, 4> get_gold_time = {10, 3000, 1500, 2000};
 std::array<interact_dep::Actions, 4> get_gold_action        = {reset1, reset1, reset1, reset1};
 std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
     []() {
@@ -334,7 +334,7 @@ interact_dep::ActionsGroup get_gold_group = {.actions_list = get_gold_action.dat
 // **************************************************************************************************** //
 
 
-std::array<uint32_t, 4> get_right_gold_time = {10, 4000, 2000, 4000};
+std::array<uint32_t, 4> get_right_gold_time = {10, 3000, 2000, 4000};
 std::array<interact_dep::Actions, 4> get_right_gold_action        = {
     reset1,
     reset1,
@@ -368,7 +368,7 @@ interact_dep::ActionsGroup get_right_gold_group = {.actions_list = get_right_gol
 // **************************************************************************************************** //
 
 
-std::array<uint32_t, 4> get_left_gold_time = {10, 4000, 2000, 4000};
+std::array<uint32_t, 4> get_left_gold_time = {10, 3000, 2000, 4000};
 std::array<interact_dep::Actions, 4> get_left_gold_action        = {reset1, reset1, reset1, reset1};
 std::array<interact_dep::ActionsGroup::exe, 5> get_left_gold_exe = {
     []() {
