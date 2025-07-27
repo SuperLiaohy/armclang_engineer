@@ -606,7 +606,7 @@ bool RoboArm::ikine(const std::array<float, 3>& position, const std::array<float
     return true;
 }
 float target_joint5;
-void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3>& slope) {
+void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 4>& slope) {
     using namespace roboarm_dep;
     using namespace my_math;
 
@@ -614,6 +614,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     slope[0].target_set(joint[0]);
     slope[1].target_set(joint[1]);
     slope[2].target_set(joint[2]);
+    slope[3].target_set(joint[4]);
     auto joint2_slope_value = slope[1].update();
     target.joint1.angle          = (slope[0].update() + offset.joint1) * scale(360, 36000);
     target.joint2.internal.angle = (-joint2_slope_value + offset.joint2.internal) * scale(360, 36000);
@@ -634,7 +635,7 @@ void RoboArm::load_target(const std::array<float, 6>& joint, std::array<Slope, 3
     data = relative_pos[5] + err;
     target_joint5 = data;
 
-    target.joint5.angle = (-joint[4] + offset.joint5) * scale(360, 36000);
+    target.joint5.angle = (-slope[3].update() + offset.joint5) * scale(360, 36000);
     target.joint6.angle = (data + offset.joint6) * scale(360, 36000);
 }
 

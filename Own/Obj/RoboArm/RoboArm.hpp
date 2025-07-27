@@ -57,7 +57,7 @@ public:
     std::array<float, 6> relative_pos;
 
     void init_offset(std::array<float, 6>& joint);
-    void load_target(const std::array<float, 6>& joint, std::array<Slope, 3>& Slope);
+    void load_target(const std::array<float, 6>& joint, std::array<Slope, 4>& Slope);
     void update_relative_pos();
 
 private:

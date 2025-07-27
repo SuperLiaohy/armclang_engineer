@@ -247,7 +247,7 @@ std::array<interact_dep::ActionsGroup::exe, 4> get_silver_exe = {
         one_step_gets.Yleft.set_state(translation::state::MOVE,osg::yl_max);
         },
     []() {
-        one_step_gets.rotate.set_target(osg::rota_init);
+        one_step_gets.rotate.unlock();
         one_step_gets.Xleft.set_state(translation::state::MOVE,0);
         interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 };

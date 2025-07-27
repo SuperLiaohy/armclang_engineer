@@ -17,7 +17,7 @@ public:
         , pc(head, tail)
         , kb {interact_dep::kb_state::RC_ENABLE}
         , robo_arm {interact_dep::robo_mode::NONE, interact_dep::robo_mode::NONE}
-        , joint_slope({Slope(0.15, 0), Slope(0.6, 0), Slope(0.3, 0)})
+        , joint_slope({Slope(0.15, 0), Slope(0.6, 0), Slope(0.3, 0), Slope(0.3, 0)})
         , chassis {interact_dep::chassis_mode::NONE, interact_dep::chassis_mode::NONE}
         , sub_board(uart_sub_board) {};
 
@@ -35,7 +35,7 @@ public:
         interact_dep::robo_mode last_mode;
     } robo_arm;
     std::array<float, 6> joint {};
-    std::array<Slope, 3> joint_slope;
+    std::array<Slope, 4> joint_slope;
     interact_dep::Actions* actions {};
     interact_dep::ActionsGroup* actions_group {};
 

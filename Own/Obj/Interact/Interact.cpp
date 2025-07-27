@@ -212,10 +212,12 @@ void Interact::receive_actions(RoboArm &Arm, float pitch) {
                         joint_slope[0].step_set(my_abs(actions->joints[0] - Arm.relative_pos[0]) / time);
                         joint_slope[1].step_set(my_abs(actions->joints[1] - Arm.relative_pos[1]) / time);
                         joint_slope[2].step_set(my_abs(actions->joints[2] - Arm.relative_pos[2]) / time);
+                        joint_slope[3].step_set(my_abs(actions->joints[4] - Arm.relative_pos[4]) / time);
                     } else {
                         joint_slope[0].step_set(my_abs(actions->joints[0] - Arm.relative_pos[0]) / actions->time);
                         joint_slope[1].step_set(my_abs(actions->joints[1] - Arm.relative_pos[1]) / actions->time);
                         joint_slope[2].step_set(my_abs(actions->joints[2] - Arm.relative_pos[2]) / actions->time);
+                        joint_slope[3].step_set(my_abs(actions->joints[4] - Arm.relative_pos[4]) / actions->time);
 
                     }
                     actions->init = true;
@@ -263,6 +265,7 @@ void Interact::receive_actions(RoboArm &Arm, float pitch) {
                 interact.joint_slope[0].step_set(0.15);
                 interact.joint_slope[1].step_set(0.15);
                 interact.joint_slope[2].step_set(0.15);
+                interact.joint_slope[3].step_set(0.15);
             }
                 break;
             default:
@@ -282,6 +285,7 @@ void Interact::receive_actions(RoboArm &Arm, float pitch) {
         interact.joint_slope[0].step_set(0.15);
         interact.joint_slope[1].step_set(0.15);
         interact.joint_slope[2].step_set(0.15);
+        interact.joint_slope[3].step_set(0.15);
     }
 }
 

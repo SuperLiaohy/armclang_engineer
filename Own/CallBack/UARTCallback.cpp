@@ -39,6 +39,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
     if (huart == interact.remote_control.uartPlus.uart) {
         ++interact.remote_control.uartPlus.rx_cnt;
         interact.remote_control.update();
+//        interact.remote_control.update(interact.key_board);
         if (++cnt > 5) {
             rc_ready.store(true);
             xEventGroupSetBitsFromISR(osEventGroup, REMOTE_CONTROL_START_EVENT, &xHigherPriorityTaskWoken);
