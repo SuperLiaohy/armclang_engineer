@@ -61,7 +61,7 @@ RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 
                 7, 65536, 10,
                 6, 65536, 10,
                 {88.961792, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 360-5.21850491, /*(310.715 - 360)*/-47.9443359, 0});
+                 180-90.6866608, /*(310.715 - 360)*/-47.9443359, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -101,7 +101,7 @@ interact_dep::Actions exchange_left({-17.9960938, 36.7366142, 35.3361511, -89.46
 interact_dep::Actions exchange_right({17.9960938,36.7366142,35.3361511,89.4694138,-89.9465207,-52.6248474});
 
 interact_dep::Actions reset1({0, -55, 145, 0, 0, 0}, {720,720,360,720}, 1000);
-interact_dep::Actions reset2({0, -8.31188679, 145, 0, 0, 0}, {720, 720, 360, 720}, 1000);
+interact_dep::Actions reset2({0, -8.31188679, 135, 0, -90, 0}, {720, 720, 360, 720}, 1000);
 
 // 661.090, 0, 23.632
 interact_dep::Actions arm_get_gold({0, 53.8834076, 66.5721664, 0, -30.4555893, 0}, {480, 720, 900, 720},2000);
@@ -234,21 +234,22 @@ std::array<interact_dep::ActionsGroup::exe, 4> get_silver_exe = {
         interact.sub_board.set_pump(1);
         interact.sub_board.set_lf_valve(1);
         one_step_gets.rotate.set_target(osg::rota_up);
-        one_step_gets.Yleft.set_state(translation::state::MOVE,0);
-        one_step_gets.Xleft.set_state(translation::state::MOVE,osg::xl_max + 300);
-//        one_step_gets.Xleft.set_state(translation::state::MOVE,1000);
-//        one_step_gets.Xright.set_state(translation::state::MOVE,-1000);
+        one_step_gets.Yleft.set_state(translation::state::MOVE,osg::M3508::meter2deg(0));
+//        one_step_gets.Xleft.set_state(translation::state::MOVE,osg::xl_max + 200);
+        one_step_gets.Xleft.set_state(translation::state::MOVE,-osg::M2006::meter2deg(290));
     },
     []() {
-        one_step_gets.rotate_move.set_state(translation::state::MOVE,-646);
+//        one_step_gets.rotate_move.set_state(translation::state::MOVE,-646);
+        one_step_gets.rotate_move.set_state(translation::state::MOVE,-osg::M2006::meter2deg(160));
         },
     []() {
-        one_step_gets.rotate_move.set_state(translation::state::MOVE,0);
-        one_step_gets.Yleft.set_state(translation::state::MOVE,osg::yl_max);
+        one_step_gets.rotate_move.set_state(translation::state::MOVE,-osg::M2006::meter2deg(0));
+        one_step_gets.Yleft.set_state(translation::state::MOVE,osg::M3508::meter2deg(osg::yl_meter));
         },
     []() {
-        one_step_gets.rotate.unlock();
-        one_step_gets.Xleft.set_state(translation::state::MOVE,0);
+        one_step_gets.rotate.is_unlock = true;
+        one_step_gets.rotate_move.set_state(translation::state::MOVE,-osg::M2006::meter2deg(0));
+        one_step_gets.Xleft.set_state(translation::state::MOVE,-osg::M2006::meter2deg(190));
         interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 };
 
@@ -257,6 +258,34 @@ interact_dep::ActionsGroup get_silver_group = {.actions_list = get_silver_action
                                                       .event_list   = nullptr,
                                                       .exe_list     = get_silver_exe.data(),
                                                       .len          = 3,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
+// **************************************************************************************************** //
+// !!!
+
+std::array<uint32_t, 2> put_silver_time = {1000,1500};
+std::array<interact_dep::Actions, 2> put_silver_action        = {reset2,reset2};
+std::array<interact_dep::ActionsGroup::exe, 3> put_silver_exe = {
+    []() {
+        interact.sub_board.set_pump(1);
+        interact.sub_board.set_lf_valve(1);
+        one_step_gets.rotate_move.set_state(translation::state::MOVE,-osg::M2006::meter2deg(45));
+    },
+    []() {
+        one_step_gets.rotate.set_target(osg::rota_init);
+        one_step_gets.rotate.is_unlock = false;
+        },
+    []() {
+        one_step_gets.Xleft.set_state(translation::state::MOVE,-osg::M2006::meter2deg(0));
+        one_step_gets.Yleft.set_state(translation::state::MOVE,osg::M2006::meter2deg(0));
+        interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
+};
+
+interact_dep::ActionsGroup put_silver_group = {.actions_list = put_silver_action.data(),
+                                                      .time_list    = put_silver_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = put_silver_exe.data(),
+                                                      .len          = 2,
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 
@@ -298,8 +327,8 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         one_step_gets.rotate.set_target(osg::rota_init);
     },
     []() {
-        one_step_gets.Xleft.set_state(translation::state::MOVE, osg::xl_max);
-        one_step_gets.rotate_move.set_state(translation::state::MOVE, -120);
+        one_step_gets.Xleft.set_state(translation::state::MOVE, osg::xl_max + 40);
+        one_step_gets.rotate_move.set_state(translation::state::MOVE, -osg::M2006::meter2deg(45));
 //        one_step_gets.Yleft.set_state(translation::state::MOVE, 200);
         one_step_gets.Xright.set_state(translation::state::MOVE, osg::xr_max);
 //        one_step_gets.Yright.set_state(translation::state::MOVE, -200);
@@ -377,7 +406,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_left_gold_exe = {
     },
     []() {
         one_step_gets.Xleft.set_state(translation::state::MOVE, osg::xl_max);
-        one_step_gets.rotate_move.set_state(translation::state::MOVE, -120);
+        one_step_gets.rotate_move.set_state(translation::state::MOVE, -osg::M2006::meter2deg(45));
 
 //        one_step_gets.Yleft.set_state(translation::state::MOVE, 200);
     },

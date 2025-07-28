@@ -14,6 +14,7 @@ extern interact_dep::ActionsGroup get_right_gold_group;
 extern interact_dep::ActionsGroup put_down_gold_group;
 extern interact_dep::ActionsGroup put_down_silver_group;
 extern interact_dep::ActionsGroup get_silver_group;
+extern interact_dep::ActionsGroup put_silver_group;
 extern interact_dep::Actions arm_error;
 
 extern interact_dep::Actions arm_get_gold;
@@ -340,7 +341,7 @@ void action_v_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                interact.set_action_group(put_down_silver_group);
+                interact.set_action_group(put_silver_group);
                 break;
             default:
                 break;
@@ -421,6 +422,7 @@ void action_ctrl_r_callback(KeyEventType event) {
             one_step_gets.Yright.set_state(translation::state::RESET, 0);
             one_step_gets.rotate_move.set_state(translation::state::RESET, 0);
             one_step_gets.rotate.set_target(osg::rota_init);
+            one_step_gets.rotate.is_unlock = false;
             break;
         default:
             break;

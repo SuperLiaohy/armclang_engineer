@@ -32,6 +32,7 @@ public:
 
     Detect detect;
 
+    bool is_unlock = false;
     float target;
     float angle;
 
@@ -98,11 +99,15 @@ void CanServos::read_idcard() {
     canPlus->transmit_pdata(id, data);
 }
 void CanServos::set_pos_speed(uint16_t pos, uint16_t speed) {
-    uint8_t data[8] = {0x03,
-                       static_cast<uint8_t>((pos & 0xff)), static_cast<uint8_t>((pos >> 8)),
-                       static_cast<uint8_t>((speed & 0xff)), static_cast<uint8_t>((speed >> 8)),
-                       0, 0, 0};
-    canPlus->transmit_pdata(id, data);
+    if (!is_unlock) {
+        uint8_t data[8] = {0x03,
+                           static_cast<uint8_t>((pos & 0xff)), static_cast<uint8_t>((pos >> 8)),
+                           static_cast<uint8_t>((speed & 0xff)), static_cast<uint8_t>((speed >> 8)),
+                           0, 0, 0};
+        canPlus->transmit_pdata(id, data);
+    } else {
+        unlock();
+    }
 }
 void CanServos::move() {
     uint16_t speed = 100;

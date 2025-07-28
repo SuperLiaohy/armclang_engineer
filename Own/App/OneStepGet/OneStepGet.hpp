@@ -145,6 +145,24 @@ namespace osg {
     constexpr float yr_max = -224;  //  -244
     constexpr float rota_init = 305;  //  -244
     constexpr float rota_up = 230;  //  -244
+
+    constexpr float xl_meter = 340;
+    constexpr float xr_meter = 350;
+
+    constexpr float yl_meter = 70;
+    constexpr float yr_meter = 70;
+
+
+    namespace M2006 {
+        consteval float meter2deg(float meter) {
+            return meter / 6.28f  * 360 / 12 ;
+        }
+    }
+    namespace M3508 {
+        consteval float meter2deg(float meter) {
+            return meter / 6.28f  * 360 / 17 ;
+        }
+    }
 }
 
 class OSG {

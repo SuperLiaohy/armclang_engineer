@@ -18,6 +18,7 @@ struct  {
     float target;
 }pid_parma = {.pos_p = 100,.pos_i = 0.002, .pos_d = 35,.speed_p = 0.25,.speed_i = 0.01,.speed_d = 0,};
 
+float joint5_current;
 
 void ArmTask() {
     uint32_t cnt = 0;
@@ -30,10 +31,12 @@ void ArmTask() {
         roboArm.update_relative_pos();
         roboArm.load_target(interact.joint, interact.joint_slope);
 
+        if (cnt%2==0)
         xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-        // roboArm.joint5.read_feedback();
+//         roboArm.joint5.read_feedback();
         pid_parma.target = roboArm.target.joint5.angle/100.f;
         pid_parma.pos = roboArm.joint5.total_position;
+        joint5_current = roboArm.joint5.feedback.raw_data.current;
         if (interact.sub_board.custom_frame_rx.s.valve2 > 700) {
             roboArm.joint5.change_speed_kp(pid_parma.speed_p);
             roboArm.joint5.change_speed_ki(pid_parma.speed_i);
