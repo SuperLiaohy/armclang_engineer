@@ -56,7 +56,7 @@ Chassis chassis(&canPlus2, {Slope(15, 1), Slope(15, 1), Slope(0.1, 0), Slope(15,
                 chassis_dep::extend_motor_default);
 
 // joint3的offset是不会变的，因为joint3是没有经过180°的，joint1也是一样
-RoboArm roboArm(&canPlus1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10, 
+RoboArm roboArm(&canPlus1,&huart9, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65536, 6, 4, 65536, 10,
                 1, Pid(400, 0.002, 0.8, 500, 1200, 0), Pid(0.25, 0.010, 0.00, 300, 500, 1.0),
                 7, 65536, 10,
                 6, 65536, 10,

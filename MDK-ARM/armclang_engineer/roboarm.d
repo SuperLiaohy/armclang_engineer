@@ -92,4 +92,5 @@ armclang_engineer/roboarm.o: ..\Own\Obj\RoboArm\RoboArm.cpp \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h

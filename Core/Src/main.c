@@ -86,10 +86,8 @@ int main(void)
 
   /* MCU Configuration--------------------------------------------------------*/
 
-	
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-	
 
   /* USER CODE BEGIN Init */
 
@@ -123,6 +121,7 @@ int main(void)
   MX_UART7_Init();
   MX_IWDG1_Init();
   MX_TIM6_Init();
+  MX_UART9_Init();
   /* USER CODE BEGIN 2 */
 	__HAL_DBGMCU_FREEZE_IWDG1();
     // HAL_TIM_Base_Start_IT(&htim6);
@@ -227,7 +226,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 0 */
 
   /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM17) {
+  if (htim->Instance == TIM17)
+  {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */

@@ -94,6 +94,7 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\Own\Mod\MyMath\MyMath.hpp ..\Own\Bsp\CAN\SuperCan.hpp \
   ..\Core\Inc\fdcan.h ..\Own\App\Motor\Control\lkPidControl.hpp \
   ..\Own\App\Motor\Param\lkMotor.hpp ..\Own\Mod\Slope\Slope.hpp \
+  ..\Own\Bsp\Uart\SuperUart.hpp ..\Core\Inc\usart.h \
   ..\Own\Obj\Chassis\Chassis.hpp ..\Own\Obj\Interact\Interact_dep.hpp \
   ..\Own\Bsp\CDC\SuperCDC.hpp ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
@@ -102,10 +103,9 @@ armclang_engineer/cancallback.o: ..\Own\CallBack\CanCallback.cpp \
   ..\USB_DEVICE\Target\usbd_conf.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Bsp\Uart\SuperUart.hpp \
-  ..\Core\Inc\usart.h ..\Own\Mod\Key\Key.hpp ..\Own\Mod\Crc\Crc.hpp \
-  ..\Own\Mod\RingBuffer\RingBuffer.h ..\Own\App\PC\PC.hpp \
-  ..\Own\App\SubBoard\SubBoard.hpp \
+  ..\Own\App\ImageTrans\ImageTrans.hpp ..\Own\Mod\Key\Key.hpp \
+  ..\Own\Mod\Crc\Crc.hpp ..\Own\Mod\RingBuffer\RingBuffer.h \
+  ..\Own\App\PC\PC.hpp ..\Own\App\SubBoard\SubBoard.hpp \
   ..\Own\App\RemoteControl\RemoteControl.hpp \
   ..\Own\Obj\Chassis\chassis_dep.hpp \
   ..\Own\App\OneStepGet\OneStepGet.hpp \

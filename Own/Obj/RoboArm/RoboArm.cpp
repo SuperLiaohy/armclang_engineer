@@ -13,7 +13,7 @@ void RoboArm::enable() {
             osDelay(1);
         }
     };
-    close(joint1);
+//    close(joint1);
     close(joint2.internal);
     close(joint2.external);
     close(joint3);
@@ -28,7 +28,7 @@ void RoboArm::enable() {
             osDelay(1);
         }
     };
-    clear_error(joint1);
+//    clear_error(joint1);
     clear_error(joint2.internal);
     clear_error(joint2.external);
     clear_error(joint3);
@@ -54,7 +54,7 @@ void RoboArm::enable() {
 
 void RoboArm::disable() {
     // 不会清除多圈状态
-    joint1.disable();
+//    joint1.disable();
     joint2.internal.disable();
     joint2.external.disable();
     joint3.disable();
@@ -125,10 +125,12 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
         joint2.external.read_totalposition();
         osDelay(1);
     }
+
+
     for (uint32_t i = 0; i < MaxTimeOut; i++) {
         if (joint1.offset_flag) {
             joint[0] = 0;
-            if (joint1.feedback.total_position < 0) { offset.joint1 -= 360; }
+            if (joint1.total_position < 0) { offset.joint1 -= 360; }
             // target.joint1.angle = offset.joint1 * 100;
             break;
         }

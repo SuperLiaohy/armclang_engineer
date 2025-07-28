@@ -1012,8 +1012,8 @@ __STATIC_FORCEINLINE int16_t __REVSH(int16_t value)
 
 
 /**
-  \brief   rotate Right in unsigned value (32 bit)
-  \details rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits.
+  \brief   Rotate Right in unsigned value (32 bit)
+  \details Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits.
   \param [in]    op1  Value to rotate
   \param [in]    op2  Number of Bits to rotate
   \return               Rotated value
@@ -1259,7 +1259,7 @@ __extension__ \
 
 
 /**
-  \brief   rotate Right with Extend (32 bit)
+  \brief   Rotate Right with Extend (32 bit)
   \details Moves each bit of a bitstring right by one bit.
            The carry input is shifted in at the left end of the bitstring.
   \param [in]    value  Value to rotate

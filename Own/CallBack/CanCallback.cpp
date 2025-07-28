@@ -16,7 +16,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         roboArm.joint3.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint2.external.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint2.internal.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
-        roboArm.joint1.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
+//        roboArm.joint1.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint5.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
         roboArm.joint6.get_feedback(canPlus1.rx_header.Identifier - LKMotor::foc.RX_ID, canPlus1.rx_data);
     } else if (hfdcan == chassis.can->hcan) {

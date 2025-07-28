@@ -5,6 +5,8 @@
 #include "Interact/Interact.hpp"
 #include "Judge/ui.hpp"
 #include "ThreadConfig.h"
+#include "RoboArm/RoboArm.hpp"
+
 extern "C" {
     extern osThreadId ERROR_TASKHandle;
 }
@@ -95,6 +97,9 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
             }
         }
         ui.start_receive();
+    } else if (huart== roboArm.joint1.uart.uart) {
+        roboArm.joint1.get_feed_back(roboArm.joint1.uart.rx_buffer,Size);
+        roboArm.joint1.start();
     }
 #endif
 }
@@ -111,6 +116,8 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
     } else if (huart == ui.uartPlus.uart) {
         ++ui.uartPlus.err_cnt;
         ui.start_receive();
+    } else if (huart == roboArm.joint1.uart.uart) {
+        roboArm.joint1.start();
     }
 };
 
