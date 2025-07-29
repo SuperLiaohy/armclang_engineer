@@ -117,15 +117,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
         ++ui.uartPlus.err_cnt;
         ui.start_receive();
     } else if (huart == roboArm.joint1.uart.uart) {
-
-        if (huart->ErrorCode & HAL_UART_ERROR_FE) {
-            // 清除帧错误标志
-            __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_FEF);
-            // 重置接收状态
-            huart->RxState = HAL_UART_STATE_READY;
-            // 重新启用空闲中断
-            __HAL_UART_ENABLE_IT(huart, UART_IT_IDLE);
-        }
+        ++roboArm.joint1.uart.err_cnt;
         roboArm.joint1.start();
         // 重新启动 DMA 接收
     }
