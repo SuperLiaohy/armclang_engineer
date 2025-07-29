@@ -53,7 +53,7 @@ void ArmTask() {
             roboArm.joint5.change_pos_kd(pid_parma.pos_d);
         }
         roboArm.joint5.set_position(roboArm.target.joint5.angle/100.f);
-        roboArm.joint5.SingleControl();
+//        roboArm.joint5.SingleControl();
         xSemaphoreGive(CAN1MutexHandle);
         if ((cnt + 4) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);

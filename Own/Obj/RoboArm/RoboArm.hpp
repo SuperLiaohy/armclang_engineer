@@ -7,17 +7,17 @@ class Interact;
 
 struct UartLK {
 public:
-    UartLK(UART_HandleTypeDef *_uart, uint8_t id) : id(id), uart(_uart, 50, 50), detect(1000) {};
+    UartLK(UART_HandleTypeDef *_uart, uint8_t id) : id(id), uart(_uart, 100, 50), detect(1000) {};
     SuperUart uart;
     uint8_t id;
 
     void set_position(float position, float speed = 100) {
-        if (!this->detect.isLost) {
+//        if (!this->detect.isLost) {
             // position = m.feedback.total_position * 100 + err;
             // totalposition2Control(limited<float>((speed * my_abs(err)) / 1000, 0.5 * speed, 1.5 * speed),
             //                       position * this->reduction_ratio);
-            totalposition2Control(speed, position * 10);
-        }
+            totalposition2Control(position * 10,speed*100);
+//        }
     };
 
     void totalposition2Control(int64_t position, uint32_t speed) {
@@ -42,7 +42,7 @@ public:
         uart.tx_buffer[1] = 0x92;
         uart.tx_buffer[2] = id;
         uart.tx_buffer[3] = 0x00;
-        uart.tx_buffer[4] = 0x3E + 0x80 + id + 0x00;
+        uart.tx_buffer[4] = 0x3E + 0x92 + id + 0x00;
         uart.transmit(5);
     }
 
@@ -54,7 +54,7 @@ public:
                 }
                 if (buffer[1] == 0xA4) {
                     if (buffer[3] == 7 && (buffer[4] == (buffer[0] + buffer[1] + buffer[2] + buffer[3]))) {
-                        uint8_t *data = &buffer[5];
+                        uint8_t *data = &buffer[4];
                         feedback.data.last_position = feedback.data.position;
                         feedback.raw_data.temperature = data[1];
                         feedback.raw_data.current = *(int16_t *) (&data[2]);
@@ -75,17 +75,18 @@ public:
                         total_position += dPos;
                     }
                 } else if (buffer[1] == 0x92) {
-                    if (buffer[3] == 7 && (buffer[4] == (buffer[0] + buffer[1] + buffer[2] + buffer[3]))) {
+                    if (buffer[3] == 8 && (buffer[4] == (buffer[0] + buffer[1] + buffer[2] + buffer[3]))) {
                         uint8_t *data = &buffer[5];
                         int64_t total = 0;
-                        for (int i = 0; i < 7; i++) {
-                            total |= (int64_t) data[i + 1] << (i * 8); // 重组 7 字节
-                        }
-
-                        // 恢复符号：如果最高有效字节的符号位是负数，则扩展符号
-                        if (data[7] == 0xFF) {
-                            total |= ((int64_t) 0xFF << 56); // 将高 8 位填充为 0xFF，符号扩展
-                        }
+                        memcpy(&total,data,8);
+//                        for (int i = 0; i < 7; i++) {
+//                            total |= (int64_t) data[i + 1] << (i * 8); // 重组 7 字节
+//                        }
+//
+//                        // 恢复符号：如果最高有效字节的符号位是负数，则扩展符号
+//                        if (data[7] == 0xFF) {
+//                            total |= ((int64_t) 0xFF << 56); // 将高 8 位填充为 0xFF，符号扩展
+//                        }
 
                         total_position = static_cast<float>(total) / 100.f / 10; // 0.01°/LSB
                         float tmp = total_position;
@@ -106,8 +107,6 @@ public:
         uart.tx_buffer[3] = 0x00;
         uart.tx_buffer[4] = 0x3E + 0x80 + id + 0x00;
         uart.transmit(5);
-
-
     }
 
     void enable() {
@@ -120,7 +119,7 @@ public:
     }
     void detect_lost(Fun callback) { this->detect.lostFun = callback; }
     void detect_recover(Fun callback) { this->detect.recoverFun = callback; }
-    void start() {uart.receive_dma_idle(50);};
+    void start() {uart.receive_dma_idle(100);};
     Detect detect;
     struct {
         struct {

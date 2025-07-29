@@ -225,6 +225,8 @@ void StartTask() {
     interact.remote_control.start();
     interact.image_trans.start_receive();
     interact.sub_board.start_receive();
+    roboArm.joint1.start();
+
     ui.start_receive();
 
     /* 蜂鸣器初始化 */

@@ -8,7 +8,7 @@
 #include "RoboArm/RoboArm.hpp"
 
 extern "C" {
-    extern osThreadId ERROR_TASKHandle;
+extern osThreadId ERROR_TASKHandle;
 }
 extern std::atomic<bool> rc_ready;
 
@@ -97,8 +97,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
             }
         }
         ui.start_receive();
-    } else if (huart== roboArm.joint1.uart.uart) {
-        roboArm.joint1.get_feed_back(roboArm.joint1.uart.rx_buffer,Size);
+    } else if (huart == roboArm.joint1.uart.uart) {
+        roboArm.joint1.get_feed_back(roboArm.joint1.uart.rx_buffer, Size);
         roboArm.joint1.start();
     }
 #endif
@@ -117,7 +117,17 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
         ++ui.uartPlus.err_cnt;
         ui.start_receive();
     } else if (huart == roboArm.joint1.uart.uart) {
+
+        if (huart->ErrorCode & HAL_UART_ERROR_FE) {
+            // 清除帧错误标志
+            __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_FEF);
+            // 重置接收状态
+            huart->RxState = HAL_UART_STATE_READY;
+            // 重新启用空闲中断
+            __HAL_UART_ENABLE_IT(huart, UART_IT_IDLE);
+        }
         roboArm.joint1.start();
+        // 重新启动 DMA 接收
     }
 };
 

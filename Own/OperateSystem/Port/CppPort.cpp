@@ -6,7 +6,7 @@
 #include "GPIO/SuperGPIO.hpp"
 #include "Interact/Interact.hpp"
 #include "W25Q64/W25Q64.hpp"
-
+#include "RoboArm/RoboArm.hpp"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -27,6 +27,10 @@ extern "C" void start_c(void){
 }
 extern "C" void im_start_c(void){
     interact.image_trans.uartPlus.receive_dma_idle(100);
+}
+
+extern "C" void rm_start_c(void){
+    roboArm.joint1.start();
 }
 
 
