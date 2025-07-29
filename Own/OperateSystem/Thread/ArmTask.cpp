@@ -31,30 +31,31 @@ void ArmTask() {
         roboArm.update_relative_pos();
         roboArm.load_target(interact.joint, interact.joint_slope);
 
-        if (cnt%2==0)
-        xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
+        if (cnt%2==0) {
+            xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
 //         roboArm.joint5.read_feedback();
-        pid_parma.target = roboArm.target.joint5.angle/100.f;
-        pid_parma.pos = roboArm.joint5.total_position;
-        joint5_current = roboArm.joint5.feedback.raw_data.current;
-        if (interact.sub_board.custom_frame_rx.s.valve2 > 700) {
-            roboArm.joint5.change_speed_kp(pid_parma.speed_p);
-            roboArm.joint5.change_speed_ki(pid_parma.speed_i);
-            roboArm.joint5.change_speed_kd(pid_parma.speed_d);
-            roboArm.joint5.change_pos_kp(pid_parma.pos_p);
-            roboArm.joint5.change_pos_ki(pid_parma.pos_i);
-            roboArm.joint5.change_pos_kd(pid_parma.pos_d);        }
-        else {
-            roboArm.joint5.change_speed_kp(pid_parma.speed_p);
-            roboArm.joint5.change_speed_ki(pid_parma.speed_i);
-            roboArm.joint5.change_speed_kd(pid_parma.speed_d);
-            roboArm.joint5.change_pos_kp(pid_parma.pos_p);
-            roboArm.joint5.change_pos_ki(pid_parma.pos_i);
-            roboArm.joint5.change_pos_kd(pid_parma.pos_d);
+            pid_parma.target = roboArm.target.joint5.angle / 100.f;
+            pid_parma.pos = roboArm.joint5.total_position;
+            joint5_current = roboArm.joint5.feedback.raw_data.current;
+            if (interact.sub_board.custom_frame_rx.s.valve2 > 700) {
+                roboArm.joint5.change_speed_kp(pid_parma.speed_p);
+                roboArm.joint5.change_speed_ki(pid_parma.speed_i);
+                roboArm.joint5.change_speed_kd(pid_parma.speed_d);
+                roboArm.joint5.change_pos_kp(pid_parma.pos_p);
+                roboArm.joint5.change_pos_ki(pid_parma.pos_i);
+                roboArm.joint5.change_pos_kd(pid_parma.pos_d);
+            } else {
+                roboArm.joint5.change_speed_kp(pid_parma.speed_p);
+                roboArm.joint5.change_speed_ki(pid_parma.speed_i);
+                roboArm.joint5.change_speed_kd(pid_parma.speed_d);
+                roboArm.joint5.change_pos_kp(pid_parma.pos_p);
+                roboArm.joint5.change_pos_ki(pid_parma.pos_i);
+                roboArm.joint5.change_pos_kd(pid_parma.pos_d);
+            }
+            roboArm.joint5.set_position(roboArm.target.joint5.angle / 100.f);
+            roboArm.joint5.SingleControl();
+            xSemaphoreGive(CAN1MutexHandle);
         }
-        roboArm.joint5.set_position(roboArm.target.joint5.angle/100.f);
-//        roboArm.joint5.SingleControl();
-        xSemaphoreGive(CAN1MutexHandle);
         if ((cnt + 4) % 5 == 0) {
             xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
             // roboArm.joint6.read_feedback();
@@ -82,25 +83,8 @@ void ArmTask() {
             roboArm.joint1.set_position(roboArm.target.joint1.angle, roboArm.target_speed[0]);
             // roboArm.joint1.read_feedback();
             xSemaphoreGive(CAN1MutexHandle);
-
-            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            // roboArm.joint4.read_totalposition();
-            // xSemaphoreGive(CAN1MutexHandle);
         }
-        if ((cnt + 3) % 10 == 0) {
-            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            // roboArm.joint3.read_totalposition();
-            // xSemaphoreGive(CAN1MutexHandle);
 
-            // 相对旋转角度只需要一个电机就可以确定，所以只需要一个电机的反馈数据，这里选择外侧电机
-            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            // roboArm.joint2.external.read_totalposition();
-            // xSemaphoreGive(CAN1MutexHandle);
-
-            // xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
-            // roboArm.joint1.read_totalposition();
-            // xSemaphoreGive(CAN1MutexHandle);
-        }
         CANHeapCnt = uxTaskGetStackHighWaterMark(NULL);
         osDelay(1);
     }

@@ -84,7 +84,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     joint3.read_totalposition();
     joint2.internal.read_totalposition();
     joint2.external.read_totalposition();
-    joint1.read_totalposition();
+    joint1.require_totalposition();
 
 
     // target.joint6.angle = 0;
@@ -134,7 +134,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
             // target.joint1.angle = offset.joint1 * 100;
             break;
         }
-        joint1.read_totalposition();
+        joint1.require_totalposition();
         osDelay(1);
     }
     // for (uint32_t i = 0; i < MaxTimeOut; i++) {
@@ -144,7 +144,7 @@ void RoboArm::init_offset(std::array<float, 6>& joint) {
     //         // target.joint1.angle = offset.joint1 * 100;
     //         break;
     //     }
-    //     joint5.read_totalposition();
+    //     joint5.require_totalposition();
     //     osDelay(1);
     // }
     for (uint32_t i = 0; i < MaxTimeOut; i++) {

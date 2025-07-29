@@ -85,7 +85,7 @@ private:
 
     void read_encoder();
 
-    // void read_totalposition();
+    // void require_totalposition();
 
     void readPid();
 
