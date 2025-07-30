@@ -7,15 +7,18 @@ class Interact;
 
 struct UartLK {
 public:
-    UartLK(UART_HandleTypeDef *_uart, uint8_t id) : id(id), uart(_uart, 100, 50), detect(1000) {};
+    UartLK(SuperCan* can, UART_HandleTypeDef *_uart, uint8_t id) : id(id), uart(_uart, 100, 50),canPlus(can), detect(1000) {};
     SuperUart uart;
     uint8_t id;
+
+    SuperCan *canPlus;
 
     void set_position(float position, float speed = 100) {
         if (!this->detect.isLost) {
             totalposition2Control(position * 10,speed*100);
         } else {
             require_feedback();
+            can_totalposition2Control(position * 10, speed);
         }
     };
 
@@ -116,6 +119,31 @@ public:
         uart.tx_buffer[4] = 0x3E + 0x88 + id + 0x00;
         uart.transmit(5);
     }
+
+    void can_enable() {
+        uint8_t data[8] = {0x88, 0, 0, 0, 0, 0, 0, 0};
+        canPlus->transmit_pdata(id + LKMotor::foc.TX_LOW_ID, data);
+    };
+    void can_close() {
+        uint8_t data[8] = {0x80, 0, 0, 0, 0, 0, 0, 0};
+        canPlus->transmit_pdata(id + LKMotor::foc.TX_LOW_ID, data);
+    };
+    void can_require_feedback() {
+        uint8_t data[8] = {0x9c, 0, 0, 0, 0, 0, 0, 0};
+        canPlus->transmit_pdata(id + LKMotor::foc.TX_LOW_ID, data);
+    }
+    void can_totalposition2Control(uint16_t speed, int32_t totalposition) {
+        uint8_t data[8] = {0xa4,
+                           0,
+                           *(uint8_t*)(&speed),
+                           *((uint8_t*)(&speed) + 1),
+                           *(uint8_t*)(&totalposition),
+                           *((uint8_t*)(&totalposition) + 1),
+                           *((uint8_t*)(&totalposition) + 2),
+                           *((uint8_t*)(&totalposition) + 3)};
+        canPlus->transmit_pdata(id + LKMotor::foc.TX_LOW_ID, data);
+    };
+
     void detect_lost(Fun callback) { this->detect.lostFun = callback; }
     void detect_recover(Fun callback) { this->detect.recoverFun = callback; }
     void start() {uart.receive_dma_idle(100);};
@@ -153,7 +181,7 @@ public:
             const uint32_t id6, const uint32_t range6, const float ratio6,
             roboarm_dep::offset &&offset)
             :
-            joint1(uart, id1),
+            joint1(canPlus,uart, id1),
             joint2{Motor<LKMotorSingle>(canPlus, id2_internal, range2_internal, ratio2_internal),
                    Motor<LKMotorSingle>(canPlus, id2_external, range2_external, ratio2_external)},
             joint3(canPlus, id3, range3, ratio3), joint4(canPlus, id4, range4, ratio4),

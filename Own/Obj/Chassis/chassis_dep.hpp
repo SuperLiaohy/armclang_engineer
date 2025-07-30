@@ -102,12 +102,12 @@ namespace chassis_dep {
     constexpr struct {
         float wheel_base;
         float wheel_track;
-    } front_info = {451, 243.74 * 2};
+    } front_info = {450, 240 * 2};
 
     constexpr struct {
         float wheel_base;
         float wheel_track;
-    } rear_info = {363, 197.5 * 2};
+    } rear_info = {450, 200 * 2};
 
     constexpr struct {
         float vx;

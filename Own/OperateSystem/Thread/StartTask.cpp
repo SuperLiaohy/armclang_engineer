@@ -125,6 +125,8 @@ void osg_detect() {
     buzzer.PushMusic<8>(Buzzer::error_music);
 }
 std::atomic<bool> rc_ready(false);
+
+void reset_err_ctrl_b_callback(KeyEventType event);
 void chassis_ctrl_w_callback(KeyEventType event);
 void chassis_ctrl_a_callback(KeyEventType event);
 void chassis_ctrl_s_callback(KeyEventType event);
@@ -218,6 +220,7 @@ void StartTask() {
     KeyBoardRegister(interact.keyList, Key_V, CombineKey_Ctrl, action_ctrl_v_callback);
 
     KeyBoardRegister(interact.keyList, Key_B, CombineKey_None, action_b_callback);
+    KeyBoardRegister(interact.keyList, Key_B, CombineKey_Ctrl, reset_err_ctrl_b_callback);
     KeyBoardRegister(interact.keyList, Key_G, CombineKey_Ctrl, robo_arm_ctrl_g_callback);
     KeyBoardRegister(interact.keyList, Key_G, CombineKey_None, robo_arm_g_callback);
 

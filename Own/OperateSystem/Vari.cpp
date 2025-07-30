@@ -97,6 +97,8 @@ interact_dep::Actions put_silver_mine(std::array<float,3>{295.f,-300.5f,126.5},s
 interact_dep::Actions put_silver_mine_back(std::array<float,3>{230.f, -300.5f, 126.5}, std::array<float,3>{0.f, 190.f, 0.f}, std::array<float,3>{0.1f, 0.2f, 0.1f});
 interact_dep::Actions put_silver_mine_up(std::array<float,3>{235.f,-300.5f,200.0},std::array<float,3>{0.f,190.f,0.f},std::array<float,3>{0.1f,0.2f,0.1f});
 
+interact_dep::Actions put_mine({0, 0, 103, 0, 76, 0},{360, 360, 360, 360},1000);
+
 interact_dep::Actions exchange_left({-17.9960938, 36.7366142, 35.3361511, -89.4694138, -89.9465207, 52.6248474});
 interact_dep::Actions exchange_right({17.9960938,36.7366142,35.3361511,89.4694138,-89.9465207,-52.6248474});
 
@@ -104,8 +106,8 @@ interact_dep::Actions reset1({0, -55, 145, 0, 0, 0}, {720,720,360,720}, 1000);
 interact_dep::Actions reset2({0, -8.31188679, 135, 0, -90, 0}, {720, 720, 360, 720}, 1000);
 
 // 661.090, 0, 23.632
-interact_dep::Actions arm_get_gold({0, 53.8834076, 66.5721664, 0, -30.4555893, 0}, {480, 720, 900, 720},2000);
-interact_dep::Actions arm_get_gold_z(std::array<float,3>{661.090, 0, 23.632+80},std::array<float,3>{0.f,90.f,0.f},1000);
+interact_dep::Actions arm_get_gold({0, 59.222788179042829536805234328593, 52.172861259904178421522373683569, 0, -21.395649438947007958327608012162, 0}, {480, 720, 900, 720},2000);
+interact_dep::Actions arm_get_gold_z(std::array<float,3>{700, 0, 45+80},std::array<float,3>{0.f,90.f,0.f},1000);
 
 interact_dep::Actions arm_error({-25.3774509, 4.23235941, 98.7619476, 0, 77.0056915, -25.3774529}, {480, 720, 900, 720});
 
@@ -165,6 +167,53 @@ interact_dep::ActionsGroup get_second_silver_group = {.actions_list = get_second
                                                       .event_list   = nullptr,
                                                       .exe_list     = get_second_silver_exe.data(),
                                                       .len          = 7,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};
+// **************************************************************************************************** //
+// OK
+
+std::array<interact_dep::Actions, 5> put_mine_action        = {
+        put_mine,
+        put_silver_mine,
+        put_silver_mine_back,
+        put_silver_mine_up,
+        reset1
+};
+// std::array<interact_dep::Actions, 2> get_second_silver_action        = {
+//     interact_dep::Actions({0, 37.604, 115.54184, 0, 27.570, 0},{480,720,360,360}),
+//     interact_dep::Actions(Slope(0.4, 0.15, 310), interact_dep::action_status::CartesianZ_z)
+// };
+std::array<uint32_t, 5> put_mine_time                       = {2000,1300,1500,500,500};
+std::array<interact_dep::ActionsGroup::exe, 6> put_mine_exe = {
+    []() {
+        interact.sub_board.set_pump(1);
+        interact.sub_board.set_main_valve(1);
+    },
+    []() {
+        interact.sub_board.set_rf_valve(1);
+    },
+    []() {
+        one_step_gets.Xright.set_state(translation::state::MOVE,210);
+    },
+    []() {interact.sub_board.set_main_valve(0);},
+    []() {},
+    []() { interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
+};
+std::array<interact_dep::ActionsGroup::event, 5> put_mine_event = {
+    []()->bool {
+        return interact.sub_board.custom_frame_rx.s.valve3 < 250;
+    },
+    nullptr,
+    nullptr,
+    nullptr,
+    nullptr,
+};
+interact_dep::ActionsGroup put_mine_group = {.actions_list = put_mine_action.data(),
+                                                      .time_list    = put_mine_time.data(),
+//                                                      .event_list   = get_second_silver_event.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = put_mine_exe.data(),
+                                                      .len          = 5,
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 // **************************************************************************************************** //
@@ -327,10 +376,10 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_gold_exe = {
         one_step_gets.rotate.set_target(osg::rota_init);
     },
     []() {
-        one_step_gets.Xleft.set_state(translation::state::MOVE, osg::xl_max + 40);
+        one_step_gets.Xleft.set_state(translation::state::MOVE, osg::xl_max);
         one_step_gets.rotate_move.set_state(translation::state::MOVE, -osg::M2006::meter2deg(45));
 //        one_step_gets.Yleft.set_state(translation::state::MOVE, 200);
-        one_step_gets.Xright.set_state(translation::state::MOVE, osg::xr_max);
+        one_step_gets.Xright.set_state(translation::state::MOVE, osg::xr_max+20);
 //        one_step_gets.Yright.set_state(translation::state::MOVE, -200);
     },
     []() {
@@ -375,7 +424,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_right_gold_exe = {
         interact.sub_board.set_rf_valve(1);
     },
     []() {
-        one_step_gets.Xright.set_state(translation::state::MOVE, osg::xr_max);
+        one_step_gets.Xright.set_state(translation::state::MOVE, osg::xr_max+20);
 //        one_step_gets.Yright.set_state(translation::state::MOVE, -200);
     },
     []() {
@@ -405,7 +454,7 @@ std::array<interact_dep::ActionsGroup::exe, 5> get_left_gold_exe = {
         interact.sub_board.set_lf_valve(1);
     },
     []() {
-        one_step_gets.Xleft.set_state(translation::state::MOVE, osg::xl_max);
+        one_step_gets.Xleft.set_state(translation::state::MOVE, osg::xl_max-20);
         one_step_gets.rotate_move.set_state(translation::state::MOVE, -osg::M2006::meter2deg(45));
 
 //        one_step_gets.Yleft.set_state(translation::state::MOVE, 200);

@@ -25,6 +25,11 @@ void ErrorTask() {
         canPlus2.transmit(M3508::foc.TX_LOW_ID, 0, 0, 0, 0);
         canPlus3.transmit(0x200, 0, 0, 0, 0);
         one_step_gets.rotate.unlock();
+        if (time < 10) {
+            interact.sub_board.set_reset_err(1);
+        } else {
+            interact.sub_board.set_reset_err(0);
+        }
         interact.sub_board.set_pump(0);
         interact.sub_board.set_rf_valve(0);
         interact.sub_board.set_rb_valve(0);

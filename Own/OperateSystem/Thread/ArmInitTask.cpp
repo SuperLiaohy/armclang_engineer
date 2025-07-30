@@ -10,6 +10,8 @@
 extern uint8_t re_flag;
 extern std::atomic<bool> arminit_flag;
 void ArmInitTask() {
+    interact.sub_board.set_reset_err(0);
+    interact.sub_board.transmit();
     /* 机械臂电机使能 */
     // enable 内部是先失能再使能
     roboArm.joint1.start();

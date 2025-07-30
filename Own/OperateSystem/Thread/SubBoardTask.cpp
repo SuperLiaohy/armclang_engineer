@@ -5,6 +5,7 @@
 #include "Interact/Interact.hpp"
 
 void SubBoardTask() {
+    interact.sub_board.set_reset_err(0);
     interact.sub_board.set_pump(0);
     interact.sub_board.set_rf_valve(0);
     interact.sub_board.set_rb_valve(0);

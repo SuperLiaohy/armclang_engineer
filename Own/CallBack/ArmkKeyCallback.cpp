@@ -39,6 +39,17 @@ void robo_arm_ctrl_g_callback(KeyEventType event) {
             break;
     }
 }
+bool is_reset_err = false;
+void reset_err_ctrl_b_callback(KeyEventType event) {
+    switch (event) {
+        case KeyEvent_OnClick:
+            is_reset_err = !is_reset_err;
+            interact.sub_board.toggle_reset_err();
+            break;
+        default:
+            break;
+    }
+}
 
 void robo_arm_g_callback(KeyEventType event) {
     switch (event) {

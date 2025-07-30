@@ -23,7 +23,7 @@ class SubBoard {
         uint8_t valve5: 1;
         uint8_t valve6: 1;
         uint8_t pump: 1;
-        uint8_t none: 1;
+        uint8_t reser_err: 1;
     };
 #pragma pack(pop)
 
@@ -88,6 +88,11 @@ public:
 
     custom_tx_frame custom_frame_tx;
     trans_frame *tx_frame;
+
+    void set_reset_err(uint8_t x) { custom_frame_tx.s.reser_err = x; };
+    void toggle_reset_err() { custom_frame_tx.s.reser_err = 1 - custom_frame_tx.s.reser_err;};
+    // void toggle_pump() { custom_frame_tx.s.pump = 1 - custom_frame_tx.s.pump;};
+
 
     void set_pump(uint8_t x) { custom_frame_tx.s.pump = x; };
     void toggle_pump() { custom_frame_tx.s.pump = 1 - custom_frame_tx.s.pump;};

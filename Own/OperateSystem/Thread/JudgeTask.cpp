@@ -72,6 +72,7 @@ void JudgeTask() {
                        "joint5:", 40);
         UI::create_str("115", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PURPLE, 2, 1570, 620, 24, 8,
                        "joint6:", 40);
+//        UI::create_str("116", UI::operation::ADD, UI::layer::LAYER_5, UI::color::PINK, 2, 24, 750, 24, 4, "err:", 40);
 
         // for (int i = 0; i < UI::str_index; ++i) {
         //     ui.update();
@@ -178,6 +179,11 @@ void JudgeTask() {
                 robo_num->set_int(int_robo_arm());
                 auto_num->set_int(int_auto());
                 air_num->set_int(int_valve_tx());
+                if (interact.sub_board.custom_frame_tx.s.valve2 > 700) {
+                    air_num->set_color(UI::color::PINK);
+                } else {
+                    air_num->set_color(UI::color::PURPLE);
+                }
                 // if (air_num->control.visible) {
                     // cnt_change++;
                 // }
@@ -194,8 +200,6 @@ void JudgeTask() {
                 }
                 joint_lost(joint3_num, roboArm.joint3.detect.isLost);
                 joint_lost(joint4_num, roboArm.joint4.detect.isLost);
-                // joint_lost(joint5_num, roboArm.diff.left.detect.isLost);
-                // joint_lost(joint6_num, roboArm.diff.right.detect.isLost);
                 joint1_num->set_float(roboArm.relative_pos[0]);
                 joint2_num->set_float(roboArm.relative_pos[1]);
                 joint3_num->set_float(roboArm.relative_pos[2]);

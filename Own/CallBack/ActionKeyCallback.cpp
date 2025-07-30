@@ -7,6 +7,7 @@
 #include "OneStepGet/OneStepGet.hpp"
 
 extern interact_dep::ActionsGroup arm_get_silver_group;
+extern interact_dep::ActionsGroup put_mine_group;
 extern interact_dep::ActionsGroup get_second_silver_group;
 extern interact_dep::ActionsGroup get_gold_group;
 extern interact_dep::ActionsGroup get_left_gold_group;
@@ -341,7 +342,7 @@ void action_v_callback(KeyEventType event) {
     } else if (OSG::mode == OneStepGetControl::AUTO) {
         switch (event) {
             case KeyEvent_OnClick:
-                interact.set_action_group(put_silver_group);
+                interact.set_action_group(put_mine_group);
                 break;
             default:
                 break;
