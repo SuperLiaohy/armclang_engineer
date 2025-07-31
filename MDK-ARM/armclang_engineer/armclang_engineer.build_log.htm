@@ -27,7 +27,13 @@ Project File Date:  07/29/2025
 <h2>Output:</h2>
 *** Using Compiler 'V6.23', folder: 'D:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'armclang_engineer'
-"armclang_engineer\armclang_engineer.axf" - 0 Error(s), 0 Warning(s).
+compiling ArmTask.cpp...
+linking...
+armclang_engineer\armclang_engineer.sct(56): warning: L6314W: No section matches pattern *.o(.ITCMRAM).
+Program Size: Code=214760 RO-data=5948 RW-data=33964 ZI-data=69764  
+Finished: 0 information, 1 warning and 0 error messages.
+FromELF: creating hex file...
+"armclang_engineer\armclang_engineer.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -130,7 +136,7 @@ Package Vendor: Keil
 
    * Component: CMSIS-Compiler:STDOUT(API)@1.1.0
       Include file:  include/retarget_stdout.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

@@ -5,6 +5,8 @@
 #include "RoboArm/RoboArm.hpp"
 #include "Interact/Interact.hpp"
 
+extern interact_dep::ActionsGroup reset_err_group;
+
 
 void air_left_callback(KeyEventType event) {
     switch (event) {
@@ -39,12 +41,11 @@ void robo_arm_ctrl_g_callback(KeyEventType event) {
             break;
     }
 }
-bool is_reset_err = false;
+
 void reset_err_ctrl_b_callback(KeyEventType event) {
     switch (event) {
         case KeyEvent_OnClick:
-            is_reset_err = !is_reset_err;
-            interact.sub_board.toggle_reset_err();
+            interact.set_action_group(reset_err_group);
             break;
         default:
             break;

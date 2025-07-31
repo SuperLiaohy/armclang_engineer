@@ -104,7 +104,7 @@ void Interact::receive_custom(uint8_t *data) {
             joint[2] = image_trans.user_custom_rx_data.joint[2] * scale(4096, 360);
             joint[3] = image_trans.user_custom_rx_data.joint[3] * scale(4096, 360);
             joint[4] = image_trans.user_custom_rx_data.joint[4] * scale(4096, 360);
-            joint[5] = -image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
+            joint[5] = image_trans.user_custom_rx_data.joint[5] * scale(4096, 360);
         }
     }
 }
@@ -268,6 +268,8 @@ void Interact::receive_actions(RoboArm &Arm, float pitch) {
                 interact.joint_slope[3].step_set(0.15);
             }
                 break;
+            case interact_dep::action_status::NO:
+
             default:
                 break;
         }

@@ -24,8 +24,7 @@ public:
             //                       position * this->reduction_ratio);
             totalposition2Control(speed,position * this->reduction_ratio);
         } else {
-            clear_error();
-            read_feedback();
+            totalposition2Control(speed,position * this->reduction_ratio);
         }
     };
 

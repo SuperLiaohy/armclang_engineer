@@ -61,7 +61,7 @@ RoboArm roboArm(&canPlus1,&huart1, 5, 65536, 10, 1, 65536, 6, 2, 65536, 6, 3, 65
                 7, 65536, 10,
                 6, 65536, 10,
                 {88.961792, -45.0833359 + 360 - 102.278336 + 5, -45.0833359 + 37.5383339 + 5, 135 + 27.9533329,
-                 68.3074951, /*(310.715 - 360)*/-56.7663574, 0});
+                 137.697144, /*(310.715 - 360)*/-56.7663574, 0});
 
 __attribute__((section(".RAM_D3"))) RGBLED Led(&hspi6);
 
@@ -86,7 +86,7 @@ OSG one_step_gets(Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0, 2.3, 4000, 7
                   1, Slope(0.6, 0), false,4000,-4000,
                   Pid(100, 0.0000, 20, 500, 9000, 0.0), Pid(1.5, 0.00, 2.3, 4000, 7000, 1),
                   6, Slope(1.3, 0), false,4000,-4000,
-                  &canPlus3,9
+                  &canPlus3,3
 );
 // 349.146 0 -131.812
 //interact_dep::Actions get_silver_mine({0,33.6004066,114.50135,0,31.870,0}, {480, 720, 360, 360});
@@ -167,6 +167,47 @@ interact_dep::ActionsGroup get_second_silver_group = {.actions_list = get_second
                                                       .event_list   = nullptr,
                                                       .exe_list     = get_second_silver_exe.data(),
                                                       .len          = 7,
+                                                      .index        = 0,
+                                                      .time_cnt     = 0};// **************************************************************************************************** //
+// OK
+
+std::array<interact_dep::Actions, 2> reset_err_action        = {
+        interact_dep::Actions{},interact_dep::Actions{}
+};
+std::array<uint32_t, 2> reset_err_time                       = {1000,50};
+bool is_error = false;
+std::array<interact_dep::ActionsGroup::exe, 3> reset_err_exe = {
+    []() {
+        interact.sub_board.set_reset_err(1);
+        is_error = false;
+    },
+    []() {
+        interact.sub_board.set_reset_err(1);
+        is_error = false;
+    },
+    []() {
+        interact.sub_board.set_reset_err(0);
+        roboArm.joint4.close_flag = 0;
+        roboArm.joint4.start_flag = 0;
+        roboArm.joint4.offset_flag = 0;
+        roboArm.joint5.close_flag = 0;
+        roboArm.joint5.start_flag = 0;
+        roboArm.joint5.offset_flag = 0;
+        roboArm.joint6.close_flag = 0;
+        roboArm.joint6.start_flag = 0;
+        roboArm.joint6.offset_flag = 0;
+        is_error = true;
+        interact.joint[3] = roboArm.relative_pos[3];
+        interact.joint[4] = roboArm.relative_pos[4];
+        interact.joint[5] = roboArm.relative_pos[5];
+        interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
+};
+
+interact_dep::ActionsGroup reset_err_group = {.actions_list = reset_err_action.data(),
+                                                      .time_list    = reset_err_time.data(),
+                                                      .event_list   = nullptr,
+                                                      .exe_list     = reset_err_exe.data(),
+                                                      .len          = 2,
                                                       .index        = 0,
                                                       .time_cnt     = 0};
 // **************************************************************************************************** //

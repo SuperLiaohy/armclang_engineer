@@ -243,31 +243,41 @@ void action_ctrl_x_callback(KeyEventType event) {
 
 
 void action_c_callback(KeyEventType event) {
-    if (OSG::mode == OneStepGetControl::MANUAL) {
-        switch (event) {
-            case KeyEvent_OnDown:
-            case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing:
-                one_step_gets.Yright.axis.Tincrease();
-                break;
-            case KeyEvent_None:
-            case KeyEvent_OnUp:
-                break;
-            default:
-                break;
+    if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
+        if (OSG::mode == OneStepGetControl::MANUAL) {
+            switch (event) {
+                case KeyEvent_OnDown:
+                case KeyEvent_OnLongPress:
+                case KeyEvent_OnPressing:
+                    one_step_gets.Yright.axis.Tincrease();
+                    break;
+                case KeyEvent_None:
+                case KeyEvent_OnUp:
+                    break;
+                default:
+                    break;
+            }
+        } else if (OSG::mode == OneStepGetControl::AUTO) {
+            switch (event) {
+                case KeyEvent_OnClick:
+                    interact.set_action_group(get_silver_group);
+                    break;
+                default:
+                    break;
+            }
+        } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+            switch (event) {
+                case KeyEvent_OnClick:
+                    interact.set_action_group(arm_get_silver_group);
+                    break;
+                default:
+                    break;
+            }
         }
-    } else if (OSG::mode == OneStepGetControl::AUTO) {
+    } else {
         switch (event) {
             case KeyEvent_OnClick:
-                interact.set_action_group(get_silver_group);
-                break;
-            default:
-                break;
-        }
-    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
-        switch (event) {
-            case KeyEvent_OnClick:
-                interact.set_action_group(arm_get_silver_group);
+                interact.sub_board.toggle_lf_valve();
                 break;
             default:
                 break;
@@ -326,33 +336,44 @@ void action_ctrl_c_callback(KeyEventType event) {
 }
 
 void action_v_callback(KeyEventType event) {
-    if (OSG::mode == OneStepGetControl::MANUAL) {
-        switch (event) {
-            case KeyEvent_OnDown:
-            case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing:
-                one_step_gets.Xright.axis.Tdecrease();
-                break;
-            case KeyEvent_None:
-            case KeyEvent_OnUp:
-                break;
-            default:
-                break;
+    if (interact.robo_arm.mode != interact_dep::robo_mode::CUSTOM) {
+
+        if (OSG::mode == OneStepGetControl::MANUAL) {
+            switch (event) {
+                case KeyEvent_OnDown:
+                case KeyEvent_OnLongPress:
+                case KeyEvent_OnPressing:
+                    one_step_gets.Xright.axis.Tdecrease();
+                    break;
+                case KeyEvent_None:
+                case KeyEvent_OnUp:
+                    break;
+                default:
+                    break;
+            }
+        } else if (OSG::mode == OneStepGetControl::AUTO) {
+            switch (event) {
+                case KeyEvent_OnClick:
+                    interact.set_action_group(put_mine_group);
+                    break;
+                default:
+                    break;
+            }
+        } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
+            switch (event) {
+                case KeyEvent_OnDown:
+                case KeyEvent_OnLongPress:
+                case KeyEvent_OnPressing:
+                    interact.set_action_group(put_mine_group);
+                    break;
+                default:
+                    break;
+            }
         }
-    } else if (OSG::mode == OneStepGetControl::AUTO) {
+    } else {
         switch (event) {
             case KeyEvent_OnClick:
-                interact.set_action_group(put_mine_group);
-                break;
-            default:
-                break;
-        }
-    } else if (OSG::mode == OneStepGetControl::ROBO_ARM) {
-        switch (event) {
-            case KeyEvent_OnDown:
-            case KeyEvent_OnLongPress:
-            case KeyEvent_OnPressing:
-                interact.set_action(reset2);
+                interact.sub_board.toggle_rf_valve();
                 break;
             default:
                 break;

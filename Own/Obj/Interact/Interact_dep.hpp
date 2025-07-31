@@ -40,6 +40,7 @@ namespace interact_dep {
     enum class action_status : uint8_t {
         Joints,
         XYZ,
+        NO,
     };
 
     struct Actions {
@@ -83,6 +84,11 @@ namespace interact_dep {
                 , Yaxis(default_pos_step[1],default_pos_step[1],posi[1])
                 , Zaxis(default_pos_step[2],default_pos_step[2],posi[2])
                 , zyz(post)
+                , time(time)
+        {};
+        explicit Actions()
+                : status(action_status::NO)
+                , init(false)
                 , time(time)
         {};
 
