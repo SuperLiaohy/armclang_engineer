@@ -20,6 +20,7 @@ struct  {
 
 float joint5_current;
 extern bool is_error;
+bool is_clear;
 void ArmTask() {
     uint32_t cnt = 0;
 
@@ -30,13 +31,16 @@ void ArmTask() {
         interact.receive_kb();
         roboArm.update_relative_pos();
         roboArm.load_target(interact.joint, interact.joint_slope);
-        if (is_error == false) {
-//            interact.joint[3] = roboArm.relative_pos[3];
-//            interact.joint[4] = roboArm.relative_pos[4];
-//            interact.joint[5] = roboArm.relative_pos[5];
+        if (is_clear) {
+            is_clear = false;
+            interact.joint[3] = roboArm.relative_pos[3];
+//                interact.joint[4] = roboArm.relative_pos[4];
+            roboArm.joint6.total_position = 0;
+            roboArm.relative_pos[5] = 0;
+            interact.joint[5] = roboArm.relative_pos[5];
         }
         if (is_error == false) {
-            if (cnt % 2 == 0) {
+            if (cnt % 5 == 0) {
                 xSemaphoreTake(CAN1MutexHandle, portMAX_DELAY);
 //         roboArm.joint5.read_feedback();
                 pid_parma.target = roboArm.target.joint5.angle / 100.f;
@@ -57,8 +61,8 @@ void ArmTask() {
                     roboArm.joint5.change_pos_ki(pid_parma.pos_i);
                     roboArm.joint5.change_pos_kd(pid_parma.pos_d);
                 }
-                roboArm.joint5.set_position(roboArm.target.joint5.angle / 100.f);
-                roboArm.joint5.SingleControl();
+                roboArm.joint5.set_position(roboArm.target.joint5.angle , 720.f);
+//                roboArm.joint5.SingleControl();
                 xSemaphoreGive(CAN1MutexHandle);
             }
             if ((cnt + 4) % 5 == 0) {
@@ -75,14 +79,14 @@ void ArmTask() {
                 } else if (roboArm.joint5.start_flag==0){
                     roboArm.joint5.enable();
                 } else if (roboArm.joint5.offset_flag==0) {
-                    roboArm.joint5.read_totalposition();
+//                    roboArm.joint5.read_totalposition();
                 }
                 if (roboArm.joint6.close_flag==0) {
                     roboArm.joint6.close();
                 }else if (roboArm.joint6.start_flag==0){
                     roboArm.joint6.enable();
                 } else if (roboArm.joint6.offset_flag==0) {
-                    roboArm.joint6.read_totalposition();
+//                    roboArm.joint6.read_totalposition();
                 }
                 if (roboArm.joint4.close_flag==0) {
                     roboArm.joint4.close();
@@ -93,9 +97,9 @@ void ArmTask() {
                 }
                 xSemaphoreGive(CAN1MutexHandle);
             }
-            if (roboArm.joint4.offset_flag&&roboArm.joint5.offset_flag&&roboArm.joint6.start_flag) {
+            if (roboArm.joint4.offset_flag&&roboArm.joint5.start_flag&&roboArm.joint6.start_flag) {
                 is_error = false;
-
+                is_clear = true;
             }
         }
         if ((cnt) % 5 == 0) {

@@ -197,9 +197,6 @@ std::array<interact_dep::ActionsGroup::exe, 3> reset_err_exe = {
         roboArm.joint6.start_flag = 0;
         roboArm.joint6.offset_flag = 0;
         is_error = true;
-        interact.joint[3] = roboArm.relative_pos[3];
-        interact.joint[4] = roboArm.relative_pos[4];
-        interact.joint[5] = roboArm.relative_pos[5];
         interact.robo_arm.mode = interact_dep::robo_mode::NONE; }
 };
 

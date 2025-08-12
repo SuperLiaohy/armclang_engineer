@@ -48,9 +48,10 @@ T limited(T&& value, T min, T max) {
 template<typename T>
 T whileLimit(T& value, T min, T max) {
     float len = max - min;
-    if (value > max) {
+    while (value > max) {
         value -= len;
-    } else if (value < min) {
+    }
+    while (value < min) {
         value += len;
     }
     return value;
