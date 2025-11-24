@@ -25,8 +25,6 @@
 #include "fdcan.h"
 #include "i2c.h"
 #include "iwdg.h"
-#include "memorymap.h"
-#include "octospi.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -35,7 +33,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-uint32_t flash_data;
 
 /* USER CODE END Includes */
 
@@ -64,7 +61,6 @@ uint32_t flash_data;
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
-void UserTimCallback(TIM_HandleTypeDef* htim);
 
 /* USER CODE END PFP */
 
@@ -111,7 +107,6 @@ int main(void)
   MX_ADC3_Init();
   MX_TIM3_Init();
   MX_USART10_UART_Init();
-  MX_OCTOSPI2_Init();
   MX_FDCAN2_Init();
   MX_FDCAN3_Init();
   MX_TIM12_Init();
@@ -119,13 +114,12 @@ int main(void)
   MX_USART3_UART_Init();
   MX_I2C1_Init();
   MX_UART7_Init();
-  MX_IWDG1_Init();
+  // MX_IWDG1_Init();
   MX_TIM6_Init();
   MX_UART9_Init();
   MX_UART8_Init();
   /* USER CODE BEGIN 2 */
 	__HAL_DBGMCU_FREEZE_IWDG1();
-    // HAL_TIM_Base_Start_IT(&htim6);
     HAL_IWDG_Refresh(&hiwdg1);
 
   /* USER CODE END 2 */
@@ -211,7 +205,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-volatile uint32_t CPU_RunTime = 0UL;
+
 /* USER CODE END 4 */
 
 /**
@@ -232,10 +226,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-//    UserTimCallback(htim);
-//  if (htim->Instance == TIM6) {
-//		++CPU_RunTime;
-//	}
+
   /* USER CODE END Callback 1 */
 }
 
@@ -253,8 +244,7 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

@@ -22,7 +22,6 @@
 #include "stm32h7xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "Port/CppPort.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,8 +89,7 @@ extern UART_HandleTypeDef huart10;
 extern TIM_HandleTypeDef htim17;
 
 /* USER CODE BEGIN EV */
-void im_start_c();
-void rm_start_c(void);
+
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -398,6 +396,7 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
+
   /* USER CODE END USART1_IRQn 1 */
 }
 
@@ -454,7 +453,7 @@ void UART5_IRQHandler(void)
   /* USER CODE END UART5_IRQn 0 */
   HAL_UART_IRQHandler(&huart5);
   /* USER CODE BEGIN UART5_IRQn 1 */
-	start_c();
+
   /* USER CODE END UART5_IRQn 1 */
 }
 
@@ -608,6 +607,7 @@ void UART8_IRQHandler(void)
   /* USER CODE END UART8_IRQn 0 */
   HAL_UART_IRQHandler(&huart8);
   /* USER CODE BEGIN UART8_IRQn 1 */
+
   /* USER CODE END UART8_IRQn 1 */
 }
 
@@ -621,7 +621,6 @@ void SPI6_IRQHandler(void)
   /* USER CODE END SPI6_IRQn 0 */
   HAL_SPI_IRQHandler(&hspi6);
   /* USER CODE BEGIN SPI6_IRQn 1 */
-    rm_start_c();
 
   /* USER CODE END SPI6_IRQn 1 */
 }
